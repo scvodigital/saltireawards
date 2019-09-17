@@ -117,6 +117,6 @@ async function uploadConfigs() {
     await app.database().ref(firebasePath).set(siteConfig);
     console.log('Successfully uploaded site config to', firebasePath);
   } catch(err) {
-    console.error('Failed to upload site config', firebasePath, stringify(err, null, 2));
+    console.error('Failed to upload site config', firebasePath, stringify(err, null, 2), err.message);
   }
 }
