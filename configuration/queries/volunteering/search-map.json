@@ -1,0 +1,83 @@
+{
+  "size": 10000,
+  "_source": [
+    "Id",
+    "title",
+    "title_slug",
+    "organisation_name",
+    "organisation_id",
+    "organisation_name_slug",
+    "description",
+    "postcode",
+    "geo_coords",
+    "slug"
+  ],
+  "query": {
+    "bool": {
+      "filter": [
+        {{>queries_opportunity_common_filters @root.request.params.query}},
+        {{>queries_opportunity_search_filters @root.request.params.query}}
+      ],
+      "must": [
+        {{>queries_opportunity_search_must @root.request.params.query}}
+      ]
+    }
+  },
+  {{#ifAll @root.request.params.query.location @root.request.params.query.lat @root.request.params.query.lng ~}}
+  "aggs": {
+    "geo_search": {
+      "geo_distance": {
+        "field": "geo_coords",
+        "origin": "{{@root.request.params.query.lat}}, {{@root.request.params.query.lng}}",
+        "unit": "mi",
+        "ranges": [
+          {
+            "to": {{default @root.request.params.query.distance "1000"}}
+          },
+          {
+            "from": {{default @root.request.params.query.distance "1000"}}
+          }
+        ]
+      }
+    },
+    "all_advertised_areas": {
+      "terms": {
+        "field": "advertised_areas",
+        "size" : 10000
+      }
+    }
+  },
+  "script_fields": {
+    "distance": {
+      "script": {
+        "inline": "def l = new ArrayList(); for (int i=0; i<doc['geo_coords'].values.length; i++) { double dist = Double.MAX_VALUE; double TO_METERS = 6371008.7714D; double TO_RADIANS = Math.PI / 180D; double doc_lat, doc_lon, x1, x2, h1, h2, h, cdist; doc_lat = params._source['geo_coords'][i].lat; doc_lon = params._source['geo_coords'][i].lon; x1 = doc_lat * TO_RADIANS; x2 = params.lat * TO_RADIANS; h1 = 1 - Math.cos(x1 - x2); h2 = 1 - Math.cos((doc_lon - params.lon) * TO_RADIANS); h = h1 + Math.cos(x1) * Math.cos(x2) * h2; cdist = TO_METERS * 2 * Math.asin(Math.min(1, Math.sqrt(h * 0.5))); dist = Math.min(dist, cdist); l.add(dist * 0.001 * 0.621371) } return l;",
+        "lang": "painless",
+        "params": {
+          "lat": {{@root.request.params.query.lat}},
+          "lon": {{@root.request.params.query.lng}}
+        }
+      }
+    }
+  },
+  {{/ifAll ~}}
+  "sort": [
+    {{#ifAll @root.request.params.query.location @root.request.params.query.lat @root.request.params.query.lng ~}}
+      {
+        "_geo_distance": {
+          "geo_coords": {
+            "lat": {{@root.request.params.query.lat}},
+            "lon": {{@root.request.params.query.lng}}
+          },
+          "order": "asc",
+          "unit": "mi",
+          "mode": "min",
+          "distance_type": "arc"
+        }
+      }
+    {{else}}
+      {
+        "closing_date": "asc"
+      }
+    {{/ifAll ~}}
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "pageSize": "A4",
+  "pageMargins": [30, 120, 30, 100],
+  "styles": {
+    "title": {
+      "fontSize": 20,
+      "bold": true
+    },
+    "subtitle": {
+      "fontSize": 16
+    },
+    "h1": {
+      "fontSize": 20,
+      "bold": true,
+      "margin": [0, 10, 0, 5]
+    },
+    "h2": {
+      "fontSize": 18,
+      "bold": true,
+      "margin": [0, 10, 0, 5]
+    },
+    "h3": {
+      "fontSize": 16,
+      "bold": true,
+      "margin": [0, 10, 0, 5]
+    },
+    "h4": {
+      "fontSize": 14,
+      "bold": true,
+      "margin": [0, 10, 0, 5]
+    },
+    "h5": {
+      "fontSize": 13,
+      "bold": true,
+      "margin": [0, 10, 0, 5]
+    }
+  },
+  "content": [
+    {
+      "text": {{>pdf_metadata_value key="title" default="Saltire Awards"}},
+    "fontSize": 26,
+    "bold": true,
+    "alignment": "center",
+    "margin": [0, 15]
+  },
+    {{#each @root.data.pdfObjects}}
+    {{>awards_pdf}},
+    {{/each}}
+    {
+      "columns": [
+        {
+          "width": "33%",
+          "text": [
+            {
+              "text": "Contact Us\n",
+              "fontSize": 14,
+              "bold": true
+            }, {
+              "text": "@support@saltireawards.org.uk\n",
+              "link": "mailto:support@saltireawards.org.uk.",
+              "fontSize": 10
+            },
+            {
+              "text": "TSI DATA HERE\n",
+              "link": "tel:08001690022",
+              "fontSize": 10
+            }
+          ]
+        },
+        {
+          "width": "66%",
+          "text": [
+            {
+              "text": "About Us\n",
+              "fontSize": 14,
+              "bold": true
+            },
+            {
+              "text": "The Saltire Awards is run by the Scottish Council for Voluntary Organisations, managed by Scotland's Third Sector Interfaces and supported by the Scottish Government. ",
+              "fontSize": 10
+            },
+            {
+              "text": "This website is owned and maintained by the Scottish Council for Voluntary Organisations the umbrella body for Scotland\"s voluntary sector.\n",
+              "fontSize": 10
+            }
+          ]
+        }
+      ],
+      "margin": [30, 240]
+    }
+
+  ]
+}

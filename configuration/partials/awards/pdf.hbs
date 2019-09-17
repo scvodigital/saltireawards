@@ -1,0 +1,53 @@
+
+
+
+  {
+  "text": {{>pdf_metadata_value key="title" default="Award"}},
+  "fontSize": 22,
+  "bold": true,
+  "alignment": "center",
+  "margin": [0, 15]
+  },
+  {
+  "text": "Name: {{user.first_name}} {{user.last_name}}",
+  "fontSize": 16,
+  "bold": true,
+  "alignment": "center",
+  "margin": [0, 15]
+  },
+
+  {
+  "text": "Total Hours: {{user.hours_verified}}",
+  "fontSize": 16,
+  "bold": true,
+  "alignment": "center",
+  "margin": [0, 15]
+  },
+
+  {
+  "text": {{>pdf_metadata_value key="title" default="Tasks"}},
+  "fontSize": 22,
+  "bold": true,
+  "alignment": "center",
+  "margin": [0, 15]
+  },
+
+  {{#each tasks}}
+    {
+    "text": "Volunteering with: {{organisation_name}} for {{#compare ../type "===" "group"}}{{../user.hours_verified}}{{else}}{{hours_verified}}{{/compare}} hours",
+    "fontSize": 16,
+    "bold": true,
+    "alignment": "center",
+    "margin": [0, 15]
+    },
+    {
+    "text": "Tasks: {{task_description}}",
+    "fontSize": 16,
+    "bold": true,
+    "alignment": "center",
+    "margin": [0, 15]
+    },
+  {{/each}}
+
+
+  {{>pdf_text text="" pageBreak="after"}}

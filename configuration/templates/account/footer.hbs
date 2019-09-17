@@ -1,0 +1,37 @@
+{{!-- contains useful functions for account operations. E.g. send out PV email --}}
+
+<script>
+    function sendVerifyEmail(message) {
+      $.ajax({
+        url: '/verify-email-send',
+        type: 'POST',
+      }).done(function (data) {
+        if (message){saltireawards.componentsInitialiser.snackbar.show({message:"Verify email re-sent"})};
+      }).fail(function (err) {
+        if (message){saltireawards.componentsInitialiser.snackbar.show({message:"There was a problem re-sending your verify email"})};
+      });
+    }
+
+    function postcodeMDCHack(){ //Try to make postcode field behave itself.
+      $('#postcode').parent().parent()[0].MDCTextField.foundation_.setValid(true);
+      setTimeout(function() {
+        $('#detail-submit').focus();
+      }, 100)
+      $('#detail-submit').prop('disabled', false);
+    }
+
+    function completeAccountCB(response){
+      postcodeMDCHack();
+      var jsonData = JSON.parse(response);
+      if (jsonData.id && jsonData.errors.length === 0){
+        if (jsonData.verify){
+          sendVerifyEmail();
+        }
+        window.location.href = '/';
+      } else {
+        $('#detail-submit').prop('disabled', false);
+        saltireawards.componentsInitialiser.snackbar.show({message:"Failed to update profile, please check all the form fields have been filled in correctly"});
+      }
+    }
+
+</script>

@@ -1,0 +1,19 @@
+{
+  "name": "home",
+  "pattern": ["/", ""],
+  "debug": true,
+  "tasks": [
+    "context.metaData.commonTasks.authNotRequired",
+    {
+      "name": "reroute",
+      "taskModule": "reroute",
+      "config": {
+        "if": [
+          { "missing": ["data.auth.uid"] },
+          "home_not_authenticated",
+          "home_authenticated"
+        ]
+      }
+    }
+  ]
+}

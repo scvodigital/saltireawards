@@ -1,0 +1,49 @@
+<div id="detailed-results-container" class="container-content content-notes">
+  <h2 class="mdc-typography--headline4">Add your details</h2>
+
+  <div class="mdc-typography--headline6 b-margin-full">
+    {{#unless @root.request.params.query.redirect}}
+      Thank you for signing up to the Saltire Awards as a group administrator. Please add your details below
+    {{else}}
+      In order to use this site as an administrator you need to complete your user details, please complete these below.
+    {{/unless}}
+
+  </div>
+
+  <form id="user-details-form" action="/submit-user-details" method="POST" data-ajax-form='{
+      "successCallback": "completeCB",
+      "failureCallback": "completeCB"
+    }'>
+
+    {{>account_details_form_fields mode=admin}}
+    <input type="hidden" name="signup" value="true">
+    {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
+    <button id="detail-submit" class="mdc-button mdc-button--raised b-margin-full" id="register-interest-submit" onclick="doSpinner()" type="submit">
+      <span class="icon far fa-hand-paper mdc-list-item__graphic" aria-hidden="true"></span>
+      <span class="spinner fas fa-spin fa-spinner mdc-list-item__graphic" aria-hidden="true"></span>
+      Submit details
+    </button>
+  </form>
+</div>
+
+{{!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> --}}
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    $('#user-details-form').on('submit', function(e){
+      $('#detail-submit').prop('disabled', true);
+    })
+  });
+  function completeCB(response){
+    var jsonData = JSON.parse(response);
+    if (jsonData.id){
+      if (jsonData.pv){
+        sendAdminVEmail();
+      }
+      window.location.href = '/';
+    } else {
+      $('#detail-submit').prop('disabled', false);
+      saltireawards.componentsInitialiser.snackbar.show({message:"Failed to update profile, please check all form fields have been filled in correctly"});
+    }
+  }
+
+</script>

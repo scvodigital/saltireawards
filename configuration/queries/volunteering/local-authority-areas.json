@@ -1,0 +1,38 @@
+{
+  "size": 0,
+  "_source": false,
+  {{#ifAll @root.request.params.query.location @root.request.params.query.lat @root.request.params.query.lng @root.request.params.query.distance ~}}
+  "query": {
+    "bool": {
+      "filter": [
+        {
+          "geo_shape": {
+            "shape": {
+              "shape": {
+                "type": "circle",
+                "coordinates": [
+                  {{@root.request.params.query.lng}},
+                  {{@root.request.params.query.lat}}
+                ],
+                "radius": "{{default @root.request.params.query.distance "10"}}mi"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  "aggs": {
+    "local_authority_areas": {
+      "terms": {
+        "field": "place",
+        "size" : 10000
+      }
+    }
+  }
+  {{else}}
+  "query": {
+    "match_none": {}
+  }
+  {{/ifAll ~}}
+}

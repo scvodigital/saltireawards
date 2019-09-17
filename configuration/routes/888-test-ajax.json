@@ -1,0 +1,30 @@
+{
+  "name": "test-ajax",
+  "pattern": "/test-ajax",
+  "debug": true,
+  "tasks": [
+    "context.metaData.commonTasks.authNotRequired",
+    "context.metaData.commonTasks.getAccountInfo",
+
+    "context.metaData.commonTasks.adminRequired",
+    {
+      "name": "apexUrl",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": "/SaltireHours/?hours_id=IAMTUROK"
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "body",
+        "template": "{\"id\": {{{stringify @root.data.deleteHoursData}}} }",
+        "parseJson": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{{#withExtend this value=(getProperty @root.route.metaData.pdf key)}}
+  {{#if value}}
+    {{#compare (substr value 0 1) "===" ">"}}
+      {{{stringify (default (getProperty @root (substr value 1)) (default default ""))}}}
+    {{else}}
+      {{{stringify (default value (default default ""))}}}
+    {{/compare}}
+  {{else}}
+    {{{stringify (default default "")}}}
+  {{/if}}
+{{/withExtend}}

@@ -1,0 +1,106 @@
+{
+  "size": 10,
+  "from": {{multiply (subtract (default @root.request.params.query.page 1) 1) 10}},
+  "highlight": {
+    "fields": {
+      "text_bag": {},
+      "text_bag_boost": {}
+    }
+  },
+  "_source": [
+    "Id",
+    "slug",
+    "title",
+    "title_slug",
+    "available_from",
+    "themes",
+    "themes_slugs",
+    "date_last_modified",
+    "description",
+    "goodhq_organisation.image_url",
+    "advertised_areas",
+    "geo",
+    "postcode",
+    "volunteersearch_type",
+    "volunteersearch_type_slugs",
+    "organisation_slug",
+    "organisation_name",
+    "organisation_aims_and_objectives",
+    "activities",
+    "activities_slugs",
+    "top_job",
+    "geo_coords",
+    "home_based",
+    "various_locations",
+    "location",
+    "salary",
+    "salary_currency",
+    "role_status_list",
+    "active",
+    "closing_date",
+    "start_at",
+    "end_at",
+    "organisation_id",
+    "organisation_slug",
+    "organisation_name_slug",
+    "organisation_name",
+    "organisation_has_logo",
+    "organisation_logo_url"
+  ],
+  {{#ifAll @root.request.params.query.lat @root.request.params.query.lng}}
+  "script_fields": {
+    "distance": {
+      "script": {
+        "params": {
+          "lat": {{@root.request.params.query.lat}},
+          "lon": {{@root.request.params.query.lng}}
+        },
+        "source": "if (!doc['geo_coords'].empty) { doc['geo_coords'].arcDistance(params.lat, params.lon) * 0.000621371; }"
+      }
+    }
+  },
+  {{/ifAll}}
+  "query": {
+    "bool": {
+      "filter": [
+        {{>queries_opportunity_common_filters @root.request.params.query}},
+        {{>queries_opportunity_search_filters @root.request.params.query}}
+      ],
+      "must": [
+        {{>queries_opportunity_search_must @root.request.params.query}}
+      ]
+    }
+  }
+  {{#if @root.request.params.query.sort}},
+  "sort": [
+    {{#switch @root.request.params.query.sort}}
+      {{#case "distance"}}
+        {{#ifAll @root.request.params.query.lat @root.request.params.query.lng}}
+          {
+            "_geo_distance": {
+              "geo_coords": {
+                "lat": {{@root.request.params.query.lat}},
+                "lon": {{@root.request.params.query.lng}}
+              },
+              "order": "asc",
+              "unit": "mi",
+              "mode": "min",
+              "distance_type": "arc"
+            }
+          }
+        {{/ifAll}}
+      {{/case}}
+      {{#case "newest"}}
+        {
+          "date_last_modified": "desc"
+        }
+      {{/case}}
+      {{#case "oldest"}}
+        {
+          "date_last_modified": "asc"
+        }
+      {{/case}}
+    {{/switch}}
+  ]
+  {{/if}}
+}

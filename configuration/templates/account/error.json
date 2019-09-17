@@ -1,0 +1,11 @@
+{
+  "errors": [
+    {
+      "id": "1",
+      "status": 404,
+      "code": "not-found",
+      "title": "Article Not Found",
+      "detail": "Article 123 is not available on this server"
+    }
+  ]
+}

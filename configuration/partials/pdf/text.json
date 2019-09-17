@@ -1,0 +1,17 @@
+{
+  {{~#>pdf_styles bold=bold italics=italics underline=underline strikethrough=strikethrough style=style alignment=alignment fontSize=fontSize pageBreak=pageBreak pageOrientation=pageOrientation headlineLevel=headlineLevel margin=margin padding=padding~}}
+    {{~#if link~}}
+      {{>pdf_key_value key="link" value=link}},
+    {{~/if~}}
+    {{~#if linkToPage~}}
+      {{>pdf_key_value key="linkToPage" value=linkToPage}},
+    {{~/if~}}
+    {{~#if @partial-block~}}
+      "text": [
+        {{> @partial-block}}
+      ]
+    {{~else~}}
+      {{>pdf_key_value key="text" value=(default text (default default ' '))}}
+    {{~/if~}}
+  {{~/pdf_styles~}}
+}

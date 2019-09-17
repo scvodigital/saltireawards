@@ -1,0 +1,11 @@
+{
+  "first_name": {"required": true, "maxlength": 64},
+  "last_name": {"required": true, "maxlength": 64},
+  "date_of_birth": {"required": true, "type": "date"},
+  "date_of_birth_checked": {"required": true, "type": "date"},
+  "postcode": {"required": true},
+  "school_college_name": {"maxlength": 64},
+  "verification_email": {"type": "email", "maxlength": 128},
+  "phone": {"type": "number", "maxlength": 15},
+  "title": {"required": true, "maxlength": 128}
+}

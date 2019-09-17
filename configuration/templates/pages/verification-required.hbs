@@ -1,0 +1,68 @@
+<div class="container-content content-account">
+  <div class="content-primary">
+  <h2>{{#compare @root.data.accountInfo.user_type "===" "Volunteer"}}Parent or guardian{{else}}Group administrator{{/compare}} verification</h2>
+  <p>{{#compare @root.data.accountInfo.user_type "===" "Volunteer"}}Parent or guardian{{else}}Group administrator{{/compare}} verification needed. An email has been sent to {{@root.data.accountInfo.verification_email}}
+    {{#compare @root.data.accountInfo.user_type "===" "Volunteer"}}please ask your parent or guardian to click the link in that email{{/compare}}.</p>
+  <button onclick="sendVerifyEmail(true)">Resend Email</button>
+{{#compare @root.data.accountInfo.user_type "===" "Volunteer"}}<button onclick="revealForm()">Change Email Address</button>{{/compare}}
+  </div>
+  <form id="user-details-form" style="display:none;"  method="POST" action="submit-user-details">
+    Please enter the new email address below.
+    <input type="hidden" name="signup" value="true">
+    {{#each (getKeys @root.data.accountInfo)}}
+      {{#compare this "===" "verification_email"}}
+      {{else}}
+      <input type="hidden" name="{{this}}" value="{{getProperty @root.data.accountInfo this}}">
+    {{/compare}}
+    {{/each}}
+    <div class="mdc-layout-grid">
+      <div id="verification" class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+          <div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField">
+            <input type="email" id="verification_email" name="verification_email" class="mdc-text-field__input mdc-text-field--fullwidth" value="{{@root.data.accountInfo.verification_email}}" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.verification_email}}>
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <label for="verification_email" class="mdc-floating-label">
+                  Your parent or guardian's email address
+                </label>
+              </div>
+              <div class="mdc-notched-outline__trailing"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit">submit</button>
+  </form>
+</div>
+
+<script>
+  function revealForm(){
+    var x = document.getElementById("user-details-form");
+    x.style.display = "block";
+  }
+
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var $form = $('#user-details-form');
+
+    $form.on('submit', function(evt) {
+      var formdata = $form.serialize();
+      evt.preventDefault();
+      $.ajax({
+        url: '/submit-user-details',
+        type: 'POST',
+        data: formdata, // serializes the form's elements.
+      }).done(function (data) {
+        window.location.href = '/verification-required';
+      }).fail(function (err) {
+        $message.text(err.message || 'There was a problem adding your details').show();
+        $loader.css('display', 'none');
+        return;
+      });
+    })
+
+  })
+
+</script>

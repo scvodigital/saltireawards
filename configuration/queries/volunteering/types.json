@@ -1,0 +1,148 @@
+{
+  "size": 0,
+  "_source": false,
+  "query": {
+    "bool": {
+      "filter": [
+        {{>queries_opportunity_common_filters @root.request.params.query}}
+      ]
+    }
+  },
+  "aggs": {
+    "volunteersearch_types": {
+      "terms": {
+        "field": "volunteersearch_type",
+        "order": {
+          "_term": "asc"
+        },
+        "size": 10000
+      }
+    },
+    "volunteersearch_types_slugs": {
+      "terms": {
+        "field": "volunteersearch_type_slugs",
+        "order": {
+          "_term": "asc"
+        },
+        "size": 10000
+      }
+    },
+    "themes": {
+      "terms": {
+        "field": "themes",
+        "order": {
+          "_term": "asc"
+        },
+        "size": 10000
+      }
+    },
+    "themes_slugs": {
+      "terms": {
+        "field": "themes_slugs",
+        "order": {
+          "_term": "asc"
+        },
+        "size": 10000
+      }
+    },
+    "activities": {
+      "terms": {
+        "field": "activities",
+        "order": {
+          "_term": "asc"
+        },
+        "size": 10000
+      }
+    },
+    "activities_slugs": {
+      "terms": {
+        "field": "activities_slugs",
+        "order": {
+          "_term": "asc"
+        },
+        "size": 10000
+      }
+    },
+    "age_groups": {
+      "terms": {
+        "field": "volunteersearch_age_group",
+        "order": {
+          "age": "asc"
+        },
+        "size": 10000
+      },
+      "aggs": {
+         "age": {
+            "max": {
+               "field": "minimum_age"
+            }
+         }
+      }
+    },
+    "age_groups_slugs": {
+      "terms": {
+        "field": "volunteersearch_age_group_slugs",
+        "order": {
+          "age": "asc"
+        },
+        "size": 10000
+      },
+      "aggs": {
+         "age": {
+            "max": {
+               "field": "minimum_age"
+            }
+         }
+      }
+    },
+    "availability": {
+      "terms": {
+        "field": "availability",
+        "size": 10000
+      }
+    },
+    "availability_slugs": {
+      "terms": {
+        "field": "availability_slugs",
+        "size": 10000
+      }
+    },
+
+    "services": {
+      "terms": {
+        "field": "volunteersearch_support_option",
+        "order": {
+          "_term": "asc"
+        },
+        "size": 10000
+      }
+    },
+    "services_slugs": {
+      "terms": {
+        "field": "volunteersearch_support_option_slugs",
+        "order": {
+          "_term": "asc"
+        },
+        "size": 10000
+      }
+    },
+    "advertised_areas": {
+      "terms": {
+        "field": "advertised_areas",
+        "order": {
+          "_term": "asc"
+        },
+        "size": 10000
+      }
+    },
+    "advertised_areas_slugs": {
+      "terms": {
+        "field": "advertised_areas_slugs",
+        "order": {
+          "_term": "asc"
+        },
+        "size": 10000
+      }
+    }
+  }
+}

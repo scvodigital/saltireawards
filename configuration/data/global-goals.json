@@ -1,0 +1,54 @@
+{
+  "1": {
+    "title": "No poverty",
+    "color": "#DE213D"
+  },
+  "2": {
+    "title": "Zero hunger",
+    "color": "#D3993F"
+  },
+  "3": {
+    "title": "Good health and wellbeing",
+    "color": "#369238"
+  },
+  "4": {
+    "title": "Quality education",
+    "color": "#BD182E"
+  },
+  "5": {
+    "title": "Gender equality",
+    "color": "#EF362B"
+  },
+  "6": {
+    "title": "Clean water and sanitation",
+    "color": "#00AFD2"
+  },
+  "7": {
+    "title": "Affordable and clean energy",
+    "color": "#F9BB32"
+  },
+  "8": {
+    "title": "Decent work and economic growth",
+    "color": "#9B1740"
+  },
+  "9": {
+    "title": "Industry, innovation and infrastructure",
+    "color": "#F06130"
+  },
+  "10": {
+    "title": "Reduced inequalities",
+    "color": "#D61462"
+  },
+  "11": {
+    "title": "Sustainable cities and communities",
+    "color": "#F29235"
+  },
+  "12": {
+    "title": "Responsible consumption and production",
+    "color": "#B58033"
+  },
+  "13": {
+    "title": "Climate action",
+    "color": "#2E7442"
+  }
+}

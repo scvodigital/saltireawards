@@ -1,0 +1,31 @@
+{
+  "bool": {
+    "must": [
+      {
+        "term": {
+          "_type": {
+            "value" : "milo-volunteering-opportunity"
+          }
+        }
+      },
+      {{>queries_date_range field="date_last_modified" gt="now-12M"}}
+    ]
+  }
+},
+{{#if location ~}}
+{
+  "bool": {
+    "should": [
+      {{>queries_opportunity_search_filters_locations @root.request.params.query}}
+      {{>queries_opportunity_search_filters_areas @root.request.params.query}}
+      {{>queries_opportunity_search_filters_home @root.request.params.query}}
+      {{>queries_do_nothing}}
+    ],
+    "minimum_should_match": {{#if distance}}2{{else}}1{{/if}}
+  }
+},
+{{/if ~}}
+{{#if age ~}}
+{{>queries_terms field="volunteersearch_age_slugs" terms=age}},
+{{/if ~}}
+{{>queries_do_nothing}}

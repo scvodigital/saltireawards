@@ -1,0 +1,43 @@
+{
+  "name": "submit-user-details",
+  "pattern": "/submit-user-details",
+  "debug": true,
+  "acceptedVerbs": "POST",
+  "defaultParams": {
+    "context": "results"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    {
+      "name": "codeRequired",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": ">context.metaData.handlebars.templates.account_verify-code-required"
+      }
+    },
+    {
+      "name": "saveUserData",
+      "taskModule": "salesforceApex",
+      "renderer": "handlebars",
+      "config": {
+        "connection": "scvoAlexSandbox",
+        "output": "data",
+        "method": "POST",
+        "body": ">context.metaData.handlebars.templates.account_user-body",
+        "apexClassPath": "/SaltireUser/"
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "body",
+        "template": "{\"id\": {{{stringify @root.data.saveUserData}}}, {{#if @root.errors}}\"errors\": {{{safeStringify @root.errors}}},{{/if}} \"verify\": {{#if @root.data.codeRequired}}true{{else}}false{{/if}} }",
+        "parseJson": true
+      }
+    }
+  ]
+}

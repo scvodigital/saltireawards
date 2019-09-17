@@ -1,0 +1,91 @@
+{
+  "name": "user-validate",
+  "pattern": "/user-validate",
+  "debug": true,
+  "tasks": [
+    "context.metaData.commonTasks.authNotRequired",
+    {
+      "name": "apexUrl",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": "/SaltireUser/?user_id={{@root.request.params.query.id}}"
+      }
+    },
+    {
+      "name": "accountInfo",
+      "taskModule": "salesforceApex",
+      "renderer": "handlebars",
+      "config": {
+        "connection": "scvoAlexSandbox",
+        "output": "data",
+        "method": "GET",
+        "apexClassPath": ">data.apexUrl"
+      }
+    },
+    {
+      "name": "codeVerified",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": ">context.metaData.handlebars.templates.account_code-verify"
+      }
+    },
+    {
+      "name": "handlePassFail",
+      "taskModule": "reroute",
+      "config": {
+        "if": [
+          {
+            "==": [
+              {
+                "var": "data.codeVerified"
+              },
+              "pass"
+            ]
+          },
+          null,
+          "parent-verify-fail"
+        ]
+      }
+    },
+    {
+      "name": "validateUser",
+      "taskModule": "salesforceApex",
+      "renderer": "handlebars",
+      "config": {
+        "connection": "scvoAlexSandbox",
+        "output": "data",
+        "method": "POST",
+        "body": ">context.metaData.handlebars.templates.account_user-validate-body",
+        "apexClassPath": "/SaltireUserValidate/"
+      }
+    },
+    {
+      "name": "passDestination",
+      "taskModule": "renderLayout",
+      "renderer": "handlebars",
+      "config": {
+        "logic": {
+          "if": [
+            "default"
+          ]
+        },
+        "output": "body",
+        "layouts": {
+          "default": {
+            "layout": ">context.metaData.handlebars.layouts.default",
+            "parts": {
+              "head": ">context.metaData.handlebars.templates.pages_head-tags",
+              "body": ">context.metaData.handlebars.templates.pages_verify-pass",
+              "foot": ""
+            },
+            "contentType": "text/html"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+<div class="table-responsive">
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th></th>
+        <th><p>Mon</p></th>
+        <th><p>Tue</p></th>
+        <th><p>Wed</p></th>
+        <th><p>Thu</p></th>
+        <th><p>Fri</p></th>
+        <th><p>Sat</p></th>
+        <th><p>Sun</p></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each (split "morning,afternoon,evening" ",")}}
+      <tr>
+        <th>{{capitalize this}}</th>
+        {{#each (split "monday,tuesday,wednesday,thursday,friday,saturday,sunday" ",")}}
+        <td style="font-weight:normal;">
+          <div class="mdc-checkbox">
+            <input type="checkbox" name="availability[]" class="mdc-checkbox__native-control" disabled value="{{concat this "-" ../this}}"{{#if (contains ../../this (concat this "-" ../this))}} checked{{/if}}>
+            <div class="mdc-checkbox__background">
+              <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                <path class="mdc-checkbox__checkmark__path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+              </svg>
+              <div class="mdc-checkbox__mixedmark"></div>
+            </div>
+          </div>
+        </td>
+        {{/each}}
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

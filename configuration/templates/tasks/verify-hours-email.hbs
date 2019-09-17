@@ -1,0 +1,31 @@
+{{#withExtend this type="verify-hours"}}
+  [
+  {{#eachJoin (distinct (pluck @root.data.tasksInfoUnverified "volunteer_manager_email")) ","~}}
+    {
+    "from": "hello@saltireawards.org.uk",
+    "h:sender": "hello@saltireawards.org.uk",
+    "to": "{{{this}}}",
+    "o:tag": "{{{../type}}}",
+    "o:tracking": true,
+    {{!-- "o:testmode": true, --}}
+    "tag":  "{{{../type}}}",
+    "id":  "{{{../type}}}",
+    "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat ../type '.mailgunConnection'))}}},
+    "subject":
+    {{~#blockStringify this ~}}
+      {{~>
+      (getProperty @root.context.metaData.emailSendSettings (concat ../type '.subjectPartial'))
+        this
+      ~}}
+    {{~/blockStringify}},
+    "html":
+    {{~#blockStringify this ~}}
+      {{~>
+      (getProperty @root.context.metaData.emailSendSettings (concat ../type '.bodyPartial'))
+        this
+      ~}}
+    {{~/blockStringify}}
+    }
+  {{/eachJoin}}
+  ]
+{{/withExtend}}

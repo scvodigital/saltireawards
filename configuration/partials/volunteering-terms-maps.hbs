@@ -1,0 +1,15 @@
+{
+  {{#each @root.context.metaData.volunteeringTerms ~}}
+  "{{key}}": {
+    "slugsMap" : {
+    {{#each termGroups}}
+      {{#each terms}}
+        "{{key}}" : {
+        "term": "{{{label}}}"
+        } {{#unless @last}},{{/unless}}
+      {{/each}} {{#unless @last}},{{/unless}}
+    {{/each}}
+    }
+  }{{#unless @last}},{{/unless}}
+  {{/each ~}}
+}

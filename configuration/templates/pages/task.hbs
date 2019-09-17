@@ -1,0 +1,261 @@
+<div class="container-content content-hours">
+  <h1 class="mdc-typography--headline4">
+    Add a task
+  </h1>
+
+
+  {{#withExtend this admin=(compare @root.data.accountInfo.user_type 'Group Admin') ~}}
+    <h2 class="mdc-typography--headline6">
+      Task details
+    </h2>
+
+
+    <form id="task-details-form" action="/submit-task-details" method="POST" data-ajax-form='{
+      "successCallback": "completeTaskWrite",
+      "failureCallback": "completeTaskWrite"
+    }'>
+    <div class="mdc-layout-grid">
+      <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+          <div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField">
+            <input id="organisation_name" name="organisation_name"  class="mdc-text-field__input mdc-text-field--fullwidth" value="{{@root.data.taskInfo.organisation_name}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.organisation_name}}>
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <label for="organisation_name" class="mdc-floating-label">
+                  {{#if admin ~}}
+                  Organisation your group has volunteered with
+                  {{else}}
+                  Organisation you volunteer for
+                  {{/if ~}}
+                </label>
+              </div>
+              <div class="mdc-notched-outline__trailing"></div>
+            </div>
+          </div>
+        </div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+          <div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField">
+            <input required id="location" name="location" class="mdc-text-field__input mdc-text-field--fullwidth" value="{{@root.data.taskInfo.location}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.location}}>
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <label for="location" class="mdc-floating-label">
+                  Location
+                </label>
+              </div>
+              <div class="mdc-notched-outline__trailing"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+          <div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField">
+            <input autocomplete="off" id="organisation_charity_number" name="organisation_charity_number" class="mdc-text-field__input mdc-text-field--fullwidth" value="{{@root.data.taskInfo.organisation_charity_number}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.organisation_charity_number}}>
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <label for="organisation_charity_number" class="mdc-floating-label">
+                  Organisation Scottish Charity Number (optional, e.g. SC012345)
+                </label>
+              </div>
+              <div class="mdc-notched-outline__trailing"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+          <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--outlined" data-mdc-auto-init="MDCTextField">
+            <textarea rows="1" cols="40" id="task_description" name="task_description" class="mdc-text-field__input" value="{{@root.data.taskInfo.task_description}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}} ></textarea>
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <label for="task_description" class="mdc-floating-label">Volunteering description (optional)</label>
+              </div>
+              <div class="mdc-notched-outline__trailing"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2 class="mdc-typography--headline6">
+        Details of the person who manages this volunteering task
+      </h2>
+
+      <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+          <div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField">
+            <input required id="volunteer_manager_first_name" name="volunteer_manager_first_name"
+              {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_first_name}} class="mdc-text-field__input mdc-text-field--fullwidth"
+              {{#if admin ~}}
+              value="{{default @root.data.taskInfo.volunteer_manager_first_name @root.data.accountInfo.first_name}}"
+              {{else}}
+              value="{{@root.data.taskInfo.volunteer_manager_first_name}}"
+              {{/if ~}}
+            >
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <label for="volunteer_manager_first_name" class="mdc-floating-label">
+                  First name
+                </label>
+              </div>
+              <div class="mdc-notched-outline__trailing"></div>
+            </div>
+          </div>
+        </div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+          <div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField">
+            <input required id="volunteer_manager_last_name" name="volunteer_manager_last_name"
+              {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_last_name}} class="mdc-text-field__input mdc-text-field--fullwidth"
+              {{#if admin ~}}
+              value="{{default @root.data.taskInfo.volunteer_manager_last_name @root.data.accountInfo.last_name}}"
+              {{else}}
+              value="{{@root.data.taskInfo.volunteer_manager_last_name}}"
+              {{/if ~}}
+            >
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <label for="volunteer_manager_last_name" class="mdc-floating-label">
+                  Last name
+                </label>
+              </div>
+              <div class="mdc-notched-outline__trailing"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mdc-layout-grid__inner">
+
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+          <div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField">
+            <input required id="volunteer_manager_title" name="volunteer_manager_title"
+              {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_title}} class="mdc-text-field__input mdc-text-field--fullwidth"
+              {{#if admin ~}}
+              value="{{default @root.data.taskInfo.volunteer_manager_title @root.data.accountInfo.title}}"
+              {{else}}
+              value="{{@root.data.taskInfo.volunteer_manager_title}}"
+              {{/if ~}}
+            >
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <label for="volunteer_manager_title" class="mdc-floating-label">
+                  Job title
+                </label>
+              </div>
+              <div class="mdc-notched-outline__trailing"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+          <div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField">
+            <input id="volunteer_manager_email" name="volunteer_manager_email"
+              {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_email}} class="mdc-text-field__input mdc-text-field--fullwidth"
+              {{#if admin ~}}
+              value="{{default @root.data.taskInfo.volunteer_manager_email @root.data.accountInfo.email}}"
+              {{else}}
+              value="{{@root.data.taskInfo.volunteer_manager_email}}"
+              {{/if ~}}>
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <label for="volunteer_manager_email" class="mdc-floating-label">
+                  Email address
+                </label>
+              </div>
+              <div class="mdc-notched-outline__trailing"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+          <div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField">
+            <input id="volunteer_manager_phone" name="volunteer_manager_phone"
+              {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_phone}} class="mdc-text-field__input mdc-text-field--fullwidth"
+              {{#if admin ~}}
+              value="{{default @root.data.taskInfo.volunteer_manager_phone @root.data.accountInfo.phone}}"
+              {{else}}
+              value="{{@root.data.taskInfo.volunteer_manager_phone}}"
+              {{/if ~}}
+              >
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <label for="volunteer_manager_phone" class="mdc-floating-label">
+                  Phone number (optional)
+                </label>
+              </div>
+              <div class="mdc-notched-outline__trailing"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+          <div class="mdc-select mdc-select--outlined" data-mdc-auto-init="MDCSelect">
+            <span class="mdc-select__dropdown-icon"></span>
+            <select class="mdc-select__native-control" id="sdg" name="sdg">
+              <option value="" selected></option>
+              {{#each @root.context.metaData.globalGoals ~}}
+              <option value="{{@key}}">{{@key}}: {{title}}</option>
+              {{/each ~}}
+            </select>
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <label for="sdg" class="mdc-floating-label">
+                  Which UN Sustainable Development Goal does this task match?
+                </label>
+              </div>
+              <div class="mdc-notched-outline__trailing"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
+    <button id="detail-submit" type="submit" class="mdc-button mdc-button--raised b-margin-full" id="register-interest-submit" >
+      <span class="icon far fa-hand-paper mdc-list-item__graphic" aria-hidden="true"></span>
+      <span class="spinner fas fa-spin fa-spinner mdc-list-item__graphic" aria-hidden="true"></span>
+      Submit details
+    </button>
+  </form>
+
+
+  {{/withExtend ~}}
+
+
+
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    $('#task-details-form').on('submit', function(e){
+      $('#task-details-form').find('.submit-button').prop('disabled', true);
+    })
+
+  });
+  function completeTaskWrite(response){
+    var jsonData = JSON.parse(response);
+    if (jsonData.id){
+      window.location.href = '/hours/';
+    } else {
+      $('.submit-button').prop('disabled', false);
+      saltireawards.componentsInitialiser.snackbar.show({message:"Failed create task."});
+    }
+  }
+
+
+</script>
+{{!--
+--}}
+{{!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> --}}

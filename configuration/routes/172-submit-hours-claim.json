@@ -1,0 +1,47 @@
+{
+  "name": "submit-hours-claim",
+  "pattern": "/submit-hours-claim",
+  "debug": true,
+  "tasks": [
+    "context.metaData.commonTasks.authNotRequired",
+    "context.metaData.commonTasks.verifyHoursInfo",
+    "context.metaData.commonTasks.getSignUpStatus",
+    "context.metaData.commonTasks.getAccountInfo",
+    "context.metaData.commonTasks.fullSignUpRequired",
+    {
+      "name": "claimHoursRender",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "connection": "scvoAlexSandbox",
+        "output": "data",
+        "method": "POST",
+        "template": ">context.metaData.handlebars.templates.tasks_hours-claim-body",
+        "apexClassPath": "/SaltireHoursClaim/"
+      }
+    },
+
+    {
+      "name": "claimHoursResult",
+      "taskModule": "salesforceApex",
+      "renderer": "handlebars",
+      "config": {
+        "connection": "scvoAlexSandbox",
+        "output": "data",
+        "method": "POST",
+        "body": ">context.metaData.handlebars.templates.tasks_hours-claim-body",
+        "apexClassPath": "/SaltireHoursClaim/"
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "body",
+        "template": "{\"id\": {{{stringify @root.data.claimHoursResult}}} }",
+        "parseJson": true
+      }
+    }
+  ]
+}

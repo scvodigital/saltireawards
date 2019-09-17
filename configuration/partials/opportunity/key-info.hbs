@@ -1,0 +1,99 @@
+<div class="mdc-card__info--content-primary-row">
+  <div class="mdc-card__info--content-primary">
+    {{#ifAny (compare @root.route.name "===" "opportunity_search") (compare @root.route.name "===" "opportunities_in") ~}}
+    {{#ifAll @root.request.params.query.location @root.request.params.query.lat @root.request.params.query.lng ~}}
+    <div class="v-margin pull-right mdc-card__info--search-distance">
+      {{#if distance ~}}
+      {{#ifAll (compare distance "!==" "") (compare distance "!==" "Infinity") (compare distance "<=" @root.request.params.query.distance) ~}}
+      {{> opportunity_location_distance distance=distance}}
+      {{else}}
+      {{#if (contains volunteersearch_type "Home-based volunteering") ~}}
+      {{> opportunity_location_home}}
+      {{else}}
+      {{#ifAny (compare (getType advertised_areas) "string") (compare advertised_areas.length ">" 0) ~}}
+      {{> opportunity_location_areas advertised_areas=advertised_areas}}
+      {{/ifAny ~}}
+      {{/if ~}}
+      {{/ifAll ~}}
+      {{else}}
+      {{#compare distance "===" 0 ~}}
+      {{> opportunity_location_distance distance=0.1}}
+      {{else}}
+      {{#if (contains volunteersearch_type "Home-based volunteering") ~}}
+      {{> opportunity_location_home}}
+      {{/if ~}}
+      {{/compare ~}}
+      {{/if ~}}
+    </div>
+    {{else}}
+    {{#if (contains volunteersearch_type "Home-based volunteering") ~}}
+    <div class="v-margin pull-right mdc-card__info--search-distance">
+      {{> opportunity_location_home}}
+    </div>
+    {{/if ~}}
+    {{/ifAll ~}}
+    {{/ifAny ~}}
+    {{#compare @root.route.name "===" "volunteering_opportunity" ~}}
+    {{#compare view "===" "full" ~}}
+    {{#unless (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null) "") ~}}
+    {{#ifAny @root.request.params.query.page @root.request.params.query.keywords @root.request.params.query.location ~}}
+    <a href="/search{{> query_search}}" class="back-to-results"><span class="far fa-chevron-circle-left" aria-hidden="true"></span> <span class="underline">Back to search results</span></a>
+    {{/ifAny ~}}
+    {{/unless ~}}
+    {{/compare ~}}
+    {{/compare ~}}
+    <h2 class="mdc-card__info--content-primary-title mdc-typography--headline6">
+      <a href="/search/opportunity/{{Id}}/{{title_slug}}{{> query_search}}">
+        <span class="hover-underline">{{{title}}}</span>
+      </a>
+    </h2>
+    {{#ifAll organisation_id organisation_name_slug organisation_name ~}}
+    <ul class="fa-ul organisation">
+      <li class="mdc-card__info--content-primary-organisation mdc-typography--body1">
+        <span class="fa-li"><span class="far fa-home-heart" title="Organisation"></span></span>
+        {{organisation_name}}
+      </li>
+    </ul>
+    {{/ifAll ~}}
+    <ul class="fa-ul first">
+      {{#if milo_ref ~}}
+        <li class="mdc-card__info--content-primary-reference mdc-typography--body1">
+          <span class="fa-li"><span class="far fa-hashtag" title="Reference"></span></span>
+          {{milo_ref}}
+        </li>
+      {{/if ~}}
+      {{#if volunteersearch_type ~}}
+      {{#compare volunteersearch_type.length ">" 0 ~}}
+        <li class="mdc-card__info--content-primary-reference mdc-typography--body1">
+          <span class="fa-li"><span class="far fa-info-circle" title="Specialist role"></span></span>
+          {{#each volunteersearch_type ~}}{{this}}{{#unless @last}}, {{/unless}}{{/each}}
+        </li>
+      {{/compare ~}}
+      {{/if ~}}
+    </ul>
+  </div>
+  {{#if (contains (map @root.data.registeredInterest.items.[0] (getProp "value")) Id) ~}}
+  {{#ifAny opportunity_contact_first_name opportunity_contact_last_name organisation_website ~}}
+  <div class="mdc-card__info--content-primary">
+    <h4 class="mdc-typography--headline6 t-margin-full">Contact</h4>
+    {{#ifAny opportunity_contact_first_name opportunity_contact_last_name ~}}
+    <div class="mdc-typography--body1">
+      <strong>Name: </strong> {{{opportunity_contact_first_name}}} {{{opportunity_contact_last_name}}}
+    </div>
+    {{/ifAny ~}}
+
+    {{#if opportunity_contact_email ~}}
+    <div class="mdc-typography--body1">
+      <strong>Email: </strong> <a href="mailto:{{{opportunity_contact_email}}}">{{{opportunity_contact_email}}}</a>
+    </div>
+    {{/if ~}}
+
+    {{#if organisation_website ~}}
+    <div class="mdc-typography--body1">
+      <strong>Website: </strong> <a href="{{fixUrl organisation_website 'http'}}">{{{organisation_website}}}</a>
+    </div>
+    {{/if ~}}
+  </div>
+  {{/ifAny ~}}
+  {{/if ~}}
+</div>

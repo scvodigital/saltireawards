@@ -1,0 +1,45 @@
+{
+  "name": "delete-hours",
+  "pattern": "/delete-hours",
+  "debug": true,
+  "acceptedVerbs": "DELETE",
+  "defaultParams": {
+    "context": "results"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.getAccountInfo",
+    "context.metaData.commonTasks.getSignUpStatus",
+    "context.metaData.commonTasks.adminRequired",
+    {
+      "name": "apexUrl",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": "/SaltireHours/?hours_id={{@root.request.params.query.hours_id}}"
+      }
+    },
+    {
+      "name": "deleteHoursData",
+      "taskModule": "salesforceApex",
+      "renderer": "handlebars",
+      "config": {
+        "connection": "scvoAlexSandbox",
+        "output": "data",
+        "method": "DELETE",
+        "apexClassPath": ">data.apexUrl"
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "body",
+        "template": "{\"id\": {{{stringify @root.data.deleteHoursData}}} }",
+        "parseJson": false
+      }
+    }
+  ]
+}

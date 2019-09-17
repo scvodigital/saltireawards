@@ -1,0 +1,18 @@
+{{#if @root.data.accountInfo.local_authority ~}}
+{{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
+{{#each contacts ~}}
+{{#if (regexMatch @root.data.accountInfo.postcode @key "gi") ~}}
+Your {{#compare @root.data.accountInfo.user_type "Group Admin"}}{{#if area}}{{area}}{{else}}{{../local_authority}}{{/if}} TSI{{else}}Saltire{{/compare}} contact is
+<strong>{{title}}</strong>.<br />
+{{#if phone}}Phone: {{phone}}<br />{{/if}}
+{{#if email}}Email: <a href="mailto:{{email}}">{{email}}</a><br />{{/if}}
+{{#if twitter}}Twitter: <a href="{{fixUrl twitter}}">{{twitter}}</a><br />{{/if}}
+{{#if facebook}}Facebook: <a href="{{fixUrl facebook}}">{{facebook}}</a><br />{{/if}}
+{{#if instagram}}Instagram: <a href="{{fixUrl instagram}}">{{instagram}}</a><br />{{/if}}
+{{#if website}}Website: <a href="{{fixUrl website}}">{{website}}</a>{{/if}}
+{{/if ~}}
+{{/each ~}}
+{{/with ~}}
+{{else}}
+Local contact information could not be determined for your postcode {{@root.data.accountInfo.postcode}}. Please see the <a href="/contact">contact us</a> page for all areas.
+{{/if ~}}

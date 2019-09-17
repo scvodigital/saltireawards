@@ -1,0 +1,33 @@
+[
+  {{#eachJoin @root.data.search_data.hits.hits "," ~}}
+  {
+    "display": {{{stringify _source.place}}},
+    "place": {{{stringify _source.place}}},
+    "tsiArea": "{{~#with (getProperty @root.context.metaData.tsiList (slugify (replace (replace (replace (replace (default _source.district _source.county) " and " " & ") " Islands" "") "City of " "") " City" ""))) ~}}
+    {{~#each contacts ~}}
+    {{~#if (regexMatch ../../_source.place @key "gi") ~}}
+    {{~#if area~}}{{area}}{{else}}{{../local_authority}}{{~/if~}}
+    {{~/if ~}}
+    {{~/each ~}}
+    {{~/with ~}}",
+    "tsiContact": "{{~#with (getProperty @root.context.metaData.tsiList (slugify (replace (replace (replace (replace (default _source.district _source.county) " and " " & ") " Islands" "") "City of " "") " City" ""))) ~}}
+    {{~#each contacts ~}}
+    {{~#if (regexMatch ../../_source.place @key "gi") ~}}
+    {{email}}
+    {{~/if ~}}
+    {{~/each ~}}
+    {{~/with ~}}",
+    {{#if _source.district ~}}
+    "district": {{{stringify (replace (replace (replace (replace _source.district " and " " & ") " Islands" "") "City of " "") " City" "")}}},
+    {{else}}
+    {{#if _source.county ~}}
+    "district": {{{stringify (replace (replace (replace (replace _source.county " and " " & ") " Islands" "") "City of " "") " City" "")}}},
+    {{/if ~}}
+    {{/if ~}}
+    {{#if _source.country ~}}
+    "country": {{{stringify _source.country}}},
+    {{/if ~}}
+    "point": {{{stringify _source.point}}}
+  }
+  {{/eachJoin ~}}
+]

@@ -1,0 +1,56 @@
+
+<div class="container-content content-hours">
+  <h1 class="mdc-typography--headline4">
+    Claim hours by certificate code
+  </h1>
+
+<form id="input-code-form" action="/submit-hours-claim" method="POST" data-ajax-form='{
+      "successCallback": "completeHoursClaim",
+      "failureCallback": "completeHoursClaim"
+    }'>
+  <div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+        <div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField">
+          <input id="task-code" name="hours_claim_code"  class="mdc-text-field__input mdc-text-field--fullwidth" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task-code}}>
+          <div class="mdc-notched-outline">
+            <div class="mdc-notched-outline__leading"></div>
+            <div class="mdc-notched-outline__notch">
+              <label for="organisation_name" class="mdc-floating-label">
+                Enter Claim code.
+              </label>
+            </div>
+            <div class="mdc-notched-outline__trailing"></div>
+          </div>
+        </div>
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+        <button id="detail-submit" type="submit" class="submit-button mdc-button mdc-button--raised b-margin-full" id="register-interest-submit" >
+          <span class="icon far fa-hand-paper mdc-list-item__graphic" aria-hidden="true"></span>
+          <span class="spinner fas fa-spin fa-spinner mdc-list-item__graphic" aria-hidden="true"></span>
+          Submit details
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    $('#input-code-form').on('submit', function(e){
+      $('#input-code-form').find('.submit-button').prop('disabled', true);
+    })
+
+  });
+  function completeHoursClaim(response){
+    var jsonData = JSON.parse(response);
+    if (jsonData.id){
+      window.location.href = '/hours/';
+    } else {
+      $('.submit-button').prop('disabled', false);
+      saltireawards.componentsInitialiser.snackbar.show({message:"Failed to claim hours."});
+    }
+  }
+
+</script>

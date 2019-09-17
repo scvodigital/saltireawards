@@ -1,0 +1,30 @@
+{
+  "parent-verify": {
+    "mailgunConnection": "mg_saltireawards",
+    "from": "Saltire Awards <hello@saltireawards.org.uk>",
+    "replyTo": "Saltire Awards <hello@saltireawards.org.uk>",
+    "sendIfEmpty": false,
+    "subjectPartial": "emails_parent_verify_subject",
+    "bodyPartial": "emails_parent_verify_body",
+    "metaData": {}
+  },
+  "group-admin-verify": {
+    "mailgunConnection": "mg_saltireawards",
+    "from": "Saltire Awards <hello@saltireawards.org.uk>",
+    "replyTo": "Saltire Awards <hello@saltireawards.org.uk>",
+    "sendIfEmpty": false,
+    "subjectPartial": "emails_admin_verify_subject",
+    "bodyPartial": "emails_admin_verify_body",
+    "metaData": {}
+  },
+  "verify-hours": {
+    "mailgunConnection": "mg_saltireawards",
+    "from": "Saltire Awards <hello@saltireawards.org.uk>",
+    "replyTo": "Saltire Awards <hello@saltireawards.org.uk>",
+    "sendIfEmpty": false,
+    "subjectPartial": "emails_verify_hours_subject",
+    "bodyPartial": "emails_verify_hours_body",
+    "metaData": {}
+  }
+}
+

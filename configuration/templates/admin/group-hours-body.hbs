@@ -1,0 +1,30 @@
+{{#json}}
+  {{#if @root.request.body.volunteers}}
+    {{#json key='hours_input' type='array'}}
+      {{#eachJoin (regexSplit @root.request.body.volunteers '\r?\n') ","}}
+        {{#json}}
+          {{{json key='task_id' value=@root.request.body.task_id}}},
+          {{{json key='verified' value=true}}},
+          {{{json key='hours' value=@root.request.body.hours}}},
+          {{{json key='claim_first_name' value=(firstItem (split this " "))}}},
+          {{{json key='claim_last_name' value=(substr this (add (length (firstItem (split this " "))) 1))}}},
+          {{{json key='claim_code' value=(hash (concat " " (random 0 1000000000000)) 'md5')}}},
+        {{/json}}
+      {{/eachJoin}}
+    {{/json}}
+  {{else}}
+    {{#with @root.request.body}}
+      {{#json key='hours_input' type='array'}}
+        {{#json}}
+          {{{json key='task_id' value=task_id}}},
+          {{{json key='verified' value=true}}},
+          {{{json key='hours' value=hours}}},
+          {{{json key='hours_id' value=hours_id}}},
+          {{{json key='claim_first_name' value=claim_first_name}}},
+          {{{json key='claim_last_name' value=claim_last_name}}},
+          {{{json key='claim_code' value=claim_code}}}
+        {{/json}}
+      {{/json}}
+    {{/with}}
+  {{/if}}
+{{/json}}

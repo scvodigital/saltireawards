@@ -1,0 +1,34 @@
+{
+  "name": "set-temp-admin",
+  "pattern": "/set-temp-admin",
+  "debug": true,
+  "acceptedVerbs": "GET",
+  "defaultParams": {
+    "context": "results"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    {
+      "name": "setAdmin",
+      "taskModule": "firebaseRtbSet",
+      "renderer": "handlebars",
+      "config": {
+        "appName": "saltireawards",
+        "pathTemplate": "/administrator-candidates/{{default data.auth.uid 'no-such-write-profile'}}",
+        "dataTemplate": "{ \"isCandidate\" : true }",
+        "setOrUpdate": "update",
+        "defaultData": false
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": "/sign-up-details",
+        "statusCode": 302
+      }
+    }
+
+  ]
+}
+

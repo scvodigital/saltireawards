@@ -1,0 +1,41 @@
+{
+  "name": "query-hours",
+  "pattern": "/query-hours",
+  "debug": true,
+  "metaData": {
+    "title": "Tasks"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authNotRequired",
+    "context.metaData.commonTasks.getAccountInfo",
+    "context.metaData.commonTasks.getTasksInfoUnverified",
+    "context.metaData.commonTasks.verifyHoursInfo",
+    "context.metaData.commonTasks.hoursCodeVerify",
+    "context.metaData.commonTasks.handleHoursVerifyFail",
+    {
+      "name": "destination",
+      "taskModule": "renderLayout",
+      "renderer": "handlebars",
+      "config": {
+        "logic": {
+          "if": [
+            "default"
+          ]
+        },
+        "output": "body",
+        "layouts": {
+          "default": {
+            "layout": ">context.metaData.handlebars.layouts.default",
+            "parts": {
+              "head": ">context.metaData.handlebars.templates.pages_head-tags",
+              "body": ">context.metaData.handlebars.templates.pages_query-hours",
+              "sidebar": ">context.metaData.handlebars.templates.account_sidebar"
+            },
+            "contentType": "text/html"
+          }
+        }
+      }
+    }
+
+  ]
+}

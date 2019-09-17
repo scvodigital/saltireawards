@@ -1,0 +1,55 @@
+{
+  "size": 10,
+  "_source": [
+    "Id",
+    "slug",
+    "title",
+    "title_slug",
+    "description",
+    "available_from",
+    "themes",
+    "themes_slugs",
+    "description",
+    "end_date",
+    "geo",
+    "postcode",
+    "volunteersearch_type",
+    "volunteersearch_type_slugs",
+    "organisation_slug",
+    "organisation_name",
+    "organisation_aims_and_objectives",
+    "travel_expenses",
+    "work_location",
+    "activities",
+    "activities_slugs",
+    "top_job",
+    "geo_coords",
+    "location",
+    "salary",
+    "role_status_list",
+    "active",
+    "closing_date",
+    "start_at",
+    "end_at",
+    "organisation_id",
+    "organisation_slug",
+    "organisation_name_slug",
+    "organisation_name",
+    "organisation_has_logo",
+    "organisation_logo_url"
+  ],
+  "query": {
+    "bool": {
+      "filter": [
+        {{>queries_opportunity_common_filters @root.request.params.query}},
+        {{>queries_opportunity_search_filters @root.request.params.query}}
+      ],
+      "must": [
+        {{>queries_opportunity_search_must @root.request.params.query}}
+      ]
+    }
+  },
+  "sort": {
+    "_score": "desc"
+  }
+}

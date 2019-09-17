@@ -1,0 +1,17 @@
+{
+  "size": 1,
+  "_source": [
+    "title",
+    "sub_title",
+    "og_title",
+    "og_image",
+    "og_summary",
+    "content",
+    "publish_on"
+  ],
+  "query": {
+    "term": {
+      "post_slug": "{{replace @root.request.params.path "blog_" ""}}"
+    }
+  }
+}

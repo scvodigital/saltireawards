@@ -1,0 +1,34 @@
+{{#each (filter @root.data.tasksInfo "task_id" "===" @root.request.params.task_id)}}
+    {{#json type='array'}}
+    {{#if @root.request.params.hours_id}}
+      {{#eachJoin (filter hours_list "hours_id" "===" @root.request.params.hours_id) ","}}
+        {{#json}}
+          {{{json key='type' value='group'}}},
+          {{#json key='user'}}
+            {{{json key='first_name' value=claim_first_name}}},
+            {{{json key='last_name' value=claim_last_name}}},
+            {{{json key='hours_verified' value=hours}}},
+          {{/json}},
+          {{#json type='array' key='tasks'}}
+            {{{jsStringify ../this}}},
+          {{/json}}
+        {{/json}}
+      {{/eachJoin}}
+    {{else}}
+      {{#eachJoin hours_list ","}}
+        {{#json}}
+          {{{json key='type' value='group'}}},
+          {{#json key='user'}}
+            {{{json key='first_name' value=claim_first_name}}},
+            {{{json key='last_name' value=claim_last_name}}},
+            {{{json key='hours_verified' value=hours}}}
+          {{/json}},
+          {{#json type='array' key='tasks'}}
+            {{{jsStringify ../this}}},
+          {{/json}}
+        {{/json}}
+      {{/eachJoin}}
+    {{/if}}
+
+    {{/json}}
+ {{/each}}

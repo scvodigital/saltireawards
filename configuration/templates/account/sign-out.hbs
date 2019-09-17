@@ -1,0 +1,14 @@
+{{> account_sign_out_loader}}
+<script>
+document.addEventListener("DOMContentLoaded", function(event) {
+  setTimeout(function() {
+    saltireawards.auth.sessionCleanup().then(function() {
+      window.setTimeout(function() {
+        window.location.href = '/';
+      }, 1000);
+    }).catch(function(err) {
+      console.error('Error signing out:', err);
+    });
+  }, 1000);
+});
+</script>

@@ -1,0 +1,6 @@
+{{#with @root.request.body }}
+{{#json}}
+  {{{json key='hours_claim_code' value=hours_claim_code}}},
+  {{{json key='user_id' value=@root.data.auth.uid}}}
+{{/json}}
+{{/with}}

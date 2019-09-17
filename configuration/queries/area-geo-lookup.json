@@ -1,0 +1,64 @@
+{
+  "size": 1,
+  "_source": ["district"],
+  "query": {
+    {{#if @root.data.accountInfo.postcode ~}}
+    "bool": {
+      "filter": [
+        {
+          "terms": {
+            "_type": [
+              {{#compare (length @root.data.accountInfo.postcode) ">" 4}}
+                "os_place", "postcode"
+              {{else}}
+                "os_place", "outcode"
+              {{/compare}}
+            ]
+          }
+        }
+      ],
+      "must": [
+        {
+          "query_string": {
+             "fields": ["autocomplete", "textbag"],
+             "query":
+              {{~#if (regexMatch @root.data.accountInfo.postcode "^([A-Z]{1,2})(([0-9][A-Z])|([0-9]{1,2}))" "ig")~}}
+                {{{stringify (replace @root.data.accountInfo.postcode " " "")}}}
+              {{else}}
+                {{{stringify (lowercase @root.data.accountInfo.postcode)}}}
+              {{~/if~}}
+          }
+        },
+        {
+          "term": {
+            "country": {
+              "value": "Scotland"
+            }
+          }
+        }
+      ],
+      "should": [
+        {
+          "term": {
+            "localType": {
+              "value": "City",
+              "boost": 5
+            }
+          }
+        },
+        {
+          "term": {
+            "localType": {
+              "value": "Town",
+              "boost": 2
+            }
+          }
+        }
+      ],
+      "boost": 1
+    }
+    {{else}}
+    "match_none": {}
+    {{/if ~}}
+  }
+}

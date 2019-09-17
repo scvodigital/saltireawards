@@ -1,0 +1,482 @@
+$mdc-theme-primary: #005EB8;
+$mdc-theme-primary-medium: #0072df;
+$mdc-theme-primary-light: #91c9ff;
+$mdc-theme-primary-dark: #0A3A62;
+
+$mdc-theme-complimentary: #ccc;
+$mdc-theme-complimentary-light: #ccc;
+$mdc-theme-complimentary-dark: #ccc;
+
+$mdc-theme-secondary: #E0E0E0;
+$mdc-theme-secondary-light: #F5F5F5;
+$mdc-theme-secondary-dark: #212121;
+
+$mdc-theme-challenge: #33B0D7;
+$mdc-theme-approach: #BBCF5C;
+$mdc-theme-ascent: #ED884C;
+$mdc-theme-summit: #8E7BA9;
+
+$mdc-theme-footer: #37474F;
+$mdc-theme-footer-light: #E1E3E4;
+$mdc-theme-footer-dark: #263238;
+
+$unit: 1rem;
+
+@import "./node_modules/material-components-web/material-components-web.scss";
+@import "./node_modules/@scvo/common/old/common-styles.scss";
+@import url(../node_modules/leaflet.markercluster/dist/MarkerCluster.css);
+@import url(../node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css);
+
+body {
+  background-color: $mdc-theme-footer-dark;
+}
+::-moz-selection {
+  color: #fff;
+  background: $mdc-theme-primary-dark;
+}
+::selection {
+  color: #fff;
+  background: $mdc-theme-primary-dark;
+}
+.mdc-theme--background {
+  background-color: white !important;
+}
+.mdc-top-app-bar {
+  background-color: #fff;
+}
+
+a {
+  color: $mdc-theme-primary;
+}
+a:not(.mdc-list-item):not(.mdc-button):hover {
+  color: $mdc-theme-primary-dark;
+}
+
+header {
+  .container-fluid {
+    .mdc-top-app-bar__upper,
+    .mdc-top-app-bar__lower {
+      background-color: $mdc-theme-primary;
+    }
+    .mdc-tab-bar {
+      .mdc-tab {
+        color: $mdc-theme-primary;
+        .mdc-tab__text-label {
+          color: $mdc-theme-primary;
+        }
+      }
+    }
+    .mdc-top-app-bar__section--logo {
+      padding-left: $unit;
+    }
+    #upper-tab-bar {
+      .mdc-tab:hover .mdc-tab__text-label {
+        border-bottom-color: $mdc-theme-primary;
+      }
+      .mdc-tab.mdc-tab--active .mdc-tab__text-label {
+        border-bottom-color: $mdc-theme-primary;
+      }
+    }
+    .mdc-top-app-bar__main .mdc-tab-bar,
+    .mdc-top-app-bar__user .mdc-tab-bar {
+      .mdc-tab {
+        color: #fff;
+      }
+      .mdc-tab:hover .mdc-tab__text-label {
+        border-bottom-color: rgba(255, 255, 255, 0.75);
+      }
+      .mdc-tab.mdc-tab--active .mdc-tab__text-label {
+        border-bottom-color: rgba(255, 255, 255, 0.9);
+      }
+    }
+    .mdc-top-app-bar__navigation-icon {
+      color: white;
+    }
+    .mdc-top-app-bar__main,
+    .mdc-top-app-bar__user {
+      .mdc-menu-surface--anchor {
+        .mdc-button:hover {
+          border-bottom-color: rgba(255, 255, 255, 0.6);
+        }
+      }
+    }
+    .mdc-top-app-bar__section {
+      .mdc-top-app-bar__action-item {
+        color: $mdc-theme-secondary !important;
+      }
+    }
+    .mdc-top-app-bar__section--logo img {
+      max-height: 80px;
+    }
+  }
+}
+.mdc-tab-bar {
+  .mdc-tab {
+    color: $mdc-theme-secondary;
+  }
+  .my-saltire {
+    background: white;
+    border-radius: 2rem;
+    color: $mdc-theme-primary !important;
+    padding: 0 1rem;
+  }
+}
+
+.container-home {
+  .my-saltire {
+    .my-saltire-item {
+      text-align: center;
+    }
+  }
+}
+.search-form {
+  padding-top: 0;
+}
+
+.responsive-img {
+  max-width: 100%;
+}
+.certificates {
+  .certificate {
+    .certificate-icon {
+      max-width: 100%;
+    }
+  }
+}
+.achievements {
+  .responsive-img {
+    max-width: 75%;
+    margin: 0 auto;
+    display: block;
+  }
+  .description {
+    text-align: center;
+    font-weight: bold;
+  }
+}
+.mdc-button {
+  .mdc-list-item__graphic {
+    line-height: 1.5;
+  }
+}
+.mdc-button--large {
+  width: 100%;
+}
+.main-body {
+  margin-top: 0;
+  padding-top: 100px;
+  background-color: white;
+}
+.top-bar-stuck {
+  top: 0;
+}
+.container-fluid {
+  box-sizing: border-box;
+  max-width: 100%;
+  width: 100%;
+  margin: 0 auto; // padding: 0 1.5rem;
+}
+.container-content {
+  margin: 0;
+  padding: 0 $unit $unit*1.5;
+}
+
+.header-image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: 33vh;
+  .header-image-overlay {
+    width: 100%;
+    background: linear-gradient(170deg, #fff 4.79%,rgba(255,255,255,0) 100.00%);
+    min-height: 33vh;
+  }
+  .container-content.content-page {
+    min-height: 33vh;
+    margin-top: 0;
+    padding: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    text-align: center;
+  }
+}
+.container-content.content-hours {
+  .claim-code {
+    color: #333;
+    background-color: #eee;
+    padding: $unit/5 $unit/4 0;
+    margin-bottom: $unit/4;
+    font-size: 95%;
+    display: inline-block;
+    font-family: 'Consolas', 'Monaco', 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
+  }
+}
+
+// .mdc-text-field--textarea:not(.mdc-text-field--disabled) {
+//   background-color: whitesmoke !important;
+// }
+.mdc-typography--headline4,
+.mdc-typography--headline5,
+.mdc-typography--headline6,
+.mdc-form-field,
+.mdc-select,
+.mdc-text-field {
+  margin-bottom: $unit;
+}
+
+.sign-in-form,
+.reset-password-form {
+  padding: $unit*1.5 0;
+  .mdc-card {
+    min-height: 15vh;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .middle-line-text {
+    margin: $unit*2 0 $unit*2;
+    border-bottom: 2px solid $mdc-theme-secondary-light;
+    line-height: 0;
+    text-align: center;
+    vertical-align: middle;
+    span {
+      padding: $unit;
+      color: #555;
+    }
+  }
+  .mdc-button {
+    position: relative;
+    display: block;
+    margin-bottom: $unit/2;
+    width: 100%;
+    color: white;
+    width: 100%;
+    color: white;
+    line-height: $unit*3;
+    height: $unit*3;
+    .fa-2x {
+      position: absolute;
+      top: $unit/2;
+      left: $unit/2;
+    }
+    .google-logo {
+      img {
+        float: left;
+        width: $unit*1.5;
+        padding: $unit/4;
+        background: white;
+      }
+    }
+  }
+  #sign-in-message,
+  #sign-up-message,
+  #reset-password-message {
+    display: none;
+    a {
+      font-weight: $heading-font-weight;
+    }
+  }
+}
+#sign-out-loader {
+  display: flex;
+}
+
+.card-loader {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: none;
+  .card-loader-background {
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    opacity: 1;
+  }
+  .card-loader-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.sign-in-form,
+.reset-password-form {
+  .middle-line-text {
+    border-bottom: 2px solid $mdc-theme-secondary;
+    span {
+      background-color: white;
+      color: $mdc-theme-secondary-dark;
+    }
+  }
+  .mdc-button {
+    color: white;
+    text-align: center;
+  }
+}
+
+.mdc-button .spinner {
+  display: none;
+}
+
+.mdc-button .icon {
+  display: inline-block;
+}
+
+.mdc-button:disabled .spinner {
+  display: inline-block;
+}
+
+.mdc-button:disabled .icon {
+  display: none;
+}
+
+
+.card-loader {
+  .card-loader-background {
+    background-color: white;
+  }
+  .card-loader-inner {
+    color: $mdc-theme-primary;
+  }
+}
+
+.email-template {
+  border: 1px solid black;
+  margin: 0.5*$unit;
+}
+
+// Footer ======================================================================
+footer.mdc-layout__footer.mdc-theme--footer-bg.mdc-theme--on-footer {
+  background-color: $mdc-theme-footer-light !important;
+  color: $mdc-theme-footer !important;
+}
+
+footer.mdc-layout__footer {
+  border-top: none;
+  background-color: $mdc-theme-footer-light;
+  box-shadow: none;
+  h3 {
+    color: $mdc-theme-footer;
+    font-weight: $heading-font-weight;
+    border-bottom: none;
+    font-size: 1.1rem;
+    margin: $unit 0 0;
+    text-transform: uppercase;
+  }
+  .about a,
+  a {
+    color: $mdc-theme-footer;
+  }
+  .about a:hover,
+  a:hover {
+    color: $mdc-theme-footer;
+  }
+  .mdc-layout-grid {
+    p {
+      color: $mdc-theme-footer;
+    }
+  }
+  .fa-ul {
+    .fa-li {
+      .fas,
+      .fal,
+      .far,
+      .fab {
+        color: $mdc-theme-footer;
+      }
+    }
+  }
+  .footer-copyright {
+    background-color: $mdc-theme-footer-dark;
+    p,
+    a {
+      color: white;
+    }
+    a:hover {
+      color: white;
+    }
+  }
+  .logos {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    .brand-logo {
+      display: inline-block;
+      margin-left: $unit*1.5;
+    }
+    .sg-logo img {
+      width: 160px;
+      margin-top: 4px;
+    }
+  }
+}
+
+:focus {
+  outline: none;
+}
+.pull-right {
+  float: right;
+}
+
+::-moz-selection {
+  color: white;
+  background: black;
+}
+::selection {
+  color: white;
+  background: black;
+}
+::-webkit-input-placeholder {
+  color: #777;
+}
+::-ms-input-placeholder {
+  color: #777;
+}
+::-moz-placeholder {
+  color: #777;
+}
+
+// Inline Edit ==========
+
+input.inline-edit{
+  /* Eliminate borders and padding */
+  border: none;
+  padding: 0;
+  margin: 0;
+
+  /* Inherit the parent element's typography */
+  font: inherit;
+  color: inherit;
+  line-height: inherit;
+  font-size: inherit;
+  text-align: inherit;
+
+  /* Seems to help alignment in headers */
+  vertical-align: top;
+}
+
+/* Add interaction cues on hover and focus */
+input.inline-edit:hover,
+input.inline-edit:focus{
+  /* Change the background to a light yellow */
+  background-color: #FFD;
+
+  /* A subtle transition never hurts */
+  -webkit-transition: background-color 0.5s;
+  -moz-transition: background-color 0.5s;
+  -ie-transition: background-color 0.5s;
+  transition: background-color 0.5s;
+}
+
+
+input.inline-edit[type=number] {
+  max-width:40px; /* Firefox */
+}

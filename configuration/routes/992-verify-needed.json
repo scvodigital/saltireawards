@@ -1,0 +1,15 @@
+{
+  "name": "verify-needed",
+  "pattern": "/verify-needed",
+  "tasks": [
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": "/verification-required",
+        "statusCode": 302
+      }
+    }
+  ]
+}
+

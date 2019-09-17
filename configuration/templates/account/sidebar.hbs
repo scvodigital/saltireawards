@@ -1,0 +1,25 @@
+{{#if @root.data.auth ~}}
+<div class="mdc-drawer__content b-margin">
+  <h3 class="mdc-typography--headline6 h-padding-full t-margin-full">
+    {{#compare @root.data.accountInfo.user_type "Group Admin" ~}}
+    Group administrator
+    {{else}}
+    My Saltire
+    {{/compare ~}}
+  </h3>
+  <nav class="mdc-list">
+    {{#each @root.context.metaData.menus.user-signed-in ~}}
+    {{#compare label "!==" "Sign out" ~}}
+    {{#if (contains user-types @root.data.accountInfo.user_type) ~}}
+    <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}{{#if @root.data.accountInfo.verification_needed}} mdc-list-item--disabled{{/if}}" href="{{stripTrailingSlash path}}" role="menuitem">
+      {{#if icon ~}}
+      <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
+      {{/if ~}}
+      {{{label}}}
+    </a>
+    {{/if ~}}
+    {{/compare ~}}
+    {{/each ~}}
+  </nav>
+</div>
+{{/if ~}}

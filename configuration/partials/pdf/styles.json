@@ -1,0 +1,19 @@
+{{~>pdf_key_value key="bold" value=bold comma=true~}}
+{{~>pdf_key_value key="italics" value=italics comma=true~}}
+{{~>pdf_key_value key="underline" value=underline comma=true~}}
+{{~>pdf_key_value key="strikethrough" value=strikethrough comma=true~}}
+{{~>pdf_key_value key="style" value=style comma=true~}}
+{{~>pdf_key_value key="alignment" value=alignment comma=true~}}
+{{~>pdf_key_value key="fontSize" value=fontSize comma=true~}}
+{{~>pdf_key_value key="pageBreak" value=pageBreak comma=true~}}
+{{~>pdf_key_value key="pageOrientation" value=pageOrientation comma=true~}}
+{{~>pdf_key_value key="headlineLevel" value=headlineLevel comma=true~}}
+{{~#if margin}}  "margin": [{{margin}}],{{/if~}}
+{{~#if padding}}  "padding": [{{padding}}],{{/if~}}
+{{~#if border}}  "border": [{{border}}],{{/if~}}
+{{~#withExtend this
+    bold=null italics=null underline=null strikethrough=null style=null 
+    alignment=null fontSize=null pageBreak=null pageOrientation=null 
+    headlineLevel=null margin=null padding=null border=null}}
+  {{> @partial-block}}
+{{/withExtend~}}

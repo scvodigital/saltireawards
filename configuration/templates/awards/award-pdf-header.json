@@ -1,0 +1,44 @@
+[
+  {{#compare currentPage ">" 1}}
+  {
+    "columns": [
+      {
+        "width": "*",
+        "text": [
+          {
+            "text": {{>pdf_metadata_value key="title" default="Funding Scotland"}},
+            "fontSize": 20,
+            "bold": true
+          },
+          "\n",
+          {
+            "text": {{>pdf_metadata_value key="subtitle" default=""}},
+            "fontSize": 16
+          }
+        ]
+      },
+      {
+        "width": 100,
+        "height": 100,
+        "fit": [65, 65],
+        "image": "logo",
+        "alignment": "right"
+      }
+    ],
+    "margin": [30, 30, 30, 5]
+  },
+  {
+    "canvas": [
+      {
+        "type": "line",
+        "x1": -15,
+        "y1": 5,
+        "x2": 550,
+        "y2": 5,
+        "lineWidth": 1
+      }
+    ],
+    "margin": [30, 5]
+  }
+  {{/compare}}
+]

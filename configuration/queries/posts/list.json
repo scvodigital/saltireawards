@@ -1,0 +1,19 @@
+{
+  "size": 10,
+  "from": {{multiply (subtract (default @root.request.params.query.page 1) 1) 10}},
+  "_source": [
+    "title",
+    "description_truncated",
+    "publish_on",
+    "post_slug"
+  ],
+  "query": {
+    "bool": {
+      "must": [
+      ]
+    }
+  },
+  "sort": {
+    "publish_on": "desc"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "name": "sd-needed",
+  "pattern": "/sd-needed",
+  "tasks": [
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": "/sign-up-details",
+        "statusCode": 302
+      }
+    }
+  ]
+}
+

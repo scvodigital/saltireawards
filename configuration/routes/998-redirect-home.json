@@ -1,0 +1,15 @@
+{
+  "name": "redirect-home",
+  "pattern": "/redirect-home",
+  "tasks": [
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": "/",
+        "statusCode": 302
+      }
+    }
+  ]
+}
+

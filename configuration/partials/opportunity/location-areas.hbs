@@ -1,0 +1,18 @@
+<ul class="fa-ul areas">
+  <li class="mdc-typography--body2">
+    <span class="fa-li"><span class="far fa-location-arrow fa-fw" title="Location"></span></span>
+    {{#compare (getType advertised_areas) "string" ~}}
+    {{{advertised_areas}}}
+    {{else}}
+    {{#compare advertised_areas.length ">" 3 ~}}
+    {{advertised_areas.length}} areas
+    {{else}}
+    {{#each advertised_areas ~}}
+    {{#if (contains (map @root.data.location_data.la_results.aggregations.local_authority_areas.buckets (getProp "key")) this) ~}}
+    <span class="area">{{{this}}}</span>
+    {{/if ~}}
+    {{/each ~}}
+    {{/compare ~}}
+    {{/compare ~}}
+  </li>
+</ul>

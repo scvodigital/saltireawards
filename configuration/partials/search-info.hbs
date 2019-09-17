@@ -1,0 +1,24 @@
+{{#if paging.totalResults ~}}
+<div class="search-info">
+  <strong>
+    {{addCommas paging.totalResults}}
+  </strong>
+  volunteering {{inflect paging.totalResults "opportunity" "opportunities"}}
+  {{if @root.request.params.query.exclude "(filtered)"}}
+  {{#compare @root.route.name "!==" "opportunity_map" ~}}
+  {{#compare paging.totalResults ">" 10 ~}} -
+  <span class="hide-sm">showing</span>
+  page {{addCommas paging.currentPage}} of {{addCommas paging.totalPages}}
+  {{/compare ~}}
+  {{/compare ~}}
+  {{#if @root.request.params.query.exclude ~}}
+  <a href="/search?{{{querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null}}}">Show all</a>
+  {{/if ~}}
+</div>
+{{else}}
+{{#ifAny @root.request.params.query.keywords @root.request.params.query.location @root.request.params.query.activities @root.request.params.query.themes @root.request.params.query.organisation_activities @root.request.params.query.has_opportunities @root.request.params.query.volunteersearch_types @root.request.params.query.age_groups @root.request.params.query.services ~}}
+<div class="search-info">
+  No results could be found, please try a different search query
+</div>
+{{/ifAny ~}}
+{{/if ~}}

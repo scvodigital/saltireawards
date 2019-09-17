@@ -1,0 +1,14 @@
+<ul class="fa-ul">
+  <li class="mdc-typography--body2">
+    <span class="fa-li"><span class="fas fa-location-arrow fa-fw" title="Distance"></span></span>
+    {{#compare distance "<" 4 ~}}
+      Less than {{inflect (round distance "up") "mile" "miles" true}} away
+    {{else}}
+      {{#compare distance "<" 10 ~}}
+        Within {{round distance "up"}} miles
+      {{else}}
+        {{round distance "up"}} miles away
+      {{/compare ~}}
+    {{/compare ~}}
+  </li>
+</ul>

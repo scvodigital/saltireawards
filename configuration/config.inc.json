@@ -1,0 +1,40 @@
+{
+  "domains": [
+    "saltireawards.local",
+    "test.saltireawards.scot",
+    "saltireawards.scot",
+    "test.saltireawards.org.uk",
+    "saltireawards.org.uk"
+  ],
+  "routes": [
+    "{:./routes/*.json}"
+  ],
+  "metaData": {
+    "assetsVersion": "{:../package.json@version}",
+    "assetsBase": "https://storage.googleapis.com/scvo-assets/test/saltireawards/",
+    "title": "Saltire Awards",
+    "emailSendSettings": "{:./data/email-send-settings.json}",
+    "menus": "{:./data/menus.json}",
+    "accountInfoValidation": "{:./data/account-info-validation.json}",
+    "taskInfoValidation": "{:./data/task-info-validation.json}",
+    "tsiList": "{:./data/tsi-list.json}",
+    "globalGoals": "{:./data/global-goals.json}",
+    "elasticsearchUrl": "{$./data/elasticsearch-url.txt}",
+    "volunteeringTerms": "{:./data/volunteering-terms.json}",
+    "handlebars": {
+      "partials": {
+        "{$./partials/**/*.*}": "includeRelativePath=false&regexExpression=(-)&regexOptions=gi&regexReplace=_"
+      },
+      "templates": {
+        "{$./templates/**/*.*}": ""
+      },
+      "layouts": {
+        "{$./layouts/**/*.*}": ""
+      },
+      "queries": {
+        "{$./queries/**/*.*}": ""
+      }
+    },
+    "commonTasks": "{:./data/common-tasks.json}"
+  }
+}

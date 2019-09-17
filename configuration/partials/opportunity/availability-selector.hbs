@@ -1,0 +1,33 @@
+<div class="table-responsive">
+  <table class="table table-condensed h-padding">
+    <thead>
+      <tr>
+        <th></th>
+        <th><p>AM</p></th>
+        <th><p>PM</p></th>
+        <th><p>Eve</p></th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {{#each @root.context.metaData.terms.availability.termGroups}}
+      <tr>
+        <th><p>{{capitalize label}}</p></th>
+        {{#each this.terms}}
+        <td>
+          <div class="mdc-checkbox">
+            <input type="checkbox" name="availability[]" class="mdc-checkbox__native-control" value="{{@key}}"{{#if (contains @root.request.params.query.availability @key)}} checked{{/if}}>
+            <div class="mdc-checkbox__background">
+              <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                <path class="mdc-checkbox__checkmark__path" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+              </svg>
+              <div class="mdc-checkbox__mixedmark"></div>
+            </div>
+          </div>
+        </td>
+        {{/each}}
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

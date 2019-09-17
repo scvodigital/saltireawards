@@ -1,0 +1,38 @@
+<div class="button-row">
+  <button class="mdc-button mdc-ripple-surface mdc-ripple-surface--primary" id="continue-with-google" type="button">
+    <span class="fab fa-2x google-logo"><img src="https://storage.googleapis.com/scvo-assets/test/volunteerscotland-search/images/logos/g-logo.png" /></span> Sign in with Google
+  </button>
+  <button class="disabled mdc-button mdc-ripple-surface mdc-ripple-surface--primary" id="continue-with-twitter" type="button">
+    <span class="fab fa-twitter-square fa-2x"></span> Sign in with Twitter
+  </button>
+  <button class="disabled mdc-button mdc-ripple-surface mdc-ripple-surface--primary" id="continue-with-facebook" type="button">
+    <span class="fab fa-facebook-square fa-2x"></span> Sign in with Facebook
+  </button>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var $message = $('{{messageSelector}}');
+    var $loader = $('{{loaderSelector}}');
+    var $google = $('#continue-with-google');
+    var $twitter = $('#continue-with-twitter');
+    var $facebook = $('#continue-with-facebook');
+
+    $google.on('click', function(evt) { socialSignIn('google'); });
+    $facebook.on('click', function(evt) { socialSignIn('facebook'); });
+    $twitter.on('click', function(evt) { socialSignIn('twitter'); });
+
+
+    function socialSignIn(providerName) {
+      $loader.show();
+      saltireawards.auth.signInProvider(providerName).then(function(user) {
+        console.log('Registered user:', user);
+        window.location.href = '/';
+      }).catch(function(err) {
+        console.error(err);
+        $message.text(err.message).show();
+        $loader.css('display', 'none');
+      });
+    }
+  });
+</script>

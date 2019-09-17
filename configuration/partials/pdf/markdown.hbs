@@ -1,0 +1,28 @@
+{{#*inline "jsonml"}}
+  {{~#withExtend (obj) 
+      headerOffset=headerOffset
+      children=(slice tree (if (compare (getType tree.[1]) "object") 2 else=1) null)
+      type=(thisToThat tree.[0] "markdown=stack&bulletlist=ul&numberlist=ol&listitem=none" "text") 
+      attributes=(concat attributes
+        (if (compare tree.[0] "header") (concat '"style": "h' (add tree.[1].level headerOffset) '", ') else="")
+        (if (compare tree.[0] "link") (concat '"link": ' (stringify tree.[1].href) ', ') else="")
+        (if (compare tree.[0] "strong") '"bold": true, ' else="")
+        (if (compare tree.[0] "em") '"italics": true, ' else=""))~}}
+    {{~#compare type "!==" "none"~}}
+      {
+        {{{attributes}}}
+        "{{type}}": [
+    {{/compare}}
+      {{~#each children~}}
+        {{~#compare (getType this) "array"~}}
+          {{>jsonml tree=this attributes=../attributes headerOffset=../headerOffset}}
+        {{~else~}}
+          { {{{../attributes}}} "text": {{{stringify this}}} }
+        {{~/compare~}}{{~#unless @last}},{{/unless~}}
+      {{~/each~}}
+    {{~#compare type "!==" "none"~}}
+        ]
+      }
+    {{~/compare~}}
+  {{~/withExtend~}}
+{{/inline}}{{>jsonml tree=(markdownParse markdown) headerOffset=(default headerOffset 0)}}

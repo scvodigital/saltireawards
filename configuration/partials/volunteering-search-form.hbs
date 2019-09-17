@@ -1,0 +1,165 @@
+<div class="search-form">
+  <h1 class="mdc-typography--headline4">
+    Find opportunities
+  </h1>
+  <form id="search-view" class="search-form" action="{{@root.request.url.pathname}}" method="GET">
+    <input type="hidden" name="lat" value="{{@root.request.params.query.lat}}" id="location-lat" />
+    <input type="hidden" name="lng" value="{{@root.request.params.query.lng}}" id="location-lng" />
+    <input type="hidden" name="sort" value="{{@root.request.params.query.sort}}" id="default-sort" />
+    <div class="mdc-layout-grid b-padding">
+      <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone filter-age">
+          <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                <div class="mdc-select mdc-select--outlined t-margin" data-mdc-auto-init="MDCSelect">
+                  <span class="mdc-select__dropdown-icon"></span>
+                  <select class="mdc-select__native-control" id="age" name="age">
+                    {{#each (split "12,13,14,15,16,17,18" ",")}}
+                      <option value="{{this}}" {{#compare (default @root.request.params.query.age "18") "===" this}}selected{{/compare}}>{{this}}{{#compare this "18"}}+{{/compare}}</option>
+                    {{/each}}
+                  </select>
+                  <div class="mdc-notched-outline">
+                    <div class="mdc-notched-outline__leading"></div>
+                    <div class="mdc-notched-outline__notch">
+                      <label for="age" class="mdc-floating-label">
+                        Age
+                      </label>
+                    </div>
+                    <div class="mdc-notched-outline__trailing"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+          <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon" data-mdc-auto-init="MDCTextField">
+            <span class="far fa-map-marker-alt mdc-text-field__icon geo-lookup" tabindex="0" title="Find my location"></span>
+            <input type="text" id="where-opportunities" name="location" class="mdc-text-field__input" value="{{@root.request.params.query.location}}" placeholder="" data-lpignore="true" data-location-search='{
+              "latSelector": "[name=\"lat\"]",
+              "lngSelector": "[name=\"lng\"]",
+              "laSelector": "[name=\"la\"]",
+              "locationServicesSelector": ".geo-lookup"
+            }'>
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <label for="where-opportunities" class="mdc-floating-label">
+                  Location
+                </label>
+              </div>
+              <div class="mdc-notched-outline__trailing"></div>
+            </div>
+          </div>
+          <!-- <div class="after-textfield-action geo-lookup">Find me</div> -->
+        </div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone filter-distance">
+          <div class="mdc-layout-grid">
+            <div class="mdc-layout-grid__inner">
+              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+                <div class="mdc-select mdc-select--outlined t-margin" data-mdc-auto-init="MDCSelect">
+                  <span class="mdc-select__dropdown-icon"></span>
+                  <select class="mdc-select__native-control" id="distance" name="distance">
+                    {{#each (split "5,10,15,20,25,30,35,40,45,50" ",")}}
+                      <option value="{{this}}" {{#compare (default @root.request.params.query.distance "10") "===" this}}selected{{/compare}}>{{this}} miles</option>
+                    {{/each}}
+                  </select>
+                  <div class="mdc-notched-outline">
+                    <div class="mdc-notched-outline__leading"></div>
+                    <div class="mdc-notched-outline__notch">
+                      <label for="distance" class="mdc-floating-label">
+                        Within
+                      </label>
+                    </div>
+                    <div class="mdc-notched-outline__trailing"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
+          <div class="mdc-text-field mdc-text-field--outlined mdc-text-field-tt" data-mdc-auto-init="MDCTextField">
+            <input type="text" id="what-opportunities" name="keywords" class="mdc-text-field__input" value="{{@root.request.params.query.keywords}}" placeholder="" data-lpignore="true" data-typeahead='{
+              "typeaheadOptions": {
+                "highlight": true,
+                "minlength": 0
+              },
+              "outputs": [
+                {
+                  "type": "element",
+                  "options": {
+                    "containerSelectorTemplate": "#search-terms",
+                    "testSelectorTemplate": "#\{{dataset.name}}-\{{item.value}}",
+                    "removeSelectorTemplate": "#remove-\{{dataset.name}}-\{{item.value}}",
+                    "template": {{#blockStringify this~}}
+                      <div class="mdc-chip mdc-theme--primary-bg" tabindex="0" id="\{{dataset.name}}-\{{item.value}}">
+                        <div class="mdc-chip__text">\{{item.other}}</div>
+                        <input type="hidden" name="\{{dataset.name}}[]" value="\{{item.value}}">
+                        <i class="far fa-times-circle mdc-chip__icon mdc-chip__icon--trailing" tabindex="0" role="button" id="remove-\{{dataset.name}}-\{{item.value}}"></i>
+                      </div>
+                    {{~/blockStringify}}
+                  }
+                },
+                {
+                  "type": "prop",
+                  "options": {
+                    "selectorTemplate": "#what-opportunities",
+                    "valueTemplate": ""
+                  }
+                }
+              ],
+              "datasets": [
+                {{#each @root.context.metaData.volunteeringTerms}}
+                {{#each termGroups}}
+                {
+                  "name": {{{stringify ../key}}},
+                  "templates": {
+                  {{#compare (length ../termGroups) 1}}
+                  "header": "<h3>{{{../label}}}</h3>"
+                  {{else}}
+                  "header": "<h3>{{{../label}}} &gt; {{{label}}}</h3>"
+                  {{/compare}}
+                },
+                "display": "other",
+                "items": [
+                  {{#each terms}}
+                  {
+                    "label": {{{stringify (concat ../key ' ' textBag)}}},
+                    "value": {{{stringify key}}},
+                    "other": {{{stringify label}}}
+                  }{{#unless @last}},{{/unless}}
+                  {{/each}}
+                ]
+                }{{#unlessAll @last @../last}},{{/unlessAll}}
+                {{/each}}
+              {{/each}}
+              ]
+            }'>
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <label for="what-opportunities" class="mdc-floating-label">
+                  Keywords
+                </label>
+              </div>
+              <div class="mdc-notched-outline__trailing"></div>
+            </div>
+          </div>
+        </div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-4-phone">
+          <button type="submit" id="search-opportunities" class="mdc-button mdc-button--raised mdc-button--large mdc-button--arrow mdc-button--search mdc-ripple-surface mdc-ripple-surface--primary t-margin" data-mdc-auto-init="MDCRipple">
+            Search
+            <span class="far fa-search" aria-hidden="true"></span>
+          </button>
+        </div>
+      </div>
+      <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+          <div id="search-terms" class="mdc-chip-set"></div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

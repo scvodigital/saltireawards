@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns#">
+  <meta charset="utf-8">
+  <base href="/">
+  {{{layoutParts.head}}}
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!--
+
+  Powered by:
+      ███████╗ ██████╗██╗   ██╗ ██████╗  ██╗   ██████╗  ██████╗ ██╗   ██╗████████╗███████╗██████╗
+     ██╔════╝██╔════╝██║   ██║██╔═══██╗ ╚██╗  ██╔══██╗██╔═══██╗██║   ██║╚══██╔══╝██╔════╝██╔══██╗
+    ███████╗██║     ██║   ██║██║   ██║  ╚██╗ ██████╔╝██║   ██║██║   ██║   ██║   █████╗  ██████╔╝
+   ╚════██║██║     ╚██╗ ██╔╝██║   ██║  ██╔╝ ██╔══██╗██║   ██║██║   ██║   ██║   ██╔══╝  ██╔══██╗
+  ███████║╚██████╗ ╚████╔╝ ╚██████╔╝ ██╔╝  ██║  ██║╚██████╔╝╚██████╔╝   ██║   ███████╗██║  ██║
+  ╚══════╝ ╚═════╝  ╚═══╝   ╚═════╝ ╚═╝   ╚═╝  ╚═╝ ╚═════╝  ╚═════╝    ╚═╝   ╚══════╝╚═╝  ╚═╝
+
+  -->
+
+  <link rel="shortcut icon" href="{{~>asset_url url='images/icons/favicon.ico'~}}">
+  <link rel="apple-touch-icon" sizes="57x57" href="{{~>asset_url url='images/icons/apple-icon-57x57.png'~}}">
+  <link rel="apple-touch-icon" sizes="60x60" href="{{~>asset_url url='images/icons/apple-icon-60x60.png'~}}">
+  <link rel="apple-touch-icon" sizes="72x72" href="{{~>asset_url url='images/icons/apple-icon-72x72.png'~}}">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{~>asset_url url='images/icons/apple-icon-76x76.png'~}}">
+  <link rel="apple-touch-icon" sizes="114x114" href="{{~>asset_url url='images/icons/apple-icon-114x114.png'~}}">
+  <link rel="apple-touch-icon" sizes="120x120" href="{{~>asset_url url='images/icons/apple-icon-120x120.png'~}}">
+  <link rel="apple-touch-icon" sizes="144x144" href="{{~>asset_url url='images/icons/apple-icon-144x144.png'~}}">
+  <link rel="apple-touch-icon" sizes="152x152" href="{{~>asset_url url='images/icons/apple-icon-152x152.png'~}}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{~>asset_url url='images/icons/apple-icon-180x180.png'~}}">
+  <link rel="icon" type="image/png" sizes="192x192" href="{{~>asset_url url='images/icons/android-icon-192x192.png'~}}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{~>asset_url url='images/icons/favicon-32x32.png'~}}">
+  <link rel="icon" type="image/png" sizes="96x96" href="{{~>asset_url url='images/icons/favicon-96x96.png'~}}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{~>asset_url url='images/icons/favicon-16x16.png'~}}">
+  <link rel="manifest" href="{{~>asset_url url='images/icons/manifest.json'~}}">
+  <meta name="msapplication-TileColor" content="#3c7524">
+  <meta name="msapplication-TileImage" content="{{~>asset_url url='images/icons/ms-icon-144x144.png'~}}">
+  <meta name="theme-color" content="#3c7524">
+  <link rel="search" type="application/opensearchdescription+xml" title="Saltire Awards" href="{{~>asset_url url='opensearch.xml'~}}" />
+
+  <script>
+  window.dataLayer = window.dataLayer || [];
+
+  {{#ifAny request.params.query.debug (contains request.url.hostname ".local") ~}}
+  console.log('#### DEBUG MODE ON ####');
+  console.log('Request:', {{{regexReplace (regexReplace (stringify request) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+  console.log('Route:', {{{regexReplace (regexReplace (stringify route) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+  console.log('Context:', {{{regexReplace (regexReplace (stringify context) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+  console.log('Data:', {{{regexReplace (regexReplace (stringify data) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+  console.log('Menus:', {{{regexReplace (regexReplace (stringify @root.context.metaData.menus) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+  {{#if errors.[0]}}
+    console.error('Task Errors:', {{{regexReplace (regexReplace (stringify errors) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+  {{/if}}
+  {{/ifAny ~}}
+  </script>
+
+  <link type="text/css" rel="stylesheet" href="{{~>asset_url url='libraries/leaflet/leaflet.css'~}}" />
+  <link type="text/css" rel="stylesheet" href="{{~>asset_url url='libraries/fontawesome-pro/css/all.min.css'~}}" />
+  <link type="text/css" rel="stylesheet" href="{{~>asset_url url='main.css'}}">
+</head>
+<body class="mdc-theme--footer-dark-bg">
+  <saltireawards-site>
+    <div class="mdc-typography">
+      {{#ifAny request.params.query.debug (contains request.url.hostname ".local") ~}}
+        {{#if errors.[0]}}
+          <div style="z-index:100;position:fixed;top:0;right:0;padding:5px;background-color:#ff0000;color:#ffffff;">
+            Route Task Errors (F12)
+          </div>
+        {{/if}}
+        {{#if logs.[0]}}
+          <div style="z-index:100;position:fixed;bottom:0;right:0;padding:5px;background-color:#0000ff;color:#ffffff;"
+               onclick="document.querySelector('#route-debug-log').style.display='block';">
+            Route Log
+          </div>
+          <div style="z-index:100;position:fixed;bottom:0;left:0;right:0;padding:5px;background-color:#ededed;color:#000000;overflow:auto;height:50vh;display:none;border-top:1px solid #cccccc;" id="route-debug-log">
+            <a style="position:fixed;right:25px;" onclick="document.querySelector('#route-debug-log').style.display='none';">x</a>
+<pre style="white-space: pre-wrap;">
+{{~#each logs}}
+{{{this}}}
+
+{{/each~}}
+</pre>
+          </div>
+        {{/if}}
+      {{/ifAny}}
+
+      <header class="mdc-top-app-bar mdc-elevation--z5 top-bar-stuck" id="top-bar">
+        <div class="container-fluid">
+          <div class="mdc-top-app-bar__row mdc-top-app-bar__upper">
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start mdc-top-app-bar__section--logo">
+              <div class="container-fluid">
+                <a href="/"><img src="{{~>asset_url url='images/logos/logo.png'~}}" alt="Saltire Awards" /></a>
+              </div>
+            </section>
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
+              <button class="mdc-top-app-bar__navigation-icon hide-lg" data-drawer-target="#mobile-menu">
+                <span class="far fa-fw fa-2x fa-bars"></span>
+              </button>
+            </section>
+          {{!-- </div>
+          <div class="mdc-top-app-bar__row mdc-top-app-bar__lower hide-sm hide-md mdc-theme--primary-dark-bg"> --}}
+            {{!-- <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end mdc-top-app-bar__main hide-md hide-sm">
+            </section> --}}
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end mdc-top-app-bar__user hide-md hide-sm">
+              {{#if @root.data.auth ~}}
+              {{#> components_tab_bar
+                extraClasses="mdc-tab-bar__auto-width"
+                id="main-tab-bar"}}
+                {{#each @root.context.metaData.menus.main-signed-in ~}}
+                  {{>components_tab
+                      url=(stripTrailingSlash path)
+                      labelClasses="mdc-theme--on-primary"
+                      active=(regexMatch @root.request.url.pathname route "gi")
+                      label=label}}
+                {{/each}}
+                {{/components_tab_bar}}
+                {{#>components_anchored_menu
+                    buttonClasses="mdc-theme--on-primary"
+                    imageUrl=(default @root.data.auth.photoURL false)
+                    imageClasses="far fa-fw user-avatar"
+                    iconClasses=(if (if @root.data.auth.photoURL false else=true) "far fa-fw fa-user-circle" else=false)
+                    buttonLabel=@root.data.auth.email
+                    arrowClasses="far fa-fw fa-angle-down"}}
+                  {{#each @root.context.metaData.menus.user-signed-in ~}}
+                  {{#if (contains user-types @root.data.accountInfo.user_type) ~}}
+                    <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}" href="{{stripTrailingSlash path}}" role="menuitem">
+                      {{#if icon ~}}
+                      <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
+                      {{/if ~}}
+                      {{{label}}}
+                    </a>
+                  {{/if ~}}
+                  {{/each ~}}
+                {{/components_anchored_menu}}
+              {{else}}
+                {{#>components_tab_bar
+                    extraClasses="mdc-tab-bar__auto-width"
+                    id="user-not-signed-in-tab-bar"}}
+                  {{> components_tab
+                      url="/"
+                      labelClasses="mdc-theme--on-primary"
+                      active=(regexMatch @root.request.url.pathname "^/$" "gi")
+                      label="Home"}}
+                  {{#each @root.context.metaData.menus.main-not-signed-in ~}}
+                    {{>components_tab
+                        url=(stripTrailingSlash path)
+                        labelClasses="mdc-theme--on-primary"
+                        active=(regexMatch @root.request.url.pathname route "gi")
+                        label=label}}
+                  {{/each}}
+                  {{#each @root.context.metaData.menus.user-not-signed-in ~}}
+                    {{>components_tab
+                        url=(stripTrailingSlash path)
+                        labelClasses="my-saltire"
+                        active=(regexMatch @root.request.url.pathname route "gi")
+                        label=label}}
+                  {{/each}}
+                {{/components_tab_bar}}
+              {{/if ~}}
+            </section>
+          </div>
+        </div>
+      </header>
+
+      <aside class="mdc-drawer mdc-drawer--modal" id="mobile-menu" data-mdc-auto-init="MDCDrawer">
+        <div class="mdc-drawer__content">
+          <nav class="mdc-list">
+            <a class="mdc-list-item {{#compare @root.request.url.pathname "/"}} mdc-list-item--activated{{/compare}}"
+               href="/" aria-selected="true" tabindex="1">
+              <span class="far fa-home mdc-list-item__graphic" aria-hidden="true"></span>
+              Home
+            </a>
+
+            {{#if @root.data.auth ~}}
+            {{#each @root.context.metaData.menus.main-signed-in ~}}
+            {{#compare path "===" "/" ~}}
+            {{else}}
+            <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}"
+               href="{{stripTrailingSlash path}}" {{#if (regexMatch @root.request.url.pathname route "gi")}}aria-selected="true"{{else}}aria-hidden="true"{{/if}}>
+              {{#if icon ~}}
+              <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
+              {{/if ~}}
+              {{{label}}}
+            </a>
+            {{/compare ~}}
+            {{/each ~}}
+            <div role="separator" class="mdc-list-divider"></div>
+            <a class="mdc-list-item mdc-list-item__user" href="#">
+              <span class="mdc-list-item__graphic" aria-hidden="true">
+                <img src="{{@root.data.auth.photoURL}}" />
+              </span>
+              <span class="mdc-list-item__text">{{@root.data.auth.email}}</span>
+            </a>
+            {{#each @root.context.metaData.menus.user-signed-in ~}}
+            {{#compare path "===" "/" ~}}
+            {{else}}
+            <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}"
+               href="{{stripTrailingSlash path}}" {{#if (regexMatch @root.request.url.pathname route "gi")}}aria-selected="true"{{else}}aria-hidden="true"{{/if}}>
+              {{#if icon ~}}
+              <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
+              {{/if ~}}
+              {{{label}}}
+            </a>
+            {{/compare ~}}
+            {{/each ~}}
+            {{else}}
+            {{#each @root.context.metaData.menus.main-not-signed-in ~}}
+            <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}"
+               href="{{stripTrailingSlash path}}" {{#if (regexMatch @root.request.url.pathname route "gi")}}aria-selected="true"{{else}}aria-hidden="true"{{/if}}>
+              {{#if icon ~}}
+              <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
+              {{/if ~}}
+              {{{label}}}
+            </a>
+            {{/each ~}}
+            {{#each @root.context.metaData.menus.user-not-signed-in ~}}
+            <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}"
+               href="{{stripTrailingSlash path}}" {{#if (regexMatch @root.request.url.pathname route "gi")}}aria-selected="true"{{else}}aria-hidden="true"{{/if}}>
+              {{#if icon ~}}
+              <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
+              {{/if ~}}
+              {{{label}}}
+            </a>
+            {{/each ~}}
+            {{/if ~}}
+          </nav>
+        </div>
+      </aside>
+
+      <div class="mdc-drawer-scrim"></div>
+
+      <main class="mdc-theme--primary-light-bg main-body {{#if layoutParts.sidebar}}drawer-container-permanent{{else}}drawer-container-temporary{{/if}}">
+        {{#if layoutParts.sidebar }}
+        <aside class="mdc-drawer mdc-drawer--occasional" id="sidebar-temporary" data-menu-button=".filter-search-button">
+          {{{layoutParts.sidebar}}}
+        </aside>
+        <div class="mdc-drawer-scrim"></div>
+        {{/if}}
+        {{{layoutParts.body}}}
+      </main>
+
+      <footer class="mdc-layout__footer mdc-theme--footer-bg mdc-theme--on-footer">
+        <div class="footer-main">
+          <div class="container-fluid">
+            <div class="mdc-layout-grid">
+              <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone contact">
+                  <h3>Contact</h3>
+                  <ul class="fa-ul">
+                    <li>
+                      <span class="fa-li"><span class="fas fa-envelope"></span></span>
+                      <a href="mailto:info@saltireawards.org.uk">info@saltireawards.org.uk</a>
+                    </li>
+                    <li>
+                      <span class="fa-li"><span class="fas fa-phone fa-flip-horizontal"></span></span>
+                      <a href="tel:+448001690022">0800 169 0022</a>
+                    </li>
+                    <li>
+                      <span class="fa-li"><span class="fab fa-twitter"></span></span>
+                      <a href="https://twitter.com/saltireawards" target="_blank">Twitter</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone help">
+                  <h3>Information</h3>
+                  <ul class="mdc-list">
+                    {{#each @root.context.metaData.menus.footer-info ~}}
+                    <li class="mdc-list-item">
+                      <a href="{{stripTrailingSlash path}}">{{{label}}}</a>
+                    </li>
+                    {{/each ~}}
+                  </ul>
+                </div>
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone info">
+                  <h3>Help</h3>
+                  <div class="mdc-typography--body2 b-margin">
+                    The local Third Sector Interface in your area manages your personal data in relation to the Saltire Awards.
+                  </div>
+                  <ul class="mdc-list">
+                    <li class="mdc-list-item">
+                      <a href="/privacy">Privacy notice</a>
+                    </li>
+                    <li class="mdc-list-item">
+                      <a href="/terms">Terms &amp; conditions</a>
+                    </li>
+                    <li class="mdc-list-item">
+                      <a href="/cookies">Cookie policy</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone about">
+                  <h3>About</h3>
+                  <p>
+                    <strong>The Saltire Awards</strong> is run by the <a href="https://scvo.org">Scottish Council for Voluntary Organisations</a>, managed by Scotland's <a href="https://www.gov.scot/policies/third-sector/third-sector-interfaces">Third Sector Interfaces</a> and supported by the <a href="https://www.gov.scot/policies/third-sector">Scottish Government</a>. <a href="/about">Find out more</a>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container-fluid">
+            <div class="mdc-layout-grid">
+              <div class="mdc-layout-grid__inner">
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-9-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
+                  <p>
+                    &copy; {{momentFormat (moment) "YYYY"}}. The Scottish Council for Voluntary Organisations (SCVO) is a Scottish Charitable Incorporated Organisation.<br />
+                    Charity registered in Scotland <a href="https://www.oscr.org.uk/about-charities/search-the-register/charity-details?number=SC003558">SC003558</a>. Registered office Mansfield Traquair Centre, 15 Mansfield Place, Edinburgh EH3 6BB.
+                  </p>
+                </div>
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-4-phone logos">
+                  <a href="https://www.gov.scot/policies/third-sector" class="brand-logo sg-logo" title="Scottish Government">
+                    <img src="{{~>asset_url url='images/logos/sg_reversed_white.png'~}}" alt="Scottish Government" />
+                  </a>
+                  <a href="https://scvo.org" class="brand-logo scvo-logo" title="Scottish Council for Voluntary Organisations">
+                    <img src="{{~>asset_url url='images/logos/scvo.png'~}}" alt="Scottish Council for Voluntary Organisations" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <div class="mdc-snackbar" aria-live="assertive" aria-atomic="true" aria-hidden="true" id="app-snackbar">
+      <div class="mdc-snackbar__text"></div>
+      <div class="mdc-snackbar__action-wrapper">
+        <button type="button" class="mdc-snackbar__action-button"></button>
+      </div>
+    </div>
+  </saltireawards-site>
+
+  <script type="text/javascript">
+  var $buoop = {required:{e:-3,f:-3,o:-3,s:-1,c:-3},insecure:true,unsupported:true,api:2018.07 };
+  function $buo_f(){
+    var e = document.createElement("script");
+    e.src = "//browser-update.org/update.min.js";
+    document.body.appendChild(e);
+  };
+  try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+  catch(e){window.attachEvent("onload", $buo_f)}
+  </script>
+
+  <script type="text/javascript" src="{{~>asset_url url='main.js'~}}"></script>
+
+  <script>
+    var saltireawards = null; readyListeners = [];
+    $(document).ready(function() {
+      saltireawards = new SaltireAwards.SaltireAwards({
+        apiKey: "AIzaSyBdoW5NoWqvMFMUKufrPVvuaYtNrEIRY6k",
+        authDomain: "saltire-awards.firebaseapp.com",
+        databaseURL: "https://saltire-awards.firebaseio.com",
+        projectId: "saltire-awards",
+        storageBucket: "saltire-awards.appspot.com",
+        messagingSenderId: "940419868873"
+      });
+      ready = true;
+      readyListeners.forEach(function(listener) {
+        listener();
+      });
+    });
+
+    function registerReadyListener(listener) {
+      if (saltireawards) {
+        listener();
+      } else {
+        readyListeners.push(listener);
+      }
+    }
+
+    {{#if @root.context.metaData.terms ~}}
+    var terms = {{{safeStringify @root.context.metaData.terms}}};
+    {{/if ~}}
+  </script>
+
+  {{{layoutParts.foot}}}
+</body>
+</html>

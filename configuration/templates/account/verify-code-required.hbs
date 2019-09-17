@@ -1,0 +1,1 @@
+{{#if @root.request.body.signup}}{{#if @root.request.body.admin}}true{{else}}{{#compare (dateMath 'now-13y') "<" (moment @root.request.body.date_of_birth "YYYY-MM-DD")}}true{{/compare}}{{/if}}{{/if}}

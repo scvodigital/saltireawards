@@ -1,0 +1,72 @@
+{
+  "name": "verify-hours",
+  "pattern": "/verify-hours",
+  "debug": true,
+  "tasks": [
+    "context.metaData.commonTasks.authNotRequired",
+    "context.metaData.commonTasks.verifyHoursInfo",
+    {
+      "name": "codeVerified",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": ">context.metaData.handlebars.templates.tasks_hours-code-verify"
+      }
+    },
+    {
+      "name": "handlePassFail",
+      "taskModule": "reroute",
+      "config": {
+        "if": [
+          {
+            "==": [
+              {
+                "var": "data.codeVerified"
+              },
+              "pass"
+            ]
+          },
+          null,
+          "verify-hours-code-fail"
+        ]
+      }
+    },
+    {
+      "name": "doVerify",
+      "taskModule": "salesforceApex",
+      "renderer": "handlebars",
+      "config": {
+        "connection": "scvoAlexSandbox",
+        "output": "data",
+        "method": "POST",
+        "body": ">context.metaData.handlebars.templates.tasks_apex-verify-hours-body",
+        "apexClassPath": "/SaltireHoursVerify/"
+      }
+    },
+    {
+      "name": "passDestination",
+      "taskModule": "renderLayout",
+      "renderer": "handlebars",
+      "config": {
+        "logic": {
+          "if": [
+            "default"
+          ]
+        },
+        "output": "body",
+        "layouts": {
+          "default": {
+            "layout": ">context.metaData.handlebars.layouts.default",
+            "parts": {
+              "head": ">context.metaData.handlebars.templates.pages_head-tags",
+              "body": ">context.metaData.handlebars.templates.pages_verify-hours-pass",
+              "foot": ""
+            },
+            "contentType": "text/html"
+          }
+        }
+      }
+    }
+  ]
+}

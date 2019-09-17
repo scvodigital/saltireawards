@@ -1,0 +1,36 @@
+{
+  "name": "submit-group-hours",
+  "pattern": "/submit-group-hours",
+  "debug": true,
+  "acceptedVerbs": "POST",
+  "defaultParams": {
+    "context": "results"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.getAccountInfo",
+    "context.metaData.commonTasks.getSignUpStatus",
+    "context.metaData.commonTasks.adminRequired",
+    {
+      "name": "saveHoursData",
+      "taskModule": "salesforceApex",
+      "renderer": "handlebars",
+      "config": {
+        "connection": "scvoAlexSandbox",
+        "output": "data",
+        "method": "POST",
+        "body": ">context.metaData.handlebars.templates.admin_group-hours-body",
+        "apexClassPath": "/SaltireHours/"
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": "/hours",
+        "statusCode": 301
+      }
+    }
+
+  ]
+}

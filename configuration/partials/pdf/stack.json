@@ -1,0 +1,7 @@
+{
+  {{~#>pdf_styles bold=bold italics=italics underline=underline strikethrough=strikethrough style=style alignment=alignment fontSize=fontSize pageBreak=pageBreak pageOrientation=pageOrientation headlineLevel=headlineLevel margin=margin padding=padding~}}
+    "stack": [
+      {{> @partial-block}}
+    ]
+  {{~/pdf_styles~}}
+}

@@ -1,0 +1,50 @@
+{
+  "name": "blog",
+  "pattern": "/blog",
+  "debug": true,
+  "metaData": {
+    "title": "Blog"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authNotRequired",
+    "context.metaData.commonTasks.getAccountInfo",
+    {
+      "name": "primaryResponse",
+      "taskModule": "elasticsearch",
+      "config": {
+        "connectionStringTemplate": "{$../data/elasticsearch-url.txt}",
+        "elasticsearchConfig": {
+          "apiVersion": "5.6"
+        },
+        "queryTemplates": {
+          "index": "{$../data/elasticsearch-index.txt}",
+          "type": "saltireawards-post",
+          "template": ">context.metaData.handlebars.queries.posts_list"
+        }
+      },
+      "renderer": "handlebars"
+    },
+    {
+      "name": "destination",
+      "taskModule": "renderLayout",
+      "renderer": "handlebars",
+      "config": {
+        "logic": {
+          "if": [
+            "default"
+          ]
+        },
+        "output": "body",
+        "layouts": {
+          "default": {
+            "layout": ">context.metaData.handlebars.layouts.default",
+            "parts": {
+              "body": ">context.metaData.handlebars.templates.blog_blog"
+            },
+            "contentType": "text/html"
+          }
+        }
+      }
+    }
+  ]
+}

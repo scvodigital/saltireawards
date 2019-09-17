@@ -1,0 +1,37 @@
+{
+  "name": "submit-task-details",
+  "pattern": "/submit-task-details",
+  "debug": true,
+  "acceptedVerbs": "POST",
+  "defaultParams": {
+    "context": "results"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.getSignUpStatus",
+    "context.metaData.commonTasks.getAccountInfo",
+    "context.metaData.commonTasks.fullSignUpRequired",
+    {
+      "name": "saveTaskData",
+      "taskModule": "salesforceApex",
+      "renderer": "handlebars",
+      "config": {
+        "connection": "scvoAlexSandbox",
+        "output": "data",
+        "method": "POST",
+        "body": ">context.metaData.handlebars.templates.tasks_task-body",
+        "apexClassPath": "/SaltireTask/?user_id={{@root.data.auth.uid}}"
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "body",
+        "template": "{\"id\": {{{stringify @root.data.saveTaskData}}} }",
+        "parseJson": true
+      }
+    }
+  ]
+}

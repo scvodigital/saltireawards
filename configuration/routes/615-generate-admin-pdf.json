@@ -1,0 +1,31 @@
+{
+  "name": "admin-pdf",
+  "pattern": "/admin-pdf/:task_id(/:hours_id)",
+  "debug": false,
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.getSignUpStatus",
+    "context.metaData.commonTasks.getAccountInfo",
+    "context.metaData.commonTasks.fullSignUpRequired",
+    "context.metaData.commonTasks.isAdmin",
+    "context.metaData.commonTasks.getTasksInfo",
+    {
+      "name": "pdfObjects",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": ">context.metaData.handlebars.templates.tasks_admin-pdf-object-body",
+        "parseJson": true
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "generatePdf",
+      "renderer": "handlebars",
+      "config": {
+        "definitionTemplate": ">context.metaData.handlebars.templates.awards_award-pdf-definition"
+      }
+    }
+  ]
+}

@@ -1,0 +1,145 @@
+{
+  "main-not-signed-in": [
+    {
+      "label": "About",
+      "icon": "info-circle",
+      "path": "/about",
+      "route": "^/about"
+    },
+    {
+      "label": "Get an award",
+      "icon": "medal",
+      "path": "/awards",
+      "route": "^/awards"
+    },
+    {
+      "label": "Support your volunteers",
+      "icon": "info-circle",
+      "path": "/support",
+      "route": "^/support"
+    },
+    {
+      "label": "Blog",
+      "icon": "newspaper",
+      "path": "/blog",
+      "route": "^/blog"
+    },
+    {
+      "label": "Find opportunities",
+      "icon": "hands-helping",
+      "path": "/search",
+      "route": "^/search"
+    },
+    {
+      "label": "Contact us",
+      "icon": "envelope",
+      "path": "/contact",
+      "route": "^/contact"
+    }
+  ],
+  "user-not-signed-in": [
+    {
+      "label": "My Saltire",
+      "icon": "sign-in-alt",
+      "path": "/sign-in",
+      "route": "^/sign-in"
+    }
+  ],
+  "main-signed-in": [
+    {
+      "label": "About",
+      "icon": "info-circle",
+      "path": "/about",
+      "route": "^/about"
+    },
+    {
+      "label": "Blog",
+      "icon": "newspaper",
+      "path": "/blog",
+      "route": "^/blog"
+    },
+    {
+      "label": "Contact us",
+      "icon": "envelope",
+      "path": "/contact",
+      "route": "^/contact"
+    }
+  ],
+  "user-signed-in" : [
+    {
+      "label": "Home",
+      "icon": "home",
+      "path": "/",
+      "route": "^/$",
+      "user-types": [
+        "Group Admin",
+        "Volunteer"
+      ]
+    },
+    {
+      "label": "Find opportunities",
+      "icon": "hands-helping",
+      "path": "/search",
+      "route": "^/search",
+      "user-types": [
+        "Volunteer"
+      ]
+    },
+    {
+      "label": "My volunteering",
+      "icon": "user-clock",
+      "path": "/hours",
+      "route": "^/hours|^/task",
+      "user-types": [
+        "Volunteer"
+      ]
+    },
+    {
+      "label": "Volunteering groups",
+      "icon": "user-clock",
+      "path": "/hours",
+      "route": "^/hours|^/task",
+      "user-types": [
+        "Group Admin"
+      ]
+    },
+    {
+      "label": "My achievements",
+      "icon": "medal",
+      "path": "/achievements",
+      "route": "^/achievements",
+      "user-types": [
+        "Volunteer"
+      ]
+
+    },
+    {
+      "label": "My account",
+      "icon": "cog",
+      "path": "/account",
+      "route": "^/account|^/sign-up-details",
+      "user-types": [
+        "Group Admin",
+        "Volunteer"
+      ]
+    },
+    {
+      "label": "Sign out",
+      "icon": "sign-out-alt",
+      "path": "/sign-out",
+      "route": "^/sign-out",
+      "user-types": [
+        "Group Admin",
+        "Volunteer"
+      ]
+    }
+  ],
+  "footer-info": [
+    {
+      "label": "About",
+      "icon": "info-circle",
+      "path": "/about",
+      "route": "^/about"
+    }
+  ]
+}
