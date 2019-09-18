@@ -63,5 +63,8 @@ typings/
 # Webstorm crud
 .idea/
 
+# secrets
 secret.json
-build/
+
+# build
+build
