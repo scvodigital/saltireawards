@@ -1,15 +1,31 @@
 {{#if @root.data.accountInfo.local_authority ~}}
 {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
 {{#each contacts ~}}
-{{#if (regexMatch @root.data.accountInfo.postcode @key "gi") ~}}
-Your {{#compare @root.data.accountInfo.user_type "Group Admin"}}{{#if area}}{{area}}{{else}}{{../local_authority}}{{/if}} TSI{{else}}Saltire{{/compare}} contact is
-<strong>{{title}}</strong>.<br />
-{{#if phone}}Phone: {{phone}}<br />{{/if}}
-{{#if email}}Email: <a href="mailto:{{email}}">{{email}}</a><br />{{/if}}
-{{#if twitter}}Twitter: <a href="{{fixUrl twitter}}">{{twitter}}</a><br />{{/if}}
-{{#if facebook}}Facebook: <a href="{{fixUrl facebook}}">{{facebook}}</a><br />{{/if}}
-{{#if instagram}}Instagram: <a href="{{fixUrl instagram}}">{{instagram}}</a><br />{{/if}}
-{{#if website}}Website: <a href="{{fixUrl website}}">{{website}}</a>{{/if}}
+{{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
+<div class="mdc-layout-grid">
+  <div class="mdc-layout-grid__inner">
+    {{#ifAll logo website ~}}
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+      <a href="{{fixUrl website}}"><img src="{{logo}}" class="responsive-img" alt="{{title}}" /></a>
+    </div>
+    {{/ifAll ~}}
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-9-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-4-phone">
+      <p>
+        Your {{#compare @root.data.accountInfo.user_type "Group Admin"}}{{#if area}}{{area}}{{else}}{{../local_authority}}{{/if}} TSI{{else}}Saltire{{/compare}} contact is
+        <strong>{{title}}</strong>.<br />
+        {{#if phone}}Phone: {{phone}}<br />{{/if}}
+        {{#if email}}Email: <a href="mailto:{{email}}">{{email}}</a><br />{{/if}}
+        {{#if website}}Website: <a href="{{fixUrl website}}">{{website}}</a>{{/if}}
+      </p>
+      <p>
+        {{#if twitter}}<a href="{{fixUrl twitter}}"><span class="fab fa-twitter fa-fw fa-2x"></span></a>{{/if}}
+        {{#if facebook}}<a href="{{fixUrl facebook}}"><span class="fab fa-facebook fa-fw fa-2x"></span></a>{{/if}}
+        {{#if instagram}}<a href="{{fixUrl instagram}}"><span class="fab fa-instagram fa-fw fa-2x"></span></a>{{/if}}
+        {{#if youtube}}<a href="{{fixUrl youtube}}"><span class="fab fa-youtube fa-fw fa-2x"></span></a>{{/if}}
+      </p>
+    </div>
+  </div>
+</div>
 {{/if ~}}
 {{/each ~}}
 {{/with ~}}

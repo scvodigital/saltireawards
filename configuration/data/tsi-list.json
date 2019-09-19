@@ -2,7 +2,8 @@
   "aberdeen": {
     "local_authority": "Aberdeen",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Aberdeen Council of Voluntary Organisations",
         "email": "volunteer@acvo.org.uk",
         "phone": "01224686076",
@@ -16,7 +17,8 @@
   "aberdeenshire": {
     "local_authority": "Aberdeenshire",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Aberdeenshire Voluntary Action",
         "email": "enquiries@avashire.org.uk",
         "phone": "03718110008",
@@ -30,7 +32,8 @@
   "angus": {
     "local_authority": "Angus",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Voluntary Action Angus",
         "email": "info@voluntaryactionangus.org.uk",
         "phone": "01307466113",
@@ -44,7 +47,8 @@
   "argyll-bute": {
     "local_authority": "Argyll &amp; Bute",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Argyll &amp; Bute TSI",
         "email": "support@argylltsi.org.uk",
         "phone": "03003034141",
@@ -58,7 +62,8 @@
   "clackmannanshire": {
     "local_authority": "Clackmannanshire",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Clackmannanshire TSI",
         "email": "admin@ctsi.org.uk",
         "phone": "01259213840",
@@ -72,7 +77,8 @@
   "dumfries-galloway": {
     "local_authority": "Dumfries &amp; Galloway",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Third Sector Dumfries and Galloway",
         "email": "info@tsdg.org.uk",
         "phone": "03003038558",
@@ -86,7 +92,8 @@
   "dundee": {
     "local_authority": "Dundee",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Volunteer Dundee",
         "email": "saltireawards@volunteerdundee.org.uk",
         "phone": "01382305705",
@@ -101,11 +108,11 @@
   "east-ayrshire": {
     "local_authority": "East Ayrshire",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Volunteer Centre East Ayrshire",
         "email": "volunteer@eav.org.uk",
         "phone": "01563544765",
-        "logo": "",
         "website": "https://www.eastayrshireworks.co.uk/support-for-employers/location/11/volunteer-centre-east-ayrshire"
       }
     }
@@ -113,7 +120,8 @@
   "east-dunbartonshire": {
     "local_authority": "East Dunbartonshire",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "East Dunbartonshire Voluntary Action",
         "email": "info@edva.org",
         "phone": "01415786680",
@@ -127,7 +135,8 @@
   "east-lothian": {
     "local_authority": "East Lothian",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "STRiVE",
         "email": "info@strive.me.uk",
         "phone": "01875615423",
@@ -141,7 +150,8 @@
   "east-renfrewshire": {
     "local_authority": "East Renfrewshire",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Voluntary Action East Renfrewshire",
         "email": "saltireawards@va-er.org.uk",
         "phone": "01418769555",
@@ -155,7 +165,8 @@
   "edinburgh": {
     "local_authority": "Edinburgh",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Volunteer Edinburgh",
         "email": "saltireadmin@volunteeredinburgh.org.uk",
         "phone": "01312250630",
@@ -171,7 +182,8 @@
   "falkirk": {
     "local_authority": "Falkirk",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "CVS Falkirk",
         "email": "info@cvsfalkirk.org.uk",
         "phone": "01324692000",
@@ -184,7 +196,8 @@
   "fife": {
     "local_authority": "Fife",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Fife Voluntary Action",
         "email": "info@fifevoluntaryaction.org.uk",
         "phone": "08003896046",
@@ -198,7 +211,8 @@
   "glasgow": {
     "local_authority": "Glasgow",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Volunteer Glasgow",
         "email": "info@volunteerglasgow.org",
         "phone": "01412263431",
@@ -212,7 +226,8 @@
   "highland": {
     "local_authority": "Highland",
     "contacts": {
-      "^KW(1\\s[456]|1[24]).*$": {
+      "caithness": {
+        "pattern": "^KW(1\\s[456]|1[24]).*$",
         "area": "Caithness",
         "title": "Caithness Voluntary group",
         "email": "volunteering@cvg.org.uk",
@@ -222,7 +237,8 @@
         "twitter": "https://twitter.com/caithnessvolgrp",
         "facebook": "https://www.facebook.com/caithvolgroup"
       },
-      "^(IV2([4578])|KW(([89]|1[01])|13)|KW14\\s7([RSTY])).*$": {
+      "sutherland": {
+        "pattern": "^(IV2([4578])|KW(([89]|1[01])|13)|KW14\\s7([RSTY])).*$",
         "area": "Sutherland",
         "title": "Voluntary Groups Sutherland",
         "email": "contact@vges.org.uk",
@@ -232,7 +248,8 @@
         "twitter": "https://twitter.com/VoluntaryGroups",
         "facebook": "https://www.facebook.com/Voluntary.Groups.East.Sutherland"
       },
-      "^IV(1\\s3|[6-9]|1[01]|1[4-9]|2[03]).*$": {
+      "ross": {
+        "pattern": "^IV(1\\s3|[6-9]|1[01]|1[4-9]|2[03]).*$",
         "area": "Ross-shire",
         "title": "Ross-shire Voluntary Action",
         "email": "rva@rossvolact.org.uk",
@@ -242,7 +259,8 @@
         "twitter": "https://twitter.com/RossVolAct",
         "facebook": "https://www.facebook.com/RossVolAct"
       },
-      "^PH(19|2[0-6]).*$": {
+      "badenoch-strathspey": {
+        "pattern": "^PH(19|2[0-6]).*$",
         "area": "Badenoch & Strathspey",
         "title": "Voluntary Action in Badenoch & Strathspey",
         "email": "enquiries@vabs.org.uk",
@@ -251,7 +269,8 @@
         "website": "http://www.vabs.org.uk",
         "facebook": "https://www.facebook.com/Voluntary-Action-in-Badenoch-and-Strathspey-650057668387502/"
       },
-      "^(?!(PH(19|2[0-6]))|(IV(1\\s3|[6-9]|1[01]|1[4-9]|2[03]))|((IV2([4578])|KW(([89]|1[01])|13)|KW14\\s7([RSTY])))|(KW(1\\s[456]|1[24]))).*$": {
+      "highland-other": {
+        "pattern": "^(?!(PH(19|2[0-6]))|(IV(1\\s3|[6-9]|1[01]|1[4-9]|2[03]))|((IV2([4578])|KW(([89]|1[01])|13)|KW14\\s7([RSTY])))|(KW(1\\s[456]|1[24]))).*$",
         "title": "Highland Third Sector Interface",
         "email": "info@highlandtsi.org.uk",
         "phone": "01349864289",
@@ -265,7 +284,8 @@
   "inverclyde": {
     "local_authority": "Inverclyde",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "CVS Inverclyde",
         "email": "admin@cvsinverclyde.org.uk",
         "phone": "01475711733",
@@ -279,7 +299,8 @@
   "midlothian": {
     "local_authority": "Midlothian",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Volunteer Midlothian",
         "email": "info@volunteermidlothian.org.uk",
         "phone": "01316601216",
@@ -293,7 +314,8 @@
   "moray": {
     "local_authority": "Moray",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "TSI Moray",
         "email": "info@tsimoray.org.uk",
         "phone": "01343541713",
@@ -307,7 +329,8 @@
   "north-ayrshire": {
     "local_authority": "North Ayrshire",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "The Ayrshire Community Trust",
         "email": "info@theayrshirecommunitytrust.co.uk",
         "phone": "01294443044",
@@ -320,7 +343,8 @@
   "north-lanarkshire": {
     "local_authority": "North Lanarkshire",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Voluntary Action North Lanarkshire",
         "email": "dutyofficer@vanl.co.uk",
         "phone": "01698358866",
@@ -334,7 +358,8 @@
   "orkney": {
     "local_authority": "Orkney",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Voluntary Action Orkney",
         "email": "enquiries@vaorkney.org.uk",
         "phone": "01856872897",
@@ -348,7 +373,8 @@
   "perth-kinross": {
     "local_authority": "Perth &amp; Kinross",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Perth and Kinross Association of Voluntary Service",
         "phone": "01738567076",
         "email": "admin@pkavs.org.uk",
@@ -363,7 +389,8 @@
   "renfrewshire": {
     "local_authority": "Renfrewshire",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Engage Renfrewshire",
         "email": "info@engagerenfrewshire.com",
         "phone": "01418877707",
@@ -377,7 +404,8 @@
   "scottish-borders": {
     "local_authority": "Scottish Borders",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Volunteer Centre Borders",
         "email": "enquiries@vcborders.org.uk",
         "phone": "01896754312",
@@ -391,7 +419,8 @@
   "shetland": {
     "local_authority": "Shetland",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Voluntary Action Shetland",
         "email": "vas@shetland.org",
         "phone": "01595743900",
@@ -406,7 +435,8 @@
   "south-ayrshire": {
     "local_authority": "South Ayrshire",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Voluntary Action South Ayrshire",
         "email": "saltire@vasa.scot",
         "phone": "01292432661",
@@ -421,7 +451,8 @@
   "south-lanarkshire": {
     "local_authority": "South Lanarkshire",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Voluntary Action South Lanarkshire",
         "email": "saltire@vaslan.org.uk",
         "phone": "01698300390",
@@ -435,7 +466,8 @@
   "stirling": {
     "local_authority": "Stirling",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Stirlingshire Voluntary Enterprise",
         "email": "info@sventerprise.org.uk",
         "phone": "01786430000",
@@ -449,7 +481,8 @@
   "west-dunbartonshire": {
     "local_authority": "West Dunbartonshire",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "West Dunbartonshire CVS",
         "email": "info@wdcvs.com",
         "phone": "01419410886",
@@ -463,7 +496,8 @@
   "west-lothian": {
     "local_authority": "West Lothian",
     "contacts": {
-      "^.*": {
+      "all": {
+        "pattern": "^.*$",
         "title": "Voluntary Sector Gateway West Lothian",
         "email": "vsg@vsgwl.org",
         "phone": "01506650111",
@@ -476,7 +510,8 @@
   "na-h-eileanan-siar": {
     "local_authority": "Na h-Eileanan Siar",
     "contacts": {
-      "^HS(1|2).*": {
+      "lewis": {
+        "pattern": "^HS(1|2).*$",
         "area": "Lewis",
         "title": "Volunteer Centre Western Isles - Lewis",
         "email": "lewis@volunteercentrewi.org",
@@ -486,7 +521,8 @@
         "twitter": "https://twitter.com/VolunteeringWI/",
         "facebook": "https://www.facebook.com/Volunteer-Centre-Western-Isles-Stornoway-109240205826891/"
       },
-      "^HS(3|4|5).*": {
+      "harris": {
+        "pattern": "^HS(3|4|5).*$",
         "area": "Harris",
         "title": "Volunteer Centre Western Isles - Harris",
         "email": "harris@volunteercentrewi.org",
@@ -494,9 +530,10 @@
         "logo": "https://volunteercentrewi.org/wp-content/themes/vwi/img/vwi_logo.png",
         "website": "http://volunteercentrewi.org",
         "twitter": "https://twitter.com/VolunteeringWI/",
-        "facebook": "https://www.facebook.com/Volunteer-Centre-Western-Isles-Stornoway-109240205826891/"
+        "facebook": "https://www.facebook.com/Volunteer-Centre-Western-Isles-Harris-211691128889432/"
       },
-      "^HS(6|7|8).*": {
+      "uist": {
+        "pattern": "^HS(6|7|8).*$",
         "area": "Uist",
         "title": "Volunteer Centre Western Isles - Uist",
         "email": "uist@volunteercentrewi.org",
@@ -504,9 +541,10 @@
         "logo": "https://volunteercentrewi.org/wp-content/themes/vwi/img/vwi_logo.png",
         "website": "http://volunteercentrewi.org",
         "twitter": "https://twitter.com/VolunteeringWI/",
-        "facebook": "https://www.facebook.com/Volunteer-Centre-Western-Isles-Stornoway-109240205826891/"
+        "facebook": "https://www.facebook.com/UistVolunteerCentreWesternIsles/"
       },
-      "^HS9.*": {
+      "barra": {
+        "pattern": "^HS9.*$",
         "area": "Barra",
         "title": "Volunteer Centre Western Isles - Barra",
         "email": "barra@volunteercentrewi.org",
@@ -514,7 +552,7 @@
         "logo": "https://volunteercentrewi.org/wp-content/themes/vwi/img/vwi_logo.png",
         "website": "http://volunteercentrewi.org",
         "twitter": "https://twitter.com/VolunteeringWI/",
-        "facebook": "https://www.facebook.com/Volunteer-Centre-Western-Isles-Stornoway-109240205826891/"
+        "facebook": "https://www.facebook.com/volunteercentre.barra"
       }
     }
   }
