@@ -7,6 +7,7 @@
           {{#json key='user'}}
             {{{json key='first_name' value=claim_first_name}}},
             {{{json key='last_name' value=claim_last_name}}},
+            {{{json key='claim_code' value=claim_code}}},
             {{{json key='hours_verified' value=hours}}},
           {{/json}},
           {{#json type='array' key='tasks'}}
@@ -21,6 +22,7 @@
           {{#json key='user'}}
             {{{json key='first_name' value=claim_first_name}}},
             {{{json key='last_name' value=claim_last_name}}},
+            {{{json key='claim_code' value=claim_code}}},
             {{{json key='hours_verified' value=hours}}}
           {{/json}},
           {{#json type='array' key='tasks'}}

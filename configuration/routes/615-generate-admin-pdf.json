@@ -1,7 +1,7 @@
 {
   "name": "admin-pdf",
   "pattern": "/admin-pdf/:task_id(/:hours_id)",
-  "debug": false,
+  "debug": true,
   "tasks": [
     "context.metaData.commonTasks.authRequired",
     "context.metaData.commonTasks.getSignUpStatus",

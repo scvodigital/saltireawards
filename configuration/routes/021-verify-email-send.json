@@ -9,7 +9,6 @@
   "tasks": [
     "context.metaData.commonTasks.authRequired",
     "context.metaData.commonTasks.getAccountInfo",
-    "context.metaData.commonTasks.getTsiContact",
     {
       "name": "apexUrl",
       "taskModule": "render",

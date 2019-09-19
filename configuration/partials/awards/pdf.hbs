@@ -49,5 +49,21 @@
     },
   {{/each}}
 
+  {{#if user.claim_code}}
+  {
+  "text": {{>pdf_metadata_value key="title" default="Claim Code"}},
+  "fontSize": 22,
+  "bold": true,
+  "alignment": "center",
+  "margin": [0, 15]
+  },
+  {
+  "text": "{{substr user.claim_code 0 10}}",
+  "fontSize": 16,
+  "bold": true,
+  "alignment": "center",
+  "margin": [0, 15]
+  },
+  {{/if}}
 
   {{>pdf_text text="" pageBreak="after"}}
