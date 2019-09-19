@@ -1,7 +1,7 @@
 <div class="container-content content-account">
   <div class="content-primary">
   <h2>{{#compare @root.data.accountInfo.user_type "===" "Volunteer"}}Parent or guardian{{else}}Group administrator{{/compare}} verification</h2>
-  <p>{{#compare @root.data.accountInfo.user_type "===" "Volunteer"}}Parent or guardian{{else}}Group administrator{{/compare}} verification needed. An email has been sent to {{@root.data.accountInfo.verification_email}}
+  <p>{{#compare @root.data.accountInfo.user_type "===" "Volunteer"}}Parent or guardian{{else}}Group administrator{{/compare}} verification needed. An email has been sent to your Third Sector Interface.
     {{#compare @root.data.accountInfo.user_type "===" "Volunteer"}}please ask your parent or guardian to click the link in that email{{/compare}}.</p>
   <button onclick="sendVerifyEmail(true)">Resend Email</button>
 {{#compare @root.data.accountInfo.user_type "===" "Volunteer"}}<button onclick="revealForm()">Change Email Address</button>{{/compare}}
