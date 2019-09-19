@@ -10,7 +10,7 @@
       "renderer": "handlebars",
       "config": {
         "appName": "saltireawards",
-        "pathTemplate": "/{{default data.body.u 'no-such-write-profile'}}/verify-hours/",
+        "pathTemplate": "/{{default @root.request.params.query.u 'no-such-write-profile'}}/verify-hours/",
         "defaultData": {}
       }
     },
