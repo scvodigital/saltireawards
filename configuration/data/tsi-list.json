@@ -530,7 +530,7 @@
         "logo": "https://volunteercentrewi.org/wp-content/themes/vwi/img/vwi_logo.png",
         "website": "http://volunteercentrewi.org",
         "twitter": "https://twitter.com/VolunteeringWI/",
-        "facebook": "https://www.facebook.com/Volunteer-Centre-Western-Isles-Stornoway-109240205826891/"
+        "facebook": "https://www.facebook.com/Volunteer-Centre-Western-Isles-Harris-211691128889432/"
       },
       "uist": {
         "pattern": "^HS(6|7|8).*$",
@@ -541,7 +541,7 @@
         "logo": "https://volunteercentrewi.org/wp-content/themes/vwi/img/vwi_logo.png",
         "website": "http://volunteercentrewi.org",
         "twitter": "https://twitter.com/VolunteeringWI/",
-        "facebook": "https://www.facebook.com/Volunteer-Centre-Western-Isles-Stornoway-109240205826891/"
+        "facebook": "https://www.facebook.com/UistVolunteerCentreWesternIsles/"
       },
       "barra": {
         "pattern": "^HS9.*$",
@@ -552,7 +552,7 @@
         "logo": "https://volunteercentrewi.org/wp-content/themes/vwi/img/vwi_logo.png",
         "website": "http://volunteercentrewi.org",
         "twitter": "https://twitter.com/VolunteeringWI/",
-        "facebook": "https://www.facebook.com/Volunteer-Centre-Western-Isles-Stornoway-109240205826891/"
+        "facebook": "https://www.facebook.com/volunteercentre.barra"
       }
     }
   }
