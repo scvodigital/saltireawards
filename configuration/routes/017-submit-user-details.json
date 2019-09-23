@@ -14,7 +14,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "data",
-        "template": ">context.metaData.handlebars.templates.account_verify-code-required"
+        "template": ">context.metaData.handlebars.templates.account_approval-code-required"
       }
     },
     {
@@ -35,7 +35,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "body",
-        "template": "{\"id\": {{{stringify @root.data.saveUserData}}}, {{#if @root.errors}}\"errors\": {{{safeStringify @root.errors}}},{{/if}} \"verify\": {{#if @root.data.codeRequired}}true{{else}}false{{/if}} }",
+        "template": "{\"id\": {{{stringify @root.data.saveUserData}}}, {{#if @root.errors}}\"errors\": {{{safeStringify @root.errors}}},{{/if}} \"approval\": {{#if @root.data.codeRequired}}true{{else}}false{{/if}} }",
         "parseJson": true
       }
     }

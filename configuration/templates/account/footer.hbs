@@ -1,14 +1,14 @@
 {{!-- contains useful functions for account operations. E.g. send out PV email --}}
 
 <script>
-    function sendVerifyEmail(message) {
+    function sendApprovalEmail(message) {
       $.ajax({
-        url: '/verify-email-send',
+        url: '/approval-email-send',
         type: 'POST',
       }).done(function (data) {
-        if (message){saltireawards.componentsInitialiser.snackbar.show({message:"Verify email re-sent"})};
+        if (message){saltireawards.componentsInitialiser.snackbar.show({message:"Approval email re-sent"})};
       }).fail(function (err) {
-        if (message){saltireawards.componentsInitialiser.snackbar.show({message:"There was a problem re-sending your verify email"})};
+        if (message){saltireawards.componentsInitialiser.snackbar.show({message:"There was a problem re-sending your approval email"})};
       });
     }
 
@@ -24,8 +24,8 @@
       postcodeMDCHack();
       var jsonData = JSON.parse(response);
       if (jsonData.id && jsonData.errors.length === 0){
-        if (jsonData.verify){
-          sendVerifyEmail();
+        if (jsonData.approval){
+          sendApprovalEmail();
         }
         window.location.href = '/';
       } else {
