@@ -129,13 +129,13 @@
       "parseJson": true
     }
   },
-  "redirectIfPVNeeded": {
+  "redirectIfApprovalNeeded": {
     "name": "redirectIfPV",
     "taskModule": "reroute",
     "config":
     {
       "if" : [{"var" : "data.accountInfo.verification_needed"},
-        "verify-needed",
+        "approval-required",
         null
       ]
     }
@@ -149,7 +149,7 @@
         "sd-needed",
         {
           "if" : [{"var" : "data.accountInfo.verification_needed"},
-            "verify-needed",
+            "approval-required",
             null
           ]
         }
@@ -174,7 +174,7 @@
         "sd-needed",
         {
           "if": [{"var" : "data.accountInfo.verification_needed"},
-            "verify-needed",
+            "approval-needed",
             {
               "if":[{"!=":[{"var": "data.accountInfo.user_type"}, "Group Admin"]},
                 "redirect-home",

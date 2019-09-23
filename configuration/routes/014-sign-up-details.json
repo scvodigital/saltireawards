@@ -9,7 +9,7 @@
     "context.metaData.commonTasks.authRequired",
     "context.metaData.commonTasks.getSignUpStatus",
     "context.metaData.commonTasks.getAccountInfo",
-    "context.metaData.commonTasks.redirectIfPVNeeded",
+    "context.metaData.commonTasks.redirectIfApprovalNeeded",
     {
       "name": "adminCandidate",
       "taskModule": "firebaseRtbGet",
