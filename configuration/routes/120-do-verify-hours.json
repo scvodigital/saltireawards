@@ -34,12 +34,29 @@
     },
     {
       "name": "destination",
-      "taskModule": "redirect",
+      "taskModule": "renderLayout",
+      "renderer": "handlebars",
       "config": {
-        "location": "/achievements",
-        "statusCode": 301
+        "logic": {
+          "if": [
+            "default"
+          ]
+        },
+        "output": "body",
+        "layouts": {
+          "default": {
+            "layout": ">context.metaData.handlebars.layouts.default",
+            "parts": {
+              "head": ">context.metaData.handlebars.templates.pages_head-tags",
+              "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
+              "body": ">context.metaData.handlebars.templates.pages_achievements"
+            },
+            "contentType": "text/html"
+          }
+        }
       }
     }
+
 
   ]
 }
