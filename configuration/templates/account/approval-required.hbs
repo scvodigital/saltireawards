@@ -5,7 +5,17 @@
     {{#compare @root.data.accountInfo.user_type "Volunteer"}}
     Please ask your parent or guardian to open the link in the email sent to them from the Saltire Awards.
     {{else}}
-    TSI approval required. An email has been sent to your Third Sector Interface.
+    TSI approval required. An email has been sent to
+    {{#if @root.data.accountInfo.local_authority ~}}
+    {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
+    {{#each contacts ~}}
+    {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
+    {{title}}, the TSI contact for {{#if area}}{{area}}{{else}}{{../local_authority}}{{/if}}.
+    {{/if ~}}
+    {{/each ~}}
+    {{/with ~}}
+    {{/if ~}}
+
     {{/compare}}
   </p>
   <button onclick="sendApprovalEmail(true)">Resend email</button>
