@@ -6,7 +6,9 @@
   <div class="mdc-layout-grid__inner">
     {{#ifAll logo website ~}}
     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
-      <a href="{{fixUrl website}}"><img src="{{logo}}" class="responsive-img" alt="{{title}}" /></a>
+      <p>
+        <a href="{{fixUrl website}}" target="_blank"><img src="{{logo}}" class="responsive-img" alt="{{title}}" /></a>
+      </p>
     </div>
     {{/ifAll ~}}
     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-9-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-4-phone">
@@ -15,13 +17,13 @@
         <strong>{{title}}</strong>.<br />
         {{#if phone}}Phone: {{phone}}<br />{{/if}}
         {{#if email}}Email: <a href="mailto:{{email}}">{{email}}</a><br />{{/if}}
-        {{#if website}}Website: <a href="{{fixUrl website}}">{{website}}</a>{{/if}}
+        {{#if website}}Website: <a href="{{fixUrl website}}" target="_blank">{{website}}</a>{{/if}}
       </p>
       <p>
-        {{#if twitter}}<a href="{{fixUrl twitter}}"><span class="fab fa-twitter fa-fw fa-2x"></span></a>{{/if}}
-        {{#if facebook}}<a href="{{fixUrl facebook}}"><span class="fab fa-facebook fa-fw fa-2x"></span></a>{{/if}}
-        {{#if instagram}}<a href="{{fixUrl instagram}}"><span class="fab fa-instagram fa-fw fa-2x"></span></a>{{/if}}
-        {{#if youtube}}<a href="{{fixUrl youtube}}"><span class="fab fa-youtube fa-fw fa-2x"></span></a>{{/if}}
+        {{#if twitter}}<a href="{{fixUrl twitter}}" target="_blank"><span class="fab fa-twitter fa-fw fa-2x"></span></a>{{/if}}
+        {{#if facebook}}<a href="{{fixUrl facebook}}" target="_blank"><span class="fab fa-facebook fa-fw fa-2x"></span></a>{{/if}}
+        {{#if instagram}}<a href="{{fixUrl instagram}}" target="_blank"><span class="fab fa-instagram fa-fw fa-2x"></span></a>{{/if}}
+        {{#if youtube}}<a href="{{fixUrl youtube}}" target="_blank"><span class="fab fa-youtube fa-fw fa-2x"></span></a>{{/if}}
       </p>
     </div>
   </div>

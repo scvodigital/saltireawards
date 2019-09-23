@@ -40,6 +40,7 @@
     "closing_date",
     "start_at",
     "end_at",
+    "opportunity_contact_email",
     "organisation_id",
     "organisation_slug",
     "organisation_name_slug",

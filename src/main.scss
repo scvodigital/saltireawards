@@ -1,5 +1,4 @@
 $mdc-theme-primary: #005EB8;
-$mdc-theme-primary-medium: #0072df;
 $mdc-theme-primary-light: #91c9ff;
 $mdc-theme-primary-dark: #0A3A62;
 
@@ -336,6 +335,34 @@ header {
 
 .mdc-button:disabled .icon {
   display: none;
+}
+
+.mdc-card .report,
+.report {
+  opacity: 0.85;
+  font-size: 85%;
+  // margin-top: $unit/2;
+  .fa-fw,
+  a,
+  a:active,
+  a:focus,
+  a:hover {
+    color: $mdc-theme-footer-dark;
+  }
+}
+.mdc-chip {
+  background-color: $mdc-theme-primary;
+  color: white !important;
+  .mdc-chip__icon.mdc-chip__icon--leading {
+    color: white;
+  }
+  .mdc-chip__checkmark-path {
+    stroke: white !important;
+  }
+}
+.mdc-chip:hover {
+  background-color: $mdc-theme-primary-dark;
+  text-decoration: none;
 }
 
 
