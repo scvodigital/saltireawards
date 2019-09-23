@@ -103,6 +103,7 @@
             </section> --}}
             <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end mdc-top-app-bar__user hide-md hide-sm">
               {{#if @root.data.auth ~}}
+              {{#if @root.data.accountInfo.user_type ~}}
               {{#> components_tab_bar
                 extraClasses="mdc-tab-bar__auto-width"
                 id="main-tab-bar"}}
@@ -132,6 +133,29 @@
                   {{/if ~}}
                   {{/each ~}}
                 {{/components_anchored_menu}}
+              {{else}}
+              {{#>components_tab_bar
+                  extraClasses="mdc-tab-bar__auto-width"
+                  id="user-not-signed-in-tab-bar"}}
+                {{> components_tab
+                    url="/"
+                    labelClasses="mdc-theme--on-primary"
+                    active=(regexMatch @root.request.url.pathname "^/$" "gi")
+                    label="Home"}}
+                {{#each @root.context.metaData.menus.main-not-signed-in ~}}
+                  {{>components_tab
+                      url=(stripTrailingSlash path)
+                      labelClasses="mdc-theme--on-primary"
+                      active=(regexMatch @root.request.url.pathname route "gi")
+                      label=label}}
+                {{/each}}
+                {{> components_tab
+                    url="/sign-out"
+                    labelClasses="mdc-theme--on-primary"
+                    active=(regexMatch @root.request.url.pathname "^/$" "gi")
+                    label="Sign out"}}
+                {{/components_tab_bar}}
+              {{/if ~}}
               {{else}}
                 {{#>components_tab_bar
                     extraClasses="mdc-tab-bar__auto-width"
