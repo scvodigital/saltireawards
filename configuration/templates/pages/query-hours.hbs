@@ -14,14 +14,16 @@
           {{#compare unverified_hours_list.length ">=" 1}}
           {{#compare this.volunteer_manager_email "===" ../this}}
 
-          <li><strong>Volunteering </strong> with <strong>{{organisation_name}}</strong>: {{#if task_description}}Tasks: {{task_description}}{{/if}}, Manager: {{volunteer_manager_first_name}} {{volunteer_manager_last_name}} - {{volunteer_manager_title}}
+          <li>
+            <strong>Volunteering </strong> with <strong>{{organisation_name}}</strong>: {{#if task_description}}Tasks: {{task_description}}{{/if}}, Manager: {{volunteer_manager_first_name}} {{volunteer_manager_last_name}} - {{volunteer_manager_title}}
             <ul>
-            <li>{{#each this.unverified_hours_list}}
-                  {{hours}} Hours: Logged on {{momentFormat (moment createdDate "YYYY-MM-DD") "MMMM Do YYYY"}}</li>
+              <li>
+                {{#each this.unverified_hours_list}}
+                {{hours}} Hours: Logged on {{momentFormat (moment createdDate "YYYY-MM-DD") "MMMM Do YYYY"}}</li>
                 {{/each}}
-            </li>
+              </li>
             </ul>
-            </li>
+          </li>
           <form id="hours-modify-form" action="/modify-hours" method="POST" data-ajax-form='{
             "successCallback": "completeCB",
             "failureCallback": "completeCB"
@@ -32,7 +34,7 @@
             <div class="mdc-layout-grid__inner">
               <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
                 <label for="reason">Hours Granted</label>
-                <br/>
+                <br />
                 <label for="reason">Reason for modification / denial</label>
               </div>
               <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">

@@ -1,6 +1,6 @@
 {
-  "name": "parent-verify-fail",
-  "pattern": "parent-verify-fail",
+  "name": "approval-fail",
+  "pattern": "approval-fail",
   "debug": true,
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
@@ -20,7 +20,7 @@
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
               "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.pages_verify-fail",
+              "body": ">context.metaData.handlebars.templates.account_approval-fail",
               "foot": ""
             },
             "contentType": "text/html"

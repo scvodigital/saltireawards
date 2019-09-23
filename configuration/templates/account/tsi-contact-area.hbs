@@ -1,7 +1,0 @@
-{{~#with (getProperty @root.context.metaData.tsiList (slugify @root.data.search_data.hits.hits.[0].district)) ~}}
-{{~#each contacts ~}}
-{{~#if (regexMatch @root.data.search_data.hits.hits.[0].place pattern "gi") ~}}
-{{~#if area~}}{{area}}{{else}}{{../local_authority}}{{~/if~}}
-{{~/if ~}}
-{{~/each ~}}
-{{~/with ~}}

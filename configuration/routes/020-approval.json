@@ -1,6 +1,6 @@
 {
-  "name": "user-validate",
-  "pattern": "/user-validate",
+  "name": "approval",
+  "pattern": "/user-approval",
   "debug": true,
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
@@ -25,12 +25,12 @@
       }
     },
     {
-      "name": "codeVerified",
+      "name": "codeApproved",
       "taskModule": "render",
       "renderer": "handlebars",
       "config": {
         "output": "data",
-        "template": ">context.metaData.handlebars.templates.account_code-verify"
+        "template": ">context.metaData.handlebars.templates.account_approval-code"
       }
     },
     {
@@ -41,13 +41,13 @@
           {
             "==": [
               {
-                "var": "data.codeVerified"
+                "var": "data.codeApproved"
               },
               "pass"
             ]
           },
           null,
-          "parent-verify-fail"
+          "approval-fail"
         ]
       }
     },
@@ -79,7 +79,7 @@
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
               "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.pages_verify-pass",
+              "body": ">context.metaData.handlebars.templates.pages_approval-pass",
               "foot": ""
             },
             "contentType": "text/html"

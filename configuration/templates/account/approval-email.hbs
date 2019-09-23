@@ -1,4 +1,4 @@
-{{#withExtend @root.data.accountInfo type=(if (compare @root.data.accountInfo.user_type "===" "Group Admin") "group-admin-verify" else="parent-verify")}}
+{{#withExtend @root.data.accountInfo type=(if (compare @root.data.accountInfo.user_type "===" "Group Admin") "tsi-approval" else="parental-approval")}}
   [
   {
   "from": "hello@saltireawards.org.uk",

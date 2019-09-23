@@ -50,40 +50,6 @@
       "apexClassPath": "/SaltireUser/?user_id={{@root.data.auth.uid}}"
     }
   },
-  "getAreaInfo": {
-    "name": "areaInfo",
-    "taskModule": "elasticsearch",
-    "config": {
-      "connectionStringTemplate": "{$./elasticsearch-url.txt}",
-      "elasticsearchConfig": {
-        "apiVersion": "5.6"
-      },
-      "queryTemplates": {
-        "index": "geo_lookup",
-        "type": "postcode,outcode",
-        "template": ">context.metaData.handlebars.queries.area-geo-lookup"
-      }
-    },
-    "renderer": "handlebars"
-  },
-  "getTsiContact": {
-    "name": "tsiContact",
-    "taskModule": "render",
-    "renderer": "handlebars",
-    "config": {
-      "output": "data",
-      "template": ">context.metaData.handlebars.templates.account_tsi-contact-email"
-    }
-  },
-  "getTsiArea": {
-    "name": "tsiArea",
-    "taskModule": "render",
-    "renderer": "handlebars",
-    "config": {
-      "output": "data",
-      "template": ">context.metaData.handlebars.templates.account_tsi-contact-area"
-    }
-  },
   "getTasksInfo" : {
     "name": "tasksInfo",
     "taskModule": "salesforceApex",

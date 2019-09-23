@@ -1,235 +1,204 @@
 <div id="detailed-results-container" class="container-content content-hours">
   <h1 class="mdc-typography--headline4">
     {{#if @root.data.isAdmin ~}}
-      {{@root.route.metaData.adminTitle}}
+    {{@root.route.metaData.adminTitle}}
     {{else}}
-      {{@root.route.metaData.title}}
+    {{@root.route.metaData.title}}
     {{/if ~}}
   </h1>
   {{#unless @root.data.isAdmin ~}}
-    <div class="mdc-typography--headline7 b-margin-full">
-      {{sumArray (pluck @root.data.tasksInfo "hours")}} total hours added
-    </div>
+  <div class="mdc-typography--headline7 b-margin-full">
+    {{sumArray (pluck @root.data.tasksInfo "hours")}} total hours added
+  </div>
   {{/unless ~}}
 
   <div class="mdc-layout-grid">
     <div class="mdc-layout-grid__inner">
-      <div
-        class="b-margin-full mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
-        <a href="/task" class="mdc-button mdc-button--raised">Add new {{#if @root.data.isAdmin}}
-          group{{else}}task{{/if}}</a>
+      <div class="b-margin-full mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+        <a href="/task" class="mdc-button mdc-button--raised">
+          Add new {{#if @root.data.isAdmin}}group{{else}}task{{/if}}
+        </a>
         {{#unless @root.data.isAdmin ~}}
-          <a href="/claim-hours" class="mdc-button mdc-button--raised">Claim hours with code</a>{{/unless}}
-
+        <a href="/claim-hours" class="mdc-button mdc-button--raised">
+          Claim hours with code
+        </a>
+        {{/unless}}
       </div>
     </div>
     {{#each @root.data.tasksInfo}}
-      {{#unless @root.data.isAdmin}}
-        <div class="mdc-layout-grid__inner">
-          <div
-            class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone">
-          </div>
-          <div
-            class="mdc-layout-grid__cell mdc-layout-grid__cell--span-11-desktop mdc-layout-grid__cell--span-7-tablet mdc-layout-grid__cell--span-3-phone">
-            <h2 class="mdc-typography--headline6">
-              Volunteering with {{organisation_name}}
-            </h2>
-            <form action="/submit-hours" method="POST">
-              {{hours}} hours added so far
-              <input type="hidden" name="task_id" value="{{task_id}}">
-              <input type="number" step="any" min="0" name="hours">
-              <button type="submit" class="mdc-button mdc-button--raised">Add hours</button>
-            </form>
-          </div>
-        </div>
-      {{else}}
-
-        <div class="mdc-layout-grid__inner">
-          <div
-            class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-4-phone">
-            <h2 class="mdc-typography--headline6">
-              Volunteering with {{organisation_name}}
-              <span class="mdc-icon-toggle pull-right" data-collapse-target="#{{this.task_id}}-details">
-            <i class="far fa-chevron-up" aria-hidden="false"></i>
-        </span>
-            </h2>
-          </div>
-        </div>
-
-
-      <div id="{{this.task_id}}-details">
-        {{#if task_description ~}}
-          <div
-            class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
-            <strong>Description:</strong> {{task_description}}
-          </div>
-        {{/if ~}}
-
-        <form action="/submit-group-hours" method="POST">
-          <div class="mdc-layout-grid__inner">
-            <input type="hidden" name="task_id" value="{{task_id}}">
-            <div
-              class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
-              <div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField">
-                <input required id="hours" type="number" name="hours"
-                  {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}
-                       class="mdc-text-field__input mdc-text-field--fullwidth">
-                <div class="mdc-notched-outline">
-                  <div class="mdc-notched-outline__leading"></div>
-                  <div class="mdc-notched-outline__notch">
-                    <label for="hours" class="mdc-floating-label">Hours</label>
-                  </div>
-                  <div class="mdc-notched-outline__trailing"></div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
-              <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--outlined"
-                   data-mdc-auto-init="MDCTextField">
-            <textarea rows="4" cols="40" id="volunteers" name="volunteers"
-              {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}
-                      class="mdc-text-field__input" value="{{@root.data.taskInfo.task_description}}"></textarea>
-                <div class="mdc-notched-outline">
-                  <div class="mdc-notched-outline__leading"></div>
-                  <div class="mdc-notched-outline__notch">
-                    <label for="task_description" class="mdc-floating-label">List of volunteer names, one per
-                      line</label>
-                  </div>
-                  <div class="mdc-notched-outline__trailing"></div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
-              <button id="detail-submit" type="submit" class="mdc-button mdc-button--raised b-margin-full"
-                      id="group-hours-submit">
-                <span class="icon far fa-hand-paper mdc-list-item__graphic" aria-hidden="true"></span>
-                <span class="spinner fas fa-spin fa-spinner mdc-list-item__graphic" aria-hidden="true"></span>
-                Submit details
-              </button>
-            </div>
-          </div>
+    {{#unless @root.data.isAdmin}}
+    <div class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone">
+      </div>
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-11-desktop mdc-layout-grid__cell--span-7-tablet mdc-layout-grid__cell--span-3-phone">
+        <h2 class="mdc-typography--headline6">
+          Volunteering with {{organisation_name}}
+        </h2>
+        <form action="/submit-hours" method="POST">
+          {{hours}} hours added so far
+          <input type="hidden" name="task_id" value="{{task_id}}">
+          <input type="number" step="any" min="0" name="hours">
+          <button type="submit" class="mdc-button mdc-button--raised">Add hours</button>
         </form>
-        {{#compare (length hours_list) ">" 0 ~}}
+      </div>
+    </div>
+    {{else}}
+
+    <div class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-4-phone">
+        <h2 class="mdc-typography--headline6">
+          Volunteering with {{organisation_name}}
+          <span class="mdc-icon-toggle pull-right" data-collapse-target="#{{this.task_id}}-details">
+            <span class="far fa-chevron-up" aria-hidden="false"></span>
+          </span>
+        </h2>
+      </div>
+    </div>
+
+
+    <div id="{{this.task_id}}-details">
+      {{#if task_description ~}}
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+        <strong>Description:</strong> {{task_description}}
+      </div>
+      {{/if ~}}
+
+      <form action="/submit-group-hours" method="POST">
         <div class="mdc-layout-grid__inner">
-          <div
-            class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
-            <strong>Volunteer name</strong>
-          </div>
-          <div
-            class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
-            <strong>Hours</strong>
-          </div>
-          <div
-            class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
-            <strong>Claim code</strong>
-          </div>
-          <div
-            class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
-
-          </div>
-          <div
-            class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-4-phone">
-            <a href="admin-pdf/{{task_id}}" class="mdc-button">Download all</a>
-          </div>
-          <div
-            class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-4-phone">
-          </div>
-        </div>
-        {{#each hours_list ~}}
-          <form id="{{hours_id}}" method="POST" action="/submit-group-hours" class="inline-hours-form" data-ajax-form=''>
-            <input type="hidden" name="task_id" value="{{task_id}}">
-            <input type="hidden" name="verified" value="{{verified}}">
-            <input type="hidden" name="claim_code" value="{{claim_code}}">
-            <input type="hidden" name="hours_id" value="{{hours_id}}">
-
-            <div class="mdc-layout-grid__inner">
-              <div
-                class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
-                <input {{#unless claim_code}}disabled{{/unless}} class="inline-edit" name="claim_first_name" value="{{claim_first_name}}">
-              </div>
-              <div
-                class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
-                <input {{#unless claim_code}}disabled{{/unless}} class="inline-edit" name="claim_last_name" value="{{claim_last_name}}">
-              </div>
-              <div
-                class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
-                <input {{#unless claim_code}}disabled{{/unless}} class="inline-edit" type="number" step="any" min="0" name="hours" value="{{hours}}">
-              </div>
-              <div
-                class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
-                <span class="claim-code">{{substr claim_code 0 10}}</span>
-              </div>
-              <div
-                class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
-                {{#if claim_code}}
-                  <button type="submit"  class="mdc-button inline-update-button" style="display:none">Update</button>
-                {{/if}}
-              </div>
-              <div
-                class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
-                <a href="admin-pdf/{{task_id}}/{{hours_id}}" class="mdc-button">Download</a>
-              </div>
-              <div
-                class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
-                {{#if claim_code}}
-                  <button type="button"
-                  data-ajax-button='{
-                  "url": "/delete-hours?hours_id={{hours_id}}",
-                  "method": "DELETE",
-                  "successMessage": "Hours deleted",
-                  "failureMessage": "Failed to delete hours",
-                  "successCallback": "clearHoursForm"
-                  }'>
-                  Remove
-                  </button>
-                {{/if}}
-              </div>
-              <div
-                class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+          <input type="hidden" name="task_id" value="{{task_id}}">
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+            <div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField">
+              <input required id="hours" type="number" name="hours"
+              {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}
+              class="mdc-text-field__input mdc-text-field--fullwidth">
+              <div class="mdc-notched-outline">
+                <div class="mdc-notched-outline__leading"></div>
+                <div class="mdc-notched-outline__notch">
+                  <label for="hours" class="mdc-floating-label">Hours</label>
+                </div>
+                <div class="mdc-notched-outline__trailing"></div>
               </div>
             </div>
-          </form>
-        {{/each ~}}
-        {{/compare ~}}
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+            <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--outlined"
+            data-mdc-auto-init="MDCTextField">
+            <textarea rows="4" cols="40" id="volunteers" name="volunteers"
+            {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}
+            class="mdc-text-field__input" value="{{@root.data.taskInfo.task_description}}"></textarea>
+            <div class="mdc-notched-outline">
+              <div class="mdc-notched-outline__leading"></div>
+              <div class="mdc-notched-outline__notch">
+                <label for="task_description" class="mdc-floating-label">List of volunteer names, one per
+                  line</label>
+                </div>
+                <div class="mdc-notched-outline__trailing"></div>
+              </div>
+            </div>
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+            <button id="detail-submit" type="submit" class="mdc-button mdc-button--raised b-margin-full" id="group-hours-submit">
+              <span class="icon far fa-hand-paper mdc-list-item__graphic" aria-hidden="true"></span>
+              <span class="spinner fas fa-spin fa-spinner mdc-list-item__graphic" aria-hidden="true"></span>
+              Submit details
+            </button>
+          </div>
+        </div>
+      </form>
+      {{#compare (length hours_list) ">" 0 ~}}
+      <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+          <strong>Volunteer name</strong>
+        </div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+          <strong>Hours</strong>
+        </div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+          <strong>Claim code</strong>
+        </div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone"></div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-4-phone">
+          <a href="admin-pdf/{{task_id}}" class="mdc-button">Download all</a>
+        </div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-4-phone">
+        </div>
+      </div>
+      {{#each hours_list ~}}
+      <form id="{{hours_id}}" method="POST" action="/submit-group-hours" class="inline-hours-form" data-ajax-form=''>
+        <input type="hidden" name="task_id" value="{{task_id}}">
+        <input type="hidden" name="verified" value="{{verified}}">
+        <input type="hidden" name="claim_code" value="{{claim_code}}">
+        <input type="hidden" name="hours_id" value="{{hours_id}}">
+
+        <div class="mdc-layout-grid__inner">
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+            <input {{#unless claim_code}}disabled{{/unless}} class="inline-edit" name="claim_first_name" value="{{claim_first_name}}">
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+            <input {{#unless claim_code}}disabled{{/unless}} class="inline-edit" name="claim_last_name" value="{{claim_last_name}}">
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+            <input {{#unless claim_code}}disabled{{/unless}} class="inline-edit" type="number" step="any" min="0" name="hours" value="{{hours}}">
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+            <span class="claim-code">{{substr claim_code 0 10}}</span>
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+            {{#if claim_code}}
+            <button type="submit"  class="mdc-button inline-update-button" style="display:none">Update</button>
+            {{/if}}
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+            <a href="admin-pdf/{{task_id}}/{{hours_id}}" class="mdc-button">Download</a>
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+            {{#if claim_code}}
+            <button type="button" data-ajax-button='{
+              "url": "/delete-hours?hours_id={{hours_id}}",
+              "method": "DELETE",
+              "successMessage": "Hours deleted",
+              "failureMessage": "Failed to delete hours",
+              "successCallback": "clearHoursForm"
+            }'>Remove</button>
+            {{/if}}
+          </div>
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone"></div>
+        </div>
+      </form>
+      {{/each ~}}
+      {{/compare ~}}
       {{/unless}}
-    {{/each}}
-    {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
-  </div>
+      {{/each}}
+      {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
+    </div>
   </div>
 </div>
-{{!--
---}}
 {{!-- <script src="https://#/recaptcha/api.js" async defer></script> --}}
 <script>
-  document.addEventListener("DOMContentLoaded", function(event) {
-      $('.inline-hours-form :input').on('input',function () {
-        var submit = $(this).closest('form').find(':submit').show();
-      });
+document.addEventListener("DOMContentLoaded", function(event) {
+  $('.inline-hours-form :input').on('input',function () {
+    var submit = $(this).closest('form').find(':submit').show();
+  });
 
-      $('.inline-update-button').click(function(){
-        $(this).hide();
-      })
+  $('.inline-update-button').click(function(){
+    $(this).hide();
+  })
 
-      $('.inline-delete-button').click(function(){
-        var submit = $(this).closest('form').hide();
-      })
-    }
+  $('.inline-delete-button').click(function(){
+    var submit = $(this).closest('form').hide();
+  })
+})
 
-  )
-  function clearHoursForm(response){
-    var data = JSON.parse(response);
-    $('#' + data.id).hide();
+function clearHoursForm(response){
+  var data = JSON.parse(response);
+  $('#' + data.id).hide();
+}
+
+function preSubmit() {
+  var form = document.getElementById("user-details-form");
+  var isValid = form.checkValidity();
+  if (isValid) {
+    onSubmit();
   }
-
-  function preSubmit() {
-    var form = document.getElementById("user-details-form");
-    var isValid = form.checkValidity();
-    if (isValid) {
-      onSubmit();
-    }
-
-  }
-
+}
 </script>
