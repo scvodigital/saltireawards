@@ -1,0 +1,22 @@
+{
+  "10": {
+    "hours": 10,
+    "name": "Ten"
+  },
+  "25": {
+    "hours": 25,
+    "name": "Twenty five"
+  },
+  "100": {
+    "hours": 100,
+    "name": "A hundred"
+  },
+  "200": {
+    "hours": 200,
+    "name": "Two hundred"
+  },
+  "500": {
+    "hours": 500,
+    "name": "Five hundred"
+  }
+}

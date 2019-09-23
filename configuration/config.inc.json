@@ -17,6 +17,7 @@
     "menus": "{:./data/menus.json}",
     "accountInfoValidation": "{:./data/account-info-validation.json}",
     "taskInfoValidation": "{:./data/task-info-validation.json}",
+    "certificates": "{:./data/certificates.json}",
     "tsiList": "{:./data/tsi-list.json}",
     "globalGoals": "{:./data/global-goals.json}",
     "elasticsearchUrl": "{$./data/elasticsearch-url.txt}",

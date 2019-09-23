@@ -55,7 +55,6 @@
       </div>
     </div>
 
-
     <div id="{{this.task_id}}-details">
       {{#if task_description ~}}
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
@@ -67,14 +66,20 @@
         <div class="mdc-layout-grid__inner">
           <input type="hidden" name="task_id" value="{{task_id}}">
           <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
-            <div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField">
-              <input required id="hours" type="number" name="hours"
-              {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}
-              class="mdc-text-field__input mdc-text-field--fullwidth">
-              <div class="mdc-notched-outline">
+            <div class="mdc-select mdc-select--outlined" data-mdc-auto-init="MDCSelect">
+              <span class="mdc-select__dropdown-icon"></span>
+              <select class="mdc-select__native-control" required id="hours" name="hours"
+              {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
+                {{#each @root.context.metaData.certificates ~}}
+                <option value="{{hours}}">{{hours}}</option>
+                {{/each ~}}
+              </select>
+              <div class="mdc-notched-outline mdc-notched-outline--upgraded mdc-notched-outline--notched">
                 <div class="mdc-notched-outline__leading"></div>
                 <div class="mdc-notched-outline__notch">
-                  <label for="hours" class="mdc-floating-label">Hours</label>
+                  <label for="hours" class="mdc-floating-label mdc-floating-label--float-above">
+                    Hours
+                  </label>
                 </div>
                 <div class="mdc-notched-outline__trailing"></div>
               </div>
@@ -110,17 +115,16 @@
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
           <strong>Volunteer name</strong>
         </div>
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
           <strong>Hours</strong>
         </div>
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
           <strong>Claim code</strong>
         </div>
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone"></div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-1-phone">
+        </div>
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-4-phone">
           <a href="admin-pdf/{{task_id}}" class="mdc-button">Download all</a>
-        </div>
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-1-tablet mdc-layout-grid__cell--span-4-phone">
         </div>
       </div>
       {{#each hours_list ~}}
@@ -137,15 +141,33 @@
           <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
             <input {{#unless claim_code}}disabled{{/unless}} class="inline-edit" name="claim_last_name" value="{{claim_last_name}}">
           </div>
-          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
-            <input {{#unless claim_code}}disabled{{/unless}} class="inline-edit" type="number" step="any" min="0" name="hours" value="{{hours}}">
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+            {{!-- <input {{#unless claim_code}}disabled{{/unless}} class="inline-edit" type="number" step="any" min="0" name="hours" value="{{hours}}"> --}}
+            <div class="mdc-select mdc-select--outlined" data-mdc-auto-init="MDCSelect">
+              <span class="mdc-select__dropdown-icon"></span>
+              <select class="mdc-select__native-control" required id="hours" name="hours"
+              {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
+                {{#each @root.context.metaData.certificates ~}}
+                <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>{{hours}}</option>
+                {{/each ~}}
+              </select>
+              <div class="mdc-notched-outline mdc-notched-outline--upgraded mdc-notched-outline--notched">
+                <div class="mdc-notched-outline__leading"></div>
+                <div class="mdc-notched-outline__notch">
+                  <label for="hours" class="mdc-floating-label mdc-floating-label--float-above">
+                    Hours
+                  </label>
+                </div>
+                <div class="mdc-notched-outline__trailing"></div>
+              </div>
+            </div>
           </div>
           <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
             <span class="claim-code">{{substr claim_code 0 10}}</span>
           </div>
-          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
+          <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
             {{#if claim_code}}
-            <button type="submit"  class="mdc-button inline-update-button" style="display:none">Update</button>
+            <button type="submit" class="mdc-button inline-update-button" style="display:none;">Update</button>
             {{/if}}
           </div>
           <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-2-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
@@ -153,7 +175,7 @@
           </div>
           <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-1-desktop mdc-layout-grid__cell--span-2-tablet mdc-layout-grid__cell--span-4-phone">
             {{#if claim_code}}
-            <button type="button" data-ajax-button='{
+            <button type="button" class="mdc-button" data-ajax-button='{
               "url": "/delete-hours?hours_id={{hours_id}}",
               "method": "DELETE",
               "successMessage": "Hours deleted",
