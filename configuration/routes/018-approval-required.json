@@ -1,6 +1,6 @@
 {
-  "name": "verification-required",
-  "pattern": "/verification-required",
+  "name": "approval-required",
+  "pattern": "/approval-required",
   "debug": true,
   "tasks": [
     "context.metaData.commonTasks.authRequired",
@@ -52,7 +52,7 @@
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
               "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.pages_verification-required",
+              "body": ">context.metaData.handlebars.templates.account_approval-required",
               "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
               "foot": ">context.metaData.handlebars.templates.account_footer"
             },
