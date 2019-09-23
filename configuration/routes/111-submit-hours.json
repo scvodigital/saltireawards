@@ -28,7 +28,7 @@
       "taskModule": "redirect",
       "config": {
         "location": "/hours",
-        "statusCode": 301
+        "statusCode": 302
       }
     }
 
