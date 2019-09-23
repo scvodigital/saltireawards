@@ -279,6 +279,24 @@
         "website": "http://www.slcvo.org.uk",
         "facebook": "https://www.facebook.com/SLCVO/"
       },
+      "lochaber": {
+        "pattern": "^PA1\\s.*$",
+        "area": "Lochaber",
+        "title": "VA Lochaber",
+        "email": "office@valochaber.org.uk",
+        "phone": "",
+        "logo": "",
+        "website": "http://www.valochaber.org.uk"
+      },
+      "inverness-nairn": {
+        "pattern": "^IV1\\s.*$",
+        "area": "Inverness & Nairn",
+        "title": "In This Together",
+        "email": "info@inthisogether.scot",
+        "phone": "",
+        "logo": "",
+        "website": "http://www.inthisogether.scot"
+      },
       "highland-other": {
         "pattern": "^(?!(PH(19|2[0-6]))|(IV(1\\s3|[6-9]|1[01]|1[4-9]|2[03]))|((IV2([4578])|KW(([89]|1[01])|13)|KW14\\s7([RSTY])))|(KW(1\\s[456]|1[24]))|(IV((2[1236])|(4[0-8])|(5([1-6]|9))))).*$",
         "title": "Highland Third Sector Interface",
