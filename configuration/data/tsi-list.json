@@ -269,8 +269,18 @@
         "website": "http://www.vabs.org.uk",
         "facebook": "https://www.facebook.com/Voluntary-Action-in-Badenoch-and-Strathspey-650057668387502/"
       },
+      "skye-lochalsh": {
+        "pattern": "^IV((2[1236])|(4[0-8])|(5([1-6]|9))).*$",
+        "area": "Skye & Lochalsh",
+        "title": "Skye and Lochalsh CVO",
+        "email": "volunteerofficer@slcvo.org.uk",
+        "phone": "01478612921",
+        "logo": "http://www.theskyetimes.co.uk/images/BusinessLogos/Skye-and-Lochalsh-Council-For-Voluntary-Services.jpg",
+        "website": "http://www.slcvo.org.uk",
+        "facebook": "https://www.facebook.com/SLCVO/"
+      },
       "highland-other": {
-        "pattern": "^(?!(PH(19|2[0-6]))|(IV(1\\s3|[6-9]|1[01]|1[4-9]|2[03]))|((IV2([4578])|KW(([89]|1[01])|13)|KW14\\s7([RSTY])))|(KW(1\\s[456]|1[24]))).*$",
+        "pattern": "^(?!(PH(19|2[0-6]))|(IV(1\\s3|[6-9]|1[01]|1[4-9]|2[03]))|((IV2([4578])|KW(([89]|1[01])|13)|KW14\\s7([RSTY])))|(KW(1\\s[456]|1[24]))|(IV((2[1236])|(4[0-8])|(5([1-6]|9))))).*$",
         "title": "Highland Third Sector Interface",
         "email": "info@highlandtsi.org.uk",
         "phone": "01349864289",
