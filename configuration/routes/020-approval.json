@@ -52,14 +52,14 @@
       }
     },
     {
-      "name": "validateUser",
+      "name": "userApproval",
       "taskModule": "salesforceApex",
       "renderer": "handlebars",
       "config": {
         "connection": "scvoAlexSandbox",
         "output": "data",
         "method": "POST",
-        "body": ">context.metaData.handlebars.templates.account_user-validate-body",
+        "body": ">context.metaData.handlebars.templates.account_approval-body",
         "apexClassPath": "/SaltireUserValidate/"
       }
     },
