@@ -1,6 +1,6 @@
 {
-  "name": "do-verify-hours",
-  "pattern": "/do-verify-hours",
+  "name": "verify-hours-email-send",
+  "pattern": "/verify-hours-email-send",
   "debug": true,
   "metaData": {
     "title": "Tasks"

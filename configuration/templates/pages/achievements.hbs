@@ -18,7 +18,7 @@
         {{!-- It's being verified --}}
           <img src="{{~>asset_url url=(concat 'images/badges/' this '.png') ~}}" class="responsive-img" />
           <div class="mdc-typography--body1 description">
-            Award being verified.  <a href="/do-verify-hours/?award={{this}}">Resubmit Claim</a>
+            Award being verified.  <a href="/verify-hours-email-send/?award={{this}}">Resubmit Claim</a>
           </div>
         {{else}}
         {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) ">=" this ~}}
@@ -26,7 +26,7 @@
           <img src="{{~>asset_url url=(concat 'images/badges/' this '.png') ~}}" class="responsive-img" />
           <div class="mdc-typography--body1 description">
             Complete!
-            <a href="/do-verify-hours/?award={{this}}">Claim this certificate</a>
+            <a href="/verify-hours-email-send/?award={{this}}">Claim this certificate</a>
           </div>
         {{else}}
         {{!-- It's not there yet --}}
