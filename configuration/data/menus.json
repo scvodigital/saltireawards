@@ -139,6 +139,12 @@
       "icon": "info-circle",
       "path": "/about",
       "route": "^/about"
+    },
+    {
+      "label": "Contact us",
+      "icon": "envelope",
+      "path": "/contact",
+      "route": "^/contact"
     }
   ]
 }
