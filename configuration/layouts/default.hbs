@@ -273,16 +273,56 @@
                   <ul class="fa-ul">
                     <li>
                       <span class="fa-li"><span class="fas fa-envelope"></span></span>
+                      {{#if @root.data.accountInfo.local_authority ~}}
+                      {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
+                      {{#each contacts ~}}
+                      {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
+                      <a href="mailto:{{email}}">{{email}}</a>
+                      {{/if ~}}
+                      {{/each ~}}
+                      {{/with ~}}
+                      {{else}}
                       <a href="mailto:info@saltireawards.org.uk">info@saltireawards.org.uk</a>
+                      {{/if ~}}
                     </li>
+                    {{#if @root.data.accountInfo.local_authority ~}}
+                    {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
+                    {{#each contacts ~}}
+                    {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
+                    {{#if phone ~}}
                     <li>
                       <span class="fa-li"><span class="fas fa-phone fa-flip-horizontal"></span></span>
-                      <a href="tel:+448001690022">0800 169 0022</a>
+                      <a href="tel:+44{{replace phone ' ' ''}}">{{phone}}</a>
                     </li>
+                    {{/if ~}}
+                    {{#if twitter ~}}
                     <li>
                       <span class="fa-li"><span class="fab fa-twitter"></span></span>
-                      <a href="https://twitter.com/saltireawards" target="_blank">Twitter</a>
+                      <a href="{{twitter}}" target="_blank">Twitter</a>
                     </li>
+                    {{/if ~}}
+                    {{#if facebook ~}}
+                    <li>
+                      <span class="fa-li"><span class="fab fa-facebook"></span></span>
+                      <a href="{{facebook}}" target="_blank">Facebook</a>
+                    </li>
+                    {{/if ~}}
+                    {{#if youtube ~}}
+                    <li>
+                      <span class="fa-li"><span class="fab fa-youtube"></span></span>
+                      <a href="{{youtube}}" target="_blank">YouTube</a>
+                    </li>
+                    {{/if ~}}
+                    {{#if instagram ~}}
+                    <li>
+                      <span class="fa-li"><span class="fab fa-instagram"></span></span>
+                      <a href="{{instagram}}" target="_blank">Instagram</a>
+                    </li>
+                    {{/if ~}}
+                    {{/if ~}}
+                    {{/each ~}}
+                    {{/with ~}}
+                    {{/if ~}}
                   </ul>
                 </div>
                 <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone help">
