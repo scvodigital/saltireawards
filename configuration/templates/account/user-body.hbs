@@ -20,6 +20,9 @@
       {{{json key='title' value=title}}},
       {{{json key='email' value=email}}},
       {{{json key='local_authority' value=local_authority}}},
+      {{{json key='tsi_contact_email' value=tsi_contact_email}}},
+      {{{json key='tsi_area' value=(stringify tsi_area)}}},
+
       {{{json key='user_type' value=(if admin "Group Admin" else="Volunteer")}}}
     {{/json}},
   {{/json}}

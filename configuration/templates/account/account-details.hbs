@@ -12,7 +12,7 @@
       "failureCallback": "completeAccountCB"
     }'>
 
-    {{> account_details_form_fields admin=(compare @root.data.accountInfo.user_type '===' 'Group Admin')}}
+    {{> account_details_form_fields admin=(compare @root.data.accountInfo.user_type '===' 'Group Admin') edit=true}}
 
     {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
     <button id="detail-submit" class="mdc-button mdc-button--raised b-margin-full" id="register-interest-submit">
