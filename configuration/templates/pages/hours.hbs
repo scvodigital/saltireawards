@@ -15,14 +15,20 @@
   <div class="mdc-layout-grid">
     <div class="mdc-layout-grid__inner">
       <div class="b-margin-full mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+      {{#unless @root.data.isAdmin ~}}
+        {{#unless (compare (dateMath 'now-26y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD"))}}
         <a href="/task" class="mdc-button mdc-button--raised">
-          Add new {{#if @root.data.isAdmin}}group{{else}}task{{/if}}
+          Add new task
         </a>
-        {{#unless @root.data.isAdmin ~}}
+        {{/unless}}
         <a href="/claim-hours" class="mdc-button mdc-button--raised">
           Claim hours with code
         </a>
-        {{/unless}}
+      {{else}}
+        <a href="/task" class="mdc-button mdc-button--raised">
+          Add new group task
+        </a>
+      {{/unless}}
       </div>
     </div>
     {{#each @root.data.tasksInfo}}
@@ -38,7 +44,9 @@
           {{hours}} hours added so far
           <input type="hidden" name="task_id" value="{{task_id}}">
           <input type="number" step="any" min="0" name="hours">
-          <button type="submit" class="mdc-button mdc-button--raised">Add hours</button>
+      {{#unless (compare (dateMath 'now-26y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD"))}}
+        <button type="submit" class="mdc-button mdc-button--raised">Add hours</button>
+      {{/unless}}
         </form>
       </div>
     </div>
