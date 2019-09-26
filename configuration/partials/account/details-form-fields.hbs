@@ -28,11 +28,11 @@
   </div>
   <div class="mdc-layout-grid__inner">
     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
-      <div class="mdc-text-field mdc-text-field--outlined" data-mdc-auto-init="MDCTextField">
+      <div class="mdc-text-field mdc-text-field--outlined {{#if @root.data.accountInfo.date_of_birth}}mdc-text-field--disabled{{/if}}" data-mdc-auto-init="MDCTextField">
         {{#if admin}}
-          <input id="date_of_birth" name="date_of_birth" class="mdc-text-field__input mdc-text-field--fullwidth" value="{{@root.data.accountInfo.date_of_birth}}" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.date_of_birth_checked}}>
+          <input id="date_of_birth" name="date_of_birth" class="mdc-text-field__input mdc-text-field--fullwidth" value="{{@root.data.accountInfo.date_of_birth}}" {{#if @root.data.accountInfo.date_of_birth}}disabled{{else}}{{>form_validation_attributes @root.context.metaData.accountInfoValidation.date_of_birth_checked}}{{/if}}>
         {{else}}
-          <input id="date_of_birth_checked" name="date_of_birth" class="mdc-text-field__input mdc-text-field--fullwidth" value="{{@root.data.accountInfo.date_of_birth}}" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.date_of_birth}}>
+          <input id="date_of_birth_checked" name="date_of_birth" class="mdc-text-field__input mdc-text-field--fullwidth" value="{{@root.data.accountInfo.date_of_birth}}" {{#if @root.data.accountInfo.date_of_birth}}disabled{{else}}{{>form_validation_attributes @root.context.metaData.accountInfoValidation.date_of_birth_checked}}{{/if}}>
         {{/if}}
         <div class="mdc-notched-outline">
           <div class="mdc-notched-outline__leading"></div>
@@ -43,29 +43,24 @@
         </div>
       </div>
     </div>
+    {{#if @root.data.accountInfo.date_of_birth ~}}
     <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
-      <input type="hidden" name="local_authority" id="local_authority" value="{{@root.data.accountInfo.local_authority}}" />
-      <input type="hidden" name="tsi_area" id="tsi_area" value="{{@root.data.accountInfo.tsi_area}}" />
-      <input type="hidden" name="tsi_contact" id="tsi_contact" value="{{@root.data.accountInfo.tsi_contact}}" />
-      <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon" data-mdc-auto-init="MDCTextField" style="z-index:100;">
-        <span class="far fa-map-marker-alt mdc-text-field__icon postcode-lookup" tabindex="0" title="Find my location"></span>
-        <input type="text" id="postcode" name="postcode" class="mdc-text-field__input mdc-text-field--fullwidth" value="{{@root.data.accountInfo.postcode}}" placeholder="" data-lpignore="true" data-location-search='{
-          "laSelector": "[name=\"local_authority\"]",
-          "tsiAreaSelector": "[name=\"tsi_area\"]",
-          "tsiContactSelector": "[name=\"tsi_contact\"]",
-          "locationServicesSelector": ".postcode-lookup"
-        }' {{>form_validation_attributes @root.context.metaData.accountInfoValidation.postcode}}>
-        <div class="mdc-notched-outline">
-          <div class="mdc-notched-outline__leading"></div>
-          <div class="mdc-notched-outline__notch">
-            <label for="postcode" class="mdc-floating-label">
-              {{#if admin}}Work postcode{{else}}Home postcode{{/if}}
-            </label>
-          </div>
-          <div class="mdc-notched-outline__trailing"></div>
-        </div>
-      </div>
+      <p class="mdc-typography--caption l-margin t-margin-full">
+        If your date of birth is incorrect please
+        {{#if @root.data.accountInfo.local_authority ~}}
+        {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
+        {{#each contacts ~}}
+        {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
+        <a href="mailto:{{email}}">contact us</a>.
+        {{/if ~}}
+        {{/each ~}}
+        {{/with ~}}
+        {{else}}
+        <a href="mailto:info@saltireawards.org.uk">contact us</a>.
+        {{/if ~}}
+      </p>
     </div>
+    {{/if ~}}
   </div>
   {{#unless admin ~}}
   <div class="mdc-layout-grid__inner">
@@ -142,6 +137,31 @@
     <input type="hidden" name="verification_email" value="anuttgens@gmail.com" />
     <input type="hidden" name="admin" value="true" />
   {{/unless ~}}
+  <div class="mdc-layout-grid__inner">
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+      <input type="hidden" name="local_authority" id="local_authority" value="{{@root.data.accountInfo.local_authority}}" />
+      <input type="hidden" name="tsi_area" id="tsi_area" value="{{@root.data.accountInfo.tsi_area}}" />
+      <input type="hidden" name="tsi_contact" id="tsi_contact" value="{{@root.data.accountInfo.tsi_contact}}" />
+      <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon" data-mdc-auto-init="MDCTextField" style="z-index:100;">
+        <span class="far fa-map-marker-alt mdc-text-field__icon postcode-lookup" tabindex="0" title="Find my location"></span>
+        <input type="text" id="postcode" name="postcode" class="mdc-text-field__input mdc-text-field--fullwidth" value="{{@root.data.accountInfo.postcode}}" placeholder="" data-lpignore="true" data-location-search='{
+          "laSelector": "[name=\"local_authority\"]",
+          "tsiAreaSelector": "[name=\"tsi_area\"]",
+          "tsiContactSelector": "[name=\"tsi_contact\"]",
+          "locationServicesSelector": ".postcode-lookup"
+        }' {{>form_validation_attributes @root.context.metaData.accountInfoValidation.postcode}}>
+        <div class="mdc-notched-outline">
+          <div class="mdc-notched-outline__leading"></div>
+          <div class="mdc-notched-outline__notch">
+            <label for="postcode" class="mdc-floating-label">
+              {{#if admin}}Work postcode{{else}}Home postcode{{/if}}
+            </label>
+          </div>
+          <div class="mdc-notched-outline__trailing"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <input type="hidden" name="external_id" value="{{data.auth.uid}}" />
