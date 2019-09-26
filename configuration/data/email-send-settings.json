@@ -8,7 +8,7 @@
     "bodyPartial": "emails_parental_approval_body",
     "metaData": {}
   },
-  "admin-approval": {
+  "tsi-approval": {
     "mailgunConnection": "mg_saltireawards",
     "from": "Saltire Awards <hello@saltireawards.org.uk>",
     "replyTo": "Saltire Awards <hello@saltireawards.org.uk>",
