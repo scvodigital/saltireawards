@@ -56,341 +56,228 @@
 
   <link type="text/css" rel="stylesheet" href="{{~>asset_url url='libraries/leaflet/leaflet.css'~}}" />
   <link type="text/css" rel="stylesheet" href="{{~>asset_url url='libraries/fontawesome-pro/css/all.min.css'~}}" />
-  <link type="text/css" rel="stylesheet" href="{{~>asset_url url='main.css'}}">
+  <link type="text/css" rel="stylesheet" href="{{~>asset_url url='main.css'}}" />
 </head>
-<body class="mdc-theme--footer-dark-bg">
+<body>
   <saltireawards-site>
-    <div class="mdc-typography">
-      {{#ifAny request.params.query.debug (contains request.url.hostname ".local") ~}}
-        {{#if errors.[0]}}
-          <div style="z-index:100;position:fixed;top:0;right:0;padding:5px;background-color:#ff0000;color:#ffffff;">
-            Route Task Errors (F12)
-          </div>
-        {{/if}}
-        {{#if logs.[0]}}
-          <div style="z-index:100;position:fixed;bottom:0;right:0;padding:5px;background-color:#0000ff;color:#ffffff;"
-               onclick="document.querySelector('#route-debug-log').style.display='block';">
-            Route Log
-          </div>
-          <div style="z-index:100;position:fixed;bottom:0;left:0;right:0;padding:5px;background-color:#ededed;color:#000000;overflow:auto;height:50vh;display:none;border-top:1px solid #cccccc;" id="route-debug-log">
-            <a style="position:fixed;right:25px;" onclick="document.querySelector('#route-debug-log').style.display='none';">x</a>
+    <div class="page">
+    {{#ifAny request.params.query.debug (contains request.url.hostname ".local") ~}}
+    {{#if errors.[0]}}
+      <div style="z-index:100;position:fixed;top:0;right:0;padding:5px;background-color:#ff0000;color:#ffffff;">
+        Route Task Errors (F12)
+      </div>
+      {{/if}}
+      {{#if logs.[0]}}
+      <div style="z-index:100;position:fixed;bottom:0;right:0;padding:5px;background-color:#0000ff;color:#ffffff;" onclick="document.querySelector('#route-debug-log').style.display='block';">
+        Route Log
+      </div>
+      <div style="z-index:100;position:fixed;bottom:0;left:0;right:0;padding:5px;background-color:#ededed;color:#000000;overflow:auto;height:50vh;display:none;border-top:1px solid #cccccc;" id="route-debug-log">
+        <a style="position:fixed;right:25px;" onclick="document.querySelector('#route-debug-log').style.display='none';">x</a>
 <pre style="white-space: pre-wrap;">
 {{~#each logs}}
 {{{this}}}
 
 {{/each~}}
 </pre>
-          </div>
-        {{/if}}
+      </div>
+      {{/if}}
       {{/ifAny}}
 
-      <header class="mdc-top-app-bar mdc-elevation--z5 top-bar-stuck" id="top-bar">
-        <div class="container-fluid">
-          <div class="mdc-top-app-bar__row mdc-top-app-bar__upper">
-            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start mdc-top-app-bar__section--logo">
-              <div class="container-fluid">
-                <a href="/"><img src="{{~>asset_url url='images/logos/logo.png'~}}" alt="Saltire Awards" /></a>
-              </div>
-            </section>
-            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end">
-              <button class="mdc-top-app-bar__navigation-icon hide-lg" data-drawer-target="#mobile-menu">
-                <span class="far fa-fw fa-2x fa-bars"></span>
-              </button>
-            </section>
-          {{!-- </div>
-          <div class="mdc-top-app-bar__row mdc-top-app-bar__lower hide-sm hide-md mdc-theme--primary-dark-bg"> --}}
-            {{!-- <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end mdc-top-app-bar__main hide-md hide-sm">
-            </section> --}}
-            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end mdc-top-app-bar__user hide-md hide-sm">
-              {{#if @root.data.auth ~}}
-              {{#if @root.data.accountInfo.user_type ~}}
-              {{#> components_tab_bar
-                extraClasses="mdc-tab-bar__auto-width"
-                id="main-tab-bar"}}
-                {{#each @root.context.metaData.menus.main-signed-in ~}}
-                  {{>components_tab
-                      url=(stripTrailingSlash path)
-                      labelClasses="mdc-theme--on-primary"
-                      active=(regexMatch @root.request.url.pathname route "gi")
-                      label=label}}
-                {{/each}}
-                {{/components_tab_bar}}
-                {{#>components_anchored_menu
-                    buttonClasses="mdc-theme--on-primary"
-                    imageUrl=(default @root.data.auth.photoURL false)
-                    imageClasses="far fa-fw user-avatar"
-                    iconClasses=(if (if @root.data.auth.photoURL false else=true) "far fa-fw fa-user-circle" else=false)
-                    buttonLabel=@root.data.auth.email
-                    arrowClasses="far fa-fw fa-angle-down"}}
-                  {{#each @root.context.metaData.menus.user-signed-in ~}}
-                  {{#if (contains user-types @root.data.accountInfo.user_type) ~}}
-                    <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}" href="{{stripTrailingSlash path}}" role="menuitem">
-                      {{#if icon ~}}
-                      <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
-                      {{/if ~}}
-                      {{{label}}}
-                    </a>
+      <header class="navbar bg-primary">
+        <section class="navbar-section">
+          <a class="navbar-brand" href="/"><img src="{{~>asset_url url='images/logos/logo.png'~}}" alt="Saltire Awards" /></a>
+        </section>
+        <section class="navbar-section">
+        {{#if @root.data.auth ~}}
+        {{#if @root.data.accountInfo.user_type ~}}
+        {{#each @root.context.metaData.menus.main-signed-in ~}}
+        <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
+        {{/each}}
+        <div class="dropdown">
+          <div class="btn-group">
+            <a href="#" class="btn dropdown-toggle">
+              {{#if @root.data.auth.photoURL ~}}
+              <img src="{{@root.data.auth.photoURL}}" class="avatar" />
+              {{else}}
+              <span class="far fa-fw fa-user-circle"></span>
+              {{/if ~}}
+              {{@root.data.auth.email}}
+              <span class="far fa-fw fa-angle-down"></span>
+            </a>
+            <ul class="menu">
+              {{#each @root.context.metaData.menus.user-signed-in ~}}
+              {{#if (contains user-types @root.data.accountInfo.user_type) ~}}
+              <li class="menu-item">
+                <a href="{{stripTrailingSlash path}}" {{#if (regexMatch @root.request.url.pathname route 'gi')}}class="active"{{/if}}>
+                  {{#if icon ~}}
+                  <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
                   {{/if ~}}
-                  {{/each ~}}
-                {{/components_anchored_menu}}
-              {{else}}
-              {{#>components_tab_bar
-                  extraClasses="mdc-tab-bar__auto-width"
-                  id="user-not-signed-in-tab-bar"}}
-                {{> components_tab
-                    url="/"
-                    labelClasses="mdc-theme--on-primary"
-                    active=(regexMatch @root.request.url.pathname "^/$" "gi")
-                    label="Home"}}
-                {{#each @root.context.metaData.menus.main-not-signed-in ~}}
-                  {{>components_tab
-                      url=(stripTrailingSlash path)
-                      labelClasses="mdc-theme--on-primary"
-                      active=(regexMatch @root.request.url.pathname route "gi")
-                      label=label}}
-                {{/each}}
-                {{> components_tab
-                    url="/sign-out"
-                    labelClasses="mdc-theme--on-primary"
-                    active=(regexMatch @root.request.url.pathname "^/$" "gi")
-                    label="Sign out"}}
-                {{/components_tab_bar}}
+                  {{{label}}}
+                </a>
+              </li>
               {{/if ~}}
-              {{else}}
-                {{#>components_tab_bar
-                    extraClasses="mdc-tab-bar__auto-width"
-                    id="user-not-signed-in-tab-bar"}}
-                  {{> components_tab
-                      url="/"
-                      labelClasses="mdc-theme--on-primary"
-                      active=(regexMatch @root.request.url.pathname "^/$" "gi")
-                      label="Home"}}
-                  {{#each @root.context.metaData.menus.main-not-signed-in ~}}
-                    {{>components_tab
-                        url=(stripTrailingSlash path)
-                        labelClasses="mdc-theme--on-primary"
-                        active=(regexMatch @root.request.url.pathname route "gi")
-                        label=label}}
-                  {{/each}}
-                  {{#each @root.context.metaData.menus.user-not-signed-in ~}}
-                    {{>components_tab
-                        url=(stripTrailingSlash path)
-                        labelClasses="my-saltire"
-                        active=(regexMatch @root.request.url.pathname route "gi")
-                        label=label}}
-                  {{/each}}
-                {{/components_tab_bar}}
-              {{/if ~}}
-            </section>
+              {{/each ~}}
+            </ul>
           </div>
         </div>
+        </ul>
+        {{else}}
+        <a href="/" class="btn btn-link{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}} btn-active{{/if}}">Home</a>
+        {{#each @root.context.metaData.menus.main-not-signed-in ~}}
+        <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
+        {{/each}}
+        <a href="/sign-out" class="btn btn-link">Sign out</a>
+        {{/if ~}}
+        {{else}}
+        <a href="/" class="btn btn-link{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}} btn-active{{/if}}">Home</a>
+        {{#each @root.context.metaData.menus.main-not-signed-in ~}}
+        <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
+        {{/each}}
+        {{#each @root.context.metaData.menus.user-not-signed-in ~}}
+        <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}} my-saltire">{{label}}</a>
+        {{/each}}
+        {{/if ~}}
       </header>
 
-      <aside class="mdc-drawer mdc-drawer--modal" id="mobile-menu" data-mdc-auto-init="MDCDrawer">
-        <div class="mdc-drawer__content">
-          <nav class="mdc-list">
-            <a class="mdc-list-item {{#compare @root.request.url.pathname "/"}} mdc-list-item--activated{{/compare}}"
-               href="/" aria-selected="true" tabindex="1">
-              <span class="far fa-home mdc-list-item__graphic" aria-hidden="true"></span>
-              Home
-            </a>
-
-            {{#if @root.data.auth ~}}
-            {{#each @root.context.metaData.menus.main-signed-in ~}}
-            {{#compare path "===" "/" ~}}
-            {{else}}
-            <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}"
-               href="{{stripTrailingSlash path}}" {{#if (regexMatch @root.request.url.pathname route "gi")}}aria-selected="true"{{else}}aria-hidden="true"{{/if}}>
-              {{#if icon ~}}
-              <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
-              {{/if ~}}
-              {{{label}}}
-            </a>
-            {{/compare ~}}
-            {{/each ~}}
-            <div role="separator" class="mdc-list-divider"></div>
-            <a class="mdc-list-item mdc-list-item__user" href="#">
-              <span class="mdc-list-item__graphic" aria-hidden="true">
-                <img src="{{@root.data.auth.photoURL}}" />
-              </span>
-              <span class="mdc-list-item__text">{{@root.data.auth.email}}</span>
-            </a>
-            {{#each @root.context.metaData.menus.user-signed-in ~}}
-            {{#compare path "===" "/" ~}}
-            {{else}}
-            <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}"
-               href="{{stripTrailingSlash path}}" {{#if (regexMatch @root.request.url.pathname route "gi")}}aria-selected="true"{{else}}aria-hidden="true"{{/if}}>
-              {{#if icon ~}}
-              <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
-              {{/if ~}}
-              {{{label}}}
-            </a>
-            {{/compare ~}}
-            {{/each ~}}
-            {{else}}
-            {{#each @root.context.metaData.menus.main-not-signed-in ~}}
-            <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}"
-               href="{{stripTrailingSlash path}}" {{#if (regexMatch @root.request.url.pathname route "gi")}}aria-selected="true"{{else}}aria-hidden="true"{{/if}}>
-              {{#if icon ~}}
-              <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
-              {{/if ~}}
-              {{{label}}}
-            </a>
-            {{/each ~}}
-            {{#each @root.context.metaData.menus.user-not-signed-in ~}}
-            <a class="mdc-list-item {{#if (regexMatch @root.request.url.pathname route "gi")}} mdc-list-item--activated{{/if}}"
-               href="{{stripTrailingSlash path}}" {{#if (regexMatch @root.request.url.pathname route "gi")}}aria-selected="true"{{else}}aria-hidden="true"{{/if}}>
-              {{#if icon ~}}
-              <span class="far fa-{{icon}} mdc-list-item__graphic" aria-hidden="true"></span>
-              {{/if ~}}
-              {{{label}}}
-            </a>
-            {{/each ~}}
-            {{/if ~}}
-          </nav>
+      <div class="{{#if layoutParts.sidebar}}sidebar-present{{else}}sidebar-not-present{{/if}}">
+        {{#if layoutParts.sidebar ~}}
+        <div class="columns col-gapless">
+          <aside class="column col-2 sidebar">
+            {{{layoutParts.sidebar}}}
+          </aside>
+          <main class="column col-10">
+            {{{layoutParts.body}}}
+          </main>
         </div>
-      </aside>
+        {{else}}
+        <main>
+          {{{layoutParts.body}}}
+        </main>
+        {{/if ~}}
+      </div>
 
-      <div class="mdc-drawer-scrim"></div>
-
-      <main class="mdc-theme--primary-light-bg main-body {{#if layoutParts.sidebar}}drawer-container-permanent{{else}}drawer-container-temporary{{/if}}">
-        {{#if layoutParts.sidebar }}
-        <aside class="mdc-drawer mdc-drawer--occasional" id="sidebar-temporary" data-menu-button=".filter-search-button">
-          {{{layoutParts.sidebar}}}
-        </aside>
-        <div class="mdc-drawer-scrim"></div>
-        {{/if}}
-        {{{layoutParts.body}}}
-      </main>
-
-      <footer class="mdc-layout__footer mdc-theme--footer-bg mdc-theme--on-footer">
+      <footer class="footer">
         <div class="footer-main">
-          <div class="container-fluid">
-            <div class="mdc-layout-grid">
-              <div class="mdc-layout-grid__inner">
-                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone contact">
-                  <h3>Contact</h3>
-                  <ul class="fa-ul">
-                    <li>
-                      <span class="fa-li"><span class="fas fa-envelope"></span></span>
-                      {{#if @root.data.accountInfo.local_authority ~}}
-                      {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
-                      {{#each contacts ~}}
-                      {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
-                      <a href="mailto:{{email}}">{{email}}</a>
-                      {{/if ~}}
-                      {{/each ~}}
-                      {{/with ~}}
-                      {{else}}
-                      <a href="mailto:info@saltireawards.org.uk">info@saltireawards.org.uk</a>
-                      {{/if ~}}
-                    </li>
+          <div class="container">
+            <div class="columns col-gapless">
+              <div class="col-3 info">
+                <h4>Help</h4>
+                <p class="b-margin">
+                  {{#if @root.data.accountInfo.local_authority ~}}
+                  {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
+                  {{#each contacts ~}}
+                  {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
+                  <a href="{{fixUrl website}}" target="_blank">{{title}}</a>
+                  {{/if ~}}
+                  {{/each ~}}
+                  {{/with ~}}
+                  {{else}}
+                  The local Third Sector Interface in your area
+                  {{/if ~}}
+                  manages your personal data in relation to the Saltire Awards.
+                </p>
+                <ul>
+                  <li>
+                    <a href="/privacy">Privacy notice</a>
+                  </li>
+                  <li>
+                    <a href="/terms">Terms &amp; conditions</a>
+                  </li>
+                  <li>
+                    <a href="/cookies">Cookie policy</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-3 contact">
+                <h4>&nbsp;</h4>
+                <ul class="fa-ul">
+                  <li>
+                    <span class="fa-li"><span class="fas fa-envelope"></span></span>
                     {{#if @root.data.accountInfo.local_authority ~}}
                     {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
                     {{#each contacts ~}}
                     {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
-                    {{#if phone ~}}
-                    <li>
-                      <span class="fa-li"><span class="fas fa-phone fa-flip-horizontal"></span></span>
-                      <a href="tel:+44{{replace phone ' ' ''}}">{{phone}}</a>
-                    </li>
-                    {{/if ~}}
-                    {{#if twitter ~}}
-                    <li>
-                      <span class="fa-li"><span class="fab fa-twitter"></span></span>
-                      <a href="{{twitter}}" target="_blank">Twitter</a>
-                    </li>
-                    {{/if ~}}
-                    {{#if facebook ~}}
-                    <li>
-                      <span class="fa-li"><span class="fab fa-facebook"></span></span>
-                      <a href="{{facebook}}" target="_blank">Facebook</a>
-                    </li>
-                    {{/if ~}}
-                    {{#if youtube ~}}
-                    <li>
-                      <span class="fa-li"><span class="fab fa-youtube"></span></span>
-                      <a href="{{youtube}}" target="_blank">YouTube</a>
-                    </li>
-                    {{/if ~}}
-                    {{#if instagram ~}}
-                    <li>
-                      <span class="fa-li"><span class="fab fa-instagram"></span></span>
-                      <a href="{{instagram}}" target="_blank">Instagram</a>
-                    </li>
-                    {{/if ~}}
+                    <a href="mailto:{{email}}">{{email}}</a>
                     {{/if ~}}
                     {{/each ~}}
                     {{/with ~}}
                     {{else}}
-                    <li>
-                      <span class="fa-li"><span class="fab fa-twitter"></span></span>
-                      <a href="https://twitter.com/saltireawards" target="_blank">Twitter</a>
-                    </li>
+                    <a href="mailto:info@saltireawards.org.uk">info@saltireawards.org.uk</a>
                     {{/if ~}}
-                  </ul>
-                </div>
-                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone help">
-                  <h3>Information</h3>
-                  <ul class="mdc-list">
-                    {{#each @root.context.metaData.menus.footer-info ~}}
-                    <li class="mdc-list-item">
-                      <a href="{{stripTrailingSlash path}}">{{{label}}}</a>
-                    </li>
-                    {{/each ~}}
-                  </ul>
-                </div>
-                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone info">
-                  <h3>Help</h3>
-                  <div class="mdc-typography--body2 b-margin">
-                    {{#if @root.data.accountInfo.local_authority ~}}
-                    {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
-                    {{#each contacts ~}}
-                    {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
-                    <a href="{{fixUrl website}}" target="_blank">{{title}}</a>
-                    {{/if ~}}
-                    {{/each ~}}
-                    {{/with ~}}
-                    {{else}}
-                    The local Third Sector Interface in your area
-                    {{/if ~}}
-                    manages your personal data in relation to the Saltire Awards.
-                  </div>
-                  <ul class="mdc-list">
-                    <li class="mdc-list-item">
-                      <a href="/privacy">Privacy notice</a>
-                    </li>
-                    <li class="mdc-list-item">
-                      <a href="/terms">Terms &amp; conditions</a>
-                    </li>
-                    <li class="mdc-list-item">
-                      <a href="/cookies">Cookie policy</a>
-                    </li>
-                  </ul>
-                </div>
-                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone about">
-                  <h3>About</h3>
-                  <p>
-                    <strong>The Saltire Awards</strong> is run by the <a href="https://scvo.org">Scottish Council for Voluntary Organisations</a> and supported by the <a href="https://www.gov.scot/policies/third-sector">Scottish Government</a> and Scotland's <a href="https://www.gov.scot/policies/third-sector/third-sector-interfaces">Third Sector Interfaces</a>. <a href="/about">Find out more</a>
-                  </p>
-                </div>
+                  </li>
+                  {{#if @root.data.accountInfo.local_authority ~}}
+                  {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
+                  {{#each contacts ~}}
+                  {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
+                  {{#if phone ~}}
+                  <li>
+                    <span class="fa-li"><span class="fas fa-phone fa-flip-horizontal"></span></span>
+                    <a href="tel:+44{{replace phone ' ' ''}}">{{phone}}</a>
+                  </li>
+                  {{/if ~}}
+                  {{#if twitter ~}}
+                  <li>
+                    <span class="fa-li"><span class="fab fa-twitter"></span></span>
+                    <a href="{{twitter}}" target="_blank">Twitter</a>
+                  </li>
+                  {{/if ~}}
+                  {{#if facebook ~}}
+                  <li>
+                    <span class="fa-li"><span class="fab fa-facebook"></span></span>
+                    <a href="{{facebook}}" target="_blank">Facebook</a>
+                  </li>
+                  {{/if ~}}
+                  {{#if youtube ~}}
+                  <li>
+                    <span class="fa-li"><span class="fab fa-youtube"></span></span>
+                    <a href="{{youtube}}" target="_blank">YouTube</a>
+                  </li>
+                  {{/if ~}}
+                  {{#if instagram ~}}
+                  <li>
+                    <span class="fa-li"><span class="fab fa-instagram"></span></span>
+                    <a href="{{instagram}}" target="_blank">Instagram</a>
+                  </li>
+                  {{/if ~}}
+                  {{/if ~}}
+                  {{/each ~}}
+                  {{/with ~}}
+                  {{else}}
+                  <li>
+                    <span class="fa-li"><span class="fab fa-twitter"></span></span>
+                    <a href="https://twitter.com/saltireawards" target="_blank">Twitter</a>
+                  </li>
+                  {{/if ~}}
+                </ul>
+              </div>
+              <div class="col-6 about">
+                <h4>About</h4>
+                <p>
+                  The Saltire Awards is run by the <a href="https://scvo.org">Scottish Council for Voluntary Organisations</a> and supported by the <a href="https://www.gov.scot/policies/third-sector">Scottish Government</a> and Scotland's <a href="https://www.gov.scot/policies/third-sector/third-sector-interfaces">Third Sector Interfaces</a>.
+                </p>
+                <ul>
+                  {{#each @root.context.metaData.menus.footer-info ~}}
+                  <li>
+                    <a href="{{stripTrailingSlash path}}">{{{label}}}</a>
+                  </li>
+                  {{/each ~}}
+                </ul>
               </div>
             </div>
           </div>
         </div>
         <div class="footer-copyright">
-          <div class="container-fluid">
-            <div class="mdc-layout-grid">
-              <div class="mdc-layout-grid__inner">
-                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-9-desktop mdc-layout-grid__cell--span-5-tablet mdc-layout-grid__cell--span-4-phone">
+          <div class="container">
+              <div class="columns">
+                <div class="col-8">
                   <p>
                     &copy; {{momentFormat (moment) "YYYY"}}. The Scottish Council for Voluntary Organisations (SCVO) is a Scottish Charitable Incorporated Organisation.<br />
                     Charity registered in Scotland <a href="https://www.oscr.org.uk/about-charities/search-the-register/charity-details?number=SC003558">SC003558</a>. Registered office Mansfield Traquair Centre, 15 Mansfield Place, Edinburgh EH3 6BB.
                   </p>
                 </div>
-                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-3-tablet mdc-layout-grid__cell--span-4-phone logos">
+                <div class="col-4 logos">
                   <a href="https://www.gov.scot/policies/third-sector" class="brand-logo sg-logo" title="Scottish Government">
-                    <img src="{{~>asset_url url='images/logos/sg_reversed_white.png'~}}" alt="Scottish Government" />
+                    <img src="{{~>asset_url url='images/logos/SG_Quaternary_govscot_RGB.png'~}}" alt="Scottish Government" />
                   </a>
                   <a href="https://scvo.org" class="brand-logo scvo-logo" title="Scottish Council for Voluntary Organisations">
                     <img src="{{~>asset_url url='images/logos/scvo.png'~}}" alt="Scottish Council for Voluntary Organisations" />
@@ -401,12 +288,6 @@
           </div>
         </div>
       </footer>
-    </div>
-    <div class="mdc-snackbar" aria-live="assertive" aria-atomic="true" aria-hidden="true" id="app-snackbar">
-      <div class="mdc-snackbar__text"></div>
-      <div class="mdc-snackbar__action-wrapper">
-        <button type="button" class="mdc-snackbar__action-button"></button>
-      </div>
     </div>
   </saltireawards-site>
 

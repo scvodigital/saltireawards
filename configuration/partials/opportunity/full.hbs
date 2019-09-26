@@ -1,16 +1,16 @@
-<div class="mdc-card content-primary full" data-opportunity-id="{{Id}}" data-opportunity-layout="Full" data-opportunity-context="{{default viewContext "Vacancy Page"}}">
+<div class="content-primary full">
   {{> opportunity_key_info}}
   <hr class="mdc-list-divider" />
   <div class="content-primary-info-container">
     <div class="mdc-layout-grid">
       <div class="mdc-layout-grid__inner">
         <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone action">
-          {{#>components_tab_bar id="opportunity-tab-bar" defaultTabIdentifier="hash"}}
+          {{!-- {{#>components_tab_bar id="opportunity-tab-bar" defaultTabIdentifier="hash"}}
           {{>components_tab iconClasses="far fa-list-ul fa-fw" label="Information" active=true tabName="information"}}
           {{#if geo_coords}}
           {{>components_tab iconClasses="far fa-map-marker-alt fa-fw" label="Location" active=false tabName="location"}}
           {{/if}}
-          {{/components_tab_bar}}
+          {{/components_tab_bar}} --}}
         </div>
       </div>
     </div>
@@ -161,42 +161,6 @@
             <span class="far fa-calendar-alt" aria-hidden="true"></span>
             <span title="Updated on {{momentFormat (moment date_last_modified "x") "YYYY-MM-DD hh:mm"}}">Last updated {{momentFromNow date_last_modified}}</span>
           </div>
-        </div>
-      </div>
-
-      <div class="panel mdc-card--full-content" role="tabpanel" aria-hidden="true" data-tab-name="notes">
-        <div class="text-field-container user-notes">
-          {{#if @root.data.auth ~}}
-          <form action="/save-notes" method="POST" data-ajax-form='{"successMessage": "Notes saved","failureMessage": "Failed to save notes","successCallback": "notesSaved","id": "{{Id}}"}'>
-            <div>
-              <textarea class="mdc-text-field__input" data-simple-mde='{
-                "forceSync": true,
-                "toolbar": ["heading-1", "heading-2", "bold", "italic", "|", "unordered-list", "ordered-list", "link"]
-              }' name="notes" id="notes-{{Id}}" data-id="{{Id}}">{{getProperty @root.data.profileInfo.notes Id}}</textarea>
-              <input type="hidden" name="id" value="{{Id}}">
-            </div>
-            <div class="save-button-block">
-              <button type="submit" class="mdc-button mdc-button--raised">
-                <span class="far fa-save mdc-list-item__graphic" aria-hidden="true"></span>
-                Save notes
-              </button>
-              <button type="button" class="mdc-button mdc-button--raised mdc-button--warning" id="delete-notes-{{Id}}" data-id="{{Id}}" data-ajax-button='{"url": "/delete-notes","method": "POST","successMessage": "Notes deleted","failureMessage": "Failed to delete notes","successCallback": "clearNotes","postBody": { "id": "{{Id}}"}}'{{#unless (getProperty @root.data.profileInfo.notes Id)}} disabled{{/unless}}>
-                <span class="far fa-remove mdc-list-item__graphic" aria-hidden="true"></span>
-                Delete notes
-              </button>
-              <div class="mdc-typography--caption">
-                Any notes you write here are private on your account and are not shared with {{organisation_name}}. Read our <a href="/privacy" target="_blank">privacy notice</a>.
-              </div>
-            </div>
-          </form>
-          {{else}}
-          <div class="detailed-info">
-            <p class="mdc-typography--body1">
-              If you <a href="/sign-up">sign up</a>, you can private write notes here.
-              <a href="/sign-in">Sign in</a> if you already have a My Volunteer account.
-            </p>
-          </div>
-          {{/if ~}}
         </div>
       </div>
 

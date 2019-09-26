@@ -1,64 +1,60 @@
-<div class="container-content content-page container-centred container-home">
-  <div class="b-padding-full b-margin-full">
-    <h1 class="mdc-typography--headline4">
-      Contact
-    </h1>
-
-    <div class="mdc-layout-grid">
-      <div class="mdc-layout-grid__inner">
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
-          <h2 class="mdc-typography--headline6">
-            Local enquiries
-          </h2>
-          <p class="mdc-typography--body1">
-            For information on how to get involved with the Saltire Awards, you're best to contact your local Third Sector Interface.
-          </p>
-          <p class="mdc-typography--body1">
-            {{#if @root.data.accountInfo.postcode ~}}
-            {{> local_contact_info}}
-            {{else}}
-            Find the contact details below for the Council area you live in.
-            {{/if ~}}
-          </p>
-        </div>
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
-          <h2 class="mdc-typography--headline6">
-            National enquiries
-          </h2>
-          <p class="mdc-typography--body1">
-            If you have a problem with the website or are a national organisation, please contact <a href="mailto:support@saltireawards.org.uk">support@saltireawards.org.uk</a>.
-          </p>
-        </div>
+<div class="container b-padding-full v-margin-full">
+  <h1 class="mdc-typography--headline4">
+    Contact
+  </h1>
+  <div class="mdc-layout-grid">
+    <div class="mdc-layout-grid__inner">
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+        <h2 class="mdc-typography--headline6">
+          Local enquiries
+        </h2>
+        <p class="mdc-typography--body1">
+          For information on how to get involved with the Saltire Awards, you're best to contact your local Third Sector Interface.
+        </p>
+        <p class="mdc-typography--body1">
+          {{#if @root.data.accountInfo.postcode ~}}
+          {{> local_contact_info}}
+          {{else}}
+          Find the contact details below for the Council area you live in.
+          {{/if ~}}
+        </p>
       </div>
-      {{#unless @root.data.accountInfo.postcode ~}}
-      <div class="mdc-layout-grid__inner">
-        {{#each @root.context.metaData.tsiList ~}}
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
-          <div class="mdc-typography--body1">
-            {{#if area ~}}
-            <strong>{{{area}}}</strong><br />
-            {{/if ~}}
-            {{#if title ~}}
-            {{{title}}}<br />
-            {{/if ~}}
-            {{#if website ~}}
-            <a href="{{website}}">{{website}}</a><br />
-            {{/if ~}}
-            {{#if website2 ~}}
-            <a href="{{website2}}">{{website2}}</a><br />
-            {{/if ~}}
-            {{#if email ~}}
-            <a href="mailto:{{email}}">{{email}}</a><br />
-            {{/if ~}}
-            {{#if phone ~}}
-            {{{phone}}}
-            {{/if ~}}
-          </div>
-        </div>
-        {{/each ~}}
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+        <h2 class="mdc-typography--headline6">
+          National enquiries
+        </h2>
+        <p class="mdc-typography--body1">
+          If you have a problem with the website or are a national organisation, please contact <a href="mailto:support@saltireawards.org.uk">support@saltireawards.org.uk</a>.
+        </p>
       </div>
-      {{/unless ~}}
     </div>
+    {{#unless @root.data.accountInfo.postcode ~}}
+    <div class="mdc-layout-grid__inner">
+      {{#each @root.context.metaData.tsiList ~}}
+      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
+        <div class="mdc-typography--body1">
+          {{#if area ~}}
+          <strong>{{{area}}}</strong><br />
+          {{/if ~}}
+          {{#if title ~}}
+          {{{title}}}<br />
+          {{/if ~}}
+          {{#if website ~}}
+          <a href="{{website}}">{{website}}</a><br />
+          {{/if ~}}
+          {{#if website2 ~}}
+          <a href="{{website2}}">{{website2}}</a><br />
+          {{/if ~}}
+          {{#if email ~}}
+          <a href="mailto:{{email}}">{{email}}</a><br />
+          {{/if ~}}
+          {{#if phone ~}}
+          {{{phone}}}
+          {{/if ~}}
+        </div>
+      </div>
+      {{/each ~}}
+    </div>
+    {{/unless ~}}
   </div>
 </div>
-

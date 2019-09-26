@@ -1,112 +1,103 @@
-<div class="pure-g">
-  <div class="pure-u-1-2">
-    <div class="form-group">
-      <input required id="first_name" name="first_name" value="{{@root.data.accountInfo.first_name}}" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.first_name}}>
-      <label for="first_name" class="control-label">First name</label>
-      <span class="bar"></span>
+<div class="form-horizontal">
+  <div class="form-group">
+    <div class="col-3">
+      <label class="form-label" for="first_name">First name</label>
+    </div>
+    <div class="col-9">
+      <input class="form-input" id="first_name" name="first_name" type="text" value="{{@root.data.accountInfo.first_name}}" placeholder="" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.first_name}}>
     </div>
   </div>
-  <div class="pure-u-1-2">
-    <div class="form-group">
-      <input required id="last_name" name="last_name" value="{{@root.data.accountInfo.last_name}}" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.last_name}}>
-      <label for="last_name" class="control-label">Last name</label>
-      <span class="bar"></span>
+  <div class="form-group">
+    <div class="col-3">
+      <label class="form-label" for="last_name">Last name</label>
+    </div>
+    <div class="col-9">
+      <input class="form-input" id="last_name" name="last_name" type="text" value="{{@root.data.accountInfo.last_name}}" placeholder="" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.last_name}}>
     </div>
   </div>
-</div>
-<div class="pure-g">
-  <div class="pure-u-1-2">
-    <div class="form-group {{#if @root.data.accountInfo.date_of_birth}}form-group-disabled{{/if}}">
-      {{#if admin}}
-        <input id="date_of_birth" name="date_of_birth" value="{{@root.data.accountInfo.date_of_birth}}" {{#if @root.data.accountInfo.date_of_birth}}disabled{{else}}{{>form_validation_attributes @root.context.metaData.accountInfoValidation.date_of_birth_checked}}{{/if}}>
+  <div class="form-group">
+    <div class="col-3">
+      <label class="form-label" for="date_of_birth">Date of birth</label>
+    </div>
+    <div class="col-9">
+      {{#if admin ~}}
+      <input class="form-input" id="date_of_birth" name="date_of_birth" type="date" value="{{@root.data.accountInfo.date_of_birth}}" {{#if @root.data.accountInfo.date_of_birth}}disabled{{else}}{{>form_validation_attributes @root.context.metaData.accountInfoValidation.date_of_birth}}{{/if}}>
       {{else}}
-        <input id="date_of_birth_checked" name="date_of_birth" value="{{@root.data.accountInfo.date_of_birth}}" {{#if @root.data.accountInfo.date_of_birth}}disabled{{else}}{{>form_validation_attributes @root.context.metaData.accountInfoValidation.date_of_birth_checked}}{{/if}}>
-        {{#if @root.data.accountInfo.date_of_birth}}
-        <input type="hidden" name="date_of_birth" value="{{@root.data.accountInfo.date_of_birth}}">
-        {{/if}}
-      {{/if}}
-      <label for="date_of_birth" class="control-label">Date of birth</label>
-      <span class="bar"></span>
-    </div>
-  </div>
-  {{#if @root.data.accountInfo.date_of_birth ~}}
-  <div class="pure-u-1-2">
-    <p class="caption l-margin t-margin-full">
-      If your date of birth is incorrect please
-      {{#if @root.data.accountInfo.local_authority ~}}
-      {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
-      {{#each contacts ~}}
-      {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
-      <a href="mailto:{{email}}">contact us</a>.
+      <input class="form-input" id="date_of_birth_checked" name="date_of_birth" type="date" value="{{@root.data.accountInfo.date_of_birth}}" {{#if @root.data.accountInfo.date_of_birth}}disabled{{else}}{{>form_validation_attributes @root.context.metaData.accountInfoValidation.date_of_birth_checked}}{{/if}}>
+      {{#if @root.data.accountInfo.date_of_birth ~}}
+      <input type="hidden" name="date_of_birth" value="{{@root.data.accountInfo.date_of_birth}}">
       {{/if ~}}
-      {{/each ~}}
-      {{/with ~}}
-      {{else}}
-      <a href="mailto:info@saltireawards.org.uk">contact us</a>.
       {{/if ~}}
-    </p>
-  </div>
-  {{/if ~}}
-</div>
-{{#unless admin ~}}
-<div class="pure-g">
-  <div class="pure-u-1-2">
-    <div class="form-group">
-      <input id="school_college_name" name="school_college_name" value="{{@root.data.accountInfo.school_college_name}}" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.school_college_name}}>
-      <label for="school_college_name" class="control-label">School/college name</label>
-      <span class="bar"></span>
+      {{#if @root.data.accountInfo.date_of_birth ~}}
+      <br />
+      <span class="caption">
+        If your date of birth is incorrect here please
+        {{#if @root.data.accountInfo.local_authority ~}}
+        {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
+        {{#each contacts ~}}
+        {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
+        <a href="mailto:{{email}}">contact us</a>.
+        {{/if ~}}
+        {{/each ~}}
+        {{/with ~}}
+        {{else}}
+        <a href="mailto:info@saltireawards.org.uk">contact us</a>.
+        {{/if ~}}
+      </span>
+      {{/if ~}}
     </div>
   </div>
-</div>
-  <div id="verification" class="pure-g" style="display: none">
-  <div class="pure-u-1-2">
-    <div class="form-group">
-      <input type="email" id="verification_email" name="verification_email" value="{{@root.data.accountInfo.verification_email}}" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.verification_email}}>
-      <label for="verification_email" class="control-label">Your parent or guardian's email address</label>
-      <span class="bar"></span>
+
+  {{#unless admin ~}}
+  <div class="form-group">
+    <div class="col-3">
+      <label class="form-label" for="school_college_name">School/college name</label>
+    </div>
+    <div class="col-9">
+      <input class="form-input" id="school_college_name" name="school_college_name" type="text" value="{{@root.data.accountInfo.school_college_name}}" placeholder="" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.school_college_name}}>
     </div>
   </div>
-</div>
-{{else}}
-  <input type="hidden" name="email" value="{{data.auth.email}}">
-  <div class="pure-g">
-    <div class="pure-u-1-2">
-      <div class="form-group">
-        <input id="title" name="title" value="{{@root.data.accountInfo.title}}" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.title}}>
-        <label for="title" class="control-label">Job title</label>
-        <span class="bar"></span>
-      </div>
+  <div class="form-group" id="verification" style="display:none;">
+    <div class="col-3">
+      <label class="form-label" for="verification_email">Your parent or guardian's email address</label>
     </div>
-    <div class="pure-u-1-2">
-      <div class="form-group">
-        <input id="phone" name="phone" value="{{@root.data.accountInfo.phone}}" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.phone}}>
-        <label for="phone" class="control-label">Phone number</label>
-        <span class="bar"></span>
-      </div>
+    <div class="col-9">
+      <input class="form-input" id="verification_email" name="verification_email" type="text" value="{{@root.data.accountInfo.verification_email}}" placeholder="" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.verification_email}}>
     </div>
   </div>
+  {{else}}
+  <div class="form-group">
+    <div class="col-3">
+      <label class="form-label" for="title">Job title</label>
+    </div>
+    <div class="col-9">
+      <input class="form-input" id="title" name="title" type="text" value="{{@root.data.accountInfo.title}}" placeholder="" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.title}}>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-3">
+      <label class="form-label" for="phone">Phone number</label>
+    </div>
+    <div class="col-9">
+      <input class="form-input" id="phone" name="phone" type="text" value="{{@root.data.accountInfo.phone}}" placeholder="" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.phone}}>
+    </div>
+  </div>
+  <input type="hidden" name="email" value="{{@root.data.auth.email}}">
   <input type="hidden" name="verification_email" value="anuttgens@gmail.com" />
   <input type="hidden" name="admin" value="true" />
-{{/unless ~}}
-<div class="pure-g">
-  <div class="pure-u-1-2">
-    <input type="hidden" name="local_authority" id="local_authority" value="{{@root.data.accountInfo.local_authority}}" />
-    <input type="hidden" name="tsi_area" id="tsi_area" value="{{@root.data.accountInfo.tsi_area}}" />
-    <input type="hidden" name="tsi_contact_email" id="tsi_contact_email" value="{{@root.data.accountInfo.tsi_contact_email}}" />
-    <div class="form-group mdc-text-field--with-leading-icon" style="z-index:100;">
-      <span class="far fa-map-marker-alt mdc-text-field__icon postcode-lookup" tabindex="0" title="Find my location"></span>
-      <input type="text" id="postcode" name="postcode" value="{{@root.data.accountInfo.postcode}}" placeholder="" data-lpignore="true" data-location-search='{
-        "laSelector": "[name=\"local_authority\"]",
-        "tsiAreaSelector": "[name=\"tsi_area\"]",
-        "tsiContactSelector": "[name=\"tsi_contact_email\"]",
-        "locationServicesSelector": ".postcode-lookup"
-      }' {{>form_validation_attributes @root.context.metaData.accountInfoValidation.postcode}}>
-      <label for="postcode" class="control-label">
-        {{#if admin}}Work postcode{{else}}Home postcode{{/if}}
-      </label>
-      <span class="bar"></span>
+  {{/unless ~}}
+
+  <div class="form-group">
+    <div class="col-3">
+      <label class="form-label" for="postcode">{{#if admin}}Work postcode{{else}}Home postcode{{/if}}</label>
+    </div>
+    <div class="col-9">
+      <input class="form-input" id="postcode" name="postcode" type="text" value="{{@root.data.accountInfo.postcode}}" placeholder="" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.postcode}}>
     </div>
   </div>
+  <input type="hidden" name="local_authority" id="local_authority" value="{{@root.data.accountInfo.local_authority}}" />
+  <input type="hidden" name="tsi_area" id="tsi_area" value="{{@root.data.accountInfo.tsi_area}}" />
+  <input type="hidden" name="tsi_contact_email" id="tsi_contact_email" value="{{@root.data.accountInfo.tsi_contact_email}}" />
 </div>
 
 <input type="hidden" name="external_id" value="{{@root.data.auth.uid}}" />

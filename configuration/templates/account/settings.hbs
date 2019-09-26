@@ -1,5 +1,5 @@
 {{#*inline "linkChip"}}
-  <div class="mdc-chip{{#if linked}} mdc-chip--selected{{/if}} provider-{{provider}}" data-provider-link="{{provider}}">
+  {{!-- <div class="mdc-chip{{#if linked}} mdc-chip--selected{{/if}} provider-{{provider}}" data-provider-link="{{provider}}">
     <span class="fab fa-{{provider}} mdc-chip__icon mdc-chip__icon--leading {{#if linked}}mdc-chip__icon--leading-hidden{{/if}}" aria-hidden="true"></span>
     <div class="mdc-chip__checkmark">
       <svg class="mdc-chip__checkmark-svg" viewBox="-2 -3 30 30">
@@ -16,17 +16,14 @@
       </span>
       {{capitalize provider}}
     </div>
-  </div>
+  </div> --}}
+  {{capitalize provider}}
 {{/inline}}
 
-<div id="detailed-results-container" class="container-content content-notes">
-  <h1 class="mdc-typography--headline4">
-    My account
-  </h1>
+<div class="container b-padding-full v-margin-full">
+  <h1>My account</h1>
 
-  <h2 class="mdc-typography--headline5">
-    My details
-  </h2>
+  <h2>My details</h2>
 
   <section class="details-section content-settings-details">
     <form id="user-details-form" action="/submit-user-details" method="POST" data-ajax-form='{
@@ -37,104 +34,80 @@
       {{> account_details_form_fields admin=(compare @root.data.accountInfo.user_type '===' 'Group Admin')}}
 
       {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
-      <button id="detail-submit" class="mdc-button mdc-button--raised b-margin-full" id="register-interest-submit">
-        <span class="spinner fas fa-spin fa-spinner mdc-list-item__graphic" aria-hidden="true"></span>
+      <button id="detail-submit" class="btn btn-primary b-margin-full" id="register-interest-submit">
+        {{!-- <span class="spinner fas fa-spin fa-spinner mdc-list-item__graphic" aria-hidden="true"></span> --}}
         Save
       </button>
     </form>
   </section>
 
   <section class="settings-section content-settings-account">
-    <h2 class="mdc-typography--headline5">
-      My settings
-    </h2>
+    <h2>My settings</h2>
 
-    <div class="mdc-layout-grid">
-      <div class="mdc-layout-grid__inner">
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-12-phone">
+    <div class="columns col-gapless">
+      <div class="col-4">
+        {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "password") ~}}
+        <h3>Change password</h3>
+        {{else}}
+        <h3>Set password</h3>
+        <p>
+          You are currently using a social media account to sign in. If you set a password you will also be able to sign in with your email address.
+        </p>
+        {{/if ~}}
+
+        <div class="form-group has-icon-left">
+          <input class="form-input" type="password" id="change-password-password" placeholder="Password" data-lpignore="true" autocomplete="off" required />
+          <span class="form-icon far fa-key"></span>
+        </div>
+        <div class="form-group has-icon-left">
+          <input class="form-input" type="password" id="change-password-confirm" placeholder="Confirm password" data-lpignore="true" autocomplete="off" required />
+          <span class="form-icon far fa-key"></span>
+        </div>
+
+        <button class="btn btn-primary" id="change-password">
+          {{!-- <span class="far fa-lock" aria-hidden="true"></span> --}}
           {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "password") ~}}
-          <h3 class="mdc-typography--headline6">
-            Change password
-          </h3>
+          Change password
           {{else}}
-          <h3 class="mdc-typography--headline6">
-            Set password
-          </h3>
-          <span class="mdc-typography--body1">You are currently using a social media account to sign in. If you set a password you will also be able to sign in with your email address.</span>
+          Set password
           {{/if ~}}
-          <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon" data-mdc-auto-init="MDCTextField">
-            <span class="far fa-key mdc-text-field__icon" tabindex="-1"></span>
-            <input type="password" id="change-password-password" class="mdc-text-field__input" data-lpignore="true" autocomplete="off" />
-            <div class="mdc-notched-outline">
-              <div class="mdc-notched-outline__leading"></div>
-              <div class="mdc-notched-outline__notch">
-                <label for="change-password" class="mdc-floating-label">
-                  Password
-                </label>
-              </div>
-              <div class="mdc-notched-outline__trailing"></div>
+        </button>
+      </div>
+      <div class="col-4">
+        <h3>
+          Linked accounts
+        </h3>
+        <div class="mdc-chip-set mdc-chip-set--filter">
+          {{#each (split "google,twitter,facebook" ",") ~}}
+            <div class="v-margin">
+              {{> linkChip
+                  provider=this
+                  linked=(contains (map @root.data.auth.providerData (getProp "providerId")) (concat this ".com"))
+              }}
             </div>
-          </div>
-          <div class="mdc-text-field mdc-text-field--outlined mdc-text-field--with-leading-icon" data-mdc-auto-init="MDCTextField">
-            <span class="far fa-key mdc-text-field__icon" tabindex="-1"></span>
-            <input type="password" id="change-password-confirm" class="mdc-text-field__input" data-lpignore="true" autocomplete="off" />
-            <div class="mdc-notched-outline">
-              <div class="mdc-notched-outline__leading"></div>
-              <div class="mdc-notched-outline__notch">
-                <label for="change-password-confirm" class="mdc-floating-label">
-                  Confirm password
-                </label>
-              </div>
-              <div class="mdc-notched-outline__trailing"></div>
-            </div>
-          </div>
-          <button class="mdc-button mdc-button--raised mdc-button--change_password mdc-button--fullwidth" id="change-password">
-            <span class="far fa-lock mdc-list-item__graphic" aria-hidden="true"></span>
-            {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "password") ~}}
-            Change password
-            {{else}}
-            Set password
-            {{/if ~}}
-          </button>
+          {{/each ~}}
         </div>
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-12-phone">
-          <h3 class="mdc-typography--headline6">
-            Linked accounts
-          </h3>
-          <div class="mdc-chip-set mdc-chip-set--filter">
-            {{#each (split "google,twitter,facebook" ",") ~}}
-              <div class="v-margin">
-                {{> linkChip
-                    provider=this
-                    linked=(contains (map @root.data.auth.providerData (getProp "providerId")) (concat this ".com"))
-                }}
-              </div>
-            {{/each ~}}
-          </div>
-        </div>
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-6-tablet mdc-layout-grid__cell--span-12-phone">
-          <h3 class="mdc-typography--headline6">
-            Account data
-          </h3>
-          <!-- <button type="button" class="mdc-button mdc-button--raised mdc-button--export mdc-button--fullwidth v-margin" onclick="exportUserData();">
-            <span class="far fa-upload mdc-list-item__graphic" aria-hidden="true"></span>
-            Export account settings
-          </button>
-          <button class="mdc-button mdc-button--raised mdc-button--import mdc-button--fullwidth v-margin" data-dialog-target="#import-user-dialog">
-            <span class="far fa-download mdc-list-item__graphic" aria-hidden="true"></span>
-            Import account settings
-          </button> -->
-          <button class="mdc-button mdc-button--raised mdc-button--delete mdc-button--fullwidth v-margin" data-dialog-target="#delete-user-dialog">
-            <span class="far fa-trash mdc-list-item__graphic" aria-hidden="true"></span>
-            Delete account
-          </button>
-        </div>
+      </div>
+      <div class="col-4">
+        <h3>Account data</h3>
+        <!-- <button type="button" class="mdc-button mdc-button--raised mdc-button--export mdc-button--fullwidth v-margin" onclick="exportUserData();">
+          <span class="far fa-upload mdc-list-item__graphic" aria-hidden="true"></span>
+          Export account settings
+        </button>
+        <button class="mdc-button mdc-button--raised mdc-button--import mdc-button--fullwidth v-margin" data-dialog-target="#import-user-dialog">
+          <span class="far fa-download mdc-list-item__graphic" aria-hidden="true"></span>
+          Import account settings
+        </button> -->
+        <button class="btn btn-error v-margin" data-dialog-target="#delete-user-dialog">
+          <span class="far fa-trash mdc-list-item__graphic" aria-hidden="true"></span>
+          Delete account
+        </button>
       </div>
     </div>
   </section>
 </div>
 
-<aside id="delete-user-dialog" class="mdc-dialog" role="alertdialog" aria-labelledby="delete-user-dialog-label" aria-describedby="delete-user-dialog-description" data-mdc-auto-init="MDCDialog">
+{{!-- <aside id="delete-user-dialog" class="mdc-dialog" role="alertdialog" aria-labelledby="delete-user-dialog-label" aria-describedby="delete-user-dialog-description" data-mdc-auto-init="MDCDialog">
   <div class="mdc-dialog__container">
     <div action="/delete-user" method="GET" class="mdc-dialog__surface">
       <header class="mdc-dialog__header">
@@ -159,7 +132,7 @@
     </div>
   </div>
   <div class="mdc-dialog__scrim"></div>
-</aside>
+</aside> --}}
 
 <!-- <aside id="import-user-dialog" class="mdc-dialog" role="alertdialog" aria-labelledby="import-user-dialog-label" aria-describedby="import-user-dialog-description" data-mdc-auto-init="MDCDialog">
   <div class="mdc-dialog__container">

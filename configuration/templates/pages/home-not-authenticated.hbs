@@ -1,6 +1,6 @@
 <div class="header-image" style="background-image:url({{~>asset_url url='images/luke-porter-203637-unsplash-wide.jpg' ~}});">
   <div class="header-image-overlay">
-    <div class="container-content content-page container-centred container-home">
+    <div class="container">
       <div class="x-padding-full">
         <h1 class="mdc-typography--headline3 b-margin-full b-padding">
           Celebrating youth volunteering in Scotland
@@ -17,49 +17,47 @@
     </div>
   </div>
 </div>
-<div class="container-content content-page container-centred container-home">
-  <div class="b-padding-full b-margin-full">
-    <h2 class="mdc-typography--headline6">
+<div class="container">
+  <div class="b-padding-full v-margin-full">
+    <h2 class="text-centre">
       Get certificates
     </h2>
-    <div class="mdc-typography--caption">
+    <div class="text-centre caption">
       signed by Scottish Government Ministers
     </div>
-    <div class="mdc-layout-grid certificates">
-      <div class="mdc-layout-grid__inner">
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone certificate">
-          <img src="{{~>asset_url url='images/certificates/logos/challenge.png' ~}}" class="certificate-icon" />
-          <p class="mdc-typography--body1">
-            For those getting started in volunteering through team challenges
-          </p>
-        </div>
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone certificate">
-          <img src="{{~>asset_url url='images/certificates/logos/approach.png' ~}}" class="certificate-icon" />
-          <p class="mdc-typography--body1">
-            For when you've reached 10 and 25 hours volunteering
-          </p>
-        </div>
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone certificate">
-          <img src="{{~>asset_url url='images/certificates/logos/ascent.png' ~}}" class="certificate-icon" />
-          <p class="mdc-typography--body1">
-            For when you've reached 50, 100, 200 or even 500 hours
-          </p>
-        </div>
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone certificate">
-          <img src="{{~>asset_url url='images/certificates/logos/summit.png' ~}}" class="certificate-icon" />
-          <p class="mdc-typography--body1">
-            For those that have made an outstanding contribution to volunteering
-          </p>
-        </div>
+    <div class="columns certificates">
+      <div class="col-3 certificate">
+        <img src="{{~>asset_url url='images/certificates/logos/challenge.png' ~}}" class="certificate-icon responsive-img" />
+        <p class="mdc-typography--body1">
+          For those getting started in volunteering through team challenges
+        </p>
+      </div>
+      <div class="col-3 certificate">
+        <img src="{{~>asset_url url='images/certificates/logos/approach.png' ~}}" class="certificate-icon responsive-img" />
+        <p class="mdc-typography--body1">
+          For when you've reached 10 and 25 hours volunteering
+        </p>
+      </div>
+      <div class="col-3 certificate">
+        <img src="{{~>asset_url url='images/certificates/logos/ascent.png' ~}}" class="certificate-icon responsive-img" />
+        <p class="mdc-typography--body1">
+          For when you've reached 50, 100, 200 or even 500 hours
+        </p>
+      </div>
+      <div class="col-3 certificate">
+        <img src="{{~>asset_url url='images/certificates/logos/summit.png' ~}}" class="certificate-icon responsive-img" />
+        <p class="mdc-typography--body1">
+          For those that have made an outstanding contribution to volunteering
+        </p>
       </div>
     </div>
     <div class="mdc-layout-grid my-saltire">
-      <div class="mdc-layout-grid__inner">
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone my-saltire-item">
-          <a href="/sign-up" class="mdc-button mdc-button--raised">Register now</a>
+      <div class="columns">
+        <div class="col-6 my-saltire-item align-centre">
+          <a href="/sign-up" class="btn btn-primary text-centre">Register now</a>
         </div>
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-6-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone my-saltire-item">
-          <a href="/sign-in" class="mdc-button mdc-button--raised">Sign in</a>
+        <div class="col-6 my-saltire-item align-centre">
+          <a href="/sign-in" class="btn text-centre">Sign in</a>
         </div>
       </div>
     </div>

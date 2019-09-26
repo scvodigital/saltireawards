@@ -1,12 +1,12 @@
-<div class="container-content {{#if @root.data.auth}}content-volunteering{{else}}content-page container-centred{{/if}}" instance_id="perm">
-  {{> volunteering_search_form}}
+<div class="container">
+  {{{ TO DISCUSS }> volunteering_search_form}}
   <div class="mdc-layout-grid head">
     <div class="mdc-layout-grid__inner">
       <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone action">
-        {{#> components_tab_bar}}
+        {{!-- {{#> components_tab_bar}}
           {{> components_tab url=(concat "/search" (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) "") "" else="?") (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)) iconClasses="far fa-list fa-fw" label="List" active=(compare @root.request.url.pathname "===" "/search")}}
           {{> components_tab url=(concat "/search/map" (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) "") "" else="?") (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)) iconClasses="far fa-map-marker-alt fa-fw" label="Map" active=(compare @root.request.url.pathname "===" "/search/map")}}
-        {{/components_tab_bar}}
+        {{/components_tab_bar}} --}}
       </div>
     </div>
   </div>

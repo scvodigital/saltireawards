@@ -1,20 +1,18 @@
-<div id="detailed-results-container" class="container-content content-notes">
-  <h2 class="mdc-typography--headline4">Add your details</h2>
+<div class="container-fluid b-padding-full v-margin-full">
+  <h1>Add your details</h1>
 
-  <div class="mdc-typography--headline6 b-margin-full">
-    {{#unless @root.request.params.query.redirect}}
-      Thank you for signing up to the Saltire Awards as a group administrator. Please add your details below
+  <h3 class="b-margin-full">
+    {{#unless @root.request.params.query.redirect ~}}
+      Thank you for signing up to the Saltire Awards as a group administrator. Please add your details below.
     {{else}}
       In order to use this site as an administrator you need to complete your user details, please complete these below.
-    {{/unless}}
-
-  </div>
+    {{/unless ~}}
+  </h3>
 
   <form id="user-details-form" action="/submit-user-details" method="POST" data-ajax-form='{
       "successCallback": "completeCB",
       "failureCallback": "completeCB"
     }'>
-
     {{>account_details_form_fields mode=admin}}
     <input type="hidden" name="signup" value="true">
     {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}

@@ -1,5 +1,4 @@
-<div id="detailed-results-container" class="container-content content-notes">
-  <div class="content-primary">
+<div class="container-fluid b-padding-full v-margin-full">
   <h2>{{#compare @root.data.accountInfo.user_type "Volunteer"}}Parent or guardian{{else}}Group administrator{{/compare}} approval</h2>
   <p>
     {{#compare @root.data.accountInfo.user_type "Volunteer"}}
@@ -15,14 +14,12 @@
     {{/each ~}}
     {{/with ~}}
     {{/if ~}}
-
     {{/compare}}
   </p>
   <button onclick="sendApprovalEmail(true)" class="mdc-button mdc-button--raised">Resend email</button>
   {{#compare @root.data.accountInfo.user_type "===" "Volunteer"}}
   <button onclick="revealForm()" class="mdc-button mdc-button--raised">Change email address</button>
   {{/compare}}
-  </div>
   <form id="user-details-form" style="display:none;"  method="POST" action="submit-user-details">
     Please enter the new email address below.
     <input type="hidden" name="signup" value="true">
@@ -50,7 +47,6 @@
         </div>
       </div>
     </div>
-
     <button type="submit">submit</button>
   </form>
 </div>
