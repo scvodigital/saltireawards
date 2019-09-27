@@ -43,6 +43,11 @@ body,
   background-color: white;
 }
 
+html {
+  overflow: -moz-scrollbars-vertical;
+  overflow-y: scroll;
+}
+
 body,
 input,
 select,
