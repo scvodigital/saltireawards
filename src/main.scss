@@ -43,6 +43,11 @@ body,
   background-color: white;
 }
 
+html {
+  overflow: -moz-scrollbars-vertical;
+  overflow-y: scroll;
+}
+
 body,
 input,
 select,
@@ -292,6 +297,7 @@ header {
   background-color: #2C5797 !important;
 }
 .chip {
+  cursor: pointer;
   .fa-fw {
     margin-right: $unit/4;
   }
@@ -347,6 +353,12 @@ header {
     align-items: flex-end;
     justify-content: center;
     text-align: center;
+  }
+}
+
+.faded-overflow {
+  &:before {
+    background: linear-gradient(rgba(236, 242, 233, 0), rgba(236, 242, 233, 1));
   }
 }
 

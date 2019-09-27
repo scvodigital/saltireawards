@@ -62,12 +62,16 @@
   </form>
   {{else}}
 
-  <h2>
-    Volunteering with {{organisation_name}}
-    <span class="pull-right" data-collapse-target="#{{this.task_id}}-details">
-      <span class="far fa-chevron-up" aria-hidden="false"></span>
-    </span>
-  </h2>
+  <div class="columns col-gapless">
+    <div class="col-9">
+      <h2>
+        Volunteering with {{organisation_name}}
+        <span class="pull-right" data-collapse-target="#{{this.task_id}}-details">
+          <span class="far fa-chevron-up" aria-hidden="false"></span>
+        </span>
+      </h2>
+    </div>
+  </div>
 
   <div id="{{this.task_id}}-details">
     {{#if task_description ~}}
@@ -78,7 +82,7 @@
       <div class="form-horizontal">
         <input type="hidden" name="task_id" value="{{task_id}}">
         <div class="form-group">
-          <div class="col-3">
+          <div class="col-4">
             <label for="task_description" class="form-label">List of volunteer names, one per line</label>
           </div>
           <div class="col-5">
@@ -86,12 +90,12 @@
           </div>
         </div>
         <div class="form-group">
-          <div class="col-3">
+          <div class="col-4">
             <label for="hours" class="form-label">
               Certificate to award
             </label>
           </div>
-          <div class="col-1">
+          <div class="col-2">
             <select class="form-select" required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
               {{#each @root.context.metaData.certificates ~}}
               <option value="{{hours}}">{{name}} hours</option>
@@ -100,7 +104,7 @@
           </div>
         </div>
         <div class="form-group">
-          <div class="col-3"></div>
+          <div class="col-4"></div>
           <div class="col-1">
             <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full" id="group-hours-submit">
               Submit details
@@ -182,9 +186,9 @@
     {{/each ~}}
     {{/compare ~}}
     {{/unless}}
-    {{/each}}
     {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
   </div>
+  {{/each}}
 </div>
 {{!-- <script src="https://#/recaptcha/api.js" async defer></script> --}}
 <script>

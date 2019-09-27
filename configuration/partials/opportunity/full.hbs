@@ -1,20 +1,26 @@
 <div class="content-primary full">
   {{> opportunity_key_info}}
-  <hr class="mdc-list-divider" />
   <div class="content-primary-info-container">
-    <div class="mdc-layout-grid">
-      <div class="mdc-layout-grid__inner">
-        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone action">
-          {{!-- {{#>components_tab_bar id="opportunity-tab-bar" defaultTabIdentifier="hash"}}
-          {{>components_tab iconClasses="far fa-list-ul fa-fw" label="Information" active=true tabName="information"}}
-          {{#if geo_coords}}
-          {{>components_tab iconClasses="far fa-map-marker-alt fa-fw" label="Location" active=false tabName="location"}}
-          {{/if}}
-          {{/components_tab_bar}} --}}
-        </div>
+    <div class="columns col-gapless">
+      <div class="col-8 action">
+        <ul class="tab tab-block">
+          <li class="tab-item active">
+            <a href="#information">
+              <span class="far fa-fw fa-list"></span>
+              Information
+            </a>
+          </li>
+          {{#if geo_coords ~}}
+          <li class="tab-item">
+            <a href="#location">
+              <span class="far fa-fw fa-marker-alt"></span>
+              Location
+            </a>
+          </li>
+          {{/if ~}}
+        </ul>
       </div>
     </div>
-    <hr class="mdc-list-divider" />
     <div class="panels" for="opportunity-tab-bar">
       <div class="panel panel--active mdc-card--full-content" role="tabpanel" aria-hidden="false" data-tab-name="information">
         {{#ifAny activities.length themes.length end_date (compare start_date ">" (moment)) ~}}
