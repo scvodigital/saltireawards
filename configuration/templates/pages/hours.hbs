@@ -75,90 +75,93 @@
     {{/if ~}}
 
     <form action="/submit-group-hours" method="POST">
-      <div class="columns">
+      <div class="form-horizontal">
         <input type="hidden" name="task_id" value="{{task_id}}">
-        <div class="col-2">
-          <div class="mdc-select mdc-select--outlined">
-            <span class="mdc-select__dropdown-icon"></span>
-            <select class="mdc-select__native-control" required id="hours" name="hours"
-            {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
-            {{#each @root.context.metaData.certificates ~}}
-            <option value="{{hours}}">{{hours}}</option>
-            {{/each ~}}
-          </select>
-          <label for="hours" class="form-label">
-            Hours
-          </label>
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--outlined">
-          <textarea rows="4" cols="40" id="volunteers" name="volunteers"
-          {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}
-          class="mdc-text-field__input" value="{{@root.data.taskInfo.task_description}}"></textarea>
-          <label for="task_description" class="form-label">List of volunteer names, one per
-            line</label>
+        <div class="form-group">
+          <div class="col-3">
+            <label for="task_description" class="form-label">List of volunteer names, one per line</label>
+          </div>
+          <div class="col-5">
+            <textarea rows="6" cols="40" id="volunteers" name="volunteers" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}} class="form-input" value="{{@root.data.taskInfo.task_description}}"></textarea>
           </div>
         </div>
-        <div class="col-4">
-          <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full" id="group-hours-submit">
-            <!-- <span class="icon far fa-hand-paper mdc-list-item__graphic" aria-hidden="true"></span> -->
-            <!-- <span class="spinner fas fa-spin fa-spinner mdc-list-item__graphic" aria-hidden="true"></span> -->
-            Submit details
-          </button>
+        <div class="form-group">
+          <div class="col-3">
+            <label for="hours" class="form-label">
+              Certificate to award
+            </label>
+          </div>
+          <div class="col-1">
+            <select class="form-select" required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
+              {{#each @root.context.metaData.certificates ~}}
+              <option value="{{hours}}">{{name}} hours</option>
+              {{/each ~}}
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-3"></div>
+          <div class="col-1">
+            <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full" id="group-hours-submit">
+              <!-- <span class="icon far fa-hand-paper mdc-list-item__graphic" aria-hidden="true"></span> -->
+              <!-- <span class="spinner fas fa-spin fa-spinner mdc-list-item__graphic" aria-hidden="true"></span> -->
+              Submit details
+            </button>
+          </div>
         </div>
       </div>
     </form>
     {{#compare (length hours_list) ">" 0 ~}}
-    <div class="columns">
+    <div class="columns col-gapless">
       <div class="col-4">
         <strong>Volunteer name</strong>
       </div>
       <div class="col-2">
-        <strong>Hours</strong>
+        <strong>Certificate</strong>
       </div>
       <div class="col-2">
         <strong>Claim code</strong>
       </div>
+      <div class="col-1"></div>
       <div class="col-1">
+        <a href="/admin-pdf/{{task_id}}" class="btn btn-primary r-margin b-margin">Download all</a>
       </div>
-      <div class="col-2">
-        <a href="admin-pdf/{{task_id}}" class="btn">Download all</a>
-      </div>
+      <div class="col-1"></div>
     </div>
     {{#each hours_list ~}}
-    <form id="{{hours_id}}" method="POST" action="/submit-group-hours" class="inline-hours-form" data-ajax-form=''>
+    <form id="{{hours_id}}" method="POST" action="/submit-group-hours" class="inline-hours-form">
       <input type="hidden" name="task_id" value="{{task_id}}">
       <input type="hidden" name="verified" value="{{verified}}">
       <input type="hidden" name="claim_code" value="{{claim_code}}">
       <input type="hidden" name="hours_id" value="{{hours_id}}">
 
-      <div class="columns">
+      <div class="columns col-gapless">
         <div class="col-2">
-          <input {{#unless claim_code}}disabled{{/unless}} class="inline-edit" name="claim_first_name" value="{{claim_first_name}}">
-        </div>
-        <div class="col-2">
-          <input {{#unless claim_code}}disabled{{/unless}} class="inline-edit" name="claim_last_name" value="{{claim_last_name}}">
-        </div>
-        <div class="col-2">
-          {{!-- <input {{#unless claim_code}}disabled{{/unless}} class="inline-edit" type="number" step="any" min="0" name="hours" value="{{hours}}"> --}}
-          <div class="mdc-select mdc-select--outlined">
-            <select class="mdc-select__native-control" required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
-              {{#each @root.context.metaData.certificates ~}}
-              <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>{{hours}}</option>
-              {{/each ~}}
-            </select>
-            <label for="hours" class="form-label">
-              Hours
-            </label>
+          <div class="form-group r-margin b-margin">
+            <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="claim_first_name" value="{{claim_first_name}}">
           </div>
         </div>
         <div class="col-2">
-          <span class="claim-code">{{substr claim_code 0 10}}</span>
+          <div class="form-group r-margin b-margin">
+            <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="claim_last_name" value="{{claim_last_name}}">
+          </div>
+        </div>
+        <div class="col-2">
+          {{!-- <input {{#unless claim_code}}disabled{{/unless}} class="inline-edit" type="number" step="any" min="0" name="hours" value="{{hours}}"> --}}
+          <div class="form-group r-margin b-margin">
+            <select class="form-select" required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
+              {{#each @root.context.metaData.certificates ~}}
+              <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>{{name}} hours</option>
+              {{/each ~}}
+            </select>
+          </div>
+        </div>
+        <div class="col-2">
+          <code class="claim-code">{{substr claim_code 0 10}}</code>
         </div>
         <div class="col-1">
           {{#if claim_code}}
-          <button type="submit" class="btn inline-update-button" style="display:none;">Update</button>
+          <button type="submit" class="btn inline-update-button bg-dark" style="display:none;">Update</button>
           {{/if}}
         </div>
         <div class="col-2">
