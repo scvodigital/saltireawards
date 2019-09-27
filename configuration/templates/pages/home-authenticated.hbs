@@ -1,5 +1,5 @@
 <div class="container b-padding-full v-margin-full">
-  <h1 class="mdc-typography--headline4">
+  <h1>
     {{#if @root.data.isAdmin ~}}
       {{@root.route.metaData.adminTitle}}
     {{else}}
@@ -7,26 +7,26 @@
     {{/if ~}}
   </h1>
 
-  <h2 class="mdc-typography--headline6">
+  <h2>
     Actions
   </h2>
   {{#if @root.data.isAdmin ~}}
-  <p class="mdc-typography--body1">
-    <a href="/hours">Volunteering groups</a>
+  <p>
+    <a href="/hours" class="btn btn-primary">Volunteering groups</a>
   </p>
   {{else}}
-  <p class="mdc-typography--body1">
-    <a href="/hours">My volunteering - submit hours</a><br />
-    <a href="/search">Find a volunteering opportunity</a>
+  <p>
+    <a href="/hours" class="btn btn-primary">My volunteering - submit hours</a><br />
+    <a href="/search" class="btn">Find a volunteering opportunity</a>
   </p>
   {{/if ~}}
 
   <div class="divider b-margin-full"></div>
 
-  <h2 class="mdc-typography--headline6">
+  <h2>
     Support &amp; information
   </h2>
-  <p class="mdc-typography--body1">
+  <p>
     {{#if @root.data.accountInfo.postcode ~}}
     {{> local_contact_info}}
     {{else}}

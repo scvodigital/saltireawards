@@ -97,7 +97,7 @@
           <div class="btn-group">
             <a href="#" class="btn dropdown-toggle">
               {{#if @root.data.auth.photoURL ~}}
-              <img src="{{@root.data.auth.photoURL}}" class="avatar" />
+              <img src="{{@root.data.auth.photoURL}}" class="avatar avatar-sm" />
               {{else}}
               <span class="far fa-fw fa-user-circle"></span>
               {{/if ~}}
@@ -268,7 +268,7 @@
         </div>
         <div class="footer-copyright">
           <div class="container">
-              <div class="columns">
+              <div class="columns col-gapless">
                 <div class="col-8">
                   <p>
                     &copy; {{momentFormat (moment) "YYYY"}}. The Scottish Council for Voluntary Organisations (SCVO) is a Scottish Charitable Incorporated Organisation.<br />
