@@ -5,12 +5,12 @@
 
   <div class="columns achievements">
     {{#each @root.context.metaData.certificates ~}}
-    <div class="col-4">
+      <div class="col-4">
       {{!-- It's already awarded --}}
       {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
         <img src="{{~>asset_url url=(concat 'images/badges/' hours '.png') ~}}" class="responsive-img" />
       <div class="text-center description">
-        {{name}} hour certificate awarded!
+        {{name}} hour certificate awarded! <a href="/certificate-pdf/">Download here</a>
       </div>
       {{else}}
       {{#compare @root.data.verifyHoursInfo.award "===" hours ~}}
@@ -20,6 +20,15 @@
           {{name}} hour award being verified. <a href="/verify-hours-email-send/?award={{hours}}">Resend verification message</a>
         </div>
       {{else}}
+      {{!-- A bigger award is being verified --}}
+        {{#compare @root.data.verifyHoursInfo.award ">" hours ~}}
+        {{!-- It's being verified --}}
+          <img src="{{~>asset_url url=(concat 'images/badges/' hours '.png') ~}}" class="responsive-img" />
+          <div class="text-center description">
+            Larger award being verified.
+          </div>
+        {{else}}
+
       {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) ">=" hours ~}}
       {{!-- It's ready to claim--}}
         <img src="{{~>asset_url url=(concat 'images/badges/' hours '.png') ~}}" class="responsive-img" />
@@ -33,6 +42,7 @@
       <div class="text-center description">
         {{subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))}} {{inflect (subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))) "hour" "hours"}} to go
       </div>
+      {{/compare ~}}
       {{/compare ~}}
       {{/compare ~}}
       {{/compare ~}}

@@ -1,4 +1,4 @@
-{{#withExtend this type="verify-hours"}}
+{{#withExtend this type="hours-verify"}}
   [
   {{#eachJoin (distinct (pluck @root.data.tasksInfoUnverified "volunteer_manager_email")) ","~}}
     {
