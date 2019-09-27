@@ -29,8 +29,7 @@
       {{/if ~}}
       {{/if ~}}
       {{#if @root.data.accountInfo.date_of_birth ~}}
-      <br />
-      <span class="caption">
+      <div class="caption">
         If your date of birth is incorrect here please
         {{#if @root.data.accountInfo.local_authority ~}}
         {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
@@ -43,26 +42,26 @@
         {{else}}
         <a href="mailto:info@saltireawards.org.uk">contact us</a>.
         {{/if ~}}
-      </span>
+      </div>
       {{/if ~}}
     </div>
   </div>
 
   {{#unless admin ~}}
-  <div class="form-group">
-    <div class="col-3">
-      <label class="form-label" for="school_college_name">School/college name</label>
-    </div>
-    <div class="col-9">
-      <input class="form-input" id="school_college_name" name="school_college_name" type="text" value="{{@root.data.accountInfo.school_college_name}}" placeholder="" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.school_college_name}}>
-    </div>
-  </div>
   <div class="form-group" id="verification" style="display:none;">
     <div class="col-3">
       <label class="form-label" for="verification_email">Your parent or guardian's email address</label>
     </div>
     <div class="col-9">
       <input class="form-input" id="verification_email" name="verification_email" type="text" value="{{@root.data.accountInfo.verification_email}}" placeholder="" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.verification_email}}>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-3">
+      <label class="form-label" for="school_college_name">School/college name</label>
+    </div>
+    <div class="col-9">
+      <input class="form-input" id="school_college_name" name="school_college_name" type="text" value="{{@root.data.accountInfo.school_college_name}}" placeholder="" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.school_college_name}}>
     </div>
   </div>
   {{else}}
@@ -91,7 +90,7 @@
     <div class="col-3">
       <label class="form-label" for="postcode">{{#if admin}}Work postcode{{else}}Home postcode{{/if}}</label>
     </div>
-    <div class="col-9">
+    <div class="col-2">
       <input class="form-input" id="postcode" name="postcode" type="text" value="{{@root.data.accountInfo.postcode}}" placeholder="" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.postcode}}>
     </div>
   </div>

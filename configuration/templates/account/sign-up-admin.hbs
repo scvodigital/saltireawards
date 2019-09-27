@@ -37,12 +37,6 @@
         Already have an account? <a href="/sign-in">Sign in</a>
       </p>
     </div>
-    <div class="card-loader" id="sign-up-loader">
-      <div class="card-loader-background"></div>
-      <div class="card-loader-inner">
-        <span class="far fa-2x fa-spinner-third fa-spin"></span>
-      </div>
-    </div>
   </div>
   <input type="hidden" name="redirect" id="redirect" value="home" />
 </form>
@@ -56,15 +50,21 @@
     var $emailConfirm = $('#sign-up-email-confirm');
     var $password = $('#sign-up-password');
     var $passwordConfirm = $('#sign-up-password-confirm');
+    var $emailIcon = $('#sign-up-email-icon');
+    var $emailConfirmIcon = $('#sign-up-email-confirm-icon');
+    var $passwordIcon = $('#sign-up-password-icon');
+    var $passwordConfirmIcon = $('#sign-up-password-confirm-icon');
     var $register = $('#sign-up-submit');
-    var $loader = $('#sign-up-loader');
 
     function hasSubscriptions() {
       return ($("input[name^='list']:checked")).length > 0;
     }
 
     $form.on('submit', function(evt) {
-      $loader.css('display', 'flex');
+      $emailIcon.addClass('loading');
+      $emailConfirmIcon.addClass('loading');
+      $passwordIcon.addClass('loading');
+      $passwordConfirmIcon.addClass('loading');
       evt.preventDefault();
       var email = $email.val();
       var emailConfirm = $emailConfirm.val();
@@ -76,7 +76,10 @@
         })
         .catch(function(err) {
           $message.text(err.message || 'There was a problem creating your account').show();
-          $loader.css('display', 'none');
+          $emailIcon.removeClass('loading');
+          $emailConfirmIcon.removeClass('loading');
+          $passwordIcon.removeClass('loading');
+          $passwordConfirmIcon.removeClass('loading');
           document.body.scrollTop = document.documentElement.scrollTop = 0;
           return;
         });

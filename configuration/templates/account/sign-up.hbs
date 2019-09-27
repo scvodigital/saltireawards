@@ -9,25 +9,25 @@
   </div>
   <div class="x-padding">
     <div id="form-section-email">
-      {{> account_sign_in_social loaderSelector="#sign-up-loader" messageSelector="#sign-up-message"}}
+      {{> account_sign_in_social messageSelector="#sign-up-message"}}
 
       <div class="divider text-center v-margin-full" data-content="or"></div>
 
       <div class="form-group has-icon-left">
         <input class="form-input" type="email" id="sign-up-email" placeholder="Email" required />
-        <span class="form-icon far fa-at"></span>
+        <span class="form-icon far fa-at" id="sign-up-email-icon"></span>
       </div>
       <div class="form-group has-icon-left">
         <input class="form-input" type="email" id="sign-up-email-confirm" placeholder="Confirm email" data-lpignore="true" autocomplete="off" required />
-        <span class="form-icon far fa-at"></span>
+        <span class="form-icon far fa-at" id="sign-up-email-confirm-icon"></span>
       </div>
       <div class="form-group has-icon-left">
         <input class="form-input" type="password" id="sign-up-password" placeholder="Password" data-lpignore="true" autocomplete="off" required />
-        <span class="form-icon far fa-key"></span>
+        <span class="form-icon far fa-key" id="sign-up-password-icon"></span>
       </div>
       <div class="form-group has-icon-left">
         <input class="form-input" type="password" id="sign-up-password-confirm" placeholder="Confirm password" data-lpignore="true" autocomplete="off" required />
-        <span class="form-icon far fa-key"></span>
+        <span class="form-icon far fa-key" id="sign-up-password-confirm-icon"></span>
       </div>
     </div>
     <div id="form-section-sign-up-buttons" class="t-margin">
@@ -60,6 +60,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var $emailConfirm = $('#sign-up-email-confirm');
   var $password = $('#sign-up-password');
   var $passwordConfirm = $('#sign-up-password-confirm');
+  var $emailIcon = $('#sign-up-email-icon');
+  var $emailConfirmIcon = $('#sign-up-email-confirm-icon');
+  var $passwordIcon = $('#sign-up-password-icon');
+  var $passwordConfirmIcon = $('#sign-up-password-confirm-icon');
   var $register = $('#sign-up-submit');
   var $loader = $('#sign-up-loader');
 
@@ -68,7 +72,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   $form.on('submit', function(evt) {
-    $loader.css('display', 'flex');
+    $emailIcon.addClass('loading');
+    $emailConfirmIcon.addClass('loading');
+    $passwordIcon.addClass('loading');
+    $passwordConfirmIcon.addClass('loading');
     evt.preventDefault();
     var email = $email.val();
     var emailConfirm = $emailConfirm.val();
@@ -80,7 +87,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
     })
     .catch(function(err) {
       $message.text(err.message || 'There was a problem creating your account').show();
-      $loader.css('display', 'none');
+      $emailIcon.removeClass('loading');
+      $emailConfirmIcon.removeClass('loading');
+      $passwordIcon.removeClass('loading');
+      $passwordConfirmIcon.removeClass('loading');
       document.body.scrollTop = document.documentElement.scrollTop = 0;
       return;
     });

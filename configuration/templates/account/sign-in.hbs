@@ -18,18 +18,18 @@
   </div>
   <div class="x-padding">
     <div id="form-section-email">
-      {{> account_sign_in_social loaderSelector="#sign-in-loader" messageSelector="#sign-in-message"}}
+      {{> account_sign_in_social messageSelector="#sign-in-message"}}
 
       <div class="divider text-center v-margin-full" data-content="or"></div>
 
       <div class="form-group has-icon-left">
         <input class="form-input" type="email" id="sign-in-email" placeholder="Email" />
-        <span class="form-icon far fa-at"></span>
+        <span class="form-icon far fa-at" id="sign-in-email-icon"></span>
       </div>
 
       <div class="form-group has-icon-left">
         <input class="form-input" type="password" id="sign-in-password" placeholder="Password" />
-        <span class="form-icon far fa-key"></span>
+        <span class="form-icon far fa-key" id="sign-in-password-icon"></span>
       </div>
     </div>
     <div id="form-section-sign-in-buttons" class="t-margin">
@@ -49,12 +49,6 @@
         <a href="/sign-up" class="btn btn-primary">Sign up for a free account</a>
       </div>
     </div>
-    <div class="card-loader" id="sign-in-loader">
-      <div class="card-loader-background"></div>
-      <div class="card-loader-inner">
-        <span class="far fa-2x fa-spinner-third fa-spin"></span>
-      </div>
-    </div>
   </div>
 </form>
 <script>
@@ -63,19 +57,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
   var $message = $('#sign-in-message');
   var $email = $('#sign-in-email');
   var $password = $('#sign-in-password');
+  var $emailIcon = $('#sign-in-email-icon');
+  var $passwordIcon = $('#sign-in-password-icon');
   var $login = $('#sign-in-submit');
-  var $loader = $('#sign-in-loader');
 
   $form.on('submit', function(evt) {
+    $emailIcon.addClass('loading');
+    $passwordIcon.addClass('loading');
     var email = $email.val();
     var password = $password.val();
-    $loader.css('display', 'flex');
     evt.preventDefault();
     saltireawards.auth.signInEmailPassword(email, password).then(function(user) {
       window.location.href = '/';
     }).catch(function(err) {
       $message.html(err.message+' <a href="/reset-password">Reset password</a>').show();
-      $loader.css('display', 'none');
+      $emailIcon.removeClass('loading');
+      $passwordIcon.removeClass('loading');
     });
   })
 });

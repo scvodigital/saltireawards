@@ -1,23 +1,14 @@
 {{#*inline "linkChip"}}
-  {{!-- <div class="mdc-chip{{#if linked}} mdc-chip--selected{{/if}} provider-{{provider}}" data-provider-link="{{provider}}">
-    <span class="fab fa-{{provider}} mdc-chip__icon mdc-chip__icon--leading {{#if linked}}mdc-chip__icon--leading-hidden{{/if}}" aria-hidden="true"></span>
-    <div class="mdc-chip__checkmark">
-      <svg class="mdc-chip__checkmark-svg" viewBox="-2 -3 30 30">
-        <path class="mdc-chip__checkmark-path" fill="none" stroke="#ffffff" d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-      </svg>
-    </div>
-    <div class="mdc-chip__text noselect">
-      <span class="link-action">
-        {{#if linked}}
-          Unlink from
-        {{else}}
-          Link to
-        {{/if}}
-      </span>
-      {{capitalize provider}}
-    </div>
-  </div> --}}
-  {{capitalize provider}}
+  <span class="chip bg-primary bg-{{provider}}" data-provider-link="{{provider}}">
+    {{#if linked ~}}
+    <span class="far fa-fw fa-ban"></span>
+    Unlink from
+    {{else}}
+    <span class="fab fa-fw fa-{{provider}}"></span>
+    Link to
+    {{/if ~}}
+    {{capitalize provider}}
+  </span>
 {{/inline}}
 
 <div class="container b-padding-full v-margin-full">
@@ -25,85 +16,94 @@
 
   <h2>My details</h2>
 
-  <section class="details-section content-settings-details">
-    <form id="user-details-form" action="/submit-user-details" method="POST" data-ajax-form='{
+  <div class="columns col-gapless">
+    <div class="col-9">
+      <form id="user-details-form" action="/submit-user-details" method="POST" data-ajax-form='{
         "successCallback": "completeAccountCB",
         "failureCallback": "completeAccountCB"
       }'>
 
-      {{> account_details_form_fields admin=(compare @root.data.accountInfo.user_type '===' 'Group Admin')}}
+        {{> account_details_form_fields admin=(compare @root.data.accountInfo.user_type '===' 'Group Admin')}}
 
-      {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
-      <button id="detail-submit" class="btn btn-primary b-margin-full" id="register-interest-submit">
-        Save
-      </button>
-    </form>
-  </section>
-
-  <section class="settings-section content-settings-account">
-    <h2>My settings</h2>
-
-    <div class="columns col-gapless">
-      <div class="col-4">
-        {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "password") ~}}
-        <h3>Change password</h3>
-        {{else}}
-        <h3>Set password</h3>
-        <p>
-          You are currently using a social media account to sign in. If you set a password you will also be able to sign in with your email address.
-        </p>
-        {{/if ~}}
-
-        <div class="form-group has-icon-left">
-          <input class="form-input" type="password" id="change-password-password" placeholder="Password" data-lpignore="true" autocomplete="off" required />
-          <span class="form-icon far fa-key"></span>
+        {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
+        <div class="columns col-gapless">
+          <div class="col-3"></div>
+          <div class="col-2">
+            <button id="detail-submit" class="btn btn-primary b-margin-full" id="register-interest-submit">
+              Save details
+            </button>
+          </div>
         </div>
-        <div class="form-group has-icon-left">
-          <input class="form-input" type="password" id="change-password-confirm" placeholder="Confirm password" data-lpignore="true" autocomplete="off" required />
-          <span class="form-icon far fa-key"></span>
-        </div>
+      </form>
 
-        <button class="btn btn-primary" id="change-password">
-          {{!-- <span class="far fa-lock" aria-hidden="true"></span> --}}
+      <div class="divider"></div>
+
+      <h2>My settings</h2>
+
+      <div class="columns col-gapless">
+        <div class="col-4">
           {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "password") ~}}
-          Change password
+          <h3>Change password</h3>
           {{else}}
-          Set password
+          <h3>Set password</h3>
+          <p>
+            You are currently using a social media account to sign in. If you set a password you will also be able to sign in with your email address.
+          </p>
           {{/if ~}}
-        </button>
-      </div>
-      <div class="col-4">
-        <h3>
-          Linked accounts
-        </h3>
-        <div class="mdc-chip-set mdc-chip-set--filter">
-          {{#each (split "google,twitter,facebook" ",") ~}}
-            <div class="v-margin">
-              {{> linkChip
-                  provider=this
-                  linked=(contains (map @root.data.auth.providerData (getProp "providerId")) (concat this ".com"))
-              }}
-            </div>
-          {{/each ~}}
+
+          <div class="form-group has-icon-right r-margin">
+            <!-- <label class="form-label" for="change-password-password">New password</label> -->
+            <input class="form-input" type="password" id="change-password-password" placeholder="New password" data-lpignore="true" autocomplete="off" required />
+            <span class="form-icon far fa-key"></span>
+          </div>
+          <div class="form-group has-icon-right r-margin">
+            <!-- <label class="form-label" for="change-password-confirm">New password (confirm)</label> -->
+            <input class="form-input" type="password" id="change-password-confirm" placeholder="Confirm password" data-lpignore="true" autocomplete="off" required />
+            <span class="form-icon far fa-key"></span>
+          </div>
+
+          <button class="btn btn-primary" id="change-password">
+            {{!-- <span class="far fa-lock" aria-hidden="true"></span> --}}
+            {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "password") ~}}
+            Change password
+            {{else}}
+            Set password
+            {{/if ~}}
+          </button>
         </div>
-      </div>
-      <div class="col-4">
-        <h3>Account data</h3>
-        <!-- <button type="button" class="mdc-button mdc-button--raised mdc-button--export mdc-button--fullwidth v-margin" onclick="exportUserData();">
-          <span class="far fa-upload mdc-list-item__graphic" aria-hidden="true"></span>
-          Export account settings
-        </button>
-        <button class="mdc-button mdc-button--raised mdc-button--import mdc-button--fullwidth v-margin" data-dialog-target="#import-user-dialog">
-          <span class="far fa-download mdc-list-item__graphic" aria-hidden="true"></span>
-          Import account settings
-        </button> -->
-        <button class="btn btn-error v-margin" data-dialog-target="#delete-user-dialog">
-          <span class="far fa-trash mdc-list-item__graphic" aria-hidden="true"></span>
-          Delete account
-        </button>
+        <div class="col-4">
+          <h3>
+            Linked accounts
+          </h3>
+          <div class="mdc-chip-set mdc-chip-set--filter">
+            {{#each (split "google,twitter,facebook" ",") ~}}
+              <div class="v-margin">
+                {{> linkChip
+                    provider=this
+                    linked=(contains (map @root.data.auth.providerData (getProp "providerId")) (concat this ".com"))
+                }}
+              </div>
+            {{/each ~}}
+          </div>
+        </div>
+        <div class="col-4">
+          <h3>Account data</h3>
+          <!-- <button type="button" class="mdc-button mdc-button--raised mdc-button--export mdc-button--fullwidth v-margin" onclick="exportUserData();">
+            <span class="far fa-upload mdc-list-item__graphic" aria-hidden="true"></span>
+            Export account settings
+          </button>
+          <button class="mdc-button mdc-button--raised mdc-button--import mdc-button--fullwidth v-margin" data-dialog-target="#import-user-dialog">
+            <span class="far fa-download mdc-list-item__graphic" aria-hidden="true"></span>
+            Import account settings
+          </button> -->
+          <button class="btn btn-error v-margin" data-dialog-target="#delete-user-dialog">
+            <!-- <span class="far fa-trash mdc-list-item__graphic" aria-hidden="true"></span> -->
+            Delete account
+          </button>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 </div>
 
 {{!-- <aside id="delete-user-dialog" class="mdc-dialog" role="alertdialog" aria-labelledby="delete-user-dialog-label" aria-describedby="delete-user-dialog-description" data-mdc-auto-init="MDCDialog">
@@ -177,7 +177,7 @@
     $('[data-provider-link]').each(function(i, o) {
       var $chip = $(o);
       var $linkAction = $chip.find('.link-action');
-      var chip = new mdc.chips.MDCChip(o);
+      // var chip = new mdc.chips.MDCChip(o);
       var providerName = $chip.data('provider-link');
 
       $chip.on('click', function(evt) {
