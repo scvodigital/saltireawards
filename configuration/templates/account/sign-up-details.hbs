@@ -1,13 +1,13 @@
 <div class="container-fluid b-padding-full v-margin-full">
   <h1>Add your details</h1>
 
-  <div class="mdc-typography--headline6 b-margin-full">
+  <h3 class="b-margin-full">
     {{#unless @root.request.params.query.redirect}}
       Thank you for signing up to the Saltire Awards! Please add your details below
     {{else}}
-      In order to use this site you need to complete your user details, please complete these below.
+      In order to use this site you need to complete your user details, please complete these below
     {{/unless}}
-  </div>
+  </h3>
 
   <form id="user-details-form" action="/submit-user-details" method="POST" data-ajax-form='{
       "successCallback": "completeAccountCB",
@@ -17,9 +17,7 @@
     {{>account_details_form_fields admin=data.adminCandidate}}
     <input type="hidden" name="signup" value="true">
     {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
-    <button id="detail-submit" class="mdc-button mdc-button--raised b-margin-full" id="register-interest-submit" type="submit">
-      <span class="icon far fa-hand-paper mdc-list-item__graphic" aria-hidden="true"></span>
-      <span class="spinner fas fa-spin fa-spinner mdc-list-item__graphic" aria-hidden="true"></span>
+    <button id="detail-submit" class="btn btn-primary b-margin-full" id="register-interest-submit" type="submit">
       Submit details
     </button>
   </form>

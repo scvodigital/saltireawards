@@ -16,9 +16,7 @@
     {{>account_details_form_fields mode=admin}}
     <input type="hidden" name="signup" value="true">
     {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
-    <button id="detail-submit" class="mdc-button mdc-button--raised b-margin-full" id="register-interest-submit" onclick="doSpinner()" type="submit">
-      <span class="icon far fa-hand-paper mdc-list-item__graphic" aria-hidden="true"></span>
-      <span class="spinner fas fa-spin fa-spinner mdc-list-item__graphic" aria-hidden="true"></span>
+    <button id="detail-submit" class="btn btn-primary b-margin-full" id="register-interest-submit" onclick="doSpinner()" type="submit">
       Submit details
     </button>
   </form>
