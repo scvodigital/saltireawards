@@ -11,6 +11,10 @@
     "hours": 100,
     "name": "A hundred"
   },
+  "50": {
+    "hours": 50,
+    "name": "Fifty"
+  },
   "200": {
     "hours": 200,
     "name": "Two hundred"

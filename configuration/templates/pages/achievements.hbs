@@ -3,43 +3,40 @@
     My achievements
   </h1>
 
-  <div class="mdc-layout-grid achievements">
-    <div class="mdc-layout-grid__inner">
-      {{#each (split "10,25,50,100,200,500" ",") ~}}
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone">
-        {{!-- It's already awarded --}}
-        {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" this ~}}
-          <img src="{{~>asset_url url=(concat 'images/badges/' this '.png') ~}}" class="responsive-img" />
-        <div class="mdc-typography--body1 description">
-          Certificate awarded!
-        </div>
-        {{else}}
-        {{#compare @root.data.verifyHoursInfo.award "===" this ~}}
-        {{!-- It's being verified --}}
-          <img src="{{~>asset_url url=(concat 'images/badges/' this '.png') ~}}" class="responsive-img" />
-          <div class="mdc-typography--body1 description">
-            Award being verified.  <a href="/verify-hours-email-send/?award={{this}}">Resubmit Claim</a>
-          </div>
-        {{else}}
-        {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) ">=" this ~}}
-        {{!-- It's ready to claim--}}
-          <img src="{{~>asset_url url=(concat 'images/badges/' this '.png') ~}}" class="responsive-img" />
-          <div class="mdc-typography--body1 description">
-            Complete!
-            <a href="/verify-hours-email-send/?award={{this}}">Claim this certificate</a>
-          </div>
-        {{else}}
-        {{!-- It's not there yet --}}
-        <img src="{{~>asset_url url=(concat 'images/badges/' this 'bw.png') ~}}" class="responsive-img" />
-        <div class="mdc-typography--body1 description">
-          {{subtract this (sumArray (pluck @root.data.tasksInfo "hours"))}} {{inflect (subtract this (sumArray (pluck @root.data.tasksInfo "hours"))) "hour" "hours"}} to go
-        </div>
-        {{/compare ~}}
-        {{/compare ~}}
-        {{/compare ~}}
-
+  <div class="columns achievements">
+    {{#each @root.context.metaData.certificates ~}}
+    <div class="col-4">
+      {{!-- It's already awarded --}}
+      {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
+        <img src="{{~>asset_url url=(concat 'images/badges/' hours '.png') ~}}" class="responsive-img" />
+      <div class="text-center description">
+        {{name}} hour certificate awarded!
       </div>
-      {{/each ~}}
+      {{else}}
+      {{#compare @root.data.verifyHoursInfo.award "===" hours ~}}
+      {{!-- It's being verified --}}
+        <img src="{{~>asset_url url=(concat 'images/badges/' hours '.png') ~}}" class="responsive-img" />
+        <div class="text-center description">
+          {{name}} hour award being verified. <a href="/verify-hours-email-send/?award={{hours}}">Resend verification message</a>
+        </div>
+      {{else}}
+      {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) ">=" hours ~}}
+      {{!-- It's ready to claim--}}
+        <img src="{{~>asset_url url=(concat 'images/badges/' hours '.png') ~}}" class="responsive-img" />
+        <div class="text-center description">
+          {{name}} hour certificate available!
+          <a href="/verify-hours-email-send/?award={{hours}}">Claim this certificate</a>
+        </div>
+      {{else}}
+      {{!-- It's not there yet --}}
+      <img src="{{~>asset_url url=(concat 'images/badges/' hours 'bw.png') ~}}" class="responsive-img" />
+      <div class="text-center description">
+        {{subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))}} {{inflect (subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))) "hour" "hours"}} to go
+      </div>
+      {{/compare ~}}
+      {{/compare ~}}
+      {{/compare ~}}
     </div>
+    {{/each ~}}
   </div>
 </div>
