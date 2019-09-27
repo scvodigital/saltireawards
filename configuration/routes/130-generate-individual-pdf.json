@@ -1,0 +1,31 @@
+{
+  "name": "certificate-pdf",
+  "pattern": "/certificate-pdf",
+  "debug": true,
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.getSignUpStatus",
+    "context.metaData.commonTasks.getAccountInfo",
+    "context.metaData.commonTasks.fullSignUpRequired",
+    "context.metaData.commonTasks.isAdmin",
+    "context.metaData.commonTasks.getTasksInfo",
+    {
+      "name": "pdfObjects",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": ">context.metaData.handlebars.templates.tasks_certificate-pdf-object-body",
+        "parseJson": true
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "generatePdf",
+      "renderer": "handlebars",
+      "config": {
+        "definitionTemplate": ">context.metaData.handlebars.templates.awards_award-pdf-definition"
+      }
+    }
+  ]
+}
