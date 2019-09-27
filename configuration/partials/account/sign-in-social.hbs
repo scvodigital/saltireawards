@@ -21,7 +21,6 @@
     $facebook.on('click', function(evt) { socialSignIn('facebook'); });
     $twitter.on('click', function(evt) { socialSignIn('twitter'); });
 
-
     function socialSignIn(providerName) {
       saltireawards.auth.signInProvider(providerName).then(function(user) {
         console.log('Registered user:', user);
