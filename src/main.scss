@@ -274,8 +274,12 @@ header {
     }
   }
 }
-#sign-out-loader {
-  display: flex;
+#sign-out-form {
+  justify-content: center;
+  align-items: center;
+  .loading {
+    display: flex;
+  }
 }
 
 .chip.bg-google,

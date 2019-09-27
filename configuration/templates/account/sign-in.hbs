@@ -1,4 +1,4 @@
-<form id="sign-in-form" method="POST" class="authentication-form container-fluid">
+<form id="sign-in-form" method="POST" class="authentication-form container">
   <h1 class="x-padding">
     {{#if @root.request.params.query.reauth}}
       Please sign in again
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var password = $password.val();
     evt.preventDefault();
     saltireawards.auth.signInEmailPassword(email, password).then(function(user) {
-      window.location.href = '/';
+      // window.location.href = '/';
     }).catch(function(err) {
       $message.html(err.message+' <a href="/reset-password">Reset password</a>').show();
       $emailIcon.removeClass('loading');
