@@ -1,31 +1,41 @@
 <div class="container">
-  {{{ TO DISCUSS }> volunteering_search_form}}
-  <div class="mdc-layout-grid head">
-    <div class="mdc-layout-grid__inner">
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone action">
-        {{!-- {{#> components_tab_bar}}
-          {{> components_tab url=(concat "/search" (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) "") "" else="?") (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)) iconClasses="far fa-list fa-fw" label="List" active=(compare @root.request.url.pathname "===" "/search")}}
-          {{> components_tab url=(concat "/search/map" (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) "") "" else="?") (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)) iconClasses="far fa-map-marker-alt fa-fw" label="Map" active=(compare @root.request.url.pathname "===" "/search/map")}}
-        {{/components_tab_bar}} --}}
+  {{> volunteering_search_form}}
+  <div class="head">
+    <div class="columns col-gapless">
+      <div class="col-4 action">
+        <ul class="tab tab-block">
+          <li class="tab-item{{#compare @root.request.url.pathname "/search"}} active{{/compare}}">
+            <a href="{{concat "/search" (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) "") "" else="?") (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)}}">
+              <span class="far fa-fw fa-list"></span>
+              List
+            </a>
+          </li>
+          <li class="tab-item{{#compare @root.request.url.pathname "/map"}} active{{/compare}}">
+            <a href="{{concat "/search/map" (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) "") "" else="?") (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)}}">
+              <span class="far fa-fw fa-marker-alt"></span>
+              Map
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
-  <div class="mdc-layout-grid head">
-    <div class="mdc-layout-grid__inner">
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone pagination-desktop">
-        <button class="mdc-button mdc-button--raised filter-search hide-lg filter-search-button" id="filter-search-button" data-drawer-target="#sidebar-temporary">
+  <!-- <div class="head">
+    <div class="columns col-gapless">
+      <div class="col-8">
+        <button class="btn btn-primary filter-search hide-lg filter-search-button" id="filter-search-button" data-drawer-target="#sidebar-temporary">
           <span class="fas fa-search mdc-list-item__graphic" aria-hidden="true"></span>
           Search filters
         </button>
       </div>
     </div>
-  </div>
-  <div class="mdc-layout-grid grid-content">
-    <div class="mdc-layout-grid__inner">
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-9-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+  </div> -->
+  <div class="grid-content">
+    <div class="columns col-gapless">
+      <div class="col-9">
         {{> search_info paging=@root.data.search_data.detailed_results.pagination}}
       </div>
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone action">
+      <div class="col-3 action">
         {{#compare @root.data.search_data.detailed_results.hits.total ">" 0 ~}}
           <form action="{{{@root.request.url.path}}}" method="GET">
             {{!-- {{#each (split "volunteersearch_types,activities,themes,services,age_groups" ",")}}
@@ -45,18 +55,16 @@
               <input type="hidden" name="debug_results" value="{{@root.request.params.query.debug_results}}">
             {{/if}}
 
-            <div class="mdc-select pull-right" data-mdc-auto-init="MDCSelect">
-              <span class="mdc-select__dropdown-icon"></span>
-              <select class="mdc-select__native-control" id="sort" name="sort" onchange="this.form.submit();">
+            <div class="form-group pull-right">
+              <div class="form-label" for="sort">
+                Sort by
+              </div>
+              <select class="form-select" id="sort" name="sort" onchange="this.form.submit();">
                 <option value="relevance" {{#unless @root.request.params.query.sort}} selected {{/unless}}>Relevance</option>
                 {{#if @root.request.params.query.location}}<option value="distance"{{#compare @root.request.params.query.sort "===" "distance"}} selected{{/compare}}{{#compare @root.request.params.query.exclude "===" "locations"}} disabled{{else}}{{#compare @root.request.params.query.location "===" ""}} disabled{{/compare}}{{/compare}}>Distance</option>{{/if}}
                 <option value="newest"{{#compare @root.request.params.query.sort "===" "newest"}} selected{{/compare}}>Newest</option>
                 <option value="oldest"{{#compare @root.request.params.query.sort "===" "oldest"}} selected{{/compare}}>Oldest</option>
               </select>
-              <div class="mdc-floating-label mdc-select__label--float-above" for="sort">
-                Sort by
-              </div>
-              <div class="mdc-line-ripple"></div>
             </div>
           </form>
         {{/compare ~}}

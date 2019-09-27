@@ -356,6 +356,12 @@ header {
   }
 }
 
+.faded-overflow {
+  &:before {
+    background: linear-gradient(rgba(236, 242, 233, 0), rgba(236, 242, 233, 1));
+  }
+}
+
 footer {
   .footer-main {
     padding: $unit 0;

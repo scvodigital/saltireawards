@@ -1,12 +1,22 @@
 <div class="container">
   {{> volunteering_search_form}}
-  <div class="mdc-layout-grid head">
-    <div class="mdc-layout-grid__inner">
-      <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-4-tablet mdc-layout-grid__cell--span-4-phone action">
-        {{!-- {{#> components_tab_bar}}
-        {{> components_tab url=(concat "/search" (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) "") "" else="?") (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)) iconClasses="far fa-list fa-fw" label="List" active=(compare @root.request.url.pathname "===" "/search")}}
-        {{> components_tab url=(concat "/search/map" (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) "") "" else="?") (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)) iconClasses="far fa-map-marker-alt fa-fw" label="Map" active=(compare @root.request.url.pathname "===" "/search/map")}}
-        {{/components_tab_bar}} --}}
+  <div class="head">
+    <div class="columns col-gapless">
+      <div class="col-4 action">
+        <ul class="tab tab-block">
+          <li class="tab-item{{#compare @root.request.url.pathname "/search"}} active{{/compare}}">
+            <a href="{{concat "/search" (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) "") "" else="?") (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)}}">
+              <span class="far fa-fw fa-list"></span>
+              List
+            </a>
+          </li>
+          <li class="tab-item{{#compare @root.request.url.pathname "/map"}} active{{/compare}}">
+            <a href="{{concat "/search/map" (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) "") "" else="?") (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)}}">
+              <span class="far fa-fw fa-marker-alt"></span>
+              Map
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
