@@ -30,28 +30,43 @@
   {{#unless @root.data.accountInfo.postcode ~}}
   <div class="columns col-gapless">
     {{#each @root.context.metaData.tsiList ~}}
-    <div class="col-6">
-      <div>
-        {{#if area ~}}
-        <strong>{{{area}}}</strong><br />
-        {{/if ~}}
-        {{#if title ~}}
-        {{{title}}}<br />
-        {{/if ~}}
-        {{#if website ~}}
-        <a href="{{website}}">{{website}}</a><br />
-        {{/if ~}}
-        {{#if website2 ~}}
-        <a href="{{website2}}">{{website2}}</a><br />
-        {{/if ~}}
-        {{#if email ~}}
-        <a href="mailto:{{email}}">{{email}}</a><br />
-        {{/if ~}}
-        {{#if phone ~}}
-        {{{phone}}}
-        {{/if ~}}
+    {{#each contacts ~}}
+    <div class="col-4">
+      <div class="card">
+        <div class="card-header">
+          {{#ifAny area ../local_authority ~}}
+          <div class="card-title h5">{{{default area ../local_authority}}}</div>
+          {{/ifAny ~}}
+          {{#ifAll title ~}}
+          <div class="card-subtitle"><a href="{{website}}">{{{title}}}</a></div>
+          {{/ifAll ~}}
+        </div>
+        <!-- <div class="card-media">
+          <img src="{{logo}}" class="img-responsive">
+        </div> -->
+        <div class="card-footer">
+          {{#if email ~}}
+          <a href="mailto:{{email}}" class="btn btn-primary"><span class="far fa-fw fa-at"></span></a>
+          {{/if ~}}
+          {{#if phone ~}}
+          <a href="tel:+44{{phone}}" class="btn"><span class="fas fa-fw fa-phone fa-flip-horizontal"></span></a>
+          {{/if ~}}
+          {{#if facebook ~}}
+          <a href="{{facebook}}" class="btn"><span class="fab fa-fw fa-facebook"></span></a>
+          {{/if ~}}
+          {{#if twitter ~}}
+          <a href="{{twitter}}" class="btn"><span class="fab fa-fw fa-twitter"></span></a>
+          {{/if ~}}
+          {{#if instagram ~}}
+          <a href="{{instagram}}" class="btn"><span class="fab fa-fw fa-instagram"></span></a>
+          {{/if ~}}
+          {{#if youtube ~}}
+          <a href="{{youtube}}" class="btn"><span class="fab fa-fw fa-youtube"></span></a>
+          {{/if ~}}
+        </div>
       </div>
     </div>
+    {{/each ~}}
     {{/each ~}}
   </div>
   {{/unless ~}}

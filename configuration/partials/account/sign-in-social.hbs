@@ -13,7 +13,6 @@
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {
     var $message = $('{{messageSelector}}');
-    var $loader = $('{{loaderSelector}}');
     var $google = $('#continue-with-google');
     var $twitter = $('#continue-with-twitter');
     var $facebook = $('#continue-with-facebook');
@@ -24,14 +23,12 @@
 
 
     function socialSignIn(providerName) {
-      $loader.show();
       saltireawards.auth.signInProvider(providerName).then(function(user) {
         console.log('Registered user:', user);
         window.location.href = '/';
       }).catch(function(err) {
         console.error(err);
         $message.text(err.message).show();
-        $loader.css('display', 'none');
       });
     }
   });

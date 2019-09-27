@@ -21,6 +21,7 @@ $theme-footer-dark: #29333D;
 $unit: 1rem;
 $heading-font-weight: 600;
 $link-font-weight: 500;
+$page-width: 1200px;
 
 // @import "./node_modules/material-components-web/material-components-web.scss";
 // @import "./node_modules/@scvo/common/old/common-styles.scss";
@@ -198,16 +199,20 @@ header {
     }
   }
 }
+
 .sidebar-not-present {
   .container {
-    max-width: 1200px;
+    max-width: $page-width;
     margin: 0 auto;
   }
 }
-
-.responsive-img {
-  max-width: 100%;
+.sidebar-present {
+  .container {
+    max-width: $page-width;
+    margin: 0;
+  }
 }
+
 .caption {
   font-size: 92%;
 }
@@ -266,24 +271,30 @@ header {
     }
   }
 }
-#sign-out-loader {
-  display: flex;
+#sign-out-form {
+  justify-content: center;
+  align-items: center;
+  .loading {
+    display: flex;
+  }
 }
 
-.provider-google.mdc-chip--selected,
-.provider-google.mdc-chip--selected:hover,
+.chip.bg-google,
 #continue-with-google {
   background-color: #DB3633 !important;
 }
-.provider-twitter.mdc-chip--selected,
-.provider-twitter.mdc-chip--selected:hover,
+.chip.bg-twitter,
 #continue-with-twitter {
   background-color: #007DA3 !important;
 }
-.provider-facebook.mdc-chip--selected,
-.provider-facebook.mdc-chip--selected:hover,
+.chip.bg-facebook,
 #continue-with-facebook {
   background-color: #2C5797 !important;
+}
+.chip {
+  .fa-fw {
+    margin-right: $unit/4;
+  }
 }
 
 .card-loader {
