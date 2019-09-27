@@ -12,6 +12,7 @@
     "successCallback": "completeTaskWrite",
     "failureCallback": "completeTaskWrite"
   }'>
+    <input type="hidden" name="task_type" value="{{#if admin}}Group Task{{else}}Individual Task{{/if}}">
     <div class="form-horizontal">
       <div class="form-group">
         <div class="col-2">
