@@ -10,7 +10,10 @@
       {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
         <img src="{{~>asset_url url=(concat 'images/badges/' hours '.png') ~}}" class="img-responsive" />
       <div class="text-center description">
-        {{name}} hour certificate awarded! <a href="/certificate-pdf/">Download here</a>
+        <p>
+          {{name}} hour certificate awarded!
+        </p>
+        <a href="/certificate-pdf" class="btn btn-primary" download>Download</a>
       </div>
       {{else}}
       {{#compare @root.data.verifyHoursInfo.award "===" hours ~}}
