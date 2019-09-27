@@ -31,22 +31,25 @@
   <div class="columns col-gapless">
     {{#each @root.context.metaData.tsiList ~}}
     {{#each contacts ~}}
-    <div class="col-6">
+    <div class="col-4">
       <div class="card">
         <div class="card-header">
           {{#ifAny area ../local_authority ~}}
-          <div class="card-title h5 text-primary">{{{default area ../local_authority}}}</div>
+          <div class="card-title h5">{{{default area ../local_authority}}}</div>
           {{/ifAny ~}}
-          {{#if title ~}}
-          <div class="card-subtitle text-dark">{{{title}}}</div>
-          {{/if ~}}
+          {{#ifAll title ~}}
+          <div class="card-subtitle"><a href="{{website}}">{{{title}}}</a></div>
+          {{/ifAll ~}}
         </div>
+        <!-- <div class="card-media">
+          <img src="{{logo}}" class="img-responsive">
+        </div> -->
         <div class="card-footer">
           {{#if email ~}}
-          <a href="mailto:{{email}}" class="btn btn-primary"><span class="fas fa-fw fa-at"></span></a>
+          <a href="mailto:{{email}}" class="btn btn-primary"><span class="far fa-fw fa-at"></span></a>
           {{/if ~}}
-          {{#if website ~}}
-          <a href="{{website}}" class="btn"><span class="fas fa-fw fa-link"></span></a>
+          {{#if phone ~}}
+          <a href="tel:+44{{phone}}" class="btn"><span class="fas fa-fw fa-phone fa-flip-horizontal"></span></a>
           {{/if ~}}
           {{#if facebook ~}}
           <a href="{{facebook}}" class="btn"><span class="fab fa-fw fa-facebook"></span></a>
@@ -59,9 +62,6 @@
           {{/if ~}}
           {{#if youtube ~}}
           <a href="{{youtube}}" class="btn"><span class="fab fa-fw fa-youtube"></span></a>
-          {{/if ~}}
-          {{#if phone ~}}
-          <a href="tel:+44{{phone}}" class="btn"><span class="fas fa-fw fa-phone"></span></a>
           {{/if ~}}
         </div>
       </div>
