@@ -51,15 +51,15 @@
           </p>
           {{/if ~}}
 
-          <div class="form-group has-icon-right r-margin">
+          <div class="form-group has-icon-left r-margin">
             <!-- <label class="form-label" for="change-password-password">New password</label> -->
             <input class="form-input" type="password" id="change-password-password" placeholder="New password" data-lpignore="true" autocomplete="off" required />
-            <span class="form-icon far fa-key"></span>
+            <span class="form-icon far fa-key" id="change-password-password-icon"></span>
           </div>
-          <div class="form-group has-icon-right r-margin">
+          <div class="form-group has-icon-left r-margin">
             <!-- <label class="form-label" for="change-password-confirm">New password (confirm)</label> -->
             <input class="form-input" type="password" id="change-password-confirm" placeholder="Confirm password" data-lpignore="true" autocomplete="off" required />
-            <span class="form-icon far fa-key"></span>
+            <span class="form-icon far fa-key" id="change-password-confirm-icon"></span>
           </div>
 
           <button class="btn btn-primary" id="change-password">
@@ -96,12 +96,36 @@
             <span class="far fa-download mdc-list-item__graphic" aria-hidden="true"></span>
             Import account settings
           </button> -->
-          <button class="btn btn-error v-margin" data-dialog-target="#delete-user-dialog">
+          <button class="btn btn-error v-margin" id="delete-account-button">
             <!-- <span class="far fa-trash mdc-list-item__graphic" aria-hidden="true"></span> -->
             Delete account
           </button>
         </div>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal modal-sm" id="delete-account-modal">
+  <a href="#" class="modal-overlay" aria-label="Close"></a>
+  <div class="modal-container">
+    <div class="modal-header">
+      <a href="#close" class="btn btn-clear float-right" aria-label="Close"></a>
+      <div class="modal-title h5">Are you sure you want to delete your account?</div>
+    </div>
+    <div class="modal-body">
+      <div class="content">
+        <p>
+          Deleting your account will:
+        </p>
+        <ul>
+          <li>Fully remove your account from the Saltire Awards system</li>
+        </ul>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a href="#" class="btn btn-primary">Delete account</button>
+      <a href="#" class="btn btn-link">Cancel</a>
     </div>
   </div>
 </div>
@@ -171,8 +195,12 @@
       $('#detail-submit').prop('disabled', true);
     })
     var $changePassword = $('#change-password');
+    var $deleteAccount = $('#delete-account-button')
+    var $deleteAccountModal = $('#delete-account-modal')
     var $password1 = $('#change-password-password');
     var $password2 = $('#change-password-confirm');
+    var $password1Icon = $('#change-password-password-icon');
+    var $password2Icon = $('#change-password-confirm-icon');
 
     $('[data-provider-link]').each(function(i, o) {
       var $chip = $(o);
@@ -237,6 +265,8 @@
         .attr('title', !enabled ? 'You cannot unlink your social account as you are using it to sign in' : '');
     }
 
+    $deleteAccount.on('click', deleteAccount);
+
     $changePassword.on('click', changePassword);
     $password1.on('keypress', function(evt) {
       if (evt.which === 13) {
@@ -250,6 +280,8 @@
     });
 
     function changePassword() {
+      $password1Icon.addClass('loading');
+      $password2Icon.addClass('loading');
       var password1 = $password1.val();
       var password2 = $password2.val();
       saltireawards.disable([$changePassword, $password1, $password2]);
@@ -266,6 +298,8 @@
         $password1.val('');
         $password2.val('');
         $password1.focus();
+        $password1Icon.removeClass('loading');
+        $password2Icon.removeClass('loading');
         saltireawards.snackbarShow({
           message: err.message || 'There was a problem changing your password',
           backgroundColor: '#dd4b39'
@@ -277,6 +311,10 @@
         }
         return;
       });
+    }
+
+    function deleteAccount() {
+      $deleteAccountModal.addClass('active');
     }
   });
 </script>
