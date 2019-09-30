@@ -4,16 +4,8 @@
   <span class="">I want to volunteer</span>
 </div>
 {{else}}
-{{#unless (contains (map @root.data.registeredInterest.items.[0] (getProp "value")) id) ~}}
 <a href="https://search.volunteerscotland.net/register-interest/{{Id}}/{{title_slug}}" class="chip chip--register-interest">
   <span class="far fa-hand-paper" aria-hidden="true"></span>
-  <span class="noselect hide-lg hide-md">Volunteer</span>
-  <span class="noselect hide-sm">I want to volunteer</span>
+  <span class="noselect">&ensp;I want to volunteer</span>
 </a>
-{{else}}
-<div class="chip active">
-  <span class="far fa-envelope" aria-hidden="true"></span>
-  <span class="noselect">Interest registered</span>
-</div>
-{{/unless ~}}
 {{/if ~}}

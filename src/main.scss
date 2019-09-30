@@ -354,7 +354,12 @@ header {
   }
 }
 
+ul.fa-ul {
+  margin-left: $unit*1.5;
+}
+
 .faded-overflow {
+  overflow: hidden;
   &:before {
     background: linear-gradient(rgba(236, 242, 233, 0), rgba(236, 242, 233, 1));
   }
@@ -382,7 +387,7 @@ footer {
       }
     }
     ul.fa-ul {
-      margin-left: 1.5rem;
+      margin-left: $unit*1.5;
     }
   }
   .footer-copyright {
