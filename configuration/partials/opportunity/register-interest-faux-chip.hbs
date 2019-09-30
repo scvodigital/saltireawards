@@ -1,19 +1,19 @@
 {{#if disabled ~}}
-<div title="You can't volunteer for this opportunity using this site" class="mdc-chip mdc-chip--register-interest mdc-chip--disabled noselect">
-  <span class="far fa-envelope mdc-chip__icon" aria-hidden="true"></span>
-  <span class="mdc-chip__text">I want to volunteer</span>
+<div title="You can't volunteer for this opportunity using this site" class="chip chip--register-interest chip--disabled noselect">
+  <span class="far fa-envelope" aria-hidden="true"></span>
+  <span class="">I want to volunteer</span>
 </div>
 {{else}}
 {{#unless (contains (map @root.data.registeredInterest.items.[0] (getProp "value")) id) ~}}
-<a href="https://search.volunteerscotland.net/register-interest/{{Id}}/{{title_slug}}" class="mdc-chip mdc-chip--register-interest">
-  <span class="far fa-hand-paper mdc-chip__icon mdc-chip__icon--leading" aria-hidden="true"></span>
-  <span class="mdc-chip__text noselect hide-lg hide-md">Volunteer</span>
-  <span class="mdc-chip__text noselect hide-sm">I want to volunteer</span>
+<a href="https://search.volunteerscotland.net/register-interest/{{Id}}/{{title_slug}}" class="chip chip--register-interest">
+  <span class="far fa-hand-paper" aria-hidden="true"></span>
+  <span class="noselect hide-lg hide-md">Volunteer</span>
+  <span class="noselect hide-sm">I want to volunteer</span>
 </a>
 {{else}}
-<div class="mdc-chip mdc-chip--selected mdc-chip--register-interest">
-  <span class="far fa-envelope mdc-chip__icon" aria-hidden="true"></span>
-  <span class="mdc-chip__text noselect">Interest registered</span>
+<div class="chip active">
+  <span class="far fa-envelope" aria-hidden="true"></span>
+  <span class="noselect">Interest registered</span>
 </div>
 {{/unless ~}}
 {{/if ~}}

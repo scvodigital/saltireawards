@@ -1,7 +1,7 @@
-<div class="mdc-card content-primary list" data-opportunity-id="{{Id}}" data-opportunity-layout="List" data-opportunity-context="{{default viewContext "Other"}}">
+<div class="content-primary list" data-opportunity-id="{{Id}}" data-opportunity-layout="List" data-opportunity-context="{{default viewContext "Other"}}">
   {{> opportunity_key_info type="list"}}
   {{#unless (compare view 'widget') ~}}
-  <hr class="mdc-list-divider" />
+  <div class="divider"></div>
   {{/unless ~}}
   {{> opportunity_description limit="10.5rem" description=description}}
   {{#unless (compare view 'widget') ~}}

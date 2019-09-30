@@ -1,25 +1,25 @@
-<div class="map-content" data-opportunity-id="{{Id}}" data-opportunity-layout="Map" data-opportunity-context="{{default viewContext "Map"}}">
-  <h3 class="mdc-typography--headline7">
+<div class="map-content" data-opportunity-id="{{Id}}" data-opportunity-layout="Map" data-opportunity-context="{{default viewContext 'Map'}}">
+  <h3>
     <a href="/search/opportunity/{{Id}}/{{title_slug}}{{> query_search}}">{{title}}</a>
   </h3>
   {{#if organisation_name ~}}
-  <div class="mdc-typography--body1 v-margin">
+  <div class="v-margin">
     {{organisation_name}}
   </div>
   {{/if ~}}
   {{#if map_postcode ~}}
-  <div class="mdc-typography--body2 v-margin">
+  <div class="v-margin">
     Postcode: {{map_postcode}}
   </div>
   {{/if ~}}
-  <div class="mdc-typography--body2 post-info">
+  <div class="post-info">
     {{#if description ~}}
     <div style="max-height: 2.8rem;"  class="post-info-item post-info-description faded-overflow">
       {{{description}}}
     </div>
     {{/if ~}}
   </div>
-  <div class="mdc-typography--body2">
-    <a href="/search/opportunity/{{Id}}/{{title_slug}}{{> query_search}}" class="mdc-card__action">Find out more</a>
+  <div>
+    <a href="/search/opportunity/{{Id}}/{{title_slug}}{{> query_search}}" class="btn">Find out more</a>
   </div>
 </div>

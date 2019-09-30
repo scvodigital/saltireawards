@@ -4,7 +4,7 @@
   <h2>User: {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}} {{#if @root.data.accountInfo.school_college_name}}from {{@root.data.accountInfo.school_college_name}}{{/if}}</h2>
 
   {{#each (distinct (pluck @root.data.tasksInfoUnverified "volunteer_manager_email")) ~}}
-    <section class="mdc-card__media email-template h-padding-full">
+    <section class="email-template h-padding-full">
       <p>
         Modify hours for {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}} {{#if @root.data.accountInfo.school_college_name}}from {{@root.data.accountInfo.school_college_name}}{{/if}}. If the hours listed did not occur at all, please set the value to zero, and mention this in the 'reason' text box.</p>
       </p>
@@ -30,23 +30,21 @@
           }'>
             <input type="hidden" name="task_id" value="{{taskId}}">
 
-          <div class="mdc-layout-grid">
-            <div class="mdc-layout-grid__inner">
-              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+            <div class="columns col-gapless">
+              <div class="col-3">
                 <label for="reason">Hours Granted</label>
                 <br />
                 <label for="reason">Reason for modification / denial</label>
               </div>
-              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
+              <div class="col-4">
                 <input type="number" step="any" min="0" name="hours" value="{{hours}}">
                 <br/>
                 <textarea rows="2" name="reason"></textarea>
               </div>
-              <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-5-desktop mdc-layout-grid__cell--span-8-tablet mdc-layout-grid__cell--span-4-phone">
-                <button class="mdc-button mdc-button--raised">Verify Hours</button>
+              <div class="col-5">
+                <button class="btn btn-primary">Verify Hours</button>
               </div>
             </div>
-          </div>
           </form>
           {{/compare}}
           {{/compare}}

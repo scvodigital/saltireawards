@@ -75,7 +75,7 @@
           <h3>
             Linked accounts
           </h3>
-          <div class="mdc-chip-set mdc-chip-set--filter">
+          <div class="chip-set">
             {{#each (split "google,twitter,facebook" ",") ~}}
               <div class="v-margin">
                 {{> linkChip
@@ -88,16 +88,15 @@
         </div>
         <div class="col-4">
           <h3>Account data</h3>
-          <!-- <button type="button" class="mdc-button mdc-button--raised mdc-button--export mdc-button--fullwidth v-margin" onclick="exportUserData();">
-            <span class="far fa-upload mdc-list-item__graphic" aria-hidden="true"></span>
+          <!-- <button type="button" class="btn v-margin" onclick="exportUserData();">
             Export account settings
           </button>
-          <button class="mdc-button mdc-button--raised mdc-button--import mdc-button--fullwidth v-margin" data-dialog-target="#import-user-dialog">
-            <span class="far fa-download mdc-list-item__graphic" aria-hidden="true"></span>
+          <button class="btn v-margin" data-dialog-target="#import-user-dialog">
+            <span class="far fa-download" aria-hidden="true"></span>
             Import account settings
           </button> -->
           <button class="btn btn-error v-margin" id="delete-account-button">
-            <!-- <span class="far fa-trash mdc-list-item__graphic" aria-hidden="true"></span> -->
+            <!-- <span class="far fa-trash" aria-hidden="true"></span> -->
             Delete account
           </button>
         </div>
@@ -130,57 +129,6 @@
   </div>
 </div>
 
-{{!-- <aside id="delete-user-dialog" class="mdc-dialog" role="alertdialog" aria-labelledby="delete-user-dialog-label" aria-describedby="delete-user-dialog-description" data-mdc-auto-init="MDCDialog">
-  <div class="mdc-dialog__container">
-    <div action="/delete-user" method="GET" class="mdc-dialog__surface">
-      <header class="mdc-dialog__header">
-        <h2 id="delete-user-dialog-label" class="mdc-dialog__title">Are you sure you want to delete your account?</h2>
-      </header>
-      <section id="delete-user-dialog-description" class="mdc-dialog__content">
-        <p>
-          Deleting your account will:
-        </p>
-        <ul>
-          <!-- <li>Stop all email alerts</li>
-          <li>Delete your saved searches</li>
-          <li>Delete your shortlist</li>
-          <li>Delete your notes on vacancies</li> -->
-          <li>Fully remove your account from the Saltire Awards system</li>
-        </ul>
-      </section>
-      <footer class="mdc-dialog__actions">
-        <button type="button" class="mdc-button mdc-dialog__button mdc-ripple-upgraded" data-mdc-dialog-action="close">Cancel</button>
-        <a href="/delete-user" class="mdc-button mdc-dialog__button mdc-ripple-upgraded" data-mdc-dialog-action="accept">Delete account</a>
-      </footer>
-    </div>
-  </div>
-  <div class="mdc-dialog__scrim"></div>
-</aside> --}}
-
-<!-- <aside id="import-user-dialog" class="mdc-dialog" role="alertdialog" aria-labelledby="import-user-dialog-label" aria-describedby="import-user-dialog-description" data-mdc-auto-init="MDCDialog">
-  <div class="mdc-dialog__container">
-    <form action="/import-user-data" method="POST" class="mdc-dialog__surface" data-ajax-form='{
-        "successMessage": "Data imported successfully",
-        "failureMessage": "Failed to import data"
-      }'>
-      <header class="mdc-dialog__header">
-        <h2 id="import-user-dialog-label" class="mdc-dialog__title">Import user data</h2>
-      </header>
-      <section id="import-user-dialog-description" class="mdc-dialog__content">
-        <div class="mdc-text-field mdc-text-field--textarea mdc-text-field--fullwidth" data-mdc-auto-init="MDCTextField">
-          <textarea id="import-user-json" name="json" class="mdc-text-field__input" rows="10"></textarea>
-          <label for="import-user-json" class="mdc-floating-label">Paste exported data here</label>
-        </div>
-      </section>
-      <footer class="mdc-dialog__actions">
-        <button type="button" class="mdc-button mdc-dialog__button mdc-ripple-upgraded" data-mdc-dialog-action="close">Cancel</button>
-        <button type="submit" class="mdc-button mdc-dialog__button mdc-ripple-upgraded" data-mdc-dialog-action="accept">Import User</button>
-      </footer>
-    </form>
-  </div>
-  <div class="mdc-dialog__scrim"></div>
-</aside> -->
-
 {{!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> --}}
 <script src="{{~>asset_url url='downloader.js'~}}"></script>
 <script>
@@ -205,14 +153,13 @@
     $('[data-provider-link]').each(function(i, o) {
       var $chip = $(o);
       var $linkAction = $chip.find('.link-action');
-      // var chip = new mdc.chips.MDCChip(o);
       var providerName = $chip.data('provider-link');
 
       $chip.on('click', function(evt) {
         if (!$chip.data('disabled')) {
           $chip.data('disabled', true);
           $chip.css('opacity', 0.5);
-          var selected = $chip.hasClass('mdc-chip--selected');
+          var selected = $chip.hasClass('active');
           if (!selected) {
             saltireawards.auth.linkWithProvider(providerName).then(function(result) {
               console.log('Linked to', providerName, result);
@@ -256,7 +203,7 @@
 
     function checkProviders() {
       var enabled = saltireawards.auth.providerIds.length > 1;
-      $('.mdc-chip--selected[data-provider-link]')
+      $('.chip.active[data-provider-link]')
         .data('disabled', !enabled)
         .css({
           'opacity': enabled ? 1 : 0.5,

@@ -1,4 +1,4 @@
-<div class="content-primary full">
+<div class="full">
   {{> opportunity_key_info}}
   <div class="content-primary-info-container">
     <div class="columns col-gapless">
@@ -22,12 +22,12 @@
       </div>
     </div>
     <div class="panels" for="opportunity-tab-bar">
-      <div class="panel panel--active mdc-card--full-content" role="tabpanel" aria-hidden="false" data-tab-name="information">
+      <div class="panel panel--active" role="tabpanel" aria-hidden="false" data-tab-name="information">
         {{#ifAny activities.length themes.length end_date (compare start_date ">" (moment)) ~}}
         <div class="key-info-extra">
           <ul class="fa-ul">
             {{#compare (length activities) ">" 0 ~}}
-            <li class="mdc-card__info--content-primary-work-type reference mdc-typography--body1">
+            <li class="">
               <span class="fa-li"><span class="far fa-briefcase fa-fw" title="Activites"></span></span>
               {{#each activities}}
               <a href="/search?activities={{urlencode (slugify (replace this "/" "-"))}}">{{{this}}}</a>{{#unless @last}}, {{/unless}}
@@ -35,7 +35,7 @@
             </li>
             {{/compare ~}}
             {{#compare (length themes) ">" 0 ~}}
-            <li class="mdc-card__info--content-primary-client-group mdc-typography--body1">
+            <li class="">
               <span class="fa-li"><span class="far fa-users fa-fw" title="Themes"></span></span>
               {{#each themes ~}}
               <a href="/search?themes={{urlencode (slugify (replace this "/" "-"))}}">{{{this}}}</a>{{#unless @last}}, {{/unless}}
@@ -43,17 +43,17 @@
             </li>
             {{/compare ~}}
             {{#ifAll start_date end_date ~}}
-            <li class="mdc-card__info--content-primary-from mdc-typography--body1">
+            <li class="">
               <span class="fa-li"><span class="far fa-calendar-plus fa-fw" title="Start date"></span></span>
               Opportunity start date: {{momentFormat (moment start_date "x") "Do MMMM YYYY"}}
             </li>
-            <li class="mdc-card__info--content-primary-from mdc-typography--body1">
+            <li class="">
               <span class="fa-li"><span class="far fa-calendar-times fa-fw" title="End date"></span></span>
               Opportunity end date: {{momentFormat (moment end_date "x") "Do MMMM YYYY"}}
             </li>
             {{else}}
             {{#compare start_date ">" (moment) ~}}
-            <li class="mdc-card__info--content-primary-from mdc-typography--body1">
+            <li class="">
               <span class="fa-li"><span class="far fa-calendar-plus fa-fw" title="Start date"></span></span>
               Opportunity start date: {{momentFormat (moment start_date "x") "Do MMMM YYYY"}}
             </li>
@@ -65,45 +65,45 @@
 
         <div class="detailed-info">
           {{#ifAny description description_html ~}}
-          <h4 class="mdc-typography--headline6">Description</h4>
-          <p class="mdc-typography--body1">
+          <h4>Description</h4>
+          <p>
             {{#if description_html}}{{{description_html}}}{{else}}{{description}}{{/if}}
           </p>
           {{/ifAny ~}}
           {{#if weblink ~}}
           <ul class="fa-ul">
-            <li class="mdc-typography--body1">
+            <li class="">
               <span class="fa-li"><span class="far fa-link fa-fw" title="Website"></span></span>
               <a href="{{fixUrl weblink "http"}}"{{#if weblink_tooltip}} title="{{weblink_tooltip}}"{{/if}}>{{#if weblink_title}}{{weblink_title}}{{else}}{{weblink}}{{/if}}</a>
             </li>
           </ul>
           {{/if ~}}
           {{#if organisation_aims_and_objectives ~}}
-          <h4 class="mdc-typography--headline6">Organisation aims and objectives</h4>
-          <p class="mdc-typography--body1">
+          <h4>Organisation aims and objectives</h4>
+          <p>
             {{{organisation_aims_and_objectives}}}
           </p>
           {{/if ~}}
           {{#if availability_slugs.length ~}}
-          <h4 class="mdc-typography--headline6">Availability</h4>
-          <p class="mdc-typography--body1">
+          <h4>Availability</h4>
+          <p>
             {{>opportunity_timings_display availability_slugs}}
           </p>
           {{#if timings_description ~}}
-          <p class="mdc-typography--body1">
+          <p>
             {{{timings_description}}}
           </p>
           {{/if ~}}
           {{/if ~}}
           {{#if frequency_commitment_details ~}}
-          <h4 class="mdc-typography--headline6">Frequency and commitment details</h4>
-          <p class="mdc-typography--body1">
+          <h4>Frequency and commitment details</h4>
+          <p>
             {{{frequency_commitment_details}}}
           </p>
           {{/if ~}}
           {{#ifAny restriction_details experience_required travel_details minimum_age maximum_age ~}}
-          <h4 class="mdc-typography--headline6">Restrictions</h4>
-          <p class="mdc-typography--body1">
+          <h4>Restrictions</h4>
+          <p>
             {{#if restriction_details ~}}
             {{#compare restriction_details "!==" "n/a" ~}}
             {{{restriction_details}}}<br />
@@ -127,8 +127,8 @@
           {{/ifAny ~}}
 
           {{#ifAny travel_expenses expenses_paid taster_available taster_details support_options ~}}
-          <h4 class="mdc-typography--headline6">Support</h4>
-          <p class="mdc-typography--body1">
+          <h4>Support</h4>
+          <p>
             {{#if expenses_paid ~}}
             <strong>Expenses paid: </strong> {{#compare expenses_paid "===" true}}Yes{{else}}No{{/compare}}<br />
             {{/if ~}}
@@ -155,42 +155,42 @@
           {{/ifAny ~}}
 
           {{#unless opportunity_contact_email}}
-          <p class="mdc-typography--body1">You can't volunteer for this opportunity using this site. {{#if organisation_website}}Please contact the organisation directly using <a href="{{fixUrl organisation_website 'http'}}">{{{organisation_website}}}</a> for more information.{{/if}}</p>
+          <p>You can't volunteer for this opportunity using this site. {{#if organisation_website}}Please contact the organisation directly using <a href="{{fixUrl organisation_website 'http'}}">{{{organisation_website}}}</a> for more information.{{/if}}</p>
           {{/unless}}
 
-          {{!-- <div class="mdc-typography--body1 report pull-right">
+          {{!-- <div class="report pull-right">
             <span class="fas fa-flag fa-fw" title="Report this opportunity"></span>
             <a href="mailto:milosupport@scvo.org.uk?subject=Report%20opportunity:%20{{urlencode title}}%20({{urlencode milo_ref}})%20via%20Volunteer%20Scotland%20Search&body=I%20would%20like%20to%20report%20this%20opportunity%20for%20the%20following%20reasons:">Report this opportunity</a>
           </div> --}}
 
-          <div class="mdc-typography--body2 last-modified">
+          <div class="last-modified">
             <span class="far fa-calendar-alt" aria-hidden="true"></span>
             <span title="Updated on {{momentFormat (moment date_last_modified "x") "YYYY-MM-DD hh:mm"}}">Last updated {{momentFromNow date_last_modified}}</span>
           </div>
         </div>
       </div>
 
-      <div class="panel mdc-card--full-content" role="tabpanel" aria-hidden="true" data-tab-name="location">
+      <div class="panel" role="tabpanel" aria-hidden="true" data-tab-name="location">
         <div class="location-info">
           {{#compare (length (arrayify geo_coords)) ">" 0 ~}}
           <div class="container-content container-map">
             <div id="map-content-primary" data-map-name="opportunityMap" data-map-clustered-options='{}'>
               {{#each (arrayify geo_coords) ~}}
               <marker style="display:none;" data-map="opportunityMap" data-lat="{{lat}}" data-lng="{{lon}}" data-title="{{../organisation_name}} - {{../title}}">
-                <h4 class="mdc-typography--headline7">{{../organisation_name}}</h4>
+                <h4>{{../organisation_name}}</h4>
                 {{#if (itemAt (arrayify (split ../postcode ",")) @index) ~}}
-                <div class="mdc-typography--body2 v-margin">
+                <div class="v-margin">
                   Postcode: {{itemAt (arrayify (split ../postcode ",")) @index}}
                 </div>
                 {{/if ~}}
-                <p class="mdc-typography--body2">{{../title}}</p>
+                <p class="caption">{{../title}}</p>
               </marker>
               {{/each ~}}
             </div>
           </div>
           {{#compare advertised_areas.length ">" 0 ~}}
           <div class="detailed-info">
-            <p class="mdc-typography--body1">
+            <p>
               This opportunity is also advertised across
               {{#compare (getType advertised_areas) "string" ~}}
               {{{advertised_areas}}}.
@@ -204,7 +204,7 @@
           {{/compare ~}}
           {{else}}
           <div class="container-content detailed-info">
-            <p class="mdc-typography--body1">
+            <p>
               {{#compare advertised_areas.length ">" 0 ~}}
               This opportunity is not listed at a specific location but is advertised across
               {{#compare (getType advertised_areas) "string" ~}}

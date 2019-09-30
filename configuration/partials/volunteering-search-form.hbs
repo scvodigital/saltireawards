@@ -29,7 +29,7 @@
               "laSelector": "[name=\"la\"]",
               "locationServicesSelector": ".geo-lookup"
             }'>
-            <span class="form-icon far fa-map-marker-alt mdc-text-field__icon geo-lookup" tabindex="0" title="Find my location"></span>
+            <span class="form-icon far fa-map-marker-alt geo-lookup" tabindex="0" title="Find my location"></span>
           </div>
           <!-- <div class="after-textfield-action geo-lookup">Find me</div> -->
         </div>
@@ -63,10 +63,10 @@
                     "testSelectorTemplate": "#\{{dataset.name}}-\{{item.value}}",
                     "removeSelectorTemplate": "#remove-\{{dataset.name}}-\{{item.value}}",
                     "template": {{#blockStringify this~}}
-                      <div class="mdc-chip mdc-theme--primary-bg" tabindex="0" id="\{{dataset.name}}-\{{item.value}}">
-                        <div class="mdc-chip__text">\{{item.other}}</div>
+                      <div class="chip" tabindex="0" id="\{{dataset.name}}-\{{item.value}}">
+                        <div class="">\{{item.other}}</div>
                         <input type="hidden" name="\{{dataset.name}}[]" value="\{{item.value}}">
-                        <i class="far fa-times-circle mdc-chip__icon mdc-chip__icon--trailing" tabindex="0" role="button" id="remove-\{{dataset.name}}-\{{item.value}}"></i>
+                        <i class="far fa-times-circle" tabindex="0" role="button" id="remove-\{{dataset.name}}-\{{item.value}}"></i>
                       </div>
                     {{~/blockStringify}}
                   }
@@ -117,7 +117,7 @@
       </div>
       <div class="columns col-gapless">
         <div class="col-12">
-          <div id="search-terms" class="mdc-chip-set"></div>
+          <div id="search-terms" class="chip-set"></div>
         </div>
       </div>
     </div>
