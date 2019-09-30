@@ -1,10 +1,7 @@
 import "@babel/polyfill";
-// import { default as Headroom } from 'headroom.js';
-// import * as mdc from 'material-components-web';
 import { ComponentsInitialiser } from '../node_modules/@scvo/common/old/components-initialiser';
 import * as querystring from 'querystring';
 import { Auth } from '../node_modules/@scvo/common/old/firebase-auth';
-
 
 import * as cookieInfoScript from '../node_modules/@scvo/common/old/cookie-info-script' ;
 
@@ -24,25 +21,6 @@ export class SaltireAwards {
     ];
 
     this.ie = navigator.appName.indexOf('Microsoft') > -1 || navigator.userAgent.indexOf('Trident') > -1;
-    // this.occasionalDrawers = Array.from(document.querySelectorAll('.mdc-drawer--occasional')).map(el => {
-    //   return {
-    //     element: el,
-    //     mdc: null
-    //   };
-    // });
-
-    $(window).on('resize', () => {
-      this.windowResized();
-    });
-    this.windowResized();
-
-    // Headroom
-    // var header = document.querySelector("header.top-bar-stuck");
-    // var headroom  = new Headroom(header, {
-    //   "offset": 100,
-    //   "tolerance": 5
-    // });
-    // headroom.init();
 
     const ci = new cookieinfo();
     ci.options.message = "We use cookies to track anonymous usage statistics and do not collect any personal information that can be used to identify you. By continuing to visit this site you agree to our use of cookies.";
@@ -57,39 +35,6 @@ export class SaltireAwards {
     ci.options.cookie = "CookieInfoScript";
     ci.options.textAlign = "left";
     ci.run();
-  }
-
-  windowResized() {
-    var width = $(window).width();
-    var newDisplayMode = null;
-    this.displayModes.forEach(function(mode) {
-      if (width >= mode.min && width < mode.max) {
-        newDisplayMode = mode.name;
-      }
-    });
-    if (newDisplayMode !== this.displayMode) {
-      this.displayMode = newDisplayMode;
-      this.displayModeChanged();
-    }
-    this.fie();
-  }
-
-  displayModeChanged() {
-    // console.log('Display Mode!xs:', this.displayMode);
-    // this.occasionalDrawers.forEach(od => {
-    //   var menuButton = $(od.element).data('menu-button');
-    //   if (this.displayMode === 'desktop') {
-    //     if (od.mdc) {
-    //       od.mdc.destroy();
-    //     }
-    //     $(od.element).removeClass('mdc-drawer--modal');
-    //     $(menuButton).off('click');
-    //   } else {
-    //     $(od.element).addClass('mdc-drawer--modal');
-    //     od.mdc = mdc.drawer.MDCDrawer.attachTo(od.element);
-    //     $(menuButton).on('click', () => { od.mdc.open = !od.mdc.open; });
-    //   }
-    // });
   }
 
   helpBoxes() {
@@ -120,15 +65,6 @@ export class SaltireAwards {
         $helpBox.addClass('help-box--flash').fadeOut(50).fadeIn(250);
       }
     });
-  }
-
-  fie() {
-    if (!this.ie) return;
-    // $('.mdc-drawer--occasional .mdc-drawer__drawer').each(function(i, o) {
-    //   var $o = $(o);
-    //   var parentHeight = $o.parent().height();
-    //   $o.css('height', parentHeight);
-    // });
   }
 
   setCookie(name, value, days) {
