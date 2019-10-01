@@ -1,16 +1,7 @@
-<form id="sign-in-form" method="POST" class="authentication-form container">
+<form id="sign-in-form" method="POST" class="authentication-form container" data-component="TasksTrigger" data-TasksTrigger='sign-in-email'>
   <h1 class="x-padding">
-    {{#if @root.request.params.query.reauth}}
-      Please sign in again
-    {{else}}
-      Welcome back! Please sign in
-    {{/if}}
+    Welcome back! Please sign in
   </h1>
-  {{#if @root.request.params.query.reauth}}
-  <p class="x-padding">
-    Before you can do that you must sign in again
-  </p>
-  {{/if}}
   <div class="l-margin r-margin">
     <div class="x-padding-full" id="sign-in-message">
       <span id="form-message"></span>
@@ -51,29 +42,51 @@
     </div>
   </div>
 </form>
-<script>
-document.addEventListener("DOMContentLoaded", function(event) {
-  var $form = $('#sign-in-form');
-  var $message = $('#sign-in-message');
-  var $email = $('#sign-in-email');
-  var $password = $('#sign-in-password');
-  var $emailIcon = $('#sign-in-email-icon');
-  var $passwordIcon = $('#sign-in-password-icon');
-  var $login = $('#sign-in-submit');
 
-  $form.on('submit', function(evt) {
-    $emailIcon.addClass('loading');
-    $passwordIcon.addClass('loading');
-    var email = $email.val();
-    var password = $password.val();
-    evt.preventDefault();
-    saltireawards.auth.signInEmailPassword(email, password).then(function(user) {
-      window.location.href = '/';
-    }).catch(function(err) {
-      $message.html(err.message+' <a href="/reset-password">Reset password</a>').show();
-      $emailIcon.removeClass('loading');
-      $passwordIcon.removeClass('loading');
-    });
-  })
-});
+<script data-component-config="sign-in-email">
+  {
+    submit: {
+      preventDefault: true,
+      tasks: [
+        {
+          type: "elementManipulator",
+          config: { ">": { addClass: "disabled" } }
+        },
+        {
+          name: "signIn",
+          type: "firebaseSignInEmailPassword",
+          config: {
+            email: { __template: '\{{jquery "#sign-in-email" "val"}}' },
+            password: { __template: '\{{jquery "#sign-in-password" "val"}}' }
+          }
+        },
+        {
+          type: "switch",
+          config: {
+            which: { __template: "\{{#if errors.signIn}}error\{{/if}}" },
+            branches: {
+              default: {},
+              error: {
+                halt: true,
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      ">": { removeClass: "disabled" },
+                      "#sign-in-message": { styles: { display: "block" } },
+                      "#form-message": { contents: { __template: "\{{errors.signIn.message}}" } }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          type: "run",
+          config: { code: "window.location.href = '/'" }
+        }
+      ]
+    }
+  }
 </script>

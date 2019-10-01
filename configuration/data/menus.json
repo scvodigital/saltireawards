@@ -121,16 +121,6 @@
         "Group Admin",
         "Volunteer"
       ]
-    },
-    {
-      "label": "Sign out",
-      "icon": "sign-out-alt",
-      "path": "/sign-out",
-      "route": "^/sign-out",
-      "user-types": [
-        "Group Admin",
-        "Volunteer"
-      ]
     }
   ],
   "footer-info": [

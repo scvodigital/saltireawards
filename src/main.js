@@ -1,4 +1,4 @@
-import "@babel/polyfill";
+/*import "@babel/polyfill";
 import { ComponentsInitialiser } from '../node_modules/@scvo/common/old/components-initialiser';
 import * as querystring from 'querystring';
 import { Auth } from '../node_modules/@scvo/common/old/firebase-auth';
@@ -8,7 +8,7 @@ import * as cookieInfoScript from '../node_modules/@scvo/common/old/cookie-info-
 export class SaltireAwards {
   constructor(firebaseConfig) {
     this.firebaseConfig = firebaseConfig;
-    this.auth = new Auth(this.firebaseConfig, '/upgrade-token?token={idToken}', 'sa_cookie');
+    //this.auth = new Auth(this.firebaseConfig, '/upgrade-token?token={idToken}', 'sa_cookie');
 
     this.componentsInitialiser = new ComponentsInitialiser();
     this.componentsInitialiser.initialise();
@@ -92,3 +92,4 @@ export class SaltireAwards {
     }
   }
 }
+*/

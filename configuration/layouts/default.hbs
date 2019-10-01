@@ -2,7 +2,6 @@
 <html lang="en">
 <head prefix="og: http://ogp.me/ns#">
   <meta charset="utf-8">
-  <base href="/">
   {{{layoutParts.head}}}
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -42,15 +41,15 @@
   window.dataLayer = window.dataLayer || [];
 
   {{#ifAny request.params.query.debug (contains request.url.hostname ".local") ~}}
-  console.log('#### DEBUG MODE ON ####');
-  console.log('Request:', {{{regexReplace (regexReplace (stringify request) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
-  console.log('Route:', {{{regexReplace (regexReplace (stringify route) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
-  console.log('Context:', {{{regexReplace (regexReplace (stringify context) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
-  console.log('Data:', {{{regexReplace (regexReplace (stringify data) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
-  console.log('Menus:', {{{regexReplace (regexReplace (stringify @root.context.metaData.menus) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
-  {{#if errors.[0]}}
-    console.error('Task Errors:', {{{regexReplace (regexReplace (stringify errors) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
-  {{/if}}
+    console.log('#### DEBUG MODE ON ####');
+    console.log('Request:', {{{regexReplace (regexReplace (stringify request) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+    console.log('Route:', {{{regexReplace (regexReplace (stringify route) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+    console.log('Context:', {{{regexReplace (regexReplace (stringify context) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+    console.log('Data:', {{{regexReplace (regexReplace (stringify data) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+    console.log('Menus:', {{{regexReplace (regexReplace (stringify @root.context.metaData.menus) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+    {{#if errors.[0]}}
+      console.error('Task Errors:', {{{regexReplace (regexReplace (stringify errors) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
+    {{/if}}
   {{/ifAny ~}}
   </script>
 
@@ -62,26 +61,26 @@
   <saltireawards-site>
     <div class="page">
     {{#ifAny request.params.query.debug (contains request.url.hostname ".local") ~}}
-    {{#if errors.[0]}}
-      <div style="z-index:100;position:fixed;top:0;right:0;padding:5px;background-color:#ff0000;color:#ffffff;">
-        Route Task Errors (F12)
-      </div>
-      {{/if}}
-      {{#if logs.[0]}}
-      <div style="z-index:100;position:fixed;bottom:0;right:0;padding:5px;background-color:#0000ff;color:#ffffff;" onclick="document.querySelector('#route-debug-log').style.display='block';">
-        Route Log
-      </div>
-      <div style="z-index:100;position:fixed;bottom:0;left:0;right:0;padding:5px;background-color:#ededed;color:#000000;overflow:auto;height:50vh;display:none;border-top:1px solid #cccccc;" id="route-debug-log">
-        <a style="position:fixed;right:25px;" onclick="document.querySelector('#route-debug-log').style.display='none';">x</a>
+      {{#if errors.[0]}}
+        <div style="z-index:100;position:fixed;top:0;right:0;padding:5px;background-color:#ff0000;color:#ffffff;">
+          Route Task Errors (F12)
+        </div>
+        {{/if}}
+        {{#if logs.[0]}}
+        <div style="z-index:100;position:fixed;bottom:0;right:0;padding:5px;background-color:#0000ff;color:#ffffff;" onclick="document.querySelector('#route-debug-log').style.display='block';">
+          Route Log
+        </div>
+        <div style="z-index:100;position:fixed;bottom:0;left:0;right:0;padding:5px;background-color:#ededed;color:#000000;overflow:auto;height:50vh;display:none;border-top:1px solid #cccccc;" id="route-debug-log">
+          <a style="position:fixed;right:25px;" onclick="document.querySelector('#route-debug-log').style.display='none';">x</a>
 <pre style="white-space: pre-wrap;">
 {{~#each logs}}
 {{{this}}}
 
 {{/each~}}
 </pre>
-      </div>
+        </div>
       {{/if}}
-      {{/ifAny}}
+    {{/ifAny}}
 
       <header class="navbar bg-primary">
         <section class="navbar-section">
@@ -89,70 +88,75 @@
         </section>
         <section class="navbar-section">
         {{#if @root.data.auth ~}}
-        {{#if @root.data.accountInfo.user_type ~}}
-        {{#each @root.context.metaData.menus.main-signed-in ~}}
-        <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
-        {{/each}}
-        <div class="dropdown">
-          <div class="btn-group">
-            <a href="#" class="btn dropdown-toggle">
-              {{#if @root.data.auth.photoURL ~}}
-              <img src="{{@root.data.auth.photoURL}}" class="avatar avatar-sm" />
-              {{else}}
-              <span class="far fa-fw fa-user-circle"></span>
-              {{/if ~}}
-              {{@root.data.auth.email}}
-              <span class="far fa-fw fa-angle-down"></span>
-            </a>
-            <ul class="menu">
-              {{#each @root.context.metaData.menus.user-signed-in ~}}
-              {{#if (contains user-types @root.data.accountInfo.user_type) ~}}
-              <li class="menu-item">
-                <a href="{{stripTrailingSlash path}}" {{#if (regexMatch @root.request.url.pathname route 'gi')}}class="active"{{/if}}>
-                  {{#if icon ~}}
-                  <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
+          {{#if @root.data.accountInfo.user_type ~}}
+            {{#each @root.context.metaData.menus.main-signed-in ~}}
+              <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
+            {{/each}}
+            <div class="dropdown">
+              <div class="btn-group">
+                <a href="#" class="btn dropdown-toggle">
+                  {{#if @root.data.auth.photoURL ~}}
+                    <img src="{{@root.data.auth.photoURL}}" class="avatar avatar-sm" />
+                  {{else}}
+                    <span class="far fa-fw fa-user-circle"></span>
                   {{/if ~}}
-                  {{{label}}}
+                  {{@root.data.auth.email}}
+                  <span class="far fa-fw fa-angle-down"></span>
                 </a>
-              </li>
-              {{/if ~}}
-              {{/each ~}}
-            </ul>
-          </div>
-        </div>
-        </ul>
+                <ul class="menu">
+                  {{#each @root.context.metaData.menus.user-signed-in ~}}
+                    {{#if (contains user-types @root.data.accountInfo.user_type) ~}}
+                      <li class="menu-item">
+                        <a href="{{stripTrailingSlash path}}" {{#if (regexMatch @root.request.url.pathname route 'gi')}}class="active"{{/if}}>
+                          {{#if icon ~}}
+                          <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
+                          {{/if ~}}
+                          {{{label}}}
+                        </a>
+                      </li>
+                    {{/if ~}}
+                  {{/each ~}}
+                  <li class="menu-item">
+                    <a href="#" data-component="TasksTrigger" data-TasksTrigger="sign-out">
+                      <span class="far fa-fw fa-sign-out-alt" aria-hidden="true"></span>
+                      Sign-out
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          {{else}}
+            <a href="/" class="btn btn-link{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}} btn-active{{/if}}">Home</a>
+            {{#each @root.context.metaData.menus.main-not-signed-in ~}}
+              <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
+            {{/each}}
+            <a href="#" class="btn btn-link" data-component="TasksTrigger" data-TasksTrigger="sign-out">Sign out</a>
+          {{/if ~}}
         {{else}}
-        <a href="/" class="btn btn-link{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}} btn-active{{/if}}">Home</a>
-        {{#each @root.context.metaData.menus.main-not-signed-in ~}}
-        <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
-        {{/each}}
-        <a href="/sign-out" class="btn btn-link">Sign out</a>
-        {{/if ~}}
-        {{else}}
-        <a href="/" class="btn btn-link{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}} btn-active{{/if}}">Home</a>
-        {{#each @root.context.metaData.menus.main-not-signed-in ~}}
-        <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
-        {{/each}}
-        {{#each @root.context.metaData.menus.user-not-signed-in ~}}
-        <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}} my-saltire">{{label}}</a>
-        {{/each}}
+          <a href="/" class="btn btn-link{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}} btn-active{{/if}}">Home</a>
+          {{#each @root.context.metaData.menus.main-not-signed-in ~}}
+            <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
+          {{/each}}
+          {{#each @root.context.metaData.menus.user-not-signed-in ~}}
+            <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}} my-saltire">{{label}}</a>
+          {{/each}}
         {{/if ~}}
       </header>
 
       <div class="{{#if layoutParts.sidebar}}sidebar-present{{else}}sidebar-not-present{{/if}}">
         {{#if layoutParts.sidebar ~}}
-        <div class="columns col-gapless">
-          <aside class="column col-2 sidebar">
-            {{{layoutParts.sidebar}}}
-          </aside>
-          <main class="column col-10">
+          <div class="columns col-gapless">
+            <aside class="column col-2 sidebar">
+              {{{layoutParts.sidebar}}}
+            </aside>
+            <main class="column col-10">
+              {{{layoutParts.body}}}
+            </main>
+          </div>
+        {{else}}
+          <main>
             {{{layoutParts.body}}}
           </main>
-        </div>
-        {{else}}
-        <main>
-          {{{layoutParts.body}}}
-        </main>
         {{/if ~}}
       </div>
 
@@ -164,15 +168,15 @@
                 <h4>Help</h4>
                 <p class="b-margin r-margin">
                   {{#if @root.data.accountInfo.local_authority ~}}
-                  {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
-                  {{#each contacts ~}}
-                  {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
-                  <a href="{{fixUrl website}}" target="_blank">{{title}}</a>
-                  {{/if ~}}
-                  {{/each ~}}
-                  {{/with ~}}
+                    {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
+                      {{#each contacts ~}}
+                        {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
+                          <a href="{{fixUrl website}}" target="_blank">{{title}}</a>
+                        {{/if ~}}
+                      {{/each ~}}
+                    {{/with ~}}
                   {{else}}
-                  The local Third Sector Interface in your area
+                    The local Third Sector Interface in your area
                   {{/if ~}}
                   manages your personal data in relation to the Saltire Awards.
                 </p>
@@ -194,59 +198,59 @@
                   <li>
                     <span class="fa-li"><span class="fas fa-envelope"></span></span>
                     {{#if @root.data.accountInfo.local_authority ~}}
-                    {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
-                    {{#each contacts ~}}
-                    {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
-                    <a href="mailto:{{email}}">{{email}}</a>
-                    {{/if ~}}
-                    {{/each ~}}
-                    {{/with ~}}
+                      {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
+                        {{#each contacts ~}}
+                          {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
+                            <a href="mailto:{{email}}">{{email}}</a>
+                          {{/if ~}}
+                        {{/each ~}}
+                      {{/with ~}}
                     {{else}}
-                    <a href="mailto:info@saltireawards.org.uk">info@saltireawards.org.uk</a>
+                      <a href="mailto:info@saltireawards.org.uk">info@saltireawards.org.uk</a>
                     {{/if ~}}
                   </li>
                   {{#if @root.data.accountInfo.local_authority ~}}
-                  {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
-                  {{#each contacts ~}}
-                  {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
-                  {{#if phone ~}}
-                  <li>
-                    <span class="fa-li"><span class="fas fa-phone fa-flip-horizontal"></span></span>
-                    <a href="tel:+44{{replace phone ' ' ''}}">{{phone}}</a>
-                  </li>
-                  {{/if ~}}
-                  {{#if twitter ~}}
-                  <li>
-                    <span class="fa-li"><span class="fab fa-twitter"></span></span>
-                    <a href="{{twitter}}" target="_blank">Twitter</a>
-                  </li>
-                  {{/if ~}}
-                  {{#if facebook ~}}
-                  <li>
-                    <span class="fa-li"><span class="fab fa-facebook"></span></span>
-                    <a href="{{facebook}}" target="_blank">Facebook</a>
-                  </li>
-                  {{/if ~}}
-                  {{#if youtube ~}}
-                  <li>
-                    <span class="fa-li"><span class="fab fa-youtube"></span></span>
-                    <a href="{{youtube}}" target="_blank">YouTube</a>
-                  </li>
-                  {{/if ~}}
-                  {{#if instagram ~}}
-                  <li>
-                    <span class="fa-li"><span class="fab fa-instagram"></span></span>
-                    <a href="{{instagram}}" target="_blank">Instagram</a>
-                  </li>
-                  {{/if ~}}
-                  {{/if ~}}
-                  {{/each ~}}
-                  {{/with ~}}
+                    {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
+                      {{#each contacts ~}}
+                        {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
+                          {{#if phone ~}}
+                            <li>
+                              <span class="fa-li"><span class="fas fa-phone fa-flip-horizontal"></span></span>
+                              <a href="tel:+44{{replace phone ' ' ''}}">{{phone}}</a>
+                            </li>
+                          {{/if ~}}
+                          {{#if twitter ~}}
+                            <li>
+                              <span class="fa-li"><span class="fab fa-twitter"></span></span>
+                              <a href="{{twitter}}" target="_blank">Twitter</a>
+                            </li>
+                          {{/if ~}}
+                          {{#if facebook ~}}
+                            <li>
+                              <span class="fa-li"><span class="fab fa-facebook"></span></span>
+                              <a href="{{facebook}}" target="_blank">Facebook</a>
+                            </li>
+                          {{/if ~}}
+                          {{#if youtube ~}}
+                            <li>
+                              <span class="fa-li"><span class="fab fa-youtube"></span></span>
+                              <a href="{{youtube}}" target="_blank">YouTube</a>
+                            </li>
+                          {{/if ~}}
+                          {{#if instagram ~}}
+                            <li>
+                              <span class="fa-li"><span class="fab fa-instagram"></span></span>
+                              <a href="{{instagram}}" target="_blank">Instagram</a>
+                            </li>
+                          {{/if ~}}
+                        {{/if ~}}
+                      {{/each ~}}
+                    {{/with ~}}
                   {{else}}
-                  <li>
-                    <span class="fa-li"><span class="fab fa-twitter"></span></span>
-                    <a href="https://twitter.com/saltireawards" target="_blank">Twitter</a>
-                  </li>
+                    <li>
+                      <span class="fa-li"><span class="fab fa-twitter"></span></span>
+                      <a href="https://twitter.com/saltireawards" target="_blank">Twitter</a>
+                    </li>
                   {{/if ~}}
                 </ul>
               </div>
@@ -257,9 +261,9 @@
                 </p>
                 <ul>
                   {{#each @root.context.metaData.menus.footer-info ~}}
-                  <li>
-                    <a href="{{stripTrailingSlash path}}">{{{label}}}</a>
-                  </li>
+                    <li>
+                      <a href="{{stripTrailingSlash path}}">{{{label}}}</a>
+                    </li>
                   {{/each ~}}
                 </ul>
               </div>
@@ -302,9 +306,25 @@
   catch(e){window.attachEvent("onload", $buo_f)}
   </script>
 
-  <script type="text/javascript" src="{{~>asset_url url='main.js'~}}"></script>
-
+  <!--<script type="text/javascript" src="{{~>asset_url url='main.js'~}}"></script>-->
+  <script type="text/javascript" src="{{~>asset_url url='component-manager.js'~}}"></script>
   <script>
+    window.firebaseTaskConfig = {
+      upgradeTokenUrl: '/upgrade-token?token={idToken}',
+      cookieName: 'sa_cookie'
+    };
+
+    firebase.initializeApp({
+      apiKey: "AIzaSyBdoW5NoWqvMFMUKufrPVvuaYtNrEIRY6k",
+      authDomain: "auth.saltireawards.scot",
+      databaseURL: "https://saltire-awards.firebaseio.com",
+      projectId: "saltire-awards",
+      storageBucket: "saltire-awards.appspot.com",
+      messagingSenderId: "940419868873"
+    });
+  </script>
+
+  <!--<script>
     var saltireawards = null; readyListeners = [];
     $(document).ready(function() {
       saltireawards = new SaltireAwards.SaltireAwards({
@@ -332,8 +352,25 @@
     {{#if @root.context.metaData.terms ~}}
     var terms = {{{safeStringify @root.context.metaData.terms}}};
     {{/if ~}}
-  </script>
+  </script>-->
 
   {{{layoutParts.foot}}}
+
+  <script data-component-config="sign-out">
+    {
+      click: {
+        tasks: [
+          {
+            type: "firebaseSignOut",
+            config: {}
+          },
+          {
+            type: "run",
+            config: { code: 'window.location.href = "/"' }
+          }
+        ]
+      }
+    }
+  </script>
 </body>
 </html>
