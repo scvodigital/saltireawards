@@ -282,6 +282,32 @@ header {
   }
 }
 
+
+.social .btn, .social-button {
+  height: $unit*2.5;
+  border: none;
+  position: relative;
+  display: block;
+  margin-bottom: $unit/2;
+  width: 100%;
+  color: white;
+  .fa-2x {
+    position: absolute;
+    top: $unit/2;
+    left: $unit/2;
+  }
+  .google-logo {
+    top: .6rem;
+    img {
+      float: left;
+      width: 28px;
+      padding: $unit/4;
+      background: white;
+      border-radius: 3px;
+    }
+  }
+}
+
 .chip.bg-google,
 #continue-with-google {
   background-color: #DB3633 !important;
@@ -365,7 +391,7 @@ ul.fa-ul {
   }
 }
 
-form.disabled {
+.disabled {
   pointer-events: none;
   >* {
     opacity: 0.5;
@@ -806,6 +832,10 @@ footer {
     padding-left: $unit !important;
     padding-right: $unit !important;
   }
+}
+
+.hidden, .hide {
+  display: none;
 }
 
 ::-moz-selection {

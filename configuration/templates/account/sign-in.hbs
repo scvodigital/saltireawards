@@ -1,4 +1,4 @@
-<form id="sign-in-form" method="POST" class="authentication-form container" data-component="TasksTrigger" data-TasksTrigger='sign-in-email'>
+<div id="sign-in-form" class="authentication-form container">
   <h1 class="x-padding">
     Welcome back! Please sign in
   </h1>
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div id="form-section-sign-in-buttons" class="t-margin">
-      <button class="btn btn-primary" type="submit" id="sign-in-submit">
+      <button class="btn btn-primary" type="submit" id="sign-in-submit" data-component="TasksTrigger" data-TasksTrigger="sign-in" data-provider-id="password">
         Sign in
       </button>
       <p class="v-margin-full">
@@ -43,21 +43,22 @@
   </div>
 </form>
 
-<script data-component-config="sign-in-email">
+<script data-component-config="sign-in">
   {
-    submit: {
+    click: {
       preventDefault: true,
       tasks: [
         {
           type: "elementManipulator",
-          config: { ">": { addClass: "disabled" } }
+          config: { "#sign-in-form": { addClass: "disabled" } }
         },
         {
           name: "signIn",
-          type: "firebaseSignInEmailPassword",
+          type: "firebaseSignIn",
           config: {
             email: { __template: '\{{jquery "#sign-in-email" "val"}}' },
-            password: { __template: '\{{jquery "#sign-in-password" "val"}}' }
+            password: { __template: '\{{jquery "#sign-in-password" "val"}}' },
+            providerId: { __template: '\{{jquery rootElement "attr" (split "data-provider-id")}}' }
           }
         },
         {
@@ -72,7 +73,7 @@
                   {
                     type: "elementManipulator",
                     config: {
-                      ">": { removeClass: "disabled" },
+                      "#sign-in-form": { removeClass: "disabled" },
                       "#sign-in-message": { styles: { display: "block" } },
                       "#form-message": { contents: { __template: "\{{errors.signIn.message}}" } }
                     }
