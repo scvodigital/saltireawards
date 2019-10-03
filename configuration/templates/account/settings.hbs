@@ -1,5 +1,5 @@
 {{#*inline "linkChip"}}
-  <span class="chip bg-primary bg-{{provider}}" data-provider-link="{{provider}}">
+  <span class="chip bg-primary bg-{{provider}} b-margin" data-provider-link="{{provider}}">
     {{#if linked ~}}
     <span class="far fa-fw fa-ban"></span>
     Unlink from
@@ -87,25 +87,25 @@
           </div>
 
           {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com")}}
-            <button class="btn" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="google.com"
+            <button class="chip bg-primary bg-google b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="google.com"
               data-confirm-task="unlink-provider" data-confirm-verb="unlink from Google" data-confirm-description="#unlink-provider-description" data-confirm-data='{ "providerId": "google.com" }'>
-              <span class="fab fa-google"></span>
+              <span class="fab fa-fw fa-google"></span>
               Unlink from Google
             </button>
           {{/if}}
 
           {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com")}}
-            <button class="btn" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="twitter.com"
+            <button class="chip bg-primary bg-twitter b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="twitter.com"
               data-confirm-task="unlink-provider" data-confirm-verb="unlink from Twitter" data-confirm-description="#unlink-provider-description" data-confirm-data='{ "providerId": "twitter.com" }'>
-              <span class="fab fa-twitter-square"></span>
+              <span class="fab fa-fw fa-twitter"></span>
               Unlink from Twitter
             </button>
           {{/if}}
 
           {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com")}}
-            <button class="btn" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="facebook.com"
+            <button class="chip bg-primary bg-facebook b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="facebook.com"
               data-confirm-task="unlink-provider" data-confirm-verb="unlink from Facebook" data-confirm-description="#unlink-provider-description" data-confirm-data='{ "providerId": "facebook.com" }'>
-              <span class="fab fa-facebook-square"></span>
+              <span class="fab fa-fw fa-facebook"></span>
               Unlink from Facebook
             </button>
           {{/if}}
@@ -117,25 +117,25 @@
           </div>
 
           {{#unless (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com")}}
-            <button class="btn" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="google.com"
+            <button class="chip bg-primary bg-google b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="google.com"
               data-confirm-task="link-provider" data-confirm-verb="link to Google" data-confirm-description="#link-provider-description" data-confirm-data='{ "providerId": "google.com" }'>
-              <span class="fab fa-google"></span>
+              <span class="fab fa-fw fa-google"></span>
               Link to Google
             </button>
           {{/unless}}
 
           {{#unless (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com")}}
-            <button class="btn" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="twitter.com"
+            <button class="chip bg-primary bg-twitter b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="twitter.com"
               data-confirm-task="link-provider" data-confirm-verb="link to Twitter" data-confirm-description="#link-provider-description" data-confirm-data='{ "providerId": "twitter.com" }'>
-              <span class="fab fa-twitter-square"></span>
+              <span class="fab fa-fw fa-twitter"></span>
               Link to Twitter
             </button>
           {{/unless}}
 
           {{#unless (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com")}}
-            <button class="btn" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="facebook.com"
+            <button class="chip bg-primary bg-facebook b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="facebook.com"
               data-confirm-task="link-provider" data-confirm-verb="link to Facebook" data-confirm-description="#link-provider-description" data-confirm-data='{ "providerId": "facebook.com" }'>
-              <span class="fab fa-facebook-square"></span>
+              <span class="fab fa-fw fa-facebook"></span>
               Link to Facebook
             </button>
           {{/unless}}
@@ -173,13 +173,13 @@
     <div class="modal-header">
       <a href="#close" class="btn btn-clear float-right" aria-label="Close" data-component="TasksTrigger" data-TasksTrigger="hide-modal"></a>
       <div class="modal-title h5">
-        Please re-authenticate to <span id="action-verb"></span>
+        Please sign in again to <span id="action-verb"></span>
       </div>
     </div>
     <div class="modal-body">
       <div class="content">
         <div id="action-description"></div>
-        <hr />
+
         <div id="re-authentication-form">
           <div id="re-authenticate-alert" class="alert hidden bg-error s-rounded x-padding v-margin">
             <span class="alert-message"></span>
@@ -189,21 +189,21 @@
             {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com")}}
               <button class="btn re-authentication-button" id="continue-with-google" type="button" data-component="TasksTrigger" data-TasksTrigger="re-authenticate" data-provider-id="google.com">
                 <span class="fab fa-2x google-logo"><img src="https://storage.googleapis.com/scvo-assets/test/volunteerscotland-search/images/logos/g-logo.png" /></span>
-                Re-authenticate with Google
+                Sign in with Google
               </button>
             {{/if}}
 
             {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com")}}
               <button class="btn re-authentication-button" id="continue-with-twitter" type="button" data-component="TasksTrigger" data-TasksTrigger="re-authenticate" data-provider-id="twitter.com">
                 <span class="fab fa-twitter-square fa-2x"></span>
-                Re-authenticate with Twitter
+                Sign in with Twitter
               </button>
             {{/if}}
 
             {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com")}}
               <button class="btn re-authentication-button" id="continue-with-facebook" type="button" data-component="TasksTrigger" data-TasksTrigger="re-authenticate" data-provider-id="facebook.com">
                 <span class="fab fa-facebook-square fa-2x"></span>
-                Re-authenticate with Facebook
+                Sign in with Facebook
               </button>
             {{/if}}
 
@@ -219,7 +219,7 @@
 
               <div id="form-section-sign-in-buttons" class="t-margin">
                 <button class="btn btn-primary re-authentication-button" type="button" id="re-authenticate-submit" data-component="TasksTrigger" data-TasksTrigger="re-authenticate" data-provider-id="password">
-                  Re-authenticate with password
+                  Sign in with password
                 </button>
               </div>
             {{/if}}
@@ -232,7 +232,9 @@
 
 <div id="delete-account-description" class="hidden">
   <p>
-    To delete your account you must re-authenticate yourself.
+    To delete your account you must sign in again.
+  </p>
+  <p>
     Deleting your account will:
   </p>
   <ul>
@@ -242,7 +244,9 @@
 
 <div id="change-password-description" class="hidden">
   <p>
-    To confirm your password change you must re-authenticate yourself.
+    To confirm your password change you must sign in again.
+  </p>
+  <p>
     If you have not previously signed in with a password you will now be able to
     using the email '{{@root.data.auth.email}}'
   </p>
@@ -250,13 +254,13 @@
 
 <div id="unlink-provider-description" class="hidden">
   <p>
-    To unlink from this account you must re-authenticate yourself.
+    To unlink from this account you must sign in again.
   </p>
 </div>
 
 <div id="link-provider-description" class="hidden">
   <p>
-    To link to this account you must re-authenticate yourself.
+    To link to this account you must sign in again.
   </p>
 </div>
 
