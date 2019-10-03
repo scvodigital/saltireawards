@@ -78,7 +78,7 @@
     <strong>Description:</strong> {{task_description}}
     {{/if ~}}
 
-    <form action="/submit-group-hours" method="POST">
+    <form action="/admin-submit-group-hours" method="POST">
       <div class="form-horizontal">
         <input type="hidden" name="task_id" value="{{task_id}}">
         <div class="form-group">
@@ -131,8 +131,12 @@
       <div class="col-1"></div>
     </div>
     {{#each hours_list ~}}
+<<<<<<< HEAD
     {{#ifAny claim_first_name claim_code ~}}
     <form id="{{hours_id}}" method="POST" action="/submit-group-hours" class="inline-hours-form">
+=======
+    <form id="{{hours_id}}" method="POST" action="/admin-submit-individual-hours" class="inline-hours-form">
+>>>>>>> b1b2a954f123f7edae76718ab037bfd9481fed28
       <input type="hidden" name="task_id" value="{{task_id}}">
       <input type="hidden" name="verified" value="{{verified}}">
       <input type="hidden" name="claim_code" value="{{claim_code}}">
@@ -173,7 +177,7 @@
         <div class="col-1">
           {{#if claim_code}}
           <button type="button" class="btn" data-ajax-button='{
-            "url": "/delete-hours?hours_id={{hours_id}}",
+            "url": "/admin-delete-hours?hours_id={{hours_id}}",
             "method": "DELETE",
             "successMessage": "Hours deleted",
             "failureMessage": "Failed to delete hours",

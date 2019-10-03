@@ -6,7 +6,8 @@
   {{#each (distinct (pluck @root.data.tasksInfoUnverified "volunteer_manager_email")) ~}}
     <section class="email-template h-padding-full">
       <p>
-        Modify hours for {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}} {{#if @root.data.accountInfo.school_college_name}}from {{@root.data.accountInfo.school_college_name}}{{/if}}. If the hours listed did not occur at all, please set the value to zero, and mention this in the 'reason' text box.</p>
+        Modify hours for {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}} {{#if @root.data.accountInfo.school_college_name}}from {{@root.data.accountInfo.school_college_name}}{{/if}}.
+        If the hours are incorrect, please adjust the number and click Verify. If the work did not occur, please click Remove.</p>
       </p>
 
       <ul>
@@ -18,34 +19,53 @@
             <strong>Volunteering </strong> with <strong>{{organisation_name}}</strong>: {{#if task_description}}Tasks: {{task_description}}{{/if}}, Manager: {{volunteer_manager_first_name}} {{volunteer_manager_last_name}} - {{volunteer_manager_title}}
             <ul>
               <li>
-                {{#each this.unverified_hours_list}}
-                {{hours}} Hours: Logged on {{momentFormat (moment createdDate "YYYY-MM-DD") "MMMM Do YYYY"}}</li>
-                {{/each}}
+                  <div class="columns col-gapless">
+                    <div class="col-4">
+                      <strong>Hours</strong>
+                    </div>
+                    <div class="col-2">
+                    </div>
+                    <div class="col-2">
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-1">
+                    </div>
+                    <div class="col-1"></div>
+                  </div>
+                {{#each this.hours_list}}
+                  {{#unless verified}}
+                    <form id="{{hours_id}}" method="POST" action="/admin-submit-individual-hours?c={{@root.request.params.query.c}}&u={{@root.request.params.query.u}}" class="inline-hours-form">
+                      <input type="hidden" name="task_id" value="{{task_id}}">
+                      <input type="hidden" name="verified" value="true">
+                      <input type="hidden" name="claim_code" value="{{claim_code}}">
+                      <input type="hidden" name="hours_id" value="{{hours_id}}">
+
+                      <div class="columns col-gapless">
+                        <div class="col-5">
+                          <div class="form-group r-margin b-margin">
+                            <input class="form-input inline-edit" name="hours" value="{{hours}}">
+                          </div>
+                        </div>
+                        <div class="col-1">
+                          <button type="submit" class="btn inline-update-button bg-dark">Verify</button>
+                        </div>
+                        <div class="col-2">
+                          <a href="/admin-delete-hours?hours_id={{hours_id}}&c={{@root.request.params.query.c}}&u={{@root.request.params.query.u}}" class="btn inline-delete-button">Remove</a>
+                        </div>
+                        <div class="col-2">
+                          <code class="claim-code">{{substr claim_code 0 10}}</code>
+                        </div>
+                        <div class="col-1">
+                        </div>
+                        <div class="col-2">
+                        </div>
+                      </div>
+                    </form>
+                  {{/unless}}
+                {{/each ~}}
               </li>
             </ul>
           </li>
-          <form id="hours-modify-form" action="/modify-hours" method="POST" data-ajax-form='{
-            "successCallback": "completeCB",
-            "failureCallback": "completeCB"
-          }'>
-            <input type="hidden" name="task_id" value="{{taskId}}">
-
-            <div class="columns col-gapless">
-              <div class="col-3">
-                <label for="reason">Hours Granted</label>
-                <br />
-                <label for="reason">Reason for modification / denial</label>
-              </div>
-              <div class="col-4">
-                <input type="number" step="any" min="0" name="hours" value="{{hours}}">
-                <br/>
-                <textarea rows="2" name="reason"></textarea>
-              </div>
-              <div class="col-5">
-                <button class="btn btn-primary">Verify Hours</button>
-              </div>
-            </div>
-          </form>
           {{/compare}}
           {{/compare}}
           <br />
@@ -55,6 +75,20 @@
   {{/each}}
 </div>
 <script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    $('.inline-hours-form :input').on('input',function () {
+      var submit = $(this).closest('form').find(':submit').show();
+    });
+
+    $('.inline-update-button').click(function(){
+      $(this).closest('form').hide();
+    })
+
+    $('.inline-delete-button').click(function(){
+      var submit = $(this).closest('form').hide();
+    })
+  })
+
   function completeCB(response, whatever) {
     var jsonData = JSON.parse(response);
     if (jsonData.id){
