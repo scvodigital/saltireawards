@@ -1,0 +1,15 @@
+{{#json}}
+{{#with @root.request.body}}
+  {{#json key='hours_input' type='array'}}
+    {{#json}}
+      {{{json key='task_id' value=task_id}}},
+      {{{json key='hours' value=hours}}},
+      {{{json key='hours_id' value=hours_id}}},
+      {{#if claim_first_name }}{{{json key='claim_first_name' value=claim_first_name}}},{{/if}}
+      {{#if claim_last_name }}{{{json key='claim_last_name' value=claim_last_name}}},{{/if}}
+      {{#if claim_code }}{{{json key='claim_code' value=claim_code}}},{{/if}}
+      {{{json key='verified' value=true}}}
+    {{/json}}
+  {{/json}}
+{{/with}}
+{{/json}}

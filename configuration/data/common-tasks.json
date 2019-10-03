@@ -71,6 +71,28 @@
       "defaultData": {}
     }
   },
+  "verifyHoursInfoExternal" :     {
+    "name": "verifyHoursInfo",
+    "taskModule": "firebaseRtbGet",
+    "renderer": "handlebars",
+    "config": {
+      "appName": "saltireawards",
+      "pathTemplate": "/{{default @root.request.params.query.u 'no-such-write-profile'}}/verify-hours/",
+      "defaultData": {}
+    }
+  },
+  "getTasksInfoUnverifiedExternal" : {
+    "name": "tasksInfoUnverified",
+    "taskModule": "salesforceApex",
+    "renderer": "handlebars",
+    "config": {
+      "connection": "scvoAlexSandbox",
+      "output": "data",
+      "method": "GET",
+      "apexClassPath": "/SaltireTask/?user_id={{@root.request.params.query.u }}&verified=false"
+    }
+  },
+
   "getTasksInfoUnverified" : {
     "name": "tasksInfoUnverified",
     "taskModule": "salesforceApex",
@@ -165,8 +187,8 @@
       "output": "data"
     }
   },
-  "adminRequired": {
-    "name": "adminRequired",
+  "adminOrCodeRequired": {
+    "name": "adminOrCodeRequired",
     "taskModule": "reroute",
     "config":
     {
@@ -176,7 +198,12 @@
           "if": [{"var" : "data.accountInfo.verification_needed"},
             "approval-needed",
             {
-              "if":[{"!=":[{"var": "data.accountInfo.user_type"}, "Group Admin"]},
+              "if":[
+                {"and" : [
+                  {"!=":[{"var": "data.accountInfo.user_type"}, "Group Admin"]},
+                  {"!=":[{"var": "data.codeVerified"}, "pass"]}
+                ] }
+              ,
                 "redirect-home",
                 null
               ]
