@@ -1,6 +1,6 @@
 {
-  "name": "admin-submit-group-hours",
-  "pattern": "/admin-submit-group-hours",
+  "name": "admin-update-individual-hours",
+  "pattern": "/admin-update-individual-hours",
   "debug": true,
   "acceptedVerbs": "POST",
   "defaultParams": {
