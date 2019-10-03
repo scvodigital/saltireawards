@@ -67,16 +67,6 @@
   ],
   "user-signed-in" : [
     {
-      "label": "Home",
-      "icon": "home",
-      "path": "/",
-      "route": "^/$",
-      "user-types": [
-        "Group Admin",
-        "Volunteer"
-      ]
-    },
-    {
       "label": "Find opportunities",
       "icon": "hands-helping",
       "path": "/search",

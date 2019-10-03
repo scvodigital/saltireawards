@@ -6,49 +6,20 @@
     {{@root.route.metaData.title}}
     {{/if ~}}
   </h1>
+
+  {{#compare (length @root.data.tasksInfo) 0 ~}}
+  {{> log_empty}}
+  {{else}}
   {{#unless @root.data.isAdmin ~}}
   <h2 class="b-margin-full">
     {{sumArray (pluck @root.data.tasksInfo "hours")}} total hours added
   </h2>
   {{/unless ~}}
 
-  {{#unless @root.data.tasksInfo ~}}
-  <div class="empty">
-    <div class="empty-icon">
-      <i class="icon icon-people"></i>
-    </div>
-    <p class="empty-title h5">You have not logged any volunteering hours yet</p>
-    <p class="empty-subtitle">Add your first volunteering task, or claim hours from an existing certificate.</p>
-    <div class="empty-action">
-      <a href="/task" class="btn btn-primary">
-        Add new task
-      </a>
-      {{/unless}}
-      <a href="/claim-hours" class="btn">
-        Claim hours with code
-      </a>
-    </div>
-  </div>
+  {{> log_action_buttons}}
 
-  {{else}}
-  <div class="b-margin-full">
-    {{#unless @root.data.isAdmin ~}}
-    {{#unless (compare (dateMath 'now-26y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD"))}}
-    <a href="/task" class="btn btn-primary">
-      Add new task
-    </a>
-    {{/unless}}
-    <a href="/claim-hours" class="btn">
-      Claim hours with code
-    </a>
-    {{else}}
-    <a href="/task" class="btn btn-primary">
-      Add new group task
-    </a>
-    {{/unless}}
-  </div>
-  {{#each @root.data.tasksInfo}}
-  {{#unless @root.data.isAdmin}}
+  {{#each @root.data.tasksInfo ~}}
+  {{#unless @root.data.isAdmin ~}}
   <h2>
     Volunteering with {{organisation_name}}
   </h2>
@@ -210,7 +181,7 @@
     {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
   </div>
   {{/each ~}}
-  {{/unless ~}}
+  {{/compare ~}}
 </div>
 {{!-- <script src="https://#/recaptcha/api.js" async defer></script> --}}
 <script>
