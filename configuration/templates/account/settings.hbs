@@ -454,12 +454,12 @@
           tasks: [
             {
               type: "elementManipulator",
-              config: { "#unlink-unlink": { addClass: "disabled" } }
+              config: { "#link-unlink": { addClass: "disabled" } }
             },
             {
               __doNotCompile: true,
               name: "unlinkProvider",
-              type: "firebaseLinkProvider",
+              type: "firebaseUnlinkProvider",
               config: {
                 providerId: { __template: "\{{get (jquery rootElement 'data' (split 'post-auth-task-data')) 'providerId'}}" }
               }
@@ -468,7 +468,7 @@
               __doNotCompile: true,
               type: "switch",
               config: {
-                which: { __template: "\{{#if errors.linkProvider}}error\{{/if}}" },
+                which: { __template: "\{{#if errors.unlinkProvider}}error\{{/if}}" },
                 branches: {
                   default: {
                     tasks: [
@@ -483,8 +483,8 @@
                       {
                         type: "elementManipulator",
                         config: {
-                          "#link-provider-alert": { removeClass: "hidden" },
-                          "#link-provider-alert .alert-message": { contents: { __template: "\{{errors.linkProvider.message}}" } }
+                          "#unlink-provider-alert": { removeClass: "hidden" },
+                          "#unlink-provider-alert .alert-message": { contents: { __template: "\{{errors.unlinkProvider.message}}" } }
                         }
                       }
                     ]
@@ -494,7 +494,7 @@
             },
             {
               type: "elementManipulator",
-              config: { "#unlink-unlink": { removeClass: "disabled" } }
+              config: { "#link-unlink": { removeClass: "disabled" } }
             }
           ]
         }
