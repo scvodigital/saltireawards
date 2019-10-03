@@ -1,4 +1,4 @@
-<div class="form-horizontal">
+<div class="form-horizontal form">
   <div class="form-group">
     <div class="col-3">
       <label class="form-label" for="first_name">First name</label>
@@ -100,7 +100,7 @@
     </div>
     <div class="col-2">
       <input class="form-input" id="postcode" name="postcode" type="text" value="{{@root.data.accountInfo.postcode}}" placeholder=""
-        data-component="TasksTrigger" data-TasksTrigger="focus-next" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.postcode}}>
+        data-component="TasksTrigger" data-TasksTrigger="postcode-lookup" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.postcode}}>
     </div>
   </div>
   <input type="hidden" name="local_authority" id="local_authority" value="{{@root.data.accountInfo.local_authority}}" />
@@ -109,6 +109,62 @@
 </div>
 
 <input type="hidden" name="external_id" value="{{@root.data.auth.uid}}" />
+
+<script data-component-config="postcode-lookup" type="javascript/blocked">
+  {
+    blur: {
+      tasks: [
+        {
+          type: "elementManipulator",
+          config: { "<.form": { addClass: 'disabled' } }
+        },
+        {
+          name: "postcodeLookup",
+          type: "request",
+          config: { url: { __template: "/postcode-lookup?q=\{{rootElement.[0].value}}" } }
+        },
+        {
+          __doNotCompile: true,
+          type: "switch",
+          config: {
+            which: { __template: "\{{#any data.postcodeLookup}}found\{{/any}}" },
+            branches: {
+              default: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      ">": { value: "" },
+                      "#local_authority": { value: "" },
+                      "#tsi_area": { value: "" },
+                      "#tsi_contact_email": { value: "" }
+                    }
+                  }
+                ]
+              },
+              found: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      "#local_authority": { value: { __template: "\{{data.postcodeLookup.[0].local_authority}}" } },
+                      "#tsi_area": { value: { __template: "\{{data.postcodeLookup.[0].tsi_area}}" } },
+                      "#tsi_contact_email": { value: { __template: "\{{data.postcodeLookup.[0].tsi_contact_email}}" } }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          type: "elementManipulator",
+          config: { "<.form": { removeClass: 'disabled' } }
+        }
+      ]
+    }
+  }
+</script>
 
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {
