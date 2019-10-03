@@ -23,10 +23,10 @@
     </div>
     <div class="col-9">
       {{#if admin ~}}
-        <input class="form-input" id="date_of_birth" name="date_of_birth" type="date" value="{{@root.data.accountInfo.date_of_birth}}"
+        <input class="form-input" id="date_of_birth" max="{{momentFormat (dateMath 'now-13y') "YYYY-MM-DD" }}" name="date_of_birth" type="date" value="{{@root.data.accountInfo.date_of_birth}}"
           data-component="TasksTrigger" data-TasksTrigger="focus-next" {{#if @root.data.accountInfo.date_of_birth}}disabled{{else}}{{>form_validation_attributes @root.context.metaData.accountInfoValidation.date_of_birth}}{{/if}}>
       {{else}}
-        <input class="form-input" id="date_of_birth_checked" name="date_of_birth" type="date" value="{{@root.data.accountInfo.date_of_birth}}"
+        <input class="form-input" id="date_of_birth_checked" max="{{momentFormat (dateMath 'now-12y') "YYYY-MM-DD" }}" min="{{momentFormat (dateMath 'now-26y') "YYYY-MM-DD" }}"name="date_of_birth" type="date" value="{{@root.data.accountInfo.date_of_birth}}"
           data-component="TasksTrigger" data-TasksTrigger="focus-next" {{#if @root.data.accountInfo.date_of_birth}}disabled{{else}}{{>form_validation_attributes @root.context.metaData.accountInfoValidation.date_of_birth_checked}}{{/if}}>
         {{#if @root.data.accountInfo.date_of_birth ~}}
           <input type="hidden" name="date_of_birth" value="{{@root.data.accountInfo.date_of_birth}}">
@@ -172,36 +172,6 @@
     var $dob = $('#date_of_birth');
     var $v_block = $('#verification')
     var $v_email = $('#verification_email')
-
-    function dateMunge(aDate){
-      var dd = aDate.getDate();
-      var mm = aDate.getMonth()+1; //January is 0!
-      var yyyy = aDate.getFullYear();
-      if(dd<10){
-        dd='0'+dd
-      }
-      if(mm<10){
-        mm='0'+mm
-      }
-
-      dateVar = yyyy+'-'+mm+'-'+dd;
-      return dateVar;
-    }
-    var maxDate = new Date();
-    maxDate.setFullYear(maxDate.getFullYear() - 12);
-
-    var minDate = new Date();
-    minDate.setFullYear(minDate.getFullYear() - 25);
-
-
-    $dob.attr({
-      "max" : dateMunge(maxDate)
-    });
-
-    $dobc.attr({
-      "max" : dateMunge(maxDate),
-      "min" : dateMunge(minDate)
-    });
 
     $dobc.change(function(){
        var dob = $dobc.val();

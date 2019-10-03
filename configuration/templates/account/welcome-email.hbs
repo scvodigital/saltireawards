@@ -1,0 +1,35 @@
+{{#withExtend @root.data.accountInfo type=(if (compare @root.data.accountInfo.user_type "===" "Group Admin") "tsi-approval" else="parental-approval")}}
+  [
+  {
+  "from": "hello@saltireawards.org.uk",
+  "h:sender": "hello@saltireawards.org.uk",
+  {{#compare @root.data.accountInfo.user_type "===" "Group Admin"}}
+    "to": "alex.nuttgens@scvo.org.uk",
+    "wouldbe": "something",
+  {{else}}
+    "to": "{{{verification_email}}}",
+  {{/compare}}
+  "o:tag": "{{{type}}}",
+  "o:tracking": true,
+  {{!-- "o:testmode": true, --}}
+  "tag":  "{{{type}}}",
+  "id":  "{{{type}}}",
+  "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat type '.mailgunConnection'))}}},
+  "subject":
+  {{~#blockStringify this ~}}
+    {{~>
+    (getProperty @root.context.metaData.emailSendSettings (concat type '.subjectPartial'))
+      this
+    ~}}
+  {{~/blockStringify}},
+  "html":
+  {{~#blockStringify this ~}}
+    {{~>
+    (getProperty @root.context.metaData.emailSendSettings (concat type '.bodyPartial'))
+      this
+    ~}}
+  {{~/blockStringify}}
+  }
+
+  ]
+{{/withExtend }}
