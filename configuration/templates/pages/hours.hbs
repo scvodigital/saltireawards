@@ -1,3 +1,22 @@
+{{#*inline "buttons"}}
+<div class="b-margin-full">
+  {{#unless @root.data.isAdmin ~}}
+  {{#unless (compare (dateMath 'now-26y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD")) ~}}
+  <a href="/task" class="btn btn-primary">
+    Add new task
+  </a>
+  {{/unless ~}}
+  <a href="/claim-hours" class="btn">
+    Claim hours with code
+  </a>
+  {{else}}
+  <a href="/task" class="btn btn-primary">
+    Add new group task
+  </a>
+  {{/unless ~}}
+</div>
+{{/inline}}
+
 <div class="container b-padding-full v-margin-full">
   <h1>
     {{#if @root.data.isAdmin ~}}
@@ -20,35 +39,14 @@
     <p class="empty-title h5">You have not logged any volunteering hours yet</p>
     <p class="empty-subtitle">Add your first volunteering task, or claim hours from an existing certificate.</p>
     <div class="empty-action">
-      <a href="/task" class="btn btn-primary">
-        Add new task
-      </a>
-      {{/unless}}
-      <a href="/claim-hours" class="btn">
-        Claim hours with code
-      </a>
+      {{> buttons}}
     </div>
   </div>
 
   {{else}}
-  <div class="b-margin-full">
-    {{#unless @root.data.isAdmin ~}}
-    {{#unless (compare (dateMath 'now-26y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD"))}}
-    <a href="/task" class="btn btn-primary">
-      Add new task
-    </a>
-    {{/unless}}
-    <a href="/claim-hours" class="btn">
-      Claim hours with code
-    </a>
-    {{else}}
-    <a href="/task" class="btn btn-primary">
-      Add new group task
-    </a>
-    {{/unless}}
-  </div>
-  {{#each @root.data.tasksInfo}}
-  {{#unless @root.data.isAdmin}}
+  {{> buttons}}
+  {{#each @root.data.tasksInfo ~}}
+  {{#unless @root.data.isAdmin ~}}
   <h2>
     Volunteering with {{organisation_name}}
   </h2>
