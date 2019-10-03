@@ -12,6 +12,25 @@
   </h2>
   {{/unless ~}}
 
+  {{#unless @root.data.tasksInfo ~}}
+  <div class="empty">
+    <div class="empty-icon">
+      <i class="icon icon-people"></i>
+    </div>
+    <p class="empty-title h5">You have not logged any volunteering hours yet</p>
+    <p class="empty-subtitle">Add your first volunteering task, or claim hours from an existing certificate.</p>
+    <div class="empty-action">
+      <a href="/task" class="btn btn-primary">
+        Add new task
+      </a>
+      {{/unless}}
+      <a href="/claim-hours" class="btn">
+        Claim hours with code
+      </a>
+    </div>
+  </div>
+
+  {{else}}
   <div class="b-margin-full">
     {{#unless @root.data.isAdmin ~}}
     {{#unless (compare (dateMath 'now-26y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD"))}}
@@ -187,10 +206,11 @@
     {{/ifAny ~}}
     {{/each ~}}
     {{/compare ~}}
-    {{/unless}}
+    {{/unless ~}}
     {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
   </div>
-  {{/each}}
+  {{/each ~}}
+  {{/unless ~}}
 </div>
 {{!-- <script src="https://#/recaptcha/api.js" async defer></script> --}}
 <script>
