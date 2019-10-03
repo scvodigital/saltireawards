@@ -320,10 +320,15 @@ header {
 #continue-with-facebook {
   background-color: #2C5797 !important;
 }
-.chip {
-  cursor: pointer;
-  .fa-fw {
-    margin-right: $unit/4;
+#link-unlink {
+  .chip {
+    color: white !important;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    .fa-fw {
+      margin-right: $unit/4;
+    }
   }
 }
 

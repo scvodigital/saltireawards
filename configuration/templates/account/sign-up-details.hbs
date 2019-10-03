@@ -9,11 +9,7 @@
     {{/unless}}
   </h3>
 
-  <form id="user-details-form" action="/submit-user-details" method="POST" data-ajax-form='{
-      "successCallback": "completeAccountCB",
-      "failureCallback": "completeAccountCB"
-    }'>
-
+  <form id="user-details-form" action="/submit-user-details" method="POST">
     {{>account_details_form_fields admin=data.adminCandidate}}
     <input type="hidden" name="signup" value="true">
     {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
@@ -28,11 +24,3 @@
   </form>
 </div>
 {{!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> --}}
-<script>
-  document.addEventListener("DOMContentLoaded", function(event) {
-  $('#user-details-form').on('submit', function(e){
-    $('#detail-submit').prop('disabled', true);
-  })
-  });
-
-</script>
