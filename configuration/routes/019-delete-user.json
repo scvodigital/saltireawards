@@ -5,25 +5,12 @@
     "context.metaData.commonTasks.authRequired",
     {
       "name": "destination",
-      "taskModule": "renderLayout",
+      "taskModule": "render",
       "renderer": "handlebars",
       "config": {
-        "logic": {
-          "if": [
-            "default"
-          ]
-        },
+        "template": "{}",
         "output": "body",
-        "layouts": {
-          "default": {
-            "layout": ">context.metaData.handlebars.layouts.default",
-            "parts": {
-              "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.account_delete-user"
-            },
-            "contentType": "text/html"
-          }
-        }
+        "parseJson": true
       }
     }
   ]
