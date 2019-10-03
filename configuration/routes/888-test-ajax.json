@@ -6,7 +6,7 @@
     "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.getAccountInfo",
 
-    "context.metaData.commonTasks.adminRequired",
+    "context.metaData.commonTasks.adminOrCodeRequired",
     {
       "name": "apexUrl",
       "taskModule": "render",
