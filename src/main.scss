@@ -397,18 +397,22 @@ ul.fa-ul {
     opacity: 0.5;
   }
   &:after {
-    content: '\f1ce';
+    content: '';
+    box-sizing: border-box;
     position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
+    top: 47.4%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-left: -10px;
+    border-radius: 50%;
+    border-top: 2px solid $primary-color;
+    border-right: 2px solid transparent;
+    animation: spinner .6s linear infinite;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #000000;
-    font-family: fontawesome;
-    font-size: 3rem;
     animation-name: spin;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
