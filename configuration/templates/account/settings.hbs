@@ -1,16 +1,3 @@
-{{#*inline "linkChip"}}
-  <span class="chip bg-primary bg-{{provider}} b-margin" data-provider-link="{{provider}}">
-    {{#if linked ~}}
-    <span class="far fa-fw fa-ban"></span>
-    Unlink from
-    {{else}}
-    <span class="fab fa-fw fa-{{provider}}"></span>
-    Link to
-    {{/if ~}}
-    {{capitalize provider}}
-  </span>
-{{/inline}}
-
 <div class="container b-padding-full v-margin-full">
   <h1>My account</h1>
 
@@ -260,7 +247,7 @@
 
 <div id="link-provider-description" class="hidden">
   <p>
-    To link to this account you must sign in again.
+    To link with this account you must sign in again.
   </p>
 </div>
 
