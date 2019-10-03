@@ -121,7 +121,7 @@
         {
           name: "postcodeLookup",
           type: "request",
-          config: { url: { __template: "/postcode-lookup?q=\{{rootElement.[0].value}}" } }
+          config: { url: { __template: "/postcode-lookup?q=\{{jquery rootElement 'val'}}" } }
         },
         {
           __doNotCompile: true,
@@ -134,7 +134,7 @@
                   {
                     type: "elementManipulator",
                     config: {
-                      ">": { value: "" },
+                      ">": { value: "", focus: true },
                       "#local_authority": { value: "" },
                       "#tsi_area": { value: "" },
                       "#tsi_contact_email": { value: "" }
@@ -147,6 +147,7 @@
                   {
                     type: "elementManipulator",
                     config: {
+                      ">": { value: { __template: "\{{data.postcodeLookup.[0].place}}" } },
                       "#local_authority": { value: { __template: "\{{data.postcodeLookup.[0].local_authority}}" } },
                       "#tsi_area": { value: { __template: "\{{data.postcodeLookup.[0].tsi_area}}" } },
                       "#tsi_contact_email": { value: { __template: "\{{data.postcodeLookup.[0].tsi_contact_email}}" } }
