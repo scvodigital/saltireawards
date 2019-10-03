@@ -131,6 +131,7 @@
       <div class="col-1"></div>
     </div>
     {{#each hours_list ~}}
+    {{#ifAny claim_first_name claim_code ~}}
     <form id="{{hours_id}}" method="POST" action="/submit-group-hours" class="inline-hours-form">
       <input type="hidden" name="task_id" value="{{task_id}}">
       <input type="hidden" name="verified" value="{{verified}}">
@@ -183,6 +184,7 @@
         <div class="col-1"></div>
       </div>
     </form>
+    {{/ifAny ~}}
     {{/each ~}}
     {{/compare ~}}
     {{/unless}}
