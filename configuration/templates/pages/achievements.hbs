@@ -3,6 +3,9 @@
     My achievements
   </h1>
 
+  {{#compare (length @root.data.tasksInfo) 0 ~}}
+  {{> log_empty}}
+  {{else}}
   <div class="columns achievements">
     {{#each @root.context.metaData.certificates ~}}
       <div class="col-4">
@@ -52,4 +55,5 @@
     </div>
     {{/each ~}}
   </div>
+  {{/compare ~}}
 </div>
