@@ -282,6 +282,14 @@ header {
     display: flex;
   }
 }
+form {
+  #active-form-message {
+    display: none;
+    a {
+      font-weight: $heading-font-weight;
+    }
+  }
+}
 
 .card-header .organisation {
   margin-bottom: 0;
