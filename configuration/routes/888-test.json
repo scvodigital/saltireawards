@@ -4,8 +4,6 @@
   "debug": true,
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
-    "context.metaData.commonTasks.getAccountInfo",
-    "context.metaData.commonTasks.adminOrCodeRequired",
     {
       "name": "destination",
       "taskModule": "renderLayout",

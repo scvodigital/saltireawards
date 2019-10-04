@@ -281,7 +281,14 @@ header {
     display: flex;
   }
 }
-
+.active-form {
+  #active-form-message {
+    display: none;
+    a {
+      font-weight: $heading-font-weight;
+    }
+  }
+}
 
 .social .btn, .social-button {
   height: $unit*2.5;
@@ -396,7 +403,8 @@ ul.fa-ul {
   }
 }
 
-.authentication-form.disabled {
+.authentication-form.disabled,
+.active-form.disabled {
   pointer-events: none;
   >* {
     opacity: 0.5;

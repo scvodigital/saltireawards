@@ -8,11 +8,13 @@
     Task details
   </h2>
 
-  <form id="task-details-form" action="/submit-task-details" method="POST" data-ajax-form='{
-    "successCallback": "completeTaskWrite",
-    "failureCallback": "completeTaskWrite"
-  }'>
+  <form id="task-details-form" class="active-form" action="/submit-task-details" method="POST" data-component="TasksTrigger" data-TasksTrigger="submit-task">
     <input type="hidden" name="task_type" value="{{#if admin}}Group Task{{else}}Individual Task{{/if}}">
+    <div class="l-margin r-margin">
+      <div class="bg-error s-rounded x-padding v-margin" id="active-form-message">
+        <span id="form-message"></span>
+      </div>
+    </div>
     <div class="form-horizontal">
       <div class="form-group">
         <div class="col-2">
@@ -191,6 +193,71 @@
   }
 
 
+</script>
+
+<script type="javascript/blocked" data-component-config="add-task">
+  {
+    submit: {
+      preventDefault: true,
+      tasks: [
+       {
+          type: "elementManipulator",
+          config: { ">": { addClass: "disabled" } }
+          },
+          {
+          name: "testRequest",
+          type: "request",
+          config: { url: "/submit-task" }
+          },
+          {
+            __doNotCompile: true,
+            name: "errorHandle",
+            type: "switch",
+            config: {
+              which: { __template: "
+                \{{#if errors.testRequest}}error
+                \{{else}}\{{data.testRequest.errors.[0].taskName}}\{{/if}}"
+                },
+            branches: {
+              default: {
+                tasks: [
+                  {
+                    type: "run",
+                    config: { code: "window.location.href = '/hours'" }
+                  }
+                ]
+              },
+              error: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      ">": { removeClass: "disabled" },
+                      "#active-form-message": { styles: { display: "block" } },
+                      "#form-message": { contents: { __template: "\An error has occurred, PERFORM_DEFAULT_ACTION!" } }
+                    }
+                  }
+                ]
+              },
+              saveTaskData: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      ">": { removeClass: "disabled" },
+                      "#active-form-message": { styles: { display: "block" } },
+                      "#form-message": { contents: { __template: "Task not saved, PERFORM_DEFAULT_ACTION!" } }
+                    }
+                  }
+                ]
+              }
+
+            }
+          }
+        }
+      ]
+    }
+  }
 </script>
 {{!--
 --}}
