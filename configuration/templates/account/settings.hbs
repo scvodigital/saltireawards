@@ -64,65 +64,69 @@
         </div>
 
         <div class="col-4" id="link-unlink">
+          {{#ifAny (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com") ~}}
           <h3>Linked accounts</h3>
 
           <div id="unlink-provider-alert" class="alert hidden bg-error s-rounded x-padding v-margin">
             <span class="alert-message"></span>
           </div>
 
-          {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com")}}
+          {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com") ~}}
             <button class="chip bg-primary bg-google b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="google.com"
               data-confirm-task="unlink-provider" data-confirm-verb="unlink from Google" data-confirm-description="#unlink-provider-description" data-confirm-data='{ "providerId": "google.com" }'>
               <span class="fab fa-fw fa-google"></span>
               Unlink from Google
             </button>
-          {{/if}}
+          {{/if ~}}
 
-          {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com")}}
+          {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") ~}}
             <button class="chip bg-primary bg-twitter b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="twitter.com"
               data-confirm-task="unlink-provider" data-confirm-verb="unlink from Twitter" data-confirm-description="#unlink-provider-description" data-confirm-data='{ "providerId": "twitter.com" }'>
               <span class="fab fa-fw fa-twitter"></span>
               Unlink from Twitter
             </button>
-          {{/if}}
+          {{/if ~}}
 
-          {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com")}}
+          {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com") ~}}
             <button class="chip bg-primary bg-facebook b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="facebook.com"
               data-confirm-task="unlink-provider" data-confirm-verb="unlink from Facebook" data-confirm-description="#unlink-provider-description" data-confirm-data='{ "providerId": "facebook.com" }'>
               <span class="fab fa-fw fa-facebook"></span>
               Unlink from Facebook
             </button>
-          {{/if}}
+          {{/if ~}}
+          {{/ifAny ~}}
 
+          {{#unless (ifAll (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com")) ~}}
           <h3>Available providers</h3>
 
           <div id="link-provider-alert" class="alert hidden bg-error s-rounded x-padding v-margin">
             <span class="alert-message"></span>
           </div>
 
-          {{#unless (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com")}}
+          {{#unless (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com") ~}}
             <button class="chip bg-primary bg-google b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="google.com"
               data-confirm-task="link-provider" data-confirm-verb="link to Google" data-confirm-description="#link-provider-description" data-confirm-data='{ "providerId": "google.com" }'>
               <span class="fab fa-fw fa-google"></span>
               Link to Google
             </button>
-          {{/unless}}
+          {{/unless ~}}
 
-          {{#unless (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com")}}
+          {{#unless (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") ~}}
             <button class="chip bg-primary bg-twitter b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="twitter.com"
               data-confirm-task="link-provider" data-confirm-verb="link to Twitter" data-confirm-description="#link-provider-description" data-confirm-data='{ "providerId": "twitter.com" }'>
               <span class="fab fa-fw fa-twitter"></span>
               Link to Twitter
             </button>
-          {{/unless}}
+          {{/unless ~}}
 
-          {{#unless (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com")}}
+          {{#unless (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com") ~}}
             <button class="chip bg-primary bg-facebook b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="facebook.com"
               data-confirm-task="link-provider" data-confirm-verb="link to Facebook" data-confirm-description="#link-provider-description" data-confirm-data='{ "providerId": "facebook.com" }'>
               <span class="fab fa-fw fa-facebook"></span>
               Link to Facebook
             </button>
-          {{/unless}}
+          {{/unless ~}}
+          {{/unless ~}}
         </div>
 
         <div class="col-4">
