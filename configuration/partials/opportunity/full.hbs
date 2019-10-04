@@ -1,18 +1,18 @@
 <div class="full">
   {{> opportunity_key_info}}
-  <div class="content-primary-info-container">
+  <div class="content-primary-info-container tabs">
     <div class="columns col-gapless">
       <div class="col-8 action">
         <ul class="tab tab-block">
           <li class="tab-item active">
-            <a href="#information">
+            <a href="#information" data-component="TasksTrigger" data-TasksTrigger="tab">
               <span class="far fa-fw fa-list"></span>
               Information
             </a>
           </li>
           {{#if geo_coords ~}}
           <li class="tab-item">
-            <a href="#location">
+            <a href="#location" data-component="TasksTrigger" data-TasksTrigger="tab">
               <span class="far fa-fw fa-marker-alt"></span>
               Location
             </a>
@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="panels" for="opportunity-tab-bar">
-      <div class="panel panel--active" role="tabpanel" aria-hidden="false" data-tab-name="information">
+      <div class="panel panel--active" role="tabpanel" aria-hidden="false" id="information" data-tab-name="information">
         {{#ifAny activities.length themes.length end_date (compare start_date ">" (moment)) ~}}
         <div class="key-info-extra">
           <ul class="fa-ul">
@@ -170,7 +170,7 @@
         </div>
       </div>
 
-      <div class="panel" role="tabpanel" aria-hidden="true" data-tab-name="location">
+      <div class="panel" role="tabpanel" aria-hidden="true" id="location" data-tab-name="location">
         <div class="location-info">
           {{#compare (length (arrayify geo_coords)) ">" 0 ~}}
           <div class="container-content container-map">
