@@ -6,7 +6,7 @@
   <div class="columns col-gapless">
     <div class="col-9">
 
-      <form id="user-details-form" action="/submit-user-details" method="POST">
+      <form id="user-details-form" action="/update-account-details" method="POST">
         {{> account_details_form_fields admin=(compare @root.data.accountInfo.user_type 'Group Admin')}}
 
         {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}

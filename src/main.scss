@@ -95,6 +95,7 @@ a:hover {
   color: $dark-color;
   text-decoration: underline;
 }
+.chip-set a:hover,
 a.pure-menu-link:hover {
   text-decoration: none;
 }
@@ -281,13 +282,21 @@ header {
     display: flex;
   }
 }
-.active-form {
+form {
   #active-form-message {
     display: none;
     a {
       font-weight: $heading-font-weight;
     }
   }
+}
+
+.card-header .organisation {
+  margin-bottom: 0;
+}
+
+.pagination {
+  justify-content: center;
 }
 
 .social .btn, .social-button {
@@ -403,8 +412,8 @@ ul.fa-ul {
   }
 }
 
-.authentication-form.disabled,
-.active-form.disabled {
+.form.disabled,
+form.disabled {
   pointer-events: none;
   >* {
     opacity: 0.5;

@@ -1,10 +1,5 @@
-<div class="content-primary list" data-opportunity-id="{{Id}}" data-opportunity-layout="List" data-opportunity-context="{{default viewContext "Other"}}">
+<div class="card list" data-opportunity-id="{{Id}}" data-opportunity-layout="List" data-opportunity-context="{{default viewContext "Other"}}">
   {{> opportunity_key_info type="list"}}
-  {{#unless (compare view 'widget') ~}}
-  <div class="divider"></div>
-  {{/unless ~}}
   {{> opportunity_description limit="10.5rem" description=description}}
-  {{#unless (compare view 'widget') ~}}
   {{> opportunity_actions slug=slug Id=Id}}
-  {{/unless ~}}
 </div>
