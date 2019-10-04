@@ -287,6 +287,10 @@ header {
   margin-bottom: 0;
 }
 
+.pagination {
+  justify-content: center;
+}
+
 .social .btn, .social-button {
   height: $unit*2.5;
   border: none;
