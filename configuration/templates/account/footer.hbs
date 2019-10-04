@@ -1,26 +1,4 @@
 {{!-- contains useful functions for account operations. E.g. send out PV email --}}
 <script>
-  function sendApprovalEmail(message) {
-    $.ajax({
-      url: '/approval-email-send',
-      type: 'POST',
-    }).done(function (data) {
-      if (message){saltireawards.componentsInitialiser.snackbar.show({message:"Approval email re-sent"})};
-    }).fail(function (err) {
-      if (message){saltireawards.componentsInitialiser.snackbar.show({message:"There was a problem re-sending your approval email"})};
-    });
-  }
 
-  function completeAccountCB(response){
-    var jsonData = JSON.parse(response);
-    if (jsonData.id && jsonData.errors.length === 0){
-      if (jsonData.approval){
-        sendApprovalEmail();
-      }
-      window.location.href = '/';
-    } else {
-      $('#detail-submit').prop('disabled', false);
-      // saltireawards.componentsInitialiser.snackbar.show({message:"Failed to update profile, please check all the form fields have been filled in correctly"});
-    }
-  }
 </script>

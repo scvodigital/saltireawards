@@ -64,6 +64,16 @@
       }
     },
     {
+      "name": "sendEmail",
+      "taskModule": "mailgun",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "parseJson": true,
+        "template": ">context.metaData.handlebars.templates.account_welcome-email"
+      }
+    },
+    {
       "name": "passDestination",
       "taskModule": "renderLayout",
       "renderer": "handlebars",

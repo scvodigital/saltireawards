@@ -1,35 +1,30 @@
-{{#withExtend @root.data.accountInfo type=(if (compare @root.data.accountInfo.user_type "===" "Group Admin") "tsi-approval" else="parental-approval")}}
   [
+  {{!-- Don't try to send if there is no email --}}
+  {{#if @root.data.accountInfo.email}}
   {
   "from": "hello@saltireawards.org.uk",
   "h:sender": "hello@saltireawards.org.uk",
-  {{#compare @root.data.accountInfo.user_type "===" "Group Admin"}}
-    "to": "alex.nuttgens@scvo.org.uk",
-    "wouldbe": "something",
-  {{else}}
-    "to": "{{{verification_email}}}",
-  {{/compare}}
-  "o:tag": "{{{type}}}",
+  "to": "{{{@root.data.accountInfo.email}}}",
+  "o:tag": "welcome",
   "o:tracking": true,
   {{!-- "o:testmode": true, --}}
-  "tag":  "{{{type}}}",
-  "id":  "{{{type}}}",
-  "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat type '.mailgunConnection'))}}},
+  "tag":  "welcome",
+  "id":  "welcome",
+  "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings 'welcome.mailgunConnection')}}},
   "subject":
   {{~#blockStringify this ~}}
     {{~>
-    (getProperty @root.context.metaData.emailSendSettings (concat type '.subjectPartial'))
+    (getProperty @root.context.metaData.emailSendSettings 'welcome.subjectPartial')
       this
     ~}}
   {{~/blockStringify}},
   "html":
   {{~#blockStringify this ~}}
     {{~>
-    (getProperty @root.context.metaData.emailSendSettings (concat type '.bodyPartial'))
+    (getProperty @root.context.metaData.emailSendSettings 'welcome.bodyPartial')
       this
     ~}}
   {{~/blockStringify}}
   }
-
+  {{/if}}
   ]
-{{/withExtend }}
