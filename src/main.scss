@@ -187,7 +187,7 @@ header {
     padding: 0;
     .menu-item a {
       .fa-fw {
-        margin-right: $unit*1.5;
+        margin-right: $unit*.9;
       }
     }
     .active {
@@ -396,7 +396,7 @@ ul.fa-ul {
   }
 }
 
-.disabled {
+.authentication-form.disabled {
   pointer-events: none;
   >* {
     opacity: 0.5;
