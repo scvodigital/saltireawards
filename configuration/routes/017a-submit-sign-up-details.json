@@ -46,6 +46,14 @@
           "welcome-email-send"
         ]
       }
+    },
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": "/account",
+        "statusCode": 302
+      }
     }
   ]
 }

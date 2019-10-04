@@ -415,5 +415,25 @@
       }
     }
   </script>
+
+  <script data-component-config="tab" type="javascript/blocked">
+    {
+      click: {
+        __doNotCompile: true,
+        preventDefault: true,
+        tasks: [
+          {
+            type: "elementManipulator",
+            config: {
+              "< | $": { removeClass: "active" },
+              "<": { addClass: "active" },
+              "<.tabs | .panel": { styles: { display: "none" } },
+              "{href}": { styles: { display: "block" } }
+            }
+          }
+        ]
+      }
+    }
+  </script>
 </body>
 </html>
