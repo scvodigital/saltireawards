@@ -50,9 +50,7 @@
             name: "errorHandle",
             type: "switch",
             config: {
-              which: { __template: "
-                \{{#if errors.testRequest}}error
-                \{{else}}\{{data.testRequest.errors.[0].taskName}}\{{/if}}"
+              which: { __template: "\{{#if errors.testRequest}}error\{{else}}\{{data.testRequest.errors.[0].taskName}}\{{/if}}"
                 },
             branches: {
               default: {
@@ -70,7 +68,7 @@
                     config: {
                       ">": { removeClass: "disabled" },
                       "#active-form-message": { styles: { display: "block" } },
-                      "#form-message": { contents: { __template: "\An error occurred, \{{> account_details_form_fields}}" } }
+                      "#form-message": { contents: { __template: "An error occurred \{{> partial}} "} }
                     }
                   }
                 ]
@@ -82,7 +80,7 @@
                     config: {
                       ">": { removeClass: "disabled" },
                       "#active-form-message": { styles: { display: "block" } },
-                      "#form-message": { contents: { __template: "\Email send was not successful, \{{> account_details_form_fields}}" } }
+                      "#form-message": { contents: { __template: "\Email send was not successful" } }
                     }
                   }
                 ]
@@ -94,4 +92,7 @@
       ]
     }
   }
+</script>
+<script data-partial="partial" type="javascript/blocked">
+   Hello, I'm partial to errors!
 </script>

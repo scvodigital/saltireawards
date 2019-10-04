@@ -214,9 +214,7 @@
             name: "errorHandle",
             type: "switch",
             config: {
-              which: { __template: "
-                \{{#if errors.testRequest}}error
-                \{{else}}\{{data.testRequest.errors.[0].taskName}}\{{/if}}"
+              which: { __template: "\{{#if errors.testRequest}}error\{{else}}\{{data.testRequest.errors.[0].taskName}}\{{/if}}"
                 },
             branches: {
               default: {

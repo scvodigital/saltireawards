@@ -11,7 +11,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "body",
-        "template": "{\"id\": \"hey there\", {{#if @root.errors}}\"errors\": {{{safeStringify @root.errors}}}{{/if}} }",
+        "template": "{\"id\": \"hey there\", FAIL {{#if @root.errors}}\"errors\": {{{safeStringify @root.errors}}}{{/if}} }",
         "parseJson": false
       }
     }
