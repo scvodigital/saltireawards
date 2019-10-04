@@ -2,7 +2,7 @@
   "name": "approval-email-send",
   "pattern": "/approval-email-send",
   "debug": true,
-  "acceptedVerbs": "POST",
+  "acceptedVerbs": "POST,GET",
   "defaultParams": {
     "context": "results"
   },

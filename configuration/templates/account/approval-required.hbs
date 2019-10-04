@@ -55,22 +55,4 @@
     var x = document.getElementById("user-details-form");
     x.style.display = "block";
   }
-  document.addEventListener("DOMContentLoaded", function(event) {
-    var $form = $('#user-details-form');
-    $form.on('submit', function(evt) {
-      var formdata = $form.serialize();
-      evt.preventDefault();
-      $.ajax({
-        url: '/submit-user-details',
-        type: 'POST',
-        data: formdata, // serializes the form's elements.
-      }).done(function (data) {
-        window.location.href = '/approval-required';
-      }).fail(function (err) {
-        $message.text(err.message || 'There was a problem adding your details').show();
-        $loader.css('display', 'none');
-        return;
-      });
-    })
-  })
 </script>
