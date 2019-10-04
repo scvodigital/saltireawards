@@ -5,6 +5,7 @@
 
   <div class="columns col-gapless">
     <div class="col-9">
+
       <form id="user-details-form" action="/submit-user-details" method="POST">
         {{> account_details_form_fields admin=(compare @root.data.accountInfo.user_type 'Group Admin')}}
 

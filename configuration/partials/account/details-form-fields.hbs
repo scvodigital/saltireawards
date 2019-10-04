@@ -89,11 +89,10 @@
           data-component="TasksTrigger" data-TasksTrigger="focus-next" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.phone}}>
       </div>
     </div>
-    <input type="hidden" name="email" value="{{@root.data.auth.email}}">
     <input type="hidden" name="verification_email" value="anuttgens@gmail.com" />
     <input type="hidden" name="admin" value="true" />
   {{/unless ~}}
-
+  <input type="hidden" name="email" value="{{@root.data.auth.email}}">
   <div class="form-group">
     <div class="col-3">
       <label class="form-label" for="postcode">{{#if admin}}Work postcode{{else}}Home postcode{{/if}}</label>

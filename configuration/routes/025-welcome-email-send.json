@@ -36,16 +36,15 @@
       "config": {
         "output": "data",
         "parseJson": true,
-        "template": ">context.metaData.handlebars.templates.account_approval-email"
+        "template": ">context.metaData.handlebars.templates.account_welcome-email"
       }
     },
     {
       "name": "destination",
-      "taskModule": "render",
-      "renderer": "handlebars",
+      "taskModule": "redirect",
       "config": {
-        "output": "body",
-        "template": "{\"success\": true }"
+        "location": "/approval-required",
+        "statusCode": 302
       }
     }
   ]

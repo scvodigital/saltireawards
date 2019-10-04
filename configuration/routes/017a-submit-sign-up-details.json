@@ -1,6 +1,6 @@
 {
-  "name": "submit-user-details",
-  "pattern": "/submit-user-details",
+  "name": "submit-sign-up-details",
+  "pattern": "/submit-sign-up-details",
   "debug": true,
   "acceptedVerbs": "POST",
   "defaultParams": {
@@ -30,13 +30,21 @@
       }
     },
     {
-      "name": "destination",
-      "taskModule": "render",
-      "renderer": "handlebars",
+      "name": "welcomeOrApproval",
+      "taskModule": "reroute",
       "config": {
-        "output": "body",
-        "template": "{\"id\": {{{stringify @root.data.saveUserData}}}, {{#if @root.errors}}\"errors\": {{{safeStringify @root.errors}}},{{/if}} \"approval\": {{#if @root.data.codeRequired}}true{{else}}false{{/if}} }",
-        "parseJson": true
+        "if": [
+          {
+            "==": [
+              {
+                "var": "data.codeRequired"
+              },
+              "true"
+            ]
+          },
+          "approval-email-send",
+          "welcome-email-send"
+        ]
       }
     },
     {
