@@ -9,7 +9,7 @@
         <strong>{{title}}</strong>.<br />
         {{#if phone}}Phone: {{phone}}<br />{{/if}}
         {{#if email}}Email: <a href="mailto:{{email}}">{{email}}</a><br />{{/if}}
-        {{#if website}}Website: <a href="{{fixUrl website}}" target="_blank">{{website}}</a>{{/if}}
+        {{#if website}}Website: <a href="{{fixUrl website}}" target="_blank">{{replace (replace (replace website "www." "") "https://" "") "http://" ""}}</a>{{/if}}
       </p>
       <p>
         {{#if twitter}}<a href="{{fixUrl twitter}}" target="_blank"><span class="fab fa-twitter fa-fw fa-2x"></span></a>{{/if}}
