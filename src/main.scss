@@ -396,7 +396,8 @@ ul.fa-ul {
   }
 }
 
-.authentication-form.disabled {
+.form.disabled,
+form.disabled {
   pointer-events: none;
   >* {
     opacity: 0.5;
