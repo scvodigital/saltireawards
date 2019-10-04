@@ -1,4 +1,4 @@
-<div id="sign-in-form" class="authentication-form container">
+<div id="sign-in-form" class="container form authentication-form">
   <h1 class="x-padding">
     Welcome back! Please sign in
   </h1>
@@ -50,7 +50,9 @@
       tasks: [
         {
           type: "elementManipulator",
-          config: { "#sign-in-form": { addClass: "disabled" } }
+          config: {
+            "#sign-in-form": { addClass: "disabled" }
+          }
         },
         {
           name: "signIn",
