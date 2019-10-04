@@ -9,42 +9,19 @@
     {{/unless ~}}
   </h3>
 
-  <form id="user-details-form" action="/submit-user-details" method="POST" data-ajax-form='{
-      "successCallback": "completeCB",
-      "failureCallback": "completeCB"
-    }'>
-    {{>account_details_form_fields mode=admin}}
+  <form id="user-details-form" action="/submit-user-details" method="POST">
+    {{> account_details_form_fields mode=admin}}
+
     <input type="hidden" name="signup" value="true">
     {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
     <div class="columns col-gapless">
       <div class="col-3"></div>
       <div class="col-2">
-        <button id="detail-submit" class="btn btn-primary b-margin-full" id="register-interest-submit" onclick="doSpinner()" type="submit">
+        <button id="detail-submit" class="btn btn-primary b-margin-full" type="submit">
           Submit details
         </button>
       </div>
     </div>
   </form>
 </div>
-
 {{!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> --}}
-<script>
-  document.addEventListener("DOMContentLoaded", function(event) {
-    $('#user-details-form').on('submit', function(e){
-      $('#detail-submit').prop('disabled', true);
-    })
-  });
-  function completeCB(response){
-    var jsonData = JSON.parse(response);
-    if (jsonData.id){
-      if (jsonData.pv){
-        sendAdminVEmail();
-      }
-      window.location.href = '/';
-    } else {
-      $('#detail-submit').prop('disabled', false);
-      saltireawards.componentsInitialiser.snackbar.show({message:"Failed to update profile, please check all form fields have been filled in correctly"});
-    }
-  }
-
-</script>
