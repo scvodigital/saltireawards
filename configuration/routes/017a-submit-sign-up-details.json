@@ -51,7 +51,7 @@
       "name": "destination",
       "taskModule": "redirect",
       "config": {
-        "location": "/account",
+        "location": "/",
         "statusCode": 302
       }
     }
