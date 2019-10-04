@@ -38,6 +38,14 @@
         "template": "{\"id\": {{{stringify @root.data.saveUserData}}}, {{#if @root.errors}}\"errors\": {{{safeStringify @root.errors}}},{{/if}} \"approval\": {{#if @root.data.codeRequired}}true{{else}}false{{/if}} }",
         "parseJson": true
       }
+    },
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": "/account",
+        "statusCode": 302
+      }
     }
   ]
 }
