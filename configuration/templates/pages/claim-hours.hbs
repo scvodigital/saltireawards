@@ -2,29 +2,24 @@
   <h1>
     Claim hours by certificate code
   </h1>
-  <form id="input-code-form" action="/submit-hours-claim" method="POST" data-ajax-form='{
-    "successCallback": "completeHoursClaim",
-    "failureCallback": "completeHoursClaim"
-  }'>
-    <div class="columns col-gapless">
-      <div class="col-6">
+  <form id="input-code-form" action="/submit-hours-claim" method="POST">
+    <div class="columns col-gapless b-margin">
+      <div class="col-3">
         <div class="form-group">
           <label for="hours_claim_code" class="form-label">
             Enter your claim code
           </label>
-          <input id="task-code" name="hours_claim_code" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task-code}}>
+          <input id="task-code" name="hours_claim_code" class="form-input" placeholder="e.g. a1b2c3e4f5" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task-code}}>
         </div>
       </div>
-      <div class="col-6">
-        <button id="detail-submit" type="submit" class="submit-button btn btn-primary b-margin-full">
-          Claim hours
-        </button>
-      </div>
     </div>
+    <button id="detail-submit" type="submit" class="submit-button btn btn-primary b-margin-full">
+      Claim hours
+    </button>
   </form>
 </div>
 
-<script>
+{{!-- <script>
   document.addEventListener("DOMContentLoaded", function(event) {
     $('#input-code-form').on('submit', function(e){
       $('#input-code-form').find('.submit-button').prop('disabled', true);
@@ -40,4 +35,4 @@
       saltireawards.componentsInitialiser.snackbar.show({message:"Failed to claim hours."});
     }
   }
-</script>
+</script> --}}
