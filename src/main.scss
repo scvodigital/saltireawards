@@ -412,6 +412,15 @@ ul.fa-ul {
   }
 }
 
+.equal-height {
+  .column {
+    padding-bottom: 0.8rem;
+  }
+  .card {
+    height: 100%;
+  }
+}
+
 .form.disabled,
 form.disabled {
   pointer-events: none;
