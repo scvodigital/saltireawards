@@ -25,5 +25,15 @@
     "subjectPartial": "emails_hours_verify_subject",
     "bodyPartial": "emails_hours_verify_body",
     "metaData": {}
+  },
+  "welcome": {
+    "mailgunConnection": "mg_saltireawards",
+    "from": "Saltire Awards <hello@saltireawards.org.uk>",
+    "replyTo": "Saltire Awards <hello@saltireawards.org.uk>",
+    "sendIfEmpty": false,
+    "subjectPartial": "emails_welcome_subject",
+    "bodyPartial": "emails_welcome_body",
+    "metaData": {}
   }
+
 }

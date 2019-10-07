@@ -8,14 +8,16 @@
     Task details
   </h2>
 
-  <form id="task-details-form" action="/submit-task-details" method="POST" data-ajax-form='{
-    "successCallback": "completeTaskWrite",
-    "failureCallback": "completeTaskWrite"
-  }'>
+  <form id="task-details-form" class="active-form" action="/submit-task-details" method="POST" data-component="TasksTrigger" data-TasksTrigger="submit-task">
     <input type="hidden" name="task_type" value="{{#if admin}}Group Task{{else}}Individual Task{{/if}}">
+    <div class="l-margin r-margin">
+      <div class="bg-error s-rounded x-padding v-margin" id="active-form-message">
+        <span id="form-message"></span>
+      </div>
+    </div>
     <div class="form-horizontal">
       <div class="form-group">
-        <div class="col-2">
+        <div class="col-3">
           <label for="organisation_name" class="form-label">
             {{#if admin ~}}
             Organisation your group has volunteered with
@@ -29,7 +31,7 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="col-2">
+        <div class="col-3">
           <label for="location" class="form-label">
             Location
           </label>
@@ -39,7 +41,7 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="col-2">
+        <div class="col-3">
           <label for="organisation_charity_number" class="form-label r-margin">
             Scottish charity number (optional)
           </label>
@@ -52,7 +54,7 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="col-2">
+        <div class="col-3">
           <label for="task_description" class="form-label">Volunteering description (optional)</label>
         </div>
         <div class="col-5">
@@ -61,13 +63,14 @@
       </div>
     </div>
 
+    <div class="divider"></div>
     <h2>
       Details of the person who manages this volunteering task
     </h2>
 
     <div class="form-horizontal">
       <div class="form-group">
-        <div class="col-2">
+        <div class="col-3">
           <label for="volunteer_manager_first_name" class="form-label">
             Volunteer manager
           </label>
@@ -100,7 +103,7 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="col-2">
+        <div class="col-3">
           <label for="volunteer_manager_title" class="form-label">
             Job title
           </label>
@@ -117,7 +120,7 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="col-2">
+        <div class="col-3">
           <label for="volunteer_manager_email" class="form-label">
             Email address
           </label>
@@ -133,7 +136,7 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="col-2">
+        <div class="col-3">
           <label for="volunteer_manager_phone" class="form-label">
             Phone number (optional)
           </label>
@@ -150,9 +153,9 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="col-2">
+        <div class="col-3">
           <label for="sdg" class="form-label r-margin">
-            Which UN Sustainable Development Goal does this task match?
+            Which UN Sustainable Development Goal does this task match? (optional)
           </label>
         </div>
         <div class="col-5">
@@ -165,10 +168,17 @@
         </div>
       </div>
     </div>
-    {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
-    <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full" id="register-interest-submit" >
-      Submit details
-    </button>
+    <div class="form-horizontal">
+      <div class="form-group">
+        <div class="col-3"></div>
+        <div class="col-5">
+          {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
+          <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full" id="register-interest-submit" >
+            Submit details
+          </button>
+        </div>
+      </div>
+    </div>
   </form>
   {{/withExtend ~}}
 </div>
@@ -191,6 +201,69 @@
   }
 
 
+</script>
+
+<script type="javascript/blocked" data-component-config="add-task">
+  {
+    submit: {
+      preventDefault: true,
+      tasks: [
+       {
+          type: "elementManipulator",
+          config: { ">": { addClass: "disabled" } }
+          },
+          {
+          name: "testRequest",
+          type: "request",
+          config: { url: "/submit-task" }
+          },
+          {
+            __doNotCompile: true,
+            name: "errorHandle",
+            type: "switch",
+            config: {
+              which: { __template: "\{{#if errors.testRequest}}error\{{else}}\{{data.testRequest.errors.[0].taskName}}\{{/if}}"
+                },
+            branches: {
+              default: {
+                tasks: [
+                  {
+                    type: "run",
+                    config: { code: "window.location.href = '/hours'" }
+                  }
+                ]
+              },
+              error: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      ">": { removeClass: "disabled" },
+                      "#active-form-message": { styles: { display: "block" } },
+                      "#form-message": { contents: { __template: "\An error has occurred, PERFORM_DEFAULT_ACTION!" } }
+                    }
+                  }
+                ]
+              },
+              saveTaskData: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      ">": { removeClass: "disabled" },
+                      "#active-form-message": { styles: { display: "block" } },
+                      "#form-message": { contents: { __template: "Task not saved, PERFORM_DEFAULT_ACTION!" } }
+                    }
+                  }
+                ]
+              }
+
+            }
+          }
+        }
+      ]
+    }
+  }
 </script>
 {{!--
 --}}

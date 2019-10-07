@@ -4,15 +4,15 @@
     <div class="columns col-gapless">
       <div class="col-4 action">
         <ul class="tab tab-block">
-          <li class="tab-item{{#compare @root.request.url.pathname "/search"}} active{{/compare}}">
-            <a href="{{concat "/search" (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) "") "" else="?") (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)}}">
+          <li class="tab-item{{#compare @root.request.url.pathname '/search'}} active{{/compare}}">
+            <a href="{{concat '/search' (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) '') '' else='?') (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)}}">
               <span class="far fa-fw fa-list"></span>
               List
             </a>
           </li>
-          <li class="tab-item{{#compare @root.request.url.pathname "/map"}} active{{/compare}}">
-            <a href="{{concat "/search/map" (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) "") "" else="?") (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)}}">
-              <span class="far fa-fw fa-marker-alt"></span>
+          <li class="tab-item{{#compare @root.request.url.pathname '/search/map'}} active{{/compare}}">
+            <a href="{{concat '/search/map' (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) '') '' else='?') (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)}}">
+              <span class="far fa-fw fa-map-marker-alt"></span>
               Map
             </a>
           </li>

@@ -4,15 +4,15 @@
     <div class="columns col-gapless">
       <div class="col-4 action">
         <ul class="tab tab-block">
-          <li class="tab-item{{#compare @root.request.url.pathname "/search"}} active{{/compare}}">
-            <a href="{{concat "/search" (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) "") "" else="?") (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)}}">
+          <li class="tab-item{{#compare @root.request.url.pathname '/search'}} active{{/compare}}">
+            <a href="{{concat '/search' (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) '') '' else='?') (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)}}">
               <span class="far fa-fw fa-list"></span>
               List
             </a>
           </li>
-          <li class="tab-item{{#compare @root.request.url.pathname "/map"}} active{{/compare}}">
-            <a href="{{concat "/search/map" (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) "") "" else="?") (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)}}">
-              <span class="far fa-fw fa-marker-alt"></span>
+          <li class="tab-item{{#compare @root.request.url.pathname '/search/map'}} active{{/compare}}">
+            <a href="{{concat '/search/map' (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) '') '' else='?') (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)}}">
+              <span class="far fa-fw fa-map-marker-alt"></span>
               Map
             </a>
           </li>
@@ -27,7 +27,7 @@
       </div>
       <div class="col-3 action">
         {{#compare @root.data.search_data.detailed_results.hits.total ">" 0 ~}}
-          <form action="{{{@root.request.url.path}}}" method="GET">
+          <form action="{{{@root.request.url.path}}}" method="GET" class="form-horizontal">
             {{!-- {{#each (split "volunteersearch_types,activities,themes,services,age_groups" ",")}}
               {{#if (getProperty @root.request.params.query this) ~}}
                 {{#each (arrayify (getProperty @root.request.params.query this)) ~}}
@@ -45,16 +45,20 @@
               <input type="hidden" name="debug_results" value="{{@root.request.params.query.debug_results}}">
             {{/if}}
 
-            <div class="form-group pull-right">
-              <div class="form-label" for="sort">
-                Sort by
+            <div class="form-group">
+              <div class="col-6">
+                <label class="form-label pull-right r-margin" for="sort">
+                  Sort by
+                </label>
               </div>
-              <select class="form-select" id="sort" name="sort" onchange="this.form.submit();">
-                <option value="relevance" {{#unless @root.request.params.query.sort}} selected {{/unless}}>Relevance</option>
-                {{#if @root.request.params.query.location}}<option value="distance"{{#compare @root.request.params.query.sort "===" "distance"}} selected{{/compare}}{{#compare @root.request.params.query.exclude "===" "locations"}} disabled{{else}}{{#compare @root.request.params.query.location "===" ""}} disabled{{/compare}}{{/compare}}>Distance</option>{{/if}}
-                <option value="newest"{{#compare @root.request.params.query.sort "===" "newest"}} selected{{/compare}}>Newest</option>
-                <option value="oldest"{{#compare @root.request.params.query.sort "===" "oldest"}} selected{{/compare}}>Oldest</option>
-              </select>
+              <div class="col-6">
+                <select class="form-select" id="sort" name="sort" onchange="this.form.submit();">
+                  <option value="relevance" {{#unless @root.request.params.query.sort}} selected {{/unless}}>Relevance</option>
+                  {{#if @root.request.params.query.location}}<option value="distance"{{#compare @root.request.params.query.sort "===" "distance"}} selected{{/compare}}{{#compare @root.request.params.query.exclude "===" "locations"}} disabled{{else}}{{#compare @root.request.params.query.location "===" ""}} disabled{{/compare}}{{/compare}}>Distance</option>{{/if}}
+                  <option value="newest"{{#compare @root.request.params.query.sort "===" "newest"}} selected{{/compare}}>Newest</option>
+                  <option value="oldest"{{#compare @root.request.params.query.sort "===" "oldest"}} selected{{/compare}}>Oldest</option>
+                </select>
+              </div>
             </div>
           </form>
         {{/compare ~}}

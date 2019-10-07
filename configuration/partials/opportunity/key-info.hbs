@@ -1,4 +1,4 @@
-<div class="">
+<div class="card-header">
   <div class="">
     {{#ifAny (compare @root.route.name "===" "opportunity_search") (compare @root.route.name "===" "opportunities_in") ~}}
     {{#ifAll @root.request.params.query.location @root.request.params.query.lat @root.request.params.query.lng ~}}
@@ -34,7 +34,7 @@
     {{/ifAll ~}}
     {{/ifAny ~}}
     {{#compare @root.route.name "===" "volunteering_opportunity" ~}}
-    {{#compare view "===" "full" ~}}
+    {{#compare type "full" ~}}
     {{#unless (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null) "") ~}}
     {{#ifAny @root.request.params.query.page @root.request.params.query.keywords @root.request.params.query.location ~}}
     <a href="/search{{> query_search}}" class="back-to-results"><span class="far fa-chevron-circle-left" aria-hidden="true"></span> <span class="underline">Back to search results</span></a>
@@ -42,19 +42,26 @@
     {{/unless ~}}
     {{/compare ~}}
     {{/compare ~}}
-    <h2>
+    {{#compare type "full" ~}}
+    <h2 class="t-margin">
+      {{{title}}}
+    </h2>
+    {{else}}
+    <div class="card-title h5">
       <a href="/search/opportunity/{{Id}}/{{title_slug}}{{> query_search}}">
         <span class="hover-underline">{{{title}}}</span>
       </a>
-    </h2>
+    </div>
+    {{/compare ~}}
     {{#ifAll organisation_id organisation_name_slug organisation_name ~}}
-    <ul class="fa-ul organisation">
-      <li class="">
+    <ul class="fa-ul organisation no-margin">
+      <li class="card-subtitle">
         <span class="fa-li"><span class="far fa-home-heart" title="Organisation"></span></span>
         {{organisation_name}}
       </li>
     </ul>
     {{/ifAll ~}}
+    {{#ifAll milo_ref volunteersearch_type ~}}
     <ul class="fa-ul first">
       {{#if milo_ref ~}}
         <li class="">
@@ -71,6 +78,7 @@
       {{/compare ~}}
       {{/if ~}}
     </ul>
+    {{/ifAll ~}}
   </div>
   {{#if (contains (map @root.data.registeredInterest.items.[0] (getProp "value")) Id) ~}}
   {{#ifAny opportunity_contact_first_name opportunity_contact_last_name organisation_website ~}}

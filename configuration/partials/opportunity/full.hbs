@@ -1,5 +1,5 @@
 <div class="full">
-  {{> opportunity_key_info}}
+  {{> opportunity_key_info type="full"}}
   <div class="content-primary-info-container tabs">
     <div class="columns col-gapless">
       <div class="col-8 action">
@@ -22,9 +22,9 @@
       </div>
     </div>
     <div class="panels" for="opportunity-tab-bar">
-      <div class="panel panel--active" role="tabpanel" aria-hidden="false" id="information" data-tab-name="information">
+      <div class="panel" role="tabpanel" aria-hidden="false" id="information" data-tab-name="information">
         {{#ifAny activities.length themes.length end_date (compare start_date ">" (moment)) ~}}
-        <div class="key-info-extra" data-component="TasksTrigger" data-TasksTrigger='{
+        <div class="panel-body key-info-extra" data-component="TasksTrigger" data-TasksTrigger='{
             viewportProximityChange: {
               rules: [
                 {
@@ -72,7 +72,7 @@
         </div>
         {{/ifAny ~}}
 
-        <div class="detailed-info">
+        <div class="panel-body detailed-info">
           {{#ifAny description description_html ~}}
           <h4>Description</h4>
           <p>
@@ -172,15 +172,15 @@
             <a href="mailto:milosupport@scvo.org.uk?subject=Report%20opportunity:%20{{urlencode title}}%20({{urlencode milo_ref}})%20via%20Volunteer%20Scotland%20Search&body=I%20would%20like%20to%20report%20this%20opportunity%20for%20the%20following%20reasons:">Report this opportunity</a>
           </div> --}}
 
-          <div class="last-modified">
-            <span class="far fa-calendar-alt" aria-hidden="true"></span>
-            <span title="Updated on {{momentFormat (moment date_last_modified "x") "YYYY-MM-DD hh:mm"}}">Last updated {{momentFromNow date_last_modified}}</span>
-          </div>
+        </div>
+        <div class="panel-footer last-modified">
+          <span class="far fa-calendar-alt" aria-hidden="true"></span>
+          <span title="Updated on {{momentFormat (moment date_last_modified "x") "YYYY-MM-DD hh:mm"}}">Last updated {{momentFromNow date_last_modified}}</span>
         </div>
       </div>
 
       <div class="panel" role="tabpanel" aria-hidden="true" id="location" data-tab-name="location">
-        <div class="location-info">
+        <div class="panel-body location-info">
           {{#compare (length (arrayify geo_coords)) ">" 0 ~}}
           <div class="container-content container-map">
             <div id="map-content-primary" data-component="LeafletMap" data-LeafletMap='{
@@ -254,7 +254,9 @@
       </div>
     </div>
 
-    {{> opportunity_actions slug=slug Id=Id action="organisation"}}
+    <div class="t-margin-full">
+      {{> opportunity_actions slug=slug Id=Id action="organisation"}}
+    </div>
   </div>
 </div>
 <script>

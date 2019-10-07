@@ -2,7 +2,7 @@
   "name": "approval-email-send",
   "pattern": "/approval-email-send",
   "debug": true,
-  "acceptedVerbs": "POST",
+  "acceptedVerbs": "POST,GET",
   "defaultParams": {
     "context": "results"
   },
@@ -41,11 +41,10 @@
     },
     {
       "name": "destination",
-      "taskModule": "render",
-      "renderer": "handlebars",
+      "taskModule": "redirect",
       "config": {
-        "output": "body",
-        "template": "{\"success\": true }"
+        "location": "/approval-required",
+        "statusCode": 302
       }
     }
   ]
