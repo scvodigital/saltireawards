@@ -79,16 +79,7 @@
           </ul>
           {{/if ~}}
           {{#if organisation_aims_and_objectives ~}}
-          <div data-component="TasksTrigger" data-TasksTrigger='{
-            viewportProximityChange: {
-              rules: [
-                {
-                  rule: "enter-bottom",
-                  tasks: []
-                }
-              ]
-            }
-          }'>
+          <div>
             <h4>Organisation aims and objectives</h4>
             <p>
               {{{organisation_aims_and_objectives}}}
@@ -107,34 +98,105 @@
           {{/if ~}}
           {{/if ~}}
           {{#if frequency_commitment_details ~}}
-          <h4>Frequency and commitment details</h4>
-          <p>
-            {{{frequency_commitment_details}}}
-          </p>
+            <h4>Frequency and commitment details</h4>
+            <p>
+              {{{frequency_commitment_details}}}
+            </p>
           {{/if ~}}
           {{#ifAny restriction_details experience_required travel_details minimum_age maximum_age ~}}
-          <h4>Restrictions</h4>
-          <p>
-            {{#if restriction_details ~}}
-            {{#compare restriction_details "!==" "n/a" ~}}
-            {{{restriction_details}}}<br />
-            {{/compare ~}}
-            {{/if ~}}
-            {{#if experience_required ~}}
-            <strong>Experience required: </strong> {{{experience_required}}}<br />
-            {{/if ~}}
-            {{#if travel_details ~}}
-            <strong>Travel details: </strong> {{{travel_details}}}<br />
-            {{/if ~}}
-            {{#if minimum_age ~}}
-            <strong>Minimum age: </strong> {{{minimum_age}}}<br />
-            {{/if ~}}
-            {{#if maximum_age ~}}
-            {{#compare maximum_age "<=" 26}}
-            <strong>Maximum age: </strong> {{{maximum_age}}}<br />
-            {{/compare}}
-            {{/if ~}}
-          </p>
+          <div data-component="TasksTrigger" data-TasksTrigger='{
+            viewportProximityChange: {
+              rules: [
+                {
+                  scrollDirection: "down",
+                  sourceEdge: "top",
+                  targetEdge: "bottom",
+                  tasks: [
+                    {
+                      type: "elementManipulator",
+                      config: {
+                        ">": {
+                          addClass: "above-the-bottom",
+                          removeClass: "below-the-bottom"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  scrollDirection: "up",
+                  sourceEdge: "top",
+                  targetEdge: "bottom",
+                  tasks: [
+                    {
+                      type: "elementManipulator",
+                      config: {
+                        ">": {
+                          addClass: "below-the-bottom",
+                          removeClass: "above-the-bottom"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  scrollDirection: "down",
+                  sourceEdge: "bottom",
+                  targetEdge: "top",
+                  tasks: [
+                    {
+                      type: "elementManipulator",
+                      config: {
+                        ">": {
+                          addClass: "above-the-top",
+                          removeClass: "below-the-top"
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  scrollDirection: "up",
+                  sourceEdge: "bottom",
+                  targetEdge: "top",
+                  tasks: [
+                    {
+                      type: "elementManipulator",
+                      config: {
+                        ">": {
+                          addClass: "below-the-top",
+                          removeClass: "above-the-top"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }'>
+            <h4>Restrictions</h4>
+            <p>
+              {{#if restriction_details ~}}
+              {{#compare restriction_details "!==" "n/a" ~}}
+              {{{restriction_details}}}<br />
+              {{/compare ~}}
+              {{/if ~}}
+              {{#if experience_required ~}}
+              <strong>Experience required: </strong> {{{experience_required}}}<br />
+              {{/if ~}}
+              {{#if travel_details ~}}
+              <strong>Travel details: </strong> {{{travel_details}}}<br />
+              {{/if ~}}
+              {{#if minimum_age ~}}
+              <strong>Minimum age: </strong> {{{minimum_age}}}<br />
+              {{/if ~}}
+              {{#if maximum_age ~}}
+              {{#compare maximum_age "<=" 26}}
+              <strong>Maximum age: </strong> {{{maximum_age}}}<br />
+              {{/compare}}
+              {{/if ~}}
+            </p>
+          </div>
           {{/ifAny ~}}
 
           {{#ifAny travel_expenses expenses_paid taster_available taster_details support_options ~}}
@@ -181,11 +243,11 @@
         </div>
       </div>
 
-      <div class="panel" role="tabpanel" aria-hidden="true" id="location" data-tab-name="location">
+      <div class="panel hidden" role="tabpanel" aria-hidden="true" id="location" data-tab-name="location">
         <div class="panel-body location-info">
           {{#compare (length (arrayify geo_coords)) ">" 0 ~}}
           <div class="container-content container-map">
-            <div id="map-content-primary" data-component="LeafletMap" data-LeafletMap='{
+            <div id="map-content-primary" data-component="LeafletMap,TasksTrigger" data-LeafletMap='{
                 mapOptions: {
                   fullscreenControl: true,
                   scrollWheelZoom: false,
@@ -204,6 +266,15 @@
                     ]
                   }
                 ]
+              }' data-TasksTrigger='{
+                visibilityChange: {
+                  visible: [
+                    {
+                      type: "run",
+                      config: { code: "console.log(metadata)" }
+                    }
+                  ]
+                }
               }'>
               {{!--
               {{#each (arrayify geo_coords) ~}}
