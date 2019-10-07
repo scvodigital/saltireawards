@@ -247,7 +247,7 @@
         <div class="panel-body location-info">
           {{#compare (length (arrayify geo_coords)) ">" 0 ~}}
           <div class="container-content container-map">
-            <div id="map-content-primary" data-component="LeafletMap,TasksTrigger" data-LeafletMap='{
+            <div id="map-content-primary" style="height: 60vh; width: 100%;" data-component="LeafletMap,TasksTrigger" data-LeafletMap='{
                 mapOptions: {
                   fullscreenControl: true,
                   scrollWheelZoom: false,
@@ -271,7 +271,9 @@
                   visible: [
                     {
                       type: "run",
-                      config: { code: "console.log(metadata)" }
+                      config: {
+                        code: { __template: `ComponentManager.componentRegistry["\{{jquery rootElement "data" (split "LeafletMapUid")}}"].map.invalidateSize()` }
+                      }
                     }
                   ]
                 }
