@@ -2,8 +2,8 @@
 {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
 {{#each contacts ~}}
 {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
-  <div class="columns col-gapless">
-    <div class="{{#ifAll logo website}}col-9{{else}}col{{/ifAll}}">
+  <div class="columns">
+    <div class="column {{#ifAll logo website}}col-9{{else}}col-12{{/ifAll}}">
       <p>
         Your {{#compare @root.data.accountInfo.user_type "Group Admin"}}{{#if area}}{{area}}{{else}}{{../local_authority}}{{/if}} TSI{{else}}Saltire{{/compare}} contact is
         <strong>{{title}}</strong>.<br />
@@ -19,7 +19,7 @@
       </p>
     </div>
     {{#ifAll logo website ~}}
-    <div class="col-3">
+    <div class="column col-3">
       <p class="r-margin-full">
         <a href="{{fixUrl website}}" target="_blank"><img src="{{logo}}" class="img-responsive" alt="{{title}}" /></a>
       </p>

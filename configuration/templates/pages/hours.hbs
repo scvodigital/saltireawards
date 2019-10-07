@@ -216,5 +216,72 @@ function preSubmit() {
   if (isValid) {
     onSubmit();
   }
+<<<<<<< HEAD
+</script>
+
+<script type="javascript/blocked" data-component-config="submit-group-hours">
+  {
+    submit: {
+      preventDefault: true,
+      tasks: [
+       {
+          type: "elementManipulator",
+          config: { ">": { addClass: "disabled" } }
+          },
+          {
+          name: "submitTaskRequest",
+          type: "request",
+          config: { url: "/submit-group-hours" }
+          },
+          {
+            __doNotCompile: true,
+            name: "errorHandle",
+            type: "switch",
+            config: {
+              which: { __template: "\{{#if errors.testRequest}}error\{{else}}\{{data.testRequest.errors.[0].taskName}}\{{/if}}"
+                },
+            branches: {
+              default: {
+                tasks: [
+                  {
+                    type: "run",
+                    config: { code: "window.location.href = '/hours'" }
+                  }
+                ]
+              },
+              error: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      ">": { removeClass: "disabled" },
+                      "#active-form-message": { styles: { display: "block" } },
+                      "#form-message": { contents: { __template: "\An error has occurred, PERFORM_DEFAULT_ACTION!" } }
+                    }
+                  }
+                ]
+              },
+              saveHoursData: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      ">": { removeClass: "disabled" },
+                      "#active-form-message": { styles: { display: "block" } },
+                      "#form-message": { contents: { __template: "Hours not saved, PERFORM_DEFAULT_ACTION!" } }
+                    }
+                  }
+                ]
+              }
+
+            }
+          }
+        }
+      ]
+    }
+  }
+</script>
+=======
 }
 </script>
+>>>>>>> 304b0662a1d86d09dbe75180eb802bf2a5927327
