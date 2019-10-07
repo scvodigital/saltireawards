@@ -5,25 +5,25 @@
     <input type="hidden" name="lng" value="{{@root.request.params.query.lng}}" id="location-lng" />
     <input type="hidden" name="sort" value="{{@root.request.params.query.sort}}" id="default-sort" />
     <div class="b-padding">
-      <div class="columns col-gapless">
-        <div class="col-2 filter-age">
+      <div class="columns">
+        <div class="column col-2 filter-age">
           <div class="form-group">
-            <label for="age" class="form-label">
+            {{!-- <label for="age" class="form-label">
               Age
-            </label>
+            </label> --}}
             <select class="form-select" id="age" name="age">
               {{#each (split "12,13,14,15,16,17,18" ",")}}
-                <option value="{{this}}" {{#compare (default @root.request.params.query.age "18") "===" this}}selected{{/compare}}>{{this}}{{#compare this "18"}}+{{/compare}}</option>
+                <option value="{{this}}" {{#compare (default @root.request.params.query.age "18") "===" this}}selected{{/compare}}>Available for age {{this}}+</option>
               {{/each}}
             </select>
           </div>
         </div>
-        <div class="col-3">
+        <div class="column col-3">
           <div class="form-group has-icon-left">
-            <label for="where-opportunities" class="form-label">
+            {{!-- <label for="where-opportunities" class="form-label">
               Location
-            </label>
-            <input type="text" id="where-opportunities" name="location" class="form-input" value="{{@root.request.params.query.location}}" placeholder="" data-lpignore="true" data-location-search='{
+            </label> --}}
+            <input type="text" id="where-opportunities" name="location" class="form-input" value="{{@root.request.params.query.location}}" placeholder="Location" data-lpignore="true" data-location-search='{
               "latSelector": "[name=\"lat\"]",
               "lngSelector": "[name=\"lng\"]",
               "laSelector": "[name=\"la\"]",
@@ -35,9 +35,9 @@
         </div>
         <div class="col-2 filter-distance">
           <div class="form-group">
-            <label for="distance" class="form-label">
+            {{!-- <label for="distance" class="form-label">
               Within
-            </label>
+            </label> --}}
             <select class="form-select" id="distance" name="distance">
               {{#each (split "5,10,15,20,25,30,35,40,45,50" ",")}}
                 <option value="{{this}}" {{#compare (default @root.request.params.query.distance "10") "===" this}}selected{{/compare}}>{{this}} miles</option>
@@ -45,12 +45,12 @@
             </select>
           </div>
         </div>
-        <div class="col-3">
+        <div class="column col-4">
           <div class="form-group">
-            <label for="what-opportunities" class="form-label">
+            {{!-- <label for="what-opportunities" class="form-label">
               Keywords
-            </label>
-            <input type="text" id="what-opportunities" name="keywords" class="form-input" value="{{@root.request.params.query.keywords}}" placeholder="" data-lpignore="true" data-typeahead='{
+            </label> --}}
+            <input type="text" id="what-opportunities" name="keywords" class="form-input" value="{{@root.request.params.query.keywords}}" placeholder="Keywords" data-lpignore="true" data-typeahead='{
               "typeaheadOptions": {
                 "highlight": true,
                 "minlength": 0
@@ -108,15 +108,15 @@
             }'>
           </div>
         </div>
-        <div class="col-2">
-          <button type="submit" id="search-opportunities" class="btn btn-primary t-margin">
+        <div class="column col-1">
+          <button type="submit" id="search-opportunities" class="btn btn-primary btn-lg">
             Search
             <!-- <span class="far fa-search" aria-hidden="true"></span> -->
           </button>
         </div>
       </div>
       <div class="columns col-gapless">
-        <div class="col-12">
+        <div class="column col-12">
           <div id="search-terms" class="chip-set"></div>
         </div>
       </div>

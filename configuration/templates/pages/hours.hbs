@@ -34,7 +34,7 @@
             <input type="hidden" name="task_id" value="{{task_id}}">
             <div class="form-horizontal">
               <div class="form-group">
-                <div class="col-4">
+                <div class="column col-4">
                   <label class="form-label" for="hours">
                     {{#compare hours ">" 0 ~}}
                       How many hours have you volunteered since last time?
@@ -43,10 +43,10 @@
                     {{/compare ~}}
                   </label>
                 </div>
-                <div class="col-1 r-margin-full">
+                <div class="column col-1">
                   <input class="form-input" id="hours" name="hours" type="number" step="any" min="0" value="" placeholder="">
                 </div>
-                <div class="col-2">
+                <div class="column col-2">
                   {{#unless (compare (dateMath 'now-26y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD"))}}
                     <button type="submit" class="btn btn-primary">Add hours</button>
                   {{/unless}}
@@ -59,8 +59,8 @@
     {{else}}
 
       {{#each @root.data.tasksInfo ~}}
-        <div class="columns col-gapless">
-          <div class="col-9">
+        <div class="columns">
+          <div class="column col-9">
             <h2>
               Volunteering with {{organisation_name}}
               <span class="pull-right" data-collapse-target="#{{this.task_id}}-details">
@@ -79,20 +79,20 @@
           <div class="form-horizontal">
             <input type="hidden" name="task_id" value="{{task_id}}">
             <div class="form-group">
-              <div class="col-4">
+              <div class="column col-4">
                 <label for="task_description" class="form-label">List of volunteer names, one per line</label>
               </div>
-              <div class="col-5">
+              <div class="column col-5">
                 <textarea rows="6" cols="40" id="volunteers" name="volunteers" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}} class="form-input" value="{{@root.data.taskInfo.task_description}}"></textarea>
               </div>
             </div>
             <div class="form-group">
-              <div class="col-4">
+              <div class="column col-4">
                 <label for="hours" class="form-label">
                   Certificate to award
                 </label>
               </div>
-              <div class="col-2">
+              <div class="column col-2">
                 <select class="form-select" required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
                   {{#each @root.context.metaData.certificates ~}}
                     <option value="{{hours}}">{{name}} hours</option>
@@ -101,8 +101,8 @@
               </div>
             </div>
             <div class="form-group">
-              <div class="col-4"></div>
-              <div class="col-1">
+              <div class="column col-4"></div>
+              <div class="column col-1">
                 <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full" id="group-hours-submit">
                   Submit details
                 </button>
@@ -111,21 +111,21 @@
           </div>
         </form>
         {{#compare (length hours_list) ">" 0 ~}}
-          <div class="columns col-gapless">
-            <div class="col-4">
+          <div class="columns">
+            <div class="column col-4">
               <strong>Volunteer name</strong>
             </div>
-            <div class="col-2">
+            <div class="column col-2">
               <strong>Certificate</strong>
             </div>
-            <div class="col-2">
+            <div class="column col-2">
               <strong>Claim code</strong>
             </div>
-            <div class="col-1"></div>
-            <div class="col-1">
+            <div class="column col-1"></div>
+            <div class="column col-1">
               <a href="/admin-pdf/{{task_id}}" class="btn btn-primary r-margin b-margin" download>Download all</a>
             </div>
-            <div class="col-1"></div>
+            <div class="column col-1"></div>
           </div>
           {{#each hours_list ~}}
             {{#ifAny claim_first_name claim_code ~}}
@@ -135,18 +135,18 @@
                 <input type="hidden" name="claim_code" value="{{claim_code}}">
                 <input type="hidden" name="hours_id" value="{{hours_id}}">
 
-                <div class="columns col-gapless">
-                  <div class="col-2">
+                <div class="columns">
+                  <div class="column col-2">
                     <div class="form-group r-margin b-margin">
                       <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="claim_first_name" value="{{claim_first_name}}">
                     </div>
                   </div>
-                  <div class="col-2">
+                  <div class="column col-2">
                     <div class="form-group r-margin b-margin">
                       <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="claim_last_name" value="{{claim_last_name}}">
                     </div>
                   </div>
-                  <div class="col-2">
+                  <div class="column col-2">
                     {{!-- <input {{#unless claim_code}}disabled{{/unless}} class="inline-edit" type="number" step="any" min="0" name="hours" value="{{hours}}"> --}}
                     <div class="form-group r-margin b-margin">
                       <select class="form-select" required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
@@ -156,18 +156,18 @@
                       </select>
                     </div>
                   </div>
-                  <div class="col-2">
+                  <div class="column col-2">
                     <code class="claim-code">{{substr claim_code 0 10}}</code>
                   </div>
-                  <div class="col-1">
+                  <div class="column col-1">
                     {{#if claim_code}}
                       <button type="submit" class="btn inline-update-button bg-dark" style="display:none;">Update</button>
                     {{/if}}
                   </div>
-                  <div class="col-2">
-                    <a href="admin-pdf/{{task_id}}/{{hours_id}}" class="btn" download>Download</a>
+                  <div class="column col-2">
+                    <a href="/admin-pdf/{{task_id}}/{{hours_id}}" class="btn" download>Download</a>
                   </div>
-                  <div class="col-1">
+                  <div class="column col-1">
                     {{#if claim_code}}
                       <button type="button" class="btn" data-ajax-button='{
             "url": "/admin-delete-hours?hours_id={{hours_id}}",
@@ -178,7 +178,7 @@
           }'>Remove</button>
                     {{/if}}
                   </div>
-                  <div class="col-1"></div>
+                  <div class="column col-1"></div>
                 </div>
               </form>
             {{/ifAny ~}}

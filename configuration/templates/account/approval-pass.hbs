@@ -1,6 +1,10 @@
-<div class="container-fluid b-padding-full v-margin-full">
-  <h2>{{#compare @root.data.accountInfo.user_type "Volunteer"}}Parent or guardian{{else}}Group Administrator{{/compare}}  account approval</h2>
-  <p>
+<div class="empty">
+  <div class="empty-icon">
+    <span class="fal fa-user-check fa-3x"></span>
+  </div>
+  <p class="empty-title h5">{{#compare @root.data.accountInfo.user_type "===" "Volunteer"}}Parent or guardian{{else}}Group administrator{{/compare}} account approval</p>
+  <p class="empty-subtitle">
     Approval successful. {{@root.data.accountInfo.first_name}} will now be able to use all the features of this site.
   </p>
+  <div class="empty-action"></div>
 </div>

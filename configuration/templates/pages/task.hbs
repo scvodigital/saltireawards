@@ -17,7 +17,7 @@
     </div>
     <div class="form-horizontal">
       <div class="form-group">
-        <div class="col-3">
+        <div class="column col-3">
           <label for="organisation_name" class="form-label">
             {{#if admin ~}}
             Organisation your group has volunteered with
@@ -26,27 +26,27 @@
             {{/if ~}}
           </label>
         </div>
-        <div class="col-5">
+        <div class="column col-5">
           <input id="organisation_name" name="organisation_name" class="form-input" placeholder="e.g. A Charity" value="{{@root.data.taskInfo.organisation_name}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.organisation_name}}>
         </div>
       </div>
       <div class="form-group">
-        <div class="col-3">
+        <div class="column col-3">
           <label for="location" class="form-label">
             Location
           </label>
         </div>
-        <div class="col-5">
+        <div class="column col-5">
           <input required id="location" name="location" class="form-input" placeholder="e.g. Edinburgh" value="{{@root.data.taskInfo.location}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.location}}>
         </div>
       </div>
       <div class="form-group">
-        <div class="col-3">
+        <div class="column col-3">
           <label for="organisation_charity_number" class="form-label r-margin">
             Scottish charity number (optional)
           </label>
         </div>
-        <div class="col-2">
+        <div class="column col-2">
           <div class="input-group">
             {{!-- <span class="input-group-addon">SC</span> --}}
             <input autocomplete="off" id="organisation_charity_number" placeholder="e.g. SC003558" name="organisation_charity_number" class="form-input" value="{{@root.data.taskInfo.organisation_charity_number}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.organisation_charity_number}}>
@@ -54,10 +54,10 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="col-3">
+        <div class="column col-3">
           <label for="task_description" class="form-label">Volunteering description (optional)</label>
         </div>
-        <div class="col-5">
+        <div class="column col-5">
           <textarea rows="4" cols="40" id="task_description" name="task_description" class="form-input" value="{{@root.data.taskInfo.task_description}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}></textarea>
         </div>
       </div>
@@ -70,7 +70,7 @@
 
     <div class="form-horizontal">
       <div class="form-group">
-        <div class="col-3">
+        <div class="column col-3">
           <label for="volunteer_manager_first_name" class="form-label">
             Volunteer manager
           </label>
@@ -78,7 +78,7 @@
         <div class="col-5">
           <div class="form-horizontal">
             <div class="form-group">
-              <div class="col-6">
+              <div class="column col-6">
                 <input required id="volunteer_manager_first_name" name="volunteer_manager_first_name" placeholder="First name"
                   {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_first_name}} class="form-input"
                   {{#if admin ~}}
@@ -88,7 +88,7 @@
                   {{/if ~}}
                 >
               </div>
-              <div class="col-6">
+              <div class="column col-6">
                 <input required id="volunteer_manager_last_name" name="volunteer_manager_last_name" placeholder="Last name"
                   {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_last_name}} class="form-input"
                   {{#if admin ~}}
@@ -103,12 +103,12 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="col-3">
+        <div class="column col-3">
           <label for="volunteer_manager_title" class="form-label">
             Job title
           </label>
         </div>
-        <div class="col-5">
+        <div class="column col-5">
           <input required id="volunteer_manager_title" name="volunteer_manager_title" placeholder="e.g. Volunteer manager"
             {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_title}} class="form-input"
             {{#if admin ~}}
@@ -120,12 +120,12 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="col-3">
+        <div class="column col-3">
           <label for="volunteer_manager_email" class="form-label">
             Email address
           </label>
         </div>
-        <div class="col-5">
+        <div class="column col-5">
           <input id="volunteer_manager_email" name="volunteer_manager_email" placeholder="e.g. name@charity.org"
             {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_email}} class="form-input"
             {{#if admin ~}}
@@ -136,12 +136,12 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="col-3">
+        <div class="column col-3">
           <label for="volunteer_manager_phone" class="form-label">
             Phone number (optional)
           </label>
         </div>
-        <div class="col-5">
+        <div class="column col-5">
           <input id="volunteer_manager_phone" name="volunteer_manager_phone" placeholder="e.g. 01310001234"
             {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_phone}} class="form-input"
             {{#if admin ~}}
@@ -153,12 +153,12 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="col-3">
+        <div class="column col-3">
           <label for="sdg" class="form-label r-margin">
             Which UN Sustainable Development Goal does this task match? (optional)
           </label>
         </div>
-        <div class="col-5">
+        <div class="column col-5">
           <select class="form-select" id="sdg" name="sdg">
             <option value="" selected></option>
             {{#each @root.context.metaData.globalGoals ~}}
@@ -170,8 +170,8 @@
     </div>
     <div class="form-horizontal">
       <div class="form-group">
-        <div class="col-3"></div>
-        <div class="col-5">
+        <div class="column col-3"></div>
+        <div class="column col-5">
           {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
           <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full" id="register-interest-submit" >
             Submit details
@@ -203,7 +203,7 @@
 
 </script>
 
-<script type="javascript/blocked" data-component-config="add-task">
+<script type="javascript/blocked" data-component-config="submit-task">
   {
     submit: {
       preventDefault: true,
@@ -213,7 +213,7 @@
           config: { ">": { addClass: "disabled" } }
           },
           {
-          name: "testRequest",
+          name: "submitTaskRequest",
           type: "request",
           config: { url: "/submit-task" }
           },

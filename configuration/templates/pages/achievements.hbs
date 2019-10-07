@@ -8,7 +8,7 @@
   {{else}}
   <div class="columns achievements">
     {{#each @root.context.metaData.certificates ~}}
-      <div class="col-4">
+      <div class="column col-4">
       {{!-- It's already awarded --}}
       {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
         <img src="{{~>asset_url url=(concat 'images/badges/' hours '.png') ~}}" class="img-responsive" />
