@@ -75,7 +75,7 @@
           <strong>Description:</strong> {{task_description}}
         {{/if ~}}
 
-        <form action="/admin-submit-group-hours" method="POST">
+        <form action="/admin-submit-group-hours" method="POST" data-component="TasksTrigger" data-TasksTrigger="submit-group-hours">
           <div class="form-horizontal">
             <input type="hidden" name="task_id" value="{{task_id}}">
             <div class="form-group">
@@ -218,6 +218,69 @@
     var isValid = form.checkValidity();
     if (isValid) {
       onSubmit();
+    }
+  }
+</script>
+
+<script type="javascript/blocked" data-component-config="submit-group-hours">
+  {
+    submit: {
+      preventDefault: true,
+      tasks: [
+       {
+          type: "elementManipulator",
+          config: { ">": { addClass: "disabled" } }
+          },
+          {
+          name: "submitTaskRequest",
+          type: "request",
+          config: { url: "/submit-group-hours" }
+          },
+          {
+            __doNotCompile: true,
+            name: "errorHandle",
+            type: "switch",
+            config: {
+              which: { __template: "\{{#if errors.testRequest}}error\{{else}}\{{data.testRequest.errors.[0].taskName}}\{{/if}}"
+                },
+            branches: {
+              default: {
+                tasks: [
+                  {
+                    type: "run",
+                    config: { code: "window.location.href = '/hours'" }
+                  }
+                ]
+              },
+              error: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      ">": { removeClass: "disabled" },
+                      "#active-form-message": { styles: { display: "block" } },
+                      "#form-message": { contents: { __template: "\An error has occurred, PERFORM_DEFAULT_ACTION!" } }
+                    }
+                  }
+                ]
+              },
+              saveHoursData: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      ">": { removeClass: "disabled" },
+                      "#active-form-message": { styles: { display: "block" } },
+                      "#form-message": { contents: { __template: "Hours not saved, PERFORM_DEFAULT_ACTION!" } }
+                    }
+                  }
+                ]
+              }
+
+            }
+          }
+        }
+      ]
     }
   }
 </script>
