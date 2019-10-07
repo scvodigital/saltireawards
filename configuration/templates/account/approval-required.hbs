@@ -1,13 +1,16 @@
-<div class="container-fluid b-padding-full v-margin-full">
-  <h2>
+<div class="empty">
+  <div class="empty-icon">
+    <span class="fal fa-user-check fa-3x"></span>
+  </div>
+  <p class="empty-title h5">
     {{#compare @root.data.accountInfo.user_type "Volunteer" ~}}
     Parent or guardian
     {{else}}
     Group administrator
     {{/compare ~}}
     approval
-  </h2>
-  <p>
+  </p>
+  <p class="empty-subtitle">
     {{#compare @root.data.accountInfo.user_type "Volunteer" ~}}
     Please ask your parent or guardian to open the link in the email sent to them from the Saltire Awards.
     {{else}}
@@ -23,31 +26,33 @@
     {{/if ~}}
     {{/compare ~}}
   </p>
-  <a href="approval-email-send" class="btn btn-primary">Resend email</a>
-  {{#compare @root.data.accountInfo.user_type "===" "Volunteer" ~}}
-  <button onclick="revealForm()" class="btn btn-primary">Change email address</button>
-  {{/compare ~}}
-  <form id="user-details-form" style="display:none;" method="POST" action="submit-sign-up-details">
-    Please enter the new email address below
-    <input type="hidden" name="signup" value="true">
-    {{#each (getKeys @root.data.accountInfo) ~}}
-      {{#compare this "===" "verification_email" ~}}
-      {{else}}
-      <input type="hidden" name="{{this}}" value="{{getProperty @root.data.accountInfo this}}">
+  <div class="empty-action">
+    <a href="approval-email-send" class="btn btn-primary">Resend email</a>
+    {{#compare @root.data.accountInfo.user_type "===" "Volunteer" ~}}
+    <button onclick="revealForm()" class="btn btn-primary">Change email address</button>
     {{/compare ~}}
-    {{/each ~}}
-    <div id="approval" class="columns col-gapless">
-      <div class="col-6">
-        <div class="form-group">
-          <label for="verification_email" class="form-label">
-            Your parent or guardian's email address
-          </label>
-          <input type="email" id="verification_email" name="verification_email" class="form-input" value="{{@root.data.accountInfo.verification_email}}" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.verification_email}}>
+    <form id="user-details-form" style="display:none;" method="POST" action="submit-sign-up-details">
+      Please enter the new email address below
+      <input type="hidden" name="signup" value="true">
+      {{#each (getKeys @root.data.accountInfo) ~}}
+        {{#compare this "===" "verification_email" ~}}
+        {{else}}
+        <input type="hidden" name="{{this}}" value="{{getProperty @root.data.accountInfo this}}">
+      {{/compare ~}}
+      {{/each ~}}
+      <div id="approval" class="columns">
+        <div class="column col-6">
+          <div class="form-group">
+            <label for="verification_email" class="form-label">
+              Your parent or guardian's email address
+            </label>
+            <input type="email" id="verification_email" name="verification_email" class="form-input" value="{{@root.data.accountInfo.verification_email}}" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.verification_email}}>
+          </div>
         </div>
       </div>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
 </div>
 
 <script>

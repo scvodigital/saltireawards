@@ -3,16 +3,16 @@
 
   <h2>My details</h2>
 
-  <div class="columns col-gapless">
-    <div class="col-9">
+  <div class="columns">
+    <div class="column col-9">
 
       <form id="user-details-form" action="/update-account-details" method="POST">
         {{> account_details_form_fields admin=(compare @root.data.accountInfo.user_type 'Group Admin')}}
 
         {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
-        <div class="columns col-gapless">
-          <div class="col-3"></div>
-          <div class="col-2">
+        <div class="columns">
+          <div class="column col-3"></div>
+          <div class="column col-2">
             <button id="detail-submit" class="btn btn-primary b-margin-full">
               Save details
             </button>
@@ -24,8 +24,8 @@
 
       <h2>My settings</h2>
 
-      <div class="columns col-gapless">
-        <div class="col-4" id="change-password">
+      <div class="columns">
+        <div class="column col-4" id="change-password">
           {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "password") ~}}
             <h3>Change password</h3>
           {{else}}
@@ -63,7 +63,7 @@
           </button>
         </div>
 
-        <div class="col-4" id="link-unlink">
+        <div class="column col-4" id="link-unlink">
           {{#ifAny (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com") ~}}
           <h3>Linked accounts</h3>
 
@@ -129,7 +129,7 @@
           {{/unless ~}}
         </div>
 
-        <div class="col-4">
+        <div class="column col-4">
           <h3>Account data</h3>
 
           <div id="delete-account-alert" class="alert hidden bg-error s-rounded x-padding v-margin">

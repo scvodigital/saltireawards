@@ -19,18 +19,14 @@
             <strong>Volunteering </strong> with <strong>{{organisation_name}}</strong>: {{#if task_description}}Tasks: {{task_description}}{{/if}}, Manager: {{volunteer_manager_first_name}} {{volunteer_manager_last_name}} - {{volunteer_manager_title}}
             <ul>
               <li>
-                  <div class="columns col-gapless">
-                    <div class="col-4">
+                  <div class="columns">
+                    <div class="column col-5">
                       <strong>Hours</strong>
                     </div>
-                    <div class="col-2">
-                    </div>
-                    <div class="col-2">
-                    </div>
-                    <div class="col-1"></div>
-                    <div class="col-1">
-                    </div>
-                    <div class="col-1"></div>
+                    <div class="column col-1"></div>
+                    <div class="column col-2"></div>
+                    <div class="column col-2"></div>
+                    <div class="column col-2"></div>
                   </div>
                 {{#each this.hours_list}}
                   {{#unless verified}}
@@ -40,25 +36,22 @@
                       <input type="hidden" name="claim_code" value="{{claim_code}}">
                       <input type="hidden" name="hours_id" value="{{hours_id}}">
 
-                      <div class="columns col-gapless">
-                        <div class="col-5">
+                      <div class="columns">
+                        <div class="column col-5">
                           <div class="form-group r-margin b-margin">
                             <input class="form-input inline-edit" name="hours" value="{{hours}}">
                           </div>
                         </div>
-                        <div class="col-1">
+                        <div class="column col-1">
                           <button type="submit" class="btn inline-update-button bg-dark">Verify</button>
                         </div>
-                        <div class="col-2">
+                        <div class="column col-2">
                           <a href="/admin-delete-hours?hours_id={{hours_id}}&c={{@root.request.params.query.c}}&u={{@root.request.params.query.u}}" class="btn inline-delete-button">Remove</a>
                         </div>
-                        <div class="col-2">
+                        <div class="column col-2">
                           <code class="claim-code">{{substr claim_code 0 10}}</code>
                         </div>
-                        <div class="col-1">
-                        </div>
-                        <div class="col-2">
-                        </div>
+                        <div class="column col-2"></div>
                       </div>
                     </form>
                   {{/unless}}

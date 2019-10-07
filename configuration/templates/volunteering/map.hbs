@@ -2,7 +2,7 @@
   {{> volunteering_search_form}}
   <div class="head">
     <div class="columns col-gapless">
-      <div class="col-4 action">
+      <div class="column col-4 action">
         <ul class="tab tab-block">
           <li class="tab-item{{#compare @root.request.url.pathname '/search'}} active{{/compare}}">
             <a href="{{concat '/search' (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) '') '' else='?') (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)}}">
