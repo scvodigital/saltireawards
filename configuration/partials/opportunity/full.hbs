@@ -1,8 +1,8 @@
 <div class="full">
   {{> opportunity_key_info type="full"}}
   <div class="content-primary-info-container tabs">
-    <div class="columns col-gapless">
-      <div class="col-8 action">
+    <div class="columns">
+      <div class="column col-8 action">
         <ul class="tab tab-block">
           <li class="tab-item active">
             <a href="#information" data-component="TasksTrigger" data-TasksTrigger="tab">
@@ -24,16 +24,7 @@
     <div class="panels" for="opportunity-tab-bar">
       <div class="panel" role="tabpanel" aria-hidden="false" id="information" data-tab-name="information">
         {{#ifAny activities.length themes.length end_date (compare start_date ">" (moment)) ~}}
-        <div class="panel-body key-info-extra" data-component="TasksTrigger" data-TasksTrigger='{
-            viewportProximityChange: {
-              rules: [
-                {
-                  verb: "enter",
-                  tasks: []
-                }
-              ]
-            }
-          }'>
+        <div class="panel-body key-info-extra">
           <ul class="fa-ul">
             {{#compare (length activities) ">" 0 ~}}
             <li class="">
@@ -88,10 +79,22 @@
           </ul>
           {{/if ~}}
           {{#if organisation_aims_and_objectives ~}}
-          <h4>Organisation aims and objectives</h4>
-          <p>
-            {{{organisation_aims_and_objectives}}}
-          </p>
+          <div data-component="TasksTrigger" data-TasksTrigger='{
+            viewportProximityChange: {
+              rules: [
+                {
+                  verb: "enter",
+                  edge: "top",
+                  tasks: []
+                }
+              ]
+            }
+          }'>
+            <h4>Organisation aims and objectives</h4>
+            <p>
+              {{{organisation_aims_and_objectives}}}
+            </p>
+          </div>
           {{/if ~}}
           {{#if availability_slugs.length ~}}
           <h4>Availability</h4>
