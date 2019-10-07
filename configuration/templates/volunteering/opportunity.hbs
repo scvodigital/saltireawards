@@ -13,9 +13,9 @@
       Similar opportunities
     </h3>
     <div class="equal-height">
-      <div class="columns col-gapless">
+      <div class="columns">
         {{#each @root.data.opportunitySupplimentary.related.hits.hits ~}}
-        <div class="col-6">
+        <div class="column col-6">
           {{> opportunity_list _source hitContext="related-opportunity" parentDocument=_source.Id viewContext="Related"}}
         </div>
         {{/each ~}}

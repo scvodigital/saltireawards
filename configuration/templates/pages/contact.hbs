@@ -2,8 +2,8 @@
   <h1>
     Contact us
   </h1>
-  <div class="columns col-gapless">
-    <div class="col-6">
+  <div class="columns">
+    <div class="column col-6">
       <h2>
         Local enquiries
       </h2>
@@ -18,7 +18,7 @@
         {{/if ~}}
       </p>
     </div>
-    <div class="col-6">
+    <div class="column col-6">
       <h2>
         National enquiries
       </h2>
@@ -28,11 +28,11 @@
     </div>
   </div>
   {{#unless @root.data.accountInfo.postcode ~}}
-  <div class="columns col-gapless">
+  <div class="columns">
     {{#each @root.context.metaData.tsiList ~}}
     {{#each contacts ~}}
     {{#compare @key "all" ~}}
-    <div class="col-4">
+    <div class="column col-4">
       <div class="card">
         <div class="card-header">
           {{#ifAny area ../local_authority ~}}

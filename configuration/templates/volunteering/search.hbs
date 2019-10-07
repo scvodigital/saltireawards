@@ -2,7 +2,7 @@
   {{> volunteering_search_form}}
   <div class="head">
     <div class="columns col-gapless">
-      <div class="col-4 action">
+      <div class="column col-4 action">
         <ul class="tab tab-block">
           <li class="tab-item{{#compare @root.request.url.pathname '/search'}} active{{/compare}}">
             <a href="{{concat '/search' (if (compare (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null exclude=null) '') '' else='?') (querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null)}}">
@@ -21,11 +21,11 @@
     </div>
   </div>
   <div class="grid-content">
-    <div class="columns col-gapless">
-      <div class="col-9">
+    <div class="columns">
+      <div class="column col-9">
         {{> search_info paging=@root.data.search_data.detailed_results.pagination}}
       </div>
-      <div class="col-3 action">
+      <div class="column col-3 action">
         {{#compare @root.data.search_data.detailed_results.hits.total ">" 0 ~}}
           <form action="{{{@root.request.url.path}}}" method="GET" class="form-horizontal">
             {{!-- {{#each (split "volunteersearch_types,activities,themes,services,age_groups" ",")}}
@@ -46,12 +46,12 @@
             {{/if}}
 
             <div class="form-group">
-              <div class="col-6">
+              <div class="column col-6">
                 <label class="form-label pull-right r-margin" for="sort">
                   Sort by
                 </label>
               </div>
-              <div class="col-6">
+              <div class="column col-6">
                 <select class="form-select" id="sort" name="sort" onchange="this.form.submit();">
                   <option value="relevance" {{#unless @root.request.params.query.sort}} selected {{/unless}}>Relevance</option>
                   {{#if @root.request.params.query.location}}<option value="distance"{{#compare @root.request.params.query.sort "===" "distance"}} selected{{/compare}}{{#compare @root.request.params.query.exclude "===" "locations"}} disabled{{else}}{{#compare @root.request.params.query.location "===" ""}} disabled{{/compare}}{{/compare}}>Distance</option>{{/if}}
