@@ -105,9 +105,9 @@ header {
   align-items: center;
   height: 100px;
   box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 5px 8px 0px rgba(0,0,0,0.14), 0px 1px 14px 0px rgba(0,0,0,0.12);
-  .navbar-brand {
-    margin-left: $unit/2;
-  }
+  // .navbar-brand {
+  //   margin-left: $unit/2;
+  // }
   .dropdown-toggle,
   .dropdown .btn.btn-link,
   .dropdown .btn:focus,
@@ -167,9 +167,9 @@ header {
     color: $primary-color !important;
     margin-left: $unit/3;
   }
-  .btn.btn-link:last-child {
-    margin-right: $unit/2;
-  }
+  // .btn.btn-link:last-child {
+  //   margin-right: $unit/2;
+  // }
 }
 
 .sidebar {
@@ -420,6 +420,11 @@ ul.fa-ul {
     height: 100%;
   }
 }
+.contact.equal-height {
+  .card-body {
+    padding: 0;
+  }
+}
 
 .form.disabled,
 form.disabled {
@@ -480,6 +485,7 @@ footer {
       margin: 0;
       li {
         list-style-type: none;
+        margin-top: 0;
       }
     }
     ul.fa-ul {

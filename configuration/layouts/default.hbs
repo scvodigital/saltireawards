@@ -82,7 +82,7 @@
       {{/if}}
     {{/ifAny}}
 
-      <header class="navbar bg-primary">
+      <header class="navbar container bg-primary">
         <section class="navbar-section">
           <a class="navbar-brand" href="/"><img src="{{~>asset_url url='images/logos/logo.png'~}}" alt="Saltire Awards" /></a>
         </section>
@@ -172,7 +172,7 @@
             <div class="columns">
               <div class="column col-3 info">
                 <h4>Help</h4>
-                <p class="b-margin r-margin">
+                <p class="b-margin">
                   {{#if @root.data.accountInfo.local_authority ~}}
                     {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
                       {{#each contacts ~}}
@@ -262,7 +262,7 @@
               </div>
               <div class="column col-6 about">
                 <h4>About</h4>
-                <p>
+                <p class="b-margin">
                   The Saltire Awards is run by the <a href="https://scvo.org">Scottish Council for Voluntary Organisations</a> and supported by the <a href="https://www.gov.scot/policies/third-sector">Scottish Government</a> and Scotland's <a href="https://www.gov.scot/policies/third-sector/third-sector-interfaces">Third Sector Interfaces</a>.
                 </p>
                 <ul>
