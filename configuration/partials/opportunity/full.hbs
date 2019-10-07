@@ -24,7 +24,16 @@
     <div class="panels" for="opportunity-tab-bar">
       <div class="panel panel--active" role="tabpanel" aria-hidden="false" id="information" data-tab-name="information">
         {{#ifAny activities.length themes.length end_date (compare start_date ">" (moment)) ~}}
-        <div class="key-info-extra">
+        <div class="key-info-extra" data-component="TasksTrigger" data-TasksTrigger='{
+            viewportProximityChange: {
+              rules: [
+                {
+                  verb: "enter",
+                  tasks: []
+                }
+              ]
+            }
+          }'>
           <ul class="fa-ul">
             {{#compare (length activities) ">" 0 ~}}
             <li class="">
@@ -174,7 +183,27 @@
         <div class="location-info">
           {{#compare (length (arrayify geo_coords)) ">" 0 ~}}
           <div class="container-content container-map">
-            <div id="map-content-primary" data-map-name="opportunityMap" data-map-clustered-options='{}'>
+            <div id="map-content-primary" data-component="LeafletMap" data-LeafletMap='{
+                mapOptions: {
+                  fullscreenControl: true,
+                  scrollWheelZoom: false,
+                  trackResize: false,
+                  zoom: 11
+                },
+                initialLatLng: { lat: 55.94528820000001, lng: -3.200755699999945 },
+                featureGroups: [
+                  {
+                    features: [
+                      {
+                        type: "Marker",
+                        popupContent: "I am a marker!",
+                        latLng: { lat: 55.94528820000001, lng: -3.200755699999945 }
+                      }
+                    ]
+                  }
+                ]
+              }'>
+              {{!--
               {{#each (arrayify geo_coords) ~}}
               <marker style="display:none;" data-map="opportunityMap" data-lat="{{lat}}" data-lng="{{lon}}" data-title="{{../organisation_name}} - {{../title}}">
                 <h4>{{../organisation_name}}</h4>
@@ -186,6 +215,7 @@
                 <p class="caption">{{../title}}</p>
               </marker>
               {{/each ~}}
+              --}}
             </div>
           </div>
           {{#compare advertised_areas.length ">" 0 ~}}
