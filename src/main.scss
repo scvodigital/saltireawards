@@ -819,6 +819,9 @@ footer {
 .x-margin-full {
   margin: $unit !important;
 }
+.no-margin {
+  margin: 0 !important;
+}
 .border {
   border-style: solid;
   border-width: 1px;
