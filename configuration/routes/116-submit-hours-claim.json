@@ -16,7 +16,7 @@
         "connection": "scvoAlexSandbox",
         "output": "data",
         "method": "POST",
-        "body": ">context.metaData.handlebars.templates.tasks_hours-claim-body",
+        "body": ">context.metaData.handlebars.templates.task_hours-claim-body",
         "apexClassPath": "/SaltireHoursClaim/"
       }
     },

@@ -19,9 +19,9 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.pages_home-not-authenticated",
-              "foot": ">context.metaData.handlebars.templates.pages_foot"
+              "head": ">context.metaData.handlebars.templates.page_head-tags",
+              "body": ">context.metaData.handlebars.templates.page_home-not-authenticated",
+              "foot": ">context.metaData.handlebars.templates.page_foot"
             },
             "contentType": "text/html"
           }

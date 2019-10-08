@@ -1,5 +1,5 @@
 {{#compare paging.totalPages ">" 1 ~}}
-<ul class="pagination">
+<ul class="pagination b-margin-full">
   {{#if firstLastNavigation ~}}
   <li class="page-item {{#if paging.prevPage}}{{else}}disabled{{/if}}">
     <a class="pagination-arrow" href="{{@root.request.params.uri.pathname}}?{{{querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null page=1 json=false}}}">
@@ -13,7 +13,7 @@
     </a>
   </li>
   {{#each paging.pageRange ~}}
-  <li class="page-item {{#compare ../paging.currentPage "===" this.pageNumber}}active {{/compare}}pagination-distance-{{this.distance}}">
+  <li class="page-item {{#compare ../paging.currentPage this.pageNumber}}active {{/compare}}pagination-distance-{{this.distance}}">
     <a class="pagination-page" href="{{@root.request.params.uri.pathname}}?{{{querystringify @root.request.params.query utm_source=null utm_campaign=null utm_medium=null page=this.pageNumber json=false}}}">
       {{this.pageNumber}}
     </a>

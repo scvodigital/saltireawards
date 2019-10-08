@@ -133,6 +133,9 @@ header {
       color: $primary-color !important;
     }
   }
+  .dropdown-toggle {
+    padding-right: 0;
+  }
   // .pure-menu-link {
   //   padding: $unit/2 0;
   //   margin: 0 $unit/3;

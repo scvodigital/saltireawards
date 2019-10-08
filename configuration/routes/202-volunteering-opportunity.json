@@ -55,7 +55,7 @@
             "name": "not_found",
             "index": "{$../data/elasticsearch-index.txt}",
             "type": "milo-volunteering-opportunity",
-            "template": ">context.metaData.handlebars.queries.pages_not-found"
+            "template": ">context.metaData.handlebars.queries.page_not-found"
           }
         ]
       },

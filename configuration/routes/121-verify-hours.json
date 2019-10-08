@@ -20,7 +20,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "data",
-        "template": ">context.metaData.handlebars.templates.tasks_hours-code-verify"
+        "template": ">context.metaData.handlebars.templates.task_hours-code-verify"
       }
     },
     {
@@ -49,7 +49,7 @@
         "connection": "scvoAlexSandbox",
         "output": "data",
         "method": "POST",
-        "body": ">context.metaData.handlebars.templates.tasks_apex-verify-hours-body",
+        "body": ">context.metaData.handlebars.templates.task_apex-verify-hours-body",
         "apexClassPath": "/SaltireHoursVerify/"
       }
     },
@@ -68,8 +68,8 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.pages_verify-hours-pass",
+              "head": ">context.metaData.handlebars.templates.page_head-tags",
+              "body": ">context.metaData.handlebars.templates.account_verify-hours-pass",
               "foot": ""
             },
             "contentType": "text/html"

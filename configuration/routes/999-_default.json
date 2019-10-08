@@ -16,7 +16,7 @@
         "queryTemplates": {
           "index": "{$../data/elasticsearch-index.txt}",
           "type": "saltireawards-page",
-          "template": ">context.metaData.handlebars.queries.pages_page"
+          "template": ">context.metaData.handlebars.queries.page_page"
         }
       },
       "renderer": "handlebars"
@@ -36,8 +36,8 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.pages_page"
+              "head": ">context.metaData.handlebars.templates.page_head-tags",
+              "body": ">context.metaData.handlebars.templates.page_page"
             },
             "contentType": "text/html"
           }

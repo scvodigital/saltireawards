@@ -36,7 +36,7 @@
       "config": {
         "output": "data",
         "parseJson": true,
-        "template": ">context.metaData.handlebars.templates.account_welcome-email"
+        "template": ">context.metaData.handlebars.templates.account_auth_welcome-email"
       }
     },
     {
