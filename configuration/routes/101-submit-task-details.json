@@ -2,7 +2,7 @@
   "name": "submit-task-details",
   "pattern": "/submit-task-details",
   "debug": true,
-  "acceptedVerbs": "POST",
+  "acceptedVerbs": "GET, POST",
   "defaultParams": {
     "context": "results"
   },
@@ -20,7 +20,7 @@
         "output": "data",
         "method": "POST",
         "body": ">context.metaData.handlebars.templates.task_task-body",
-        "apexClassPath": "/SaltireTask/?user_id={{@root.data.auth.uid}}"
+        "apexClassPath": "/SaltireTosikTask/?user_id={{@root.data.auth.uid}}"
       }
     },
     {
@@ -29,7 +29,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "body",
-        "template": "{\"id\": {{{stringify @root.data.saveTaskData}}} }",
+        "template": "{\"id\": \"{{{@root.data.saveTaskData}}}\" {{#if @root.errors}}, \"errors\": {{{safeStringify @root.errors}}}{{/if}} }",
         "parseJson": true
       }
     }

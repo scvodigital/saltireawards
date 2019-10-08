@@ -216,7 +216,7 @@
           name: "submitTaskRequest",
           type: "request",
           config: {
-            url: "/submit",
+            url: "/submit-task-details",
             method: "POST",
             dataType: "html",
             data: {
@@ -230,13 +230,17 @@
           type: "switch",
           __doNotCompile: true,
           config: {
-            which: { __template: "\{{#if errors.testRequest}}error\{{else}}\{{data.testRequest.errors.[0].taskName}}\{{/if}}" },
+            which: { __template: "\{{#if errors.submitTaskRequest}}error\{{else}}\{{data.submitTaskRequest.errors.[0].taskName}}\{{/if}}" },
             branches: {
               default: {
                 tasks: [
                   {
-                    type: "run",
-                    config: { code: "window.location.href = '/hours'" }
+                    type: "elementManipulator",
+                    config: {
+                      ">": { removeClass: "disabled" },
+                      "#active-form-message": { styles: { display: "block" } },
+                      "#form-message": { contents: { __template: "\{{json value=data.submitTaskRequest.errors}}" } }
+                    }
                   }
                 ]
               },

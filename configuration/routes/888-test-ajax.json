@@ -1,0 +1,19 @@
+{
+  "name": "test-ajax",
+  "pattern": "/test-ajax",
+  "acceptedVerbs": "POST,GET",
+  "debug": true,
+  "tasks": [
+    "context.metaData.commonTasks.authNotRequired",
+    {
+      "name": "destination",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "body",
+        "template": "{\"id\": \"hey there\", FAIL {{#if @root.errors}}\"errors\": {{{safeStringify @root.errors}}}{{/if}} }",
+        "parseJson": false
+      }
+    }
+  ]
+}
