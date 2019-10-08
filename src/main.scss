@@ -181,7 +181,7 @@ header {
     box-shadow: none;
     .menu-item a {
       border-radius: 0 $unit*2 $unit*2 0;
-      margin-right: $unit/2;
+      margin-right: 0;
     }
   }
 }
@@ -412,6 +412,14 @@ ul.fa-ul {
   overflow: hidden;
   &:before {
     background: linear-gradient(rgba(236, 242, 233, 0), rgba(236, 242, 233, 1));
+  }
+}
+
+.search-form {
+  .input-group {
+    .form-select {
+      flex: 0 0 auto
+    }
   }
 }
 

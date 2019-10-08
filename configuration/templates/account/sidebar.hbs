@@ -1,6 +1,6 @@
 {{#if @root.data.auth ~}}
-<div class="b-margin-full b-padding-full">
-  <h4 class="h-padding t-margin">
+<div class="b-margin-full b-padding-full v-padding">
+  <h4 class="h-padding-full t-margin">
     {{#compare @root.data.accountInfo.user_type "Group Admin" ~}}
     Group administrator
     {{else}}
@@ -18,7 +18,7 @@
     {{#compare label "!==" "Sign out" ~}}
     {{#if (contains user-types @root.data.accountInfo.user_type) ~}}
     <li class="menu-item">
-      <a href="{{stripTrailingSlash path}}" class="{{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}{{#if @root.data.accountInfo.verification_needed}} disabled{{/if}}">
+      <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}{{#if @root.data.accountInfo.verification_needed}} disabled{{/if}}">
         {{#if icon ~}}
         <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
         {{/if ~}}
