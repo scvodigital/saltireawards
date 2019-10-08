@@ -6,7 +6,7 @@
         "width": "*",
         "text": [
           {
-            "text": {{>pdf_metadata_value key="title" default="Funding Scotland"}},
+            "text": {{>pdf_metadata_value key="title" default=@root.context.metaData.title}},
             "fontSize": 20,
             "bold": true
           },

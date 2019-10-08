@@ -1,6 +1,6 @@
 {
-  "name": "admin-pdf",
-  "pattern": "/admin-pdf/:task_id(/:hours_id)",
+  "name": "group_certificate",
+  "pattern": "/group-certificate/:task_id(/:hours_id)",
   "debug": true,
   "tasks": [
     "context.metaData.commonTasks.authRequired",
