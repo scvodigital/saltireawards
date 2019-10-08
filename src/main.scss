@@ -100,6 +100,19 @@ a.pure-menu-link:hover {
   text-decoration: none;
 }
 
+
+
+@media (max-width: 960px) {
+  aside.sidebar {
+    position: fixed;
+    background-color: #ffffff;
+    height: 100vh;
+    width: 300px;
+    z-index: 1;
+    top: 0;
+  }
+}
+
 header {
   display: flex;
   align-items: center;
