@@ -1,0 +1,11 @@
+{{~#if @root.data.accountInfo.local_authority ~}}
+{{~#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
+{{~#each contacts ~}}
+{{~#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
+{{email}}
+{{~/if ~}}
+{{~/each ~}}
+{{~/with ~}}
+{{else}}
+{{@root.context.metaData.contacts.admin}}
+{{~/if ~}}

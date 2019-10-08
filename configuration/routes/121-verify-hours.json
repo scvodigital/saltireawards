@@ -69,7 +69,7 @@
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
               "head": ">context.metaData.handlebars.templates.page_head-tags",
-              "body": ">context.metaData.handlebars.templates.account_verify-hours-pass",
+              "body": ">context.metaData.handlebars.templates.task_verify-hours-pass",
               "foot": ""
             },
             "contentType": "text/html"

@@ -20,7 +20,7 @@
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
               "head": ">context.metaData.handlebars.templates.page_head-tags",
-              "body": ">context.metaData.handlebars.templates.account_verify-hours-fail",
+              "body": ">context.metaData.handlebars.templates.task_verify-hours-fail",
               "foot": ""
             },
             "contentType": "text/html"
