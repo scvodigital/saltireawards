@@ -435,13 +435,13 @@
 
   {{#each @root.context.metaData.handlebars.frontend.configs}}
     <script data-component-config="{{@key}}" type="javascript/blocked">
-      {{{regexReplace this "^\s*return\s" "igm" ""}}}
+      {{{regexReplace (regexReplace this "^\s*return\s" "igm" "") "([^\\{])({{){2,}" "igm" "$1\\$2"}}}
     </script>
   {{/each}}
 
   {{#each @root.context.metaData.handlebars.frontend.tasks}}
-    <script data-tag="{{@key}}" type="javascript/blocked">
-      {{{regexReplace this "^\s*return\s" "igm" ""}}}
+    <script data-task="{{@key}}" type="javascript/blocked">
+      {{{regexReplace (regexReplace this "^\s*return\s" "igm" "") "([^\\{])({{){2,}" "igm" "$1\\$2"}}}
     </script>
   {{/each}}
 
