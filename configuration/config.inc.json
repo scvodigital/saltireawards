@@ -43,6 +43,17 @@
       },
       "queries": {
         "{$./queries/**/*.*}": ""
+      },
+      "frontend": {
+        "tasks": {
+          "{$./frontend/tasks/**/*.*}": ""
+        },
+        "configs": {
+          "{$./frontend/configs/**/*.*}": ""
+        },
+        "partials": {
+          "{$./frontend/partials/**/*.*}": ""
+        }
       }
     },
     "commonTasks": "{:./data/common-tasks.json}"

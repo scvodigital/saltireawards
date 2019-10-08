@@ -433,79 +433,22 @@
 
   {{{layoutParts.foot}}}
 
-  <script data-component-config="sign-out">
-    {
-      click: {
-        tasks: [
-          {
-            type: "firebaseSignOut",
-            config: {}
-          },
-          {
-            type: "run",
-            config: { code: 'window.location.href = "/"' }
-          }
-        ]
-      }
-    }
-  </script>
+  {{#each @root.context.metaData.handlebars.frontend.configs}}
+    <script data-component-config="{{@key}}" type="javascript/blocked">
+      {{{regexReplace this "^\s*return\s" "igm" ""}}}
+    </script>
+  {{/each}}
 
-  <script data-component-config="focus-next" type="javascript/blocked">
-    {
-      keypress: {
-        preventDefault: "\{{#eq metadata.event.which '13'}}true\{{else}}false\{{/eq}}",
-        tasks: [
-          {
-            type: "switch",
-            config: {
-              which: { __template: "\{{#eq metadata.event.which '13'}}enter\{{/eq}}" },
-              branches: {
-                default: {},
-                enter: {
-                  tasks: [
-                    {
-                      name: "selector",
-                      type: "basic",
-                      config: { __template: "a:not([disabled]):visible, button:not([disabled]):visible, input:not([disabled]):visible, select:not([disabled]):visible, textarea:not([disabled]):visible, [tabindex]:visible:not([disabled]):not([tabindex='-1'])" }
-                    },
-                    {
-                      name: "nextElement",
-                      type: "run",
-                      config: { code: "$(data.selector).eq($(data.selector).index(rootElement) + 1)" }
-                    },
-                    {
-                      type: "run",
-                      config: { code: "['BUTTON', 'A'].indexOf(data.nextElement.prop('tagName')) > -1 ? data.nextElement.click() : data.nextElement.focus()" }
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        ]
-      }
-    }
-  </script>
+  {{#each @root.context.metaData.handlebars.frontend.tasks}}
+    <script data-tag="{{@key}}" type="javascript/blocked">
+      {{{regexReplace this "^\s*return\s" "igm" ""}}}
+    </script>
+  {{/each}}
 
-  <script data-component-config="tab" type="javascript/blocked">
-    {
-      click: {
-        __doNotCompile: true,
-        preventDefault: true,
-        tasks: [
-          {
-            type: "elementManipulator",
-            config: {
-              "< | $": { removeClass: "active" },
-              "<": { addClass: "active" },
-              "<.tabs | .panel": { styles: { display: "none" } },
-              "{href}": { styles: { display: "block" } }
-            }
-          }
-        ]
-      }
-    }
-  </script>
-
+  {{#each @root.context.metaData.handlebars.frontend.partials}}
+    <script data-partial="{{@key}}" type="javascript/blocked">
+      {{{this}}}
+    </script>
+  {{/each}}
 </body>
 </html>
