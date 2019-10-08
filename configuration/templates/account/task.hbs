@@ -8,7 +8,7 @@
     Task details
   </h2>
 
-  <form id="task-details-form" class="active-form" action="/submit-task-details" method="POST" data-component="TasksTrigger" data-TasksTrigger="submit-task">
+  <form id="task-details-form" class="active-form" action="/submit-task-details" method="POST" data-component="TasksTrigger" data-TasksTrigger="form-error-handler" data-target-url="/admin-submit-group-hours">
     <input type="hidden" name="task_type" value="{{#if admin}}Group Task{{else}}Individual Task{{/if}}">
     <div class="l-margin r-margin">
       <div class="bg-error s-rounded x-padding v-margin" id="active-form-message">
@@ -203,7 +203,7 @@
 
 </script>
 
-<script type="javascript/blocked" data-component-config="submit-task">
+<script type="javascript/blocked" data-component-config="form-error-handler">
   {
     submit: {
       preventDefault: true,
@@ -213,14 +213,14 @@
           config: { ">": { addClass: "disabled" } }
         },
         {
-          name: "submitTaskRequest",
+          name: "submitRequest",
           type: "request",
           config: {
-            url: "/submit-task-details",
+            url: { __template: "\{{jquery rootElement 'data' (split 'submit-url')}}" },
             method: "POST",
-            dataType: "html",
+            dataType: "json",
             data: {
-              __template: "\{{{json value=(parse (jquery null \"serialize\" context=metadata.instance.element) type=\"querystring\")}}}",
+              __template: `\{{{json value=(parse (jquery null "serialize" context=metadata.instance.element) type="querystring")}}}`,
               __parser: "json"
             }
           }
@@ -230,17 +230,13 @@
           type: "switch",
           __doNotCompile: true,
           config: {
-            which: { __template: "\{{#if errors.submitTaskRequest}}error\{{else}}\{{data.submitTaskRequest.errors.[0].taskName}}\{{/if}}" },
+            which: { __template: "\{{#if errors.submitRequest}}error\{{else}}\{{data.submitTaskRequest.errors.[0].taskName}}\{{/if}}" },
             branches: {
               default: {
                 tasks: [
                   {
-                    type: "elementManipulator",
-                    config: {
-                      ">": { removeClass: "disabled" },
-                      "#active-form-message": { styles: { display: "block" } },
-                      "#form-message": { contents: { __template: "\{{json value=data.submitTaskRequest.errors}}" } }
-                    }
+                    type: "run",
+                    config: { code: "window.location.href = '/hours'" }
                   }
                 ]
               },

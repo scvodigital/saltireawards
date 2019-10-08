@@ -19,10 +19,10 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.pages_test",
+              "head": ">context.metaData.handlebars.templates.page_head-tags",
+              "body": ">context.metaData.handlebars.templates.page_test",
               "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
-              "foot": ">context.metaData.handlebars.templates.pages_foot"
+              "foot": ">context.metaData.handlebars.templates.page_foot"
             },
             "contentType": "text/html"
           }

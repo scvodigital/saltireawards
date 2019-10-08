@@ -18,6 +18,9 @@
 
   {{> log_action_buttons}}
 
+  <div class="bg-error s-rounded x-padding v-margin" id="active-form-message">
+  <span id="form-message"></span>
+</div>
   {{#unless @root.data.isAdmin ~}}
   <div id="individual-tasks-input">
     {{#each @root.data.tasksInfo ~}}
@@ -73,7 +76,7 @@
     <strong>Description:</strong> {{task_description}}
     {{/if ~}}
 
-    <form action="/admin-submit-group-hours" method="POST">
+    <form action="/admin-submit-group-hours" method="POST" data-component="TasksTrigger" data-TasksTrigger="submit-group-hours">
       <div class="form-horizontal">
         <input type="hidden" name="task_id" value="{{task_id}}">
         <div class="form-group">
@@ -224,22 +227,29 @@ function preSubmit() {
     submit: {
       preventDefault: true,
       tasks: [
-       {
+        {
           type: "elementManipulator",
           config: { ">": { addClass: "disabled" } }
-          },
-          {
-          name: "submitTaskRequest",
+        },
+        {
+          name: "submitHoursRequest",
           type: "request",
-          config: { url: "/submit-group-hours" }
-          },
-          {
-            __doNotCompile: true,
-            name: "errorHandle",
-            type: "switch",
-            config: {
-              which: { __template: "\{{#if errors.testRequest}}error\{{else}}\{{data.testRequest.errors.[0].taskName}}\{{/if}}"
-                },
+          config: {
+            url: "/admin-submit-group-hours",
+            method: "POST",
+            dataType: "json",
+            data: {
+              __template: `\{{{json value=(parse (jquery null "serialize" context=metadata.instance.element) type="querystring")}}}`,
+              __parser: "json"
+            }
+          }
+        },
+        {
+          name: "errorHandle",
+          type: "switch",
+          __doNotCompile: true,
+          config: {
+            which: { __template: "\{{#if errors.submitHoursRequest}}error\{{else}}\{{data.submitHoursRequest.errors.[0].taskName}}\{{/if}}" },
             branches: {
               default: {
                 tasks: [
@@ -273,7 +283,79 @@ function preSubmit() {
                   }
                 ]
               }
+            }
+          }
+        }
+      ]
+    }
+  }
+</script>
 
+<script type="javascript/blocked" data-component-config="update-individual-hours">
+  {
+    submit: {
+      preventDefault: true,
+      tasks: [
+        {
+          type: "elementManipulator",
+          config: { ">": { addClass: "disabled" } }
+        },
+        {
+          name: "submitHoursRequest",
+          type: "request",
+          config: {
+            url: "/admin-update-individual-hours",
+            method: "POST",
+            dataType: "json",
+            data: {
+              __template: `\{{{json value=(parse (jquery null "serialize" context=metadata.instance.element) type="querystring")}}}`,
+              __parser: "json"
+            }
+          }
+        },
+        {
+          name: "errorHandle",
+          type: "switch",
+          __doNotCompile: true,
+          config: {
+            which: { __template: "\{{#if errors.submitHoursRequest}}error\{{else}}\{{data.submitHoursRequest.errors.[0].taskName}}\{{/if}}" },
+            branches: {
+              default: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      ">": { removeClass: "disabled" },
+                      "#active-form-message": { styles: { display: "block" } },
+                      "#form-message": { contents: { __template: "\ Record updated" } }
+                    }
+                  }
+                ]
+              },
+              error: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      ">": { removeClass: "disabled" },
+                      "#active-form-message": { styles: { display: "block" } },
+                      "#form-message": { contents: { __template: "\An error has occurred, PERFORM_DEFAULT_ACTION!" } }
+                    }
+                  }
+                ]
+              },
+              saveHoursData: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      ">": { removeClass: "disabled" },
+                      "#active-form-message": { styles: { display: "block" } },
+                      "#form-message": { contents: { __template: "Hours not saved, PERFORM_DEFAULT_ACTION!" } }
+                    }
+                  }
+                ]
+              }
             }
           }
         }

@@ -6,12 +6,24 @@
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
     {
+      "name": "saveTaskData",
+      "taskModule": "salesforceApex",
+      "renderer": "handlebars",
+      "config": {
+        "connection": "scvoAlexSandbox",
+        "output": "data",
+        "method": "POST",
+        "body": ">context.metaData.handlebars.templates.task_task-body",
+        "apexClassPath": "/SaltireTosikTask/?user_id={{@root.data.auth.uid}}"
+      }
+    }
+  ,{
       "name": "destination",
       "taskModule": "render",
       "renderer": "handlebars",
       "config": {
         "output": "body",
-        "template": "{\"id\": \"hey there\", FAIL {{#if @root.errors}}\"errors\": {{{safeStringify @root.errors}}}{{/if}} }",
+        "template": "{\"id\": \"{{{@root.data.saveTaskData}}}\" ERRPR {{#if @root.errors}}, \"errors\": {{{safeStringify @root.errors}}}{{/if}} }",
         "parseJson": false
       }
     }

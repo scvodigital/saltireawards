@@ -20,17 +20,17 @@
         "output": "data",
         "method": "POST",
         "body": ">context.metaData.handlebars.templates.task_task-body",
-        "apexClassPath": "/SaltireTosikTask/?user_id={{@root.data.auth.uid}}"
+        "apexClassPath": "/SaltireTask/?user_id={{@root.data.auth.uid}}"
       }
-    },
-    {
+    }
+  ,{
       "name": "destination",
       "taskModule": "render",
       "renderer": "handlebars",
       "config": {
         "output": "body",
         "template": "{\"id\": \"{{{@root.data.saveTaskData}}}\" {{#if @root.errors}}, \"errors\": {{{safeStringify @root.errors}}}{{/if}} }",
-        "parseJson": true
+        "parseJson": false
       }
     }
   ]
