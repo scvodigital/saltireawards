@@ -29,7 +29,7 @@
             "parts": {
               "head": ">context.metaData.handlebars.templates.page_head-tags",
               "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
-              "body": ">context.metaData.handlebars.templates.account_task"
+              "body": ">context.metaData.handlebars.templates.volunteering_task"
             },
             "contentType": "text/html"
           }

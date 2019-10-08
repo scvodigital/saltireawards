@@ -36,8 +36,7 @@
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
               "head": ">context.metaData.handlebars.templates.page_head-tags",
-              "body": ">context.metaData.handlebars.templates.error_404",
-              "foot": ""
+              "body": ">context.metaData.handlebars.templates.error_404"
             },
             "contentType": "text/html"
           }

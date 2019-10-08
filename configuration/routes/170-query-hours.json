@@ -28,8 +28,8 @@
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
               "head": ">context.metaData.handlebars.templates.page_head-tags",
-              "body": ">context.metaData.handlebars.templates.account_query-hours",
-              "sidebar": ">context.metaData.handlebars.templates.account_sidebar"
+              "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
+              "body": ">context.metaData.handlebars.templates.volunteering_query-hours"
             },
             "contentType": "text/html"
           }

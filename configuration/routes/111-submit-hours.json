@@ -19,7 +19,7 @@
         "connection": "scvoAlexSandbox",
         "output": "data",
         "method": "POST",
-        "body": ">context.metaData.handlebars.templates.task_hours-body",
+        "body": ">context.metaData.handlebars.templates.volunteering_hours-body",
         "apexClassPath": "/SaltireHours/"
       }
     },
