@@ -3,13 +3,13 @@
     <thead>
       <tr>
         <th></th>
-        <th><p>Mon</p></th>
-        <th><p>Tue</p></th>
-        <th><p>Wed</p></th>
-        <th><p>Thu</p></th>
-        <th><p>Fri</p></th>
-        <th><p>Sat</p></th>
-        <th><p>Sun</p></th>
+        <th class="text-centre">Mon</th>
+        <th class="text-centre">Tue</th>
+        <th class="text-centre">Wed</th>
+        <th class="text-centre">Thu</th>
+        <th class="text-centre">Fri</th>
+        <th class="text-centre">Sat</th>
+        <th class="text-centre">Sun</th>
       </tr>
     </thead>
     <tbody>
@@ -17,9 +17,12 @@
       <tr>
         <th>{{capitalize this}}</th>
         {{#each (split "monday,tuesday,wednesday,thursday,friday,saturday,sunday" ",")}}
-        <td style="font-weight:normal;">
-          <div class="">
-            <input type="checkbox" name="availability[]" class="checkbox" disabled value="{{concat this '-' ../this}}"{{#if (contains ../../this (concat this '-' ../this))}} checked{{/if}}>
+        <td>
+          <div class="form-group align-centre">
+            <label class="form-checkbox">
+              <input type="checkbox" name="availability[]" class="checkbox" disabled value="{{concat this '-' ../this}}"{{#if (contains ../../this (concat this '-' ../this))}} checked{{/if}}>
+              <span class="form-icon"></span>
+            </label>
           </div>
         </td>
         {{/each}}
