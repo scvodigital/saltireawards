@@ -5,8 +5,9 @@
   <div class="columns">
     <div class="column {{#ifAll logo website}}col-9{{else}}col-12{{/ifAll}}">
       <p>
-        Your {{#compare @root.data.accountInfo.user_type "Group Admin"}}{{#if area}}{{area}}{{else}}{{../local_authority}}{{/if}} TSI{{else}}Saltire{{/compare}} contact is
-        <strong>{{title}}</strong>.<br />
+        For information on how to get involved, please contact <strong>{{title}}</strong> who are responsible for the {{@root.context.metaData.title}} {{#if island}}on{{else}}in{{/if}} {{#if area}}{{area}}{{else}}{{../local_authority}}{{/if}}.
+      </p>
+      <p>
         {{#if phone}}Phone: {{phone}}<br />{{/if}}
         {{#if email}}Email: <a href="mailto:{{email}}">{{email}}</a><br />{{/if}}
         {{#if website}}Website: <a href="{{fixUrl website}}" target="_blank">{{replace (replace (replace website "www." "") "https://" "") "http://" ""}}</a>{{/if}}
