@@ -15,7 +15,7 @@
         "queryTemplates": {
           "index": "{$../data/elasticsearch-index.txt}",
           "type": "saltireawards-page",
-          "template": ">context.metaData.handlebars.queries.errors_404"
+          "template": ">context.metaData.handlebars.queries.pages_not-found"
         }
       },
       "renderer": "handlebars"
