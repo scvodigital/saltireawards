@@ -102,14 +102,20 @@ a.pure-menu-link:hover {
 
 
 
-@media (max-width: 960px) {
-  aside.sidebar {
+@media screen and (min-width: 961px) {
+  aside.mobile-menu {
+    display: none;
+  }
+}
+@media screen and (max-width: 960px) {
+  aside.mobile-menu {
     position: fixed;
     background-color: #ffffff;
     height: 100vh;
     width: 300px;
     z-index: 1;
     top: 0;
+    display: none;
   }
 }
 
