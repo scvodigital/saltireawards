@@ -203,45 +203,51 @@
         }'></div>
         <aside class="mobile-menu_contents sidebar">
           {{{layoutParts.sidebar}}}
-          <ul class="menu">
-            <li class="menu-item">
-              <a href="/sign-out" class="l-padding-full" data-component="TasksTrigger" data-TasksTrigger="sign-out">
-                <span class="far fa-fw fa-sign-out-alt" aria-hidden="true"></span>
-                Sign out
-              </a>
-            </li>
-          </ul>
-          <hr/>
-          <div class="menu">
-            {{#if @root.data.auth ~}}
-              {{#if @root.data.accountInfo.user_type ~}}
-                {{#each @root.context.metaData.menus.main-signed-in ~}}
+
+          <div class="b-margin-full b-padding-full v-padding">
+            <ul class="menu">
+              {{#if @root.data.auth ~}}
+                {{#if @root.data.accountInfo.user_type ~}}
+                  {{#each @root.context.metaData.menus.main-signed-in ~}}
+                    <li class="menu-item">
+                      <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">{{label}}</a>
+                    </li>
+                  {{/each}}
                   <li class="menu-item">
-                    <a href="{{stripTrailingSlash path}}" class="{{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">{{label}}</a>
+                    <a href="/sign-out" class="l-padding-full" data-component="TasksTrigger" data-TasksTrigger="sign-out">
+                      <span class="far fa-fw fa-sign-out-alt" aria-hidden="true"></span>
+                      Sign out
+                    </a>
+                  </li>
+                {{else}}
+                  <li class="menu-item">
+                    <a href="/" class="l-padding-full {{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}}active{{/if}}">Home</a>
+                  </li>
+                  {{#each @root.context.metaData.menus.main-not-signed-in ~}}
+                    <li class="menu-item">
+                      <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">{{label}}</a>
+                    </li>
+                  {{/each}}
+                  <li class="menu-item">
+                    <a href="/sign-out" class="l-padding-full" data-component="TasksTrigger" data-TasksTrigger="sign-out">Sign out</a>
+                  </li>
+                {{/if ~}}
+              {{else}}
+                <li class="menu-item">
+                  <a href="/" class="l-padding-full {{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}}active{{/if}}">Home</a>
+                </li>
+                {{#each @root.context.metaData.menus.main-not-signed-in ~}}
+                  <li class="menu-item">
+                    <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">{{label}}</a>
                   </li>
                 {{/each}}
-                <li class="menu-item">
-                  <a href="/sign-out" data-component="TasksTrigger" data-TasksTrigger="sign-out">
-                    <span class="far fa-fw fa-sign-out-alt" aria-hidden="true"></span>
-                    Sign out
-                  </a>
-                </li>
-              {{else}}
-                <a href="/" class="btn btn-link{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}} btn-active{{/if}}">Home</a>
-                {{#each @root.context.metaData.menus.main-not-signed-in ~}}
-                  <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
+                {{#each @root.context.metaData.menus.user-not-signed-in ~}}
+                  <li class="menu-item">
+                    <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}} my-saltire">{{label}}</a>
+                  </li>
                 {{/each}}
-                <a href="/sign-out" class="btn btn-link" data-component="TasksTrigger" data-TasksTrigger="sign-out">Sign out</a>
               {{/if ~}}
-            {{else}}
-              <a href="/" class="btn btn-link{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}} btn-active{{/if}}">Home</a>
-              {{#each @root.context.metaData.menus.main-not-signed-in ~}}
-                <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
-              {{/each}}
-              {{#each @root.context.metaData.menus.user-not-signed-in ~}}
-                <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}} my-saltire">{{label}}</a>
-              {{/each}}
-            {{/if ~}}
+            </ul>
           </div>
         </aside>
       </div>
