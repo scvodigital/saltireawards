@@ -2,8 +2,8 @@
   [
   {{#eachJoin (distinct (pluck @root.data.tasksInfoUnverified "volunteer_manager_email")) ","~}}
     {
-    "from": "hello@saltireawards.org.uk",
-    "h:sender": "hello@saltireawards.org.uk",
+    "from": "{{@root.context.metaData.contacts.noreply}}",
+    "h:sender": "{{@root.context.metaData.contacts.noreply}}",
     "to": "{{{this}}}",
     "o:tag": "{{{../type}}}",
     "o:tracking": true,

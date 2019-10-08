@@ -35,7 +35,7 @@
   <meta name="msapplication-TileColor" content="#3c7524">
   <meta name="msapplication-TileImage" content="{{~>asset_url url='images/icons/ms-icon-144x144.png'~}}">
   <meta name="theme-color" content="#3c7524">
-  <link rel="search" type="application/opensearchdescription+xml" title="Saltire Awards" href="{{~>asset_url url='opensearch.xml'~}}" />
+  <link rel="search" type="application/opensearchdescription+xml" title="{{@root.context.metaData.title}}" href="{{~>asset_url url='opensearch.xml'~}}" />
 
   <script>
   window.dataLayer = window.dataLayer || [];
@@ -58,7 +58,7 @@
   <link type="text/css" rel="stylesheet" href="{{~>asset_url url='main.css'}}" />
 </head>
 <body>
-  <saltireawards-site>
+  <site>
     <div class="page">
     {{#ifAny request.params.query.debug (contains request.url.hostname ".local") ~}}
       {{#if errors.[0]}}
@@ -84,7 +84,7 @@
 
       <header class="navbar container bg-primary">
         <section class="navbar-section">
-          <a class="navbar-brand" href="/"><img src="{{~>asset_url url='images/logos/logo.png'~}}" alt="Saltire Awards" /></a>
+          <a class="navbar-brand" href="/"><img src="{{~>asset_url url='images/logos/logo.png'~}}" alt="{{@root.context.metaData.title}}" /></a>
         </section>
         <section class="navbar-section">
           <a href="#" class="btn btn-link show-lg" data-component="TasksTrigger" data-TasksTrigger='{
@@ -162,7 +162,7 @@
                 <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
               {{/each}}
               {{#each @root.context.metaData.menus.user-not-signed-in ~}}
-                <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}} my-saltire">{{label}}</a>
+                <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}} my-account">{{label}}</a>
               {{/each}}
             {{/if ~}}
           </span>
@@ -281,7 +281,7 @@
                   {{else}}
                     The local Third Sector Interface in your area
                   {{/if ~}}
-                  manages your personal data in relation to the Saltire Awards.
+                  manages your personal data in relation to the {{@root.context.metaData.title}}.
                 </p>
                 <ul>
                   <li>
@@ -309,7 +309,7 @@
                         {{/each ~}}
                       {{/with ~}}
                     {{else}}
-                      <a href="mailto:info@saltireawards.org.uk">info@saltireawards.org.uk</a>
+                      <a href="mailto:{{@root.context.metaData.contacts.admin}}">{{@root.context.metaData.contacts.admin}}</a>
                     {{/if ~}}
                   </li>
                   {{#if @root.data.accountInfo.local_authority ~}}
@@ -352,7 +352,7 @@
                   {{else}}
                     <li>
                       <span class="fa-li"><span class="fab fa-twitter"></span></span>
-                      <a href="https://twitter.com/saltireawards" target="_blank">Twitter</a>
+                      <a href="https://twitter.com/{{@root.context.metaData.twitter}}" target="_blank">Twitter</a>
                     </li>
                   {{/if ~}}
                 </ul>
@@ -360,7 +360,7 @@
               <div class="column col-6 about">
                 <h4>About</h4>
                 <p class="b-margin">
-                  The Saltire Awards is run by the <a href="https://scvo.org">Scottish Council for Voluntary Organisations</a> and supported by the <a href="https://www.gov.scot/policies/third-sector">Scottish Government</a> and Scotland's <a href="https://www.gov.scot/policies/third-sector/third-sector-interfaces">Third Sector Interfaces</a>.
+                  The {{@root.context.metaData.title}} is run by the <a href="https://scvo.org">Scottish Council for Voluntary Organisations</a> and supported by the <a href="https://www.gov.scot/policies/third-sector">Scottish Government</a> and Scotland's <a href="https://www.gov.scot/policies/third-sector/third-sector-interfaces">Third Sector Interfaces</a>.
                 </p>
                 <ul>
                   {{#each @root.context.metaData.menus.footer-info ~}}
@@ -396,7 +396,7 @@
         </div>
       </footer>
     </div>
-  </saltireawards-site>
+  </site>
 
   <script type="text/javascript">
   var $buoop = {required:{e:-3,f:-3,o:-3,s:-1,c:-3},insecure:true,unsupported:true,api:2018.07 };
@@ -409,53 +409,21 @@
   catch(e){window.attachEvent("onload", $buo_f)}
   </script>
 
-  <!--<script type="text/javascript" src="{{~>asset_url url='main.js'~}}"></script>-->
   <script type="text/javascript" src="{{~>asset_url url='component-manager.js'~}}"></script>
   <script>
     window.firebaseTaskConfig = {
       upgradeTokenUrl: '/upgrade-token?token={idToken}',
       cookieName: 'sa_cookie'
     };
-
     firebase.initializeApp({
-      apiKey: "AIzaSyBdoW5NoWqvMFMUKufrPVvuaYtNrEIRY6k",
-      authDomain: "auth.saltireawards.scot",
-      databaseURL: "https://saltire-awards.firebaseio.com",
-      projectId: "saltire-awards",
-      storageBucket: "saltire-awards.appspot.com",
-      messagingSenderId: "940419868873"
+      "apiKey": "AIzaSyBdoW5NoWqvMFMUKufrPVvuaYtNrEIRY6k",
+      "authDomain": "auth.saltireawards.scot",
+      "databaseURL": "https://saltire-awards.firebaseio.com",
+      "projectId": "saltire-awards",
+      "storageBucket": "saltire-awards.appspot.com",
+      "messagingSenderId": "940419868873"
     });
   </script>
-
-  <!--<script>
-    var saltireawards = null; readyListeners = [];
-    $(document).ready(function() {
-      saltireawards = new SaltireAwards.SaltireAwards({
-        apiKey: "AIzaSyBdoW5NoWqvMFMUKufrPVvuaYtNrEIRY6k",
-        authDomain: "auth.saltireawards.scot",
-        databaseURL: "https://saltire-awards.firebaseio.com",
-        projectId: "saltire-awards",
-        storageBucket: "saltire-awards.appspot.com",
-        messagingSenderId: "940419868873"
-      });
-      ready = true;
-      readyListeners.forEach(function(listener) {
-        listener();
-      });
-    });
-
-    function registerReadyListener(listener) {
-      if (saltireawards) {
-        listener();
-      } else {
-        readyListeners.push(listener);
-      }
-    }
-
-    {{#if @root.context.metaData.terms ~}}
-    var terms = {{{safeStringify @root.context.metaData.terms}}};
-    {{/if ~}}
-  </script>-->
 
   {{{layoutParts.foot}}}
 

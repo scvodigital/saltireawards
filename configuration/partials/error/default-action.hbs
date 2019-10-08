@@ -7,5 +7,5 @@ if this happens again, please {{#if @root.data.accountInfo.local_authority ~}}
     {{/each ~}}
   {{/with ~}}
 {{else}}
-  <a href="mailto:info@saltireawards.org.uk">contact us</a>.
+  <a href="mailto:{{@root.context.metaData.contacts.admin}}">contact us</a>.
 {{/if ~}}
