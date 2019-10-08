@@ -213,16 +213,23 @@
           config: { ">": { addClass: "disabled" } }
           },
           {
-          name: "submitTaskRequest",
-          type: "request",
-          config: { url: "/submit-task", method: 'POST' }
+            name: "submitTaskRequest",
+            type: "request",
+            config: {
+              url: "/submit",
+              method: "POST",
+              dataType: "html",
+              data: {
+                __template: "\{{{json value=(parse (jquery null \"serialize\" context=metadata.instance.element) type=\"querystring\")}}}",
+                __parser: "json"
+              }
           },
           {
             __doNotCompile: true,
             name: "errorHandle",
             type: "switch",
             config: {
-              which: { __template: "\{{#if errors.testRequest}}error\{{else}}\{{data.testRequest.errors.[0].taskName}}\{{/if}}"
+              which: { __template: "\{{#ifAny errors.testRequest}}error\{{else}}\{{data.testRequest.errors.[0].taskName}}\{{/if}}"
                 },
             branches: {
               default: {
