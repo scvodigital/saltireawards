@@ -11,13 +11,7 @@
   "tag":  "welcome",
   "id":  "welcome",
   "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings 'welcome.mailgunConnection')}}},
-  "subject":
-  {{~#blockStringify this ~}}
-    {{~>
-    (getProperty @root.context.metaData.emailSendSettings 'welcome.subjectPartial')
-      this
-    ~}}
-  {{~/blockStringify}},
+  "subject": "Welcome to the Saltire Awards",
   "html":
   {{~#blockStringify this ~}}
     {{~>
