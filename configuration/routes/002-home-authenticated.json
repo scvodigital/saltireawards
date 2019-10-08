@@ -27,10 +27,10 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.pages_home-authenticated",
+              "head": ">context.metaData.handlebars.templates.page_head-tags",
+              "body": ">context.metaData.handlebars.templates.page_home-authenticated",
               "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
-              "foot": ">context.metaData.handlebars.templates.pages_foot"
+              "foot": ">context.metaData.handlebars.templates.page_foot"
             },
             "contentType": "text/html"
           }

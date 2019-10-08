@@ -35,8 +35,8 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.errors_404",
+              "head": ">context.metaData.handlebars.templates.page_head-tags",
+              "body": ">context.metaData.handlebars.templates.error_404",
               "foot": ""
             },
             "contentType": "text/html"

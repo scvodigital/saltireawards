@@ -11,13 +11,7 @@
     "tag":  "{{{../type}}}",
     "id":  "{{{../type}}}",
     "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat ../type '.mailgunConnection'))}}},
-    "subject":
-    {{~#blockStringify this ~}}
-      {{~>
-      (getProperty @root.context.metaData.emailSendSettings (concat ../type '.subjectPartial'))
-        this
-      ~}}
-    {{~/blockStringify}},
+    "subject": "Verify volunteering",
     "html":
     {{~#blockStringify this ~}}
       {{~>

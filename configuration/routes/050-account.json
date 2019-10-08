@@ -25,10 +25,9 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.pages_head-tags",
+              "head": ">context.metaData.handlebars.templates.page_head-tags",
               "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
-              "body": ">context.metaData.handlebars.templates.account_settings",
-              "foot": ">context.metaData.handlebars.templates.account_footer"
+              "body": ">context.metaData.handlebars.templates.account_account"
             },
             "contentType": "text/html"
           }

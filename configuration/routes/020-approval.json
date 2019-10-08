@@ -30,7 +30,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "data",
-        "template": ">context.metaData.handlebars.templates.account_approval-code"
+        "template": ">context.metaData.handlebars.templates.account_auth_approval-code"
       }
     },
     {
@@ -59,7 +59,7 @@
         "connection": "scvoAlexSandbox",
         "output": "data",
         "method": "POST",
-        "body": ">context.metaData.handlebars.templates.account_approval-body",
+        "body": ">context.metaData.handlebars.templates.account_auth_approval-body",
         "apexClassPath": "/SaltireUserValidate/"
       }
     },
@@ -70,7 +70,7 @@
       "config": {
         "output": "data",
         "parseJson": true,
-        "template": ">context.metaData.handlebars.templates.account_welcome-email"
+        "template": ">context.metaData.handlebars.templates.account_auth_welcome-email"
       }
     },
     {
@@ -88,8 +88,8 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.account_approval-pass",
+              "head": ">context.metaData.handlebars.templates.page_head-tags",
+              "body": ">context.metaData.handlebars.templates.account_auth_approval-pass",
               "foot": ""
             },
             "contentType": "text/html"

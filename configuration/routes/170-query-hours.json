@@ -27,8 +27,8 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.pages_query-hours",
+              "head": ">context.metaData.handlebars.templates.page_head-tags",
+              "body": ">context.metaData.handlebars.templates.account_query-hours",
               "sidebar": ">context.metaData.handlebars.templates.account_sidebar"
             },
             "contentType": "text/html"
