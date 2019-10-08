@@ -13,6 +13,15 @@
     "assetsVersion": "{:../package.json@version}",
     "assetsBase": "https://storage.googleapis.com/scvo-assets/test/saltireawards/",
     "title": "Saltire Awards",
+    "certificateName": "Saltire Award",
+    "accountName": "My Saltire",
+    "url": "https://test.saltireawards.scot",
+    "twitter": "saltireawards",
+    "contacts": {
+      "admin": "support@saltireawards.org.uk",
+      "noreply": "noreply@saltireawards.org.uk",
+      "technical": "webhelpdesk@scvo.org.uk"
+    },
     "emailSendSettings": "{:./data/email-send-settings.json}",
     "menus": "{:./data/menus.json}",
     "accountInfoValidation": "{:./data/account-info-validation.json}",

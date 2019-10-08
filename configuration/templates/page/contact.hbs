@@ -8,7 +8,7 @@
         Local enquiries
       </h2>
       <p>
-        For information on how to get involved with the Saltire Awards, you're best to contact your local Third Sector Interface.
+        For information on how to get involved with the {{@root.context.metaData.title}}, you're best to contact your local Third Sector Interface.
       </p>
       <p>
         {{#if @root.data.accountInfo.postcode ~}}
@@ -23,7 +23,7 @@
         National enquiries
       </h2>
       <p>
-        If you have a problem with the website or are a national organisation, please contact <a href="mailto:support@saltireawards.org.uk">support@saltireawards.org.uk</a>.
+        If you have a problem with the website or are a national organisation, please contact <a href="mailto:{{@root.context.metaData.contacts.admin}}">{{@root.context.metaData.contacts.admin}}</a>.
       </p>
     </div>
   </div>
