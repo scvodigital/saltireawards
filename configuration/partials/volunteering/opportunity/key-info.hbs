@@ -5,22 +5,22 @@
     <div class="v-margin pull-right search-distance">
       {{#if distance ~}}
       {{#ifAll (compare distance "!==" "") (compare distance "!==" "Infinity") (compare distance "<=" @root.request.params.query.distance) ~}}
-      {{> opportunity_location_distance distance=distance}}
+      {{> volunteering_opportunity_location_distance distance=distance}}
       {{else}}
       {{#if (contains volunteersearch_type "Home-based volunteering") ~}}
-      {{> opportunity_location_home}}
+      {{> volunteering_opportunity_location_home}}
       {{else}}
       {{#ifAny (compare (getType advertised_areas) "string") (compare advertised_areas.length ">" 0) ~}}
-      {{> opportunity_location_areas advertised_areas=advertised_areas}}
+      {{> volunteering_opportunity_location_areas advertised_areas=advertised_areas}}
       {{/ifAny ~}}
       {{/if ~}}
       {{/ifAll ~}}
       {{else}}
       {{#compare distance "===" 0 ~}}
-      {{> opportunity_location_distance distance=0.1}}
+      {{> volunteering_opportunity_location_distance distance=0.1}}
       {{else}}
       {{#if (contains volunteersearch_type "Home-based volunteering") ~}}
-      {{> opportunity_location_home}}
+      {{> volunteering_opportunity_location_home}}
       {{/if ~}}
       {{/compare ~}}
       {{/if ~}}
@@ -28,7 +28,7 @@
     {{else}}
     {{#if (contains volunteersearch_type "Home-based volunteering") ~}}
     <div class="v-margin pull-right search-distance">
-      {{> opportunity_location_home}}
+      {{> volunteering_opportunity_location_home}}
     </div>
     {{/if ~}}
     {{/ifAll ~}}
