@@ -8,9 +8,6 @@
       <div class="columns">
         <div class="column col-3 filter-age">
           <div class="form-group">
-            {{!-- <label for="age" class="form-label">
-              Age
-            </label> --}}
             <select class="form-select select-lg" id="age" name="age">
               {{#each (split "12,13,14,15,16,17,18" ",")}}
                 <option value="{{this}}" {{#compare (default @root.request.params.query.age '18') this}}selected{{/compare}}>Available for age {{this}}+</option>

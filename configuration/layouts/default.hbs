@@ -35,7 +35,7 @@
   <meta name="msapplication-TileColor" content="#3c7524">
   <meta name="msapplication-TileImage" content="{{~>asset_url url='images/icons/ms-icon-144x144.png'~}}">
   <meta name="theme-color" content="#3c7524">
-  <link rel="search" type="application/opensearchdescription+xml" title="Saltire Awards" href="{{~>asset_url url='opensearch.xml'~}}" />
+  <link rel="search" type="application/opensearchdescription+xml" title="{{@root.context.metaData.title}}" href="{{~>asset_url url='opensearch.xml'~}}" />
 
   <script>
   window.dataLayer = window.dataLayer || [];
@@ -58,7 +58,7 @@
   <link type="text/css" rel="stylesheet" href="{{~>asset_url url='main.css'}}" />
 </head>
 <body>
-  <saltireawards-site>
+  <site>
     <div class="page">
     {{#ifAny request.params.query.debug (contains request.url.hostname ".local") ~}}
       {{#if errors.[0]}}
@@ -84,10 +84,24 @@
 
       <header class="navbar container bg-primary">
         <section class="navbar-section">
-          <a class="navbar-brand" href="/"><img src="{{~>asset_url url='images/logos/logo.png'~}}" alt="Saltire Awards" /></a>
+          <a class="navbar-brand" href="/"><img src="{{~>asset_url url='images/logos/logo.png'~}}" alt="{{@root.context.metaData.title}}" /></a>
         </section>
         <section class="navbar-section">
-          <a href="#" class="btn btn-link show-lg">
+          <a href="#" class="btn btn-link show-lg" data-component="TasksTrigger" data-TasksTrigger='{
+              click: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      ".mobile-menu": {
+                        "removeClass": "mobile-menu_closed mobile-menu_closing",
+                        "addClass": "mobile-menu_open"
+                      }
+                    }
+                  }
+                ]
+              }
+            }'>
             <i class="fas fa-bars"></i>
           </a>
           <span class="hide-lg">
@@ -148,17 +162,100 @@
                 <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
               {{/each}}
               {{#each @root.context.metaData.menus.user-not-signed-in ~}}
-                <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}} my-saltire">{{label}}</a>
+                <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}} my-account">{{label}}</a>
               {{/each}}
             {{/if ~}}
           </span>
         </section>
       </header>
 
+      <div class="mobile-menu mobile-menu_closed">
+        <div class="mobile-menu_background" data-component="TasksTrigger" data-TasksTrigger='{
+          click: {
+            tasks: [
+              {
+                type: "elementManipulator",
+                config: {
+                  ".mobile-menu": {
+                    removeClass: "mobile-menu_open",
+                    addClass: "mobile-menu_closing"
+                  }
+                }
+              },
+              {
+                type: "delay",
+                config: {
+                  "500": [
+                    {
+                      type: "elementManipulator",
+                      config: {
+                        ".mobile-menu": {
+                          addClass: "mobile-menu_closed",
+                          removeClass: "mobile-menu_closing"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }'></div>
+        <aside class="mobile-menu_contents sidebar">
+          {{{layoutParts.sidebar}}}
+
+          <div class="b-margin-full b-padding-full v-padding">
+            <ul class="menu">
+              {{#if @root.data.auth ~}}
+                {{#if @root.data.accountInfo.user_type ~}}
+                  {{#each @root.context.metaData.menus.main-signed-in ~}}
+                    <li class="menu-item">
+                      <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">{{label}}</a>
+                    </li>
+                  {{/each}}
+                  <li class="menu-item">
+                    <a href="/sign-out" class="l-padding-full" data-component="TasksTrigger" data-TasksTrigger="sign-out">
+                      <span class="far fa-fw fa-sign-out-alt" aria-hidden="true"></span>
+                      Sign out
+                    </a>
+                  </li>
+                {{else}}
+                  <li class="menu-item">
+                    <a href="/" class="l-padding-full {{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}}active{{/if}}">Home</a>
+                  </li>
+                  {{#each @root.context.metaData.menus.main-not-signed-in ~}}
+                    <li class="menu-item">
+                      <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">{{label}}</a>
+                    </li>
+                  {{/each}}
+                  <li class="menu-item">
+                    <a href="/sign-out" class="l-padding-full" data-component="TasksTrigger" data-TasksTrigger="sign-out">Sign out</a>
+                  </li>
+                {{/if ~}}
+              {{else}}
+                <li class="menu-item">
+                  <a href="/" class="l-padding-full {{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}}active{{/if}}">Home</a>
+                </li>
+                {{#each @root.context.metaData.menus.main-not-signed-in ~}}
+                  <li class="menu-item">
+                    <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">{{label}}</a>
+                  </li>
+                {{/each}}
+                {{#each @root.context.metaData.menus.user-not-signed-in ~}}
+                  <li class="menu-item">
+                    <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}} my-saltire">{{label}}</a>
+                  </li>
+                {{/each}}
+              {{/if ~}}
+            </ul>
+          </div>
+        </aside>
+      </div>
+
       <div class="{{#if layoutParts.sidebar}}sidebar-present{{else}}sidebar-not-present{{/if}}">
         {{#if layoutParts.sidebar ~}}
           <div class="columns col-gapless">
-            <aside class="column col-2 col-md-3 col-lg-3 col-xl-3 sidebar">
+            <aside class="column col-2 col-lg-3 col-xl-3 sidebar hide-lg">
               {{{layoutParts.sidebar}}}
             </aside>
             <main class="column col-10 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9">
@@ -190,7 +287,7 @@
                   {{else}}
                     The local Third Sector Interface in your area
                   {{/if ~}}
-                  manages your personal data in relation to the Saltire Awards.
+                  manages your personal data in relation to the {{@root.context.metaData.title}}.
                 </p>
                 <ul>
                   <li>
@@ -218,7 +315,7 @@
                         {{/each ~}}
                       {{/with ~}}
                     {{else}}
-                      <a href="mailto:info@saltireawards.org.uk">info@saltireawards.org.uk</a>
+                      <a href="mailto:{{@root.context.metaData.contacts.admin}}">{{@root.context.metaData.contacts.admin}}</a>
                     {{/if ~}}
                   </li>
                   {{#if @root.data.accountInfo.local_authority ~}}
@@ -261,7 +358,7 @@
                   {{else}}
                     <li>
                       <span class="fa-li"><span class="fab fa-twitter"></span></span>
-                      <a href="https://twitter.com/saltireawards" target="_blank">Twitter</a>
+                      <a href="https://twitter.com/{{@root.context.metaData.twitter}}" target="_blank">Twitter</a>
                     </li>
                   {{/if ~}}
                 </ul>
@@ -269,7 +366,7 @@
               <div class="column col-6 about">
                 <h4>About</h4>
                 <p class="b-margin">
-                  The Saltire Awards is run by the <a href="https://scvo.org">Scottish Council for Voluntary Organisations</a> and supported by the <a href="https://www.gov.scot/policies/third-sector">Scottish Government</a> and Scotland's <a href="https://www.gov.scot/policies/third-sector/third-sector-interfaces">Third Sector Interfaces</a>.
+                  The {{@root.context.metaData.title}} is run by the <a href="https://scvo.org">Scottish Council for Voluntary Organisations</a> and supported by the <a href="https://www.gov.scot/policies/third-sector">Scottish Government</a> and Scotland's <a href="https://www.gov.scot/policies/third-sector/third-sector-interfaces">Third Sector Interfaces</a>.
                 </p>
                 <ul>
                   {{#each @root.context.metaData.menus.footer-info ~}}
@@ -305,7 +402,7 @@
         </div>
       </footer>
     </div>
-  </saltireawards-site>
+  </site>
 
   <script type="text/javascript">
   var $buoop = {required:{e:-3,f:-3,o:-3,s:-1,c:-3},insecure:true,unsupported:true,api:2018.07 };
@@ -318,129 +415,40 @@
   catch(e){window.attachEvent("onload", $buo_f)}
   </script>
 
-  <!--<script type="text/javascript" src="{{~>asset_url url='main.js'~}}"></script>-->
   <script type="text/javascript" src="{{~>asset_url url='component-manager.js'~}}"></script>
   <script>
     window.firebaseTaskConfig = {
       upgradeTokenUrl: '/upgrade-token?token={idToken}',
       cookieName: 'sa_cookie'
     };
-
     firebase.initializeApp({
-      apiKey: "AIzaSyBdoW5NoWqvMFMUKufrPVvuaYtNrEIRY6k",
-      authDomain: "auth.saltireawards.scot",
-      databaseURL: "https://saltire-awards.firebaseio.com",
-      projectId: "saltire-awards",
-      storageBucket: "saltire-awards.appspot.com",
-      messagingSenderId: "940419868873"
+      "apiKey": "AIzaSyBdoW5NoWqvMFMUKufrPVvuaYtNrEIRY6k",
+      "authDomain": "auth.saltireawards.scot",
+      "databaseURL": "https://saltire-awards.firebaseio.com",
+      "projectId": "saltire-awards",
+      "storageBucket": "saltire-awards.appspot.com",
+      "messagingSenderId": "940419868873"
     });
   </script>
-
-  <!--<script>
-    var saltireawards = null; readyListeners = [];
-    $(document).ready(function() {
-      saltireawards = new SaltireAwards.SaltireAwards({
-        apiKey: "AIzaSyBdoW5NoWqvMFMUKufrPVvuaYtNrEIRY6k",
-        authDomain: "auth.saltireawards.scot",
-        databaseURL: "https://saltire-awards.firebaseio.com",
-        projectId: "saltire-awards",
-        storageBucket: "saltire-awards.appspot.com",
-        messagingSenderId: "940419868873"
-      });
-      ready = true;
-      readyListeners.forEach(function(listener) {
-        listener();
-      });
-    });
-
-    function registerReadyListener(listener) {
-      if (saltireawards) {
-        listener();
-      } else {
-        readyListeners.push(listener);
-      }
-    }
-
-    {{#if @root.context.metaData.terms ~}}
-    var terms = {{{safeStringify @root.context.metaData.terms}}};
-    {{/if ~}}
-  </script>-->
 
   {{{layoutParts.foot}}}
 
-  <script data-component-config="sign-out">
-    {
-      click: {
-        tasks: [
-          {
-            type: "firebaseSignOut",
-            config: {}
-          },
-          {
-            type: "run",
-            config: { code: 'window.location.href = "/"' }
-          }
-        ]
-      }
-    }
-  </script>
+  {{#each @root.context.metaData.handlebars.frontend.configs}}
+    <script data-component-config="{{@key}}" type="javascript/blocked">
+      {{{regexReplace this "^\s*return\s" "igm" ""}}}
+    </script>
+  {{/each}}
 
-  <script data-component-config="focus-next" type="javascript/blocked">
-    {
-      keypress: {
-        preventDefault: "\{{#eq metadata.event.which '13'}}true\{{else}}false\{{/eq}}",
-        tasks: [
-          {
-            type: "switch",
-            config: {
-              which: { __template: "\{{#eq metadata.event.which '13'}}enter\{{/eq}}" },
-              branches: {
-                default: {},
-                enter: {
-                  tasks: [
-                    {
-                      name: "selector",
-                      type: "basic",
-                      config: { __template: "a:not([disabled]):visible, button:not([disabled]):visible, input:not([disabled]):visible, select:not([disabled]):visible, textarea:not([disabled]):visible, [tabindex]:visible:not([disabled]):not([tabindex='-1'])" }
-                    },
-                    {
-                      name: "nextElement",
-                      type: "run",
-                      config: { code: "$(data.selector).eq($(data.selector).index(rootElement) + 1)" }
-                    },
-                    {
-                      type: "run",
-                      config: { code: "['BUTTON', 'A'].indexOf(data.nextElement.prop('tagName')) > -1 ? data.nextElement.click() : data.nextElement.focus()" }
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        ]
-      }
-    }
-  </script>
+  {{#each @root.context.metaData.handlebars.frontend.tasks}}
+    <script data-tag="{{@key}}" type="javascript/blocked">
+      {{{regexReplace this "^\s*return\s" "igm" ""}}}
+    </script>
+  {{/each}}
 
-  <script data-component-config="tab" type="javascript/blocked">
-    {
-      click: {
-        __doNotCompile: true,
-        preventDefault: true,
-        tasks: [
-          {
-            type: "elementManipulator",
-            config: {
-              "< | $": { removeClass: "active" },
-              "<": { addClass: "active" },
-              "<.tabs | .panel": { styles: { display: "none" } },
-              "{href}": { styles: { display: "block" } }
-            }
-          }
-        ]
-      }
-    }
-  </script>
-
+  {{#each @root.context.metaData.handlebars.frontend.partials}}
+    <script data-partial="{{@key}}" type="javascript/blocked">
+      {{{this}}}
+    </script>
+  {{/each}}
 </body>
 </html>
