@@ -29,8 +29,7 @@
             "parts": {
               "head": ">context.metaData.handlebars.templates.page_head-tags",
               "body": ">context.metaData.handlebars.templates.page_home-authenticated",
-              "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
-              "foot": ">context.metaData.handlebars.templates.page_foot"
+              "sidebar": ">context.metaData.handlebars.templates.account_sidebar"
             },
             "contentType": "text/html"
           }

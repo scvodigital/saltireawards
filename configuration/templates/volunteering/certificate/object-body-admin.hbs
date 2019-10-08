@@ -1,5 +1,5 @@
 {{#each (filter @root.data.tasksInfo "task_id" "===" @root.request.params.task_id)}}
-    {{#json type='array'}}
+  {{#json type='array'}}
     {{#if @root.request.params.hours_id}}
       {{#eachJoin (filter hours_list "hours_id" "===" @root.request.params.hours_id) ","}}
         {{#json}}
@@ -31,6 +31,5 @@
         {{/json}}
       {{/eachJoin}}
     {{/if}}
-
-    {{/json}}
+  {{/json}}
  {{/each}}

@@ -3,7 +3,8 @@
   {
   "from": "{{@root.context.metaData.contacts.noreply}}",
   "h:sender": "{{@root.context.metaData.contacts.noreply}}",
-  {{#compare @root.data.accountInfo.user_type "===" "Group Admin"}}
+  "h:Reply-To": "{{>support_email_address}}",
+  {{#compare @root.data.accountInfo.user_type "Group Admin"}}
   "to": "alex.nuttgens@scvo.org.uk",
   "wouldbe": "something",
   {{else}}

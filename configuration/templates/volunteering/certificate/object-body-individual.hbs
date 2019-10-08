@@ -1,0 +1,15 @@
+{{#json type='array'}}
+  {{#json}}
+    {{{json key='type' value='individual'}}},
+    {{#json key='user'}}
+      {{{json key='first_name' value=@root.data.accountInfo.first_name}}},
+      {{{json key='last_name' value=@root.data.accountInfo.last_name}}},
+      {{{json key='hours_verified' value=(sumArray (pluck @root.data.tasksInfo "hours_verified"))}}},
+    {{/json}},
+    {{#json type='array' key='tasks'}}
+      {{#eachJoin @root.data.tasksInfo ","}}
+        {{{jsStringify this}}}
+      {{/eachJoin}}
+    {{/json}}
+  {{/json}}
+{{/json}}

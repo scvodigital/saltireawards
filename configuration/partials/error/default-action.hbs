@@ -1,11 +1,1 @@
-if this happens again, please {{#if @root.data.accountInfo.local_authority ~}}
-  {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
-    {{#each contacts ~}}
-      {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
-        <a href="mailto:{{email}}">contact us</a>.
-      {{/if ~}}
-    {{/each ~}}
-  {{/with ~}}
-{{else}}
-  <a href="mailto:{{@root.context.metaData.contacts.admin}}">contact us</a>.
-{{/if ~}}
+if this happens again, please <a href="mailto:{{>support_email_address}}">contact us</a>.

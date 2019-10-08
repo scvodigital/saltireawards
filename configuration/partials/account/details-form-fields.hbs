@@ -25,23 +25,10 @@
       {{else}}
         <input class="form-input" id="date_of_birth_checked" max="{{momentFormat (dateMath 'now-12y') 'YYYY-MM-DD'}}" min="{{momentFormat (dateMath 'now-26y') 'YYYY-MM-DD'}}" name="date_of_birth_checked" type="date" value="{{@root.data.accountInfo.date_of_birth}}" autocomplete="false" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="focus-next" disabled>
         <input type="hidden" name="date_of_birth" value="{{@root.data.accountInfo.date_of_birth}}">
+        <div class="caption">
+          If your date of birth is incorrect here please <a href="mailto:{{>support_email_address}}">contact us</a>.
+        </div>
       {{/unless ~}}
-      {{#if @root.data.accountInfo.date_of_birth ~}}
-      <div class="caption">
-        If your date of birth is incorrect here please
-        {{#if @root.data.accountInfo.local_authority ~}}
-          {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
-            {{#each contacts ~}}
-              {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
-                <a href="mailto:{{email}}">contact us</a>.
-              {{/if ~}}
-            {{/each ~}}
-          {{/with ~}}
-        {{else}}
-          <a href="mailto:{{@root.context.metaData.contacts.admin}}">contact us</a>.
-        {{/if ~}}
-      </div>
-      {{/if ~}}
     </div>
   </div>
 

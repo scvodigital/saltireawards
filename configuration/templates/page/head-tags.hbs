@@ -4,17 +4,17 @@
 <title>{{{title}}} – Saltire Awards</title>
 <meta property="og:title" content="{{{title}}} – Saltire Awards" data-dynamic="true">
 {{else}}
-{{#if @root.route.metaData.adminTitle ~}}
+{{#if @root.data.isAdmin ~}}
 <title>{{@root.route.metaData.adminTitle}} – Saltire Awards</title>
 <meta property="og:title" content="{{@root.route.metaData.adminTitle}} – Saltire Awards" data-dynamic="true">
 {{else}}
-{{#if @root.route.metaData.title ~}}
-<title>{{@root.route.metaData.title}} – Saltire Awards</title>
-<meta property="og:title" content="{{@root.route.metaData.title}} – Saltire Awards" data-dynamic="true">
-{{else}}
+{{#compare @root.route.metaData.title "Home" ~}}
 <title>Saltire Awards – recognising young volunteers in Scotland</title>
 <meta property="og:title" content="Saltire Awards – recognising young volunteers in Scotland" data-dynamic="true">
-{{/if ~}}
+{{else}}
+<title>{{@root.route.metaData.title}} – Saltire Awards</title>
+<meta property="og:title" content="{{@root.route.metaData.title}} – Saltire Awards" data-dynamic="true">
+{{/compare ~}}
 {{/if ~}}
 {{/if ~}}
 {{#if files.0.uploadUrl ~}}
@@ -28,16 +28,16 @@
 {{/ifAny ~}}
 {{/with ~}}
 {{else}}
-{{#if @root.route.metaData.adminTitle ~}}
+{{#if @root.data.isAdmin ~}}
 <title>{{@root.route.metaData.adminTitle}} – Saltire Awards</title>
 <meta property="og:title" content="{{@root.route.metaData.adminTitle}} – Saltire Awards" data-dynamic="true">
 {{else}}
-{{#if @root.route.metaData.title ~}}
-<title>{{@root.route.metaData.title}} – Saltire Awards</title>
-<meta property="og:title" content="{{@root.route.metaData.title}} – Saltire Awards" data-dynamic="true">
-{{else}}
+{{#compare @root.route.metaData.title "Home" ~}}
 <title>Saltire Awards – recognising young volunteers in Scotland</title>
 <meta property="og:title" content="Saltire Awards – recognising young volunteers in Scotland" data-dynamic="true">
-{{/if ~}}
+{{else}}
+<title>{{@root.route.metaData.title}} – Saltire Awards</title>
+<meta property="og:title" content="{{@root.route.metaData.title}} – Saltire Awards" data-dynamic="true">
+{{/compare ~}}
 {{/if ~}}
 {{/if ~}}

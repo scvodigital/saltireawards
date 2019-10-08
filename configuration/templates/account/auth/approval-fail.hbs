@@ -4,7 +4,7 @@
   </div>
   <p class="empty-title h5">{{#compare @root.data.accountInfo.user_type "===" "Volunteer"}}Parent or guardian{{else}}Group administrator{{/compare}} account approval</p>
   <p class="empty-subtitle">
-    {{#compare @root.data.accountInfo.user_type "===" "Volunteer"}}Parent or guardian{{else}}Group administrator{{/compare}} approval has failed. Please <a href="mailto:{{@root.context.metaData.contacts.admin}}">contact us</a> for assistance.
+    {{#compare @root.data.accountInfo.user_type "===" "Volunteer"}}Parent or guardian{{else}}Group administrator{{/compare}} approval has failed. Please <a href="mailto:{{>support_email_address}}">contact us</a> for assistance.
   </p>
   <div class="empty-action"></div>
 </div>
