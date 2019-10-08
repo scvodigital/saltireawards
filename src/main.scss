@@ -181,7 +181,7 @@ header {
     box-shadow: none;
     .menu-item a {
       border-radius: 0 $unit*2 $unit*2 0;
-      margin-right: $unit/2;
+      margin-right: 0;
     }
   }
 }
@@ -415,6 +415,14 @@ ul.fa-ul {
   }
 }
 
+.search-form {
+  .input-group {
+    .form-select {
+      flex: 0 0 auto
+    }
+  }
+}
+
 .equal-height {
   .column {
     padding-bottom: 0.8rem;
@@ -536,6 +544,82 @@ footer {
   font-size: 95%;
   display: inline-block;
   font-family: 'Consolas', 'Monaco', 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
+}
+
+.table th,
+.table td {
+  border-bottom-width: 1px;
+}
+// .table tr:last-child {
+//   th,
+//   td {
+//     border-bottom-width: 0;
+//   }
+// }
+.table-condensed {
+  th,
+  td {
+    width: 12.5%;
+  }
+  .form-checkbox {
+    padding: .1rem .4rem;
+  }
+}
+
+@media screen and (max-width: 790px) {
+  .table-condensed {
+    margin-bottom: 0;
+    border-top: 0;
+    width: 100%;
+    thead, tbody {
+      float: left;
+    }
+    th,
+    td {
+      width: auto;
+    }
+    thead {
+      width: 20%;
+      tr {
+        width: 100%;
+        margin-top: 7px;
+        th {
+          font-size: 1rem;
+          text-align: left;
+          border-width: 0;
+          margin-top: .33rem;
+          // height: 40px;
+          p {
+            padding: $unit/10 0;
+          }
+        }
+        th:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+    tbody {
+      width: 80%;
+      tr {
+        width: 33.33%;
+        th {
+          height: 42px;
+          text-align: center;
+          border-top: none;
+        }
+        td {
+          text-align: center;
+        }
+      }
+    }
+    tr {
+      display: block;
+      float: left;
+    }
+    th, td {
+      display: block;
+    }
+  }
 }
 
 .text-left {

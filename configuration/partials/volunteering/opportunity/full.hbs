@@ -1,5 +1,5 @@
 <div class="full">
-  {{> opportunity_key_info type="full"}}
+  {{> volunteering_opportunity_key_info type="full"}}
   <div class="content-primary-info-container tabs">
     <div class="columns">
       <div class="column col-8 action">
@@ -89,7 +89,7 @@
           {{#if availability_slugs.length ~}}
           <h4>Availability</h4>
           <p>
-            {{>opportunity_timings_display availability_slugs}}
+            {{> volunteering_opportunity_timings_display availability_slugs}}
           </p>
           {{#if timings_description ~}}
           <p>
@@ -330,7 +330,7 @@
     </div>
 
     <div class="t-margin-full">
-      {{> opportunity_actions slug=slug Id=Id action="organisation"}}
+      {{> volunteering_opportunity_actions slug=slug Id=Id action="organisation"}}
     </div>
   </div>
 </div>
