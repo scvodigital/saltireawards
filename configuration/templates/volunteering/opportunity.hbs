@@ -1,7 +1,7 @@
 <div class="container">
   {{> volunteering_search_form}}
   {{#compare @root.data.primaryResponse.hits.total ">" 0 ~}}
-  <div class="content-primary">
+  <div class="content-primary clearfix">
     {{#each @root.data.primaryResponse.hits.hits ~}}
       {{> volunteering_opportunity_full _source view="full"}}
     {{/each ~}}
@@ -9,7 +9,7 @@
 
   {{#compare @root.data.opportunitySupplimentary.related.hits.total ">" 0 ~}}
   <div class="content-related">
-    <h3 class="v-margin-full">
+    <h3 class="b-margin-full t-margin-sm">
       Similar opportunities
     </h3>
     <div class="equal-height">

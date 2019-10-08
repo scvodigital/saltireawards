@@ -6,39 +6,28 @@
     <input type="hidden" name="sort" value="{{@root.request.params.query.sort}}" id="default-sort" />
     <div class="b-padding">
       <div class="columns">
-        <div class="column col-2 filter-age">
+        <div class="column col-3 filter-age">
           <div class="form-group">
             {{!-- <label for="age" class="form-label">
               Age
             </label> --}}
-            <select class="form-select" id="age" name="age">
+            <select class="form-select select-lg" id="age" name="age">
               {{#each (split "12,13,14,15,16,17,18" ",")}}
-                <option value="{{this}}" {{#compare (default @root.request.params.query.age "18") "===" this}}selected{{/compare}}>Available for age {{this}}+</option>
+                <option value="{{this}}" {{#compare (default @root.request.params.query.age '18') this}}selected{{/compare}}>Available for age {{this}}+</option>
               {{/each}}
             </select>
           </div>
         </div>
-        <div class="column col-3">
-          <div class="form-group has-icon-left">
-            {{!-- <label for="where-opportunities" class="form-label">
-              Location
-            </label> --}}
-            <input type="text" id="where-opportunities" name="location" class="form-input" value="{{@root.request.params.query.location}}" placeholder="Location" data-lpignore="true" data-location-search='{
+        <div class="column col-4">
+          <div class="input-group has-icon-left">
+            <span class="form-icon far fa-map-marker-alt geo-lookup" tabindex="0" title="Find my location"></span>
+            <input type="text" id="where-opportunities" name="location" class="form-input input-lg" value="{{@root.request.params.query.location}}" placeholder="Location" data-lpignore="true" data-location-search='{
               "latSelector": "[name=\"lat\"]",
               "lngSelector": "[name=\"lng\"]",
               "laSelector": "[name=\"la\"]",
               "locationServicesSelector": ".geo-lookup"
             }'>
-            <span class="form-icon far fa-map-marker-alt geo-lookup" tabindex="0" title="Find my location"></span>
-          </div>
-          <!-- <div class="after-textfield-action geo-lookup">Find me</div> -->
-        </div>
-        <div class="column col-2 filter-distance">
-          <div class="form-group">
-            {{!-- <label for="distance" class="form-label">
-              Within
-            </label> --}}
-            <select class="form-select" id="distance" name="distance">
+            <select class="form-select select-lg" id="distance" name="distance">
               {{#each (split "5,10,15,20,25,30,35,40,45,50" ",")}}
                 <option value="{{this}}" {{#compare (default @root.request.params.query.distance "10") "===" this}}selected{{/compare}}>{{this}} miles</option>
               {{/each}}
@@ -50,7 +39,7 @@
             {{!-- <label for="what-opportunities" class="form-label">
               Keywords
             </label> --}}
-            <input type="text" id="what-opportunities" name="keywords" class="form-input" value="{{@root.request.params.query.keywords}}" placeholder="Keywords" data-lpignore="true" data-typeahead='{
+            <input type="text" id="what-opportunities" name="keywords" class="form-input input-lg" value="{{@root.request.params.query.keywords}}" placeholder="Keywords" data-lpignore="true" data-typeahead='{
               "typeaheadOptions": {
                 "highlight": true,
                 "minlength": 0
