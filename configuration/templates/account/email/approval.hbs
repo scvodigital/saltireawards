@@ -1,30 +1,29 @@
-{{#withExtend @root.data.accountInfo type=(if (compare @root.data.accountInfo.user_type "===" "Group Admin") "tsi-approval" else="parental-approval")}}
-  [
+{{#withExtend @root.data.accountInfo type=(if (compare @root.data.accountInfo.user_type "===" "Group Admin") "tsi-approval" else="parental-approval") ~}}
+[
   {
-  "from": "{{@root.context.metaData.contacts.noreply}}",
-  "h:sender": "{{@root.context.metaData.contacts.noreply}}",
-  "h:Reply-To": "{{>support_email_address}}",
-  {{#compare @root.data.accountInfo.user_type "Group Admin"}}
-  "to": "alex.nuttgens@scvo.org.uk",
-  "wouldbe": "something",
-  {{else}}
-  "to": "{{{verification_email}}}",
-  {{/compare}}
-  "o:tag": "{{{type}}}",
-  "o:tracking": true,
-  {{!-- "o:testmode": true, --}}
-  "tag":  "{{{type}}}",
-  "id":  "{{{type}}}",
-  "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat type '.mailgunConnection'))}}},
-  "subject": "Request for {{#compare type "tsi-approval"}}TSI{{else}}parental{{/compare}} approval",
-  "html":
-  {{~#blockStringify this ~}}
-    {{~>
-    (getProperty @root.context.metaData.emailSendSettings (concat type '.bodyPartial'))
-      this
-    ~}}
-  {{~/blockStringify}}
+    "from": "{{@root.context.metaData.contacts.noreply}}",
+    "h:sender": "{{@root.context.metaData.contacts.noreply}}",
+    "h:Reply-To": "{{>support_email_address}}",
+    {{#compare @root.data.accountInfo.user_type "Group Admin" ~}}
+    "to": "alex.nuttgens@scvo.org.uk",
+    "wouldbe": "something",
+    {{else}}
+    "to": "{{{verification_email}}}",
+    {{/compare ~}}
+    "o:tag": "{{{type}}}",
+    "o:tracking": true,
+    {{!-- "o:testmode": true, --}}
+    "tag": "{{{type}}}",
+    "id": "{{{type}}}",
+    "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat type '.mailgunConnection'))}}},
+    "subject": "Request for {{#compare type "tsi-approval"}}TSI{{else}}parental{{/compare}} approval",
+    "html":
+    {{~#blockStringify this ~}}
+      {{~>
+      (getProperty @root.context.metaData.emailSendSettings (concat type '.bodyPartial'))
+        this
+      ~}}
+    {{~/blockStringify ~}}
   }
-
-  ]
-{{/withExtend }}
+]
+{{/withExtend ~}}

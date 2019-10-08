@@ -1,22 +1,7 @@
+<title>{{> page_title}}</title>
+<meta property="og:title" content="{{> page_title}}" data-dynamic="true">
 {{#if @root.data.primaryResponse.hits.hits.[0] ~}}
 {{#with @root.data.primaryResponse.hits.hits.[0]._source ~}}
-{{#if title ~}}
-<title>{{{title}}} – Saltire Awards</title>
-<meta property="og:title" content="{{{title}}} – Saltire Awards" data-dynamic="true">
-{{else}}
-{{#if @root.data.isAdmin ~}}
-<title>{{@root.route.metaData.adminTitle}} – Saltire Awards</title>
-<meta property="og:title" content="{{@root.route.metaData.adminTitle}} – Saltire Awards" data-dynamic="true">
-{{else}}
-{{#compare @root.route.metaData.title "Home" ~}}
-<title>Saltire Awards – recognising young volunteers in Scotland</title>
-<meta property="og:title" content="Saltire Awards – recognising young volunteers in Scotland" data-dynamic="true">
-{{else}}
-<title>{{@root.route.metaData.title}} – Saltire Awards</title>
-<meta property="og:title" content="{{@root.route.metaData.title}} – Saltire Awards" data-dynamic="true">
-{{/compare ~}}
-{{/if ~}}
-{{/if ~}}
 {{#if files.0.uploadUrl ~}}
 <meta property="og:image" content="{{files.0.uploadUrl}}" data-dynamic="true">
 <meta property="og:image:width" content="128" data-dynamic="true">
@@ -27,17 +12,4 @@
 <meta name="description" content="{{stripTags (regexReplace (default description (default ../description (default og_summary ../og_summary))) '\r|\n' 'gi' '')}}" data-dynamic="true">
 {{/ifAny ~}}
 {{/with ~}}
-{{else}}
-{{#if @root.data.isAdmin ~}}
-<title>{{@root.route.metaData.adminTitle}} – Saltire Awards</title>
-<meta property="og:title" content="{{@root.route.metaData.adminTitle}} – Saltire Awards" data-dynamic="true">
-{{else}}
-{{#compare @root.route.metaData.title "Home" ~}}
-<title>Saltire Awards – recognising young volunteers in Scotland</title>
-<meta property="og:title" content="Saltire Awards – recognising young volunteers in Scotland" data-dynamic="true">
-{{else}}
-<title>{{@root.route.metaData.title}} – Saltire Awards</title>
-<meta property="og:title" content="{{@root.route.metaData.title}} – Saltire Awards" data-dynamic="true">
-{{/compare ~}}
-{{/if ~}}
 {{/if ~}}

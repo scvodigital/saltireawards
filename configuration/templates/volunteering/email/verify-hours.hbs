@@ -1,7 +1,7 @@
 {{#withExtend this type="hours-verify"}}
-  [
-  {{#eachJoin (distinct (pluck @root.data.tasksInfoUnverified "volunteer_manager_email")) ","~}}
-    {
+[
+  {{#eachJoin (distinct (pluck @root.data.tasksInfoUnverified "volunteer_manager_email")) "," ~}}
+  {
     "from": "{{@root.context.metaData.contacts.noreply}}",
     "h:sender": "{{@root.context.metaData.contacts.noreply}}",
     "h:Reply-To": "{{>support_email_address}}",
@@ -20,7 +20,7 @@
         this
       ~}}
     {{~/blockStringify}}
-    }
-  {{/eachJoin}}
-  ]
+  }
+  {{/eachJoin ~}}
+]
 {{/withExtend}}
