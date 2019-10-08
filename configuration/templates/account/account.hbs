@@ -25,7 +25,7 @@
       <h2>Settings</h2>
 
       <div class="columns">
-        <div class="column col-4" id="change-password">
+        <div class="column col-6 form b-padding-full" id="change-password">
           {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "password") ~}}
             <h3>Change password</h3>
           {{else}}
@@ -63,7 +63,33 @@
           </button>
         </div>
 
-        <div class="column col-4" id="link-unlink">
+        <div class="column col-6 b-padding-full form" id="change-email">
+          <h3>Change email</h3>
+
+          <div id="change-email-alert" class="alert hidden bg-error s-rounded x-padding v-margin">
+            <span class="alert-message"></span>
+          </div>
+
+          <div class="form-group has-icon-left">
+            <input class="form-input" type="email" id="change-email-email" placeholder="New password" data-lpignore="true" autocomplete="off"
+              data-component="TasksTrigger" data-TasksTrigger="focus-next" required />
+            <span class="form-icon far fa-key"></span>
+          </div>
+          <div class="form-group has-icon-left">
+            <input class="form-input" type="email" id="change-email-confirm" placeholder="Confirm password" data-lpignore="true" autocomplete="off"
+              data-component="TasksTrigger" data-TasksTrigger="focus-next" required />
+            <span class="form-icon far fa-key"></span>
+          </div>
+
+          <button class="btn btn-primary" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal"
+            data-confirm-task="change-email" data-confirm-verb="change your email" data-confirm-description="#change-email-description">
+            Change email
+          </button>
+        </div>
+      </div>
+
+      <div class="columns">
+        <div class="column col-6 form b-padding-full" id="link-unlink">
           {{#ifAny (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com") ~}}
           <h3>Linked accounts</h3>
 
@@ -129,7 +155,7 @@
           {{/unless ~}}
         </div>
 
-        <div class="column col-4">
+        <div class="column col-6 form b-padding-full">
           <h3>Account data</h3>
 
           <div id="delete-account-alert" class="alert hidden bg-error s-rounded x-padding v-margin">
@@ -228,6 +254,12 @@
   <ul>
     <li>Fully remove your account from the Saltire Awards system</li>
   </ul>
+</div>
+
+<div id="change-email-description" class="hidden">
+  <p>
+    To change your email you must sign in again.
+  </p>
 </div>
 
 <div id="change-password-description" class="hidden">
@@ -376,6 +408,65 @@
         {
           type: "elementManipulator",
           config: { "#change-password": { removeClass: "disabled" } }
+        }
+      ]
+    }
+  }
+</script>
+
+<script data-task="change-email" type="javascript/blocked">
+  {
+    type: "multiTask",
+    config: {
+      tasks: [
+        {
+          type: "elementManipulator",
+          config: { "#change-email": { addClass: "disabled" } }
+        },
+        {
+          name: "changeEmail",
+          type: "firebaseChangeEmail",
+          config: {
+            email: { __template: "\{{jquery '#change-email-email' 'val'}}" },
+            emailConfirm: { __template: "\{{jquery '#change-email-confirm' 'val'}}" }
+          }
+        },
+        {
+          __doNotCompile: true,
+          type: "switch",
+          config: {
+            which: { __template: "\{{#if errors.changeEmail}}error\{{/if}}" },
+            branches: {
+              default: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      "#change-email-alert": { removeClass: "hidden" },
+                      "#change-email-alert .alert-message": { contents: "Email updated" },
+                      "#change-email-email": { value: "" },
+                      "#change-email-confirm": { value: "" }
+                    }
+                  }
+                ]
+              },
+              error: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      "#change-email-alert": { removeClass: "hidden" },
+                      "#change-email-alert .alert-message": { contents: { __template: "\{{errors.changeEmail.message}}" } }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          type: "elementManipulator",
+          config: { "#change-email": { removeClass: "disabled" } }
         }
       ]
     }
