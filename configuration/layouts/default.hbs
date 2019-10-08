@@ -53,6 +53,8 @@
   {{/ifAny ~}}
   </script>
 
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
   <link type="text/css" rel="stylesheet" href="{{~>asset_url url='libraries/leaflet/leaflet.css'~}}" />
   <link type="text/css" rel="stylesheet" href="{{~>asset_url url='libraries/fontawesome-pro/css/all.min.css'~}}" />
   <link type="text/css" rel="stylesheet" href="{{~>asset_url url='main.css'}}" />
@@ -429,6 +431,27 @@
       "storageBucket": "saltire-awards.appspot.com",
       "messagingSenderId": "940419868873"
     });
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+  <script>
+  window.cookieconsent.initialise({
+    "palette": {
+      "popup": {
+        "background": "#DEEFFB",
+        "text": "#005EB8"
+      },
+      "button": {
+        "background": "#005EB8"
+      }
+    },
+    "theme": "edgeless",
+    "position": "bottom-right",
+    "content": {
+      "message": "We use cookies to track anonymous usage statistics.",
+      "href": "/cookies"
+    }
+  });
   </script>
 
   {{{layoutParts.foot}}}
