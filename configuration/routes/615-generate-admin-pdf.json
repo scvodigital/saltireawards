@@ -15,7 +15,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "data",
-        "template": ">context.metaData.handlebars.templates.tasks_admin-pdf-object-body",
+        "template": ">context.metaData.handlebars.templates.task_admin-pdf-object-body",
         "parseJson": true
       }
     },
@@ -24,7 +24,7 @@
       "taskModule": "generatePdf",
       "renderer": "handlebars",
       "config": {
-        "definitionTemplate": ">context.metaData.handlebars.templates.awards_award-pdf-definition"
+        "definitionTemplate": ">context.metaData.handlebars.templates.certificate_pdf-definition"
       }
     }
   ]

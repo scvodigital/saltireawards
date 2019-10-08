@@ -19,7 +19,7 @@
         "connection": "scvoAlexSandbox",
         "output": "data",
         "method": "POST",
-        "body": ">context.metaData.handlebars.templates.tasks_task-body",
+        "body": ">context.metaData.handlebars.templates.task_task-body",
         "apexClassPath": "/SaltireTask/?user_id={{@root.data.auth.uid}}"
       }
     },

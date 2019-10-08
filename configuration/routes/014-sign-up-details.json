@@ -35,9 +35,8 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.account_sign-up-details",
-              "foot": ">context.metaData.handlebars.templates.account_footer"
+              "head": ">context.metaData.handlebars.templates.page_head-tags",
+              "body": ">context.metaData.handlebars.templates.account_auth_sign-up-details"
             },
             "contentType": "text/html"
           }

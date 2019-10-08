@@ -14,7 +14,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "data",
-        "template": ">context.metaData.handlebars.templates.account_approval-code-required"
+        "template": ">context.metaData.handlebars.templates.account_auth_approval-code-required"
       }
     },
     {
@@ -25,7 +25,7 @@
         "connection": "scvoAlexSandbox",
         "output": "data",
         "method": "POST",
-        "body": ">context.metaData.handlebars.templates.account_user-body",
+        "body": ">context.metaData.handlebars.templates.account_auth_user-body",
         "apexClassPath": "/SaltireUser/"
       }
     },

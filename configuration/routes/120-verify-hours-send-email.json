@@ -19,7 +19,7 @@
         "appName": "saltireawards",
         "pathTemplate": "/{{default data.auth.uid 'no-such-write-profile'}}/verify-hours/",
         "setOrUpdate": "set",
-        "dataTemplate": ">context.metaData.handlebars.templates.tasks_fb-verify-hours-data"
+        "dataTemplate": ">context.metaData.handlebars.templates.task_fb-verify-hours-data"
       }
     },
     {
@@ -29,7 +29,7 @@
       "config": {
         "output": "data",
         "parseJson": true,
-        "template": ">context.metaData.handlebars.templates.tasks_verify-hours-email"
+        "template": ">context.metaData.handlebars.templates.task_email_verify-hours"
       }
     },
     {
