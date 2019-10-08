@@ -1,5 +1,5 @@
   {
-  "text": {{>pdf_metadata_value key="title" default="Award"}},
+  "text": {{>pdf_metadata_value key="title" default="Saltire Awards certificate"}},
   "fontSize": 22,
   "bold": true,
   "alignment": "center",
@@ -63,4 +63,8 @@
   },
   {{/if}}
 
+  {{#if last ~}}
+  {{>pdf_text text="" pageBreak="none"}}
+  {{else}}
   {{>pdf_text text="" pageBreak="after"}}
+  {{/if ~}}

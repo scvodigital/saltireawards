@@ -36,58 +36,8 @@
     }
   },
   "content": [
-    {
-      "text": {{>pdf_metadata_value key="title" default="Saltire Awards"}},
-    "fontSize": 26,
-    "bold": true,
-    "alignment": "center",
-    "margin": [0, 15]
-  },
     {{#each @root.data.pdfObjects}}
-    {{>awards_pdf}},
+    {{> certificate_pdf last=@last}}{{#unless @last}},{{/unless}}
     {{/each}}
-    {
-      "columns": [
-        {
-          "width": "33%",
-          "text": [
-            {
-              "text": "Contact Us\n",
-              "fontSize": 14,
-              "bold": true
-            }, {
-              "text": "@support@saltireawards.org.uk\n",
-              "link": "mailto:support@saltireawards.org.uk.",
-              "fontSize": 10
-            },
-            {
-              "text": "TSI DATA HERE\n",
-              "link": "tel:08001690022",
-              "fontSize": 10
-            }
-          ]
-        },
-        {
-          "width": "66%",
-          "text": [
-            {
-              "text": "About Us\n",
-              "fontSize": 14,
-              "bold": true
-            },
-            {
-              "text": "The Saltire Awards is run by the Scottish Council for Voluntary Organisations, managed by Scotland's Third Sector Interfaces and supported by the Scottish Government. ",
-              "fontSize": 10
-            },
-            {
-              "text": "This website is owned and maintained by the Scottish Council for Voluntary Organisations the umbrella body for Scotland\"s voluntary sector.\n",
-              "fontSize": 10
-            }
-          ]
-        }
-      ],
-      "margin": [30, 240]
-    }
-
   ]
 }
