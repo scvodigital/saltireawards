@@ -93,8 +93,8 @@
                   {
                     type: "elementManipulator",
                     config: {
-                      ".mobile-modal": {
-                        "removeClass": "mobile-menu_closed",
+                      ".mobile-menu": {
+                        "removeClass": "mobile-menu_closed mobile-menu_closing",
                         "addClass": "mobile-menu_open"
                       }
                     }
@@ -169,14 +169,14 @@
         </section>
       </header>
 
-      <div class="mobile-modal mobile-menu_closed">
+      <div class="mobile-menu mobile-menu_closed">
         <div class="mobile-menu_background" data-component="TasksTrigger" data-TasksTrigger='{
           click: {
             tasks: [
               {
                 type: "elementManipulator",
                 config: {
-                  ".mobile-modal": {
+                  ".mobile-menu": {
                     removeClass: "mobile-menu_open",
                     addClass: "mobile-menu_closing"
                   }
@@ -189,7 +189,7 @@
                     {
                       type: "elementManipulator",
                       config: {
-                        ".mobile-modal": {
+                        ".mobile-menu": {
                           addClass: "mobile-menu_closed",
                           removeClass: "mobile-menu_closing"
                         }
@@ -201,7 +201,7 @@
             ]
           }
         }'></div>
-        <aside class="mobile-menu sidebar">
+        <aside class="mobile-menu_contents sidebar">
           {{{layoutParts.sidebar}}}
         </aside>
       </div>
