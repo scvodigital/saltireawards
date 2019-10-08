@@ -1,0 +1,30 @@
+{{#*inline "route_title" ~}}
+{{~#if @root.data.isAdmin ~}}
+{{~#if @root.route.metaData.title ~}}
+{{@root.route.metaData.adminTitle}} – Saltire Awards
+{{else}}
+Saltire Awards – recognising young volunteers in Scotland
+{{~/if~}}
+{{else}}
+{{~#compare @root.route.metaData.title "Home" ~}}
+Saltire Awards – recognising young volunteers in Scotland
+{{else}}
+{{~#if @root.route.metaData.title ~}}
+{{@root.route.metaData.title}} – Saltire Awards
+{{else}}
+Saltire Awards – recognising young volunteers in Scotland
+{{~/if~}}
+{{~/compare ~}}
+{{~/if ~}}
+{{/inline ~}}
+{{~#if @root.data.primaryResponse.hits.hits.[0] ~}}
+{{~#with @root.data.primaryResponse.hits.hits.[0]._source ~}}
+{{~#if title ~}}
+{{{title}}} – Saltire Awards
+{{else}}
+{{> route_title}}
+{{~/if ~}}
+{{~/with ~}}
+{{else}}
+{{> route_title}}
+{{~/if ~}}
