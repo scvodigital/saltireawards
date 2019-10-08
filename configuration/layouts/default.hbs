@@ -111,9 +111,17 @@
                     </a>
                     <ul class="menu">
                       <li class="menu-item">
+<<<<<<< HEAD
                         <a href="/" class="{{#compare @root.request.url.pathname '/'}} active{{/compare}}{{#if @root.data.accountInfo.verification_needed}} disabled{{/if}}">
                           <span class="far fa-fw fa-home" aria-hidden="true"></span>
                           Home
+=======
+                        <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
+                          {{#if icon ~}}
+                          <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
+                          {{/if ~}}
+                          {{{label}}}
+>>>>>>> 4ac5f80adca3bbb14f841117aa0cebb1e790ba74
                         </a>
                       </li>
                     {{/if ~}}
