@@ -87,7 +87,21 @@
           <a class="navbar-brand" href="/"><img src="{{~>asset_url url='images/logos/logo.png'~}}" alt="Saltire Awards" /></a>
         </section>
         <section class="navbar-section">
-          <a href="#" class="btn btn-link show-lg">
+          <a href="#" class="btn btn-link show-lg" data-component="TasksTrigger" data-TasksTrigger='{
+              click: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      ".mobile-modal": {
+                        "removeClass": "mobile-menu_closed",
+                        "addClass": "mobile-menu_open"
+                      }
+                    }
+                  }
+                ]
+              }
+            }'>
             <i class="fas fa-bars"></i>
           </a>
           <span class="hide-lg">
@@ -155,10 +169,47 @@
         </section>
       </header>
 
+      <div class="mobile-modal mobile-menu_closed">
+        <div class="mobile-menu_background" data-component="TasksTrigger" data-TasksTrigger='{
+          click: {
+            tasks: [
+              {
+                type: "elementManipulator",
+                config: {
+                  ".mobile-modal": {
+                    removeClass: "mobile-menu_open",
+                    addClass: "mobile-menu_closing"
+                  }
+                }
+              },
+              {
+                type: "delay",
+                config: {
+                  "500": [
+                    {
+                      type: "elementManipulator",
+                      config: {
+                        ".mobile-modal": {
+                          addClass: "mobile-menu_closed",
+                          removeClass: "mobile-menu_closing"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }'></div>
+        <aside class="mobile-menu sidebar">
+          {{{layoutParts.sidebar}}}
+        </aside>
+      </div>
+
       <div class="{{#if layoutParts.sidebar}}sidebar-present{{else}}sidebar-not-present{{/if}}">
         {{#if layoutParts.sidebar ~}}
           <div class="columns col-gapless">
-            <aside class="column col-2 col-lg-3 col-xl-3 sidebar hide-md">
+            <aside class="column col-2 col-lg-3 col-xl-3 sidebar hide-lg">
               {{{layoutParts.sidebar}}}
             </aside>
             <main class="column col-10 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9">
