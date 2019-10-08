@@ -100,11 +100,24 @@ a.pure-menu-link:hover {
   text-decoration: none;
 }
 
+
+
+@media (max-width: 960px) {
+  aside.sidebar {
+    position: fixed;
+    background-color: #ffffff;
+    height: 100vh;
+    width: 300px;
+    z-index: 1;
+    top: 0;
+  }
+}
+
 header {
   display: flex;
   align-items: center;
   height: 100px;
-  box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 5px 8px 0px rgba(0,0,0,0.14), 0px 1px 14px 0px rgba(0,0,0,0.12);
+  // box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 5px 8px 0px rgba(0,0,0,0.14), 0px 1px 14px 0px rgba(0,0,0,0.12);
   // .navbar-brand {
   //   margin-left: $unit/2;
   // }
