@@ -1,7 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600&display=swap');
 
-$primary-color: #253887;
-// $secondary-color: #009DDA;
+$primary-color: #009DDA;
+$primary-color-light: lighten($primary-color, 6%) !default;
+$primary-color-dark: darken($primary-color, 6%) !default;
+$secondary-color: #253887;
+$secondary-color-light: lighten($secondary-color, 10%) !default;
+$secondary-color-dark: darken($secondary-color, 10%) !default;
 $dark-color: #10183A;
 $gray-color: #000000;
 $light-color: #FFFFFF;
@@ -54,7 +58,8 @@ body * {
   font-family: 'Montserrat', sans-serif;
   box-sizing: border-box;
 }
-body::after, body::before,
+body::after,
+body::before,
 input::after,
 input::before,
 select::after,
@@ -79,6 +84,8 @@ h5 {
   letter-spacing: -0.05rem;
 }
 a,
+.btn,
+.chip,
 footer h4,
 strong {
   font-weight: $link-font-weight;
@@ -87,20 +94,23 @@ strong {
 a,
 a:visited,
 a:link {
-  color: $primary-color;
+  color: $secondary-color;
   text-decoration: none;
   text-decoration-skip-ink: auto;
 }
 a:hover {
-  color: $dark-color;
+  color: $secondary-color-dark;
   text-decoration: underline;
+}
+a:focus,
+.btn:focus {
+  outline: none;
+  box-shadow: none;
 }
 .chip-set a:hover,
 a.pure-menu-link:hover {
   text-decoration: none;
 }
-
-
 
 @media screen and (min-width: 961px) {
   .mobile-menu {
@@ -201,13 +211,24 @@ header {
     border-color: transparent;
   }
   .dropdown {
+    text-align: left;
     .menu {
       padding: $unit/2 0;
       left: .4rem;
       right: .4rem,
     }
     .menu .menu-item>a {
-      color: $primary-color !important;
+      color: $secondary-color !important;
+    }
+    .menu .menu-item>a.active {
+      background-color: $primary-color !important;
+      color: white !important;
+    }
+    .menu .menu-item>a:focus,
+    .menu .menu-item>a:hover,
+    .menu .menu-item>a:active {
+      background-color: $primary-color-dark !important;
+      color: white !important;
     }
   }
   .dropdown-toggle {
@@ -282,6 +303,17 @@ header {
       }
     }
   }
+}
+
+.menu .menu-item>a.active {
+  background-color: $primary-color;
+  color: white;
+}
+.menu .menu-item>a:focus,
+.menu .menu-item>a:hover,
+.menu .menu-item>a:active {
+  background-color: $primary-color-dark;
+  color: white;
 }
 
 .sidebar-not-present {
