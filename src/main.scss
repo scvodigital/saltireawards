@@ -232,7 +232,7 @@ header {
     }
   }
   .dropdown-toggle {
-    padding-right: 0;
+    padding-right: $unit/4;
   }
   // .pure-menu-link {
   //   padding: $unit/2 0;
@@ -263,10 +263,19 @@ header {
   //   }
   // }
   .btn.btn-link.my-account {
+    color: $secondary-color !important;
+  }
+  .my-account {
     background: white !important;
     border-radius: 2rem;
-    color: $primary-color !important;
     margin-left: $unit/3;
+    .dropdown-toggle {
+      color: $secondary-color !important;
+    }
+    .dropdown-toggle:focus,
+    .dropdown-toggle:hover {
+      color: $secondary-color-dark !important;
+    }
   }
   // .btn.btn-link:last-child {
   //   margin-right: $unit/2;

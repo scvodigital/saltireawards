@@ -112,7 +112,7 @@
                 {{#each @root.context.metaData.menus.main-signed-in ~}}
                   <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
                 {{/each}}
-                <div class="dropdown">
+                <div class="dropdown my-account">
                   <div class="btn-group">
                     <a href="#" class="btn dropdown-toggle">
                       {{#if @root.data.auth.photoURL ~}}
