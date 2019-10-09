@@ -11,13 +11,13 @@
   <pre>
     {{#each errors}}
     --------------------------------
-    Name: {{name}}
-    Message: {{message}}
-    Stack: {{stack}}
-    Source Route: {{sourceRoute.route.name}}
-    Redirect To: {{redirectTo}}
-    Status Code: {{statusCode}}
-    Data: {{{stringify data}}}
+    {{#if name}}Name: {{name}}{{/if}}
+    {{#if message}}Message: {{message}}{{/if}}
+    {{#if stack}}Stack: {{stack}}{{/if}}
+    {{#if sourceRoute.route.name}}Source route: {{sourceRoute.route.name}}{{/if}}
+    {{#if redirectTo}}Redirect To: {{redirectTo}}{{/if}}
+    {{#if statusCode}}Status code: {{statusCode}}{{/if}}
+    {{#if data}}Data: {{{stringify data}}}{{/if}}
     {{#if task}}Task: {{{stringify task}}}{{/if}}
     {{#if destination}}Destination: {{{stringify destination}}}{{/if}}
     --------------------------------
