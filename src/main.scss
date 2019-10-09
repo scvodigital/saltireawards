@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600&display=swap');
 
 $primary-color: #009DDA;
-$primary-color-light: lighten($primary-color, 6%) !default;
+$primary-color-light: lighten($primary-color, 30%) !default;
 $primary-color-dark: darken($primary-color, 6%) !default;
 $secondary-color: #253887;
-$secondary-color-light: lighten($secondary-color, 10%) !default;
+$secondary-color-light: lighten($secondary-color, 33%) !default;
 $secondary-color-dark: darken($secondary-color, 10%) !default;
 $dark-color: #10183A;
 $gray-color: #000000;
@@ -231,13 +231,16 @@ a.btn-secondary:visited,
 }
 
 header {
-  // display: flex;
-  // align-items: flex-start;
   position: relative;
   height: 165px;
-  // .navbar-section:first-child {
-  //   flex: 0 0 auto;
-  // }
+  margin-bottom: -($unit/5);
+  svg.bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: $unit/2;
+    bottom: 0;
+  }
   .brand {
     position: absolute;
     top: $unit/2;
