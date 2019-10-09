@@ -26,6 +26,7 @@ $unit: 1rem;
 $heading-font-weight: 600;
 $link-font-weight: 500;
 $page-width: 1200px;
+$home-splash-height: 25vh;
 
 @import "../node_modules/spectre.css/src/spectre";
 @import url('../node_modules/leaflet.markercluster/dist/MarkerCluster.css');
@@ -110,6 +111,31 @@ a:focus,
 .chip-set a:hover,
 a.pure-menu-link:hover {
   text-decoration: none;
+}
+
+a.btn:link,
+a.btn:visited,
+.btn {
+  color: $primary-color;
+  border-color: $primary-color;
+}
+a.btn:active,
+a.btn:focus,
+a.btn:hover,
+.btn:active,
+.btn:focus,
+.btn:hover {
+  background-color: $light-color;
+  color: $primary-color-dark;
+  border-color: $primary-color-dark;
+}
+a.btn-primary:link,
+a.btn-primary:visited,
+.btn-primary,
+a.btn-secondary:link,
+a.btn-secondary:visited,
+.btn-secondary {
+  color: white;
 }
 
 #toaster {
@@ -301,6 +327,7 @@ header {
     border-radius: 2rem;
     margin-left: $unit/3;
     .dropdown-toggle {
+      border-color: transparent !important;
       color: $secondary-color !important;
     }
     .dropdown-toggle:focus,
@@ -311,6 +338,14 @@ header {
   // .btn.btn-link:last-child {
   //   margin-right: $unit/2;
   // }
+}
+
+.certificates {
+  .certificate {
+    .img-responsive {
+      margin: 0 auto;
+    }
+  }
 }
 
 .sidebar {
@@ -537,14 +572,14 @@ form {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  min-height: 33vh;
+  min-height: $home-splash-height;
   .header-image-overlay {
     width: 100%;
     background: linear-gradient(170deg, #fff 4.79%,rgba(255,255,255,0) 100.00%);
-    min-height: 33vh;
+    min-height: $home-splash-height;
   }
   .container {
-    min-height: 33vh;
+    min-height: $home-splash-height;
     margin-top: 0;
     padding: 0;
     display: flex;
