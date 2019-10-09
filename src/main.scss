@@ -19,7 +19,7 @@ $theme-ascent: #F05B23;
 $theme-summit: #514680;
 
 $theme-footer: #591669;
-$theme-footer-light: #FFFFFF;
+$theme-footer-light: #e7eaec;
 $theme-footer-dark: #333E48;
 
 $unit: 1rem;
@@ -44,6 +44,7 @@ body,
 }
 .page {
   background-color: white;
+  margin-bottom: $unit*1.5;
 }
 
 html {
@@ -667,7 +668,7 @@ form.disabled {
 
 footer {
   position: relative;
-  margin-top: -($unit/2);
+  margin-top: -($unit*1.5);
   svg {
     position: absolute;
     bottom: 0;
