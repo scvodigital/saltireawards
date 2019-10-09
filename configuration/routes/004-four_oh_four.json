@@ -2,6 +2,7 @@
   "name": "four_oh_four",
   "pattern": "/404",
   "debug": false,
+  "errorRoute": "five_hundred",
   "defaultStatusCode": 404,
   "tasks": [
     {

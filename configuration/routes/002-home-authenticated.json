@@ -1,7 +1,8 @@
 {
   "name": "home_authenticated",
   "pattern": "/home-authenticated",
-  "debug": true,
+  "debug": false,
+  "errorRoute": "five_hundred",
   "metaData": {
     "title": "Home",
     "adminTitle": "Group administrator"

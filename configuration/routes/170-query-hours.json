@@ -2,6 +2,7 @@
   "name": "query-hours",
   "pattern": "/query-hours",
   "debug": true,
+  "errorRoute": "five_hundred",
   "metaData": {
     "title": "Tasks"
   },

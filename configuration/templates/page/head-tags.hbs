@@ -1,5 +1,5 @@
-<title>{{> page_title}}</title>
-<meta property="og:title" content="{{> page_title}}" data-dynamic="true">
+<title>{{> page_title location="head"}}</title>
+<meta property="og:title" content="{{> page_title location="head"}}" data-dynamic="true">
 {{#if @root.data.primaryResponse.hits.hits.[0] ~}}
 {{#with @root.data.primaryResponse.hits.hits.[0]._source ~}}
 {{#if files.0.uploadUrl ~}}

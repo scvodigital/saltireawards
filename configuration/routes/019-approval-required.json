@@ -2,6 +2,7 @@
   "name": "approval-required",
   "pattern": "/approval-required",
   "debug": true,
+  "errorRoute": "five_hundred",
   "tasks": [
     "context.metaData.commonTasks.authRequired",
     "context.metaData.commonTasks.getAccountInfo",

@@ -2,6 +2,7 @@
   "name": "hours",
   "pattern": "/hours",
   "debug": true,
+  "errorRoute": "five_hundred",
   "metaData": {
     "title": "My volunteering",
     "adminTitle": "Volunteering groups"

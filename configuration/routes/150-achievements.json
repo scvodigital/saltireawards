@@ -2,6 +2,7 @@
   "name": "achievements",
   "pattern": "/achievements",
   "debug": true,
+  "errorRoute": "five_hundred",
   "metaData": {
     "title": "My achievements"
   },

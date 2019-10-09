@@ -2,6 +2,7 @@
   "name": "submit-task-details",
   "pattern": "/submit-task-details",
   "debug": true,
+  "errorRoute": "five_hundred",
   "acceptedVerbs": "POST",
   "defaultParams": {
     "context": "results"

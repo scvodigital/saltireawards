@@ -2,6 +2,7 @@
   "name": "task",
   "pattern": "/task",
   "debug": true,
+  "errorRoute": "five_hundred",
   "metaData": {
     "title": "My volunteering",
     "adminTitle": "Volunteering groups"

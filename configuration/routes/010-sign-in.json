@@ -2,6 +2,7 @@
   "name": "sign_in",
   "pattern": "/sign-in",
   "debug": true,
+  "errorRoute": "five_hundred",
   "metaData": {
     "title": "Sign in"
   },

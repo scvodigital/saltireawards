@@ -1,22 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600&display=swap');
 
-$primary-color: #005EB8;
-$secondary-color: #D7E6F3;
-$dark-color: #0A3A62;
-$gray-color: rgb(203, 208, 217);
-$light-color: #fff;
+$primary-color: #253887;
+// $secondary-color: #009DDA;
+$dark-color: #10183A;
+$gray-color: #000000;
+$light-color: #FFFFFF;
 $success-color: rgb(255, 255, 255);
 $warning-color: rgb(255, 190, 26);
 $error-color: rgb(255, 96, 3);
 
-$theme-challenge: #33B0D7;
-$theme-approach: #BBCF5C;
-$theme-ascent: #ED884C;
-$theme-summit: #8E7BA9;
+$theme-challenge: #008DDE;
+$theme-approach: #3BAA34;
+$theme-ascent: #F05B23;
+$theme-summit: #514680;
 
-$theme-footer: #384654;
-$theme-footer-light: #EAECEE;
-$theme-footer-dark: #29333D;
+$theme-footer: #253887;
+$theme-footer-light: #FFFFFF;
+$theme-footer-dark: #000000;
 
 $unit: 1rem;
 $heading-font-weight: 600;
@@ -164,15 +164,26 @@ a.pure-menu-link:hover {
 }
 
 header {
-  display: flex;
-  align-items: center;
-  height: 100px;
-  // box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 5px 8px 0px rgba(0,0,0,0.14), 0px 1px 14px 0px rgba(0,0,0,0.12);
-  // .navbar-brand {
-  //   margin-left: $unit/2;
-  // }]
-  .navbar-section:first-child {
-    flex: 0 0 auto;
+  // display: flex;
+  // align-items: flex-start;
+  position: relative;
+  height: 165px;
+  // .navbar-section:first-child {
+  //   flex: 0 0 auto;
+  // }
+  .brand {
+    position: absolute;
+    top: $unit/2;
+    left: $unit;
+  }
+  .nav {
+    text-align: right;
+    margin: 0;
+    padding: $unit 0;
+  }
+  .page-title h1 {
+    margin: $unit/2 0;
+    text-align: center;
   }
   .dropdown-toggle,
   .dropdown .btn.btn-link,

@@ -84,12 +84,12 @@
       {{/if}}
     {{/ifAny}}
 
-      <header class="navbar container bg-primary">
-        <section class="navbar-section">
-          <a class="navbar-brand" href="/"><img src="{{~>asset_url url='images/logos/logo.png'~}}" alt="{{@root.context.metaData.title}}" /></a>
+      <header class="container bg-primary">
+        <section class="brand">
+          <a href="/" class="logo"><img src="{{~>asset_url url='images/logos/saltire-awards-white.png'~}}" alt="{{@root.context.metaData.title}}" /></a>
         </section>
-        <section class="navbar-section">
-          <a href="#" class="btn btn-link show-lg" data-component="TasksTrigger" data-TasksTrigger='{
+        <section class="nav">
+          <a href="#" class="btn btn-link show-lg" aria-label="Menu" data-component="TasksTrigger" data-TasksTrigger='{
               click: {
                 tasks: [
                   {
@@ -104,9 +104,9 @@
                 ]
               }
             }'>
-            <i class="fas fa-bars"></i>
+            <span class="fas fa-bars" aria-hidden="true"></span>
           </a>
-          <span class="hide-lg">
+          <span class="hide-sm">
             {{#if @root.data.auth ~}}
               {{#if @root.data.accountInfo.user_type ~}}
                 {{#each @root.context.metaData.menus.main-signed-in ~}}
@@ -168,6 +168,11 @@
               {{/each}}
             {{/if ~}}
           </span>
+        </section>
+        <section class="page-title">
+          <h1>
+            {{> page_title location="body"}}
+          </h1>
         </section>
       </header>
 

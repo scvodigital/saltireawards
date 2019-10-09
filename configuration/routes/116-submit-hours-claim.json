@@ -2,6 +2,7 @@
   "name": "submit-hours-claim",
   "pattern": "/submit-hours-claim",
   "debug": true,
+  "errorRoute": "five_hundred",
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.verifyHoursInfo",

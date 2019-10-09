@@ -2,6 +2,7 @@
   "name": "approval-email-send",
   "pattern": "/approval-email-send",
   "debug": true,
+  "errorRoute": "five_hundred",
   "acceptedVerbs": "POST,GET",
   "defaultParams": {
     "context": "results"
