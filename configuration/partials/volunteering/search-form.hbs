@@ -17,13 +17,37 @@
         </div>
         <div class="column col-4">
           <div class="input-group has-icon-left">
-            <span class="form-icon far fa-map-marker-alt geo-lookup" tabindex="0" title="Find my location"></span>
-            <input type="text" id="where-opportunities" name="location" class="form-input input-lg" value="{{@root.request.params.query.location}}" placeholder="Location" data-lpignore="true" data-location-search='{
-              "latSelector": "[name=\"lat\"]",
-              "lngSelector": "[name=\"lng\"]",
-              "laSelector": "[name=\"la\"]",
-              "locationServicesSelector": ".geo-lookup"
-            }'>
+            <span class="form-icon far fa-map-marker-alt geo-lookup" tabindex="0" title="Find my location" data-component="TasksTrigger" data-TasksTrigger='{
+                click: {
+                  tasks: [
+                    { name:"geolocation", type: "geolocation", config: {} },
+                    {
+                      type: "elementManipulator",
+                      config: {
+                        "#location-lat": { value: { __template: "\{{data.geolocation.coords.latitude}}" } },
+                        "#location-lng": { value: { __template: "\{{data.geolocation.coords.longitude}}" } },
+                        "#where-opportunities": { value: { __template: "\{{data.geolocation.coords.latitude}}, \{{data.geolocation.coords.longitude}}" } }
+                      }
+                    },
+                    {
+                      name: "place",
+                      type: "request",
+                      config: {
+                        url: {
+                          __template: "/place-lookup?lat=\{{data.geolocation.coords.latitude}}&lng=\{{data.geolocation.coords.longitude}}"
+                        }
+                      }
+                    },
+                    {
+                      type: "elementManipulator",
+                      config: {
+                        "#where-opportunities": { value: { __template: "\{{data.place.place}}" } }
+                      }
+                    }
+                  ]
+                }
+              }'></span>
+            <input type="text" id="where-opportunities" name="location" class="form-input input-lg" value="{{@root.request.params.query.location}}" placeholder="Location" data-lpignore="true">
             <select class="form-select select-lg" id="distance" name="distance">
               {{#each (split "5,10,15,20,25,30,35,40,45,50" ",")}}
                 <option value="{{this}}" {{#compare (default @root.request.params.query.distance "10") "===" this}}selected{{/compare}}>{{this}} miles</option>
