@@ -5,6 +5,7 @@
     "id": "/opp/:id"
   },
   "debug": true,
+  "errorRoute": "five_hundred",
   "metaData": {
     "title": "Volunteering opportunity"
   },

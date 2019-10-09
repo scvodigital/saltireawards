@@ -1,7 +1,8 @@
 {
   "name": "page_terms",
   "pattern": "/terms",
-  "debug": false,
+  "debug": true,
+  "errorRoute": "five_hundred",
   "metaData": {
     "title": "Terms & conditions"
   },

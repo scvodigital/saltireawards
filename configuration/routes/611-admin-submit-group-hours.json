@@ -2,6 +2,7 @@
   "name": "admin-submit-group-hours",
   "pattern": "/admin-submit-group-hours",
   "debug": true,
+  "errorRoute": "five_hundred",
   "acceptedVerbs": "POST",
   "defaultParams": {
     "context": "results"

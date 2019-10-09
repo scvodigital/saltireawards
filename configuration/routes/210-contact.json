@@ -2,6 +2,10 @@
   "name": "page_contact",
   "pattern": "/contact",
   "debug": true,
+  "errorRoute": "five_hundred",
+  "metaData": {
+    "title": "Contact us"
+  },
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.getAccountInfo",

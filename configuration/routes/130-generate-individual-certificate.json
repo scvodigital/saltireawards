@@ -2,6 +2,7 @@
   "name": "certificate",
   "pattern": "/certificate",
   "debug": true,
+  "errorRoute": "five_hundred",
   "tasks": [
     "context.metaData.commonTasks.authRequired",
     "context.metaData.commonTasks.getSignUpStatus",

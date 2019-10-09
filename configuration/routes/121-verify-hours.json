@@ -2,6 +2,7 @@
   "name": "verify-hours",
   "pattern": "/verify-hours",
   "debug": true,
+  "errorRoute": "five_hundred",
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
     {

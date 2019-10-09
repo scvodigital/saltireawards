@@ -2,6 +2,7 @@
   "name": "sign_up",
   "pattern": "/sign-up",
   "debug": true,
+  "errorRoute": "five_hundred",
   "metaData": {
     "title": "Sign up"
   },

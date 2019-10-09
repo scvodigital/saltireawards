@@ -2,6 +2,10 @@
   "name": "post",
   "pattern": "/blog/*path",
   "debug": true,
+  "errorRoute": "five_hundred",
+  "metaData": {
+    "title": "Blog"
+  },
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.getAccountInfo",

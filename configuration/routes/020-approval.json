@@ -2,6 +2,7 @@
   "name": "approval",
   "pattern": "/user-approval",
   "debug": true,
+  "errorRoute": "five_hundred",
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
     {

@@ -2,8 +2,9 @@
   "name": "volunteering_map",
   "pattern": "/search/map",
   "debug": true,
+  "errorRoute": "five_hundred",
   "metaData": {
-    "title": "Volunteering opportunity search"
+    "title": "Find opportunities"
   },
   "defaultParams": {
     "context": "results"

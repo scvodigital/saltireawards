@@ -2,6 +2,7 @@
   "name": "submit-sign-up-details",
   "pattern": "/submit-sign-up-details",
   "debug": true,
+  "errorRoute": "five_hundred",
   "acceptedVerbs": "POST",
   "defaultParams": {
     "context": "results"

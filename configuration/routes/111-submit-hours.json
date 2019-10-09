@@ -2,6 +2,7 @@
   "name": "submit-hours",
   "pattern": "/submit-hours",
   "debug": true,
+  "errorRoute": "five_hundred",
   "acceptedVerbs": "POST",
   "defaultParams": {
     "context": "results"
