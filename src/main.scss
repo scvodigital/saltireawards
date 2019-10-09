@@ -112,6 +112,37 @@ a.pure-menu-link:hover {
   text-decoration: none;
 }
 
+#toaster {
+  position: fixed;
+  z-index: 2;
+  bottom: $unit;
+  left: 50%;
+  width: 300px;
+  margin-left: -150px;
+
+  .toast {
+    animation: toast-in 0.5s forwards;
+    position: relative;
+    margin-top: $unit/2;
+  }
+
+  .toast-out {
+    animation: toast-out 0.5s forwards 5.5s;
+  }
+
+  @keyframes toast-in {
+    0% {
+      transform: translateY(100px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  @keyframes toast-out { 0% { opacity: 1; } 100% { opacity: 0; } }
+}
+
 @media screen and (min-width: 961px) {
   .mobile-menu {
     display: none;
