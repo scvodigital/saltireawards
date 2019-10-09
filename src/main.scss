@@ -18,9 +18,9 @@ $theme-approach: #3BAA34;
 $theme-ascent: #F05B23;
 $theme-summit: #514680;
 
-$theme-footer: #253887;
+$theme-footer: #591669;
 $theme-footer-light: #FFFFFF;
-$theme-footer-dark: #000000;
+$theme-footer-dark: #333E48;
 
 $unit: 1rem;
 $heading-font-weight: 600;
@@ -663,8 +663,32 @@ form.disabled {
 
 
 footer {
+  position: relative;
+  margin-top: -($unit/2);
+  svg {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  svg.top {
+    height: $unit*1.5;
+    top: -($unit*1.5);
+  }
+  svg.mid {
+    width: 30%;
+    right: 0;
+    bottom: $unit/4;
+    height: $unit*4;
+  }
+  svg.bottom {
+    height: $unit/2;
+    bottom: 0;
+  }
   .footer-main {
-    padding: $unit 0;
+    margin-top: 1.5rem;
+    // background: linear-gradient(166deg, rgba(89,22,105,1) 84.9%, rgba(234,125,0,1) 85%);
+    padding: 0 0 $unit;
+    position: relative;
     .fa-li span,
     p,
     h4,
