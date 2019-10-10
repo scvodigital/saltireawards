@@ -50,7 +50,7 @@
             <input class="form-input" id="hours" name="hours" type="number" step="any" min="0" value="" placeholder="">
           </div>
           <div class="column col-2">
-            {{#unless (compare (dateMath 'now-26y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD"))}}
+            {{#unless (compare (dateMath 'now-27y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD"))}}
             <button type="submit" class="btn btn-primary">Add hours</button>
             {{/unless}}
           </div>
@@ -152,7 +152,7 @@
         <div class="column col-2">
           {{!-- <input {{#unless claim_code}}disabled{{/unless}} class="inline-edit" type="number" step="any" min="0" name="hours" value="{{hours}}"> --}}
           <div class="form-group r-margin b-margin">
-            <select class="form-select" required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
+            <select class="form-select" {{#unless claim_code}}disabled{{/unless}} required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
               {{#each @root.context.metaData.certificates ~}}
               <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>{{name}} hours</option>
               {{/each ~}}

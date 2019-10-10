@@ -15,10 +15,7 @@
           {{#compare unverified_hours_list.length ">=" 1}}
           {{#compare this.volunteer_manager_email "===" ../this}}
 
-          <li>
             <strong>Volunteering </strong> with <strong>{{organisation_name}}</strong>: {{#if task_description}}Tasks: {{task_description}}{{/if}}, Manager: {{volunteer_manager_first_name}} {{volunteer_manager_last_name}} - {{volunteer_manager_title}}
-            <ul>
-              <li>
                   <div class="columns">
                     <div class="column col-5">
                       <strong>Hours</strong>
@@ -30,7 +27,7 @@
                   </div>
                 {{#each this.hours_list}}
                   {{#unless verified}}
-                    <form id="{{hours_id}}" method="POST" action="/admin-submit-individual-hours?c={{@root.request.params.query.c}}&u={{@root.request.params.query.u}}" class="inline-hours-form">
+                    <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?c={{@root.request.params.query.c}}&u={{@root.request.params.query.u}}" class="inline-hours-form" data-component="TasksTrigger" data-success-message="Hours Updated" data-TasksTrigger="form-error-handler">
                       <input type="hidden" name="task_id" value="{{task_id}}">
                       <input type="hidden" name="verified" value="true">
                       <input type="hidden" name="claim_code" value="{{claim_code}}">
@@ -56,9 +53,6 @@
                     </form>
                   {{/unless}}
                 {{/each ~}}
-              </li>
-            </ul>
-          </li>
           {{/compare}}
           {{/compare}}
           <br />

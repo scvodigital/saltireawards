@@ -3,7 +3,7 @@
   "pattern": "/admin-update-individual-hours",
   "debug": true,
   "errorRoute": "five_hundred_json",
-  "acceptedVerbs": "POST",
+  "acceptedVerbs": "POST, GET",
   "defaultParams": {
     "context": "results"
   },
@@ -11,7 +11,7 @@
     "context.metaData.commonTasks.authRequired",
     "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.getSignUpStatus",
-    "context.metaData.commonTasks.verifyHoursInfo",
+    "context.metaData.commonTasks.verifyHoursInfoExternal",
     "context.metaData.commonTasks.hoursCodeVerify",
     "context.metaData.commonTasks.adminOrCodeRequired",
     {
@@ -19,6 +19,7 @@
       "taskModule": "salesforceApex",
       "renderer": "handlebars",
       "config": {
+
         "connection": "scvoAlexSandbox",
         "output": "data",
         "method": "POST",

@@ -1,6 +1,6 @@
 <div class="b-margin-full">
   {{#unless @root.data.isAdmin ~}}
-  {{#unless (compare (dateMath 'now-26y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD")) ~}}
+  {{#unless (compare (dateMath 'now-27y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD")) ~}}
   <a href="/task" class="btn btn-primary">
     Add new task
   </a>

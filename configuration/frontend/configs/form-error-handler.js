@@ -10,7 +10,7 @@ return {
         name: "submitRequest",
         type: "request",
         config: {
-          url: { __template: "\{{jquery rootElement 'attr' (split 'action')}}" },
+          url: { __template: "\{{{jquery rootElement 'attr' (split 'action')}}}" },
           method: { __template: "\{{coalesce (jquery rootElement 'attr' (split 'method')) 'POST'}}" },
           dataType: "json",
           data: {
@@ -24,7 +24,7 @@ return {
         type: "switch",
         __doNotCompile: true,
         config: {
-          which: { __template: "\{{#unless data.submitRequest.errors.[0]}}success\{{else}}\{{#if data.submitRequest.errors.[0].taskName}}{{data.submitRequest.errors.[0].taskName}}\{{else}}error\{{/if}}\{{/unless}}" },
+          which: { __template: "\{{#unless (ifAny errors.submitRequest data.submitRequest.errors.[0])}}success\{{else}}\{{#if data.submitRequest.errors.[0].taskName}}{{data.submitRequest.errors.[0].taskName}}\{{else}}error\{{/if}}\{{/unless}}" },
           branches: {
             default: {
               tasks: [
@@ -66,7 +66,7 @@ return {
                             name: "toast",
                             type: "basic",
                             config: {
-                              message: {__template: "\{{coalesce (jquery rootElement 'data' (split 'success-message')) }}"},
+                              message: {__template: "\{{coalesce (jquery rootElement 'data' (split 'success-message')) }} "},
                               class: "success"
                             }
                           },
