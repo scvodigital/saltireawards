@@ -1,0 +1,17 @@
+{
+  "name": "five_hundred_json",
+  "pattern": "/500-json",
+  "debug": false,
+  "tasks": [
+    {
+      "name": "destination",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "body",
+        "template": "{\"errors\": {{{safeStringify @root.errors}}}}",
+        "parseJson": false
+      }
+    }
+  ]
+}

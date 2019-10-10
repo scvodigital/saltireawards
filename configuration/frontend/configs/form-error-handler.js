@@ -33,15 +33,21 @@ return {
                   type: "switch",
                   __doNotCompile: true,
                   config: {
-                    which: { __template: "\{{#if (jquery rootElement 'data' (split 'success-destination')) }}destination{{/if}}" },
+                    which: {__template: "\{{#if (jquery rootElement 'data' (split 'success-destination')) }}destination{{/if}}"},
                     branches: {
                       default: {
                         tasks: [
                           {
+                            type: "elementManipulator",
+                            config: {
+                              ">": {removeClass: "disabled"},
+                            }
+                          },
+                          {
                             name: "toast",
                             type: "basic",
                             config: {
-                              message: "{{coalesce (jquery rootElement 'data' (split 'success-message')) }}",
+                              message: {__template: "\{{coalesce (jquery rootElement 'data' (split 'success-message')) }}"},
                               class: "success"
                             }
                           },
@@ -52,7 +58,7 @@ return {
                         tasks: [
                           {
                             type: "run",
-                            config: { code:{ __template: "window.location.href = '\{{jquery rootElement 'data' (split 'success-destination')}}' " } }
+                            config: {code: {__template: "window.location.href = '\{{jquery rootElement 'data' (split 'success-destination')}}' "}}
                           }
                         ]
                       }
@@ -66,11 +72,18 @@ return {
                 {
                   type: "elementManipulator",
                   config: {
-                    ">": { removeClass: "disabled" },
-                    "#active-form-message": { styles: { display: "block" } },
-                    "#form-message": { contents: { __template: "\An error has occurred, PERFORM_DEFAULT_ACTION! " } }
+                    ">": {removeClass: "disabled"},
                   }
-                }
+                },
+                {
+                  name: "toast",
+                  type: "basic",
+                  config: {
+                    message: {__template: "An error has occurred, \{{>dummy}}" },
+                    class: "success"
+                  }
+                },
+                "toast"
               ]
             },
             saveHoursData: {
@@ -78,11 +91,18 @@ return {
                 {
                   type: "elementManipulator",
                   config: {
-                    ">": { removeClass: "disabled" },
-                    "#active-form-message": { styles: { display: "block" } },
-                    "#form-message": { contents: { __template: "Hours not saved, PERFORM_DEFAULT_ACTION!" } }
+                    ">": {removeClass: "disabled"},
                   }
-                }
+                },
+                {
+                  name: "toast",
+                  type: "basic",
+                  config: {
+                    message: "Hours have not saved properly, \\{{>dummy}}\" ",
+                    class: "error"
+                  }
+                },
+                "toast"
               ]
             },
             saveTaskData: {
@@ -90,11 +110,18 @@ return {
                 {
                   type: "elementManipulator",
                   config: {
-                    ">": { removeClass: "disabled" },
-                    "#active-form-message": { styles: { display: "block" } },
-                    "#form-message": { contents: { __template: "Task not saved, PERFORM_DEFAULT_ACTION!" } }
+                    ">": {removeClass: "disabled"},
                   }
-                }
+                },
+                {
+                  name: "toast",
+                  type: "basic",
+                  config: {
+                    message: "Task has not saved properly, \\{{>dummy}}\" ",
+                    class: "error"
+                  }
+                },
+                "toast"
               ]
             }
           }
@@ -103,3 +130,5 @@ return {
     ]
   }
 }
+
+
