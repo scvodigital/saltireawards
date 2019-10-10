@@ -38,13 +38,14 @@ return {
                       default: {
                         tasks: [
                           {
-                            type: "elementManipulator",
+                            name: "toast",
+                            type: "basic",
                             config: {
-                              ">": { removeClass: "disabled" },
-                              "#active-form-message": { styles: { display: "block" } },
-                              "#form-message": { contents: { __template: "\{{coalesce (jquery rootElement 'data' (split 'success-message')) (jquery rootElement 'data' (split 'success-destination')) }}" } }
+                              message: "{{coalesce (jquery rootElement 'data' (split 'success-message')) }}",
+                              class: "success"
                             }
-                          }
+                          },
+                          "toast"
                         ]
                       },
                       destination: {
@@ -67,7 +68,7 @@ return {
                   config: {
                     ">": { removeClass: "disabled" },
                     "#active-form-message": { styles: { display: "block" } },
-                    "#form-message": { contents: { __template: "\An error has occurred, PERFORM_DEFAULT_ACTION! \{{json value=@root}}" } }
+                    "#form-message": { contents: { __template: "\An error has occurred, PERFORM_DEFAULT_ACTION! " } }
                   }
                 }
               ]
