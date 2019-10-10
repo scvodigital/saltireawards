@@ -30,7 +30,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "body",
-        "template": "{\"id\": \"{{{@root.data.saveHoursData}}}\" {{#if @root.errors}}, \"errors\": {{{safeStringify @root.errors}}}{{/if}} }",
+        "template": "{\"id\": \"{{{@root.data.saveHoursData}}}\" }",
         "parseJson": false
       }
     }

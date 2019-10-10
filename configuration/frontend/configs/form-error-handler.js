@@ -24,9 +24,28 @@ return {
         type: "switch",
         __doNotCompile: true,
         config: {
-          which: { __template: "\{{#if errors.submitRequest}}error\{{else}}\{{data.submitRequest.errors.[0].taskName}}\{{/if}}" },
+          which: { __template: "\{{#unless data.submitRequest.errors.[0]}}success\{{else}}\{{#if data.submitRequest.errors.[0].taskName}}{{data.submitRequest.errors.[0].taskName}}\{{else}}error\{{/if}}\{{/unless}}" },
           branches: {
             default: {
+              tasks: [
+                {
+                  type: "elementManipulator",
+                  config: {
+                    ">": {removeClass: "disabled"},
+                  }
+                },
+                {
+                  name: "toast",
+                  type: "basic",
+                  config: {
+                    message: {__template: "An error has occurred, \{{>contact-support}}"},
+                    class: "error"
+                  }
+                },
+                "toast"
+              ]
+            },
+            success: {
               tasks: [
                 {
                   name: "errorHandle",
@@ -65,25 +84,6 @@ return {
                     }
                   }
                 }
-              ]
-            },
-            error: {
-              tasks: [
-                {
-                  type: "elementManipulator",
-                  config: {
-                    ">": {removeClass: "disabled"},
-                  }
-                },
-                {
-                  name: "toast",
-                  type: "basic",
-                  config: {
-                    message: {__template: "An error has occurred, \{{>dummy}}" },
-                    class: "success"
-                  }
-                },
-                "toast"
               ]
             },
             saveHoursData: {

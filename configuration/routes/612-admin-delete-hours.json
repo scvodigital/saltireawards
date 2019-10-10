@@ -40,7 +40,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "body",
-        "template": "{\"id\": {{{stringify @root.data.deleteHoursData}}} }",
+        "template": "{\"id\": {{{stringify @root.data.deleteHoursData}}}  }",
         "parseJson": false
       }
     }
