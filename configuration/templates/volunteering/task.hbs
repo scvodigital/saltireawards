@@ -131,7 +131,7 @@
             {{#if admin ~}}
             value="{{default @root.data.taskInfo.volunteer_manager_email @root.data.accountInfo.email}}"
             {{else}}
-            value="{{@root.data.taskInfo.volunteer_manager_email}}"
+            value="{{@root.data.taskInfo.volunteer_manager_email}}" pattern="^((?!{{@root.data.accountInfo.email}}).)*$"
             {{/if ~}}>
         </div>
       </div>
