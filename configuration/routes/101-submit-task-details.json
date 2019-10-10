@@ -2,7 +2,8 @@
   "name": "submit-task-details",
   "pattern": "/submit-task-details",
   "debug": true,
-  "acceptedVerbs": "GET, POST",
+  "errorRoute": "five_hundred",
+  "acceptedVerbs": "POST",
   "defaultParams": {
     "context": "results"
   },
@@ -19,7 +20,7 @@
         "connection": "scvoAlexSandbox",
         "output": "data",
         "method": "POST",
-        "body": ">context.metaData.handlebars.templates.task_task-body",
+        "body": ">context.metaData.handlebars.templates.volunteering_task-body",
         "apexClassPath": "/SaltireTask/?user_id={{@root.data.auth.uid}}"
       }
     }

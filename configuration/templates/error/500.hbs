@@ -1,46 +1,26 @@
-<div class="container">
-  <h2>Something went terribly wrong</h2>
-  <p>
-    Looks like either:
-  </p>
-  <ul>
-    <li>the server did not understand what you were trying to do and panicked,</li>
-    <li>the devs did something stupid, or</li>
-    <li>a combination of the two</li>
-  </ul>
-  <p>
-    What ever the cause of this issue, the devs have been informed and will
-    be working to fix whatever can be fixed
-  </p>
-  <script>
-  gtag('event', '500', {
-    event_category: '{{name}}',
-    event_label: '{{request.params.uri.pathname}}'
-  });
-  </script>
+<div class="empty">
+  <div class="empty-icon">
+    <span class="fal fa-exclamation-circle fa-3x"></span>
+  </div>
+  <p class="empty-title h5">Error 500: Something went terribly wrong</p>
+  <p class="empty-subtitle">Please try again, but contact us if the problem persists.</p>
+  <div class="empty-action">
+    <a href="/" class="btn btn-primary">Home</a>
+    <a href="mailto:{{> support_email_address}}" class="btn btn-link">Contact us</a>
+  </div>
+  <pre>
+    {{#each errors}}
+    --------------------------------
+    {{#if name}}Name: {{name}}{{/if}}
+    {{#if message}}Message: {{message}}{{/if}}
+    {{#if stack}}Stack: {{stack}}{{/if}}
+    {{#if sourceRoute.route.name}}Source route: {{sourceRoute.route.name}}{{/if}}
+    {{#if redirectTo}}Redirect To: {{redirectTo}}{{/if}}
+    {{#if statusCode}}Status code: {{statusCode}}{{/if}}
+    {{#if data}}Data: {{{stringify data}}}{{/if}}
+    {{#if task}}Task: {{{stringify task}}}{{/if}}
+    {{#if destination}}Destination: {{{stringify destination}}}{{/if}}
+    --------------------------------
+    {{/each}}
+  </pre>
 </div>
-
-<!--
-
-███████╗██████╗ ██████╗  ██████╗ ██████╗ ██████╗ ███████╗████████╗ █████╗ ██╗██╗     ███████╗
-██╔════╝██╔══██╗██╔══██╗██╔═══██╗██╔══██╗██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██║██║     ██╔════╝
-█████╗  ██████╔╝██████╔╝██║   ██║██████╔╝██║  ██║█████╗     ██║   ███████║██║██║     ███████╗
-██╔══╝  ██╔══██╗██╔══██╗██║   ██║██╔══██╗██║  ██║██╔══╝     ██║   ██╔══██║██║██║     ╚════██║
-███████╗██║  ██║██║  ██║╚██████╔╝██║  ██║██████╔╝███████╗   ██║   ██║  ██║██║███████╗███████║
-╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚══════╝   ╚═╝   ╚═╝  ╚═╝╚═╝╚══════╝╚══════╝
-
-{{#each errors}}
---------------------------------
-Name: {{name}}
-Message: {{message}}
-Stack: {{stack}}
-Source Route: {{sourceRoute.route.name}}
-Redirect To: {{redirectTo}}
-Status Code: {{statusCode}}
-Data: {{{stringify data}}}
-{{#if task}}Task: {{{stringify task}}}{{/if}}
-{{#if destination}}Destination: {{{stringify destination}}}{{/if}}
---------------------------------
-{{/each}}
-
--->

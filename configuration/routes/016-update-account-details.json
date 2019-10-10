@@ -2,6 +2,7 @@
   "name": "update-account-details",
   "pattern": "/update-account-details",
   "debug": true,
+  "errorRoute": "five_hundred",
   "acceptedVerbs": "POST",
   "defaultParams": {
     "context": "results"

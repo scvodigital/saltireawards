@@ -1,24 +1,25 @@
-  [
+[
+  {{#if @root.data.accountInfo.email ~}}
   {{!-- Don't try to send if there is no email --}}
-  {{#if @root.data.accountInfo.email}}
   {
-  "from": "{{@root.context.metaData.contacts.noreply}}",
-  "h:sender": "{{@root.context.metaData.contacts.noreply}}",
-  "to": "{{{@root.data.accountInfo.email}}}",
-  "o:tag": "welcome",
-  "o:tracking": true,
-  {{!-- "o:testmode": true, --}}
-  "tag":  "welcome",
-  "id":  "welcome",
-  "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings 'welcome.mailgunConnection')}}},
-  "subject": "Welcome to the Saltire Awards",
-  "html":
-  {{~#blockStringify this ~}}
-    {{~>
-    (getProperty @root.context.metaData.emailSendSettings 'welcome.bodyPartial')
-      this
-    ~}}
-  {{~/blockStringify}}
+    "from": "{{@root.context.metaData.contacts.noreply}}",
+    "h:sender": "{{@root.context.metaData.contacts.noreply}}",
+    "h:Reply-To": "{{>support_email_address}}",
+    "to": "{{{@root.data.accountInfo.email}}}",
+    "o:tag": "welcome",
+    "o:tracking": true,
+    {{!-- "o:testmode": true, --}}
+    "tag":  "welcome",
+    "id":  "welcome",
+    "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings 'welcome.mailgunConnection')}}},
+    "subject": "Welcome to the Saltire Awards",
+    "html":
+    {{~#blockStringify this ~}}
+      {{~>
+      (getProperty @root.context.metaData.emailSendSettings 'welcome.bodyPartial')
+        this
+      ~}}
+    {{~/blockStringify ~}}
   }
-  {{/if}}
-  ]
+  {{/if ~}}
+]

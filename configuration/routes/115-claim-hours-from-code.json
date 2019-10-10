@@ -2,6 +2,7 @@
   "name": "claim-hours",
   "pattern": "/claim-hours",
   "debug": true,
+  "errorRoute": "five_hundred",
   "metaData": {
     "title": "My volunteering",
     "adminTitle": "Volunteering groups"
@@ -29,7 +30,7 @@
             "parts": {
               "head": ">context.metaData.handlebars.templates.page_head-tags",
               "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
-              "body": ">context.metaData.handlebars.templates.account_claim-hours"
+              "body": ">context.metaData.handlebars.templates.volunteering_claim-hours"
             },
             "contentType": "text/html"
           }

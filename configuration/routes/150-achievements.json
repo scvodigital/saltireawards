@@ -2,6 +2,7 @@
   "name": "achievements",
   "pattern": "/achievements",
   "debug": true,
+  "errorRoute": "five_hundred",
   "metaData": {
     "title": "My achievements"
   },
@@ -29,7 +30,7 @@
             "parts": {
               "head": ">context.metaData.handlebars.templates.page_head-tags",
               "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
-              "body": ">context.metaData.handlebars.templates.account_achievements"
+              "body": ">context.metaData.handlebars.templates.volunteering_achievements"
             },
             "contentType": "text/html"
           }

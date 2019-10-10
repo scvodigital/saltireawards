@@ -2,6 +2,7 @@
   "name": "four_oh_four",
   "pattern": "/404",
   "debug": false,
+  "errorRoute": "five_hundred",
   "defaultStatusCode": 404,
   "tasks": [
     {
@@ -15,7 +16,7 @@
         "queryTemplates": {
           "index": "{$../data/elasticsearch-index.txt}",
           "type": "saltireawards-page",
-          "template": ">context.metaData.handlebars.queries.errors_404"
+          "template": ">context.metaData.handlebars.queries.pages_not-found"
         }
       },
       "renderer": "handlebars"
@@ -36,8 +37,7 @@
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
               "head": ">context.metaData.handlebars.templates.page_head-tags",
-              "body": ">context.metaData.handlebars.templates.error_404",
-              "foot": ""
+              "body": ">context.metaData.handlebars.templates.error_404"
             },
             "contentType": "text/html"
           }

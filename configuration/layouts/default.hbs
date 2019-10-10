@@ -53,6 +53,8 @@
   {{/ifAny ~}}
   </script>
 
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+
   <link type="text/css" rel="stylesheet" href="{{~>asset_url url='libraries/leaflet/leaflet.css'~}}" />
   <link type="text/css" rel="stylesheet" href="{{~>asset_url url='libraries/fontawesome-pro/css/all.min.css'~}}" />
   <link type="text/css" rel="stylesheet" href="{{~>asset_url url='main.css'}}" />
@@ -82,12 +84,12 @@
       {{/if}}
     {{/ifAny}}
 
-      <header class="navbar container bg-primary">
-        <section class="navbar-section">
-          <a class="navbar-brand" href="/"><img src="{{~>asset_url url='images/logos/logo.png'~}}" alt="{{@root.context.metaData.title}}" /></a>
+      <header class="container bg-secondary">
+        <section class="brand">
+          <a href="/" class="logo"><img src="{{~>asset_url url='images/logos/saltire-awards-white.png'~}}" alt="{{@root.context.metaData.title}}" /></a>
         </section>
-        <section class="navbar-section">
-          <a href="#" class="btn btn-link show-lg" data-component="TasksTrigger" data-TasksTrigger='{
+        <section class="nav">
+          <a href="#" class="btn btn-link show-lg" aria-label="Menu" data-component="TasksTrigger" data-TasksTrigger='{
               click: {
                 tasks: [
                   {
@@ -102,15 +104,15 @@
                 ]
               }
             }'>
-            <i class="fas fa-bars"></i>
+            <span class="fas fa-bars" aria-hidden="true"></span>
           </a>
-          <span class="hide-lg">
+          <span class="hide-sm">
             {{#if @root.data.auth ~}}
               {{#if @root.data.accountInfo.user_type ~}}
                 {{#each @root.context.metaData.menus.main-signed-in ~}}
                   <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
                 {{/each}}
-                <div class="dropdown">
+                <div class="dropdown my-account">
                   <div class="btn-group">
                     <a href="#" class="btn dropdown-toggle">
                       {{#if @root.data.auth.photoURL ~}}
@@ -167,6 +169,14 @@
             {{/if ~}}
           </span>
         </section>
+        <section class="page-title">
+          <h1>
+            {{> page_title location="body"}}
+          </h1>
+        </section>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" class="bottom">
+          <polygon fill="white" points="0,100 100,0 100,100" />
+        </svg>
       </header>
 
       <div class="mobile-menu mobile-menu_closed">
@@ -259,6 +269,25 @@
               {{{layoutParts.sidebar}}}
             </aside>
             <main class="column col-10 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9">
+              {{!--<button class="btn" data-component="TasksTrigger" data-TasksTrigger='{
+                click: {
+                  tasks: [
+                    {
+                      name: "toast",
+                      type: "basic",
+                      config: {
+                        message: "I am toast",
+                        class: "primary",
+                        delay: 10000
+                      }
+                    },
+                    "toast"
+                  ]
+                }
+              }'>Click me</button>--}}
+
+
+
               {{{layoutParts.body}}}
             </main>
           </div>
@@ -269,7 +298,12 @@
         {{/if ~}}
       </div>
 
+      <div id="toaster"></div>
+
       <footer class="footer">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" class="top">
+          <polygon fill="#591669" points="0,100 100,100 0,0" />
+        </svg>
         <div class="footer-main">
           <div class="container">
             <div class="columns">
@@ -378,6 +412,12 @@
               </div>
             </div>
           </div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" class="mid">
+            <polygon fill="#EA7D00" points="0,100 100,0 100,100" />
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" class="bottom">
+            <polygon fill="#e7eaec" points="0,100 100,0 100,100" />
+          </svg>
         </div>
         <div class="footer-copyright">
           <div class="container">
@@ -431,17 +471,38 @@
     });
   </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+  <script>
+  window.cookieconsent.initialise({
+    "palette": {
+      "popup": {
+        "background": "#DEEFFB",
+        "text": "#005EB8"
+      },
+      "button": {
+        "background": "#005EB8"
+      }
+    },
+    "theme": "edgeless",
+    "position": "bottom-left",
+    "content": {
+      "message": "We use cookies to track anonymous usage statistics.",
+      "href": "/cookies"
+    }
+  });
+  </script>
+
   {{{layoutParts.foot}}}
 
   {{#each @root.context.metaData.handlebars.frontend.configs}}
     <script data-component-config="{{@key}}" type="javascript/blocked">
-      {{{regexReplace this "^\s*return\s" "igm" ""}}}
+      {{{regexReplace (regexReplace this "^\s*return\s" "igm" "") "([^\\{])({{){2,}" "igm" "$1\\$2"}}}
     </script>
   {{/each}}
 
   {{#each @root.context.metaData.handlebars.frontend.tasks}}
-    <script data-tag="{{@key}}" type="javascript/blocked">
-      {{{regexReplace this "^\s*return\s" "igm" ""}}}
+    <script data-task="{{@key}}" type="javascript/blocked">
+      {{{regexReplace (regexReplace this "^\s*return\s" "igm" "") "([^\\{])({{){2,}" "igm" "$1\\$2"}}}
     </script>
   {{/each}}
 

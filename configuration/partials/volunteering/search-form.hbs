@@ -1,5 +1,5 @@
 <div class="search-form">
-  <h1>Find opportunities</h1>
+  <!-- <h1>Find opportunities</h1> -->
   <form id="search-view" class="search-form" action="{{@root.request.url.pathname}}" method="GET">
     <input type="hidden" name="lat" value="{{@root.request.params.query.lat}}" id="location-lat" />
     <input type="hidden" name="lng" value="{{@root.request.params.query.lng}}" id="location-lng" />
@@ -17,13 +17,10 @@
         </div>
         <div class="column col-4">
           <div class="input-group has-icon-left">
-            <span class="form-icon far fa-map-marker-alt geo-lookup" tabindex="0" title="Find my location"></span>
-            <input type="text" id="where-opportunities" name="location" class="form-input input-lg" value="{{@root.request.params.query.location}}" placeholder="Location" data-lpignore="true" data-location-search='{
-              "latSelector": "[name=\"lat\"]",
-              "lngSelector": "[name=\"lng\"]",
-              "laSelector": "[name=\"la\"]",
-              "locationServicesSelector": ".geo-lookup"
-            }'>
+            {{{{raw}}}}
+            <span class="form-icon far fa-map-marker-alt geo-lookup" tabindex="0" title="Find my location" data-component="TasksTrigger" data-TasksTrigger='geolocation'></span>
+            {{{{/raw}}}}
+            <input type="text" id="where-opportunities" name="location" class="form-input input-lg" value="{{@root.request.params.query.location}}" placeholder="Location" data-lpignore="true">
             <select class="form-select select-lg" id="distance" name="distance">
               {{#each (split "5,10,15,20,25,30,35,40,45,50" ",")}}
                 <option value="{{this}}" {{#compare (default @root.request.params.query.distance "10") "===" this}}selected{{/compare}}>{{this}} miles</option>
@@ -109,3 +106,111 @@
     </div>
   </form>
 </div>
+
+{{{{raw}}}}
+<script data-component-config="geolocation">
+  {
+    click: {
+      tasks: [
+        { name:"geolocation", type: "geolocation", config: {} },
+        {
+          type: "switch",
+          config: {
+            which: { __template: "{{~#if errors.geolocation~}}error{{~else~}}{{~#unless data.geolocation.coords~}}notFound{{~/unless~}}{{~/if~}}" },
+            branches: {
+              notFound: {
+                halt: true,
+                tasks: [
+                  {
+                    type: "run",
+                    config: { "config": "console.log(`Geolocation not found`)" }
+                  },
+                  "empty-location-fields"
+                ]
+              },
+              error: {
+                halt: true,
+                tasks: [
+                  {
+                    type: "run",
+                    config: { "config": "console.log(`Geolocation error, probably denied access`, errors)" }
+                  },
+                  "empty-location-fields"
+                ]
+              }
+            }
+          }
+        },
+        {
+          name: "storingRawCoords",
+          type: "elementManipulator",
+          config: {
+            "#location-lat": { value: { __template: "{{data.geolocation.coords.latitude}}" } },
+            "#location-lng": { value: { __template: "{{data.geolocation.coords.longitude}}" } },
+            "#where-opportunities": { value: { __template: "{{data.geolocation.coords.latitude}}, {{data.geolocation.coords.longitude}}" } }
+          }
+        },
+        {
+          name: "place",
+          type: "request",
+          config: {
+            url: {
+              __template: "/place-lookup?lat={{data.geolocation.coords.latitude}}&lng={{data.geolocation.coords.longitude}}"
+            }
+          }
+        },
+        {
+          type: "switch",
+          config: {
+            which: {
+              __template: "{{#if errors.place}}requestError{{else}}{{#if data.place.error}}lookupError{{/if}}{{/if}}"
+            },
+            branches: {
+              requestError: {
+                tasks: [
+                  {
+                    type: "run",
+                    config: { "config": "console.log(`Problem executing request`, data, errors)" }
+                  },
+                  "empty-location-fields"
+                ]
+              },
+              lookupError: {
+                tasks: [
+                  {
+                    type: "run",
+                    config: { "config": "console.log(`Problem getting place name`, data, errors)" }
+                  },
+                  "empty-location-fields"
+                ]
+              },
+              default: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      "#where-opportunities": { value: { __template: "{{data.place.place}}" } }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+</script>
+
+<script data-task="empty-location-fields" type="javascript/blocked">
+  {
+    name: "emptyLocationFields",
+    type: "elementManipulator",
+    config: {
+      "#location-lat": { value: "" },
+      "#location-lng": { value: "" },
+      "#where-opportunities": { value: "" }
+    }
+  }
+</script>
+{{{{/raw}}}}

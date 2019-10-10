@@ -1,7 +1,8 @@
 {
   "name": "home_not_authenticated",
   "pattern": "/home-not-authenticated",
-  "debug": true,
+  "debug": false,
+  "errorRoute": "five_hundred",
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
     {
@@ -20,8 +21,7 @@
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
               "head": ">context.metaData.handlebars.templates.page_head-tags",
-              "body": ">context.metaData.handlebars.templates.page_home-not-authenticated",
-              "foot": ">context.metaData.handlebars.templates.page_foot"
+              "body": ">context.metaData.handlebars.templates.page_home-not-authenticated"
             },
             "contentType": "text/html"
           }

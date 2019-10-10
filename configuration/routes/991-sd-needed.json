@@ -1,6 +1,8 @@
 {
   "name": "sd-needed",
   "pattern": "/sd-needed",
+  "debug": true,
+  "errorRoute": "five_hundred",
   "tasks": [
     {
       "name": "destination",

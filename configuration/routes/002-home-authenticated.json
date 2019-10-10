@@ -1,7 +1,8 @@
 {
   "name": "home_authenticated",
   "pattern": "/home-authenticated",
-  "debug": true,
+  "debug": false,
+  "errorRoute": "five_hundred",
   "metaData": {
     "title": "Home",
     "adminTitle": "Group administrator"
@@ -29,8 +30,7 @@
             "parts": {
               "head": ">context.metaData.handlebars.templates.page_head-tags",
               "body": ">context.metaData.handlebars.templates.page_home-authenticated",
-              "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
-              "foot": ">context.metaData.handlebars.templates.page_foot"
+              "sidebar": ">context.metaData.handlebars.templates.account_sidebar"
             },
             "contentType": "text/html"
           }

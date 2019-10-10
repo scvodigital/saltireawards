@@ -2,6 +2,7 @@
   "name": "verify-hours-code-fail",
   "pattern": "/verify-hours-code-fail",
   "debug": true,
+  "errorRoute": "five_hundred",
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
     {
@@ -20,7 +21,7 @@
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
               "head": ">context.metaData.handlebars.templates.page_head-tags",
-              "body": ">context.metaData.handlebars.templates.account_verify-hours-fail",
+              "body": ">context.metaData.handlebars.templates.volunteering_verify-hours-fail",
               "foot": ""
             },
             "contentType": "text/html"

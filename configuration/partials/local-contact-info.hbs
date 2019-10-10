@@ -3,10 +3,13 @@
 {{#each contacts ~}}
 {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
   <div class="columns">
-    <div class="column {{#ifAll logo website}}col-9{{else}}col-12{{/ifAll}}">
+    <div class="column col-12">
+      <p class="no-margin">
+        For information on how to get involved, please contact <strong>{{title}}</strong> who are responsible for the {{@root.context.metaData.title}} {{#if island}}on{{else}}in{{/if}} {{#if area}}{{area}}{{else}}{{../local_authority}}{{/if}}.
+      </p>
+    </div>
+    <div class="column {{#ifAll logo website}}col-10{{else}}col-12{{/ifAll}}">
       <p>
-        Your {{#compare @root.data.accountInfo.user_type "Group Admin"}}{{#if area}}{{area}}{{else}}{{../local_authority}}{{/if}} TSI{{else}}Saltire{{/compare}} contact is
-        <strong>{{title}}</strong>.<br />
         {{#if phone}}Phone: {{phone}}<br />{{/if}}
         {{#if email}}Email: <a href="mailto:{{email}}">{{email}}</a><br />{{/if}}
         {{#if website}}Website: <a href="{{fixUrl website}}" target="_blank">{{replace (replace (replace website "www." "") "https://" "") "http://" ""}}</a>{{/if}}
@@ -19,10 +22,8 @@
       </p>
     </div>
     {{#ifAll logo website ~}}
-    <div class="column col-3">
-      <p class="r-margin-full">
-        <a href="{{fixUrl website}}" target="_blank"><img src="{{logo}}" class="img-responsive" alt="{{title}}" /></a>
-      </p>
+    <div class="column col-2">
+      <a href="{{fixUrl website}}" target="_blank"><img src="{{logo}}" class="img-responsive" alt="{{title}}" /></a>
     </div>
     {{/ifAll ~}}
   </div>

@@ -2,8 +2,9 @@
   "name": "volunteering_map",
   "pattern": "/search/map",
   "debug": true,
+  "errorRoute": "five_hundred",
   "metaData": {
-    "title": "Volunteering opportunity search"
+    "title": "Find opportunities"
   },
   "defaultParams": {
     "context": "results"
@@ -24,19 +25,19 @@
             "name": "locations_results",
             "index": "{$../data/elasticsearch-index.txt}",
             "type": "milo-volunteering-opportunity",
-            "template": ">context.metaData.handlebars.queries.volunteering_search-map-locations"
+            "template": ">context.metaData.handlebars.queries.opportunities_search-map-locations"
           },
           {
             "name": "home_results",
             "index": "{$../data/elasticsearch-index.txt}",
             "type": "milo-volunteering-opportunity",
-            "template": ">context.metaData.handlebars.queries.volunteering_search-map-home"
+            "template": ">context.metaData.handlebars.queries.opportunities_search-map-home"
           },
           {
             "name": "la_results",
             "index": "geo_lookup",
             "type": "es_district",
-            "template": ">context.metaData.handlebars.queries.volunteering_local-authority-areas"
+            "template": ">context.metaData.handlebars.queries.opportunities_local-authority-areas"
           }
         ]
       },
@@ -55,13 +56,13 @@
             "name": "map_results",
             "index": "{$../data/elasticsearch-index.txt}",
             "type": "milo-volunteering-opportunity",
-            "template": ">context.metaData.handlebars.queries.volunteering_search-map"
+            "template": ">context.metaData.handlebars.queries.opportunities_search-map"
           },
           {
             "name": "areas_results",
             "index": "{$../data/elasticsearch-index.txt}",
             "type": "milo-volunteering-opportunity",
-            "template": ">context.metaData.handlebars.queries.volunteering_search-map-areas"
+            "template": ">context.metaData.handlebars.queries.opportunities_search-map-areas"
           }
         ]
       },
@@ -101,17 +102,17 @@
           "rss": {
             "layout": ">context.metaData.handlebars.layouts.rss",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.volunteering_search-rss-head-tags",
-              "body": ">context.metaData.handlebars.templates.volunteering_search-rss"
+              "head": ">context.metaData.handlebars.templates.opportunity_search-rss-head-tags",
+              "body": ">context.metaData.handlebars.templates.opportunity_search-rss"
             },
             "contentType": "application/rss+xml"
           },
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.volunteering_search-head-tags",
-              "body": ">context.metaData.handlebars.templates.volunteering_map",
-              "foot": ">context.metaData.handlebars.templates.volunteering_map-foot",
+              "head": ">context.metaData.handlebars.templates.opportunity_search-head-tags",
+              "body": ">context.metaData.handlebars.templates.opportunity_map",
+              "foot": ">context.metaData.handlebars.templates.opportunity_map-foot",
               "sidebar": ">context.metaData.handlebars.templates.account_sidebar"
             },
             "contentType": "text/html"
@@ -119,7 +120,7 @@
           "data": {
             "layout": ">context.metaData.handlebars.layouts.data",
             "parts": {
-              "content": ">context.metaData.handlebars.templates.volunteering_search-json"
+              "content": ">context.metaData.handlebars.templates.opportunity_search-json"
             },
             "contentType": "application/json"
           }

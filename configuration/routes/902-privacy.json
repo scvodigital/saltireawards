@@ -1,7 +1,8 @@
 {
   "name": "page_privacy",
   "pattern": "/privacy",
-  "debug": false,
+  "debug": true,
+  "errorRoute": "five_hundred",
   "metaData": {
     "title": "Privacy notice"
   },

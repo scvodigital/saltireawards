@@ -2,6 +2,7 @@
   "name": "group_certificate",
   "pattern": "/group-certificate/:task_id(/:hours_id)",
   "debug": true,
+  "errorRoute": "five_hundred",
   "tasks": [
     "context.metaData.commonTasks.authRequired",
     "context.metaData.commonTasks.getSignUpStatus",
@@ -15,7 +16,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "data",
-        "template": ">context.metaData.handlebars.templates.task_admin-pdf-object-body",
+        "template": ">context.metaData.handlebars.templates.volunteering_certificate_object-body-admin",
         "parseJson": true
       }
     },
@@ -24,7 +25,7 @@
       "taskModule": "generatePdf",
       "renderer": "handlebars",
       "config": {
-        "definitionTemplate": ">context.metaData.handlebars.templates.certificate_pdf-definition"
+        "definitionTemplate": ">context.metaData.handlebars.templates.volunteering_certificate_pdf-definition"
       }
     }
   ]

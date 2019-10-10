@@ -1,22 +1,22 @@
 <div class="container b-padding-full v-margin-full contact equal-height">
-  <h1>
+  <!-- <h1>
     Contact us
-  </h1>
+  </h1> -->
   <div class="columns">
     <div class="column col-6">
       <h2>
         Local enquiries
       </h2>
+      {{#if @root.data.accountInfo.postcode ~}}
+      {{> local_contact_info}}
+      {{else}}
       <p>
         For information on how to get involved with the {{@root.context.metaData.title}}, you're best to contact your local Third Sector Interface.
       </p>
       <p>
-        {{#if @root.data.accountInfo.postcode ~}}
-        {{> local_contact_info}}
-        {{else}}
         Find the contact details below for the Council area you live in.
-        {{/if ~}}
       </p>
+      {{/if ~}}
     </div>
     <div class="column col-6">
       <h2>
@@ -36,7 +36,7 @@
       <div class="card">
         <div class="card-header">
           {{#ifAny area ../local_authority ~}}
-          <div class="card-title h5">{{{default area ../local_authority}}}</div>
+          <div class="card-title h5">{{#if island}}{{{../local_authority}}}{{else}}{{{default area ../local_authority}}}{{/if}}</div>
           {{/ifAny ~}}
           {{#ifAll title ~}}
           <div class="card-subtitle"><a href="{{website}}">{{{title}}}</a></div>

@@ -2,8 +2,9 @@
   "name": "volunteering_search",
   "pattern": "/search",
   "debug": true,
+  "errorRoute": "five_hundred",
   "metaData": {
-    "title": "Volunteering opportunity search"
+    "title": "Find opportunities"
   },
   "defaultParams": {
     "context": "results"
@@ -24,7 +25,7 @@
             "name": "la_results",
             "index": "geo_lookup",
             "type": "es_district",
-            "template": ">context.metaData.handlebars.queries.volunteering_local-authority-areas"
+            "template": ">context.metaData.handlebars.queries.opportunities_local-authority-areas"
           }
         ]
       },
@@ -43,13 +44,13 @@
             "name": "detailed_results",
             "index": "{$../data/elasticsearch-index.txt}",
             "type": "milo-volunteering-opportunity",
-            "template": ">context.metaData.handlebars.queries.volunteering_search-list"
+            "template": ">context.metaData.handlebars.queries.opportunities_search-list"
           },
           {
             "name": "home_latest",
             "index": "{$../data/elasticsearch-index.txt}",
             "type": "milo-volunteering-opportunity",
-            "template": ">context.metaData.handlebars.queries.volunteering_home-latest"
+            "template": ">context.metaData.handlebars.queries.opportunities_home-latest"
           }
         ]
       },
@@ -71,9 +72,9 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.volunteering_search-head-tags",
-              "body": ">context.metaData.handlebars.templates.volunteering_search",
-              "foot": ">context.metaData.handlebars.templates.volunteering_search-foot",
+              "head": ">context.metaData.handlebars.templates.opportunity_search-head-tags",
+              "body": ">context.metaData.handlebars.templates.opportunity_search",
+              "foot": ">context.metaData.handlebars.templates.opportunity_search-foot",
               "sidebar": ">context.metaData.handlebars.templates.account_sidebar"
             },
             "contentType": "text/html"

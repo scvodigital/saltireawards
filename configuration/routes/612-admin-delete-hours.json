@@ -2,6 +2,7 @@
   "name": "admin-delete-hours",
   "pattern": "/admin-delete-hours",
   "debug": true,
+  "errorRoute": "five_hundred",
   "acceptedVerbs": "DELETE",
   "defaultParams": {
     "context": "results"

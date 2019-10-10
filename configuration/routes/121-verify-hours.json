@@ -2,6 +2,7 @@
   "name": "verify-hours",
   "pattern": "/verify-hours",
   "debug": true,
+  "errorRoute": "five_hundred",
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
     {
@@ -20,7 +21,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "data",
-        "template": ">context.metaData.handlebars.templates.task_hours-code-verify"
+        "template": ">context.metaData.handlebars.templates.volunteering_hours-code-verify"
       }
     },
     {
@@ -49,7 +50,7 @@
         "connection": "scvoAlexSandbox",
         "output": "data",
         "method": "POST",
-        "body": ">context.metaData.handlebars.templates.task_apex-verify-hours-body",
+        "body": ">context.metaData.handlebars.templates.volunteering_apex-verify-hours-body",
         "apexClassPath": "/SaltireHoursVerify/"
       }
     },
@@ -69,7 +70,7 @@
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
               "head": ">context.metaData.handlebars.templates.page_head-tags",
-              "body": ">context.metaData.handlebars.templates.account_verify-hours-pass",
+              "body": ">context.metaData.handlebars.templates.volunteering_verify-hours-pass",
               "foot": ""
             },
             "contentType": "text/html"

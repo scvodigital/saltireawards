@@ -1,7 +1,8 @@
 {
   "name": "page_cookies",
   "pattern": "/cookies",
-  "debug": false,
+  "debug": true,
+  "errorRoute": "five_hundred",
   "metaData": {
     "title": "Cookie policy"
   },

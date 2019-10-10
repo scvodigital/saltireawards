@@ -2,6 +2,7 @@
   "name": "verify-hours-email-send",
   "pattern": "/verify-hours-email-send",
   "debug": true,
+  "errorRoute": "five_hundred",
   "metaData": {
     "title": "Tasks"
   },
@@ -19,7 +20,7 @@
         "appName": "saltireawards",
         "pathTemplate": "/{{default data.auth.uid 'no-such-write-profile'}}/verify-hours/",
         "setOrUpdate": "set",
-        "dataTemplate": ">context.metaData.handlebars.templates.task_fb-verify-hours-data"
+        "dataTemplate": ">context.metaData.handlebars.templates.volunteering_fb-verify-hours-data"
       }
     },
     {
@@ -29,7 +30,7 @@
       "config": {
         "output": "data",
         "parseJson": true,
-        "template": ">context.metaData.handlebars.templates.task_email_verify-hours"
+        "template": ">context.metaData.handlebars.templates.volunteering_email_verify-hours"
       }
     },
     {
