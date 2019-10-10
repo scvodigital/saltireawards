@@ -9,7 +9,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "body",
-        "template": "{\"errors\": {{{safeStringify @root.errors}}}}",
+        "template": "{\"errors\": {{{safeStringify @root.errors}}} }",
         "parseJson": false
       }
     }

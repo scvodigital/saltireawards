@@ -2,7 +2,7 @@
   "name": "admin-submit-group-hours",
   "pattern": "/admin-submit-group-hours",
   "debug": true,
-  "errorRoute": "five_hundred",
+  "errorRoute": "five_hundred_json",
   "acceptedVerbs": "POST",
   "defaultParams": {
     "context": "results"
@@ -32,7 +32,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "body",
-        "template": "{\"id\": \"{{{@root.data.saveHoursData}}}\" {{#if @root.errors}}, \"errors\": {{{safeStringify @root.errors}}}{{/if}} }",
+        "template": "{\"id\": \"{{{@root.data.saveHoursData}}}\" {{#if @root.errors}} }",
         "parseJson": false
       }
     }

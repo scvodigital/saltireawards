@@ -98,7 +98,7 @@ return {
                   name: "toast",
                   type: "basic",
                   config: {
-                    message: "Hours have not saved properly, \\{{>dummy}}\" ",
+                    message: {__template: "Hours have not been updated, \{{>contact-support}}" },
                     class: "error"
                   }
                 },
@@ -117,7 +117,7 @@ return {
                   name: "toast",
                   type: "basic",
                   config: {
-                    message: "Task has not saved properly, \\{{>dummy}}\" ",
+                    message: {__template: "Task has not been saved, \{{>dummy}}" },
                     class: "error"
                   }
                 },

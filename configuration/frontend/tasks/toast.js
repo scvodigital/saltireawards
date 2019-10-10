@@ -4,6 +4,7 @@ return {
     tasks: [
       {
         type: "elementManipulator",
+        __doNotCompile : true,
         config: {
           "#toaster": {
             createElement: {
@@ -37,7 +38,7 @@ return {
                         ]
                       }
                     }'></button>
-                    {{coalesce data.toast.message "No message provided"}}
+                    {{{coalesce data.toast.message "No message provided"}}}
                   </div>
                 `
               }
