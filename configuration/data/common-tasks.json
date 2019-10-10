@@ -110,7 +110,7 @@
   "renderer": "handlebars",
   "config": {
     "output": "data",
-    "template": ">context.metaData.handlebars.templates.tasks_hours-code-verify"
+    "template": ">context.metaData.handlebars.templates.volunteering_hours-code-verify"
     }
   },
   "handleHoursVerifyFail" :     {

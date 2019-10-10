@@ -1,0 +1,31 @@
+{
+  "name": "test-ajax",
+  "pattern": "/test-ajax",
+  "acceptedVerbs": "POST,GET",
+  "debug": true,
+  "tasks": [
+    "context.metaData.commonTasks.authNotRequired",
+    {
+      "name": "saveTaskData",
+      "taskModule": "salesforceApex",
+      "renderer": "handlebars",
+      "config": {
+        "connection": "scvoAlexSandbox",
+        "output": "data",
+        "method": "POST",
+        "body": ">context.metaData.handlebars.templates.volunteering_task-body",
+        "apexClassPath": "/SaltireTosikTask/?user_id={{@root.data.auth.uid}}"
+      }
+    }
+  ,{
+      "name": "destination",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "body",
+        "template": "{\"id\": \"{{{@root.data.saveTaskData}}}\" ERRPR {{#if @root.errors}}, \"errors\": {{{safeStringify @root.errors}}}{{/if}} }",
+        "parseJson": false
+      }
+    }
+  ]
+}

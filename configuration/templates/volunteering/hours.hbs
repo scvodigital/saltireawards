@@ -2,14 +2,18 @@
 {{> log_empty}}
 {{else}}
 <div class="container b-padding-full v-margin-full">
-  <!-- <h1>
+  <h1>
     {{#if @root.data.isAdmin ~}}
     {{@root.route.metaData.adminTitle}}
     {{else}}
     {{@root.route.metaData.title}}
     {{/if ~}}
-  </h1> -->
-
+  </h1>
+  <div class="l-margin r-margin">
+  <div class="bg-error s-rounded x-padding v-margin" id="active-form-message">
+    <span id="form-message"></span>
+  </div>
+  </div>
   {{#unless @root.data.isAdmin ~}}
   <h2 class="b-margin-full">
     {{sumArray (pluck @root.data.tasksInfo "hours")}} total hours added
@@ -18,6 +22,7 @@
 
   {{> log_action_buttons}}
 
+</div>
   {{#unless @root.data.isAdmin ~}}
   <div id="individual-tasks-input">
     {{#each @root.data.tasksInfo ~}}
@@ -25,7 +30,7 @@
     <h2>
       Volunteering with {{organisation_name}}
     </h2>
-    <form action="/submit-hours" method="POST">
+    <form action="/submit-hours" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="form-error-handler">
       <p>
         {{hours}} hours added so far
       </p>
@@ -73,7 +78,7 @@
     <strong>Description:</strong> {{task_description}}
     {{/if ~}}
 
-    <form action="/admin-submit-group-hours" method="POST">
+    <form action="/admin-submit-group-hours" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="form-error-handler">
       <div class="form-horizontal">
         <input type="hidden" name="task_id" value="{{task_id}}">
         <div class="form-group">
@@ -127,7 +132,7 @@
     </div>
     {{#each hours_list ~}}
     {{#ifAny claim_first_name claim_code ~}}
-    <form id="{{hours_id}}" method="POST" action="/admin-submit-individual-hours" class="inline-hours-form">
+    <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours" class="inline-hours-form" data-component="TasksTrigger" data-success-message="Hours Updated" data-TasksTrigger="form-error-handler" >
       <input type="hidden" name="task_id" value="{{task_id}}">
       <input type="hidden" name="verified" value="{{verified}}">
       <input type="hidden" name="claim_code" value="{{claim_code}}">
@@ -216,68 +221,7 @@ function preSubmit() {
   if (isValid) {
     onSubmit();
   }
+}
 
 </script>
 
-<script type="javascript/blocked" data-component-config="submit-group-hours">
-  {
-    submit: {
-      preventDefault: true,
-      tasks: [
-       {
-          type: "elementManipulator",
-          config: { ">": { addClass: "disabled" } }
-          },
-          {
-          name: "submitTaskRequest",
-          type: "request",
-          config: { url: "/submit-group-hours" }
-          },
-          {
-            __doNotCompile: true,
-            name: "errorHandle",
-            type: "switch",
-            config: {
-              which: { __template: "\{{#if errors.testRequest}}error\{{else}}\{{data.testRequest.errors.[0].taskName}}\{{/if}}"
-                },
-            branches: {
-              default: {
-                tasks: [
-                  {
-                    type: "run",
-                    config: { code: "window.location.href = '/hours'" }
-                  }
-                ]
-              },
-              error: {
-                tasks: [
-                  {
-                    type: "elementManipulator",
-                    config: {
-                      ">": { removeClass: "disabled" },
-                      "#active-form-message": { styles: { display: "block" } },
-                      "#form-message": { contents: { __template: "\An error has occurred, PERFORM_DEFAULT_ACTION!" } }
-                    }
-                  }
-                ]
-              },
-              saveHoursData: {
-                tasks: [
-                  {
-                    type: "elementManipulator",
-                    config: {
-                      ">": { removeClass: "disabled" },
-                      "#active-form-message": { styles: { display: "block" } },
-                      "#form-message": { contents: { __template: "Hours not saved, PERFORM_DEFAULT_ACTION!" } }
-                    }
-                  }
-                ]
-              }
-
-            }
-          }
-        }
-      ]
-    }
-  }
-</script>

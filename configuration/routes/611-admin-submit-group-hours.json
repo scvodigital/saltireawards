@@ -28,10 +28,12 @@
     },
     {
       "name": "destination",
-      "taskModule": "redirect",
+      "taskModule": "render",
+      "renderer": "handlebars",
       "config": {
-        "location": "/hours",
-        "statusCode": 302
+        "output": "body",
+        "template": "{\"id\": \"{{{@root.data.saveHoursData}}}\" {{#if @root.errors}}, \"errors\": {{{safeStringify @root.errors}}}{{/if}} }",
+        "parseJson": false
       }
     }
 

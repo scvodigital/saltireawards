@@ -23,15 +23,15 @@
         "body": ">context.metaData.handlebars.templates.volunteering_task-body",
         "apexClassPath": "/SaltireTask/?user_id={{@root.data.auth.uid}}"
       }
-    },
-    {
+    }
+  ,{
       "name": "destination",
       "taskModule": "render",
       "renderer": "handlebars",
       "config": {
         "output": "body",
-        "template": "{\"id\": {{{stringify @root.data.saveTaskData}}} }",
-        "parseJson": true
+        "template": "{\"id\": \"{{{@root.data.saveTaskData}}}\" {{#if @root.errors}}, \"errors\": {{{safeStringify @root.errors}}}{{/if}} }",
+        "parseJson": false
       }
     }
   ]
