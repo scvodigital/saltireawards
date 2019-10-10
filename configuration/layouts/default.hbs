@@ -436,6 +436,24 @@
   catch(e){window.attachEvent("onload", $buo_f)}
   </script>
 
+  {{#each @root.context.metaData.handlebars.frontend.configs}}
+    <script data-component-config="{{@key}}" type="javascript/blocked">
+      {{{regexReplace (regexReplace this "^\s*return\s" "igm" "") "([^\\{])({{){2,}" "igm" "$1\\$2"}}}
+    </script>
+  {{/each}}
+
+  {{#each @root.context.metaData.handlebars.frontend.tasks}}
+    <script data-task="{{@key}}" type="javascript/blocked">
+      {{{regexReplace (regexReplace this "^\s*return\s" "igm" "") "([^\\{])({{){2,}" "igm" "$1\\$2"}}}
+    </script>
+  {{/each}}
+
+  {{#each @root.context.metaData.handlebars.frontend.partials}}
+    <script data-partial="{{@key}}" type="javascript/blocked">
+      {{{this}}}
+    </script>
+  {{/each}}
+
   <script type="text/javascript" src="{{~>asset_url url='component-manager.js'~}}"></script>
   <script>
     window.firebaseTaskConfig = {
@@ -474,23 +492,5 @@
   </script>
 
   {{{layoutParts.foot}}}
-
-  {{#each @root.context.metaData.handlebars.frontend.configs}}
-    <script data-component-config="{{@key}}" type="javascript/blocked">
-      {{{regexReplace (regexReplace this "^\s*return\s" "igm" "") "([^\\{])({{){2,}" "igm" "$1\\$2"}}}
-    </script>
-  {{/each}}
-
-  {{#each @root.context.metaData.handlebars.frontend.tasks}}
-    <script data-task="{{@key}}" type="javascript/blocked">
-      {{{regexReplace (regexReplace this "^\s*return\s" "igm" "") "([^\\{])({{){2,}" "igm" "$1\\$2"}}}
-    </script>
-  {{/each}}
-
-  {{#each @root.context.metaData.handlebars.frontend.partials}}
-    <script data-partial="{{@key}}" type="javascript/blocked">
-      {{{this}}}
-    </script>
-  {{/each}}
 </body>
 </html>
