@@ -9,21 +9,34 @@ return {
             createElement: {
               html: {
                 __template: `
-                  <div class="toast toast-{{coalesce data.toast.class "primary"}} toast-out" data-component="TasksTrigger" data-TasksTrigger='{
+                  <div class="toast toast-{{coalesce data.toast.class "primary"}} toast-in" data-component="TasksTrigger" data-TasksTrigger='{
                     mouseover: {
                       tasks: [
                         {
-                          type: "run",
-                          config: { code: "console.log(\`TOAST HAS BEEN HOVERED OVER\`)" }
-                        },
+                          type: "elementManipulator",
+                          config: { ">": { addClass: "toast-hovered", removeClass: [ "toast-in", "toast-out"] } }
+                        }
+                      ]
+                    },
+                    mouseout: {
+                      tasks: [
                         {
                           type: "elementManipulator",
-                          config: { ">": { removeClass: "toast-out" } }
+                          config: { ">": { addClass: "toast-out", removeClass: [ "toast-hovered", "toast-in" ] } }
                         }
                       ]
                     }
                   }'>
-                    <button class="btn btn-clear float-right"></button>
+                    <button class="btn btn-clear float-right" data-component="TasksTrigger" data-TasksTrigger='{
+                      click: {
+                        tasks: [
+                          {
+                            type: "elementManipulator",
+                            config: { "<.toast": { addClass: "toast-closed" } }
+                          }
+                        ]
+                      }
+                    }'></button>
                     {{coalesce data.toast.message "No message provided"}}
                   </div>
                 `
