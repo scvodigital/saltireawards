@@ -1,18 +1,18 @@
 {{#compare (length @root.data.tasksInfo) 0 ~}}
 {{> log_empty}}
 {{else}}
-<div class="container b-padding-full v-margin-full">
-  <h1>
+<div class="container">
+  {{!-- <h1>
     {{#if @root.data.isAdmin ~}}
     {{@root.route.metaData.adminTitle}}
     {{else}}
     {{@root.route.metaData.title}}
     {{/if ~}}
-  </h1>
+  </h1> --}}
   <div class="l-margin r-margin">
-  <div class="bg-error s-rounded x-padding v-margin" id="active-form-message">
-    <span id="form-message"></span>
-  </div>
+    <div class="bg-error s-rounded x-padding v-margin" id="active-form-message">
+      <span id="form-message"></span>
+    </div>
   </div>
   {{#unless @root.data.isAdmin ~}}
   <h2 class="b-margin-full">
@@ -22,7 +22,6 @@
 
   {{> log_action_buttons}}
 
-</div>
   {{#unless @root.data.isAdmin ~}}
   <div id="individual-tasks-input">
     {{#each @root.data.tasksInfo ~}}

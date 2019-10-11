@@ -44,7 +44,7 @@ body,
 }
 .page {
   background-color: white;
-  margin-bottom: $unit*1.5;
+  // margin-bottom: $unit*1.5;
 }
 
 html {
@@ -429,13 +429,22 @@ header {
 }
 
 .sidebar-not-present {
-  .container {
+  margin-top: -($unit);
+  .body .container {
+    padding-top: $unit*2;
+    padding-bottom: $unit*3;
     max-width: $page-width;
     margin: 0 auto;
   }
 }
 .sidebar-present {
-  .container {
+  margin-top: -($unit);
+  .sidebar,
+  .body .container {
+    padding-top: $unit*2;
+    padding-bottom: $unit*3;
+  }
+  .body .container {
     max-width: $page-width;
     margin: 0;
   }
