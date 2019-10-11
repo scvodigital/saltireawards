@@ -386,6 +386,7 @@ header {
 }
 
 .saltire-badge {
+  user-select: none;
   position: relative;
   margin-bottom: $unit/2;
   .badge-content {
@@ -404,6 +405,12 @@ header {
     text-align: center;
     border-radius: 50%;
   }
+  .type-challenge {
+    background-color: $theme-challenge;
+    .img-responsive {
+      max-width: 60%;
+    }
+  }
   .type-approach {
     font-size: 2.25rem;
     background-color: $theme-approach;
@@ -411,6 +418,13 @@ header {
   .type-ascent {
     font-size: 2rem;
     background-color: $theme-ascent;
+  }
+  .type-summit {
+    background-color: $theme-summit;
+    .img-responsive {
+      max-width: 70%;
+      margin-top: 10%;
+    }
   }
 }
 .saltire-badge.disabled {

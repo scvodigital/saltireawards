@@ -1,0 +1,16 @@
+<div class="saltire-badge align-centre{{#if disabled}} disabled{{/if}}">
+  <img src="{{~>asset_url url='images/badge-background.png' ~}}" class="img-responsive" />
+  {{#ifAny (compare type 'approach') (compare type 'ascent') ~}}
+  <span class="badge-content type-{{type}}">
+    {{#if hours ~}}
+    <span class="hours-{{key}}">
+      {{hours}}
+    </span>
+    {{/if ~}}
+  </span>
+  {{else}}
+  <span class="badge-content type-{{type}}">
+    <img src="{{~>asset_url url=(concat 'images/badge-icon-' type '.png') ~}}" class="img-responsive" />
+  </span>
+  {{/ifAny ~}}
+</div>

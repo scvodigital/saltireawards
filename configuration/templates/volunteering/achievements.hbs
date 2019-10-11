@@ -1,14 +1,3 @@
-{{#*inline "badge" ~}}
-<div class="saltire-badge align-centre{{#if disabled}} disabled{{/if}}">
-  <img src="{{~>asset_url url=(concat 'images/badges/badge.png') ~}}" class="img-responsive" />
-  <span class="badge-content type-{{type}}">
-    <span class="hours-{{key}}">
-      {{hours}}
-    </span>
-  </span>
-</div>
-{{/inline ~}}
-
 {{#compare (length @root.data.tasksInfo) 0 ~}}
 {{> log_empty}}
 {{else}}
