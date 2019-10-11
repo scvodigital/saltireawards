@@ -13,6 +13,7 @@
     "assetsVersion": "{:../package.json@version}",
     "assetsBase": "https://storage.googleapis.com/scvo-assets/test/saltireawards/",
     "title": "Saltire Awards",
+    "fullTitle": "The Saltire Awards",
     "certificateName": "Saltire Award",
     "accountName": "My Saltire",
     "url": "https://test.saltireawards.scot",
