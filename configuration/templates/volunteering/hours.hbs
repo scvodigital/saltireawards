@@ -98,7 +98,7 @@
           <div class="column col-2">
             <select class="form-select" required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
               {{#each @root.context.metaData.certificates ~}}
-              <option value="{{hours}}">{{name}} hours</option>
+              <option value="{{hours}}">{{certificate_name}} hours</option>
               {{/each ~}}
             </select>
           </div>
@@ -154,7 +154,7 @@
           <div class="form-group r-margin b-margin">
             <select class="form-select" {{#unless claim_code}}disabled{{/unless}} required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
               {{#each @root.context.metaData.certificates ~}}
-              <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>{{name}} hours</option>
+              <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>{{certificate_name}} hours</option>
               {{/each ~}}
             </select>
           </div>
