@@ -1,8 +1,8 @@
 <div class="container">
   {{> volunteering_search_form}}
-  {{#compare @root.data.primaryResponse.hits.total ">" 0 ~}}
+  {{#compare @root.data.supplimentaryResponses.opportunity.hits.total ">" 0 ~}}
   <div class="content-primary clearfix">
-    {{#each @root.data.primaryResponse.hits.hits ~}}
+    {{#each @root.data.supplimentaryResponses.opportunity.hits.hits ~}}
       {{> volunteering_opportunity_full _source view="full"}}
     {{/each ~}}
   </div>

@@ -4,8 +4,11 @@ $primary-color: #009DDA;
 $primary-color-light: lighten($primary-color, 30%) !default;
 $primary-color-dark: darken($primary-color, 6%) !default;
 $secondary-color: #253887;
-$secondary-color-light: lighten($secondary-color, 33%) !default;
+$secondary-color-light: lighten($secondary-color, 30%) !default;
 $secondary-color-dark: darken($secondary-color, 10%) !default;
+$bg-color: lighten($secondary-color-light, 32%) !default;
+$bg-color-light: lighten($bg-color, 4%) !default;
+$bg-color-dark: darken($bg-color, 4%) !default;
 $dark-color: #10183A;
 $gray-color: #333E48;
 $light-color: #FFFFFF;
@@ -23,8 +26,9 @@ $theme-footer-light: #e7eaec;
 $theme-footer-dark: #333E48;
 
 $unit: 1rem;
-$heading-font-weight: 600;
 $link-font-weight: 500;
+$heading-font-weight: 600;
+$badge-font-weight: 800;
 $page-width: 1200px;
 $home-splash-height: 25vh;
 
@@ -112,6 +116,14 @@ a:focus,
 .chip-set a:hover,
 a.pure-menu-link:hover {
   text-decoration: none;
+}
+.chip {
+  color: $primary-color-dark !important;
+  background-color: lighten($primary-color-light, 23%);
+}
+.chip:hover {
+  color: white !important;
+  background-color: $primary-color-dark;
 }
 
 a.btn:link,
@@ -400,7 +412,7 @@ header {
     align-items: center;
     justify-content: center;
     letter-spacing: -0.1rem;
-    font-weight: 800;
+    font-weight: $badge-font-weight;
     color: white;
     text-align: center;
     border-radius: 50%;
@@ -860,6 +872,7 @@ footer {
 .table th,
 .table td {
   border-bottom-width: 1px;
+  font-weight: $heading-font-weight;
 }
 // .table tr:last-child {
 //   th,
