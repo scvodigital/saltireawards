@@ -1,10 +1,10 @@
-<div class="container b-padding-full v-margin-full">
+<div class="container">
   <!-- <h1>
     Blog
   </h1> -->
   {{#each @root.data.supplimentaryResponses.posts.hits.hits ~}}
   {{#with _source ~}}
-  <div class="t-margin-full">
+  <div class="b-margin-full">
     <h3>
       <a href="/blog/{{replace post_slug "_" "/"}}">{{{title}}}</a>
     </h3>

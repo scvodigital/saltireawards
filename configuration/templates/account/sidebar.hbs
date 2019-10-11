@@ -1,33 +1,31 @@
 {{#if @root.data.auth ~}}
-<div class="b-margin-full b-padding-full v-padding">
-  <h4 class="h-padding-full t-margin">
-    {{#compare @root.data.accountInfo.user_type "Group Admin" ~}}
-    Group administrator
-    {{else}}
-    My Saltire
-    {{/compare ~}}
-  </h4>
-  <ul class="menu">
-    <li class="menu-item">
-      <a href="/" class="l-padding-full {{#compare @root.request.url.pathname '/'}} active{{/compare}}{{#if @root.data.accountInfo.verification_needed}} disabled{{/if}}">
-        <span class="far fa-fw fa-home" aria-hidden="true"></span>
-        Home
-      </a>
-    </li>
-    {{#each @root.context.metaData.menus.user-signed-in ~}}
-    {{#compare label "!==" "Sign out" ~}}
-    {{#if (contains user-types @root.data.accountInfo.user_type) ~}}
-    <li class="menu-item">
-      <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}{{#if @root.data.accountInfo.verification_needed}} disabled{{/if}}">
-        {{#if icon ~}}
-        <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
-        {{/if ~}}
-        {{{label}}}
-      </a>
-    </li>
-    {{/if ~}}
-    {{/compare ~}}
-    {{/each ~}}
-  </ul>
-</div>
+<h4 class="h-padding-full">
+  {{#compare @root.data.accountInfo.user_type "Group Admin" ~}}
+  Group administrator
+  {{else}}
+  My Saltire
+  {{/compare ~}}
+</h4>
+<ul class="menu">
+  <li class="menu-item">
+    <a href="/" class="l-padding-full {{#compare @root.request.url.pathname '/'}} active{{/compare}}{{#if @root.data.accountInfo.verification_needed}} disabled{{/if}}">
+      <span class="far fa-fw fa-home" aria-hidden="true"></span>
+      Home
+    </a>
+  </li>
+  {{#each @root.context.metaData.menus.user-signed-in ~}}
+  {{#compare label "!==" "Sign out" ~}}
+  {{#if (contains user-types @root.data.accountInfo.user_type) ~}}
+  <li class="menu-item">
+    <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}{{#if @root.data.accountInfo.verification_needed}} disabled{{/if}}">
+      {{#if icon ~}}
+      <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
+      {{/if ~}}
+      {{{label}}}
+    </a>
+  </li>
+  {{/if ~}}
+  {{/compare ~}}
+  {{/each ~}}
+</ul>
 {{/if ~}}

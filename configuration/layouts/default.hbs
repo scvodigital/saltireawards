@@ -265,15 +265,15 @@
       <div class="{{#if layoutParts.sidebar}}sidebar-present{{else}}sidebar-not-present{{/if}}">
         {{#if layoutParts.sidebar ~}}
           <div class="columns col-gapless">
-            <aside class="column col-2 col-lg-3 col-xl-3 sidebar hide-lg">
+            <aside class="sidebar column col-2 col-lg-3 col-xl-3 hide-lg">
               {{{layoutParts.sidebar}}}
             </aside>
-            <main class="column col-10 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9">
+            <main class="body column col-10 col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-9">
               {{{layoutParts.body}}}
             </main>
           </div>
         {{else}}
-          <main>
+          <main class="body">
             {{{layoutParts.body}}}
           </main>
         {{/if ~}}

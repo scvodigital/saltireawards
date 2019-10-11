@@ -1,7 +1,7 @@
-<div class="container b-padding-full v-margin-full">
-  <h1>
+<div class="container">
+  {{!-- <h1>
     Add a task
-  </h1>
+  </h1> --}}
 
   {{#withExtend this admin=(compare @root.data.accountInfo.user_type 'Group Admin') ~}}
   <h2>
