@@ -9,10 +9,8 @@
     {{@root.route.metaData.title}}
     {{/if ~}}
   </h1> --}}
-  <div class="l-margin r-margin">
-    <div class="bg-error s-rounded x-padding v-margin" id="active-form-message">
-      <span id="form-message"></span>
-    </div>
+  <div class="bg-error s-rounded x-padding b-margin-full hidden" id="active-form-message">
+    <span id="form-message"></span>
   </div>
   {{#unless @root.data.isAdmin ~}}
   <h2 class="b-margin-full">
