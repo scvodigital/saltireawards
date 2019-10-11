@@ -1,22 +1,19 @@
+// noinspection JSAnnotator
 return {
-  submit: {
+  click: {
     preventDefault: true,
     tasks: [
       {
         type: "elementManipulator",
-        config: { ">": { addClass: "disabled" } }
+        config: { "<form": { addClass: "disabled" } }
       },
       {
         name: "submitRequest",
         type: "request",
         config: {
-          url: { __template: "\{{{jquery rootElement 'attr' (split 'action')}}}" },
-          method: { __template: "\{{coalesce (jquery rootElement 'attr' (split 'method')) 'POST'}}" },
-          dataType: "json",
-          data: {
-            __template: `\{{{json value=(parse (jquery null "serialize" context=metadata.instance.element) type="querystring")}}}`,
-            __parser: "json"
-          }
+          url: { __template: "\{{{jquery rootElement 'attr' (split 'href')}}}" },
+          method: "EXTERMINATE",
+          dataType: "json"
         }
       },
       {

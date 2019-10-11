@@ -27,7 +27,7 @@
                   </div>
                 {{#each this.hours_list}}
                   {{#unless verified}}
-                    <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?c={{@root.request.params.query.c}}&u={{@root.request.params.query.u}}" class="inline-hours-form" data-component="TasksTrigger" data-success-message="Hours Updated" data-TasksTrigger="form-error-handler">
+                    <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?c={{@root.request.params.query.c}}&u={{@root.request.params.query.u}}" class="inline-hours-form" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="form-error-handler">
                       <input type="hidden" name="task_id" value="{{task_id}}">
                       <input type="hidden" name="verified" value="true">
                       <input type="hidden" name="claim_code" value="{{claim_code}}">
@@ -43,7 +43,7 @@
                           <button type="submit" class="btn inline-update-button bg-dark">Verify</button>
                         </div>
                         <div class="column col-2">
-                          <a href="/admin-delete-hours?hours_id={{hours_id}}&c={{@root.request.params.query.c}}&u={{@root.request.params.query.u}}" class="btn inline-delete-button">Remove</a>
+                          <a href="/admin-delete-hours?hours_id={{hours_id}}&c={{@root.request.params.query.c}}&u={{@root.request.params.query.u}}" class="btn inline-delete-button" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="form-delete-handler">Remove</a>
                         </div>
                         <div class="column col-2">
                           <code class="claim-code">{{substr claim_code 0 10}}</code>
@@ -62,19 +62,6 @@
   {{/each}}
 </div>
 <script>
-  document.addEventListener("DOMContentLoaded", function(event) {
-    $('.inline-hours-form :input').on('input',function () {
-      var submit = $(this).closest('form').find(':submit').show();
-    });
-
-    $('.inline-update-button').click(function(){
-      $(this).closest('form').hide();
-    })
-
-    $('.inline-delete-button').click(function(){
-      var submit = $(this).closest('form').hide();
-    })
-  })
 
   function completeCB(response, whatever) {
     var jsonData = JSON.parse(response);
