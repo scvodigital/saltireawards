@@ -8,7 +8,7 @@
     Task details
   </h2>
 
-  <form id="task-details-form" class="active-form" action="/submit-task-details" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="form-error-handler">
+  <form id="task-details-form" class="active-form" action="/submit-task-details" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="ajax-form-handler">
     <input type="hidden" name="task_type" value="{{#if admin}}Group Task{{else}}Individual Task{{/if}}">
     <div class="l-margin r-margin">
       <div class="bg-error s-rounded x-padding v-margin" id="active-form-message">

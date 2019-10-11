@@ -29,7 +29,7 @@
     <h2>
       Volunteering with {{organisation_name}}
     </h2>
-    <form action="/submit-hours" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="form-error-handler">
+    <form action="/submit-hours" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="ajax-form-handler">
       <p>
         {{hours}} hours added so far
       </p>
@@ -77,7 +77,7 @@
     <strong>Description:</strong> {{task_description}}
     {{/if ~}}
 
-    <form action="/admin-submit-group-hours" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="form-error-handler">
+    <form action="/admin-submit-group-hours" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="ajax-form-handler">
       <div class="form-horizontal">
         <input type="hidden" name="task_id" value="{{task_id}}">
         <div class="form-group">
@@ -131,7 +131,7 @@
     </div>
     {{#each hours_list ~}}
     {{#ifAny claim_first_name claim_code ~}}
-    <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours" class="inline-hours-form" data-component="TasksTrigger" data-success-message="Hours Updated" data-TasksTrigger="form-error-handler" >
+    <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours" style="position:relative" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Hours Updated" data-TasksTrigger="ajax-form-handler" >
       <input type="hidden" name="task_id" value="{{task_id}}">
       <input type="hidden" name="verified" value="{{verified}}">
       <input type="hidden" name="claim_code" value="{{claim_code}}">
@@ -171,13 +171,7 @@
         </div>
         <div class="column col-1">
           {{#if claim_code}}
-          <button type="button" class="btn" data-ajax-button='{
-            "url": "/admin-delete-hours?hours_id={{hours_id}}",
-            "method": "DELETE",
-            "successMessage": "Hours deleted",
-            "failureMessage": "Failed to delete hours",
-            "successCallback": "clearHoursForm"
-          }'>Remove</button>
+          <a href="/admin-delete-hours?hours_id={{hours_id}}" class="btn" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
           {{/if}}
         </div>
         <div class="column col-1"></div>

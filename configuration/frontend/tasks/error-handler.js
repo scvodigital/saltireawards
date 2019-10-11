@@ -1,24 +1,8 @@
+// Assumes that it is listening to a "submitRequest" which it will interrogate for errors. Unfortunately it is very hard to set this dynamically!
 return {
-  submit: {
-    preventDefault: true,
+  type: "multiTask",
+  config: {
     tasks: [
-      {
-        type: "elementManipulator",
-        config: { ">": { addClass: "disabled" } }
-      },
-      {
-        name: "submitRequest",
-        type: "request",
-        config: {
-          url: { __template: "\{{{jquery rootElement 'attr' (split 'action')}}}" },
-          method: { __template: "\{{coalesce (jquery rootElement 'attr' (split 'method')) 'POST'}}" },
-          dataType: "json",
-          data: {
-            __template: `\{{{json value=(parse (jquery null "serialize" context=metadata.instance.element) type="querystring")}}}`,
-            __parser: "json"
-          }
-        }
-      },
       {
         name: "errorHandle",
         type: "switch",
@@ -30,8 +14,7 @@ return {
               tasks: [
                 {
                   type: "elementManipulator",
-                  config: {
-                    ">": {removeClass: "disabled"},
+                  config: {"{data-errorhandler-target}": {removeClass: "disabled"},
                   }
                 },
                 {
@@ -59,7 +42,7 @@ return {
                           {
                             type: "elementManipulator",
                             config: {
-                              ">": {removeClass: "disabled"},
+                              "{data-errorhandler-target}": {removeClass: "disabled"},
                             }
                           },
                           {
@@ -86,7 +69,7 @@ return {
                           {
                             type: "elementManipulator",
                             config: {
-                              ">": {addClass: "hide"}
+                              "{data-errorhandler-target}": {addClass: "hide"}
                             }
                           }
                         ]
@@ -102,7 +85,7 @@ return {
                 {
                   type: "elementManipulator",
                   config: {
-                    ">": {removeClass: "disabled"},
+                    "{data-errorhandler-target}": {removeClass: "disabled"},
                   }
                 },
                 {
@@ -121,7 +104,7 @@ return {
                 {
                   type: "elementManipulator",
                   config: {
-                    ">": {removeClass: "disabled"},
+                    "{data-errorhandler-target}": {removeClass: "disabled"},
                   }
                 },
                 {
@@ -141,5 +124,3 @@ return {
     ]
   }
 }
-
-
