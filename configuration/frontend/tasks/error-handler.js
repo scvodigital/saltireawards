@@ -21,7 +21,7 @@ return {
                   name: "toast",
                   type: "basic",
                   config: {
-                    message: {__template: "An error has occurred, \{{> support_contact}}"},
+                    message: {__template: "An error has occurred, \{{> contact}}"},
                     class: "error"
                   }
                 },
@@ -92,7 +92,7 @@ return {
                   name: "toast",
                   type: "basic",
                   config: {
-                    message: {__template: "Hours have not been updated, \{{> support_contact}}" },
+                    message: {__template: "Hours have not been updated, \{{> contact}}" },
                     class: "error"
                   }
                 },
@@ -111,7 +111,7 @@ return {
                   name: "toast",
                   type: "basic",
                   config: {
-                    message: {__template: "Task has not been saved, {{> support_contact}}" },
+                    message: {__template: "Task has not been saved, {{> contact}}" },
                     class: "error"
                   }
                 },

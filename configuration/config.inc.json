@@ -63,7 +63,7 @@
           "{$./frontend/configs/**/*.*}": ""
         },
         "partials": {
-          "{$./frontend/partials/**/*.*}": ""
+          "{$./frontend/partials/**/*.*}": "includeRelativePath=false&regexExpression=(-)&regexOptions=gi&regexReplace=_"
         }
       }
     },
