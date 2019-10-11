@@ -1,189 +1,198 @@
 {{#compare (length @root.data.tasksInfo) 0 ~}}
 {{> log_empty}}
 {{else}}
-<div class="container">
-  {{!-- <h1>
-    {{#if @root.data.isAdmin ~}}
-    {{@root.route.metaData.adminTitle}}
-    {{else}}
-    {{@root.route.metaData.title}}
-    {{/if ~}}
-  </h1> --}}
-  <div class="bg-error s-rounded x-padding b-margin-full hidden" id="active-form-message">
-    <span id="form-message"></span>
+<div class="empty">
+  <div class="empty-icon">
+    <span class="fal fa-user-clock fa-3x"></span>
   </div>
   {{#unless @root.data.isAdmin ~}}
-  <div class="pull-right">
-    {{> badge type=(if (compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) "<" 100) 'approach' else='ascent') key='current' hours=(round (sumArray (pluck @root.data.tasksInfo "hours_verified")) 'down')}}
+  <p class="empty-title h5">You have logged {{sumArray (pluck @root.data.tasksInfo "hours")}} hours so far</p>
+  <p class="empty-subtitle"></p>
+  {{/unless}}
+  <div class="empty-action">
+    {{> log_action_buttons}}
   </div>
-  <h2 class="b-margin-full">
-    {{sumArray (pluck @root.data.tasksInfo "hours")}} total hours added
-  </h2>
-  {{/unless ~}}
+</div>
 
-  {{> log_action_buttons}}
+<div class="content-break equal-height">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <polygon fill="#EEF0FA" points="100,0 100,100 0,0"></polygon>
+  </svg>
+  <div class="container">
+    <div class="bg-error s-rounded x-padding b-margin-full hidden" id="active-form-message">
+      <span id="form-message"></span>
+    </div>
+    {{#unless @root.data.isAdmin ~}}
+    {{!-- <div class="pull-right">
+      {{> badge type=(if (compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) "<" 100) 'approach' else='ascent') key='current' hours=(round (sumArray (pluck @root.data.tasksInfo "hours_verified")) 'down')}}
+    </div> --}}
+    {{!-- <h2 class="b-margin-full">
+      {{sumArray (pluck @root.data.tasksInfo "hours")}} total hours added
+    </h2> --}}
+    {{/unless ~}}
 
-  {{#unless @root.data.isAdmin ~}}
-  <div id="individual-tasks-input">
-    {{#each @root.data.tasksInfo ~}}
 
-    <h2>
-      Volunteering with {{organisation_name}}
-    </h2>
-    <form action="/submit-hours" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="ajax-form-handler">
-      <p>
-        {{hours}} hours added so far
-      </p>
-      <input type="hidden" name="task_id" value="{{task_id}}">
-      <div class="form-horizontal">
-        <div class="form-group">
-          <div class="column col-4">
-            <label class="form-label" for="hours">
-              {{#compare hours ">" 0 ~}}
-              How many hours have you volunteered since last time?
-              {{else}}
-              How many hours have you volunteered since you started?
-              {{/compare ~}}
-            </label>
-          </div>
-          <div class="column col-1">
-            <input class="form-input" id="hours" name="hours" type="number" step="any" min="0" value="" placeholder="">
-          </div>
-          <div class="column col-2">
-            {{#unless (compare (dateMath 'now-27y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD"))}}
-            <button type="submit" class="btn btn-primary">Add hours</button>
-            {{/unless}}
-          </div>
-        </div>
-      </div>
-    </form>
-    {{/each}}
-  </div>
-  {{else}}
-
-  {{#each @root.data.tasksInfo ~}}
-  <div class="columns">
-    <div class="column col-9">
+    {{#unless @root.data.isAdmin ~}}
+    <div id="individual-tasks-input">
+      {{#each @root.data.tasksInfo ~}}
       <h2>
         Volunteering with {{organisation_name}}
-        <span class="pull-right" data-collapse-target="#{{this.task_id}}-details">
-          <span class="far fa-chevron-up" aria-hidden="false"></span>
-        </span>
       </h2>
-    </div>
-  </div>
-
-  <div id="{{this.task_id}}-details">
-    {{#if task_description ~}}
-    <strong>Description:</strong> {{task_description}}
-    {{/if ~}}
-
-    <form action="/admin-submit-group-hours" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="ajax-form-handler">
-      <div class="form-horizontal">
+      <form action="/submit-hours" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="ajax-form-handler">
+        <p>
+          {{hours}} hours added so far
+        </p>
         <input type="hidden" name="task_id" value="{{task_id}}">
-        <div class="form-group">
-          <div class="column col-4">
-            <label for="task_description" class="form-label">List of volunteer names, one per line</label>
-          </div>
-          <div class="column col-5">
-            <textarea rows="6" cols="40" id="volunteers" name="volunteers" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}} class="form-input" value="{{@root.data.taskInfo.task_description}}"></textarea>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="column col-4">
-            <label for="hours" class="form-label">
-              Certificate to award
-            </label>
-          </div>
-          <div class="column col-2">
-            <select class="form-select" required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
-              {{#each @root.context.metaData.certificates ~}}
-              <option value="{{hours}}">{{certificate_name}} hours</option>
-              {{/each ~}}
-            </select>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="column col-4"></div>
-          <div class="column col-1">
-            <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full" id="group-hours-submit">
-              Submit details
-            </button>
+        <div class="form-horizontal">
+          <div class="form-group">
+            <div class="column col-4">
+              <label class="form-label" for="hours">
+                {{#compare hours ">" 0 ~}}
+                How many hours have you volunteered since last time?
+                {{else}}
+                How many hours have you volunteered since you started?
+                {{/compare ~}}
+              </label>
+            </div>
+            <div class="column col-1">
+              <input class="form-input" id="hours" name="hours" type="number" step="any" min="0" value="" placeholder="">
+            </div>
+            <div class="column col-2">
+              {{#unless (compare (dateMath 'now-27y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD"))}}
+              <button type="submit" class="btn btn-primary">Add hours</button>
+              {{/unless}}
+            </div>
           </div>
         </div>
-      </div>
-    </form>
-    {{#compare (length hours_list) ">" 0 ~}}
-    <div class="columns">
-      <div class="column col-4">
-        <strong>Volunteer name</strong>
-      </div>
-      <div class="column col-2">
-        <strong>Certificate</strong>
-      </div>
-      <div class="column col-2">
-        <strong>Claim code</strong>
-      </div>
-      <div class="column col-1"></div>
-      <div class="column col-1">
-        <a href="/group-certificate/{{task_id}}" class="btn btn-primary r-margin b-margin" download>Download all</a>
-      </div>
-      <div class="column col-1"></div>
+      </form>
+      {{/each}}
     </div>
-    {{#each hours_list ~}}
-    {{#ifAny claim_first_name claim_code ~}}
-    <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours" style="position:relative" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Hours Updated" data-TasksTrigger="ajax-form-handler" >
-      <input type="hidden" name="task_id" value="{{task_id}}">
-      <input type="hidden" name="verified" value="{{verified}}">
-      <input type="hidden" name="claim_code" value="{{claim_code}}">
-      <input type="hidden" name="hours_id" value="{{hours_id}}">
+    {{else}}
 
+    {{#each @root.data.tasksInfo ~}}
+    <div class="columns">
+      <div class="column col-9">
+        <h2>
+          Volunteering with {{organisation_name}}
+          <span class="pull-right" data-collapse-target="#{{this.task_id}}-details">
+            <span class="far fa-chevron-up" aria-hidden="false"></span>
+          </span>
+        </h2>
+      </div>
+    </div>
+
+    <div id="{{this.task_id}}-details">
+      {{#if task_description ~}}
+      <strong>Description:</strong> {{task_description}}
+      {{/if ~}}
+
+      <form action="/admin-submit-group-hours" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="ajax-form-handler">
+        <div class="form-horizontal">
+          <input type="hidden" name="task_id" value="{{task_id}}">
+          <div class="form-group">
+            <div class="column col-4">
+              <label for="task_description" class="form-label">List of volunteer names, one per line</label>
+            </div>
+            <div class="column col-5">
+              <textarea rows="6" cols="40" id="volunteers" name="volunteers" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}} class="form-input" value="{{@root.data.taskInfo.task_description}}"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="column col-4">
+              <label for="hours" class="form-label">
+                Certificate to award
+              </label>
+            </div>
+            <div class="column col-2">
+              <select class="form-select" required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
+                {{#each @root.context.metaData.certificates ~}}
+                <option value="{{hours}}">{{certificate_name}} hours</option>
+                {{/each ~}}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="column col-4"></div>
+            <div class="column col-1">
+              <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full" id="group-hours-submit">
+                Submit details
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+      {{#compare (length hours_list) ">" 0 ~}}
       <div class="columns">
-        <div class="column col-2">
-          <div class="form-group r-margin b-margin">
-            <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="claim_first_name" value="{{claim_first_name}}">
-          </div>
+        <div class="column col-4">
+          <strong>Volunteer name</strong>
         </div>
         <div class="column col-2">
-          <div class="form-group r-margin b-margin">
-            <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="claim_last_name" value="{{claim_last_name}}">
-          </div>
+          <strong>Certificate</strong>
         </div>
         <div class="column col-2">
-          {{!-- <input {{#unless claim_code}}disabled{{/unless}} class="inline-edit" type="number" step="any" min="0" name="hours" value="{{hours}}"> --}}
-          <div class="form-group r-margin b-margin">
-            <select class="form-select" {{#unless claim_code}}disabled{{/unless}} required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
-              {{#each @root.context.metaData.certificates ~}}
-              <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>{{certificate_name}} hours</option>
-              {{/each ~}}
-            </select>
-          </div>
+          <strong>Claim code</strong>
         </div>
-        <div class="column col-2">
-          <code class="claim-code">{{substr claim_code 0 10}}</code>
-        </div>
+        <div class="column col-1"></div>
         <div class="column col-1">
-          {{#if claim_code}}
-          <button type="submit" class="btn inline-update-button bg-dark" style="display:none;">Update</button>
-          {{/if}}
-        </div>
-        <div class="column col-2">
-          <a href="/group-certificate/{{task_id}}/{{hours_id}}" class="btn" download>Download</a>
-        </div>
-        <div class="column col-1">
-          {{#if claim_code}}
-          <a href="/admin-delete-hours?hours_id={{hours_id}}" class="btn" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
-          {{/if}}
+          <a href="/group-certificate/{{task_id}}" class="btn btn-primary r-margin b-margin" download>Download all</a>
         </div>
         <div class="column col-1"></div>
       </div>
-    </form>
-    {{/ifAny ~}}
-    {{/each ~}}
-    {{/compare ~}}
-    {{/each ~}}
-    {{/unless ~}}
-    {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
+      {{#each hours_list ~}}
+      {{#ifAny claim_first_name claim_code ~}}
+      <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours" style="position:relative" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Hours Updated" data-TasksTrigger="ajax-form-handler" >
+        <input type="hidden" name="task_id" value="{{task_id}}">
+        <input type="hidden" name="verified" value="{{verified}}">
+        <input type="hidden" name="claim_code" value="{{claim_code}}">
+        <input type="hidden" name="hours_id" value="{{hours_id}}">
+
+        <div class="columns">
+          <div class="column col-2">
+            <div class="form-group r-margin b-margin">
+              <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="claim_first_name" value="{{claim_first_name}}">
+            </div>
+          </div>
+          <div class="column col-2">
+            <div class="form-group r-margin b-margin">
+              <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="claim_last_name" value="{{claim_last_name}}">
+            </div>
+          </div>
+          <div class="column col-2">
+            {{!-- <input {{#unless claim_code}}disabled{{/unless}} class="inline-edit" type="number" step="any" min="0" name="hours" value="{{hours}}"> --}}
+            <div class="form-group r-margin b-margin">
+              <select class="form-select" {{#unless claim_code}}disabled{{/unless}} required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
+                {{#each @root.context.metaData.certificates ~}}
+                <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>{{certificate_name}} hours</option>
+                {{/each ~}}
+              </select>
+            </div>
+          </div>
+          <div class="column col-2">
+            <code class="claim-code">{{substr claim_code 0 10}}</code>
+          </div>
+          <div class="column col-1">
+            {{#if claim_code}}
+            <button type="submit" class="btn inline-update-button bg-dark" style="display:none;">Update</button>
+            {{/if}}
+          </div>
+          <div class="column col-2">
+            <a href="/group-certificate/{{task_id}}/{{hours_id}}" class="btn" download>Download</a>
+          </div>
+          <div class="column col-1">
+            {{#if claim_code}}
+            <a href="/admin-delete-hours?hours_id={{hours_id}}" class="btn" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
+            {{/if}}
+          </div>
+          <div class="column col-1"></div>
+        </div>
+      </form>
+      {{/ifAny ~}}
+      {{/each ~}}
+      {{/compare ~}}
+      {{/each ~}}
+      {{/unless ~}}
+      {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
+    </div>
   </div>
 </div>
 {{/compare ~}}

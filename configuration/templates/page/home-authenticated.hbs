@@ -1,35 +1,32 @@
-<div class="container equal-height">
-  <!-- <h1>
+<div class="empty">
+  <div class="empty-icon">
+    <span class="fal fa-user-clock fa-3x"></span>
+  </div>
+  <p class="empty-title h5">You have logged {{sumArray (pluck @root.data.tasksInfo "hours")}} hours so far</p>
+  <p class="empty-subtitle"></p>
+  <div class="empty-action">
     {{#if @root.data.isAdmin ~}}
-      {{@root.route.metaData.adminTitle}}
-    {{else}}
-      {{@root.route.metaData.title}}
-    {{/if ~}}
-  </h1> -->
-
-  <h2>
-    Actions
-  </h2>
-  {{#if @root.data.isAdmin ~}}
-  <p>
     <a href="/hours" class="btn btn-primary">Volunteering groups</a>
-  </p>
-  {{else}}
-  <p>
-    <a href="/hours" class="btn btn-primary">My volunteering - submit hours</a>
-    <a href="/search" class="btn">Find a volunteering opportunity</a>
-  </p>
-  {{/if ~}}
+    {{else}}
+    <a href="/hours" class="btn btn-primary">My volunteering - log hours</a>
+    <a href="/search" class="btn btn-link">Find a new volunteering opportunity</a>
+    {{/if ~}}
+  </div>
+</div>
 
-  <div class="divider b-margin-full"></div>
-
-  <h2>
-    Support &amp; information
-  </h2>
-  {{#if @root.data.accountInfo.postcode ~}}
-  {{> local_contact_info}}
-  {{else}}
-  If you enter a postcode on your <a href="/settings">profile</a> you'll see local contact information here. Please see the <a href="/contact">contact us</a> page for all areas.
-  {{/if ~}}
+<div class="content-break equal-height">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <polygon fill="#EEF0FA" points="100,0 100,100 0,0"></polygon>
+  </svg>
+  <div class="container">
+    <h3>
+      Support &amp; information
+    </h3>
+    {{#if @root.data.accountInfo.postcode ~}}
+    {{> local_contact_info}}
+    {{else}}
+    If you enter a postcode on your <a href="/settings">profile</a> you'll see local contact information here. Please see the <a href="/contact">contact us</a> page for all areas.
+    {{/if ~}}
+  </div>
 </div>
 

@@ -150,6 +150,12 @@ a.btn-secondary:visited,
 .btn-secondary {
   color: white;
 }
+a.btn-link {
+  border: none;
+}
+a.btn-link:hover {
+  background-color: transparent;
+}
 
 #toaster {
   position: fixed;
@@ -444,6 +450,17 @@ header {
   opacity: 0.5;
 }
 
+.page .content-break {
+  position: relative;
+  svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: $unit/2;
+  }
+}
+
 .sidebar {
   border: 1px solid rgba(0, 0, 0, 0.12);
   .menu {
@@ -688,9 +705,9 @@ form {
     svg.bottom {
       position: absolute;
       bottom: 0;
+      left: 0;
       width: 100%;
       height: $unit*2;
-      bottom: 0;
     }
   }
   .container {
