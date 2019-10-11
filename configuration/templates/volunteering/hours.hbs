@@ -13,6 +13,9 @@
     <span id="form-message"></span>
   </div>
   {{#unless @root.data.isAdmin ~}}
+  <div class="pull-right">
+    {{> badge type=(if (compare (sumArray (pluck @root.data.tasksInfo "hours")) "<" 100) 'approach' else='ascent') key='current' hours=(round (sumArray (pluck @root.data.tasksInfo "hours")) 'down')}}
+  </div>
   <h2 class="b-margin-full">
     {{sumArray (pluck @root.data.tasksInfo "hours")}} total hours added
   </h2>
