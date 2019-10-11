@@ -32,9 +32,9 @@
   <link rel="icon" type="image/png" sizes="96x96" href="{{~>asset_url url='images/icons/favicon-96x96.png'~}}">
   <link rel="icon" type="image/png" sizes="16x16" href="{{~>asset_url url='images/icons/favicon-16x16.png'~}}">
   <link rel="manifest" href="{{~>asset_url url='images/icons/manifest.json'~}}">
-  <meta name="msapplication-TileColor" content="#3c7524">
+  <meta name="msapplication-TileColor" content="{{@root.context.metaData.theme.secondary}}">
   <meta name="msapplication-TileImage" content="{{~>asset_url url='images/icons/ms-icon-144x144.png'~}}">
-  <meta name="theme-color" content="#3c7524">
+  <meta name="theme-color" content="{{@root.context.metaData.theme.secondary}}">
   <link rel="search" type="application/opensearchdescription+xml" title="{{@root.context.metaData.title}}" href="{{~>asset_url url='opensearch.xml'~}}" />
 
   <script>
