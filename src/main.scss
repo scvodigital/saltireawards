@@ -263,16 +263,17 @@ a.btn-secondary:visited,
 }
 
 header {
-  position: relative;
+  background: linear-gradient(179.4deg, $secondary-color 89.5%, rgba(255,255,255,0) 90%);
   height: 165px;
-  margin-bottom: -($unit/5);
-  svg.bottom {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: $unit/2;
-    bottom: 0;
-  }
+  position: relative;
+  // margin-bottom: -($unit/5);
+  // svg.bottom {
+  //   position: absolute;
+  //   bottom: 0;
+  //   width: 100%;
+  //   height: $unit/2;
+  //   bottom: 0;
+  // }
   .brand {
     position: absolute;
     top: $unit/2;
@@ -284,6 +285,7 @@ header {
     padding: $unit 0;
   }
   .page-title h1 {
+    color: white;
     margin: $unit/2 0;
     text-align: center;
   }
@@ -604,14 +606,23 @@ form {
 }
 
 .header-image {
+  margin-top: -($unit);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   min-height: $home-splash-height;
   .header-image-overlay {
+    position: relative;
     width: 100%;
-    background: linear-gradient(178deg, #fff 15%,rgba(255,255,255,0.5) 100%);
+    // background: linear-gradient(178deg, rgba(255,255,255,0.95) 0%,rgba(255,255,255,0.25) 100%);
     min-height: $home-splash-height;
+    svg.bottom {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: $unit*2;
+      bottom: 0;
+    }
   }
   .container {
     min-height: $home-splash-height;

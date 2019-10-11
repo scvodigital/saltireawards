@@ -84,7 +84,7 @@
       {{/if}}
     {{/ifAny}}
 
-      <header class="container bg-secondary">
+      <header class="container">
         <section class="brand">
           <a href="/" class="logo"><img src="{{~>asset_url url='images/logos/saltire-awards-white.png'~}}" alt="{{@root.context.metaData.title}}" /></a>
         </section>
@@ -174,9 +174,9 @@
             {{> page_title location="body"}}
           </h1>
         </section>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" class="bottom">
+        {{!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" class="bottom">
           <polygon fill="white" points="0,100 100,0 100,100" />
-        </svg>
+        </svg> --}}
       </header>
 
       <div class="mobile-menu mobile-menu_closed">
