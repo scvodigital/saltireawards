@@ -79,7 +79,7 @@
       "label": "My volunteering",
       "icon": "user-clock",
       "path": "/hours",
-      "route": "^/hours|^/task",
+      "route": "^/hours|^/task|^/claim-hours",
       "user-types": [
         "Volunteer"
       ]
@@ -88,7 +88,7 @@
       "label": "Volunteering groups",
       "icon": "user-clock",
       "path": "/hours",
-      "route": "^/hours|^/task",
+      "route": "^/hours|^/task|^/claim-hours",
       "user-types": [
         "Group Admin"
       ]

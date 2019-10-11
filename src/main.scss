@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,800&display=swap');
 
 $primary-color: #009DDA;
 $primary-color-light: lighten($primary-color, 30%) !default;
@@ -7,7 +7,7 @@ $secondary-color: #253887;
 $secondary-color-light: lighten($secondary-color, 33%) !default;
 $secondary-color-dark: darken($secondary-color, 10%) !default;
 $dark-color: #10183A;
-$gray-color: #000000;
+$gray-color: #333E48;
 $light-color: #FFFFFF;
 $success-color: rgb(0, 96, 0);
 $warning-color: rgb(255, 190, 26);
@@ -383,6 +383,39 @@ header {
       margin: 0 auto;
     }
   }
+}
+
+.saltire-badge {
+  position: relative;
+  margin-bottom: $unit/2;
+  .badge-content {
+    position: absolute;
+    height: 85px;
+    width: 85px;
+    top: 30px;
+    left: auto;
+    margin-left: .5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: -0.1rem;
+    font-weight: 800;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+  }
+  .type-approach {
+    font-size: 2.25rem;
+    background-color: $theme-approach;
+  }
+  .type-ascent {
+    font-size: 2rem;
+    background-color: $theme-ascent;
+  }
+}
+.saltire-badge.disabled {
+  filter: grayscale(1);
+  opacity: 0.5;
 }
 
 .sidebar {
