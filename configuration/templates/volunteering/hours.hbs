@@ -9,12 +9,13 @@
     {{@root.route.metaData.title}}
     {{/if ~}}
   </h1> --}}
-  <div class="l-margin r-margin">
-    <div class="bg-error s-rounded x-padding v-margin" id="active-form-message">
-      <span id="form-message"></span>
-    </div>
+  <div class="bg-error s-rounded x-padding b-margin-full hidden" id="active-form-message">
+    <span id="form-message"></span>
   </div>
   {{#unless @root.data.isAdmin ~}}
+  <div class="pull-right">
+    {{> badge type=(if (compare (sumArray (pluck @root.data.tasksInfo "hours")) "<" 100) 'approach' else='ascent') key='current' hours=(round (sumArray (pluck @root.data.tasksInfo "hours")) 'down')}}
+  </div>
   <h2 class="b-margin-full">
     {{sumArray (pluck @root.data.tasksInfo "hours")}} total hours added
   </h2>

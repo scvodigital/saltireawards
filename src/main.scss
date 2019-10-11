@@ -1,13 +1,16 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,800&display=swap');
 
 $primary-color: #009DDA;
 $primary-color-light: lighten($primary-color, 30%) !default;
 $primary-color-dark: darken($primary-color, 6%) !default;
 $secondary-color: #253887;
-$secondary-color-light: lighten($secondary-color, 33%) !default;
+$secondary-color-light: lighten($secondary-color, 30%) !default;
 $secondary-color-dark: darken($secondary-color, 10%) !default;
+$bg-color: lighten($secondary-color-light, 32%) !default;
+$bg-color-light: lighten($bg-color, 4%) !default;
+$bg-color-dark: darken($bg-color, 4%) !default;
 $dark-color: #10183A;
-$gray-color: #000000;
+$gray-color: #333E48;
 $light-color: #FFFFFF;
 $success-color: rgb(0, 96, 0);
 $warning-color: rgb(255, 190, 26);
@@ -23,8 +26,9 @@ $theme-footer-light: #e7eaec;
 $theme-footer-dark: #333E48;
 
 $unit: 1rem;
-$heading-font-weight: 600;
 $link-font-weight: 500;
+$heading-font-weight: 600;
+$badge-font-weight: 800;
 $page-width: 1200px;
 $home-splash-height: 25vh;
 
@@ -112,6 +116,14 @@ a:focus,
 .chip-set a:hover,
 a.pure-menu-link:hover {
   text-decoration: none;
+}
+.chip {
+  color: $primary-color-dark !important;
+  background-color: lighten($primary-color-light, 23%);
+}
+.chip:hover {
+  color: white !important;
+  background-color: $primary-color-dark;
 }
 
 a.btn:link,
@@ -385,6 +397,53 @@ header {
   }
 }
 
+.saltire-badge {
+  user-select: none;
+  position: relative;
+  margin-bottom: $unit/2;
+  .badge-content {
+    position: absolute;
+    height: 85px;
+    width: 85px;
+    top: 30px;
+    left: auto;
+    margin-left: .5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: -0.1rem;
+    font-weight: $badge-font-weight;
+    color: white;
+    text-align: center;
+    border-radius: 50%;
+  }
+  .type-challenge {
+    background-color: $theme-challenge;
+    .img-responsive {
+      max-width: 60%;
+    }
+  }
+  .type-approach {
+    font-size: 2.25rem;
+    background-color: $theme-approach;
+  }
+  .type-ascent {
+    font-size: 2rem;
+    background-color: $theme-ascent;
+  }
+  .type-summit {
+    background-color: $theme-summit;
+    .img-responsive {
+      max-width: 70%;
+      margin-top: 10%;
+    }
+  }
+}
+.saltire-badge.disabled {
+  filter: grayscale(1);
+  opacity: 0.5;
+}
+
 .sidebar {
   border: 1px solid rgba(0, 0, 0, 0.12);
   .menu {
@@ -616,6 +675,7 @@ form {
 
 .header-image {
   margin-top: -($unit);
+  margin-bottom: -($unit);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -813,6 +873,7 @@ footer {
 .table th,
 .table td {
   border-bottom-width: 1px;
+  font-weight: $heading-font-weight;
 }
 // .table tr:last-child {
 //   th,

@@ -2,33 +2,40 @@
 {{> log_empty}}
 {{else}}
 <div class="container">
-  <h1>
+  {{!-- <h1>
     My achievements
-  </h1>
+  </h1> --}}
+  <ul class="step">
+    {{#each @root.context.metaData.certificates ~}}
+    <li class="step-item{{#compare @root.data.verifyHoursInfo.award hours}} active{{/compare}}">
+      <a href="#" class="tooltip" data-tooltip="{{certificate_name}} hours">{{hours}}</a>
+    </li>
+    {{/each ~}}
+  </ul>
   <div class="columns achievements">
     {{#each @root.context.metaData.certificates ~}}
-    <div class="column col-4">
+    <div class="column col-4 t-margin-full">
       {{!-- It's already awarded --}}
       {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
-      <img src="{{~>asset_url url=(concat 'images/badges/' hours '.png') ~}}" class="img-responsive" />
+      {{> badge type=type key=@key hours=hours}}
       <div class="text-center description">
         <p>
-          {{name}} hour certificate awarded!
+          {{certificate_name}} hour certificate awarded!
         </p>
         <a href="/certificate" class="btn btn-primary" download>Download</a>
       </div>
       {{else}}
       {{#compare @root.data.verifyHoursInfo.award "===" hours ~}}
       {{!-- It's being verified --}}
-      <img src="{{~>asset_url url=(concat 'images/badges/' hours '.png') ~}}" class="img-responsive" />
+      {{> badge type=type key=@key hours=hours}}
       <div class="text-center description">
-        {{name}} hour award being verified. <a href="/verify-hours-email-send/?award={{hours}}">Resend verification message</a>
+        {{certificate_name}} hour award being verified. <a href="/verify-hours-email-send/?award={{hours}}">Resend verification message</a>
       </div>
       {{else}}
       {{!-- A bigger award is being verified --}}
       {{#compare @root.data.verifyHoursInfo.award ">" hours ~}}
       {{!-- It's being verified --}}
-      <img src="{{~>asset_url url=(concat 'images/badges/' hours '.png') ~}}" class="img-responsive" />
+      {{> badge type=type key=@key hours=hours}}
       <div class="text-center description">
         Larger award being verified.
       </div>
@@ -36,14 +43,14 @@
 
       {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) ">=" hours ~}}
       {{!-- It's ready to claim--}}
-      <img src="{{~>asset_url url=(concat 'images/badges/' hours '.png') ~}}" class="img-responsive" />
+      {{> badge type=type key=@key hours=hours}}
       <div class="text-center description">
-        {{name}} hour certificate available!
+        {{certificate_name}} hour certificate available!
         <a href="/verify-hours-email-send/?award={{hours}}">Claim this certificate</a>
       </div>
       {{else}}
       {{!-- It's not there yet --}}
-      <img src="{{~>asset_url url=(concat 'images/badges/' hours 'bw.png') ~}}" class="img-responsive" />
+      {{> badge type=type key=@key hours=hours disabled=true}}
       <div class="text-center description">
         {{subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))}} {{inflect (subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))) "hour" "hours"}} to go
       </div>

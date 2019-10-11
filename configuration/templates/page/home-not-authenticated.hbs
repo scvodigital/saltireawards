@@ -21,7 +21,7 @@
   </div>
 </div>
 <div class="container">
-  <h2 class="text-centre t-padding">
+  <h2 class="text-centre">
     Aged 12-25 and volunteer?
   </h2>
   <p class="text-centre b-margin-full">
@@ -37,39 +37,52 @@
   </p>
   <div class="columns certificates">
     <div class="column col-3 certificate text-centre">
-      <img src="{{~>asset_url url='images/certificates/logos/challenge.png' ~}}" class="certificate-icon img-responsive b-margin" />
-      <h4>The Challenge</h4>
+      {{> badge type='challenge'}}
+      {{!-- <img src="{{~>asset_url url='images/certificates/logos/challenge.png' ~}}" class="certificate-icon img-responsive b-margin" /> --}}
+      <h4 class="t-margin-full">
+        The Challenge
+      </h4>
       <p>
         For those getting started in volunteering through team challenges
       </p>
     </div>
     <div class="column col-3 certificate text-centre">
-      <img src="{{~>asset_url url='images/certificates/logos/approach.png' ~}}" class="certificate-icon img-responsive b-margin" />
-      <h4>The Approach</h4>
+      {{> badge type='approach' key='ten' hours='10'}}
+      {{!-- <img src="{{~>asset_url url='images/certificates/logos/approach.png' ~}}" class="certificate-icon img-responsive b-margin" /> --}}
+      <h4 class="t-margin-full">
+        The Approach
+      </h4>
       <p>
         For when you've reached 10 and 25 hours volunteering
       </p>
     </div>
     <div class="column col-3 certificate text-centre">
-      <img src="{{~>asset_url url='images/certificates/logos/ascent.png' ~}}" class="certificate-icon img-responsive b-margin" />
-      <h4>The Ascent</h4>
+      {{> badge type='ascent' key='fifty' hours='50'}}
+      {{!-- <img src="{{~>asset_url url='images/certificates/logos/ascent.png' ~}}" class="certificate-icon img-responsive b-margin" /> --}}
+      <h4 class="t-margin-full">
+        The Ascent
+      </h4>
       <p>
         For when you've reached 50, 100, 200 or even 500 hours
       </p>
     </div>
     <div class="column col-3 certificate text-centre">
-      <img src="{{~>asset_url url='images/certificates/logos/summit.png' ~}}" class="certificate-icon img-responsive b-margin" />
-      <h4>The Summit</h4>
+      {{> badge type='summit'}}
+      {{!-- <img src="{{~>asset_url url='images/certificates/logos/summit.png' ~}}" class="certificate-icon img-responsive b-margin" /> --}}
+      <h4 class="t-margin-full">
+        The Summit
+      </h4>
       <p>
         For those that have made an outstanding contribution to volunteering
       </p>
     </div>
   </div>
-  <div class="my-saltire columns">
-    <div class="column col-6 my-saltire-item align-centre">
+  <div class="my-saltire columns t-margin-full">
+    <div class="column col-3"></div>
+    <div class="column col-3 my-saltire-item align-centre">
       <a href="/sign-up" class="btn btn-primary text-centre">Sign up now</a>
     </div>
-    <div class="column col-6 my-saltire-item align-centre">
+    <div class="column col-3 my-saltire-item align-centre">
       <a href="/sign-in" class="btn text-centre">Sign in</a>
     </div>
   </div>
