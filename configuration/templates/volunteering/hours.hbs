@@ -100,37 +100,48 @@
     <div class="columns">
       <div class="column col-9">
         <h2>
-          Volunteering with {{organisation_name}}
-          <span class="pull-right" data-collapse-target="#{{this.task_id}}-details">
+          Volunteering with {{{organisation_name}}}
+          {{!-- <span class="pull-right" data-collapse-target="#{{this.task_id}}-details">
             <span class="far fa-chevron-up" aria-hidden="false"></span>
-          </span>
+          </span> --}}
         </h2>
       </div>
     </div>
 
-    <div id="{{this.task_id}}-details">
+    <div id="{{this.task_id}}-details" class="b-margin-full">
       {{#if task_description ~}}
-      <strong>Description:</strong> {{task_description}}
+      <div class="columns">
+        <div class="column col-9">
+          <strong>Description:</strong> {{{task_description}}}
+        </div>
+      </div>
+      {{/if ~}}
+      {{#if location ~}}
+      <div class="columns">
+        <div class="column col-9">
+          <strong>Location:</strong> {{{location}}}
+        </div>
+      </div>
       {{/if ~}}
 
       <form action="/admin-submit-group-hours" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="ajax-form-handler">
         <div class="form-horizontal">
           <input type="hidden" name="task_id" value="{{task_id}}">
           <div class="form-group">
-            <div class="column col-4">
+            <div class="col-4">
               <label for="task_description" class="form-label">List of volunteer names, one per line</label>
             </div>
-            <div class="column col-5">
+            <div class="col-5">
               <textarea rows="6" cols="40" id="volunteers" name="volunteers" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}} class="form-input" value="{{@root.data.taskInfo.task_description}}"></textarea>
             </div>
           </div>
           <div class="form-group">
-            <div class="column col-4">
+            <div class="col-4">
               <label for="hours" class="form-label">
                 Certificate to award
               </label>
             </div>
-            <div class="column col-2">
+            <div class="col-2">
               <select class="form-select" required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
                 {{#each @root.context.metaData.certificates ~}}
                 <option value="{{hours}}">{{certificate_name}} hours</option>
@@ -139,8 +150,8 @@
             </div>
           </div>
           <div class="form-group">
-            <div class="column col-4"></div>
-            <div class="column col-1">
+            <div class="col-4"></div>
+            <div class="col-1">
               <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full" id="group-hours-submit">
                 Submit details
               </button>
@@ -216,10 +227,10 @@
       {{/ifAny ~}}
       {{/each ~}}
       {{/compare ~}}
-      {{/each ~}}
-      {{/unless ~}}
-      {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
     </div>
+    {{/each ~}}
+    {{/unless ~}}
+    {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
   </div>
 </div>
 {{/compare ~}}
