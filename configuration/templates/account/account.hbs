@@ -1,10 +1,7 @@
 <div class="container">
-  <!-- <h1>My account</h1> -->
-
-  <h2>Details</h2>
-
   <div class="columns">
     <div class="column col-9">
+      <h2>Details</h2>
 
       <form id="user-details-form" action="/update-account-details" method="POST">
         {{> account_details_form_fields admin=(compare @root.data.accountInfo.user_type 'Group Admin')}}

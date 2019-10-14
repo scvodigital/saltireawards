@@ -9,6 +9,11 @@
       </h2>
       {{#if @root.data.accountInfo.postcode ~}}
       {{> local_contact_info}}
+      <div class="columns col-gapless">
+        <div class="column col-6">
+          {{> local_contact_logo}}
+        </div>
+      </div>
       {{else}}
       <p>
         For information on how to get involved with the {{@root.context.metaData.title}}, you're best to contact your local Third Sector Interface.
