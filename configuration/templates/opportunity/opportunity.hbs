@@ -3,7 +3,7 @@
   {{#compare @root.data.supplimentaryResponses.opportunity.hits.total ">" 0 ~}}
   <div class="content-primary clearfix">
     {{#each @root.data.supplimentaryResponses.opportunity.hits.hits ~}}
-      {{> volunteering_opportunity_full _source view="full"}}
+      {{> opportunity_full _source view="full"}}
     {{/each ~}}
   </div>
 
@@ -12,11 +12,11 @@
     <h3 class="b-margin-full t-margin-sm">
       Similar opportunities
     </h3>
-    <div class="equal-height">
+    <div class="equal-height cards">
       <div class="columns">
         {{#each @root.data.opportunitySupplimentary.related.hits.hits ~}}
         <div class="column col-6">
-          {{> volunteering_opportunity_list _source hitContext="related-opportunity" parentDocument=_source.Id viewContext="Related"}}
+          {{> opportunity_list _source hitContext="related-opportunity" parentDocument=_source.Id viewContext="Related"}}
         </div>
         {{/each ~}}
       </div>

@@ -910,9 +910,10 @@ footer {
 .claim-code {
   color: #333;
   background-color: #eee;
-  padding: $unit/5 $unit/4 0;
+  padding: $unit/5 $unit/2 0;
   margin-bottom: $unit/4;
   font-size: 95%;
+  line-height: 2;
   display: inline-block;
   font-family: 'Consolas', 'Monaco', 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
 }

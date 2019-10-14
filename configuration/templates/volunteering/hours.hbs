@@ -135,8 +135,8 @@
             <strong>Claim code</strong>
           </div>
           <div class="column col-1"></div>
-          <div class="column col-1">
-            <a href="/group-certificate/{{task_id}}" class="btn btn-primary r-margin b-margin" download>Download all</a>
+          <div class="column col-2">
+            <a href="/group-certificate/{{task_id}}" class="btn btn-primary b-margin" download>Download all</a>
           </div>
           <div class="column col-1"></div>
         </div>
@@ -185,7 +185,6 @@
               <a href="/admin-delete-hours?hours_id={{hours_id}}" class="btn" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
               {{/if}}
             </div>
-            <div class="column col-1"></div>
           </div>
         </form>
         {{/ifAny ~}}

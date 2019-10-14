@@ -44,12 +44,12 @@
           {{#if @root.request.params.query.distance ~}}
             {{#compare (itemAt ../fields.distance @index) "<" @root.request.params.query.distance ~}}
               <marker style="display:none;" data-map="fullMap" data-lat="{{lat}}" data-lng="{{lon}}" data-shortlisted="{{#each @root.data.favourites.items}}{{#compare id "===" ../../_source.Id}}true{{/compare}}{{/each}}" data-title="{{../_source.title}}">
-                {{> volunteering_opportunity_map ../_source map_postcode=(itemAt (arrayify (split ../_source.postcode ",")) @index)}}
+                {{> opportunity_map ../_source map_postcode=(itemAt (arrayify (split ../_source.postcode ",")) @index)}}
               </marker>
             {{/compare ~}}
           {{else}}
             <marker style="display:none;" data-map="fullMap" data-lat="{{lat}}" data-lng="{{lon}}" data-shortlisted="{{#each @root.data.favourites.items}}{{#compare id "===" ../../_source.Id}}true{{/compare}}{{/each}}" data-title="{{../_source.title}}">
-              {{> volunteering_opportunity_map ../_source map_postcode=(itemAt (arrayify (split ../_source.postcode ",")) @index)}}
+              {{> opportunity_map ../_source map_postcode=(itemAt (arrayify (split ../_source.postcode ",")) @index)}}
             </marker>
           {{/if ~}}
         {{/each ~}}
