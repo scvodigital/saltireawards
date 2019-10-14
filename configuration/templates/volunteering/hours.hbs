@@ -121,41 +121,8 @@
         </div>
         {{/if ~}}
 
-        <form action="/admin-submit-group-hours" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="ajax-form-handler">
-          <div class="form-horizontal">
-            <input type="hidden" name="task_id" value="{{task_id}}">
-            <div class="form-group">
-              <div class="col-4">
-                <label for="task_description" class="form-label">List of volunteer names, one per line</label>
-              </div>
-              <div class="col-5">
-                <textarea rows="6" cols="40" id="volunteers" name="volunteers" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}>{{@root.data.taskInfo.task_description}}</textarea>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-4">
-                <label for="hours" class="form-label">
-                  Certificate to award
-                </label>
-              </div>
-              <div class="col-2">
-                <select class="form-select" required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
-                  {{#each @root.context.metaData.certificates ~}}
-                  <option value="{{hours}}">{{certificate_name}} hours</option>
-                  {{/each ~}}
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-4"></div>
-              <div class="col-1">
-                <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full" id="group-hours-submit">
-                  Submit details
-                </button>
-              </div>
-            </div>
-          </div>
-        </form>
+        <div class="divider v-margin-full"></div>
+
         {{#compare (length hours_list) ">" 0 ~}}
         <div class="columns">
           <div class="column col-4">
@@ -175,7 +142,7 @@
         </div>
         {{#each hours_list ~}}
         {{#ifAny claim_first_name claim_code ~}}
-        <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours" style="position:relative" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Hours Updated" data-TasksTrigger="ajax-form-handler" >
+        <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours" style="position:relative" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Hours Updated" data-TasksTrigger="ajax-form-handler">
           <input type="hidden" name="task_id" value="{{task_id}}">
           <input type="hidden" name="verified" value="{{verified}}">
           <input type="hidden" name="claim_code" value="{{claim_code}}">
@@ -223,7 +190,46 @@
         </form>
         {{/ifAny ~}}
         {{/each ~}}
+        <a href="#" class="btn btn-primary show-group-hours-form">
+          Add more participants
+        </a>
         {{/compare ~}}
+
+        <form action="/admin-submit-group-hours" id="group-hours-form" method="POST" data-component="TasksTrigger" {{#if @root.data.isAdmin}}data-success-destination="/hours/{{slugify organisation_name}}/{{task_id}}" data-destination-include-id="false"{{else}}data-success-destination="/hours"{{/if}} data-TasksTrigger="ajax-form-handler"{{#compare (length hours_list) '>' 0}} style="display:none;"{{/compare}}>
+          <div class="form-horizontal">
+            <input type="hidden" name="task_id" value="{{task_id}}">
+            <div class="form-group">
+              <div class="col-4">
+                <label for="task_description" class="form-label">List of volunteer names, one per line</label>
+              </div>
+              <div class="col-5">
+                <textarea rows="6" cols="40" id="volunteers" name="volunteers" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}>{{@root.data.taskInfo.task_description}}</textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-4">
+                <label for="hours" class="form-label">
+                  Certificate to award
+                </label>
+              </div>
+              <div class="col-2">
+                <select class="form-select" required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
+                  {{#each @root.context.metaData.certificates ~}}
+                  <option value="{{hours}}">{{certificate_name}} hours</option>
+                  {{/each ~}}
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-4"></div>
+              <div class="col-1">
+                <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full" id="group-hours-submit">
+                  Submit details
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
     {{/compare ~}}
@@ -244,11 +250,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   $('.inline-update-button').click(function(){
     $(this).hide();
-  })
+  });
 
   $('.inline-delete-button').click(function(){
     var submit = $(this).closest('form').hide();
-  })
+  });
+
+  $('.show-group-hours-form').click(function(e){
+    e.preventDefault();
+    $('#group-hours-form').show();
+    $(this).hide();
+  });
 })
 
 function clearHoursForm(response){
@@ -263,6 +275,4 @@ function preSubmit() {
     onSubmit();
   }
 }
-
 </script>
-
