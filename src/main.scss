@@ -524,6 +524,17 @@ header {
     max-width: $page-width;
     margin: 0;
   }
+  .empty {
+    padding-left: 0;
+    padding-right: 0;
+    .empty-icon,
+    .empty-title,
+    .empty-subtitle,
+    .empty-action {
+      max-width: $page-width;
+      margin-left: 0;
+    }
+  }
 }
 
 .caption {
