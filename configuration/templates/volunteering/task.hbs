@@ -12,7 +12,7 @@
     {{/if ~}}
   </h2>
 
-  <form id="task-details-form" class="active-form" action="/submit-task-details" method="POST" data-component="TasksTrigger" data-TasksTrigger="ajax-form-handler">
+  <form id="task-details-form" class="active-form" action="/submit-task-details" method="POST" data-component="TasksTrigger" data-success-destination="hours/new/" data-destination-include-id="true" data-TasksTrigger="ajax-form-handler">
     <input type="hidden" name="task_type" value="{{#if admin}}Group Task{{else}}Individual Task{{/if}}">
     <div class="l-margin r-margin">
       <div class="bg-error s-rounded x-padding v-margin" id="active-form-message">
@@ -188,7 +188,6 @@
   {{/withExtend ~}}
 </div>
 
-<<<<<<< HEAD
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {
     $('#task-details-form').on('submit', function(e){
@@ -207,7 +206,5 @@
       };
   });
 </script>
-=======
->>>>>>> 826ba2f4208cc2b233d9fdb391872b6afde00fc1
 
 {{!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> --}}

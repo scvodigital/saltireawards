@@ -49,7 +49,7 @@ return {
                             name: "toast",
                             type: "basic",
                             config: {
-                              message: {__template: "\{{coalesce (jquery rootElement 'data' (split 'success-message')) }} "},
+                              message: {__template: "\{{coalesce (jquery rootElement 'data' (split 'success-message')) 'There is no success action set upon this form, please set data-success-destination, data-success-message or data-success-hide' }} "},
                               class: "success"
                             }
                           },
@@ -60,7 +60,7 @@ return {
                         tasks: [
                           {
                             type: "run",
-                            config: {code: {__template: "window.location.href = '\{{jquery rootElement 'data' (split 'success-destination')}}' "}}
+                            config: {code: {__template: "window.location.href = '\{{jquery rootElement 'data' (split 'success-destination')}}{{#if (jquery rootElement 'data' (split 'destination-include-id')) }}{{data.submitRequest.id}}{{/if}}' "}}
                           }
                         ]
                       },
