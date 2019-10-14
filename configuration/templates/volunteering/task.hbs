@@ -62,11 +62,9 @@
       </div>
     </div>
 
-    <div class="divider"></div>
+    <div class="divider v-margin-full"></div>
 
-    <h2 class="t-margin-full">
-      Volunteer manager
-    </h2>
+    <h2>Volunteer manager</h2>
 
     <div class="form-horizontal">
       <div class="form-group">
@@ -154,12 +152,12 @@
       </div>
       <div class="form-group">
         <div class="column col-3">
-          <label for="sdg" class="form-label r-margin">
+          <label for="un_sustainable_development_goals" class="form-label r-margin">
             Which UN Sustainable Development Goal does this task match? (optional)
           </label>
         </div>
         <div class="column col-5">
-          <select class="form-select" id="sdg" name="sdg">
+          <select class="form-select" id="un_sustainable_development_goals" name="un_sustainable_development_goals">
             <option value="" selected></option>
             {{#each @root.context.metaData.globalGoals ~}}
             <option value="{{@key}}">{{@key}}: {{title}}</option>
