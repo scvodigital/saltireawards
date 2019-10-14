@@ -1307,6 +1307,10 @@ footer {
   }
 }
 
+.achievements > .working-towards {
+  display: flex;
+}
+.achievements > .working-towards ~ .working-towards,
 .hidden, .hide {
   display: none;
 }

@@ -31,8 +31,8 @@
     </h2> --}}
     {{/unless ~}}
 
-
     {{#unless @root.data.isAdmin ~}}
+    {{#unless (compare (dateMath 'now-27y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD"))}}
     <div id="individual-tasks-input">
       {{#each @root.data.tasksInfo ~}}
       <h2>
@@ -40,12 +40,16 @@
       </h2>
       <form action="/submit-hours" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="ajax-form-handler">
         <p>
-          {{hours}} hours added so far
+          {{#compare hours ">" 0 ~}}
+          {{inflect hours "hour" "hours" true}} added so far
+          {{else}}
+          No hours added yet
+          {{/compare ~}}
         </p>
         <input type="hidden" name="task_id" value="{{task_id}}">
         <div class="form-horizontal">
           <div class="form-group">
-            <div class="column col-4">
+            <div class="col-4">
               <label class="form-label" for="hours">
                 {{#compare hours ">" 0 ~}}
                 How many hours have you volunteered since last time?
@@ -58,15 +62,18 @@
               <input class="form-input" id="hours" name="hours" type="number" step="any" min="0" value="" placeholder="">
             </div>
             <div class="column col-2">
-              {{#unless (compare (dateMath 'now-27y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD"))}}
               <button type="submit" class="btn btn-primary">Add hours</button>
-              {{/unless}}
             </div>
           </div>
         </div>
       </form>
       {{/each}}
     </div>
+    {{else}}
+    <p>
+      You cannot log hours as you are over the age limit.
+    </p>
+    {{/unless}}
     {{else}}
 
     {{#each @root.data.tasksInfo ~}}
