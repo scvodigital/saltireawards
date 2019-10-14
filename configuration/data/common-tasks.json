@@ -105,12 +105,12 @@
     }
   },
   "hoursCodeVerify" : {
-  "name": "codeVerified",
-  "taskModule": "render",
-  "renderer": "handlebars",
-  "config": {
-    "output": "data",
-    "template": ">context.metaData.handlebars.templates.volunteering_hours-code-verify"
+    "name": "codeVerified",
+    "taskModule": "render",
+    "renderer": "handlebars",
+    "config": {
+      "output": "data",
+      "template": ">context.metaData.handlebars.templates.volunteering_hours-code-verify"
     }
   },
   "handleHoursVerifyFail" :     {
@@ -192,26 +192,16 @@
     "taskModule": "reroute",
     "config":
     {
-      "if": [{"missing": "data.accountInfo.external_id"},
-        "sd-needed",
-        {
-          "if": [{"var" : "data.accountInfo.verification_needed"},
-            "approval-needed",
-            {
-              "if":[
-                {"and" : [
-                  {"!=":[{"var": "data.accountInfo.user_type"}, "Group Admin"]},
-                  {"!=":[{"var": "data.codeVerified"}, "pass"]}
-                ] }
-              ,
-                "redirect-home",
-                null
-              ]
-            }
-          ]
-        }
+      "if":[
+        {"and" : [
+          {"!=":[{"var": "data.accountInfo.user_type"}, "Group Admin"]},
+          {"!=":[{"var": "data.codeVerified"}, "pass"]}
+        ] }
+      ,
+        "redirect-home",
+        null
       ]
     }
   }
-
 }
+
