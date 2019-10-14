@@ -40,6 +40,9 @@
     <div class="column col-4 col-mx-auto t-margin-full">
       {{!-- It's being verified --}}
       <h2 class="text-center">Next achievement</h2>
+      <p class="text-center text-primary">
+        <strong>{{type_name}}: {{certificate_name}} hours</strong>
+      </p>
       {{> badge type=type key=@key hours=hours}}
       <div class="text-center description">
         {{certificate_name}} hour award being verified. <a href="/verify-hours-email-send/?award={{hours}}">Resend verification message</a>
@@ -61,6 +64,9 @@
     <div class="column col-4 col-mx-auto t-margin-full">
       {{!-- It's ready to claim--}}
       <h2 class="text-center">Next achievement</h2>
+      <p class="text-center text-primary">
+        <strong>{{type_name}}: {{certificate_name}} hours</strong>
+      </p>
       {{> badge type=type key=@key hours=hours}}
       <p class="text-center description">
         {{certificate_name}} hour certificate available! Claiming this certificate will send emails to the person or people managing your volunteering to verify the hours you've logged.
@@ -75,6 +81,9 @@
     <div class="column col-4 col-mx-auto t-margin-full">
       {{!-- It's not there yet --}}
       <h2 class="text-center">Working towards</h2>
+      <p class="text-center text-primary">
+        <strong>{{type_name}}: {{certificate_name}} hours</strong>
+      </p>
       {{> badge type=type key=@key hours=hours disabled=true}}
       <div class="text-center description">
         <strong>{{subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))}} {{inflect (subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))) "hour" "hours"}} to go.</strong><br />
