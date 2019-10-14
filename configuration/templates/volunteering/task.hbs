@@ -1,5 +1,4 @@
 <div class="container">
-  {{#withExtend this admin=(compare @root.data.accountInfo.user_type 'Group Admin') ~}}
   <h2>
     {{#if @root.data.isAdmin ~}}
     Group volunteering details
@@ -8,14 +7,8 @@
     {{/if ~}}
   </h2>
 
-  <form id="task-details-form" class="active-form" action="/submit-task-details" method="POST" data-component="TasksTrigger"
-        {{#if admin}}
-        data-success-destination="hours/new/" data-destination-include-id="true"
-        {{else}}
-        data-success-destination="hours/"
-        {{/if}}
-        data-TasksTrigger="ajax-form-handler">
-    <input type="hidden" name="task_type" value="{{#if admin}}Group Task{{else}}Individual Task{{/if}}">
+  <form id="task-details-form" class="active-form" action="/submit-task-details" method="POST" data-component="TasksTrigger" {{#if @root.data.isAdmin}}data-success-destination="/hours/new/" data-destination-include-id="true"{{else}}data-success-destination="hours/"{{/if}} data-TasksTrigger="ajax-form-handler">
+    <input type="hidden" name="task_type" value="{{#if @root.data.isAdmin}}Group Task{{else}}Individual Task{{/if}}">
     <div class="l-margin r-margin">
       <div class="bg-error s-rounded x-padding v-margin" id="active-form-message">
         <span id="form-message"></span>
@@ -25,7 +18,7 @@
       <div class="form-group">
         <div class="column col-3">
           <label for="organisation_name" class="form-label">
-            {{#if admin ~}}
+            {{#if @root.data.isAdmin ~}}
             Organisation your group has volunteered with
             {{else}}
             Organisation you volunteer for
@@ -88,7 +81,7 @@
               <div class="column col-6">
                 <input required id="volunteer_manager_first_name" name="volunteer_manager_first_name" placeholder="First name"
                   {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_first_name}} class="form-input"
-                  {{#if admin ~}}
+                  {{#if @root.data.isAdmin ~}}
                   value="{{default @root.data.taskInfo.volunteer_manager_first_name @root.data.accountInfo.first_name}}"
                   {{else}}
                   value="{{@root.data.taskInfo.volunteer_manager_first_name}}"
@@ -98,7 +91,7 @@
               <div class="column col-6">
                 <input required id="volunteer_manager_last_name" name="volunteer_manager_last_name" placeholder="Last name"
                   {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_last_name}} class="form-input"
-                  {{#if admin ~}}
+                  {{#if @root.data.isAdmin ~}}
                   value="{{default @root.data.taskInfo.volunteer_manager_last_name @root.data.accountInfo.last_name}}"
                   {{else}}
                   value="{{@root.data.taskInfo.volunteer_manager_last_name}}"
@@ -118,7 +111,7 @@
         <div class="column col-5">
           <input required id="volunteer_manager_title" name="volunteer_manager_title" placeholder="e.g. Volunteer manager"
             {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_title}} class="form-input"
-            {{#if admin ~}}
+            {{#if @root.data.isAdmin ~}}
             value="{{default @root.data.taskInfo.volunteer_manager_title @root.data.accountInfo.title}}"
             {{else}}
             value="{{@root.data.taskInfo.volunteer_manager_title}}"
@@ -135,7 +128,7 @@
         <div class="column col-5">
           <input id="volunteer_manager_email" name="volunteer_manager_email" placeholder="e.g. name@charity.org"
             {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_email}} class="form-input"
-            {{#if admin ~}}
+            {{#if @root.data.isAdmin ~}}
             value="{{default @root.data.taskInfo.volunteer_manager_email @root.data.accountInfo.email}}"
             {{else}}
             value="{{@root.data.taskInfo.volunteer_manager_email}}" pattern="^((?!{{@root.data.accountInfo.email}}).)*$"
@@ -151,7 +144,7 @@
         <div class="column col-5">
           <input id="volunteer_manager_phone" name="volunteer_manager_phone" placeholder="e.g. 01310001234"
             {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_phone}} class="form-input"
-            {{#if admin ~}}
+            {{#if @root.data.isAdmin ~}}
             value="{{default @root.data.taskInfo.volunteer_manager_phone @root.data.accountInfo.phone}}"
             {{else}}
             value="{{@root.data.taskInfo.volunteer_manager_phone}}"
@@ -180,14 +173,13 @@
         <div class="column col-3"></div>
         <div class="column col-5">
           {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
-          <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full" id="register-interest-submit">
+          <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full">
             Submit details
           </button>
         </div>
       </div>
     </div>
   </form>
-  {{/withExtend ~}}
 </div>
 
 <script>
