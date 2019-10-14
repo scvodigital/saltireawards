@@ -1,8 +1,4 @@
 <div class="container">
-  {{!-- <h1>
-    Add a task
-  </h1> --}}
-
   {{#withExtend this admin=(compare @root.data.accountInfo.user_type 'Group Admin') ~}}
   <h2>
     {{#if @root.data.isAdmin ~}}
@@ -207,4 +203,3 @@
   });
 </script>
 
-{{!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> --}}
