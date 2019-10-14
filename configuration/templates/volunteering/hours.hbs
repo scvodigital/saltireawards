@@ -72,7 +72,7 @@
           <div class="card-footer">
             <form action="/submit-hours" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="ajax-form-handler">
               <input type="hidden" name="task_id" value="{{task_id}}">
-              <label class="form-label" for="hours">
+              <label class="form-label" for="hours-{{task_id}}">
                 {{#compare hours ">" 0 ~}}
                 How many hours have you volunteered since the last time you logged hours?
                 {{else}}
@@ -80,7 +80,7 @@
                 {{/compare ~}}
               </label>
               <div class="input-group">
-                <input class="form-input input-lg" id="hours" name="hours" type="number" step="any" min="0" value="" placeholder="">
+                <input class="form-input input-lg" id="hours-{{task_id}}" name="hours" type="number" step="any" min="0" value="" placeholder="">
                 <button type="submit" class="btn btn-primary btn-lg input-group-btn">Add hours</button>
               </div>
             </form>
