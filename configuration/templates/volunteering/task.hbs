@@ -5,10 +5,14 @@
 
   {{#withExtend this admin=(compare @root.data.accountInfo.user_type 'Group Admin') ~}}
   <h2>
+    {{#if @root.data.isAdmin ~}}
+    Group volunteering details
+    {{else}}
     My volunteering details
+    {{/if ~}}
   </h2>
 
-  <form id="task-details-form" class="active-form" action="/submit-task-details" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="ajax-form-handler">
+  <form id="task-details-form" class="active-form" action="/submit-task-details" method="POST" data-component="TasksTrigger" data-TasksTrigger="ajax-form-handler">
     <input type="hidden" name="task_type" value="{{#if admin}}Group Task{{else}}Individual Task{{/if}}">
     <div class="l-margin r-margin">
       <div class="bg-error s-rounded x-padding v-margin" id="active-form-message">
@@ -174,7 +178,7 @@
         <div class="column col-3"></div>
         <div class="column col-5">
           {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
-          <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full" id="register-interest-submit" >
+          <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full" id="register-interest-submit">
             Submit details
           </button>
         </div>
@@ -188,10 +192,9 @@
   document.addEventListener("DOMContentLoaded", function(event) {
     $('#task-details-form').on('submit', function(e){
       $('#task-details-form').find('.submit-button').prop('disabled', true);
-    })
+    });
 
     var element = document.getElementById("volunteer_manager_email");
-
       element.oninvalid = function(e) {
         e.target.setCustomValidity("");
         if (!e.target.validity.valid) {
@@ -202,19 +205,6 @@
         e.target.setCustomValidity("");
       };
   });
-  function completeTaskWrite(response){
-    var jsonData = JSON.parse(response);
-    if (jsonData.id){
-      window.location.href = '/hours/';
-    } else {
-      $('.submit-button').prop('disabled', false);
-      saltireawards.componentsInitialiser.snackbar.show({message:"Failed create task."});
-    }
-  }
-
-
 </script>
 
-{{!--
---}}
 {{!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> --}}
