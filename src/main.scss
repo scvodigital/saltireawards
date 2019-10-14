@@ -524,10 +524,25 @@ header {
     max-width: $page-width;
     margin: 0;
   }
+  .empty {
+    padding-left: 0;
+    padding-right: 0;
+    .empty-icon,
+    .empty-title,
+    .empty-subtitle,
+    .empty-action {
+      max-width: $page-width;
+      margin-left: 0;
+    }
+  }
 }
 
 .caption {
   font-size: 92%;
+}
+
+form {
+  position: relative;
 }
 
 .authentication-form {
@@ -746,6 +761,10 @@ ul.fa-ul {
   }
   .card {
     height: 100%;
+  }
+  .fa-ul.hours {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
 .contact.equal-height {
@@ -1307,6 +1326,10 @@ footer {
   }
 }
 
+.achievements > .working-towards {
+  display: flex;
+}
+.achievements > .working-towards ~ .working-towards,
 .hidden, .hide {
   display: none;
 }

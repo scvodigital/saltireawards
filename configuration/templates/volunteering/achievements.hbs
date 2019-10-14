@@ -1,7 +1,7 @@
 {{#compare (length @root.data.tasksInfo) 0 ~}}
 {{> log_empty}}
 {{else}}
-<div class="container">
+<div class="container achievements">
   {{!-- <h1>
     My achievements
   </h1> --}}
@@ -12,54 +12,89 @@
     </li>
     {{/each ~}}
   </ul>
-  <div class="columns achievements">
-    {{#each @root.context.metaData.certificates ~}}
-    <div class="column col-4 t-margin-full">
-      {{!-- It's already awarded --}}
-      {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
+  {{#each @root.context.metaData.certificates ~}}
+  {{!-- It's already awarded --}}
+  {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
+  {{#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
+  <div class="columns">
+    <div class="column col-4 col-mx-auto t-margin-full">
+      <h2 class="text-center">
+        {{#if last}}My{{else}}Current{{/if}} achievement
+      </h2>
+      <p class="text-center text-primary">
+        <strong>{{type_name}}: {{certificate_name}} hours</strong>
+      </p>
       {{> badge type=type key=@key hours=hours}}
       <div class="text-center description">
-        <p>
+        {{!-- <p>
           {{certificate_name}} hour certificate awarded!
-        </p>
-        <a href="/certificate" class="btn btn-primary" download>Download</a>
+        </p> --}}
+        <a href="/certificate" class="btn btn-primary b-margin" download>Download</a>
       </div>
-      {{else}}
-      {{#compare @root.data.verifyHoursInfo.award "===" hours ~}}
+    </div>
+  </div>
+  {{/unless ~}}
+  {{else}}
+  {{#compare @root.data.verifyHoursInfo.award "===" hours ~}}
+  <div class="columns">
+    <div class="column col-4 col-mx-auto t-margin-full">
       {{!-- It's being verified --}}
+      <h2 class="text-center">Next achievement</h2>
+      <p class="text-center text-primary">
+        <strong>{{type_name}}: {{certificate_name}} hours</strong>
+      </p>
       {{> badge type=type key=@key hours=hours}}
       <div class="text-center description">
         {{certificate_name}} hour award being verified. <a href="/verify-hours-email-send/?award={{hours}}">Resend verification message</a>
       </div>
-      {{else}}
-      {{!-- A bigger award is being verified --}}
-      {{#compare @root.data.verifyHoursInfo.award ">" hours ~}}
-      {{!-- It's being verified --}}
-      {{> badge type=type key=@key hours=hours}}
-      <div class="text-center description">
-        Larger award being verified.
-      </div>
-      {{else}}
+    </div>
+  </div>
+  {{else}}
+  {{!-- A bigger award is being verified --}}
+  {{#compare @root.data.verifyHoursInfo.award ">" hours ~}}
+  {{!-- It's being verified --}}
+  {{!-- {{> badge type=type key=@key hours=hours}}
+  <div class="text-center description">
+    Larger award being verified.
+  </div> --}}
+  {{else}}
 
-      {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) ">=" hours ~}}
+  {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) ">=" hours ~}}
+  <div class="columns working-towards">
+    <div class="column col-4 col-mx-auto t-margin-full">
       {{!-- It's ready to claim--}}
+      <h2 class="text-center">Next achievement</h2>
+      <p class="text-center text-primary">
+        <strong>{{type_name}}: {{certificate_name}} hours</strong>
+      </p>
       {{> badge type=type key=@key hours=hours}}
-      <div class="text-center description">
-        {{certificate_name}} hour certificate available!
-        <a href="/verify-hours-email-send/?award={{hours}}">Claim this certificate</a>
-      </div>
-      {{else}}
+      <p class="text-center description">
+        {{certificate_name}} hour certificate available! Claiming this certificate will send emails to the person or people managing your volunteering to verify the hours you've logged.
+      </p>
+      <p class="text-center">
+        <a href="/verify-hours-email-send/?award={{hours}}" class="btn">Claim this certificate</a>
+      </p>
+    </div>
+  </div>
+  {{else}}
+  <div class="columns working-towards">
+    <div class="column col-4 col-mx-auto t-margin-full">
       {{!-- It's not there yet --}}
+      <h2 class="text-center">Working towards</h2>
+      <p class="text-center text-primary">
+        <strong>{{type_name}}: {{certificate_name}} hours</strong>
+      </p>
       {{> badge type=type key=@key hours=hours disabled=true}}
       <div class="text-center description">
-        {{subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))}} {{inflect (subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))) "hour" "hours"}} to go
+        <strong>{{subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))}} {{inflect (subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))) "hour" "hours"}} to go.</strong><br />
+        Once you have reached {{hours}} hours, you can request verification.
       </div>
-      {{/compare ~}}
-      {{/compare ~}}
-      {{/compare ~}}
-      {{/compare ~}}
     </div>
-    {{/each ~}}
   </div>
+  {{/compare ~}}
+  {{/compare ~}}
+  {{/compare ~}}
+  {{/compare ~}}
+  {{/each ~}}
 </div>
 {{/compare ~}}
