@@ -17,32 +17,45 @@
       <span id="form-message"></span>
     </div>
 
-    {{#each @root.data.tasksInfo ~}}
-    <div class="columns">
-      <div class="column col-9">
-        <h2>
-          <a href="/hours/{{slugify organisation_name}}/{{task_id}}">Volunteering with {{{organisation_name}}}</a>
-        </h2>
-      </div>
-    </div>
-
-    <div id="{{this.task_id}}-details" class="b-margin-full">
-      {{#if task_description ~}}
-      <div class="columns">
-        <div class="column col-9">
-          <strong>Description:</strong> {{{task_description}}}
+    <div class="columns cards equal-height">
+      {{#each @root.data.tasksInfo ~}}
+      <div class="column col-4">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title h5">
+              <a href="/hours/{{slugify organisation_name}}/{{task_id}}">{{organisation_name}}</a>
+            </div>
+            {{#if task_description ~}}
+            <div class="card-subtitle text-gray">{{truncate task_description 140}}</div>
+            {{/if ~}}
+            {{!-- {{#if un_sustainable_development_goals ~}}
+            <div class="card-subtitle text-gray">{{un_sustainable_development_goals}}</div>
+            {{/if ~}} --}}
+          </div>
+          <div class="card-body">
+            <ul class="fa-ul hours">
+              {{#if location ~}}
+              <li>
+                <span class="fa-li"><span class="far fa-map-marker-alt"></span></span>
+                <div class="card-subtitle text-gray">{{truncate location 140}}</div>
+              </li>
+              {{/if ~}}
+              <li>
+                <span class="fa-li"><span class="far fa-users"></span></span>
+                {{#compare (length hours_list) ">" 0 ~}}
+                {{inflect (length hours_list) "participant" "participants" true}}
+                {{else}}
+                No participants have been added yet
+                {{/compare ~}}
+              </li>
+            </ul>
+          </div>
+          <div class="card-footer">
+          </div>
         </div>
       </div>
-      {{/if ~}}
-      {{#if location ~}}
-      <div class="columns">
-        <div class="column col-9">
-          <strong>Location:</strong> {{{location}}}
-        </div>
-      </div>
-      {{/if ~}}
+      {{/each ~}}
     </div>
-    {{/each ~}}
   </div>
 </div>
 {{/if ~}}

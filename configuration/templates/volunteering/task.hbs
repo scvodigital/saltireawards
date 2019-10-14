@@ -1,8 +1,4 @@
 <div class="container">
-  {{!-- <h1>
-    Add a task
-  </h1> --}}
-
   {{#withExtend this admin=(compare @root.data.accountInfo.user_type 'Group Admin') ~}}
   <h2>
     {{#if @root.data.isAdmin ~}}
@@ -187,27 +183,5 @@
   </form>
   {{/withExtend ~}}
 </div>
-
-<<<<<<< HEAD
-<script>
-  document.addEventListener("DOMContentLoaded", function(event) {
-    $('#task-details-form').on('submit', function(e){
-      $('#task-details-form').find('.submit-button').prop('disabled', true);
-    });
-
-    var element = document.getElementById("volunteer_manager_email");
-      element.oninvalid = function(e) {
-        e.target.setCustomValidity("");
-        if (!e.target.validity.valid) {
-          e.target.setCustomValidity("This must be a valid email, and not your own");
-        }
-      };
-      element.oninput = function(e) {
-        e.target.setCustomValidity("");
-      };
-  });
-</script>
-=======
->>>>>>> 826ba2f4208cc2b233d9fdb391872b6afde00fc1
 
 {{!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> --}}

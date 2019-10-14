@@ -9,7 +9,12 @@
     Claim hours with code
   </a>
   {{else}}
-  <a href="/task" class="btn btn-primary">
+  {{#unless (compare @root.route.name "groups") ~}}
+  <a href="/groups" class="btn btn-primary">
+    List groups
+  </a>
+  {{/unless ~}}
+  <a href="/task" class="btn{{#compare @root.route.name 'groups'}} btn-primary{{/compare}}">
     Add new group
   </a>
   {{/unless ~}}
