@@ -1,11 +1,11 @@
 {
-  "name": "hours",
-  "pattern": "/hours(/:task_id)",
+  "name": "groups",
+  "pattern": "/groups",
   "debug": true,
   "errorRoute": "five_hundred",
   "metaData": {
     "title": "My volunteering",
-    "adminTitle": "Volunteering group"
+    "adminTitle": "Volunteering groups"
   },
   "tasks": [
     "context.metaData.commonTasks.authRequired",
@@ -31,7 +31,7 @@
             "parts": {
               "head": ">context.metaData.handlebars.templates.page_head-tags",
               "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
-              "body": ">context.metaData.handlebars.templates.volunteering_hours"
+              "body": ">context.metaData.handlebars.templates.volunteering_groups"
             },
             "contentType": "text/html"
           }
