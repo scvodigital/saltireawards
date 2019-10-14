@@ -158,7 +158,7 @@
     "taskModule": "render",
     "renderer": "handlebars",
     "config": {
-      "template": ">context.metaData.handlebars.partials.volunteering_terms_maps",
+      "template": ">context.metaData.handlebars.partials.opportunity_terms_maps",
       "output": "data",
       "parseJson": true
     }

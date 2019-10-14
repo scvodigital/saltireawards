@@ -1,0 +1,11 @@
+<div class="card search-result b-margin-full" data-opportunity-id="{{Id}}" data-opportunity-layout="Search Result" data-opportunity-context="{{default viewContext "Search Results"}}">
+  {{> opportunity_key_info type="search-result"}}
+  {{!-- <div class="divider"></div> --}}
+  {{#compare (trim (getProperty @root.data.profileInfo.notes Id)) "!==" "" ~}}
+    {{> opportunity_description limit="3rem" description=description}}
+    {{> opportunity_notes limit="3rem"}}
+  {{else}}
+    {{> opportunity_description limit="6rem" description=description}}
+  {{/compare ~}}
+  {{> opportunity_actions slug=slug Id=Id home_based=home_based distance=distance action=action}}
+</div>

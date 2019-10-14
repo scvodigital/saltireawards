@@ -62,7 +62,7 @@
             </ul>
           </div>
           <div class="card-footer">
-            <form action="/submit-hours" method="POST" data-component="TasksTrigger" {{#if admin}}data-success-destination="/hours/new/" data-destination-include-id="true"{{else}}data-success-destination="hours/"{{/if}} data-TasksTrigger="ajax-form-handler">
+            <form action="/submit-hours" method="POST" data-component="TasksTrigger" {{#if admin}}data-success-destination="/hours/" data-destination-include-id="true"{{else}}data-success-destination="hours/"{{/if}} data-TasksTrigger="ajax-form-handler">
               <input type="hidden" name="task_id" value="{{task_id}}">
               <label class="form-label" for="hours-{{task_id}}">
                 <strong>
@@ -135,8 +135,8 @@
             <strong>Claim code</strong>
           </div>
           <div class="column col-1"></div>
-          <div class="column col-1">
-            <a href="/group-certificate/{{task_id}}" class="btn btn-primary r-margin b-margin" download>Download all</a>
+          <div class="column col-2">
+            <a href="/group-certificate/{{task_id}}" class="btn btn-primary b-margin" download>Download all</a>
           </div>
           <div class="column col-1"></div>
         </div>
@@ -185,7 +185,6 @@
               <a href="/admin-delete-hours?hours_id={{hours_id}}" class="btn" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
               {{/if}}
             </div>
-            <div class="column col-1"></div>
           </div>
         </form>
         {{/ifAny ~}}
@@ -195,7 +194,7 @@
         </a>
         {{/compare ~}}
 
-        <form action="/admin-submit-group-hours" id="group-hours-form" method="POST" data-component="TasksTrigger" {{#if @root.data.isAdmin}}data-success-destination="/hours/{{slugify organisation_name}}/{{task_id}}" data-destination-include-id="false"{{else}}data-success-destination="/hours"{{/if}} data-TasksTrigger="ajax-form-handler"{{#compare (length hours_list) '>' 0}} style="display:none;"{{/compare}}>
+        <form action="/admin-submit-group-hours" id="group-hours-form" method="POST" data-component="TasksTrigger" {{#if @root.data.isAdmin}}data-success-destination="/hours/{{task_id}}/{{slugify organisation_name}}" data-destination-include-id="false"{{else}}data-success-destination="/hours"{{/if}} data-TasksTrigger="ajax-form-handler"{{#compare (length hours_list) '>' 0}} style="display:none;"{{/compare}}>
           <div class="form-horizontal">
             <input type="hidden" name="task_id" value="{{task_id}}">
             <div class="form-group">
