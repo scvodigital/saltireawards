@@ -61,6 +61,18 @@
       "apexClassPath": "/SaltireTask/?user_id={{@root.data.auth.uid}}"
     }
   },
+  "getHoursInfo": {
+    "name": "hoursInfo",
+    "taskModule": "salesforceApex",
+    "renderer": "handlebars",
+    "config": {
+      "connection": "scvoAlexSandbox",
+      "output": "data",
+      "method": "GET",
+      "apexClassPath": "/SaltireHours/?user_id={{@root.data.auth.uid}}"
+    }
+  },
+
   "verifyHoursInfo" :     {
     "name": "verifyHoursInfo",
     "taskModule": "firebaseRtbGet",

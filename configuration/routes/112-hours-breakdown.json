@@ -12,7 +12,7 @@
     "context.metaData.commonTasks.getSignUpStatus",
     "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.fullSignUpRequired",
-    "context.metaData.commonTasks.getTasksInfo",
+    "context.metaData.commonTasks.getHoursInfo",
     {
       "name": "destination",
       "taskModule": "renderLayout",
@@ -30,7 +30,7 @@
             "parts": {
               "head": ">context.metaData.handlebars.templates.page_head-tags",
               "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
-              "body": ">context.metaData.handlebars.templates.volunteering_hours"
+              "body": ">context.metaData.handlebars.templates.volunteering_hours-breakdown"
             },
             "contentType": "text/html"
           }

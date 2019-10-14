@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>Hours breakdown</h1>
+
+  <div class="columns">
+    <div class="column col-2">
+      <strong>When?</strong>
+    </div>
+    <div class="column col-2">
+      <strong>With</strong>
+    </div>
+    <div class="column col-4">
+      <strong>Description</strong>
+    </div>
+    <div class="column col-2">
+      <strong>Hours</strong>
+    </div>
+    <div class="column col-2">
+      <strong>Verified?</strong>
+    </div>
+
+  </div>
+  {{#each @root.data.hoursInfo~}}
+    <div class="columns">
+      <div class="column col-2">
+        {{momentFormat (moment createdDate "YYYY-MM-DD") "MMMM Do YYYY"}}
+      </div>
+      <div class="column col-2">
+        {{organisation_name}}
+      </div>
+      <div class="column col-4">
+        {{task_description}}
+      </div>
+      <div class="column col-2">
+        {{hours}}
+      </div>
+      <div class="column col-2">
+        {{verified}}
+      </div>
+    </div>
+
+    </section>
+  {{/each}}
+</div>
