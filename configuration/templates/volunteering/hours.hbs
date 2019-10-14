@@ -99,8 +99,8 @@
           <h2>
             Volunteering with {{{organisation_name}}}
             {{#compare (length hours_list) ">" 0 ~}}
-            <a href="/task-csv/{{task_id}}/{{slugify organisation_name}}-volunteers.csv" class="pull-right btn btn-link">
-              <span class="fal fa-file-csv fa-2x"></span>
+            <a href="/task-csv/{{task_id}}/{{slugify organisation_name}}-volunteers.csv" class="pull-right btn btn-link" download>
+              <span class="fas fa-file-csv fa-2x"></span>
             </a>
             {{/compare ~}}
             {{!-- <span class="pull-right" data-collapse-target="#{{this.task_id}}-details">
