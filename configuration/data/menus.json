@@ -104,7 +104,7 @@
     },
     {
       "label": "My account",
-      "icon": "cog",
+      "icon": "user-cog",
       "path": "/account",
       "route": "^/account|^/sign-up-details",
       "user-types": [
