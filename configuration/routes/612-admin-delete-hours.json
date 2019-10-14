@@ -3,15 +3,15 @@
   "pattern": "/admin-delete-hours",
   "debug": true,
   "errorRoute": "five_hundred_json",
-  "acceptedVerbs": "DELETE",
+  "acceptedVerbs": "DELETE, GET",
   "defaultParams": {
     "context": "results"
   },
   "tasks": [
-    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.getSignUpStatus",
-    "context.metaData.commonTasks.verifyHoursInfo",
+    "context.metaData.commonTasks.verifyHoursInfoExternal",
     "context.metaData.commonTasks.hoursCodeVerify",
     "context.metaData.commonTasks.adminOrCodeRequired",
     {
