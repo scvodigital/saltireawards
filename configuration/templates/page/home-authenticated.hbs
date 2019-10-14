@@ -1,8 +1,24 @@
 <div class="empty">
+  {{#if @root.data.isAdmin ~}}
+  {{!-- Group admin --}}
+  <div class="empty-icon">
+    <span class="fal fa-users fa-3x"></span>
+  </div>
+  <p class="empty-title h5">
+    {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) 0 ~}}
+    You haven't added any groups yet
+    {{else}}
+    You have added {{inflect (length @root.data.tasksInfo) "group" "groups" true}}
+    {{/compare ~}}
+  </p>
+  <div class="empty-action">
+    <a href="/groups" class="btn btn-primary">Volunteering groups</a>
+  </div>
+  {{else}}
+  {{!-- Volunteer --}}
   <div class="empty-icon">
     <span class="fal fa-user-clock fa-3x"></span>
   </div>
-
   <p class="empty-title h5">
     {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) 0 ~}}
     You haven't logged any volunteering yet
@@ -16,13 +32,10 @@
   </p>
   {{/compare ~}}
   <div class="empty-action">
-    {{#if @root.data.isAdmin ~}}
-    <a href="/hours" class="btn btn-primary">Volunteering groups</a>
-    {{else}}
     <a href="/hours" class="btn btn-primary">My volunteering - log hours</a>
     <a href="/search" class="btn btn-link">Find a new volunteering opportunity</a>
-    {{/if ~}}
   </div>
+  {{/if ~}}
 </div>
 
 <div class="content-break equal-height">

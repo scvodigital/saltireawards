@@ -165,6 +165,11 @@ a.btn-link:hover {
   width: 300px;
   margin-left: -150px;
 
+  .btn:hover,
+  a {
+    color: white;
+  }
+
   .toast {
     position: relative;
     margin-top: $unit/4;
@@ -404,6 +409,10 @@ header {
 }
 
 .saltire-badge {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
   user-select: none;
   position: relative;
   margin-bottom: $unit/2;
@@ -710,7 +719,7 @@ form {
   margin-bottom: -($unit);
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: center 38%;
   min-height: $home-splash-height;
   .header-image-overlay {
     position: relative;
@@ -755,10 +764,12 @@ ul.fa-ul {
   }
 }
 
-.equal-height {
+.contact.equal-height {
   .column {
     padding-bottom: 0.8rem;
   }
+}
+.equal-height {
   .card {
     height: 100%;
   }

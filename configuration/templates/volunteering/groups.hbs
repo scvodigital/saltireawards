@@ -1,0 +1,48 @@
+{{#if @root.data.isAdmin ~}}
+<div class="empty">
+  <div class="empty-icon">
+    <span class="fal fa-users fa-3x"></span>
+  </div>
+  <div class="empty-action">
+    {{> log_action_buttons}}
+  </div>
+</div>
+
+<div class="content-break">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <polygon fill="#EEF0FA" points="100,0 100,100 0,0"></polygon>
+  </svg>
+  <div class="container">
+    <div class="bg-error s-rounded x-padding b-margin-full hidden" id="active-form-message">
+      <span id="form-message"></span>
+    </div>
+
+    {{#each @root.data.tasksInfo ~}}
+    <div class="columns">
+      <div class="column col-9">
+        <h2>
+          <a href="/hours/{{slugify organisation_name}}/{{task_id}}">Volunteering with {{{organisation_name}}}</a>
+        </h2>
+      </div>
+    </div>
+
+    <div id="{{this.task_id}}-details" class="b-margin-full">
+      {{#if task_description ~}}
+      <div class="columns">
+        <div class="column col-9">
+          <strong>Description:</strong> {{{task_description}}}
+        </div>
+      </div>
+      {{/if ~}}
+      {{#if location ~}}
+      <div class="columns">
+        <div class="column col-9">
+          <strong>Location:</strong> {{{location}}}
+        </div>
+      </div>
+      {{/if ~}}
+    </div>
+    {{/each ~}}
+  </div>
+</div>
+{{/if ~}}

@@ -5,7 +5,12 @@
   <div class="columns">
     <div class="column col-12">
       <p class="no-margin">
-        For information on how to get involved, please contact <strong>{{title}}</strong> who are responsible for the {{@root.context.metaData.title}} {{#if island}}on{{else}}in{{/if}} {{#if area}}{{area}}{{else}}{{../local_authority}}{{/if}}.
+        {{#if @root.data.isAdmin ~}}
+        For support administrating group volunteering,
+        {{else}}
+        For information on how to get involved,
+        {{/if ~}}
+        please contact <strong>{{title}}</strong> who are responsible for the {{@root.context.metaData.title}} {{#if island}}on{{else}}in{{/if}} {{#if area}}{{area}}{{else}}{{../local_authority}}{{/if}}.
       </p>
     </div>
     <div class="column {{#ifAll logo website}}col-10{{else}}col-12{{/ifAll}}">

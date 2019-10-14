@@ -5,7 +5,7 @@
 
   {{#withExtend this admin=(compare @root.data.accountInfo.user_type 'Group Admin') ~}}
   <h2>
-    Task details
+    My volunteering details
   </h2>
 
   <form id="task-details-form" class="active-form" action="/submit-task-details" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="ajax-form-handler">
@@ -64,8 +64,9 @@
     </div>
 
     <div class="divider"></div>
-    <h2>
-      Details of the person who manages this volunteering task
+
+    <h2 class="t-margin-full">
+      Volunteer manager
     </h2>
 
     <div class="form-horizontal">
