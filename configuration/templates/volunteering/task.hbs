@@ -184,36 +184,6 @@
   {{/withExtend ~}}
 </div>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function(event) {
-    $('#task-details-form').on('submit', function(e){
-      $('#task-details-form').find('.submit-button').prop('disabled', true);
-    })
-
-    var element = document.getElementById("volunteer_manager_email");
-
-      element.oninvalid = function(e) {
-        e.target.setCustomValidity("");
-        if (!e.target.validity.valid) {
-          e.target.setCustomValidity("This must be a valid email, and not your own");
-        }
-      };
-      element.oninput = function(e) {
-        e.target.setCustomValidity("");
-      };
-  });
-  function completeTaskWrite(response){
-    var jsonData = JSON.parse(response);
-    if (jsonData.id){
-      window.location.href = '/hours/';
-    } else {
-      $('.submit-button').prop('disabled', false);
-      saltireawards.componentsInitialiser.snackbar.show({message:"Failed create task."});
-    }
-  }
-
-
-</script>
 
 {{!--
 --}}
