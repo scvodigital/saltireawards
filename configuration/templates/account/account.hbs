@@ -19,7 +19,7 @@
 
       <div class="divider"></div>
 
-      <h2>Settings</h2>
+      <h2 class="t-margin-full">Settings</h2>
 
       <div class="columns">
         <div class="column col-6 form b-padding-full" id="change-password">
@@ -60,6 +60,7 @@
           </button>
         </div>
 
+        {{#unless @root.data.isAdmin ~}}
         <div class="column col-6 b-padding-full form" id="change-email">
           <h3>Change email</h3>
 
@@ -83,9 +84,11 @@
             Change email
           </button>
         </div>
+        {{/unless ~}}
       </div>
 
       <div class="columns">
+        {{#unless @root.data.isAdmin ~}}
         <div class="column col-6 form b-padding-full" id="link-unlink">
           {{#ifAny (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com") ~}}
           <h3>Linked accounts</h3>
@@ -151,7 +154,9 @@
           {{/unless ~}}
           {{/unless ~}}
         </div>
+        {{/unless ~}}
 
+        {{#unless @root.data.isAdmin ~}}
         <div class="column col-6 form b-padding-full">
           <h3>Account data</h3>
 
@@ -173,6 +178,7 @@
             Delete account
           </button>
         </div>
+        {{/unless ~}}
       </div>
     </div>
   </div>
