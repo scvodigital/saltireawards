@@ -530,6 +530,10 @@ header {
   font-size: 92%;
 }
 
+form {
+  position: relative;
+}
+
 .authentication-form {
   padding: $unit*1.5 0;
   min-height: 15vh;
@@ -746,6 +750,10 @@ ul.fa-ul {
   }
   .card {
     height: 100%;
+  }
+  .fa-ul.hours {
+    margin-top: 0;
+    margin-bottom: 0;
   }
 }
 .contact.equal-height {

@@ -18,7 +18,12 @@
   {{#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
   <div class="columns">
     <div class="column col-4 col-mx-auto t-margin-full">
-      <h2 class="text-center">Current achievement</h2>
+      <h2 class="text-center">
+        {{#if last}}My{{else}}Current{{/if}} achievement
+      </h2>
+      <p class="text-center text-primary">
+        <strong>{{type_name}}: {{certificate_name}} hours</strong>
+      </p>
       {{> badge type=type key=@key hours=hours}}
       <div class="text-center description">
         {{!-- <p>
@@ -72,7 +77,8 @@
       <h2 class="text-center">Working towards</h2>
       {{> badge type=type key=@key hours=hours disabled=true}}
       <div class="text-center description">
-        {{subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))}} {{inflect (subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))) "hour" "hours"}} to go
+        <strong>{{subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))}} {{inflect (subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))) "hour" "hours"}} to go.</strong><br />
+        Once you have reached {{hours}} hours, you can request verification.
       </div>
     </div>
   </div>

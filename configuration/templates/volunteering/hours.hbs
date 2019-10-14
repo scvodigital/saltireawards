@@ -32,48 +32,68 @@
     {{/unless ~}}
 
     {{#unless @root.data.isAdmin ~}}
-    {{#unless (compare (dateMath 'now-27y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD"))}}
-    <div id="individual-tasks-input">
+    {{#unless (compare (dateMath 'now-27y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD")) ~}}
+    <div id="individual-tasks-input" class="columns">
       {{#each @root.data.tasksInfo ~}}
-      <h2>
-        Volunteering with {{organisation_name}}
-      </h2>
-      <form action="/submit-hours" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="ajax-form-handler">
-        <p>
-          {{#compare hours ">" 0 ~}}
-          {{inflect hours "hour" "hours" true}} added so far
-          {{else}}
-          No hours added yet
-          {{/compare ~}}
-        </p>
-        <input type="hidden" name="task_id" value="{{task_id}}">
-        <div class="form-horizontal">
-          <div class="form-group">
-            <div class="col-4">
+      <div class="column col-4">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title h5">{{organisation_name}}</div>
+            {{#if task_description ~}}
+            <div class="card-subtitle text-gray">{{truncate task_description 140}}</div>
+            {{/if ~}}
+            {{#if un_sustainable_development_goals ~}}
+            <div class="card-subtitle text-gray">{{un_sustainable_development_goals}}</div>
+            {{/if ~}}
+          </div>
+          <div class="card-body">
+            <ul class="fa-ul hours">
+              {{#compare hours ">" 0 ~}}
+              {{#if hours_verified ~}}
+              <li>
+                <span class="fa-li"><span class="far fa-user-check"></span></span>
+                {{hours_verified}} verified {{inflect hours_verified "hour" "hours"}}<br />
+              </li>
+              {{/if ~}}
+              {{#compare hours ">" hours_verified ~}}
+              <li>
+                <span class="fa-li"><span class="far fa-user-clock"></span></span>
+                {{subtract hours hours_verified}} {{inflect hours "hour" "hours"}} logged but not yet verified<br />
+              </li>
+              {{/compare ~}}
+              {{else}}
+              <li>
+                <span class="fa-li"><span class="far fa-user"></span></span>
+                No hours added yet
+              </li>
+              {{/compare ~}}
+            </ul>
+          </div>
+          <div class="card-footer">
+            <form action="/submit-hours" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="ajax-form-handler">
+              <input type="hidden" name="task_id" value="{{task_id}}">
               <label class="form-label" for="hours">
                 {{#compare hours ">" 0 ~}}
-                How many hours have you volunteered since last time?
+                How many hours have you volunteered since the last time you logged hours?
                 {{else}}
                 How many hours have you volunteered since you started?
                 {{/compare ~}}
               </label>
-            </div>
-            <div class="column col-1">
-              <input class="form-input" id="hours" name="hours" type="number" step="any" min="0" value="" placeholder="">
-            </div>
-            <div class="column col-2">
-              <button type="submit" class="btn btn-primary">Add hours</button>
-            </div>
+              <div class="input-group">
+                <input class="form-input input-lg" id="hours" name="hours" type="number" step="any" min="0" value="" placeholder="">
+                <button type="submit" class="btn btn-primary btn-lg input-group-btn">Add hours</button>
+              </div>
+            </form>
           </div>
         </div>
-      </form>
-      {{/each}}
+      </div>
+      {{/each ~}}
     </div>
     {{else}}
     <p>
       You cannot log hours as you are over the age limit.
     </p>
-    {{/unless}}
+    {{/unless ~}}
     {{else}}
 
     {{#each @root.data.tasksInfo ~}}
