@@ -1,0 +1,37 @@
+{
+  "name": "task_csv",
+  "pattern": "/task-csv(/:task_id)(/:junk)",
+  "debug": true,
+  "errorRoute": "five_hundred",
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.getSignUpStatus",
+    "context.metaData.commonTasks.getAccountInfo",
+    "context.metaData.commonTasks.fullSignUpRequired",
+    "context.metaData.commonTasks.isAdmin",
+    "context.metaData.commonTasks.getTasksInfo",
+    {
+      "name": "destination",
+      "taskModule": "renderLayout",
+      "renderer": "handlebars",
+      "config": {
+        "logic": {
+          "if": [
+            "default"
+          ]
+        },
+        "output": "body",
+        "layouts": {
+          "default": {
+            "layout": ">context.metaData.handlebars.layouts.data",
+            "parts": {
+              "content": ">context.metaData.handlebars.templates.volunteering_hours-csv"
+            },
+            "contentType": "text/csv"
+          }
+        }
+      }
+    }
+
+  ]
+}

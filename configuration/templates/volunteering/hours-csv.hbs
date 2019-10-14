@@ -1,0 +1,14 @@
+{{#if @root.data.isAdmin ~}}
+{{#if @root.request.params.task_id ~}}
+{{#each @root.data.tasksInfo ~}}
+{{#compare task_id @root.request.params.task_id ~}}
+"Name","Certificate","Claim code"
+{{#each hours_list ~}}
+{{#ifAny claim_first_name claim_code ~}}
+{{{stringify (concat claim_first_name ' ' claim_last_name)}}},{{hours}},{{substr claim_code 0 10}}
+{{/ifAny ~}}
+{{/each ~}}
+{{/compare ~}}
+{{/each ~}}
+{{/if ~}}
+{{/if ~}}

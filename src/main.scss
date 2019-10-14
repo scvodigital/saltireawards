@@ -408,12 +408,18 @@ header {
   }
 }
 
+header,
+.sidebar,
+.noselect,
 .saltire-badge {
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
   -o-user-select: none;
   user-select: none;
+}
+
+.saltire-badge {
   position: relative;
   margin-bottom: $unit/2;
   .badge-content {
