@@ -3,7 +3,7 @@
 {{else}}
 <div class="empty">
   <div class="empty-icon">
-    <span class="fal fa-user-clock fa-3x"></span>
+    <span class="fal fa-user{{#if @root.data.isAdmin}}s{{else}}-clock{{/if}} fa-3x"></span>
   </div>
   {{#unless @root.data.isAdmin ~}}
   <p class="empty-title h5">You have logged {{sumArray (pluck @root.data.tasksInfo "hours")}} hours so far</p>

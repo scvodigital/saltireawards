@@ -1,38 +1,24 @@
-<div class="container">
-  <h2>
-    Claim hours by certificate code
-  </h2>
-  <form id="input-code-form" action="/submit-hours-claim" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="ajax-form-handler">
-    <div class="columns b-margin">
-      <div class="column col-3">
-        <div class="form-group">
-          <label for="hours_claim_code" class="form-label">
-            Enter your claim code
-          </label>
-          <input id="task-code" name="hours_claim_code" class="form-input" placeholder="e.g. a1b2c3e4f5" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task-code}}>
+<div class="empty">
+  <div class="empty-icon">
+    <span class="fal fa-user-check fa-3x"></span>
+  </div>
+  <p class="empty-title h5">Claim hours by certificate code</p>
+  <p class="empty-subtitle">
+    Use this form if you have been awarded a {{@root.context.metaData.title}} certificate as part of a group and it included a claim code.
+  </p>
+  <form class="empty-action" id="input-code-form" action="/submit-hours-claim" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="ajax-form-handler">
+    <div class="columns b-margin-full">
+      <div class="col-4 col-mx-auto">
+        <label for="hours_claim_code" class="form-label">
+          <strong>Enter your claim code</strong>
+        </label>
+        <div class="input-group">
+          <input id="task-code" name="hours_claim_code" class="form-input input-lg" placeholder="e.g. a1b2c3e4f5" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task-code}}>
+          <button id="detail-submit" type="submit" class="submit-button btn btn-primary btn-lg input-group-btn">
+            Claim hours
+          </button>
         </div>
       </div>
     </div>
-    <button id="detail-submit" type="submit" class="submit-button btn btn-primary b-margin-full">
-      Claim hours
-    </button>
   </form>
 </div>
-
-{{!-- <script>
-  document.addEventListener("DOMContentLoaded", function(event) {
-    $('#input-code-form').on('submit', function(e){
-      $('#input-code-form').find('.submit-button').prop('disabled', true);
-    })
-
-  });
-  function completeHoursClaim(response){
-    var jsonData = JSON.parse(response);
-    if (jsonData.id){
-      window.location.href = '/hours/';
-    } else {
-      $('.submit-button').prop('disabled', false);
-      saltireawards.componentsInitialiser.snackbar.show({message:"Failed to claim hours."});
-    }
-  }
-</script> --}}

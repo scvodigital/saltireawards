@@ -2,7 +2,7 @@
   {{#if @root.data.isAdmin ~}}
   {{!-- Group admin --}}
   <div class="empty-icon">
-    <span class="fal fa-user-check fa-3x"></span>
+    <span class="fal fa-users fa-3x"></span>
   </div>
   <p class="empty-title h5">
     {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) 0 ~}}
