@@ -1,18 +1,26 @@
 {{#*inline "route_title" ~}}
 {{~#if @root.data.isAdmin ~}}
-{{~#if @root.route.metaData.title ~}}
-{{@root.route.metaData.adminTitle}}{{#compare location "head"}} – Saltire Awards{{/compare}}
+{{~#ifAny @root.route.metaData.title @root.route.metaData.adminTitle ~}}
+{{~#if @root.route.metaData.adminTitle ~}}
+{{@root.route.metaData.adminTitle}}
+{{~#compare location "head" ~}} – Saltire Awards{{~/compare ~}}
 {{else}}
-{{#compare location "head"}}Saltire Awards – celebrating youth volunteering in Scotland{{else}}Celebrating youth volunteering in Scotland{{/compare}}
-{{~/if~}}
+{{~#if @root.route.metaData.title ~}}
+{{@root.route.metaData.title}}
+{{~#compare location "head" ~}} – Saltire Awards{{~/compare ~}}
+{{~/if ~}}
+{{~/if ~}}
+{{else}}
+{{~#compare location "head"}}Saltire Awards – celebrating youth volunteering in Scotland{{else}}Celebrating youth volunteering in Scotland{{/compare ~}}
+{{~/ifAny~}}
 {{else}}
 {{~#compare @root.route.metaData.title "Home" ~}}
-{{#compare location "head"}}Saltire Awards – celebrating youth volunteering in Scotland{{else}}Celebrating youth volunteering in Scotland{{/compare}}
+{{~#compare location "head"}}Saltire Awards – celebrating youth volunteering in Scotland{{else}}Celebrating youth volunteering in Scotland{{/compare ~}}
 {{else}}
 {{~#if @root.route.metaData.title ~}}
-{{@root.route.metaData.title}}{{#compare location "head"}} – Saltire Awards{{/compare}}
+{{@root.route.metaData.title}}{{~#compare location "head"}} – Saltire Awards{{/compare ~}}
 {{else}}
-{{#compare location "head"}}Saltire Awards – celebrating youth volunteering in Scotland{{else}}Celebrating youth volunteering in Scotland{{/compare}}
+{{~#compare location "head"}}Saltire Awards – celebrating youth volunteering in Scotland{{else}}Celebrating youth volunteering in Scotland{{/compare ~}}
 {{~/if~}}
 {{~/compare ~}}
 {{~/if ~}}
@@ -20,7 +28,7 @@
 {{~#if @root.data.primaryResponse.hits.hits.[0] ~}}
 {{~#with @root.data.primaryResponse.hits.hits.[0]._source ~}}
 {{~#if title ~}}
-{{{title}}}{{#compare ../location "head"}} – Saltire Awards{{/compare}}
+{{{title}}}{{~#compare ../location "head"}} – Saltire Awards{{/compare ~}}
 {{else}}
 {{> route_title}}
 {{~/if ~}}
