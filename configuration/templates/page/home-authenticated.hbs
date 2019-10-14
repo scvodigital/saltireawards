@@ -23,7 +23,7 @@
     {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) 0 ~}}
     You haven't logged any volunteering yet
     {{else}}
-    You have logged {{sumArray (pluck @root.data.tasksInfo "hours")}} hours so far
+    You have logged {{inflect (sumArray (pluck @root.data.tasksInfo "hours")) "hour" "hours" true}} so far
     {{/compare ~}}
   </p>
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) 0 ~}}

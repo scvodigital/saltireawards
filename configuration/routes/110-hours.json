@@ -1,6 +1,6 @@
 {
   "name": "hours",
-  "pattern": "/hours(/:junk)(/:task_id)",
+  "pattern": "/hours(/:task_id)(/:junk)",
   "debug": true,
   "errorRoute": "five_hundred",
   "metaData": {

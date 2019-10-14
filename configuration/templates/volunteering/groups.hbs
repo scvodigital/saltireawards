@@ -23,7 +23,7 @@
         <div class="card">
           <div class="card-header">
             <div class="card-title h5">
-              <a href="/hours/{{slugify organisation_name}}/{{task_id}}">{{organisation_name}}</a>
+              <a href="/hours/{{task_id}}/{{slugify organisation_name}}">{{organisation_name}}</a>
             </div>
             {{#if task_description ~}}
             <div class="card-subtitle text-gray">{{truncate task_description 140}}</div>

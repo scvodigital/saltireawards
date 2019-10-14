@@ -62,7 +62,7 @@
             </ul>
           </div>
           <div class="card-footer">
-            <form action="/submit-hours" method="POST" data-component="TasksTrigger" {{#if admin}}data-success-destination="/hours/new/" data-destination-include-id="true"{{else}}data-success-destination="hours/"{{/if}} data-TasksTrigger="ajax-form-handler">
+            <form action="/submit-hours" method="POST" data-component="TasksTrigger" {{#if admin}}data-success-destination="/hours/" data-destination-include-id="true"{{else}}data-success-destination="hours/"{{/if}} data-TasksTrigger="ajax-form-handler">
               <input type="hidden" name="task_id" value="{{task_id}}">
               <label class="form-label" for="hours-{{task_id}}">
                 <strong>
@@ -194,7 +194,7 @@
         </a>
         {{/compare ~}}
 
-        <form action="/admin-submit-group-hours" id="group-hours-form" method="POST" data-component="TasksTrigger" {{#if @root.data.isAdmin}}data-success-destination="/hours/{{slugify organisation_name}}/{{task_id}}" data-destination-include-id="false"{{else}}data-success-destination="/hours"{{/if}} data-TasksTrigger="ajax-form-handler"{{#compare (length hours_list) '>' 0}} style="display:none;"{{/compare}}>
+        <form action="/admin-submit-group-hours" id="group-hours-form" method="POST" data-component="TasksTrigger" {{#if @root.data.isAdmin}}data-success-destination="/hours/{{task_id}}/{{slugify organisation_name}}" data-destination-include-id="false"{{else}}data-success-destination="/hours"{{/if}} data-TasksTrigger="ajax-form-handler"{{#compare (length hours_list) '>' 0}} style="display:none;"{{/compare}}>
           <div class="form-horizontal">
             <input type="hidden" name="task_id" value="{{task_id}}">
             <div class="form-group">
