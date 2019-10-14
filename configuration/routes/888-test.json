@@ -4,6 +4,17 @@
   "debug": true,
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
+    "context.metaData.commonTasks.getAccountInfo",
+    {
+      "name": "things",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": ">context.metaData.handlebars.templates.account_auth_update-email-body",
+        "parseJson": true
+      }
+    },
     {
       "name": "destination",
       "taskModule": "renderLayout",
@@ -21,8 +32,7 @@
             "parts": {
               "head": ">context.metaData.handlebars.templates.page_head-tags",
               "body": ">context.metaData.handlebars.templates.page_test",
-              "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
-              "foot": ">context.metaData.handlebars.templates.page_foot"
+              "sidebar": ">context.metaData.handlebars.templates.account_sidebar"
             },
             "contentType": "text/html"
           }
