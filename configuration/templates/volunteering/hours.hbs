@@ -148,7 +148,7 @@
         {{#each hours_list ~}}
         {{#ifAny claim_first_name claim_code ~}}
         <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours" style="position:relative" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Hours Updated" data-TasksTrigger="ajax-form-handler">
-          <input type="hidden" name="task_id" value="{{task_id}}">
+          <input type="hidden" name="task_id" value="{{../task_id}}">
           <input type="hidden" name="verified" value="{{verified}}">
           <input type="hidden" name="claim_code" value="{{claim_code}}">
           <input type="hidden" name="hours_id" value="{{hours_id}}">
@@ -183,7 +183,7 @@
               {{/if}}
             </div>
             <div class="column col-2">
-              <a href="/group-certificate/{{task_id}}/{{hours_id}}" class="btn" download>Download</a>
+              <a href="/group-certificate/{{../task_id}}/{{hours_id}}" class="btn" download>Download</a>
             </div>
             <div class="column col-1">
               {{#if claim_code}}
