@@ -17,9 +17,13 @@
 
             <strong>Volunteering </strong> with <strong>{{organisation_name}}</strong>: {{#if task_description}}Tasks: {{task_description}}{{/if}}, Manager: {{volunteer_manager_first_name}} {{volunteer_manager_last_name}} - {{volunteer_manager_title}}
                   <div class="columns">
-                    <div class="column col-5">
+                    <div class="column col-1">
                       <strong>Hours</strong>
                     </div>
+                    <div class="column col-4">
+                      <strong>Notes</strong>
+                    </div>
+
                     <div class="column col-1"></div>
                     <div class="column col-2"></div>
                     <div class="column col-2"></div>
@@ -34,11 +38,17 @@
                       <input type="hidden" name="hours_id" value="{{hours_id}}">
 
                       <div class="columns">
-                        <div class="column col-5">
+                        <div class="column col-1">
                           <div class="form-group r-margin b-margin">
                             <input class="form-input inline-edit" name="hours" value="{{hours}}">
                           </div>
                         </div>
+                        <div class="column col-4">
+                          <div class="form-group r-margin b-margin">
+                            <input class="form-input inline-edit" name="notes" value="{{notes}}">
+                          </div>
+                        </div>
+
                         <div class="column col-1">
                           <button type="submit" class="btn inline-update-button bg-dark">Verify</button>
                         </div>
