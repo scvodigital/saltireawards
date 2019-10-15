@@ -224,7 +224,7 @@
                 </a>
               </li>
               {{#if @root.data.auth ~}}
-                {{#each @root.context.metaData.menus.user-signed-in ~}}
+                {{#each @root.context.metaData.menus.main-signed-in ~}}
                   <li class="menu-item">
                     <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">
                       {{#if icon ~}}
@@ -234,7 +234,7 @@
                     </a>
                   </li>
                 {{/each ~}}
-                {{#each @root.context.metaData.menus.main-signed-in ~}}
+                {{#each @root.context.metaData.menus.user-signed-in ~}}
                   <li class="menu-item">
                     <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">
                       {{#if icon ~}}
@@ -251,7 +251,7 @@
                   </a>
                 </li>
               {{else}}
-                {{#each @root.context.metaData.menus.user-not-signed-in ~}}
+                {{#each @root.context.metaData.menus.main-not-signed-in ~}}
                   <li class="menu-item">
                     <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}} my-account">
                       {{#if icon ~}}
@@ -261,7 +261,7 @@
                     </a>
                   </li>
                 {{/each ~}}
-                {{#each @root.context.metaData.menus.main-not-signed-in ~}}
+                {{#each @root.context.metaData.menus.user-not-signed-in ~}}
                   <li class="menu-item">
                     <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">
                       {{#if icon ~}}
