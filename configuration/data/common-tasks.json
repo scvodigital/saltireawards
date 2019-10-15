@@ -46,7 +46,7 @@
     "cache": {
       "keyProperties": ["'getAccountInfo'"],
       "partition": "saltire-profiles-{{data.auth.uid}}",
-      "ttl": 30000
+      "ttl": 3600
     },
     "config": {
       "connection": "scvoAlexSandbox",
@@ -62,7 +62,7 @@
     "cache": {
       "keyProperties": ["'getTasksInfo'"],
       "partition": "saltire-profiles-{{data.auth.uid}}",
-      "ttl": 30000
+      "ttl": 3600
     },
     "config": {
       "connection": "scvoAlexSandbox",
@@ -78,7 +78,7 @@
     "cache": {
       "keyProperties": ["'getHoursInfo'"],
       "partition": "saltire-profiles-{{data.auth.uid}}",
-      "ttl": 30000
+      "ttl": 3600
     },
     "config": {
       "connection": "scvoAlexSandbox",
@@ -94,7 +94,7 @@
     "cache": {
       "keyProperties": ["'getTasksInfoUnverified'"],
       "partition": "saltire-profiles-{{data.auth.uid}}",
-      "ttl": 30000
+      "ttl": 3600
     },
     "config": {
       "connection": "scvoAlexSandbox",
