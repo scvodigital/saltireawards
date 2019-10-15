@@ -19,13 +19,7 @@
   <div class="empty-icon">
     <span class="fal fa-user-clock fa-3x"></span>
   </div>
-  <p class="empty-title h5">
-    {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) 0 ~}}
-    You haven't logged any volunteering yet
-    {{else}}
-    You have logged {{inflect (sumArray (pluck @root.data.tasksInfo "hours")) "hour" "hours" true}} so far
-    {{/compare ~}}
-  </p>
+  {{> log_hours_info}}
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) 0 ~}}
   <p class="empty-subtitle">
     The Saltire Awards gives you recognition for the volunteering you do.

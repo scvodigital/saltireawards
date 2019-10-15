@@ -5,10 +5,7 @@
   <div class="empty-icon">
     <span class="fal fa-user{{#if @root.data.isAdmin}}s{{else}}-clock{{/if}} fa-3x"></span>
   </div>
-  {{#unless @root.data.isAdmin ~}}
-  <p class="empty-title h5">You have logged {{sumArray (pluck @root.data.tasksInfo "hours")}} hours so far</p>
-  <p class="empty-subtitle"></p>
-  {{/unless}}
+  {{> log_hours_info}}
   <div class="empty-action">
     {{> log_action_buttons}}
   </div>
@@ -65,7 +62,7 @@
             </ul>
           </div>
           <div class="card-footer">
-            <form action="/submit-hours" method="POST" data-component="TasksTrigger" {{#if admin}}data-success-destination="/hours/" data-destination-include-id="true"{{else}}data-success-destination="hours/"{{/if}} data-TasksTrigger="ajax-form-handler">
+            <form action="/submit-hours" method="POST" data-component="TasksTrigger" {{#if admin}}data-success-destination="/hours/" data-destination-include-id="true"{{else}}data-success-destination="/hours"{{/if}} data-TasksTrigger="ajax-form-handler">
               <input type="hidden" name="task_id" value="{{task_id}}">
               <label class="form-label" for="hours-{{task_id}}">
                 <strong>
@@ -154,7 +151,7 @@
         {{#each hours_list ~}}
         {{#ifAny claim_first_name claim_code ~}}
         <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours" style="position:relative" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Hours Updated" data-TasksTrigger="ajax-form-handler">
-          <input type="hidden" name="task_id" value="{{task_id}}">
+          <input type="hidden" name="task_id" value="{{../task_id}}">
           <input type="hidden" name="verified" value="{{verified}}">
           <input type="hidden" name="claim_code" value="{{claim_code}}">
           <input type="hidden" name="hours_id" value="{{hours_id}}">
@@ -181,7 +178,7 @@
               </div>
             </div>
             <div class="column col-2">
-              <code class="claim-code">{{substr claim_code 0 10}}</code>
+              <mark class="claim-code">{{substr claim_code 0 10}}</mark>
             </div>
             <div class="column col-1">
               {{#if claim_code}}
@@ -189,7 +186,7 @@
               {{/if}}
             </div>
             <div class="column col-2">
-              <a href="/group-certificate/{{task_id}}/{{hours_id}}" class="btn" download>Download</a>
+              <a href="/group-certificate/{{../task_id}}/{{hours_id}}" class="btn" download>Download</a>
             </div>
             <div class="column col-1">
               {{#if claim_code}}
@@ -255,10 +252,12 @@
 <script>
 document.addEventListener("DOMContentLoaded", function(event) {
   $('.inline-hours-form :input').on('input',function () {
+    var unsaved = $(this).closest('form').addClass('has-error');
     var submit = $(this).closest('form').find(':submit').show();
   });
 
   $('.inline-update-button').click(function(){
+    var saved = $(this).closest('form').removeClass('has-error');
     $(this).hide();
   });
 

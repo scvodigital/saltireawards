@@ -11,7 +11,7 @@
       "renderer": "handlebars",
       "cache": {
         "keyProperties": ["request.fullUrl"],
-        "partition": "test",
+        "partition": "{{request.url.host}}",
         "ttl": 120
       },
       "config": {
