@@ -51,7 +51,7 @@
                   Sort by
                 </label>
               </div>
-              <div class="column col-6">
+              <div class="col-6">
                 <select class="form-select" id="sort" name="sort" onchange="this.form.submit();">
                   <option value="relevance" {{#unless @root.request.params.query.sort}} selected {{/unless}}>Relevance</option>
                   {{#if @root.request.params.query.location}}<option value="distance"{{#compare @root.request.params.query.sort "===" "distance"}} selected{{/compare}}{{#compare @root.request.params.query.exclude "===" "locations"}} disabled{{else}}{{#compare @root.request.params.query.location "===" ""}} disabled{{/compare}}{{/compare}}>Distance</option>{{/if}}

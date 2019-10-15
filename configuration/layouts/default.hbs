@@ -88,25 +88,28 @@
         <section class="brand">
           <a href="/" class="logo"><img src="{{~>asset_url url='images/logos/saltire-awards-white.png'~}}" alt="{{@root.context.metaData.title}}" /></a>
         </section>
-        <section class="nav">
-          <a href="#" class="btn btn-link show-lg" aria-label="Menu" data-component="TasksTrigger" data-TasksTrigger='{
+        <div class="mobile-menu-button show-lg">
+          <a href="#" class="btn btn-link" aria-label="Menu" data-component="TasksTrigger"
+            data-TasksTrigger='{
               click: {
                 tasks: [
-                  {
-                    type: "elementManipulator",
-                    config: {
-                      ".mobile-menu": {
-                        "removeClass": "mobile-menu_closed mobile-menu_closing",
-                        "addClass": "mobile-menu_open"
-                      }
+                {
+                  type: "elementManipulator",
+                  config: {
+                    ".mobile-menu": {
+                      "removeClass": "mobile-menu_closed mobile-menu_closing",
+                      "addClass": "mobile-menu_open"
                     }
                   }
+                }
                 ]
               }
             }'>
-            <span class="fas fa-bars" aria-hidden="true"></span>
+            <span class="far fa-bars fa-2x" aria-hidden="true"></span>
           </a>
-          <span class="hide-sm">
+        </div>
+        <section class="nav hide-lg">
+          <div class="main-menu">
             {{#if @root.data.auth ~}}
               {{#if @root.data.accountInfo.user_type ~}}
                 {{#each @root.context.metaData.menus.main-signed-in ~}}
@@ -167,7 +170,7 @@
                 <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}} my-account">{{label}}</a>
               {{/each}}
             {{/if ~}}
-          </span>
+          </div>
         </section>
         <section class="page-title">
           <h1>
@@ -220,7 +223,12 @@
                 {{#if @root.data.accountInfo.user_type ~}}
                   {{#each @root.context.metaData.menus.main-signed-in ~}}
                     <li class="menu-item">
-                      <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">{{label}}</a>
+                      <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">
+                        {{#if icon ~}}
+                        <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
+                        {{/if ~}}
+                        {{label}}
+                      </a>
                     </li>
                   {{/each}}
                   <li class="menu-item">
@@ -231,29 +239,55 @@
                   </li>
                 {{else}}
                   <li class="menu-item">
-                    <a href="/" class="l-padding-full {{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}}active{{/if}}">Home</a>
+                    <a href="/" class="l-padding-full {{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}}active{{/if}}">
+                      <span class="far fa-fw fa-home" aria-hidden="true"></span>
+                      Home
+                    </a>
                   </li>
                   {{#each @root.context.metaData.menus.main-not-signed-in ~}}
                     <li class="menu-item">
-                      <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">{{label}}</a>
+                      <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">
+                        {{#if icon ~}}
+                        <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
+                        {{/if ~}}
+                        {{label}}
+                      </a>
                     </li>
                   {{/each}}
                   <li class="menu-item">
-                    <a href="/sign-out" class="l-padding-full" data-component="TasksTrigger" data-TasksTrigger="sign-out">Sign out</a>
+                    <a href="/sign-out" class="l-padding-full" data-component="TasksTrigger" data-TasksTrigger="sign-out">
+                      <span class="far fa-fw fa-sign-out-alt" aria-hidden="true"></span>
+                      Sign out
+                    </a>
                   </li>
                 {{/if ~}}
               {{else}}
                 <li class="menu-item">
-                  <a href="/" class="l-padding-full {{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}}active{{/if}}">Home</a>
+                  <a href="/" class="l-padding-full {{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}}active{{/if}}">
+                    {{#if icon ~}}
+                    <span class="far fa-fw fa-home" aria-hidden="true"></span>
+                    {{/if ~}}
+                    Home
+                  </a>
                 </li>
                 {{#each @root.context.metaData.menus.main-not-signed-in ~}}
                   <li class="menu-item">
-                    <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">{{label}}</a>
+                    <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">
+                      {{#if icon ~}}
+                      <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
+                      {{/if ~}}
+                      {{label}}
+                    </a>
                   </li>
                 {{/each}}
                 {{#each @root.context.metaData.menus.user-not-signed-in ~}}
                   <li class="menu-item">
-                    <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}} my-saltire">{{label}}</a>
+                    <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}} my-account">
+                      {{#if icon ~}}
+                      <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
+                      {{/if ~}}
+                      {{label}}
+                    </a>
                   </li>
                 {{/each}}
               {{/if ~}}

@@ -252,6 +252,7 @@ a.btn-link:hover {
       z-index: 1;
       top: 0;
       left: -300px;
+      padding: $unit/2 0;
     }
 
     &.mobile-menu_open {
@@ -287,8 +288,11 @@ a.btn-link:hover {
 
 header {
   background: linear-gradient(179.4deg, $secondary-color 89.5%, rgba(255,255,255,0) 90%);
-  height: 165px;
+  min-height: 165px;
   position: relative;
+  padding-top: $unit/2 !important;
+  padding-bottom: $unit/2 !important;
+  margin-bottom: -($unit);
   // margin-bottom: -($unit/5);
   // svg.bottom {
   //   position: absolute;
@@ -298,19 +302,28 @@ header {
   //   bottom: 0;
   // }
   .brand {
-    position: absolute;
-    top: $unit/2;
-    left: $unit;
+    // position: absolute;
+    // top: $unit/2;
+    // left: $unit;
+    float: left;
+    // padding-bottom: $unit/2;
+  }
+  .mobile-menu-button {
+    float: right;
   }
   .nav {
     text-align: right;
     margin: 0;
-    padding: $unit 0;
+    padding: $unit/2 0;
   }
-  .page-title h1 {
-    color: white;
-    margin: $unit/2 0;
-    text-align: center;
+  .page-title {
+    padding: 0 195px;
+    h1 {
+      color: white;
+      margin: $unit/2 0;
+      padding-bottom: $unit;
+      text-align: center;
+    }
   }
   .dropdown-toggle,
   .dropdown .btn.btn-link,
@@ -522,14 +535,18 @@ header,
 .sidebar-not-present {
   margin-top: -($unit);
   .body .container {
-    padding-top: $unit*2;
+    padding-top: $unit*3;
     padding-bottom: $unit*3;
     max-width: $page-width;
     margin: 0 auto;
   }
 }
 .sidebar-present {
-  margin-top: -($unit);
+  clear: both;
+  .sidebar,
+  .body {
+    margin-top: -($unit);
+  }
   .sidebar,
   .body .container {
     padding-top: $unit*2;
@@ -767,6 +784,9 @@ ul.fa-ul {
     .form-select {
       flex: 0 0 auto
     }
+  }
+  .btn-lg {
+    width: 100%;
   }
 }
 
