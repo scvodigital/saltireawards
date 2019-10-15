@@ -253,6 +253,7 @@ a.btn-link:hover {
       top: 0;
       left: -300px;
       padding: $unit/2 0;
+      z-index: 4;
     }
 
     &.mobile-menu_open {
@@ -288,7 +289,7 @@ a.btn-link:hover {
 
 header {
   background: linear-gradient(179.4deg, $secondary-color 89.5%, rgba(255,255,255,0) 90%);
-  min-height: 165px;
+  min-height: 176px;
   position: relative;
   padding-top: $unit/2 !important;
   padding-bottom: $unit/2 !important;
@@ -536,7 +537,7 @@ header,
 .sidebar-not-present {
   margin-top: -($unit);
   .body .container {
-    padding-top: $unit*3;
+    padding-top: $unit*2;
     padding-bottom: $unit*3;
     max-width: $page-width;
     margin: 0 auto;
@@ -546,7 +547,7 @@ header,
   clear: both;
   .sidebar,
   .body {
-    margin-top: -($unit);
+    margin-top: -($unit/2);
   }
   .sidebar,
   .body .container {
@@ -935,8 +936,8 @@ footer {
 }
 
 .claim-code {
-  color: #333;
-  background-color: #eee;
+  // color: #333;
+  // background-color: #eee;
   padding: $unit/5 $unit/2 0;
   margin-bottom: $unit/4;
   font-size: 95%;

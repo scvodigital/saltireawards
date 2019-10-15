@@ -175,7 +175,7 @@
               </div>
             </div>
             <div class="column col-2">
-              <code class="claim-code">{{substr claim_code 0 10}}</code>
+              <mark class="claim-code">{{substr claim_code 0 10}}</mark>
             </div>
             <div class="column col-1">
               {{#if claim_code}}
@@ -249,10 +249,12 @@
 <script>
 document.addEventListener("DOMContentLoaded", function(event) {
   $('.inline-hours-form :input').on('input',function () {
+    var unsaved = $(this).closest('form').addClass('has-error');
     var submit = $(this).closest('form').find(':submit').show();
   });
 
   $('.inline-update-button').click(function(){
+    var saved = $(this).closest('form').removeClass('has-error');
     $(this).hide();
   });
 
