@@ -27,7 +27,14 @@
         "apexClassPath": "/SaltireHours/"
       }
     },
-    "context.metaData.commonTasks.flushCache",
+    {
+      "name": "flushOtherCache",
+      "taskModule": "cacheFlush",
+      "renderer": "handlebars",
+      "config": {
+        "partition": "saltire-profiles-{{default @root.request.params.query.u @root.data.auth.uid}}"
+      }
+    },
     {
       "name": "destination",
       "taskModule": "render",
