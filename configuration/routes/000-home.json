@@ -1,10 +1,25 @@
 {
   "name": "home",
   "pattern": ["/", ""],
-  "debug": false,
+  "debug": true,
   "errorRoute": "five_hundred",
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
+    {
+      "name": "cacheTest",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "cache": {
+        "keyProperties": ["request.fullUrl"],
+        "partition": "test",
+        "ttl": 120
+      },
+      "config": {
+        "output": "data",
+        "template": "{ \"test\": \"This is a test\" }",
+        "parseJson": true
+      }
+    },
     {
       "name": "reroute",
       "taskModule": "reroute",
