@@ -34,12 +34,15 @@
             {{#if task_description ~}}
             <div class="card-subtitle text-gray">{{truncate task_description 140}}</div>
             {{/if ~}}
-            {{#if un_sustainable_development_goals ~}}
-            <div class="card-subtitle text-gray">{{un_sustainable_development_goals}}</div>
-            {{/if ~}}
           </div>
           <div class="card-body">
             <ul class="fa-ul hours">
+              {{#if un_sustainable_development_goals ~}}
+              <li>
+                <span class="fa-li"><span class="far fa-globe"></span></span>
+                <abbr title="Sustainable Development Goal">SDG</abbr>: {{un_sustainable_development_goals}}
+              </li>
+              {{/if ~}}
               {{#compare hours ">" 0 ~}}
               {{#if hours_verified ~}}
               <li>
