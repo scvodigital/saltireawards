@@ -1367,6 +1367,7 @@ footer {
 
 .achievements > .working-towards {
   display: flex;
+  justify-content: center;
 }
 .achievements > .working-towards ~ .working-towards,
 .hidden, .hide {

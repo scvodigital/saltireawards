@@ -1,0 +1,18 @@
+{{#unless @root.data.isAdmin ~}}
+<p class="empty-title h5">
+  {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) 0 ~}}
+  You haven't logged any volunteering yet
+  {{else}}
+  You have logged {{inflect (sumArray (pluck @root.data.tasksInfo "hours")) "hour" "hours" true}} so far
+  {{/compare ~}}
+</p>
+{{#unless (compare (sumArray (pluck @root.data.tasksInfo "hours")) 0) ~}}
+<p class="empty-subtitle achievements text-centre">
+  {{#each @root.context.metaData.certificates ~}}
+  {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) "<" hours ~}}
+  <span class="working-towards">You need to do {{subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))}} more {{inflect (subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))) "hour" "hours"}} of volunteering to reach your next award</span>
+  {{/compare ~}}
+  {{/each ~}}
+</p>
+{{/unless ~}}
+{{/unless ~}}

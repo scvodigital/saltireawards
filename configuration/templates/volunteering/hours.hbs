@@ -5,10 +5,7 @@
   <div class="empty-icon">
     <span class="fal fa-user{{#if @root.data.isAdmin}}s{{else}}-clock{{/if}} fa-3x"></span>
   </div>
-  {{#unless @root.data.isAdmin ~}}
-  <p class="empty-title h5">You have logged {{sumArray (pluck @root.data.tasksInfo "hours")}} hours so far</p>
-  <p class="empty-subtitle"></p>
-  {{/unless}}
+  {{> log_hours_info}}
   <div class="empty-action">
     {{> log_action_buttons}}
   </div>
