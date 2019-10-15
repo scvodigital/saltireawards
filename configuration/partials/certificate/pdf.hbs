@@ -83,8 +83,10 @@
   "margin": [0, 15]
 },
 {{#each tasks ~}}
+{{#compare ../type 'group' ~}}
+{{#compare ../user.hours_verified '>' 0 ~}}
 {
-  "text": "Volunteering with: {{organisation_name}} for {{#compare ../type 'group'}}{{../user.hours_verified}}{{else}}{{hours_verified}}{{/compare}} hours",
+  "text": "Volunteering with: {{organisation_name}} for {{../user.hours_verified}} hours",
   "fontSize": 16,
   "bold": true,
   "alignment": "center",
@@ -97,6 +99,43 @@
   "alignment": "center",
   "margin": [0, 15]
 },
+{{#if un_sustainable_development_goals ~}}
+{
+  "text": "SDG: {{un_sustainable_development_goals}}",
+  "fontSize": 16,
+  "bold": true,
+  "alignment": "center",
+  "margin": [0, 15]
+},
+{{/if ~}}
+{{/compare ~}}
+{{else}}
+{{#compare hours_verified '>' 0 ~}}
+{
+  "text": "Volunteering with: {{organisation_name}} for {{hours_verified}} hours",
+  "fontSize": 16,
+  "bold": true,
+  "alignment": "center",
+  "margin": [0, 15]
+},
+{
+  "text": "Tasks: {{task_description}}",
+  "fontSize": 16,
+  "bold": true,
+  "alignment": "center",
+  "margin": [0, 15]
+},
+{{#if un_sustainable_development_goals ~}}
+{
+  "text": "SDG: {{un_sustainable_development_goals}}",
+  "fontSize": 16,
+  "bold": true,
+  "alignment": "center",
+  "margin": [0, 15]
+},
+{{/if ~}}
+{{/compare ~}}
+{{/compare ~}}
 {{/each ~}}
 {{#if user.claim_code ~}}
 {
