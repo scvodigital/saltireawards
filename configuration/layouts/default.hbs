@@ -215,62 +215,16 @@
           }
         }'></div>
         <aside class="mobile-menu_contents sidebar">
-          {{{layoutParts.sidebar}}}
-
           <div class="b-margin-full b-padding-full v-padding">
             <ul class="menu">
+              <li class="menu-item">
+                <a href="/" class="l-padding-full {{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}}active{{/if}}">
+                  <span class="far fa-fw fa-home" aria-hidden="true"></span>
+                  Home
+                </a>
+              </li>
               {{#if @root.data.auth ~}}
-                {{#if @root.data.accountInfo.user_type ~}}
-                  {{#each @root.context.metaData.menus.main-signed-in ~}}
-                    <li class="menu-item">
-                      <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">
-                        {{#if icon ~}}
-                        <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
-                        {{/if ~}}
-                        {{label}}
-                      </a>
-                    </li>
-                  {{/each}}
-                  <li class="menu-item">
-                    <a href="/sign-out" class="l-padding-full" data-component="TasksTrigger" data-TasksTrigger="sign-out">
-                      <span class="far fa-fw fa-sign-out-alt" aria-hidden="true"></span>
-                      Sign out
-                    </a>
-                  </li>
-                {{else}}
-                  <li class="menu-item">
-                    <a href="/" class="l-padding-full {{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}}active{{/if}}">
-                      <span class="far fa-fw fa-home" aria-hidden="true"></span>
-                      Home
-                    </a>
-                  </li>
-                  {{#each @root.context.metaData.menus.main-not-signed-in ~}}
-                    <li class="menu-item">
-                      <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">
-                        {{#if icon ~}}
-                        <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
-                        {{/if ~}}
-                        {{label}}
-                      </a>
-                    </li>
-                  {{/each}}
-                  <li class="menu-item">
-                    <a href="/sign-out" class="l-padding-full" data-component="TasksTrigger" data-TasksTrigger="sign-out">
-                      <span class="far fa-fw fa-sign-out-alt" aria-hidden="true"></span>
-                      Sign out
-                    </a>
-                  </li>
-                {{/if ~}}
-              {{else}}
-                <li class="menu-item">
-                  <a href="/" class="l-padding-full {{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}}active{{/if}}">
-                    {{#if icon ~}}
-                    <span class="far fa-fw fa-home" aria-hidden="true"></span>
-                    {{/if ~}}
-                    Home
-                  </a>
-                </li>
-                {{#each @root.context.metaData.menus.main-not-signed-in ~}}
+                {{#each @root.context.metaData.menus.user-signed-in ~}}
                   <li class="menu-item">
                     <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">
                       {{#if icon ~}}
@@ -279,7 +233,24 @@
                       {{label}}
                     </a>
                   </li>
-                {{/each}}
+                {{/each ~}}
+                {{#each @root.context.metaData.menus.main-signed-in ~}}
+                  <li class="menu-item">
+                    <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">
+                      {{#if icon ~}}
+                      <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
+                      {{/if ~}}
+                      {{label}}
+                    </a>
+                  </li>
+                {{/each ~}}
+                <li class="menu-item">
+                  <a href="/sign-out" class="l-padding-full" data-component="TasksTrigger" data-TasksTrigger="sign-out">
+                    <span class="far fa-fw fa-sign-out-alt" aria-hidden="true"></span>
+                    Sign out
+                  </a>
+                </li>
+              {{else}}
                 {{#each @root.context.metaData.menus.user-not-signed-in ~}}
                   <li class="menu-item">
                     <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}} my-account">
@@ -289,7 +260,17 @@
                       {{label}}
                     </a>
                   </li>
-                {{/each}}
+                {{/each ~}}
+                {{#each @root.context.metaData.menus.main-not-signed-in ~}}
+                  <li class="menu-item">
+                    <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">
+                      {{#if icon ~}}
+                      <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
+                      {{/if ~}}
+                      {{label}}
+                    </a>
+                  </li>
+                {{/each ~}}
               {{/if ~}}
             </ul>
           </div>
