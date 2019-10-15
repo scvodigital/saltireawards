@@ -3,14 +3,14 @@
     Contact us
   </h1> -->
   <div class="columns">
-    <div class="column col-6">
+    <div class="column col-6 col-sm-12">
       <h2>
         Local enquiries
       </h2>
       {{#if @root.data.accountInfo.postcode ~}}
       {{> local_contact_info}}
       <div class="columns col-gapless">
-        <div class="column col-6">
+        <div class="column col-6 col-sm-9">
           {{> local_contact_logo}}
         </div>
       </div>
@@ -23,7 +23,7 @@
       </p>
       {{/if ~}}
     </div>
-    <div class="column col-6">
+    <div class="column col-6 col-sm-12">
       <h2>
         National enquiries
       </h2>
@@ -37,7 +37,7 @@
     {{#each @root.context.metaData.tsiList ~}}
     {{#each contacts ~}}
     {{#compare @key "all" ~}}
-    <div class="column col-4">
+    <div class="column col-4 col-sm-12 col-lg-6">
       <div class="card">
         <div class="card-header">
           {{#ifAny area ../local_authority ~}}

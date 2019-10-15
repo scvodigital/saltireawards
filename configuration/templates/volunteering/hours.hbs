@@ -24,7 +24,7 @@
     {{#unless (compare (dateMath 'now-27y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD")) ~}}
     <div id="individual-tasks-input" class="columns cards equal-height">
       {{#each @root.data.tasksInfo ~}}
-      <div class="column col-4">
+      <div class="column col-4 col-sm-12 col-lg-6">
         <div class="card">
           <div class="card-header">
             <div class="card-title h5">{{organisation_name}}</div>
