@@ -2,6 +2,7 @@
   "name": "change-email",
   "pattern": "/change-email",
   "debug": true,
+  "acceptedVerbs": "POST",
   "errorRoute": "five_hundred",
   "tasks": [
     "context.metaData.commonTasks.authRequired",
@@ -13,7 +14,7 @@
       "config": {
         "connection": "scvoAlexSandbox",
         "output": "data",
-        "method": "PUT",
+        "method": "POST",
         "body": ">context.metaData.handlebars.templates.account_auth_update-email-body",
         "apexClassPath": "/SaltireUser/"
       }
