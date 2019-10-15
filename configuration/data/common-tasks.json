@@ -59,11 +59,6 @@
     "name": "tasksInfo",
     "taskModule": "salesforceApex",
     "renderer": "handlebars",
-    "cache": {
-      "keyProperties": ["'getTasksInfo'"],
-      "partition": "saltire-profiles-{{data.auth.uid}}",
-      "ttl": 3600
-    },
     "config": {
       "connection": "scvoAlexSandbox",
       "output": "data",
@@ -75,11 +70,6 @@
     "name": "hoursInfo",
     "taskModule": "salesforceApex",
     "renderer": "handlebars",
-    "cache": {
-      "keyProperties": ["'getHoursInfo'"],
-      "partition": "saltire-profiles-{{data.auth.uid}}",
-      "ttl": 3600
-    },
     "config": {
       "connection": "scvoAlexSandbox",
       "output": "data",
@@ -91,11 +81,6 @@
     "name": "tasksInfoUnverified",
     "taskModule": "salesforceApex",
     "renderer": "handlebars",
-    "cache": {
-      "keyProperties": ["'getTasksInfoUnverified'"],
-      "partition": "saltire-profiles-{{data.auth.uid}}",
-      "ttl": 3600
-    },
     "config": {
       "connection": "scvoAlexSandbox",
       "output": "data",
