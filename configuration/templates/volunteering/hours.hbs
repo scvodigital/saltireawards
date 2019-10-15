@@ -62,7 +62,7 @@
             </ul>
           </div>
           <div class="card-footer">
-            <form action="/submit-hours" method="POST" data-component="TasksTrigger" {{#if admin}}data-success-destination="/hours/" data-destination-include-id="true"{{else}}data-success-destination="hours/"{{/if}} data-TasksTrigger="ajax-form-handler">
+            <form action="/submit-hours" method="POST" data-component="TasksTrigger" {{#if admin}}data-success-destination="/hours/" data-destination-include-id="true"{{else}}data-success-destination="/hours"{{/if}} data-TasksTrigger="ajax-form-handler">
               <input type="hidden" name="task_id" value="{{task_id}}">
               <label class="form-label" for="hours-{{task_id}}">
                 <strong>
