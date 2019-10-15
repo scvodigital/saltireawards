@@ -436,6 +436,7 @@
         },
         {
           __doNotCompile: true,
+          name: "checkChangelWorked",
           type: "switch",
           config: {
             which: { __template: "\{{#if errors.changeEmail}}error\{{/if}}" },
@@ -445,42 +446,45 @@
                   {
                     name: "changeSalesforceEmail",
                     type: "request",
-                    url: "/change-email",
-                    method: "POST",
-                    dataType: "json",
-                    data: {
-                      __template: `\{{{json key='email' value=(jquery '#change-email-email' 'val')}}}`,
-                      __parser: "json"
+                    config: {
+                      url: "/change-email",
+                      method: "POST",
+                      dataType: "json",
+                      data: {
+                        __template: `{ "email" : "\{{jquery '#change-email-email' 'val'}}" }`,
+                        __parser: "json"
+                      }
                     }
                   },
                   {
                     type: "switch",
                     config: {
-                    which: { __template: "\{{#if errors.changeSalesforceEmail}}error\{{/if}}" },
-                    branches: {
-                      default: {
-                        tasks: [
-                          {
-                            type: "elementManipulator",
-                            config: {
-                              "#change-email-alert": { removeClass: "hidden" },
-                              "#change-email-alert .alert-message": { contents: "Email updated" },
-                              "#change-email-email": { value: "" },
-                              "#change-email-confirm": { value: "" }
+                      which: { __template: "\{{#if errors.changeSalesforceEmail}}error\{{/if}}" },
+                      branches: {
+                        default: {
+                          tasks: [
+                            {
+                              type: "elementManipulator",
+                              config: {
+                                "#change-email-alert": { removeClass: "hidden" },
+                                "#change-email-alert .alert-message": { contents: "Email updated" },
+                                "#change-email-email": { value: "" },
+                                "#change-email-confirm": { value: "" }
+                              }
                             }
-                          }
-                        ]
-                      },
-                      error: {
-                        tasks: [
-                          {
-                            type: "elementManipulator",
-                            config: {
-                              "#change-email-alert": { removeClass: "hidden" },
-                              "#change-email-alert .alert-message": { contents: { __template: "\{{errors.changeEmail.message}}" } }
+                          ]
+                        },
+                        error: {
+                          tasks: [
+                            {
+                              type: "elementManipulator",
+                              config: {
+                                "#change-email-alert": { removeClass: "hidden" },
+                                "#change-email-alert .alert-message": { contents: { __template: "\{{errors.changeEmail.message}}" } }
+                              }
                             }
-                          }
-                        ]
+                          ]
+                        }
                       }
                     }
                   }
