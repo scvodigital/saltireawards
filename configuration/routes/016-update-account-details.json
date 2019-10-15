@@ -21,6 +21,7 @@
         "apexClassPath": "/SaltireUser/"
       }
     },
+    "context.metaData.commonTasks.flushCache",
     {
       "name": "destination",
       "taskModule": "redirect",

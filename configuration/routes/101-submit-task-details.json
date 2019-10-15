@@ -23,8 +23,10 @@
         "body": ">context.metaData.handlebars.templates.volunteering_task-body",
         "apexClassPath": "/SaltireTask/?user_id={{@root.data.auth.uid}}"
       }
-    }
-  ,{
+    },
+    "context.metaData.commonTasks.flushCache",
+
+    {
       "name": "destination",
       "taskModule": "render",
       "renderer": "handlebars",

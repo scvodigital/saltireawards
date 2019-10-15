@@ -21,6 +21,7 @@
         "apexClassPath": "/SaltireHoursClaim/"
       }
     },
+    "context.metaData.commonTasks.flushCache",
     {
       "name": "destination",
       "taskModule": "render",

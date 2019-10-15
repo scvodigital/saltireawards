@@ -43,6 +43,11 @@
     "name": "accountInfo",
     "taskModule": "salesforceApex",
     "renderer": "handlebars",
+    "cache": {
+      "keyProperties": ["'getAccountInfo'"],
+      "partition": "saltire-profiles-{{data.auth.uid}}",
+      "ttl": 30000
+    },
     "config": {
       "connection": "scvoAlexSandbox",
       "output": "data",
@@ -54,6 +59,11 @@
     "name": "tasksInfo",
     "taskModule": "salesforceApex",
     "renderer": "handlebars",
+    "cache": {
+      "keyProperties": ["'getTasksInfo'"],
+      "partition": "saltire-profiles-{{data.auth.uid}}",
+      "ttl": 30000
+    },
     "config": {
       "connection": "scvoAlexSandbox",
       "output": "data",
@@ -65,11 +75,41 @@
     "name": "hoursInfo",
     "taskModule": "salesforceApex",
     "renderer": "handlebars",
+    "cache": {
+      "keyProperties": ["'getHoursInfo'"],
+      "partition": "saltire-profiles-{{data.auth.uid}}",
+      "ttl": 30000
+    },
     "config": {
       "connection": "scvoAlexSandbox",
       "output": "data",
       "method": "GET",
       "apexClassPath": "/SaltireHours/?user_id={{@root.data.auth.uid}}"
+    }
+  },
+  "getTasksInfoUnverified" : {
+    "name": "tasksInfoUnverified",
+    "taskModule": "salesforceApex",
+    "renderer": "handlebars",
+    "cache": {
+      "keyProperties": ["'getTasksInfoUnverified'"],
+      "partition": "saltire-profiles-{{data.auth.uid}}",
+      "ttl": 30000
+    },
+    "config": {
+      "connection": "scvoAlexSandbox",
+      "output": "data",
+      "method": "GET",
+      "apexClassPath": "/SaltireTask/?user_id={{@root.data.auth.uid}}&verified=false"
+    }
+  },
+
+  "flushCache": {
+    "name": "flushCache",
+    "taskModule": "cacheFlush",
+    "renderer": "handlebars",
+    "config": {
+      "partition": "saltire-profiles-{{data.auth.uid}}"
     }
   },
 
@@ -104,18 +144,6 @@
       "apexClassPath": "/SaltireTask/?user_id={{@root.request.params.query.u }}&verified=false"
     }
   },
-
-  "getTasksInfoUnverified" : {
-    "name": "tasksInfoUnverified",
-    "taskModule": "salesforceApex",
-    "renderer": "handlebars",
-    "config": {
-      "connection": "scvoAlexSandbox",
-      "output": "data",
-      "method": "GET",
-      "apexClassPath": "/SaltireTask/?user_id={{@root.data.auth.uid}}&verified=false"
-    }
-  },
   "hoursCodeVerify" : {
     "name": "codeVerified",
     "taskModule": "render",
@@ -141,16 +169,6 @@
         null,
         "verify-hours-fail"
       ]
-    }
-  },
-  "getHours" : {
-    "name": "getHours",
-    "taskModule": "firebaseRtbGet",
-    "renderer": "handlebars",
-    "config": {
-      "appName": "saltireawards",
-      "pathTemplate": "/{{default data.auth.uid 'no-such-read-profile'}}/hours",
-      "defaultData": {}
     }
   },
   "volunteeringTermsMaps": {

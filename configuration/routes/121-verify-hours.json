@@ -55,6 +55,14 @@
       }
     },
     {
+      "name": "flushOtherCache",
+      "taskModule": "cacheFlush",
+      "renderer": "handlebars",
+      "config": {
+        "partition": "saltire-profiles-{{@root.request.params.query.u}}"
+      }
+    },
+    {
       "name": "passDestination",
       "taskModule": "renderLayout",
       "renderer": "handlebars",

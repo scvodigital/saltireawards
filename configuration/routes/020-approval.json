@@ -65,6 +65,14 @@
       }
     },
     {
+      "name": "flushOtherCache",
+      "taskModule": "cacheFlush",
+      "renderer": "handlebars",
+      "config": {
+        "partition": "saltire-profiles-{{@root.request.params.query.id}}"
+      }
+    },
+    {
       "name": "sendEmail",
       "taskModule": "mailgun",
       "renderer": "handlebars",

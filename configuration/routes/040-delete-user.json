@@ -37,6 +37,7 @@
         "dataTemplate": "{}"
       }
     },
+    "context.metaData.commonTasks.flushCache",
     {
       "name": "destination",
       "taskModule": "render",

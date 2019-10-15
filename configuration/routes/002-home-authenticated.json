@@ -1,7 +1,7 @@
 {
   "name": "home_authenticated",
   "pattern": "/home-authenticated",
-  "debug": false,
+  "debug": true,
   "errorRoute": "five_hundred",
   "metaData": {
     "title": "Home",
