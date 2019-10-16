@@ -11,6 +11,8 @@
   {{#each @root.context.metaData.certificates ~}}
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) "<" hours ~}}
   <span class="working-towards">You need to do {{subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))}} more {{inflect (subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))) "hour" "hours"}} of volunteering to reach your next award</span>
+  {{else}}
+  <span class="working-towards"></span>
   {{/compare ~}}
   {{/each ~}}
 </p>
