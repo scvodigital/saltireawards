@@ -17,7 +17,7 @@
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
   {{#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
   <div class="columns">
-    <div class="column col-4 col-mx-auto t-margin-full">
+    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
       <h2 class="text-center">
         {{#if last}}My{{else}}Current{{/if}} achievement
       </h2>
@@ -37,7 +37,7 @@
   {{else}}
   {{#compare @root.data.verifyHoursInfo.award "===" hours ~}}
   <div class="columns">
-    <div class="column col-4 col-mx-auto t-margin-full">
+    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
       {{!-- It's being verified --}}
       <h2 class="text-center">Next achievement</h2>
       <p class="text-center text-primary">
@@ -61,7 +61,7 @@
 
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) ">=" hours ~}}
   <div class="columns working-towards">
-    <div class="column col-4 col-mx-auto t-margin-full">
+    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
       {{!-- It's ready to claim--}}
       <h2 class="text-center">Next achievement</h2>
       <p class="text-center text-primary">
@@ -78,7 +78,7 @@
   </div>
   {{else}}
   <div class="columns working-towards">
-    <div class="column col-4 col-mx-auto t-margin-full">
+    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
       {{!-- It's not there yet --}}
       <h2 class="text-center">Working towards</h2>
       <p class="text-center text-primary">
