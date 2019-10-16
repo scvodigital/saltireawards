@@ -28,29 +28,33 @@
             {{#if task_description ~}}
             <div class="card-subtitle text-gray">{{truncate task_description 140}}</div>
             {{/if ~}}
-            {{!-- {{#if un_sustainable_development_goals ~}}
-            <div class="card-subtitle text-gray">{{un_sustainable_development_goals}}</div>
-            {{/if ~}} --}}
           </div>
           <div class="card-body">
             <ul class="fa-ul hours">
+              {{#if un_sustainable_development_goals ~}}
+              <li class="card-subtitle">
+                <span class="fa-li"><span class="far fa-globe"></span></span>
+                <span class="text-gray"><abbr title="Sustainable Development Goal">SDG</abbr>: {{un_sustainable_development_goals}}</span>
+              </li>
+              {{/if ~}}
               {{#if location ~}}
               <li>
                 <span class="fa-li"><span class="far fa-map-marker-alt"></span></span>
-                <div class="card-subtitle text-gray">{{truncate location 140}}</div>
+                <span class="text-gray">{{truncate location 140}}</span>
               </li>
               {{/if ~}}
-              <li>
+              <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-users"></span></span>
-                {{#compare (length hours_list) ">" 0 ~}}
+                <span class="text-gray">{{#compare (length hours_list) ">" 0 ~}}
                 {{inflect (length hours_list) "participant" "participants" true}}
                 {{else}}
                 No participants have been added yet
-                {{/compare ~}}
+                {{/compare ~}}</span>
               </li>
             </ul>
           </div>
           <div class="card-footer">
+            <a href="/hours/{{task_id}}/{{slugify organisation_name}}" class="btn btn-link">Manage group</a>
           </div>
         </div>
       </div>

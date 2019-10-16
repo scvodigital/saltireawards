@@ -40,6 +40,12 @@
                 <abbr title="Sustainable Development Goal">SDG</abbr>: {{un_sustainable_development_goals}}
               </li>
               {{/if ~}}
+              {{#if location ~}}
+              <li>
+                <span class="fa-li"><span class="far fa-map-marker-alt"></span></span>
+                <div class="card-subtitle text-gray">{{truncate location 140}}</div>
+              </li>
+              {{/if ~}}
               {{#compare hours ">" 0 ~}}
               {{#if hours_verified ~}}
               <li>
@@ -114,20 +120,33 @@
       </div>
 
       <div id="{{this.task_id}}-details" class="b-margin-full">
-        {{#if task_description ~}}
+        {{#ifAny task_description location un_sustainable_development_goals ~}}
         <div class="columns">
           <div class="column col-9 col-lg-12 col-xl-11">
-            <strong>Description:</strong> {{{task_description}}}
+            {{#if task_description ~}}
+            <p>
+              {{{task_description}}}
+            </p>
+            {{/if ~}}
+            {{#ifAny location un_sustainable_development_goals ~}}
+            <ul class="fa-ul">
+              {{#if location ~}}
+              <li>
+                <span class="fa-li"><span class="far fa-map-marker-alt"></span></span>
+                <div class="">{{truncate location 140}}</div>
+              </li>
+              {{/if ~}}
+              {{#if un_sustainable_development_goals ~}}
+              <li>
+                <span class="fa-li"><span class="far fa-globe"></span></span>
+                <abbr title="Sustainable Development Goal">SDG</abbr>: {{un_sustainable_development_goals}}
+              </li>
+              {{/if ~}}
+            </ul>
+            {{/ifAny ~}}
           </div>
         </div>
-        {{/if ~}}
-        {{#if location ~}}
-        <div class="columns">
-          <div class="column col-9 col-lg-12 col-xl-11">
-            <strong>Location:</strong> {{{location}}}
-          </div>
-        </div>
-        {{/if ~}}
+        {{/ifAny ~}}
 
         <div class="divider v-margin-full"></div>
 
