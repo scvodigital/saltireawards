@@ -98,7 +98,7 @@
     {{#compare task_id @root.request.params.task_id ~}}
     <div class="task task-{{task_id}}">
       <div class="columns">
-        <div class="column col-9">
+        <div class="column col-9 col-lg-12 col-xl-11">
           <h2>
             Volunteering with {{{organisation_name}}}
             {{#compare (length hours_list) ">" 0 ~}}
@@ -116,14 +116,14 @@
       <div id="{{this.task_id}}-details" class="b-margin-full">
         {{#if task_description ~}}
         <div class="columns">
-          <div class="column col-9">
+          <div class="column col-9 col-lg-12 col-xl-11">
             <strong>Description:</strong> {{{task_description}}}
           </div>
         </div>
         {{/if ~}}
         {{#if location ~}}
         <div class="columns">
-          <div class="column col-9">
+          <div class="column col-9 col-lg-12 col-xl-11">
             <strong>Location:</strong> {{{location}}}
           </div>
         </div>
@@ -131,45 +131,47 @@
 
         <div class="divider v-margin-full"></div>
 
+        <h3>
+          Participants
+        </h3>
+
         {{#compare (length hours_list) ">" 0 ~}}
         <div class="columns">
-          <div class="column col-4">
+          <div class="column col-4 hide-xl">
             <strong>Volunteer name</strong>
           </div>
-          <div class="column col-2">
+          <div class="column col-2 hide-xl">
             <strong>Certificate</strong>
           </div>
-          <div class="column col-2">
+          <div class="column col-2 hide-xl">
             <strong>Claim code</strong>
           </div>
-          <div class="column col-1"></div>
           <div class="column col-2">
             <a href="/group-certificate/{{task_id}}" class="btn btn-primary b-margin" download>Download all</a>
           </div>
-          <div class="column col-1"></div>
         </div>
         {{#each hours_list ~}}
         {{#ifAny claim_first_name claim_code ~}}
-        <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours" style="position:relative" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Hours Updated" data-TasksTrigger="ajax-form-handler">
+        <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours" style="position:relative" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Participant details updated" data-TasksTrigger="ajax-form-handler">
           <input type="hidden" name="task_id" value="{{../task_id}}">
           <input type="hidden" name="verified" value="{{verified}}">
           <input type="hidden" name="claim_code" value="{{claim_code}}">
           <input type="hidden" name="hours_id" value="{{hours_id}}">
 
           <div class="columns">
-            <div class="column col-2">
-              <div class="form-group r-margin b-margin">
+            <div class="column col-2 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6">
+              <div class="form-group b-margin">
                 <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="claim_first_name" value="{{claim_first_name}}">
               </div>
             </div>
-            <div class="column col-2">
-              <div class="form-group r-margin b-margin">
+            <div class="column col-2 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6">
+              <div class="form-group b-margin">
                 <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="claim_last_name" value="{{claim_last_name}}">
               </div>
             </div>
-            <div class="column col-2">
+            <div class="column col-2 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-7">
               {{!-- <input {{#unless claim_code}}disabled{{/unless}} class="inline-edit" type="number" step="any" min="0" name="hours" value="{{hours}}"> --}}
-              <div class="form-group r-margin b-margin">
+              <div class="form-group b-margin">
                 <select class="form-select" {{#unless claim_code}}disabled{{/unless}} required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
                   {{#each @root.context.metaData.certificates ~}}
                   <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>{{certificate_name}} hours</option>
@@ -177,20 +179,20 @@
                 </select>
               </div>
             </div>
-            <div class="column col-2">
+            <div class="column col-2 col-xl-3 col-lg-2 col-md-3 col-sm-6 col-xs-5">
               <mark class="claim-code">{{substr claim_code 0 10}}</mark>
             </div>
-            <div class="column col-1">
+            <div class="column col-2 col-xl-2 col-lg-2 col-md-3 col-sm-6 col-xs-6">
+              <a href="/group-certificate/{{../task_id}}/{{hours_id}}" class="btn b-margin" download>Download</a>
+            </div>
+            <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-6 col-xs-6">
               {{#if claim_code}}
-              <button type="submit" class="btn btn-primary inline-update-button" style="display:none;">Save</button>
+              <a href="/admin-delete-hours?hours_id={{hours_id}}" class="btn b-margin" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
               {{/if}}
             </div>
-            <div class="column col-2">
-              <a href="/group-certificate/{{../task_id}}/{{hours_id}}" class="btn" download>Download</a>
-            </div>
-            <div class="column col-1">
+            <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-6 col-xs-6">
               {{#if claim_code}}
-              <a href="/admin-delete-hours?hours_id={{hours_id}}" class="btn" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
+              <button type="submit" class="btn btn-primary inline-update-button b-margin" style="display:none;">Save</button>
               {{/if}}
             </div>
           </div>

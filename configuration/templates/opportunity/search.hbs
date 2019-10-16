@@ -22,10 +22,10 @@
   </div>
   <div class="grid-content">
     <div class="columns">
-      <div class="column col-9">
+      <div class="column col-9 col-sm-12">
         {{> search_info paging=@root.data.search_data.detailed_results.pagination}}
       </div>
-      <div class="column col-3 action">
+      <div class="column col-3 col-sm-12 action">
         {{#compare @root.data.search_data.detailed_results.hits.total ">" 0 ~}}
           <form action="{{{@root.request.url.path}}}" method="GET" class="form-horizontal">
             {{!-- {{#each (split "volunteersearch_types,activities,themes,services,age_groups" ",")}}
