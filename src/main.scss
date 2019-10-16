@@ -316,6 +316,9 @@ header {
     text-align: right;
     margin: 0;
     padding: $unit/2 0;
+    .main-menu .btn {
+      line-height: 1.4rem;
+    }
   }
   .page-title {
     padding: 0 195px;
