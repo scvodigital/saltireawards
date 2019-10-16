@@ -1,33 +1,33 @@
-{
-  "ten": {
+[
+  {
     "hours": 10,
     "certificate_name": "Ten",
     "type": "approach",
     "type_name": "The Approach"
   },
-  "twenty-five": {
+  {
     "hours": 25,
     "certificate_name": "Twenty five",
     "type": "approach",
     "type_name": "The Approach"
   },
-  "one-hundred": {
+  {
     "hours": 100,
     "certificate_name": "One hundred",
     "type": "ascent",
     "type_name": "The Ascent"
   },
-  "two-hundred": {
+  {
     "hours": 200,
     "certificate_name": "Two hundred",
     "type": "ascent",
     "type_name": "The Ascent"
   },
-  "five-hundred": {
+  {
     "hours": 500,
     "certificate_name": "Five hundred",
     "type": "ascent",
     "type_name": "The Ascent",
     "last": true
   }
-}
+]

@@ -24,7 +24,7 @@
       <p class="text-center text-primary">
         <strong>{{type_name}}: {{certificate_name}} hours</strong>
       </p>
-      {{> badge type=type key=@key hours=hours}}
+      {{> badge type=type key=(slugify certificate_name) hours=hours}}
       <div class="text-center description">
         {{!-- <p>
           {{certificate_name}} hour certificate awarded!
@@ -43,7 +43,7 @@
       <p class="text-center text-primary">
         <strong>{{type_name}}: {{certificate_name}} hours</strong>
       </p>
-      {{> badge type=type key=@key hours=hours}}
+      {{> badge type=type key=(slugify certificate_name) hours=hours}}
       <div class="text-center description">
         {{certificate_name}} hour award being verified. If you've been waiting for over a week, you can <a href="/verify-hours-email-send/?award={{hours}}">re-send the verification {{inflect (length @root.data.tasksInfo) "message" "messages"}}</a>.
       </div>
@@ -53,7 +53,7 @@
   {{!-- A bigger award is being verified --}}
   {{#compare @root.data.verifyHoursInfo.award ">" hours ~}}
   {{!-- It's being verified --}}
-  {{!-- {{> badge type=type key=@key hours=hours}}
+  {{!-- {{> badge type=type key=(slugify certificate_name) hours=hours}}
   <div class="text-center description">
     Larger award being verified.
   </div> --}}
@@ -67,7 +67,7 @@
       <p class="text-center text-primary">
         <strong>{{type_name}}: {{certificate_name}} hours</strong>
       </p>
-      {{> badge type=type key=@key hours=hours}}
+      {{> badge type=type key=(slugify certificate_name) hours=hours}}
       <p class="text-center description">
         {{certificate_name}} hour certificate available! Claiming this certificate will send {{inflect (length @root.data.tasksInfo) "an email" "emails"}} to the {{inflect (length @root.data.tasksInfo) "person" "people"}} managing your volunteering to verify the hours you've logged.
       </p>
@@ -84,7 +84,7 @@
       <p class="text-center text-primary">
         <strong>{{type_name}}: {{certificate_name}} hours</strong>
       </p>
-      {{> badge type=type key=@key hours=hours disabled=true}}
+      {{> badge type=type key=(slugify certificate_name) hours=hours disabled=true}}
       <div class="text-center description">
         <strong>{{subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))}} {{inflect (subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))) "hour" "hours"}} to go.</strong><br />
         Once you have reached {{hours}} hours, you can request verification by the nominated {{inflect (length @root.data.tasksInfo) "person" "people"}} at the {{inflect (length @root.data.tasksInfo) "place" "places"}} you volunteer.
