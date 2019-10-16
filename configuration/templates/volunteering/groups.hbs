@@ -34,7 +34,7 @@
               {{#if un_sustainable_development_goals ~}}
               <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-globe"></span></span>
-                <span class="text-gray"><abbr title="Sustainable Development Goal">SDG</abbr>: {{un_sustainable_development_goals}}</span>
+                <span class="text-gray">{{> sdg_label sdg=un_sustainable_development_goals}}</span>
               </li>
               {{/if ~}}
               {{#if location ~}}

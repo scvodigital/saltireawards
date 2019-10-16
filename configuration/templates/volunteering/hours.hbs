@@ -35,34 +35,34 @@
           <div class="card-body">
             <ul class="fa-ul hours">
               {{#if un_sustainable_development_goals ~}}
-              <li>
+              <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-globe"></span></span>
-                <abbr title="Sustainable Development Goal">SDG</abbr>: {{un_sustainable_development_goals}}
+                <span class="text-gray">{{> sdg_label sdg=un_sustainable_development_goals}}</span>
               </li>
               {{/if ~}}
               {{#if location ~}}
-              <li>
+              <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-map-marker-alt"></span></span>
-                <div class="card-subtitle text-gray">{{truncate location 140}}</div>
+                <span class="text-gray">{{truncate location 140}}</span>
               </li>
               {{/if ~}}
               {{#compare hours ">" 0 ~}}
               {{#if hours_verified ~}}
-              <li>
+              <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-user-check"></span></span>
-                {{hours_verified}} verified {{inflect hours_verified "hour" "hours"}}<br />
+                <span class="text-gray">{{hours_verified}} verified {{inflect hours_verified "hour" "hours"}}</span>
               </li>
               {{/if ~}}
               {{#compare hours ">" hours_verified ~}}
-              <li>
+              <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-user-clock"></span></span>
-                {{subtract hours hours_verified}} {{inflect hours "hour" "hours"}} logged but not yet verified<br />
+                <span class="text-gray">{{subtract hours hours_verified}} {{inflect hours "hour" "hours"}} logged but not yet verified</span>
               </li>
               {{/compare ~}}
               {{else}}
-              <li>
+              <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-user"></span></span>
-                No hours added yet
+                <span class="text-gray">No hours added yet</span>
               </li>
               {{/compare ~}}
             </ul>
