@@ -316,9 +316,9 @@ header {
     text-align: right;
     margin: 0;
     padding: $unit/2 0;
-    .main-menu .btn {
-      line-height: 1.4rem;
-    }
+    // .main-menu .btn {
+    //   line-height: 1.4rem;
+    // }
   }
   .page-title {
     padding: 0 195px;
@@ -878,7 +878,7 @@ footer {
     bottom: 0;
   }
   .footer-main {
-    margin-top: 1.5rem;
+    margin-top: $unit*1.5;
     // background: linear-gradient(166deg, rgba(89,22,105,1) 84.9%, rgba(234,125,0,1) 85%);
     padding: 0 0 $unit;
     position: relative;
@@ -903,6 +903,9 @@ footer {
     }
     ul.fa-ul {
       margin-left: $unit*1.5;
+    }
+    h4 {
+      margin-top: $unit;
     }
   }
   .footer-copyright {

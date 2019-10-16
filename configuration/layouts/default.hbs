@@ -305,7 +305,7 @@
         <div class="footer-main">
           <div class="container">
             <div class="columns">
-              <div class="column col-3 info">
+              <div class="column col-3 col-lg-6 col-md-12 info">
                 <h4>Help</h4>
                 <p class="b-margin">
                   {{#if @root.data.accountInfo.local_authority ~}}
@@ -321,7 +321,7 @@
                   {{/if ~}}
                   manages your personal data in relation to the {{@root.context.metaData.title}}.
                 </p>
-                <ul>
+                <ul class="b-margin">
                   <li>
                     <a href="/privacy">Privacy notice</a>
                   </li>
@@ -333,8 +333,8 @@
                   </li>
                 </ul>
               </div>
-              <div class="column col-3 contact">
-                <h4>&nbsp;</h4>
+              <div class="column col-3 col-lg-6 col-md-12 contact">
+                <h4 class="hide-md">&nbsp;</h4>
                 <ul class="fa-ul">
                   <li>
                     <span class="fa-li"><span class="fas fa-envelope"></span></span>
@@ -395,7 +395,7 @@
                   {{/if ~}}
                 </ul>
               </div>
-              <div class="column col-6 about">
+              <div class="column col-6 col-lg-12 about">
                 <h4>About</h4>
                 <p class="b-margin">
                   {{@root.context.metaData.fullTitle}} is run by the <a href="https://scvo.org">Scottish Council for Voluntary Organisations</a> and supported by the <a href="https://www.gov.scot/policies/third-sector">Scottish Government</a> and Scotland's <a href="https://www.gov.scot/policies/third-sector/third-sector-interfaces">Third Sector Interfaces</a>.
@@ -420,13 +420,13 @@
         <div class="footer-copyright">
           <div class="container">
               <div class="columns">
-                <div class="column col-8">
+                <div class="copyright column col-8 col-xl-12">
                   <p>
                     &copy; {{momentFormat (moment) "YYYY"}}. The Scottish Council for Voluntary Organisations (SCVO) is a Scottish Charitable Incorporated Organisation.<br />
                     Charity registered in Scotland <a href="https://www.oscr.org.uk/about-charities/search-the-register/charity-details?number=SC003558">SC003558</a>. Registered office Mansfield Traquair Centre, 15 Mansfield Place, Edinburgh EH3 6BB.
                   </p>
                 </div>
-                <div class="column col-4 logos">
+                <div class="logos column col-4 col-xl-12">
                   <a href="https://www.gov.scot/policies/third-sector" class="brand-logo sg-logo" title="Scottish Government">
                     <img src="{{~>asset_url url='images/logos/SG_Quaternary_govscot_RGB.png'~}}" alt="Scottish Government" />
                   </a>
