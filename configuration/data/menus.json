@@ -60,7 +60,7 @@
     },
     {
       "label": "Contact us",
-      "icon": "envelope",
+      "icon": "question-circle",
       "path": "/contact",
       "route": "^/contact"
     }

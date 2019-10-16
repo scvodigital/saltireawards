@@ -225,7 +225,6 @@
               </li>
               {{#if @root.data.auth ~}}
                 {{#each @root.context.metaData.menus.main-signed-in ~}}
-                {{#if (contains user-types @root.data.accountInfo.user_type) ~}}
                   <li class="menu-item">
                     <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}}active{{/if}}">
                       {{#if icon ~}}
@@ -234,7 +233,6 @@
                       {{label}}
                     </a>
                   </li>
-                {{/if ~}}
                 {{/each ~}}
                 {{#each @root.context.metaData.menus.user-signed-in ~}}
                 {{#if (contains user-types @root.data.accountInfo.user_type) ~}}
