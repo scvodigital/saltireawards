@@ -21,9 +21,9 @@
     </div>
     <div class="column col-9 col-sm-12">
       {{#unless @root.data.accountInfo.date_of_birth ~}}
-        <input class="form-input" id="date_of_birth" max="{{momentFormat (dateMath 'now-13y') 'YYYY-MM-DD'}}" name="date_of_birth" type="date" value="{{@root.data.accountInfo.date_of_birth}}" autocomplete="false" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="focus-next" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.date_of_birth}}>
+        <input class="form-input" id="date_of_birth_checked" {{#if admin}}max="{{momentFormat (dateMath 'now-13y') 'YYYY-MM-DD'}}" min="{{momentFormat (dateMath 'now-120y') 'YYYY-MM-DD'}}"{{else}}max="{{momentFormat (dateMath 'now-12y') 'YYYY-MM-DD'}}" min="{{momentFormat (dateMath 'now-27y') 'YYYY-MM-DD'}}"{{/if}} name="date_of_birth" type="date" value="{{@root.data.accountInfo.date_of_birth}}" autocomplete="false" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="focus-next" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.date_of_birth}}>
       {{else}}
-        <input class="form-input" id="date_of_birth_checked" max="{{momentFormat (dateMath 'now-12y') 'YYYY-MM-DD'}}" min="{{momentFormat (dateMath 'now-27y') 'YYYY-MM-DD'}}" name="date_of_birth_checked" type="date" value="{{@root.data.accountInfo.date_of_birth}}" autocomplete="false" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="focus-next" disabled>
+        <input class="form-input" id="date_of_birth_checked" name="date_of_birth_checked" type="date" value="{{@root.data.accountInfo.date_of_birth}}" autocomplete="false" data-lpignore="true" disabled>
         <input type="hidden" name="date_of_birth" value="{{@root.data.accountInfo.date_of_birth}}">
         <div class="caption">
           If your date of birth is incorrect here please <a href="mailto:{{>support_email_address}}">contact us</a>.
