@@ -123,7 +123,7 @@
                       {{else}}
                         <span class="far fa-fw fa-user-circle"></span>
                       {{/if ~}}
-                      {{@root.data.auth.email}}
+                      {{default @root.data.auth.email @root.data.auth.displayName}}
                       <span class="far fa-fw fa-angle-down"></span>
                     </a>
                     <ul class="menu">

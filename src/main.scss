@@ -403,6 +403,7 @@ header {
     background: white !important;
     border-radius: 2rem;
     margin-left: $unit/3;
+    min-width: 240px;
     .dropdown-toggle {
       border-color: transparent !important;
       color: $secondary-color !important;
