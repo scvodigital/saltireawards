@@ -73,17 +73,17 @@
               <label class="form-label" for="hours-{{task_id}}">
                 <strong>
                   {{#compare hours ">" 0 ~}}
-                  How many hours have you volunteered since the last time you logged hours?
+                  What have you done and how many hours have you volunteered since the last time you logged hours?
                   {{else}}
-                  How many hours have you volunteered since you started?
+                  What have you done and how many hours have you volunteered since you started?
                   {{/compare ~}}
                 </strong>
               </label>
-              <div class="input-group">
-                <input class="form-input input-lg" id="notes-{{task_id}}" name="notes" type="text" placeholder="add Notes">
+              <div class="input-group b-margin">
+                <input class="form-input input-lg" id="notes-{{task_id}}" name="notes" type="text" placeholder="Add notes (optional)">
               </div>
               <div class="input-group">
-                <input class="form-input input-lg" id="hours-{{task_id}}" name="hours" type="number" step="any" min="0" value="" placeholder="">
+                <input class="form-input input-lg" id="hours-{{task_id}}" name="hours" type="number" step="any" min="0" value="" placeholder="0">
                 <button type="submit" class="btn btn-primary btn-lg input-group-btn">Add hours</button>
               </div>
             </form>

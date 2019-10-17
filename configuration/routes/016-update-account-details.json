@@ -9,6 +9,7 @@
   },
   "tasks": [
     "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.getAccountInfo",
     {
       "name": "saveUserData",
       "taskModule": "salesforceApex",
