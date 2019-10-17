@@ -1,9 +1,9 @@
 {
-  "name": "admin-update-individual-hours",
-  "pattern": "/admin-update-individual-hours",
+  "name": "volunteer-manager-delete-hours",
+  "pattern": "/volunteer-manager-delete-hours",
   "debug": true,
   "errorRoute": "five_hundred_json",
-  "acceptedVerbs": "POST, GET",
+  "acceptedVerbs": "DELETE, GET",
   "defaultParams": {
     "context": "results"
   },
@@ -11,19 +11,28 @@
     "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.getSignUpStatus",
+    "context.metaData.commonTasks.verifyHoursInfoExternal",
     "context.metaData.commonTasks.hoursCodeVerify",
+    "context.metaData.commonTasks.handleHoursVerifyFail",
     "context.metaData.commonTasks.adminOrCodeRequired",
     {
-      "name": "saveHoursData",
+      "name": "apexUrl",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": "/SaltireHours/?hours_id={{@root.request.params.query.hours_id}}"
+      }
+    },
+    {
+      "name": "deleteHoursData",
       "taskModule": "salesforceApex",
       "renderer": "handlebars",
       "config": {
-
         "connection": "scvoAlexSandbox",
         "output": "data",
-        "method": "POST",
-        "body": ">context.metaData.handlebars.templates.admin_individual-hours-body",
-        "apexClassPath": "/SaltireHours/"
+        "method": "DELETE",
+        "apexClassPath": ">data.apexUrl"
       }
     },
     {
@@ -40,8 +49,8 @@
       "renderer": "handlebars",
       "config": {
         "output": "body",
-        "template": "{\"id\": {{{stringify @root.data.saveHoursData}}} }",
-        "parseJson": true
+        "template": "{\"id\": {{{stringify @root.data.deleteHoursData}}}  }",
+        "parseJson": false
       }
     }
   ]
