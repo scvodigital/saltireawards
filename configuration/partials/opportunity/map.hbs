@@ -4,7 +4,7 @@
   </h3>
   {{#if organisation_name ~}}
   <div class="v-margin">
-    {{organisation_name}}
+    {{replace organisation_name "'" "&quot;"}}
   </div>
   {{/if ~}}
   {{#if map_postcode ~}}
@@ -15,7 +15,7 @@
   <div class="post-info">
     {{#if description ~}}
     <div style="max-height: 2.8rem;"  class="post-info-item post-info-description faded-overflow">
-      {{{description}}}
+      {{{replace description "'" "&quot;"}}}
     </div>
     {{/if ~}}
   </div>
