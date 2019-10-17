@@ -1,237 +1,261 @@
 {
-  "authNotRequired": {
-    "name": "auth",
-    "taskModule": "firebaseAuth",
-    "config": {
-      "tokenPath": "request.cookies.sa_token",
-      "cookieName": "sa_cookie",
-      "cookieOptions": {
-        "maxAge": 1209600000,
-        "secure": true,
-        "path": "/"
-      },
-      "appName": "saltireawards",
-      "notAuthenticatedRoute": ""
-    }
-  },
-  "authRequired": {
-    "name": "auth",
-    "taskModule": "firebaseAuth",
-    "config": {
-      "tokenPath": "request.cookies.sa_token",
-      "cookieName": "sa_cookie",
-      "cookieOptions": {
-        "maxAge": 1209600000,
-        "secure": true,
-        "path": "/"
-      },
-      "appName": "saltireawards",
-      "notAuthenticatedRoute": "sign_in"
-    }
-  },
-  "getSignUpStatus": {
-    "name": "signUpStatus",
-    "taskModule": "firebaseRtbGet",
-    "renderer": "handlebars",
-    "config": {
-      "appName": "saltireawards",
-      "pathTemplate": "/{{default data.auth.uid 'no-such-read-profile'}}/signup-status",
-      "defaultData": ""
-    }
-  },
-  "getAccountInfo": {
-    "name": "accountInfo",
-    "taskModule": "salesforceApex",
-    "renderer": "handlebars",
-    "cache": {
-      "keyProperties": ["$accountInfo"],
-      "partition": "saltire-profiles-{{data.auth.uid}}",
-      "ttl": 3600
-    },
-    "config": {
-      "connection": "scvoAlexSandbox",
-      "output": "data",
-      "method": "GET",
-      "apexClassPath": "/SaltireUser/?user_id={{@root.data.auth.uid}}"
-    }
-  },
-  "getTasksInfo" : {
-    "name": "tasksInfo",
-    "taskModule": "salesforceApex",
-    "renderer": "handlebars",
-    "cache": {
-      "keyProperties": ["$tasksInfo"],
-      "partition": "saltire-profiles-{{data.auth.uid}}",
-      "ttl": 3600
-    },
-    "config": {
-      "connection": "scvoAlexSandbox",
-      "output": "data",
-      "method": "GET",
-      "apexClassPath": "/SaltireTask/?user_id={{@root.data.auth.uid}}"
-    }
-  },
-  "getHoursInfo": {
-    "name": "hoursInfo",
-    "taskModule": "salesforceApex",
-    "renderer": "handlebars",
-    "cache": {
-      "keyProperties": ["$hoursInfo"],
-      "partition": "saltire-profiles-{{data.auth.uid}}",
-      "ttl": 3600
-    },
-    "config": {
-      "connection": "scvoAlexSandbox",
-      "output": "data",
-      "method": "GET",
-      "apexClassPath": "/SaltireHours/?user_id={{@root.data.auth.uid}}"
-    }
-  },
-  "getTasksInfoUnverified" : {
-    "name": "tasksInfoUnverified",
-    "taskModule": "salesforceApex",
-    "renderer": "handlebars",
-    "cache": {
-      "keyProperties": ["$tasksInfoUnverified"],
-      "partition": "saltire-profiles-{{data.auth.uid}}",
-      "ttl": 3600
-    },
-    "config": {
-      "connection": "scvoAlexSandbox",
-      "output": "data",
-      "method": "GET",
-      "apexClassPath": "/SaltireTask/?user_id={{@root.data.auth.uid}}&verified=false"
-    }
-  },
-
-  "flushCache": {
-    "name": "flushCache",
-    "taskModule": "cacheFlush",
-    "renderer": "handlebars",
-    "config": {
-      "partition": "saltire-profiles-{{data.auth.uid}}"
-    }
-  },
-
-  "verifyHoursInfo" :     {
-    "name": "verifyHoursInfo",
-    "taskModule": "firebaseRtbGet",
-    "renderer": "handlebars",
-    "config": {
-      "appName": "saltireawards",
-      "pathTemplate": "/{{default data.auth.uid 'no-such-write-profile'}}/verify-hours/",
-      "defaultData": {}
-    }
-  },
-  "verifyHoursInfoExternal" :     {
-    "name": "verifyHoursInfo",
-    "taskModule": "firebaseRtbGet",
-    "renderer": "handlebars",
-    "config": {
-      "appName": "saltireawards",
-      "pathTemplate": "/{{default @root.request.params.query.u 'no-such-write-profile'}}/verify-hours/",
-      "defaultData": {}
-    }
-  },
-  "getTasksInfoUnverifiedExternal" : {
-    "name": "tasksInfoUnverified",
-    "taskModule": "salesforceApex",
-    "renderer": "handlebars",
-    "config": {
-      "connection": "scvoAlexSandbox",
-      "output": "data",
-      "method": "GET",
-      "apexClassPath": "/SaltireTask/?user_id={{@root.request.params.query.u }}&verified=false"
-    }
-  },
-  "hoursCodeVerify" : {
-    "name": "codeVerified",
-    "taskModule": "render",
-    "renderer": "handlebars",
-    "config": {
-      "output": "data",
-      "template": ">context.metaData.handlebars.templates.volunteering_hours-code-verify"
-    }
-  },
-  "handleHoursVerifyFail" :     {
-    "name": "handleVerifyFail",
-    "taskModule": "reroute",
-    "config": {
-      "if": [
-        {
-          "==": [
-            {
-              "var": "data.codeVerified"
-            },
-            "pass"
-          ]
-        },
-        null,
-        "verify-hours-fail"
-      ]
-    }
-  },
-  "volunteeringTermsMaps": {
-    "name": "termsMaps",
-    "taskModule": "render",
-    "renderer": "handlebars",
-    "config": {
-      "template": ">context.metaData.handlebars.partials.opportunity_terms_maps",
-      "output": "data",
-      "parseJson": true
-    }
-  },
-  "redirectIfApprovalNeeded": {
-    "name": "redirectIfPV",
-    "taskModule": "reroute",
-    "config":
-    {
-      "if" : [{"var" : "data.accountInfo.verification_needed"},
-        "approval-required",
-        null
-      ]
-    }
-  },
+	"authNotRequired": {
+		"name": "auth",
+		"taskModule": "firebaseAuth",
+		"config": {
+			"tokenPath": "request.cookies.sa_token",
+			"cookieName": "sa_cookie",
+			"cookieOptions": {
+				"maxAge": 1209600000,
+				"secure": true,
+				"path": "/"
+			},
+			"appName": "saltireawards",
+			"notAuthenticatedRoute": ""
+		}
+	},
+	"authRequired": {
+		"name": "auth",
+		"taskModule": "firebaseAuth",
+		"config": {
+			"tokenPath": "request.cookies.sa_token",
+			"cookieName": "sa_cookie",
+			"cookieOptions": {
+				"maxAge": 1209600000,
+				"secure": true,
+				"path": "/"
+			},
+			"appName": "saltireawards",
+			"notAuthenticatedRoute": "sign_in"
+		}
+	},
+	"getSignUpStatus": {
+		"name": "signUpStatus",
+		"taskModule": "firebaseRtbGet",
+		"renderer": "handlebars",
+		"config": {
+			"appName": "saltireawards",
+			"pathTemplate": "/{{default data.auth.uid 'no-such-read-profile'}}/signup-status",
+			"defaultData": ""
+		}
+	},
+	"getAccountInfo": {
+		"name": "accountInfo",
+		"taskModule": "salesforceApex",
+		"renderer": "handlebars",
+		"cache": {
+			"keyProperties": ["$accountInfo"],
+			"partition": "saltire-profiles-{{data.auth.uid}}",
+			"ttl": 3600
+		},
+		"config": {
+			"connection": "scvoAlexSandbox",
+			"output": "data",
+			"method": "GET",
+			"apexClassPath": "/SaltireUser/?user_id={{@root.data.auth.uid}}"
+		}
+	},
+	"getTasksInfo": {
+		"name": "tasksInfo",
+		"taskModule": "salesforceApex",
+		"renderer": "handlebars",
+		"cache": {
+			"keyProperties": ["$tasksInfo"],
+			"partition": "saltire-profiles-{{data.auth.uid}}",
+			"ttl": 3600
+		},
+		"config": {
+			"connection": "scvoAlexSandbox",
+			"output": "data",
+			"method": "GET",
+			"apexClassPath": "/SaltireTask/?user_id={{@root.data.auth.uid}}"
+		}
+	},
+	"getHoursInfo": {
+		"name": "hoursInfo",
+		"taskModule": "salesforceApex",
+		"renderer": "handlebars",
+		"cache": {
+			"keyProperties": ["$hoursInfo"],
+			"partition": "saltire-profiles-{{data.auth.uid}}",
+			"ttl": 3600
+		},
+		"config": {
+			"connection": "scvoAlexSandbox",
+			"output": "data",
+			"method": "GET",
+			"apexClassPath": "/SaltireHours/?user_id={{@root.data.auth.uid}}"
+		}
+	},
+	"getTasksInfoUnverified": {
+		"name": "tasksInfoUnverified",
+		"taskModule": "salesforceApex",
+		"renderer": "handlebars",
+		"cache": {
+			"keyProperties": ["$tasksInfoUnverified"],
+			"partition": "saltire-profiles-{{data.auth.uid}}",
+			"ttl": 3600
+		},
+		"config": {
+			"connection": "scvoAlexSandbox",
+			"output": "data",
+			"method": "GET",
+			"apexClassPath": "/SaltireTask/?user_id={{@root.data.auth.uid}}&verified=false"
+		}
+	},
+	"flushCache": {
+		"name": "flushCache",
+		"taskModule": "cacheFlush",
+		"renderer": "handlebars",
+		"config": {
+			"partition": "saltire-profiles-{{data.auth.uid}}"
+		}
+	},
+	"verifyHoursInfo": {
+		"name": "verifyHoursInfo",
+		"taskModule": "firebaseRtbGet",
+		"renderer": "handlebars",
+		"config": {
+			"appName": "saltireawards",
+			"pathTemplate": "/{{default data.auth.uid 'no-such-write-profile'}}/verify-hours/",
+			"defaultData": {
+				"test": true
+			}
+		}
+	},
+	"verifyHoursInfoExternal": {
+		"name": "verifyHoursInfo",
+		"taskModule": "firebaseRtbGet",
+		"renderer": "handlebars",
+		"config": {
+			"appName": "saltireawards",
+			"pathTemplate": "/{{default @root.request.params.query.u 'no-such-write-profile'}}/verify-hours/",
+			"defaultData": {}
+		}
+	},
+	"getTasksInfoUnverifiedExternal": {
+		"name": "tasksInfoUnverified",
+		"taskModule": "salesforceApex",
+		"renderer": "handlebars",
+		"config": {
+			"connection": "scvoAlexSandbox",
+			"output": "data",
+			"method": "GET",
+			"apexClassPath": "/SaltireTask/?user_id={{@root.request.params.query.u }}&verified=false"
+		}
+	},
+	"hoursCodeVerify": {
+		"name": "codeVerified",
+		"taskModule": "render",
+		"renderer": "handlebars",
+		"config": {
+			"output": "data",
+			"template": ">context.metaData.handlebars.templates.volunteering_hours-code-verify"
+		}
+	},
+	"handleHoursVerifyFail": {
+		"name": "handleVerifyFail",
+		"taskModule": "reroute",
+		"config": {
+			"if": [{
+					"==": [{
+							"var": "data.codeVerified"
+						},
+						"pass"
+					]
+				},
+				null,
+				"verify-hours-fail"
+			]
+		}
+	},
+	"volunteeringTermsMaps": {
+		"name": "termsMaps",
+		"taskModule": "render",
+		"renderer": "handlebars",
+		"config": {
+			"template": ">context.metaData.handlebars.partials.opportunity_terms_maps",
+			"output": "data",
+			"parseJson": true
+		}
+	},
+	"redirectIfApprovalNeeded": {
+		"name": "redirectIfPV",
+		"taskModule": "reroute",
+		"config": {
+			"if": [{
+					"var": "data.accountInfo.verification_needed"
+				},
+				"approval-required",
+				null
+			]
+		}
+	},
   "fullSignUpRequired": {
-    "name": "signUpReroute",
-    "taskModule": "reroute",
-    "config":
-    {
-      "if": [{"missing": "data.accountInfo.external_id"},
-        "sd-needed",
-        {
-          "if" : [{"var" : "data.accountInfo.verification_needed"},
-            "approval-required",
-            null
+		"name": "signUpReroute",
+		"taskModule": "reroute",
+		"config": {
+			"if": [{
+					"missing": "data.accountInfo.external_id"
+				},
+				"sd-needed",
+				{
+					"if": [{
+							"var": "data.accountInfo.verification_needed"
+						},
+						"approval-required",
+						null
+					]
+				}
+			]
+		}
+	},
+  "tasksRequired": {
+		"name": "noTasksReroute",
+		"taskModule": "reroute",
+		"config": {
+			"if": [{
+					"===": [
+            {
+              "var": "data.tasksInfo.length"
+            },
+            0
           ]
-        }
-      ]
-    }
-  },
-  "isAdmin" : {
-    "name": "isAdmin",
-    "taskModule": "render",
-    "renderer": "handlebars",
-    "config": {
-      "template": "{{compare data.accountInfo.user_type '===' 'Group Admin'}}",
-      "output": "data"
-    }
-  },
-  "adminOrCodeRequired": {
-    "name": "adminOrCodeRequired",
-    "taskModule": "reroute",
-    "config":
-    {
-      "if":[
-        {"and" : [
-          {"!=":[{"var": "data.accountInfo.user_type"}, "Group Admin"]},
-          {"!=":[{"var": "data.codeVerified"}, "pass"]}
-        ] }
-      ,
-        "redirect-home",
-        null
-      ]
-    }
-  }
+				},
+				"no_tasks",
+				null
+			]
+		}
+	},
+	"isAdmin": {
+		"name": "isAdmin",
+		"taskModule": "render",
+		"renderer": "handlebars",
+		"config": {
+			"template": "{{compare data.accountInfo.user_type 'Group Admin'}}",
+			"output": "data"
+		}
+	},
+	"adminOrCodeRequired": {
+		"name": "adminOrCodeRequired",
+		"taskModule": "reroute",
+		"config": {
+			"if": [{
+					"and": [{
+							"!=": [{
+								"var": "data.accountInfo.user_type"
+							}, "Group Admin"]
+						},
+						{
+							"!=": [{
+								"var": "data.codeVerified"
+							}, "pass"]
+						}
+					]
+				},
+				"redirect-home",
+				null
+			]
+		}
+	}
 }
-

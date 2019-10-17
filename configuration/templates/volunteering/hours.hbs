@@ -1,6 +1,3 @@
-{{#compare (length @root.data.tasksInfo) 0 ~}}
-{{> log_empty}}
-{{else}}
 <div class="empty">
   <div class="empty-icon">
     <span class="fal fa-user{{#if @root.data.isAdmin}}s{{else}}-clock{{/if}} fa-3x"></span>
@@ -267,7 +264,6 @@
     {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
   </div>
 </div>
-{{/compare ~}}
 
 {{!-- <script src="https://#/recaptcha/api.js" async defer></script> --}}
 <script>
