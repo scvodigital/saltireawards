@@ -104,76 +104,6 @@
             </p>
           {{/if ~}}
           {{#ifAny restriction_details experience_required travel_details minimum_age maximum_age ~}}
-          <div data-component="TasksTrigger" data-TasksTrigger='{
-            viewportProximityChange: {
-              rules: [
-                {
-                  scrollDirection: "down",
-                  sourceEdge: "top",
-                  targetEdge: "bottom",
-                  tasks: [
-                    {
-                      type: "elementManipulator",
-                      config: {
-                        ">": {
-                          addClass: "above-the-bottom",
-                          removeClass: "below-the-bottom"
-                        }
-                      }
-                    }
-                  ]
-                },
-                {
-                  scrollDirection: "up",
-                  sourceEdge: "top",
-                  targetEdge: "bottom",
-                  tasks: [
-                    {
-                      type: "elementManipulator",
-                      config: {
-                        ">": {
-                          addClass: "below-the-bottom",
-                          removeClass: "above-the-bottom"
-                        }
-                      }
-                    }
-                  ]
-                },
-                {
-                  scrollDirection: "down",
-                  sourceEdge: "bottom",
-                  targetEdge: "top",
-                  tasks: [
-                    {
-                      type: "elementManipulator",
-                      config: {
-                        ">": {
-                          addClass: "above-the-top",
-                          removeClass: "below-the-top"
-                        }
-                      }
-                    }
-                  ]
-                },
-                {
-                  scrollDirection: "up",
-                  sourceEdge: "bottom",
-                  targetEdge: "top",
-                  tasks: [
-                    {
-                      type: "elementManipulator",
-                      config: {
-                        ">": {
-                          addClass: "below-the-top",
-                          removeClass: "above-the-top"
-                        }
-                      }
-                    }
-                  ]
-                }
-              ]
-            }
-          }'>
             <h4>Restrictions</h4>
             <p>
               {{#if restriction_details ~}}
@@ -196,7 +126,6 @@
               {{/compare}}
               {{/if ~}}
             </p>
-          </div>
           {{/ifAny ~}}
 
           {{#ifAny travel_expenses expenses_paid taster_available taster_details support_options ~}}
@@ -257,12 +186,23 @@
                 initialLatLng: { lat: 55.94528820000001, lng: -3.200755699999945 },
                 featureGroups: [
                   {
+                    boundToThis: true,
                     features: [
+                      {{#each (arrayify geo_coords) ~}}
                       {
                         type: "Marker",
-                        popupContent: "I am a marker!",
-                        latLng: { lat: 55.94528820000001, lng: -3.200755699999945 }
-                      }
+                        popupContent: `
+                          <h4>{{../organisation_name}}</h4>
+                          {{#if (itemAt (arrayify (split ../postcode ",")) @index) ~}}
+                          <div class="v-margin">
+                            Postcode: {{itemAt (arrayify (split ../postcode ",")) @index}}
+                          </div>
+                          {{/if ~}}
+                          <p class="caption">{{../title}}</p>
+                        `,
+                        latLng: { lat: {{lat}}, lng: {{lon}} }
+                      },
+                      {{/each}}
                     ]
                   }
                 ]
@@ -281,13 +221,7 @@
               {{!--
               {{#each (arrayify geo_coords) ~}}
               <marker style="display:none;" data-map="opportunityMap" data-lat="{{lat}}" data-lng="{{lon}}" data-title="{{../organisation_name}} - {{../title}}">
-                <h4>{{../organisation_name}}</h4>
-                {{#if (itemAt (arrayify (split ../postcode ",")) @index) ~}}
-                <div class="v-margin">
-                  Postcode: {{itemAt (arrayify (split ../postcode ",")) @index}}
-                </div>
-                {{/if ~}}
-                <p class="caption">{{../title}}</p>
+
               </marker>
               {{/each ~}}
               --}}
