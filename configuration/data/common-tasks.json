@@ -118,7 +118,7 @@
 		"config": {
 			"appName": "saltireawards",
 			"pathTemplate": "/{{default @root.data.auth.uid 'no-such-write-profile'}}/verify-hours/",
-			"defaultData": "false"
+			"defaultData": false
 		}
 	},
 	"verifyHoursInfoExternal": {
@@ -128,7 +128,7 @@
 		"config": {
 			"appName": "saltireawards",
 			"pathTemplate": "/{{default @root.request.params.query.u 'no-such-write-profile'}}/verify-hours/",
-			"defaultData": "false"
+			"defaultData": false
 		}
 	},
 	"getTasksInfoUnverifiedExternal": {
