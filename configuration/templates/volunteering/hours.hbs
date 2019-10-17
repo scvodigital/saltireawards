@@ -196,20 +196,22 @@
               </div>
             </div>
             <div class="column col-2 col-xl-3 col-lg-2 col-md-3 col-sm-6 col-xs-5">
+              {{#if claim_code ~}}
               <mark class="claim-code">{{substr claim_code 0 10}}</mark>
+              {{/if ~}}
             </div>
             <div class="column col-2 col-xl-2 col-lg-2 col-md-3 col-sm-6 col-xs-6">
               <a href="/group-certificate/{{../task_id}}/{{hours_id}}" class="btn b-margin" download>Download</a>
             </div>
             <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-6 col-xs-6">
-              {{#if claim_code}}
+              {{#if claim_code ~}}
               <a href="/admin-delete-hours?hours_id={{hours_id}}" class="btn b-margin" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
-              {{/if}}
+              {{/if ~}}
             </div>
             <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-6 col-xs-6">
-              {{#if claim_code}}
+              {{#if claim_code ~}}
               <button type="submit" class="btn btn-primary inline-update-button b-margin" style="display:none;">Save</button>
-              {{/if}}
+              {{/if ~}}
             </div>
           </div>
         </form>
