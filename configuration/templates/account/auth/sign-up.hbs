@@ -1,7 +1,4 @@
 <form id="sign-up-form" method="POST" class="container form authentication-form" data-component="TasksTrigger" data-TasksTrigger="sign-up">
-  <!-- <h2 class="x-padding">
-    Sign up
-  </h2> -->
   <div class="l-margin r-margin">
     <div class="bg-error s-rounded x-padding v-margin" id="sign-up-message">
       <span id="form-message"></span>
@@ -45,56 +42,5 @@
   <input type="hidden" name="redirect" id="redirect" value="home" />
 </form>
 
-<script type="javascript/blocked" data-component-config="sign-up">
-  {
-    submit: {
-      preventDefault: true,
-      tasks: [
-        {
-          type: "elementManipulator",
-          config: {
-            ">": { addClass: "disabled" }
-          }
-        },
-        {
-          name: "signUp",
-          type: "firebaseCreateAccount",
-          config: {
-            email: { __template: '\{{jquery "#sign-up-email" "val"}}' },
-            emailConfirm: { __template: '\{{jquery "#sign-up-email-confirm" "val"}}' },
-            password: { __template: '\{{jquery "#sign-up-password" "val"}}' },
-            passwordConfirm: { __template: '\{{jquery "#sign-up-password-confirm" "val"}}' }
-          }
-        },
-        {
-          type: "switch",
-          config: {
-            which: { __template: "\{{#if errors.signUp}}error\{{/if}}" },
-            branches: {
-              default: {
-
-              },
-              error: {
-                halt: true,
-                tasks: [
-                  {
-                    type: "elementManipulator",
-                    config: {
-                      ">": { removeClass: "disabled" },
-                      "#sign-up-message": { styles: { display: "block" } },
-                      "#form-message": { contents: { __template: "\{{errors.signUp.message}}" } }
-                    }
-                  }
-                ]
-              }
-            }
-          }
-        },
-        {
-          type: "run",
-          config: { code: "window.location.href = '/'" }
-        }
-      ]
-    }
-  }
-</script>
+{{> account_task_sign_in}}
+{{> account_task_sign_up}}

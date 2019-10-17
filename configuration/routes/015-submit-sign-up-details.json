@@ -30,6 +30,7 @@
         "apexClassPath": "/SaltireUser/"
       }
     },
+    "context.metaData.commonTasks.flushCache",
     {
       "name": "welcomeOrApproval",
       "taskModule": "reroute",
@@ -48,7 +49,6 @@
         ]
       }
     },
-    "context.metaData.commonTasks.flushCache",
     {
       "name": "destination",
       "taskModule": "redirect",
