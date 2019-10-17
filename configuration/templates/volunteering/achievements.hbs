@@ -43,7 +43,7 @@
       <p class="text-center text-primary">
         <strong>{{type_name}}: {{certificate_name}} hours</strong>
       </p>
-      {{> badge type=type key=(slugify certificate_name) hours=hours}}
+      {{> badge type=type key=(slugify certificate_name) hours=hours disabled=true}}
       <div class="text-center description">
         {{certificate_name}} hour award being verified. If you've been waiting for over a week, you can <a href="/verify-hours-email-send/?award={{hours}}">re-send the verification {{inflect (length @root.data.tasksInfo) "message" "messages"}}</a>.
       </div>
@@ -67,7 +67,7 @@
       <p class="text-center text-primary">
         <strong>{{type_name}}: {{certificate_name}} hours</strong>
       </p>
-      {{> badge type=type key=(slugify certificate_name) hours=hours}}
+      {{> badge type=type key=(slugify certificate_name) hours=hours disabled=true}}
       <p class="text-center description">
         {{certificate_name}} hour certificate available! Claiming this certificate will send {{inflect (length @root.data.tasksInfo) "an email" "emails"}} to the {{inflect (length @root.data.tasksInfo) "person" "people"}} managing your volunteering to verify the hours you've logged.
       </p>
