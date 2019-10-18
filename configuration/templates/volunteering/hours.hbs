@@ -1,6 +1,3 @@
-{{#compare (length @root.data.tasksInfo) 0 ~}}
-{{> log_empty}}
-{{else}}
 <div class="empty">
   <div class="empty-icon">
     <span class="fal fa-user{{#if @root.data.isAdmin}}s{{else}}-clock{{/if}} fa-3x"></span>
@@ -83,7 +80,7 @@
                 <input class="form-input input-lg" id="notes-{{task_id}}" name="notes" type="text" placeholder="Add notes (optional)">
               </div>
               <div class="input-group">
-                <input class="form-input input-lg" id="hours-{{task_id}}" name="hours" type="number" step="any" min="0" value="" placeholder="0">
+                <input class="form-input input-lg" id="hours-{{task_id}}" name="hours" type="number" step="any" min="0.1" value="" placeholder="0" required >
                 <button type="submit" class="btn btn-primary btn-lg input-group-btn">Add hours</button>
               </div>
             </form>
@@ -166,7 +163,7 @@
             <strong>Claim code</strong>
           </div>
           <div class="column col-2">
-            <a href="/group-certificate/{{task_id}}" class="btn btn-primary b-margin" download>Download all</a>
+            <a href="/group-certificate/{{task_id}}/" class="btn btn-primary b-margin" download>Download all</a>
           </div>
         </div>
         {{#each hours_list ~}}
@@ -199,20 +196,22 @@
               </div>
             </div>
             <div class="column col-2 col-xl-3 col-lg-2 col-md-3 col-sm-6 col-xs-5">
+              {{#if claim_code ~}}
               <mark class="claim-code">{{substr claim_code 0 10}}</mark>
+              {{/if ~}}
             </div>
             <div class="column col-2 col-xl-2 col-lg-2 col-md-3 col-sm-6 col-xs-6">
               <a href="/group-certificate/{{../task_id}}/{{hours_id}}" class="btn b-margin" download>Download</a>
             </div>
             <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-6 col-xs-6">
-              {{#if claim_code}}
+              {{#if claim_code ~}}
               <a href="/admin-delete-hours?hours_id={{hours_id}}" class="btn b-margin" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
-              {{/if}}
+              {{/if ~}}
             </div>
             <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-6 col-xs-6">
-              {{#if claim_code}}
+              {{#if claim_code ~}}
               <button type="submit" class="btn btn-primary inline-update-button b-margin" style="display:none;">Save</button>
-              {{/if}}
+              {{/if ~}}
             </div>
           </div>
         </form>
@@ -267,7 +266,6 @@
     {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
   </div>
 </div>
-{{/compare ~}}
 
 {{!-- <script src="https://#/recaptcha/api.js" async defer></script> --}}
 <script>

@@ -1,11 +1,10 @@
 {
-  "name": "hours",
-  "pattern": "/hours(/:task_id)(/:junk)",
+  "name": "no_tasks",
+  "pattern": "/no-tasks",
   "debug": true,
   "errorRoute": "five_hundred",
   "metaData": {
-    "title": "My volunteering",
-    "adminTitle": "Volunteering group"
+    "title": "My volunteering"
   },
   "tasks": [
     "context.metaData.commonTasks.authRequired",
@@ -14,7 +13,6 @@
     "context.metaData.commonTasks.fullSignUpRequired",
     "context.metaData.commonTasks.isAdmin",
     "context.metaData.commonTasks.getTasksInfo",
-    "context.metaData.commonTasks.tasksRequired",
     {
       "name": "destination",
       "taskModule": "renderLayout",
@@ -32,7 +30,7 @@
             "parts": {
               "head": ">context.metaData.handlebars.templates.page_head-tags",
               "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
-              "body": ">context.metaData.handlebars.templates.volunteering_hours"
+              "body": ">context.metaData.handlebars.templates.volunteering_no-tasks"
             },
             "contentType": "text/html"
           }

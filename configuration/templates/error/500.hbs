@@ -8,19 +8,23 @@
     <a href="/" class="btn btn-primary">Home</a>
     <a href="mailto:{{> support_email_address}}" class="btn btn-link">Contact us</a>
   </div>
-  <pre>
-    {{#each errors}}
+  <pre class="code">
+    <code>
+    {{#each errors ~}}
     --------------------------------
     {{#if name}}Name: {{name}}{{/if}}
     {{#if message}}Message: {{message}}{{/if}}
     {{#if stack}}Stack: {{stack}}{{/if}}
     {{#if sourceRoute.route.name}}Source route: {{sourceRoute.route.name}}{{/if}}
-    {{#if redirectTo}}Redirect To: {{redirectTo}}{{/if}}
+    {{#if routeName}}Route name: {{routeName}}{{/if}}
+    {{#if taskName}}Task name: {{taskName}}{{/if}}
+    {{#if redirectTo}}Redirect to: {{redirectTo}}{{/if}}
     {{#if statusCode}}Status code: {{statusCode}}{{/if}}
     {{#if data}}Data: {{{stringify data}}}{{/if}}
     {{#if task}}Task: {{{stringify task}}}{{/if}}
     {{#if destination}}Destination: {{{stringify destination}}}{{/if}}
     --------------------------------
-    {{/each}}
+    {{/each ~}}
+    </code>
   </pre>
 </div>

@@ -36,8 +36,8 @@
     }
   },
   "content": [
-    {{#each @root.data.pdfObjects}}
-    {{> certificate_pdf last=@last}}{{#unless @last}},{{/unless}}
-    {{/each}}
+    {{#eachJoin @root.data.pdfObjects ","}}
+    {{> certificate_pdf}}
+    {{/eachJoin}}
   ]
 }

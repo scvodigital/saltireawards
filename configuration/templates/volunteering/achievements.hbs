@@ -1,10 +1,5 @@
-{{#compare (length @root.data.tasksInfo) 0 ~}}
-{{> log_empty}}
-{{else}}
 <div class="container achievements">
-  {{!-- <h1>
-    My achievements
-  </h1> --}}
+  {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
   <ul class="step">
     {{#each @root.context.metaData.certificates ~}}
     <li class="step-item{{#compare @root.data.verifyHoursInfo.award hours}} active{{/compare}}">
@@ -12,6 +7,7 @@
     </li>
     {{/each ~}}
   </ul>
+  {{/compare ~}}
   {{#each @root.context.metaData.certificates ~}}
   {{!-- It's already awarded --}}
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
@@ -19,7 +15,7 @@
   <div class="columns">
     <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
       <h2 class="text-center">
-        {{#if last}}My{{else}}Current{{/if}} achievement
+        {{#if @last}}My{{else}}Current{{/if}} achievement
       </h2>
       <p class="text-center text-primary">
         <strong>{{type_name}}: {{certificate_name}} hours</strong>
@@ -43,7 +39,7 @@
       <p class="text-center text-primary">
         <strong>{{type_name}}: {{certificate_name}} hours</strong>
       </p>
-      {{> badge type=type key=(slugify certificate_name) hours=hours}}
+      {{> badge type=type key=(slugify certificate_name) hours=hours disabled=true}}
       <div class="text-center description">
         {{certificate_name}} hour award being verified. If you've been waiting for over a week, you can <a href="/verify-hours-email-send/?award={{hours}}">re-send the verification {{inflect (length @root.data.tasksInfo) "message" "messages"}}</a>.
       </div>
@@ -67,7 +63,7 @@
       <p class="text-center text-primary">
         <strong>{{type_name}}: {{certificate_name}} hours</strong>
       </p>
-      {{> badge type=type key=(slugify certificate_name) hours=hours}}
+      {{> badge type=type key=(slugify certificate_name) hours=hours disabled=true}}
       <p class="text-center description">
         {{certificate_name}} hour certificate available! Claiming this certificate will send {{inflect (length @root.data.tasksInfo) "an email" "emails"}} to the {{inflect (length @root.data.tasksInfo) "person" "people"}} managing your volunteering to verify the hours you've logged.
       </p>
@@ -97,4 +93,3 @@
   {{/compare ~}}
   {{/each ~}}
 </div>
-{{/compare ~}}

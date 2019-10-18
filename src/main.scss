@@ -454,6 +454,7 @@ header {
     background: white !important;
     border-radius: 2rem;
     margin-left: $unit/3;
+    min-width: 240px;
     .dropdown-toggle {
       border-color: transparent !important;
       color: $secondary-color !important;
@@ -1455,6 +1456,14 @@ footer {
   display: flex;
   justify-content: center;
 }
+
+.over-age {
+  color : $error-color;
+  display: flex;
+  justify-content: center;
+}
+
+
 .achievements > .working-towards ~ .working-towards,
 .hidden, .hide {
   display: none;
