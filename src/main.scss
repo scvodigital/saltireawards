@@ -247,24 +247,33 @@ a.btn-link:hover {
 
 .chip-filters {
   display: inline-block;
+
   .chip {
     cursor: default !important;
+
     .chip__text {
       margin-left: 0;
     }
+
     .chip__icon--trailing {
       cursor: pointer !important;
       margin-left: $unit/4;
     }
   }
-}
-.chip-filters > span:first-child::before {
-  font-family: "Font Awesome 5 Pro";
-  font-weight: 400;
-  color: #444;
-}
-.chip-filters:empty {
-  display: none;
+
+  > span:first-child::before {
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 400;
+    color: #444;
+  }
+
+  &:empty {
+    display: none;
+  }
+
+  &:not(:empty) {
+    margin-top: $unit;
+  }
 }
 
 #activities-filters > span:first-child::before { content: "\f757"; }
