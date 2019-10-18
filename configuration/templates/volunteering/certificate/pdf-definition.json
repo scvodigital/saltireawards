@@ -36,6 +36,8 @@
     }
   },
   "content": [
-    "this is test text, not the real text. If you see this, it is Alex's fault."
+    {{#eachJoin @root.data.pdfObjects ","}}
+    "I am a fish (Alex's fault)"
+    {{/eachJoin}}
   ]
 }
