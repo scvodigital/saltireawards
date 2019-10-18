@@ -278,11 +278,11 @@ a.btn-link:hover {
 
 #activities-filters > span:first-child::before { content: "\f757"; }
 #themes-filters > span:first-child::before { content: "\f0c0"; }
-#type_of_funding-filters > span:first-child::before { content: "\f19c"; }
-#type_of_cost-filters > span:first-child::before { content: "\f53c"; }
-#miscellaneous-filters > span:first-child::before { content: "\f0b0"; }
-#geographical_areas_funded-filters > span:first-child::before { content: "\f3c5"; }
-#source_of_fund-filters > span:first-child::before { content: "\f4c4"; }
+#age_groups-filters > span:first-child::before { content: "\f19c"; }
+#services-filters > span:first-child::before { content: "\f53c"; }
+#volunteersearch_types-filters > span:first-child::before { content: "\f0b0"; }
+#availability-filters > span:first-child::before { content: "\f3c5"; }
+#advertised_areas-filters > span:first-child::before { content: "\f4c4"; }
 
 @media screen and (min-width: 961px) {
   .mobile-menu {
