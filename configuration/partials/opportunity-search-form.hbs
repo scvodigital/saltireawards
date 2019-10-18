@@ -39,7 +39,7 @@
         </div>
       </div>
 
-      <div class="columns t-margin-full">
+      <div class="columns">
         <div class="column col-8">
           {{#each @root.context.metaData.volunteeringTerms}}
             <div class="chip-set chip-filters" id="{{key}}-filters">
@@ -67,7 +67,7 @@
         </div>
 
         <div class="column col-4 {{#unless hasLocation}}hidden{{/unless}}" id="location-fields">
-          <div class="input-group has-icon-left">
+          <div class="input-group has-icon-left t-margin-full">
             <span class="form-icon far fa-times geo-lookup" tabindex="0" title="Find my location" data-component="TasksTrigger" data-TasksTrigger="empty-location-fields"></span>
             <input type="text" id="where-opportunities" name="location" class="form-input input-lg" value="{{location}}" placeholder="Location" data-lpignore="true" readonly>
             <select class="form-select select-lg" id="distance" name="distance">
