@@ -80,7 +80,7 @@
                 <input class="form-input input-lg" id="notes-{{task_id}}" name="notes" type="text" placeholder="Add notes (optional)">
               </div>
               <div class="input-group">
-                <input class="form-input input-lg" id="hours-{{task_id}}" name="hours" type="number" step="any" min="0" value="" placeholder="0">
+                <input class="form-input input-lg" id="hours-{{task_id}}" name="hours" type="number" step="any" min="0.1" value="" placeholder="0" required >
                 <button type="submit" class="btn btn-primary btn-lg input-group-btn">Add hours</button>
               </div>
             </form>
@@ -163,7 +163,7 @@
             <strong>Claim code</strong>
           </div>
           <div class="column col-2">
-            <a href="/group-certificate/{{task_id}}" class="btn btn-primary b-margin" download>Download all</a>
+            <a href="/group-certificate/{{task_id}}/" class="btn btn-primary b-margin" download>Download all</a>
           </div>
         </div>
         {{#each hours_list ~}}

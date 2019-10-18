@@ -1405,6 +1405,14 @@ footer {
   display: flex;
   justify-content: center;
 }
+
+.over-age {
+  color : $error-color;
+  display: flex;
+  justify-content: center;
+}
+
+
 .achievements > .working-towards ~ .working-towards,
 .hidden, .hide {
   display: none;
