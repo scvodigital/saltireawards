@@ -224,6 +224,57 @@ a.btn-link:hover {
   }
 }
 
+.twitter-typeahead {
+  display: block;
+  width: 100%;
+
+  .tt-menu {
+    border: 1px solid rgb(204, 204, 204);
+    background-color: rgb(255, 255, 255);
+    padding: $unit/4;
+    width: 100%;
+
+    h3 {
+      font-size: 1rem;
+      margin: $unit/4 0;
+    }
+
+    .tt-cursor {
+      background-color: $primary-color-light;
+    }
+  }
+}
+
+.chip-filters {
+  display: inline-block;
+  .chip {
+    cursor: default !important;
+    .chip__text {
+      margin-left: 0;
+    }
+    .chip__icon--trailing {
+      cursor: pointer !important;
+      margin-left: $unit/4;
+    }
+  }
+}
+.chip-filters > span:first-child::before {
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 400;
+  color: #444;
+}
+.chip-filters:empty {
+  display: none;
+}
+
+#activities-filters > span:first-child::before { content: "\f757"; }
+#themes-filters > span:first-child::before { content: "\f0c0"; }
+#type_of_funding-filters > span:first-child::before { content: "\f19c"; }
+#type_of_cost-filters > span:first-child::before { content: "\f53c"; }
+#miscellaneous-filters > span:first-child::before { content: "\f0b0"; }
+#geographical_areas_funded-filters > span:first-child::before { content: "\f3c5"; }
+#source_of_fund-filters > span:first-child::before { content: "\f4c4"; }
+
 @media screen and (min-width: 961px) {
   .mobile-menu {
     display: none;

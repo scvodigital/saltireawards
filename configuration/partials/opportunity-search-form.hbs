@@ -1,12 +1,34 @@
+{{#withExtend this
+  hasLocation=(ifAll
+    @root.request.params.query.lat
+    @root.request.params.query.lng
+    @root.request.params.query.distance
+  )
+  location=(if
+    @root.request.params.query.lat
+    (default
+      @root.request.params.query.location
+      (concat @root.request.params.query.lat ", " @root.request.params.query.lng)
+    )
+    else=""
+  )}}
 <div class="search-form">
-  <!-- <h1>Find opportunities</h1> -->
   <form id="search-view" class="search-form" action="{{@root.request.url.pathname}}" method="GET">
     <input type="hidden" name="lat" value="{{@root.request.params.query.lat}}" id="location-lat" />
     <input type="hidden" name="lng" value="{{@root.request.params.query.lng}}" id="location-lng" />
     <input type="hidden" name="sort" value="{{@root.request.params.query.sort}}" id="default-sort" />
     <div class="b-padding">
       <div class="columns">
-        <div class="column col-3 filter-age">
+        <div class="column col-8">
+          <div class="form-group full-width">
+            <div data-component="Typeahead" data-Typeahead="typeahead-terms">
+              <input type="text" id="what-opportunities" name="keywords" class="form-input input-lg" value="{{@root.request.params.query.keywords}}"
+                placeholder="Keywords" autocomplete="off" data-lpignore="true">
+            </div>
+          </div>
+        </div>
+
+        <div class="column col-4 filter-age">
           <div class="form-group">
             <select class="form-select select-lg" id="age" name="age">
               {{#each (split "12,13,14,15,16,17,18" ",")}}
@@ -15,12 +37,39 @@
             </select>
           </div>
         </div>
-        <div class="column col-4">
+      </div>
+
+      <div class="columns t-margin-full">
+        <div class="column col-8">
+          {{#each @root.context.metaData.volunteeringTerms}}
+            <div class="chip-set chip-filters" id="{{key}}-filters">
+              {{~#each (arrayify (getProperty @root.request.params.query key))~}}
+                {{~#if this~}}
+                  <span>
+                    <div class="chip" tabindex="0">
+                      <span class="chip__text">
+                        {{#each ../termGroups}}
+                          {{#each terms}}
+                            {{#compare key ../../this}}
+                              {{label}}
+                            {{/compare}}
+                          {{/each}}
+                        {{/each}}
+                      </span>
+                      <input type="hidden" name="{{../key}}[]" value="{{this}}">
+                      <i class="chip__icon--trailing far fa-times-circle" tabindex="0" role="button" data-component="TasksTrigger" data-TasksTrigger="delete-chip"></i>
+                    </div>
+                  </span>
+                {{~/if~}}
+              {{~/each~}}
+            </div>
+          {{/each}}
+        </div>
+
+        <div class="column col-4 {{#unless hasLocation}}hidden{{/unless}}" id="location-fields">
           <div class="input-group has-icon-left">
-            {{{{raw}}}}
-            <span class="form-icon far fa-map-marker-alt geo-lookup" tabindex="0" title="Find my location" data-component="TasksTrigger" data-TasksTrigger='geolocation'></span>
-            {{{{/raw}}}}
-            <input type="text" id="where-opportunities" name="location" class="form-input input-lg" value="{{@root.request.params.query.location}}" placeholder="Location" data-lpignore="true">
+            <span class="form-icon far fa-times geo-lookup" tabindex="0" title="Find my location" data-component="TasksTrigger" data-TasksTrigger="empty-location-fields"></span>
+            <input type="text" id="where-opportunities" name="location" class="form-input input-lg" value="{{location}}" placeholder="Location" data-lpignore="true" readonly>
             <select class="form-select select-lg" id="distance" name="distance">
               {{#each (split "5,10,15,20,25,30,35,40,45,50" ",")}}
                 <option value="{{this}}" {{#compare (default @root.request.params.query.distance "10") "===" this}}selected{{/compare}}>{{this}} miles</option>
@@ -28,79 +77,14 @@
             </select>
           </div>
         </div>
-        <div class="column col-3">
-          <div class="form-group">
-            {{!-- <label for="what-opportunities" class="form-label">
-              Keywords
-            </label> --}}
-            <input type="text" id="what-opportunities" name="keywords" class="form-input input-lg" value="{{@root.request.params.query.keywords}}" placeholder="Keywords" data-lpignore="true" data-typeahead='{
-              "typeaheadOptions": {
-                "highlight": true,
-                "minlength": 0
-              },
-              "outputs": [
-                {
-                  "type": "element",
-                  "options": {
-                    "containerSelectorTemplate": "#search-terms",
-                    "testSelectorTemplate": "#\{{dataset.name}}-\{{item.value}}",
-                    "removeSelectorTemplate": "#remove-\{{dataset.name}}-\{{item.value}}",
-                    "template": {{#blockStringify this~}}
-                      <div class="chip" tabindex="0" id="\{{dataset.name}}-\{{item.value}}">
-                        <div class="">\{{item.other}}</div>
-                        <input type="hidden" name="\{{dataset.name}}[]" value="\{{item.value}}">
-                        <i class="far fa-times-circle" tabindex="0" role="button" id="remove-\{{dataset.name}}-\{{item.value}}"></i>
-                      </div>
-                    {{~/blockStringify}}
-                  }
-                },
-                {
-                  "type": "prop",
-                  "options": {
-                    "selectorTemplate": "#what-opportunities",
-                    "valueTemplate": ""
-                  }
-                }
-              ],
-              "datasets": [
-                {{#each @root.context.metaData.volunteeringTerms}}
-                {{#each termGroups}}
-                {
-                  "name": {{{stringify ../key}}},
-                  "templates": {
-                  {{#compare (length ../termGroups) 1}}
-                  "header": "<h3>{{{../label}}}</h3>"
-                  {{else}}
-                  "header": "<h3>{{{../label}}} &gt; {{{label}}}</h3>"
-                  {{/compare}}
-                },
-                "display": "other",
-                "items": [
-                  {{#each terms}}
-                  {
-                    "label": {{{stringify (concat ../key ' ' textBag)}}},
-                    "value": {{{stringify key}}},
-                    "other": {{{stringify label}}}
-                  }{{#unless @last}},{{/unless}}
-                  {{/each}}
-                ]
-                }{{#unlessAll @last @../last}},{{/unlessAll}}
-                {{/each}}
-              {{/each}}
-              ]
-            }'>
-          </div>
-        </div>
-        <div class="column col-2">
+      </div>
+
+      <div class="columns t-margin-full">
+        <div class="column col-ml-auto col-2">
           <button type="submit" id="search-opportunities" class="btn btn-primary btn-lg">
             Search
             <!-- <span class="far fa-search" aria-hidden="true"></span> -->
           </button>
-        </div>
-      </div>
-      <div class="columns">
-        <div class="column col-12">
-          <div id="search-terms" class="chip-set"></div>
         </div>
       </div>
     </div>
@@ -202,15 +186,165 @@
   }
 </script>
 
-<script data-task="empty-location-fields" type="javascript/blocked">
+<script data-component-config="empty-location-fields" type="javascript/blocked">
   {
-    name: "emptyLocationFields",
-    type: "elementManipulator",
-    config: {
-      "#location-lat": { value: "" },
-      "#location-lng": { value: "" },
-      "#where-opportunities": { value: "" }
+    click: {
+      tasks: [
+        {
+          name: "emptyLocationFields",
+          type: "elementManipulator",
+          config: {
+            "#location-fields": { addClass: "hidden" },
+            "#location-lat": { value: "" },
+            "#location-lng": { value: "" },
+            "#where-opportunities": { value: "" }
+          }
+        }
+      ]
+    }
+  }
+</script>
+
+<script data-component-config="delete-chip" type="javascript/blocked">
+  {
+    click: {
+      tasks: [
+        {
+          type: "elementManipulator",
+          config: { "<span": { delete: true } }
+        }
+      ]
     }
   }
 </script>
 {{{{/raw}}}}
+
+<script data-component-config="typeahead-terms" type="javascript/blocked">
+{
+  typeaheadOptions: {
+    highlight: true,
+    minlength: 1
+  },
+  itemSelectedTasks: [
+    {
+      type: "basic",
+      name: "exists",
+      config: {
+        __template: `\{{{get (jquery (concat "input[type='hidden'][value='" metadata.suggestion.value "']")) "length"}}}`,
+        __parser: 'integer'
+      }
+    },
+    {
+      type: "run",
+      config: {
+        code: `console.log('DATA:', data)`
+      }
+    },
+    {
+      __doNotCompile: true,
+      type: "switch",
+      config: {
+        which: { __template: `\{{#unless data.exists}}\{{#eq metadata.suggestion.datasetName "geo_lookup"}}geo\{{else}}other\{{/eq}}\{{/unless}}` },
+        branches: {
+          geo: {
+            tasks: [
+              {
+                __doNotCompile: true,
+                type: "elementManipulator",
+                config: {
+                  "#location-fields": { removeClass: "hidden" },
+                  "#location-lat": { value: { __pointer: "metadata.suggestion.point.lat" } },
+                  "#location-lng": { value: { __pointer: "metadata.suggestion.point.lon" } },
+                  "#where-opportunities": { value: { __pointer: "metadata.suggestion.display" } }
+                }
+              },
+            ]
+          },
+          other: {
+            tasks: [
+              {
+                type: "elementManipulator",
+                config: {
+                  "#\{{metadata.suggestion.datasetName}}-filters": {
+                    createElement: {
+                      html: {
+                        __template: `
+                          <span>
+                            <div class="chip" tabindex="0">
+                              <span class="chip__text">\{{metadata.suggestion.label}}</span>
+                              <input type="hidden" name="\{{metadata.suggestion.datasetName}}[]" value="\{{metadata.suggestion.value}}">
+                              <i class="chip__icon--trailing far fa-times-circle" tabindex="0" role="button" data-component="TasksTrigger" data-TasksTrigger="delete-chip"></i>
+                            </div>
+                          </span>
+                        `
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          default: { tasks: [] },
+        }
+      }
+    },
+    {
+      type: "elementManipulator",
+      config: {
+        ">.tt-menu": { styles: { display: "none !important" } },
+        "#what-opportunities": { value: "", focus: true, }
+      }
+    },
+    "update-components"
+  ],
+  datasets: [
+    {{#each @root.context.metaData.volunteeringTerms}}
+      {{#each termGroups}}
+        {
+          name: {{{stringify ../key}}},
+          display: "label",
+          templates: {
+            {{#compare (length ../termGroups) 1}}
+              header: "<h3>{{{../label}}}</h3>"
+            {{else}}
+              header: "<h3>{{{../label}}} &gt; {{{label}}}</h3>"
+            {{/compare}}
+          },
+          bloodhound: {
+            datumTokenizer: "objWhitespace",
+            datumTokenizerField: "other",
+            queryTokenizer: "whitespace",
+            local: [
+              {{#each terms}}
+                {
+                  label: {{{stringify label}}},
+                  value: {{{stringify key}}},
+                  other: {{{stringify (concat ../key ' ' textBag)}}}
+                },
+              {{/each}}
+            ]
+          }
+        },
+      {{/each}}
+    {{/each}}
+    {
+      name: "geo_lookup",
+      display: "display",
+      templates: {
+        header: "<h3>Location</h3>"
+      },
+      bloodhound: {
+        datumTokenizer: "objWhitespace",
+        datumTokenizerField: "place",
+        queryTokenizer: "whitespace",
+        remote: {
+          url: "/geo-lookup?q=*",
+          wildcard: "*"
+        }
+      }
+    },
+  ],
+  clearIfNothingSelected: true
+}
+</script>
+{{/withExtend}}
