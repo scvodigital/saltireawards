@@ -37,7 +37,7 @@
   },
   "content": [
     {{#eachJoin @root.data.pdfObjects ","}}
-    "I am a fish (Alex's fault)"
+    {{> certificate_pdf}}
     {{/eachJoin}}
   ]
 }
