@@ -36,8 +36,6 @@
     }
   },
   "content": [
-    {{#each @root.data.pdfObjects}}
-    {{> certificate_pdf last=@last}}{{#unless @last}},{{/unless}}
-    {{/each}}
+    "this is test text, not the real text. If you see this, it is Alex's fault."
   ]
 }
