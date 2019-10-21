@@ -53,7 +53,7 @@
               {{#compare hours ">" hours_verified ~}}
               <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-user-clock"></span></span>
-                <span class="text-gray">{{subtract hours hours_verified}} {{inflect hours "hour" "hours"}} logged but not yet verified</span>
+                <span class="text-gray">{{subtract hours hours_verified}} {{inflect (subtract hours hours_verified) "hour" "hours"}} logged but not yet verified</span>
               </li>
               {{/compare ~}}
               {{else}}
