@@ -92,11 +92,13 @@
 </div>
 
 {{{{raw}}}}
-<script data-component-config="geolocation">
+<script data-task="geolocation" type="javascript/blocked">
   {
-    click: {
+    type: "multiTask",
+    config: {
+      __doNotCompile: true,
       tasks: [
-        { name:"geolocation", type: "geolocation", config: {} },
+        { name: "geolocation", type: "geolocation", config: {} },
         {
           type: "switch",
           config: {
@@ -131,7 +133,8 @@
           config: {
             "#location-lat": { value: { __template: "{{data.geolocation.coords.latitude}}" } },
             "#location-lng": { value: { __template: "{{data.geolocation.coords.longitude}}" } },
-            "#where-opportunities": { value: { __template: "{{data.geolocation.coords.latitude}}, {{data.geolocation.coords.longitude}}" } }
+            "#where-opportunities": { value: { __template: "{{data.geolocation.coords.latitude}}, {{data.geolocation.coords.longitude}}" } },
+            "#location-fields": { removeClass: "hidden" }
           }
         },
         {
@@ -244,9 +247,24 @@
       __doNotCompile: true,
       type: "switch",
       config: {
-        which: { __template: `\{{#unless data.exists}}\{{#eq metadata.suggestion.datasetName "geo_lookup"}}geo\{{else}}other\{{/eq}}\{{/unless}}` },
+        which: {
+          __template: `
+            \{{~#unless data.exists~}}
+              \{{~#switch metadata.suggestion.datasetName "geo_lookup"~}}
+                \{{~#case "geo_lookup"~}}
+                  geo_lookup
+                \{{~/case~}}
+                \{{~#case "geo_services"~}}
+                  geo_services
+                \{{~/case~}}
+              \{{~else~}}
+                other
+              \{{~/switch~}}
+            \{{~/unless~}}
+          `
+        },
         branches: {
-          geo: {
+          geo_lookup: {
             tasks: [
               {
                 __doNotCompile: true,
@@ -259,6 +277,9 @@
                 }
               },
             ]
+          },
+          geo_services: {
+            tasks: [ "geolocation" ]
           },
           other: {
             tasks: [
@@ -298,6 +319,25 @@
     "update-components"
   ],
   datasets: [
+    {
+      name: "geo_services",
+      display: "label",
+      templates: {
+        header: "<h3>Near me</h3>"
+      },
+      bloodhound: {
+        datumTokenizer: "objWhitespace",
+        datumTokenizerField: "other",
+        queryTokenizer: "whitespace",
+        local: [
+          {
+            label: "Use my device's location",
+            value: "near-me",
+            other: "local near me here"
+          }
+        ]
+      }
+    },
     {{#each @root.context.metaData.volunteeringTerms}}
       {{#each termGroups}}
         {

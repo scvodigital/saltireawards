@@ -1,4 +1,8 @@
 <div class="form-horizontal form">
+  <!-- fake fields are a workaround for chrome autofill getting the wrong fields -->
+  <!-- I don't know man, got it from here https://stackoverflow.com/a/15917221/98587 -->
+  <input style="display:none" type="text" name="fakeusernameremembered"/>
+  <input style="display:none" type="password" name="fakepasswordremembered"/>
   <div class="form-group">
     <div class="column col-3 col-sm-12">
       <label class="form-label" for="first_name">First name</label>
