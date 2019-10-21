@@ -22,11 +22,10 @@
     },
     {
       "name": "destination",
-      "taskModule": "render",
+      "taskModule": "generatePdf",
       "renderer": "handlebars",
       "config": {
-        "template": ">context.metaData.handlebars.templates.volunteering_certificate_pdf-definition",
-        "output": "body"
+        "definitionTemplate": ">context.metaData.handlebars.templates.volunteering_certificate_pdf-definition"
       }
     }
   ]
