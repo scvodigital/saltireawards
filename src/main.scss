@@ -284,6 +284,18 @@ a.btn-link:hover {
 #availability-filters > span:first-child::before { content: "\f3c5"; }
 #advertised_areas-filters > span:first-child::before { content: "\f4c4"; }
 
+.map-content {
+  h4 {
+    font-size: 1rem;
+  }
+  .post-info {
+    font-size: 0.7rem;
+  }
+  .opportunity-link .btn-link {
+    padding: $unit/2 0;
+  }
+}
+
 @media screen and (min-width: 961px) {
   .mobile-menu {
     display: none;
@@ -840,7 +852,7 @@ ul.fa-ul {
 .faded-overflow {
   overflow: hidden;
   &:before {
-    background: linear-gradient(rgba(236, 242, 233, 0), rgba(236, 242, 233, 1));
+    background: linear-gradient(rgba(255,255,255, 0), rgba(255,255,255, 1));
   }
 }
 

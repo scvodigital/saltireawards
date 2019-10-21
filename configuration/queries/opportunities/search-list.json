@@ -37,7 +37,6 @@
     "salary_currency",
     "role_status_list",
     "active",
-    "closing_date",
     "start_at",
     "end_at",
     "opportunity_contact_email",

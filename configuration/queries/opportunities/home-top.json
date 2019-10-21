@@ -28,7 +28,6 @@
     "salary",
     "role_status_list",
     "active",
-    "closing_date",
     "start_at",
     "end_at",
     "organisation_id",
