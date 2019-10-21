@@ -116,7 +116,6 @@
 {
   "text": "Volunteering with: {{organisation_name}} for {{hours_verified}} hours",
   "fontSize": 16,
-  "bold": true,
   "alignment": "center",
   "margin": [0, 15]
 },
@@ -124,18 +123,23 @@
 {
   "text": "{{task_description}}",
   "fontSize": 16,
-  "bold": true,
   "alignment": "center",
   "margin": [0, 15]
 },
 {{/if ~}}
 {{#if un_sustainable_development_goals ~}}
 {
-  "text": "SDG: {{un_sustainable_development_goals}}",
-  "fontSize": 16,
-  "bold": true,
+  "image": "{{> certificate_logos_un_goals}}",
+  "width": 120,
   "alignment": "center",
-  "margin": [0, 15]
+  "margin": [0, 10]
+},
+{
+  "text": "{{> sdg_number sdg=un_sustainable_development_goals}}: {{un_sustainable_development_goals}}",
+  "fontSize": 16,
+  "color": "{{> sdg_color sdg=un_sustainable_development_goals}}",
+  "alignment": "center",
+  "margin": [0, 5]
 },
 {{/if ~}}
 {{/compare ~}}
@@ -157,6 +161,12 @@
   "margin": [0, 15]
 },
 {{/if ~}}
+{
+  "image": "{{> certificate_logos_sg}}",
+  "width": 170,
+  "alignment": "right",
+  "margin": [20, 50]
+},
 {{#if (compare @root.route.name 'group_certificate') ~}}
 {{#if last ~}}
 {{>pdf_text text="" pageBreak="none"}}
