@@ -12,6 +12,12 @@
     "type_name": "The Approach"
   },
   {
+    "hours": 50,
+    "certificate_name": "Fifty",
+    "type": "ascent",
+    "type_name": "The Ascent"
+  },
+  {
     "hours": 100,
     "certificate_name": "One hundred",
     "type": "ascent",
