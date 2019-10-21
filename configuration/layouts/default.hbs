@@ -115,7 +115,7 @@
                 {{#each @root.context.metaData.menus.main-signed-in ~}}
                   <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
                 {{/each}}
-                <div class="dropdown my-account">
+                <div class="dropdown my-account signed-in">
                   <div class="btn-group">
                     <a href="#" class="btn dropdown-toggle">
                       {{#if @root.data.auth.photoURL ~}}
@@ -167,7 +167,7 @@
                 <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
               {{/each}}
               {{#each @root.context.metaData.menus.user-not-signed-in ~}}
-                <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}} my-account">{{label}}</a>
+                <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}} my-account not-signed-in">{{label}}</a>
               {{/each}}
             {{/if ~}}
           </div>
@@ -252,7 +252,7 @@
               {{else}}
                 {{#each @root.context.metaData.menus.main-not-signed-in ~}}
                   <li class="menu-item">
-                    <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}} my-account">
+                    <a href="{{stripTrailingSlash path}}" class="l-padding-full {{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
                       {{#if icon ~}}
                       <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
                       {{/if ~}}

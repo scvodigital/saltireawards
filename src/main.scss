@@ -463,7 +463,6 @@ header {
     background: white !important;
     border-radius: 2rem;
     margin-left: $unit/3;
-    min-width: 240px;
     .dropdown-toggle {
       border-color: transparent !important;
       color: $secondary-color !important;
@@ -473,9 +472,9 @@ header {
       color: $secondary-color-dark !important;
     }
   }
-  // .btn.btn-link:last-child {
-  //   margin-right: $unit/2;
-  // }
+}
+.my-account.dropdown.signed-in {
+  min-width: 240px;
 }
 
 .certificates {
