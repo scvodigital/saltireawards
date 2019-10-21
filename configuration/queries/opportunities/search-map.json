@@ -76,7 +76,7 @@
       }
     {{else}}
       {
-        "closing_date": "asc"
+        "_score": "desc"
       }
     {{/ifAll ~}}
   ]
