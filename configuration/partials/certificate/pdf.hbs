@@ -103,11 +103,17 @@
 {{/if ~}}
 {{#if un_sustainable_development_goals ~}}
 {
-  "text": "SDG: {{un_sustainable_development_goals}}",
-  "fontSize": 16,
-  "bold": true,
+  "image": "{{> certificate_logos_un_goals}}",
+  "width": 120,
   "alignment": "center",
-  "margin": [0, 15]
+  "margin": [0, 10]
+},
+{
+  "text": "{{> sdg_number sdg=un_sustainable_development_goals}}: {{un_sustainable_development_goals}}",
+  "fontSize": 16,
+  "color": "{{> sdg_color sdg=un_sustainable_development_goals}}",
+  "alignment": "center",
+  "margin": [0, 5]
 },
 {{/if ~}}
 {{/compare ~}}
