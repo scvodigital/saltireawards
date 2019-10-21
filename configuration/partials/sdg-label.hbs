@@ -1,1 +1,1 @@
-<abbr title="Sustainable Development Goal">SDG</abbr>: <span class="label label-rounded label-primary" style="background-color:{{#each @root.context.metaData.globalGoals}}{{#compare (lowercase title) (lowercase ../sdg)}}{{color}}{{/compare}}{{/each}}">{{sdg}}</span>
+<abbr title="Sustainable Development Goal">SDG</abbr>: <span class="label label-rounded label-primary" style="background-color:{{> sdg_color sdg=sdg}}">{{sdg}}</span>

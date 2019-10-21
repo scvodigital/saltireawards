@@ -1,3 +1,5 @@
+{{#withExtend this hasPostcode=(if @root.data.accountInfo.local_authority true else=false)}}
+
 <div class="form-horizontal form">
   {{!--
   Fake fields are a workaround for chrome autofill getting the wrong fields
@@ -80,7 +82,10 @@
       <label class="form-label" for="postcode">{{#if admin}}Work postcode{{else}}Home postcode{{/if}}</label>
     </div>
     <div class="column col-2 col-md-3 col-sm-4 col-xs-5">
-      <input class="form-input" id="postcode" name="postcode" type="text" value="{{@root.data.accountInfo.postcode}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="postcode-lookup" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.postcode}}>
+      <div class="has-icon-right d-inline-block">
+        <input class="form-input" id="postcode" name="postcode" type="text" value="{{@root.data.accountInfo.postcode}}" placeholder="" autocomplete="off" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="postcode-lookup" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.postcode}}>
+        <i class="form-icon fas {{#if hasPostcode}}fa-check-circle text-success{{else}}fa-times-circle text-error{{/if}}" id="postcode-validation-icon"></i>
+      </div>
     </div>
   </div>
   <input type="hidden" name="local_authority" id="local_authority" value="{{@root.data.accountInfo.local_authority}}" />
@@ -90,61 +95,133 @@
 
 <input type="hidden" name="external_id" value="{{@root.data.auth.uid}}" />
 
+{{{{raw}}}}
 <script data-component-config="postcode-lookup" type="javascript/blocked">
   {
-    blur: {
-      tasks: [
-        {
-          type: "elementManipulator",
-          config: { "<.form": { addClass: 'disabled' } }
-        },
-        {
-          name: "postcodeLookup",
-          type: "request",
-          config: { url: { __template: "/postcode-lookup?q=\{{jquery rootElement 'val'}}" } }
-        },
-        {
-          type: "switch",
-          config: {
-            which: { __template: "\{{#any data.postcodeLookup}}found\{{/any}}" },
-            branches: {
-              default: {
-                tasks: [
-                  {
-                    type: "elementManipulator",
-                    config: {
-                      ">": { value: "", focus: true },
-                      "#local_authority": { value: "" },
-                      "#tsi_area": { value: "" },
-                      "#tsi_contact_email": { value: "" }
-                    }
-                  }
-                ]
-              },
-              found: {
-                tasks: [
-                  {
-                    type: "elementManipulator",
-                    config: {
-                      ">": { value: { __template: "\{{data.postcodeLookup.[0].place}}" } },
-                      "#local_authority": { value: { __template: "\{{data.postcodeLookup.[0].local_authority}}" } },
-                      "#tsi_area": { value: { __template: "\{{data.postcodeLookup.[0].tsi_area}}" } },
-                      "#tsi_contact_email": { value: { __template: "\{{data.postcodeLookup.[0].tsi_contact_email}}" } }
-                    }
-                  }
-                ]
+    blur: { tasks: ["postcode-lookup"] },
+    keyup: { tasks: ["postcode-lookup"] },
+  }
+</script>
+
+<script data-task="validate-details-form" type="javascript/blocked">
+{
+  type: "multiTask",
+  config: {
+    tasks: [
+      {
+        name: "isFormValid",
+        type: "run",
+        config: {
+          code: "document.querySelector('#user-details-form').checkValidity()"
+        }
+      },
+      {
+        __doNotCompile: true,
+        type: "elementManipulator",
+        config: {
+          "#detail-submit": {
+            attributes: {
+              disabled: {
+                __template: `
+                  {{~#ifAll (jquery '#local_authority' 'val') data.isFormValid~}}
+                    null
+                  {{~else~}}
+                    "disabled"
+                  {{~/ifAll~}}
+                `,
+                __parser: "json"
               }
             }
           }
-        },
-        {
-          type: "elementManipulator",
-          config: { "<.form": { removeClass: 'disabled' } }
         }
-      ]
-    }
+      }
+    ]
   }
+}
 </script>
+
+<script data-task="postcode-lookup" type="javascript/blocked">
+{
+  type: "multiTask",
+  config: {
+    tasks: [
+      {
+        type: "switch",
+        config: {
+          which: { __template: "{{#regexMatch (jquery '#postcode' 'val') '[a-z]{1,2}[0-9]{1,2}[a-z]?\\s?[0-9][a-z]{2}' 'ig'}}check{{/regexMatch}}" },
+          branches: {
+            default: {
+              tasks: [
+                {
+                  type: "elementManipulator",
+                  config: {
+                    "#postcode-validation-icon": { addClass: [ "fa-times-circle", "text-error" ], removeClass: [ "loading", "fa-check-circle", "text-primary", "text-success" ] },
+                    "#local_authority": { value: "" },
+                    "#tsi_area": { value: "" },
+                    "#tsi_contact_email": { value: "" }
+                  }
+                }
+              ]
+            },
+            check: {
+              __doNotCompile: true,
+              tasks: [
+                {
+                  type: "elementManipulator",
+                  config: { "#postcode-validation-icon": { addClass: [ "loading", "text-primary" ] , removeClass: [ "fa-check-circle", "fa-times-circle", "text-error", "text-success" ] } }
+                },
+                {
+                  name: "postcodeLookup",
+                  type: "request",
+                  config: { url: { __template: "/postcode-lookup?q={{jquery rootElement 'val'}}" } }
+                },
+                {
+                  __doNotCompile: true,
+                  type: "switch",
+                  config: {
+                    which: { __template: "{{#any data.postcodeLookup}}found{{/any}}" },
+                    branches: {
+                      default: {
+                        tasks: [
+                          {
+                            type: "elementManipulator",
+                            config: {
+                              "#postcode-validation-icon": { addClass: [ "fa-times-circle", "text-error" ], removeClass: [ "loading", "fa-check-circle", "text-primary", "text-success" ] },
+                              "#local_authority": { value: "" },
+                              "#tsi_area": { value: "" },
+                              "#tsi_contact_email": { value: "" }
+                            }
+                          }
+                        ]
+                      },
+                      found: {
+                        tasks: [
+                          {
+                            type: "elementManipulator",
+                            config: {
+                              "#postcode-validation-icon": { addClass: [ "fa-check-circle", "text-success" ], removeClass: [ "loading", "fa-times-circle", "text-primary", "text-error" ] },
+                              ">": { value: { __template: "{{data.postcodeLookup.[0].place}}" } },
+                              "#local_authority": { value: { __template: "{{data.postcodeLookup.[0].local_authority}}" } },
+                              "#tsi_area": { value: { __template: "{{data.postcodeLookup.[0].tsi_area}}" } },
+                              "#tsi_contact_email": { value: { __template: "{{data.postcodeLookup.[0].tsi_contact_email}}" } }
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "validate-details-form"
+    ]
+  }
+}
+</script>
+{{{{/raw}}}}
 
 
 
@@ -173,3 +250,4 @@
     })
   })
 </script>
+{{/withExtend}}

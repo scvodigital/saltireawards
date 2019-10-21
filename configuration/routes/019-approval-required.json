@@ -4,8 +4,10 @@
   "debug": true,
   "errorRoute": "five_hundred",
   "tasks": [
+    "context.metaData.commonTasks.flushCache",
     "context.metaData.commonTasks.authRequired",
     "context.metaData.commonTasks.getAccountInfo",
+
     {
       "name": "apexUrl",
       "taskModule": "render",

@@ -1,46 +1,29 @@
+{{#withExtend this q=@root.request.params.query.q}}
 {
   "size": 1,
-  "_source": ["place", "display", "point", "district", "county"],
+  "_source": [ "district", "county", "point", "place", "country" ],
   "query": {
     "bool": {
       "filter": [
+        { "terms": { "_type": [ "os_place", "postcode" ] } },
+        { "term": { "country": { "value": "Scotland" } } },
+        { "exists": { "field": "district" } },
         {
-          "terms": {
-            "_type": [
-              {{#compare (length @root.request.params.query.q) ">" 4}}
-                "os_place", "postcode"
-              {{else}}
-                "os_place", "outcode"
-              {{/compare}}
+          "ids": {
+            "values": [
+              {{{stringify
+                (uppercase
+                  (regexReplace
+                    (regexReplace q "[^a-z0-9]" "ig" "")
+                    "([0-9][a-z]{2})$" "ig" " $1"
+                  )
+                )
+              }}}
             ]
-          }
-        },
-        {
-          "exists": {
-            "field": "district"
-          }
-        }
-      ],
-      "must": [
-        {
-          "query_string": {
-             "fields": ["autocomplete", "textbag"],
-             "query":
-              {{~#if (regexMatch @root.request.params.query.q "^([A-Z]{1,2})(([0-9][A-Z])|([0-9]{1,2}))" "ig")~}}
-                {{{stringify (replace @root.request.params.query.q " " "")}}}
-              {{else}}
-                {{{stringify (lowercase @root.request.params.query.q)}}}
-              {{~/if~}}
-          }
-        },
-        {
-          "term": {
-            "country": {
-              "value": "Scotland"
-            }
           }
         }
       ]
     }
   }
 }
+{{/withExtend}}
