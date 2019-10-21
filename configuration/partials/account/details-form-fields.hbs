@@ -4,9 +4,9 @@
   {{!--
   Fake fields are a workaround for chrome autofill getting the wrong fields
   I don't know man, got it from here https://stackoverflow.com/a/15917221/98587
-
+  --}}
   <input style="display:none" type="text" name="fakeusernameremembered"/>
-  <input style="display:none" type="password" name="fakepasswordremembered"/>--}}
+  <input style="display:none" type="password" name="fakepasswordremembered"/>
   <div class="form-group">
     <div class="column col-3 col-sm-12">
       <label class="form-label" for="first_name">First name</label>
@@ -88,9 +88,6 @@
         <i class="form-icon fas {{#if hasPostcode}}fa-check-circle text-success{{else}}fa-times-circle text-error{{/if}}" id="postcode-validation-icon"></i>
       </div>
     </div>
-    <div class="column col-3">
-      <span id="postcode-validation">{{default @root.data.accountInfo.local_authority}}</span>
-    </div>
   </div>
   <input type="hidden" name="local_authority" id="local_authority" value="{{@root.data.accountInfo.local_authority}}" />
   <input type="hidden" name="tsi_area" id="tsi_area" value="{{@root.data.accountInfo.tsi_area}}" />
@@ -117,14 +114,6 @@
         type: "run",
         config: {
           code: "document.querySelector('#user-details-form').checkValidity()"
-        }
-      },
-      {
-        name: "hasPostcode",
-        type: "basic",
-        config: {
-          __template: "{{#if (jquery '#local_authority' 'val')}}true{{else}}false{{/if}}",
-          __parser: "boolean"
         }
       },
       {
@@ -168,7 +157,6 @@
                   type: "elementManipulator",
                   config: {
                     "#postcode-validation-icon": { addClass: [ "fa-times-circle", "text-error" ], removeClass: [ "loading", "fa-check-circle", "text-primary", "text-success" ] },
-                    "#postcode-validation": { contents: "" },
                     "#local_authority": { value: "" },
                     "#tsi_area": { value: "" },
                     "#tsi_contact_email": { value: "" }
@@ -200,7 +188,6 @@
                             type: "elementManipulator",
                             config: {
                               "#postcode-validation-icon": { addClass: [ "fa-times-circle", "text-error" ], removeClass: [ "loading", "fa-check-circle", "text-primary", "text-success" ] },
-                              "#postcode-validation": { contents: "" },
                               "#local_authority": { value: "" },
                               "#tsi_area": { value: "" },
                               "#tsi_contact_email": { value: "" }
@@ -214,7 +201,6 @@
                             type: "elementManipulator",
                             config: {
                               "#postcode-validation-icon": { addClass: [ "fa-check-circle", "text-success" ], removeClass: [ "loading", "fa-times-circle", "text-primary", "text-error" ] },
-                              "#postcode-validation": { contents: { __template: "{{data.postcodeLookup.[0].local_authority}}" } },
                               ">": { value: { __template: "{{data.postcodeLookup.[0].place}}" } },
                               "#local_authority": { value: { __template: "{{data.postcodeLookup.[0].local_authority}}" } },
                               "#tsi_area": { value: { __template: "{{data.postcodeLookup.[0].tsi_area}}" } },
@@ -225,10 +211,6 @@
                       }
                     }
                   }
-                },
-                {
-                  type: "elementManipulator",
-                  config: { "<.form": { removeClass: 'disabled' } }
                 }
               ]
             }
