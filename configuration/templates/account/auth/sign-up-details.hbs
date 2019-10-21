@@ -9,7 +9,11 @@
     {{/unless ~}}
   </h3>
 
-  <form id="user-details-form" action="/submit-sign-up-details" method="POST" autocomplete="nope">
+  <form id="user-details-form" action="/submit-sign-up-details" method="POST" autocomplete="nope" data-component="TasksTrigger" data-TasksTrigger='{
+    change: { tasks: [ "validate-details-form" ] },
+    keyup: { tasks: [ "validate-details-form" ] },
+    load: { tasks: [ "validate-details-form" ] }
+  }'>
     {{> account_details_form_fields admin=data.adminCandidate}}
 
     <input type="hidden" name="signup" value="true">
