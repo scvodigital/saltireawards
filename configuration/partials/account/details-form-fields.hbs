@@ -83,7 +83,7 @@
     </div>
     <div class="column col-2 col-md-3 col-sm-4 col-xs-5">
       <div class="has-icon-right d-inline-block">
-        <input class="form-input" id="postcode" name="postcode" type="text" value="{{@root.data.accountInfo.postcode}}" placeholder="" autocomplete="off" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="postcode-lookup" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.postcode}}>
+        <input class="form-input" id="postcode" name="postcode" type="text" value="{{@root.data.accountInfo.postcode}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="postcode-lookup" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.postcode}}>
         <i class="form-icon fas {{#if hasPostcode}}fa-check-circle text-success{{else}}fa-times-circle text-error{{/if}}" id="postcode-validation-icon"></i>
       </div>
     </div>
@@ -102,6 +102,8 @@
     keyup: { tasks: ["postcode-lookup"] },
   }
 </script>
+
+
 
 <script data-task="validate-details-form" type="javascript/blocked">
 {

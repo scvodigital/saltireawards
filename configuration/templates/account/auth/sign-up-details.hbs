@@ -12,7 +12,8 @@
   <form id="user-details-form" action="/submit-sign-up-details" method="POST" autocomplete="nope" data-component="TasksTrigger" data-TasksTrigger='{
     change: { tasks: [ "validate-details-form" ] },
     keyup: { tasks: [ "validate-details-form" ] },
-    load: { tasks: [ "validate-details-form" ] }
+    load: { tasks: [ "validate-details-form" ] },
+    submit: { tasks: [ "just-spin" ]}
   }'>
     {{> account_details_form_fields admin=data.adminCandidate}}
 
