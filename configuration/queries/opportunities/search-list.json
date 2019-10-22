@@ -87,20 +87,26 @@
               "mode": "min",
               "distance_type": "arc"
             }
-          }
+          },
         {{/ifAll}}
       {{/case}}
       {{#case "newest"}}
         {
           "date_last_modified": "desc"
-        }
+        },
       {{/case}}
       {{#case "oldest"}}
         {
           "date_last_modified": "asc"
-        }
+        },
       {{/case}}
     {{/switch}}
+    {
+      "_score": "desc"
+    },
+    {
+      "date_last_modified": "desc"
+    }
   ]
   {{/if}}
 }
