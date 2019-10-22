@@ -1,88 +1,62 @@
 <div class="container">
-  <h1>Verify or change hours for {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}}  </h1>
-
   <h2>User: {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}} {{#if @root.data.accountInfo.school_college_name}}from {{@root.data.accountInfo.school_college_name}}{{/if}}</h2>
 
   {{#each (distinct (pluck @root.data.tasksInfoUnverified "volunteer_manager_email")) ~}}
-    <section class="email-template h-padding-full">
-      <p>
-        Modify hours for {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}} {{#if @root.data.accountInfo.school_college_name}}from {{@root.data.accountInfo.school_college_name}}{{/if}}.
-        If the hours are incorrect, please adjust the number and click Verify. If the work did not occur, please click Remove.</p>
-      </p>
+  <section class="email-template">
+    <p>
+      {{!-- Modify hours for {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}} {{#if @root.data.accountInfo.school_college_name}}from {{@root.data.accountInfo.school_college_name}}{{/if}}. --}}
+      If the volunteering details below are incorrect, please adjust the number and choose Verify. If the work did not occur, please choose Remove.
+    </p>
 
-      <ul>
-        {{#each @root.data.tasksInfoUnverified}}
-          {{#compare unverified_hours_list.length ">=" 1}}
-          {{#compare this.volunteer_manager_email "===" ../this}}
-
-            <strong>Volunteering </strong> with <strong>{{organisation_name}}</strong>: {{#if task_description}}Tasks: {{task_description}}{{/if}}, Manager: {{volunteer_manager_first_name}} {{volunteer_manager_last_name}} - {{volunteer_manager_title}}
-                  <div class="columns">
-                    <div class="column col-1">
-                      <strong>Hours</strong>
-                    </div>
-                    <div class="column col-4">
-                      <strong>Notes</strong>
-                    </div>
-
-                    <div class="column col-1"></div>
-                    <div class="column col-2"></div>
-                    <div class="
-                    column col-2"></div>
-                    <div class="column col-2"></div>
-                  </div>
-                {{#each this.hours_list}}
-                  {{#unless verified}}
-                    <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="inline-hours-form" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-form-handler">
-                      <input type="hidden" name="task_id" value="{{task_id}}">
-                      <input type="hidden" name="verified" value="true">
-                      <input type="hidden" name="claim_code" value="{{claim_code}}">
-                      <input type="hidden" name="hours_id" value="{{hours_id}}">
-                      <input type="hidden" name="user_id" value="{{@root.request.params.query.user_id}}">
-
-                      <div class="columns">
-                        <div class="column col-1">
-                          <div class="form-group r-margin b-margin">
-                            <input class="form-input inline-edit" name="hours" value="{{hours}}">
-                          </div>
-                        </div>
-                        <div class="column col-4">
-                          <div class="form-group r-margin b-margin">
-                            <input class="form-input inline-edit" name="notes" value="{{notes}}">
-                          </div>
-                        </div>
-
-                        <div class="column col-1">
-                          <button type="submit" class="btn inline-update-button bg-dark">Verify</button>
-                        </div>
-                        <div class="column col-2">
-                          <a href="/admin-delete-hours?hours_id={{hours_id}}&c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="btn inline-delete-button" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
-                        </div>
-                        <div class="column col-2">
-                          <code class="claim-code">{{substr claim_code 0 10}}</code>
-                        </div>
-                        <div class="column col-2"></div>
-                      </div>
-                    </form>
-                  {{/unless}}
-                {{/each ~}}
-          {{/compare}}
-          {{/compare}}
-          <br />
-        {{/each}}
-      </ul>
-    </section>
+    {{#each @root.data.tasksInfoUnverified}}
+    {{#compare unverified_hours_list.length ">=" 1}}
+    {{#compare this.volunteer_manager_email "===" ../this}}
+    Volunteering with <strong>{{organisation_name}}</strong>: {{#if task_description}}Tasks: {{task_description}}, {{/if}} Manager: {{volunteer_manager_first_name}} {{volunteer_manager_last_name}} ({{volunteer_manager_title}})
+    <div class="columns">
+      <div class="column col-1">
+        <strong>Hours</strong>
+      </div>
+      <div class="column col-4">
+        <strong>Notes</strong>
+      </div>
+    </div>
+    {{#each this.hours_list}}
+    {{#unless verified}}
+    <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="inline-hours-form" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-form-handler">
+      <input type="hidden" name="task_id" value="{{task_id}}">
+      <input type="hidden" name="verified" value="true">
+      <input type="hidden" name="claim_code" value="{{claim_code}}">
+      <input type="hidden" name="hours_id" value="{{hours_id}}">
+      <input type="hidden" name="user_id" value="{{@root.request.params.query.user_id}}">
+      <div class="columns">
+        <div class="column col-1">
+          <div class="form-group r-margin b-margin">
+            <input class="form-input inline-edit" name="hours" value="{{hours}}">
+          </div>
+        </div>
+        <div class="column col-4">
+          <div class="form-group r-margin b-margin">
+            <input class="form-input inline-edit" name="notes" value="{{notes}}">
+          </div>
+        </div>
+        <div class="column col-1">
+          <button type="submit" class="btn btn-block btn-success inline-update-button">Verify</button>
+        </div>
+        <div class="column col-1">
+          <a href="/admin-delete-hours?hours_id={{hours_id}}&c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="btn btn-block inline-delete-button" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
+        </div>
+        <div class="column col-2">
+          {{#if claim_code ~}}
+          <code class="claim-code">{{substr claim_code 0 10}}</code>
+          {{/if ~}}
+        </div>
+      </div>
+    </form>
+    {{/unless}}
+    {{/each ~}}
+    {{/compare}}
+    {{/compare}}
+    {{/each}}
+  </section>
   {{/each}}
 </div>
-<script>
-
-  function completeCB(response, whatever) {
-    var jsonData = JSON.parse(response);
-    if (jsonData.id){
-      console.log("yay!");
-      saltireawards.componentsInitialiser.snackbar.show({message:"yay!"});
-    } else {
-      $('#detail-submit').prop('disabled', false);
-      saltireawards.componentsInitialiser.snackbar.show({message:"Failed create task."});
-    }
-  }
-</script>
