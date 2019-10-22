@@ -26,17 +26,18 @@
 
                     <div class="column col-1"></div>
                     <div class="column col-2"></div>
-                    <div class="column col-2"></div>
+                    <div class="
+                    column col-2"></div>
                     <div class="column col-2"></div>
                   </div>
                 {{#each this.hours_list}}
                   {{#unless verified}}
-                    <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?c={{@root.request.params.query.c}}&u={{@root.request.params.query.u}}" class="inline-hours-form" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-form-handler">
+                    <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="inline-hours-form" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-form-handler">
                       <input type="hidden" name="task_id" value="{{task_id}}">
                       <input type="hidden" name="verified" value="true">
                       <input type="hidden" name="claim_code" value="{{claim_code}}">
                       <input type="hidden" name="hours_id" value="{{hours_id}}">
-                      <input type="hidden" name="user_id" value="{{@root.request.params.query.u}}">
+                      <input type="hidden" name="user_id" value="{{@root.request.params.query.user_id}}">
 
                       <div class="columns">
                         <div class="column col-1">
@@ -54,7 +55,7 @@
                           <button type="submit" class="btn inline-update-button bg-dark">Verify</button>
                         </div>
                         <div class="column col-2">
-                          <a href="/admin-delete-hours?hours_id={{hours_id}}&c={{@root.request.params.query.c}}&u={{@root.request.params.query.u}}" class="btn inline-delete-button" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
+                          <a href="/admin-delete-hours?hours_id={{hours_id}}&c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="btn inline-delete-button" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
                         </div>
                         <div class="column col-2">
                           <code class="claim-code">{{substr claim_code 0 10}}</code>

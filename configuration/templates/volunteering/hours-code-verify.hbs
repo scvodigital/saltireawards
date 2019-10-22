@@ -1,1 +1,1 @@
-{{#ifAll @root.request.params.query.c @root.request.params.query.u (compare @root.data.verifyHoursInfo.code @root.request.params.query.c)}}pass{{else}}fail{{/ifAll}}
+{{#ifAll @root.request.params.query.c @root.request.params.query.user_id (compare @root.data.verifyHoursInfo.code @root.request.params.query.c)}}pass{{else}}fail{{/ifAll}}

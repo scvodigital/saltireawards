@@ -127,7 +127,7 @@
 		"renderer": "handlebars",
 		"config": {
 			"appName": "saltireawards",
-			"pathTemplate": "/{{default @root.request.params.query.u 'no-such-write-profile'}}/verify-hours/",
+			"pathTemplate": "/{{default @root.request.params.query.user_id 'no-such-write-profile'}}/verify-hours/",
 			"defaultData": false
 		}
 	},
@@ -139,7 +139,7 @@
 			"connection": "scvoAlexSandbox",
 			"output": "data",
 			"method": "GET",
-			"apexClassPath": "/SaltireTask/?user_id={{@root.request.params.query.u }}&verified=false"
+			"apexClassPath": "/SaltireTask/?user_id={{@root.request.params.query.user_id }}&verified=false"
 		}
 	},
 	"hoursCodeVerify": {

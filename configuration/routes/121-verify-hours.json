@@ -11,7 +11,7 @@
       "renderer": "handlebars",
       "config": {
         "appName": "saltireawards",
-        "pathTemplate": "/{{default @root.request.params.query.u 'no-such-write-profile'}}/verify-hours/",
+        "pathTemplate": "/{{default @root.request.params.query.user_id 'no-such-write-profile'}}/verify-hours/",
         "defaultData": {}
       }
     },
@@ -59,7 +59,7 @@
       "taskModule": "cacheFlush",
       "renderer": "handlebars",
       "config": {
-        "partition": "saltire-profiles-{{@root.request.params.query.u}}"
+        "partition": "saltire-profiles-{{@root.request.params.query.user_id}}"
       }
     },
     {

@@ -32,7 +32,7 @@
       "taskModule": "cacheFlush",
       "renderer": "handlebars",
       "config": {
-        "partition": "saltire-profiles-{{default @root.request.params.query.u @root.data.auth.uid}}"
+        "partition": "saltire-profiles-{{default @root.request.params.query.user_id @root.data.auth.uid}}"
       }
     },
     {
