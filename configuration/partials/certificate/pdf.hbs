@@ -2,7 +2,7 @@
   "image": "{{> certificate_logos_saltire}}",
   "width": 180,
   "alignment": "center",
-  "margin": [0, 50]
+  "margin": [0, 0]
 },
 {
   "text": {{>pdf_metadata_value key="title" default="VOLUNTEERING FOR 12 TO 25 YEAR OLDS"}},
@@ -15,7 +15,7 @@
   "columns": [
     {
       "width": "45%",
-      "text": {{>pdf_metadata_value key="title" default=(concat user.hours_verified ' hours')}},
+      "text": {{>pdf_metadata_value key="title" default=(concat user.hours_verified " hours")}},
       "fontSize": 18,
       "bold": false,
       "alignment": "center",
@@ -34,7 +34,7 @@
   "margin": [0, 0]
 },
 {
-  "text": {{>pdf_metadata_value key="title" default=(concat user.hours_verified ' hours')}},
+  "text": {{>pdf_metadata_value key="title" default=(concat user.hours_verified " hours")}},
   "fontSize": 18,
   "bold": false,
   "alignment": "center",
@@ -75,16 +75,9 @@
   "alignment": "center",
   "margin": [0, 10]
 },
-{{!-- {
-  "text": {{>pdf_metadata_value key="title" default="Tasks"}},
-  "fontSize": 22,
-  "bold": true,
-  "alignment": "center",
-  "margin": [0, 15]
-}, --}}
 {{#each tasks ~}}
-{{#compare ../type 'group' ~}}
-{{#compare ../user.hours_verified '>' 0 ~}}
+{{#compare ../type "group" ~}}
+{{#compare ../user.hours_verified ">" 0 ~}}
 {
   "text": "Volunteering with: {{organisation_name}} for {{../user.hours_verified}} hours",
   "fontSize": 16,
@@ -103,12 +96,6 @@
 {{/if ~}}
 {{#if un_sustainable_development_goals ~}}
 {
-  "image": "{{> certificate_logos_un_goals}}",
-  "width": 120,
-  "alignment": "center",
-  "margin": [0, 10]
-},
-{
   "text": "{{> sdg_number sdg=un_sustainable_development_goals}}: {{un_sustainable_development_goals}}",
   "fontSize": 16,
   "color": "{{> sdg_color sdg=un_sustainable_development_goals}}",
@@ -118,7 +105,7 @@
 {{/if ~}}
 {{/compare ~}}
 {{else}}
-{{#compare hours_verified '>' 0 ~}}
+{{#compare hours_verified ">" 0 ~}}
 {
   "text": "Volunteering with: {{organisation_name}} for {{hours_verified}} hours",
   "fontSize": 16,
@@ -134,12 +121,6 @@
 },
 {{/if ~}}
 {{#if un_sustainable_development_goals ~}}
-{
-  "image": "{{> certificate_logos_un_goals}}",
-  "width": 120,
-  "alignment": "center",
-  "margin": [0, 10]
-},
 {
   "text": "{{> sdg_number sdg=un_sustainable_development_goals}}: {{un_sustainable_development_goals}}",
   "fontSize": 16,
@@ -168,12 +149,30 @@
 },
 {{/if ~}}
 {
-  "image": "{{> certificate_logos_sg}}",
-  "width": 170,
-  "alignment": "right",
-  "margin": [20, 50]
+  "columns": [
+    {
+      "width": "*",
+      "text": ""
+    },
+    {
+      "width": 110,
+      "image": "{{> certificate_logos_global_goals}}",
+      "alignment": "center",
+      "link": "https://globalgoals.org",
+      "margin": [0, 0]
+    },
+    {
+      "width": 170,
+      "image": "{{> certificate_logos_sg}}",
+      "alignment": "right",
+      "link": "https://gov.scot",
+      "margin": [0, 0]
+    }
+  ],
+  "columnGap": 10,
+  "margin": [0, 0]
 },
-{{#if (compare @root.route.name 'group_certificate') ~}}
+{{#if (compare @root.route.name "group_certificate") ~}}
 {{#if last ~}}
 {{>pdf_text text="" pageBreak="none"}}
 {{else}}
