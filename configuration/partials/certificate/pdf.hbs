@@ -11,11 +11,15 @@
   "alignment": "center",
   "margin": [0, 0]
 },
+{{#each @root.context.metaData.certificates ~}}
+{{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
+{{#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
 {
   "columns": [
     {
       "width": "45%",
-      "text": {{>pdf_metadata_value key="title" default=(concat user.hours_verified " hours")}},
+      "text": {{>pdf_metadata_value key="title" default=(concat certificate_name " hours")}},
+      "color": "{{getProperty @root.context.metaData.theme type}}",
       "fontSize": 18,
       "bold": false,
       "alignment": "center",
@@ -27,17 +31,11 @@
     },
     {
       "width": "33%",
-      "text": "badge"
+      "color": "{{getProperty @root.context.metaData.theme type}}",
+      "text": "{{hours}} badge"
     }
   ],
   "columnGap": 0,
-  "margin": [0, 0]
-},
-{
-  "text": {{>pdf_metadata_value key="title" default=(concat user.hours_verified " hours")}},
-  "fontSize": 18,
-  "bold": false,
-  "alignment": "center",
   "margin": [0, 0]
 },
 {
@@ -55,21 +53,18 @@
   "margin": [0, 0]
 },
 {
-  "text": {{>pdf_metadata_value key="title" default="THE APPROACH"}},
+  "text": {{>pdf_metadata_value key="title" default=type_name}},
   "fontSize": 14,
-  "bold": false,
+  "bold": true,
+  "color": "{{getProperty @root.context.metaData.theme type}}",
   "alignment": "center",
   "margin": [0, 0]
 },
+{{/unless ~}}
+{{/compare ~}}
+{{/each ~}}
 {
-  "text": "Name: {{user.first_name}} {{user.last_name}}",
-  "fontSize": 16,
-  "bold": true,
-  "alignment": "center",
-  "margin": [0, 10]
-},
-{
-  "text": "Total Hours: {{user.hours_verified}}",
+  "text": "{{user.first_name}} {{user.last_name}}",
   "fontSize": 16,
   "bold": true,
   "alignment": "center",
@@ -79,7 +74,7 @@
 {{#compare ../type "group" ~}}
 {{#compare ../user.hours_verified ">" 0 ~}}
 {
-  "text": "Volunteering with: {{organisation_name}} for {{../user.hours_verified}} hours",
+  "text": "For: {{organisation_name}}",
   "fontSize": 16,
   "bold": true,
   "alignment": "center",
@@ -107,7 +102,7 @@
 {{else}}
 {{#compare hours_verified ">" 0 ~}}
 {
-  "text": "Volunteering with: {{organisation_name}} for {{hours_verified}} hours",
+  "text": "For: {{organisation_name}}",
   "fontSize": 16,
   "alignment": "center",
   "margin": [0, 15]
