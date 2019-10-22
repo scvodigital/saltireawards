@@ -24,7 +24,7 @@
                 {{/each ~}}
               {{/if ~}}
             {{/each ~}} --}}
-            {{#each (split "keywords,exclude,location,lat,lng,la,age" ",")}}
+            {{#each (split "keywords,exclude,activities,themes,location,lat,lng,la,age" ",")}}
               {{#if (getProperty @root.request.params.query this) ~}}
                 <input type="hidden" name="{{this}}" value="{{getProperty @root.request.params.query this}}" />
               {{/if ~}}
@@ -42,10 +42,14 @@
               </div>
               <div class="col-3 col-lg-4 col-md-6">
                 <select class="form-select" id="sort" name="sort" onchange="this.form.submit();">
+                  {{#ifAny @root.request.params.query.keywords @root.request.params.query.location @root.request.params.query.activities @root.request.params.query.themes @root.request.params.query.age ~}}
                   <option value="relevance" {{#unless @root.request.params.query.sort}} selected {{/unless}}>Relevance</option>
-                  {{#if @root.request.params.query.location}}<option value="distance"{{#compare @root.request.params.query.sort "===" "distance"}} selected{{/compare}}{{#compare @root.request.params.query.exclude "===" "locations"}} disabled{{else}}{{#compare @root.request.params.query.location "===" ""}} disabled{{/compare}}{{/compare}}>Distance</option>{{/if}}
-                  <option value="newest"{{#compare @root.request.params.query.sort "===" "newest"}} selected{{/compare}}>Newest</option>
-                  <option value="oldest"{{#compare @root.request.params.query.sort "===" "oldest"}} selected{{/compare}}>Oldest</option>
+                  {{/ifAny ~}}
+                  {{#if @root.request.params.query.location ~}}
+                  <option value="distance"{{#compare @root.request.params.query.sort "distance"}} selected{{/compare}}{{#compare @root.request.params.query.exclude "locations"}} disabled{{else}}{{#compare @root.request.params.query.location ""}} disabled{{/compare}}{{/compare}}>Distance</option>
+                  {{/if ~}}
+                  <option value="newest"{{#compare @root.request.params.query.sort "newest"}} selected{{/compare}}>Newest</option>
+                  <option value="oldest"{{#compare @root.request.params.query.sort "oldest"}} selected{{/compare}}>Oldest</option>
                 </select>
               </div>
             </div>
