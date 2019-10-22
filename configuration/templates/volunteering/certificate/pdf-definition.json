@@ -5,7 +5,7 @@
     "subject": "Saltire Awards certificate"
   },
   "pageSize": "A4",
-  "pageMargins": [40, 60, 40, 60],
+  "pageMargins": [70, 60, 70, 50],
   "styles": {
     "title": {
       "fontSize": 20,
