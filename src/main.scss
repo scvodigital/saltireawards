@@ -884,9 +884,10 @@ ul.fa-ul {
   .card {
     height: 100%;
   }
-  .fa-ul.hours {
+  .fa-ul.hours-info {
     margin-top: 0;
     margin-bottom: 0;
+    cursor: default;
   }
 }
 .contact.equal-height {

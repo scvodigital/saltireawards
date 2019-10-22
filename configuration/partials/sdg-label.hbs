@@ -1,1 +1,5 @@
-<abbr title="Sustainable Development Goal">SDG</abbr>: <span class="label label-rounded label-primary" style="background-color:{{> sdg_color sdg=sdg}}">{{sdg}}</span>
+{{#compare (length (arrayify sdg)) ">" 1 ~}}
+<abbr class="tooltip tooltip-bottom" data-tooltip="Sustainable Development Goals">SDGs</abbr>: {{#each sdg}}<span class="label label-primary tooltip tooltip-bottom" style="background-color:{{> sdg_color sdg=this}}" data-tooltip="{{this}}"><strong>{{> sdg_number sdg=this}}</strong></span> {{/each}}
+{{else}}
+<abbr class="tooltip tooltip-bottom" data-tooltip="Sustainable Development Goal">SDG</abbr>: <span class="label label-primary tooltip tooltip-bottom" style="background-color:{{> sdg_color sdg=sdg}}" data-tooltip="{{sdg}}"><strong>{{> sdg_number sdg=sdg}}</strong></span>
+{{/compare ~}}
