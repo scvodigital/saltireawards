@@ -360,22 +360,22 @@
         },
       {{/each}}
     {{/each}}
-    {
-      name: "geo_lookup",
-      display: "display",
-      templates: {
-        header: "<h3>Location</h3>"
-      },
-      bloodhound: {
-        datumTokenizer: "objWhitespace",
-        datumTokenizerField: "place",
-        queryTokenizer: "whitespace",
-        remote: {
-          url: "/geo-lookup?q=*",
-          wildcard: "*"
-        }
-      }
-    },
+    // {
+    //   name: "geo_lookup",
+    //   display: "display",
+    //   templates: {
+    //     header: "<h3>Location</h3>"
+    //   },
+    //   bloodhound: {
+    //     datumTokenizer: "objWhitespace",
+    //     datumTokenizerField: "place",
+    //     queryTokenizer: "whitespace",
+    //     remote: {
+    //       url: "/geo-lookup?q=*",
+    //       wildcard: "*"
+    //     }
+    //   }
+    // },
   ],
   clearIfNothingSelected: true
 }

@@ -25,6 +25,15 @@
   }
 },
 {{/if ~}}
+{{#if activities ~}}
+{{>queries_terms field="activities_slugs" terms=activities}},
+{{/if ~}}
+{{#if themes ~}}
+{{>queries_terms field="themes_slugs" terms=themes}},
+{{/if ~}}
+{{#if availability ~}}
+{{>queries_terms field="availability_slugs" terms=availability}},
+{{/if ~}}
 {{#if age ~}}
 {{>queries_terms field="volunteersearch_age_slugs" terms=age}},
 {{/if ~}}
