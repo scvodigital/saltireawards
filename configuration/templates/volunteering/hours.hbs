@@ -251,7 +251,7 @@
             </div>
             <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-4">
               {{#if claim_code ~}}
-              <a href="/admin-delete-hours?hours_id={{hours_id}}" class="btn btn-block b-margin" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
+              <a href="/admin-delete-hours?hours_id={{hours_id}}&user_id={{@root.data.auth.uid}}" class="btn btn-block b-margin" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
               {{/if ~}}
             </div>
           </div>

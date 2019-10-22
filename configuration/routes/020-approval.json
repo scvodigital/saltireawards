@@ -11,7 +11,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "data",
-        "template": "/SaltireUser/?user_id={{@root.request.params.query.id}}"
+        "template": "/SaltireUser/?user_id={{@root.request.params.query.user_id}}"
       }
     },
     {
@@ -69,7 +69,7 @@
       "taskModule": "cacheFlush",
       "renderer": "handlebars",
       "config": {
-        "partition": "saltire-profiles-{{@root.request.params.query.id}}"
+        "partition": "saltire-profiles-{{@root.request.params.query.user_id}}"
       }
     },
     {
