@@ -47,13 +47,51 @@
               {{#if hours_verified ~}}
               <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-user-check"></span></span>
-                <span class="text-gray">{{hours_verified}} verified {{inflect hours_verified "hour" "hours"}}</span>
+                <div class="popover popover-bottom">
+                  <span class="text-gray">{{hours_verified}} verified {{inflect hours_verified "hour" "hours"}}</span>
+                  <div class="popover-container">
+                    <div class="card">
+                      {{!-- <div class="card-header">
+                        <strong>Logged {{inflect (subtract hours hours_verified) "hour" "hours"}}</strong>
+                      </div> --}}
+                      <ul class="card-body fa-ul">
+                        {{#each hours_list ~}}
+                        {{#if verified ~}}
+                        <li>
+                          <span class="fa-li"><span class="far fa-user-check"></span></span>
+                          <span class="text-gray">{{inflect hours "hour" "hours" true}} added on {{momentFormat (moment createdDate 'YYYY-MM-DDTHH:mm:ssZ') "Do MMM YYYY"}}</span>
+                        </li>
+                        {{/if ~}}
+                        {{/each ~}}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </li>
               {{/if ~}}
               {{#compare hours ">" hours_verified ~}}
               <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-user-clock"></span></span>
-                <span class="text-gray">{{subtract hours hours_verified}} {{inflect (subtract hours hours_verified) "hour" "hours"}} logged but not yet verified</span>
+                <div class="popover popover-bottom">
+                  <span class="text-gray">{{subtract hours hours_verified}} {{inflect (subtract hours hours_verified) "hour" "hours"}} logged but not yet verified</span>
+                  <div class="popover-container">
+                    <div class="card">
+                      {{!-- <div class="card-header">
+                        <strong>Logged {{inflect (subtract hours hours_verified) "hour" "hours"}}</strong>
+                      </div> --}}
+                      <ul class="card-body fa-ul">
+                        {{#each hours_list ~}}
+                        {{#unless verified ~}}
+                        <li>
+                          <span class="fa-li"><span class="far fa-user-clock"></span></span>
+                          <span class="text-gray">{{inflect hours "hour" "hours" true}} added on {{momentFormat (moment createdDate 'YYYY-MM-DDTHH:mm:ssZ') "Do MMM YYYY"}}</span>
+                        </li>
+                        {{/unless ~}}
+                        {{/each ~}}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </li>
               {{/compare ~}}
               {{else}}
