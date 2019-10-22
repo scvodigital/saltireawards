@@ -201,8 +201,9 @@
           <div class="column col-2 hide-xl">
             <strong>Claim code</strong>
           </div>
-          <div class="column col-2">
-            <a href="/group-certificate/{{task_id}}/" class="btn btn-primary b-margin" download>Download all</a>
+          <div class="column col-1 hide-xl"></div>
+          <div class="column col-2 col-xl-3 col-lg-4 col-md-6 col-sm-8 col-xs-9">
+            <a href="/group-certificate/{{task_id}}/" class="btn btn-primary btn-block b-margin" download>Download all</a>
           </div>
         </div>
         {{#each hours_list ~}}
@@ -240,17 +241,17 @@
               <mark class="claim-code">{{substr claim_code 0 10}}</mark>
               {{/if ~}}
             </div>
-            <div class="column col-2 col-xl-2 col-lg-2 col-md-3 col-sm-6 col-xs-6">
-              <a href="/group-certificate/{{../task_id}}/{{hours_id}}" class="btn b-margin" download>Download</a>
-            </div>
-            <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-6 col-xs-6">
+            <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-4">
               {{#if claim_code ~}}
-              <a href="/admin-delete-hours?hours_id={{hours_id}}" class="btn b-margin" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
+              <button type="submit" class="btn btn-primary btn-block inline-update-button b-margin" style="display:none;">Save</button>
               {{/if ~}}
             </div>
-            <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-6 col-xs-6">
+            <div class="column col-2 col-xl-2 col-lg-2 col-md-3 col-sm-4">
+              <a href="/group-certificate/{{../task_id}}/{{hours_id}}" class="btn btn-block b-margin" download>Download</a>
+            </div>
+            <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-4">
               {{#if claim_code ~}}
-              <button type="submit" class="btn btn-primary inline-update-button b-margin" style="display:none;">Save</button>
+              <a href="/admin-delete-hours?hours_id={{hours_id}}" class="btn btn-block b-margin" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
               {{/if ~}}
             </div>
           </div>
