@@ -17,44 +17,38 @@
     <input type="hidden" name="lat" value="{{@root.request.params.query.lat}}" id="location-lat" />
     <input type="hidden" name="lng" value="{{@root.request.params.query.lng}}" id="location-lng" />
     <input type="hidden" name="sort" value="{{@root.request.params.query.sort}}" id="default-sort" />
-    <div class="b-padding">
+    <div class="">
       <div class="columns">
-        <div class="column col-7 col-xl-6 col-md-12 keywords">
+        <div class="column col-2 col-xl-5 col-sm-12 filter-age b-padding">
+          <div class="form-group">
+            <select class="form-select select-lg" id="age" name="age">
+              {{#each (split "12,13,14,15,16,17,18" ",")}}
+              <option value="{{this}}" {{#compare (default @root.request.params.query.age '18') this}}selected{{/compare}}>For age {{this}}+</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+        <div class="column col-5 col-xl-7 col-sm-12 filter-location b-padding" id="location-fields">
+          <div class="input-group has-icon-left">
+            <span class="form-icon far fa-location geo-lookup" tabindex="0" title="Find my location" data-component="TasksTrigger" data-TasksTrigger="geolocation"></span>
+            <input type="text" id="where-opportunities" name="location" class="form-input input-lg" value="{{@root.request.params.query.location}}" placeholder="Location" data-lpignore="true">
+            <select class="form-select select-lg" id="distance" name="distance">
+              {{#each (split "1,2,5,10,15,20" ",")}}
+              <option value="{{this}}" {{#compare (default @root.request.params.query.distance "5") "===" this}}selected{{/compare}}>{{inflect this "mile" "miles" true}}</option>
+              {{/each}}
+            </select>
+          </div>
+        </div>
+        <div class="column col-5 col-xl-12 keywords b-padding">
           <div class="form-group full-width">
             <div data-component="Typeahead" data-Typeahead="typeahead-terms">
               <input type="text" id="what-opportunities" name="keywords" class="form-input input-lg" value="{{@root.request.params.query.keywords}}" placeholder="Search for volunteering opportunities" autocomplete="off" data-lpignore="true">
             </div>
           </div>
         </div>
-        <div class="column col-3 col-xl-4 col-md-8 filter-age">
-          <div class="form-group">
-            <select class="form-select select-lg" id="age" name="age">
-              {{#each (split "12,13,14,15,16,17,18" ",")}}
-                <option value="{{this}}" {{#compare (default @root.request.params.query.age '18') this}}selected{{/compare}}>Available for age {{this}}+</option>
-              {{/each}}
-            </select>
-          </div>
-        </div>
-        <div class="column col-ml-auto col-2 col-md-4">
-          <button type="submit" id="search-opportunities" class="btn btn-primary btn-lg">
-            Search
-            <!-- <span class="far fa-search" aria-hidden="true"></span> -->
-          </button>
-        </div>
       </div>
-      <div class="columns t-margin-full">
-        <div class="column col-5 {{#unless hasLocation}}hidden{{/unless}}" id="location-fields">
-          <div class="input-group has-icon-left">
-            <span class="form-icon far fa-times geo-lookup" tabindex="0" title="Find my location" data-component="TasksTrigger" data-TasksTrigger="empty-location-fields"></span>
-            <input type="text" id="where-opportunities" name="location" class="form-input input-lg" value="{{location}}" placeholder="Location" data-lpignore="true" readonly>
-            <select class="form-select select-lg" id="distance" name="distance">
-              {{#each (split "5,10,15,20,25,30,35,40,45,50" ",")}}
-                <option value="{{this}}" {{#compare (default @root.request.params.query.distance "10") "===" this}}selected{{/compare}}>{{this}} miles</option>
-              {{/each}}
-            </select>
-          </div>
-        </div>
-        <div class="column col-9 chips">
+      <div class="columns">
+        <div class="column col-10 col-lg-9 col-md-8 col-sm-12 chips b-padding">
           {{#each @root.context.metaData.volunteeringTerms}}
             <div class="chip-set chip-filters" id="{{key}}-filters">
               {{~#each (arrayify (getProperty @root.request.params.query key))~}}
@@ -70,8 +64,8 @@
                           {{/each}}
                         {{/each}}
                       </span>
-                      <input type="hidden" name="{{../key}}[]" value="{{this}}">
-                      <i class="chip__icon--trailing far fa-times-circle" tabindex="0" role="button" data-component="TasksTrigger" data-TasksTrigger="delete-chip"></i>
+                      <input type="hidden" name="{{../key}}[]" value="{{this}}" />
+                      <span class="chip__icon--trailing far fa-times-circle" tabindex="0" role="button" data-component="TasksTrigger" data-TasksTrigger="delete-chip"></span>
                     </div>
                   </span>
                 {{~/if~}}
@@ -79,13 +73,19 @@
             </div>
           {{/each}}
         </div>
+        <div class="column col-2 col-lg-3 col-md-4 col-sm-12 search-button b-padding">
+          <button type="submit" id="search-opportunities" class="btn btn-primary btn-lg">
+            Search
+            <!-- <span class="far fa-search" aria-hidden="true"></span> -->
+          </button>
+        </div>
       </div>
     </div>
   </form>
 </div>
 
 {{{{raw}}}}
-<script data-task="geolocation" type="javascript/blocked">
+<script data-component-config="geolocation" type="javascript/blocked">
   {
     type: "multiTask",
     config: {
@@ -287,7 +287,7 @@
                             <div class="chip" tabindex="0">
                               <span class="chip__text">\{{metadata.suggestion.label}}</span>
                               <input type="hidden" name="\{{metadata.suggestion.datasetName}}[]" value="\{{metadata.suggestion.value}}">
-                              <i class="chip__icon--trailing far fa-times-circle" tabindex="0" role="button" data-component="TasksTrigger" data-TasksTrigger="delete-chip"></i>
+                              <span class="chip__icon--trailing far fa-times-circle" tabindex="0" role="button" data-component="TasksTrigger" data-TasksTrigger="delete-chip"></span>
                             </div>
                           </span>
                         `

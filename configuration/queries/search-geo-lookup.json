@@ -49,7 +49,31 @@
           "term": {
             "localType": {
               "value": "Town",
+              "boost": 4
+            }
+          }
+        },
+        {
+          "term": {
+            "localType": {
+              "value": "Village",
+              "boost": 3
+            }
+          }
+        },
+        {
+          "term": {
+            "localType": {
+              "value": "Suburban Area",
               "boost": 2
+            }
+          }
+        },
+        {
+          "term": {
+            "localType": {
+              "value": "Hamlet",
+              "boost": 1
             }
           }
         }
