@@ -30,8 +30,10 @@
         </div>
         <div class="column col-5 col-xl-7 col-sm-12 filter-location b-padding" id="location-fields">
           <div class="input-group has-icon-left">
-            <span class="form-icon far fa-location geo-lookup" tabindex="0" title="Find my location" data-component="TasksTrigger" data-TasksTrigger="geolocation"></span>
-            <input type="text" id="where-opportunities" name="location" class="form-input input-lg" value="{{@root.request.params.query.location}}" placeholder="Location" data-lpignore="true">
+            <span data-component="Typeahead" data-Typeahead="typeahead-location">
+              <span class="form-icon far fa-location geo-lookup" tabindex="0" title="Find my location" data-component="TasksTrigger" data-TasksTrigger="geolocation"></span>
+              <input type="text" id="where-opportunities" name="location" class="form-input input-lg" value="{{@root.request.params.query.location}}" placeholder="Location" data-lpignore="true">
+            </span>
             <select class="form-select select-lg" id="distance" name="distance">
               {{#each (split "1,2,5,10,15,20" ",")}}
               <option value="{{this}}" {{#compare (default @root.request.params.query.distance "5") "===" this}}selected{{/compare}}>{{inflect this "mile" "miles" true}}</option>
@@ -214,6 +216,52 @@
   }
 </script>
 {{{{/raw}}}}
+
+<script data-component-config="typeahead-location" type="javascript/blocked">
+{
+  typeaheadOptions: {
+    highlight: true,
+    minlength: 1
+  },
+  itemSelectedTasks: [
+    {
+      type: "elementManipulator",
+      config: {
+        "#location-lat": { value: { __pointer: "metadata.suggestion.point.lat" } },
+        "#location-lng": { value: { __pointer: "metadata.suggestion.point.lon" } },
+        "#where-opportunities": { value: { __pointer: "metadata.suggestion.display" } }
+      }
+    }
+    {
+      type: "elementManipulator",
+      config: {
+        ">.tt-menu": { styles: { display: "none !important" } },
+        "#what-opportunities": { value: "", focus: true, }
+      }
+    },
+    "update-components"
+  ],
+  datasets: [
+    {
+      name: "geo_lookup",
+      display: "display",
+      templates: {
+        header: "<h3>Location</h3>"
+      },
+      bloodhound: {
+        datumTokenizer: "objWhitespace",
+        datumTokenizerField: "place",
+        queryTokenizer: "whitespace",
+        remote: {
+          url: "/geo-lookup?q=*",
+          wildcard: "*"
+        }
+      }
+    },
+  ],
+  clearIfNothingSelected: true
+}
+</script>
 
 <script data-component-config="typeahead-terms" type="javascript/blocked">
 {
