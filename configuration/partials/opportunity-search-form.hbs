@@ -268,7 +268,7 @@
       type: "basic",
       name: "exists",
       config: {
-        __template: `\{{{get (jquery (concat "input[type='hidden'][value='" metadata.suggestion.value "']")) "length"}}}`,
+        __template: `\{{{get (jquery (concat ".chip > input[type='hidden'][value='" metadata.suggestion.value "']")) "length"}}}`,
         __parser: 'integer'
       }
     },
