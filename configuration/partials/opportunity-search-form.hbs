@@ -89,9 +89,7 @@
 {{{{raw}}}}
 <script data-component-config="geolocation" type="javascript/blocked">
   {
-    type: "multiTask",
-    config: {
-      __doNotCompile: true,
+    click: {
       tasks: [
         { name: "geolocation", type: "geolocation", config: {} },
         {
@@ -184,21 +182,14 @@
   }
 </script>
 
-<script data-component-config="empty-location-fields" type="javascript/blocked">
+<script data-task="empty-location-fields" type="javascript/blocked">
   {
-    click: {
-      tasks: [
-        {
-          name: "emptyLocationFields",
-          type: "elementManipulator",
-          config: {
-            "#location-fields": { addClass: "hidden" },
-            "#location-lat": { value: "" },
-            "#location-lng": { value: "" },
-            "#where-opportunities": { value: "" }
-          }
-        }
-      ]
+    name: "emptyLocationFields",
+    type: "elementManipulator",
+    config: {
+      "#location-lat": { value: "" },
+      "#location-lng": { value: "" },
+      "#where-opportunities": { value: "" }
     }
   }
 </script>
@@ -229,25 +220,28 @@
       config: {
         "#location-lat": { value: { __pointer: "metadata.suggestion.point.lat" } },
         "#location-lng": { value: { __pointer: "metadata.suggestion.point.lon" } },
-        "#where-opportunities": { value: { __pointer: "metadata.suggestion.display" } }
+        ">.tt-input": { value: { __pointer: "metadata.suggestion.display" } }
       }
-    }
+    },
     {
       type: "elementManipulator",
       config: {
-        ">.tt-menu": { styles: { display: "none !important" } },
-        "#what-opportunities": { value: "", focus: true, }
+        ">.tt-menu": { styles: { display: "none !important" } }
       }
-    },
-    "update-components"
+    }
+  ],
+  nothingSelectedTasks: [
+    "empty-location-fields",
+    {
+      type: "run",
+      config: { code: "instance.clearSelection()" }
+    }
   ],
   datasets: [
     {
       name: "geo_lookup",
       display: "display",
-      templates: {
-        header: "<h3>Location</h3>"
-      },
+      templates: { header: "<h3>Location</h3>" },
       bloodhound: {
         datumTokenizer: "objWhitespace",
         datumTokenizerField: "place",
