@@ -62,6 +62,7 @@
       "text": ""
     }
     {{!-- [
+      ,
       {
         "width": "140",
         {{#compare type 'approach' ~}}
@@ -88,8 +89,7 @@
   "margin": [0, 30, 0, 0]
 },
 {{#each tasks ~}}
-{{#compare ../type "group" ~}}
-{{#compare ../user.hours_verified ">" 0 ~}}
+{{#ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0)) (compare hours_verified ">" 0) ~}}
 {
   "text": "For: {{organisation_name}}",
   "fontSize": 16,
@@ -115,34 +115,7 @@
   "margin": [0, 5, 0, 0]
 },
 {{/if ~}}
-{{/compare ~}}
-{{else}}
-{{#compare hours_verified ">" 0 ~}}
-{
-  "text": "For: {{organisation_name}}",
-  "fontSize": 16,
-  "alignment": "left",
-  "margin": [0, 15, 0, 0]
-},
-{{#if task_description ~}}
-{
-  "text": "{{task_description}}",
-  "fontSize": 16,
-  "alignment": "left",
-  "margin": [0, 15, 0, 0]
-},
-{{/if ~}}
-{{#if un_sustainable_development_goals ~}}
-{
-  "text": "{{> sdg_number sdg=un_sustainable_development_goals}}: {{un_sustainable_development_goals}}",
-  "fontSize": 16,
-  "color": "{{> sdg_color sdg=un_sustainable_development_goals}}",
-  "alignment": "left",
-  "margin": [0, 5, 0, 0]
-},
-{{/if ~}}
-{{/compare ~}}
-{{/compare ~}}
+{{/ifAny ~}}
 {{/each ~}}
 {{#if user.claim_code ~}}
 {
