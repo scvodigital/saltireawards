@@ -1,37 +1,22 @@
 <div class="container contact cards equal-height">
-  <!-- <h1>
-    Contact us
-  </h1> -->
-  <div class="columns">
-    <div class="column col-6 col-sm-12">
-      <h2>
-        Local enquiries
-      </h2>
-      {{#if @root.data.accountInfo.postcode ~}}
-      {{> local_contact_info}}
-      <div class="columns col-gapless">
-        <div class="column col-6 col-sm-9">
-          {{> local_contact_logo}}
-        </div>
-      </div>
-      {{else}}
-      <p>
-        For information on how to get involved with the {{@root.context.metaData.title}}, you're best to contact your local Third Sector Interface.
-      </p>
-      <p>
-        Find the contact details below for the Council area you live in.
-      </p>
-      {{/if ~}}
-    </div>
-    <div class="column col-6 col-sm-12">
-      <h2>
-        National enquiries
-      </h2>
-      <p>
-        If you have a problem with the website or are a national organisation, please contact <a href="mailto:{{@root.context.metaData.contacts.admin}}">{{@root.context.metaData.contacts.admin}}</a>.
-      </p>
+  <h2>
+    Local enquiries
+  </h2>
+  {{#if @root.data.accountInfo.postcode ~}}
+  {{> local_contact_info}}
+  <div class="columns col-gapless">
+    <div class="column col-6 col-sm-9">
+      {{> local_contact_logo}}
     </div>
   </div>
+  {{else}}
+  <p>
+    For information on how to get involved with the {{@root.context.metaData.title}}, you're best to contact your local Third Sector Interface.
+  </p>
+  <p>
+    Find the contact details below for the Council area you live in.
+  </p>
+  {{/if ~}}
   {{#unless @root.data.accountInfo.postcode ~}}
   <div class="columns">
     {{#each @root.context.metaData.tsiList ~}}
@@ -78,4 +63,10 @@
     {{/each ~}}
   </div>
   {{/unless ~}}
+  <h2 class="t-margin">
+    National enquiries
+  </h2>
+  <p>
+    If you have a problem with the website or are a national organisation, please contact <a href="mailto:{{@root.context.metaData.contacts.admin}}">{{@root.context.metaData.contacts.admin}}</a>.
+  </p>
 </div>
