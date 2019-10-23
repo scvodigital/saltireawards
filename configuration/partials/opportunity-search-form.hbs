@@ -234,7 +234,7 @@
     "empty-location-fields",
     {
       type: "run",
-      config: { code: "instance.clearSelection()" }
+      config: { code: "metadata.instance.clearSelection()" }
     }
   ],
   datasets: [
@@ -273,50 +273,14 @@
       }
     },
     {
-      type: "run",
-      config: {
-        code: `console.log('DATA:', data)`
-      }
-    },
-    {
       __doNotCompile: true,
       type: "switch",
       config: {
         which: {
-          __template: `
-            \{{~#unless data.exists~}}
-              \{{~#switch metadata.suggestion.datasetName "geo_lookup"~}}
-                \{{~#case "geo_lookup"~}}
-                  geo_lookup
-                \{{~/case~}}
-                \{{~#case "geo_services"~}}
-                  geo_services
-                \{{~/case~}}
-              \{{~else~}}
-                other
-              \{{~/switch~}}
-            \{{~/unless~}}
-          `
+          __template: `\{{#unless data.exists}}createChip\{{/unless}}`
         },
         branches: {
-          geo_lookup: {
-            tasks: [
-              {
-                __doNotCompile: true,
-                type: "elementManipulator",
-                config: {
-                  "#location-fields": { removeClass: "hidden" },
-                  "#location-lat": { value: { __pointer: "metadata.suggestion.point.lat" } },
-                  "#location-lng": { value: { __pointer: "metadata.suggestion.point.lon" } },
-                  "#where-opportunities": { value: { __pointer: "metadata.suggestion.display" } }
-                }
-              },
-            ]
-          },
-          geo_services: {
-            tasks: [ "geolocation" ]
-          },
-          other: {
+          createChip: {
             tasks: [
               {
                 type: "elementManipulator",
@@ -340,39 +304,21 @@
               }
             ]
           },
-          default: { tasks: [] },
+          default: { },
         }
       }
     },
     {
       type: "elementManipulator",
-      config: {
-        ">.tt-menu": { styles: { display: "none !important" } },
-        "#what-opportunities": { value: "", focus: true, }
-      }
+      config: { "#what-opportunities": { value: "", focus: true, } }
+    },
+    {
+      type: "run",
+      config: { code: "metadata.instance.clearSelection();metadata.instance.closeMenu()" }
     },
     "update-components"
   ],
   datasets: [
-    {
-      name: "geo_services",
-      display: "label",
-      templates: {
-        header: "<h3>Near me</h3>"
-      },
-      bloodhound: {
-        datumTokenizer: "objWhitespace",
-        datumTokenizerField: "other",
-        queryTokenizer: "whitespace",
-        local: [
-          {
-            label: "Use my current location",
-            value: "near-me",
-            other: "local near me here"
-          }
-        ]
-      }
-    },
     {{#each @root.context.metaData.volunteeringTerms}}
       {{#each termGroups}}
         {
@@ -402,22 +348,6 @@
         },
       {{/each}}
     {{/each}}
-    // {
-    //   name: "geo_lookup",
-    //   display: "display",
-    //   templates: {
-    //     header: "<h3>Location</h3>"
-    //   },
-    //   bloodhound: {
-    //     datumTokenizer: "objWhitespace",
-    //     datumTokenizerField: "place",
-    //     queryTokenizer: "whitespace",
-    //     remote: {
-    //       url: "/geo-lookup?q=*",
-    //       wildcard: "*"
-    //     }
-    //   }
-    // },
   ],
   clearIfNothingSelected: true
 }
