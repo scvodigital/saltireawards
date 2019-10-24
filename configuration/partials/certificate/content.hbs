@@ -155,7 +155,7 @@
   "margin": [0, 30, 0, 0]
 },
 {{#each tasks ~}}
-{{!-- {{#ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0)) (compare hours_verified ">" 0) ~}} --}}
+{{#ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0)) (compare hours_verified ">" 0) ~}}
 {
   "text": "For: {{organisation_name}}",
   "fontSize": 16,
@@ -181,13 +181,34 @@
   "margin": [0, 5, 0, 0]
 },
 {{/if ~}}
-{{!-- {{/ifAny ~}} --}}
+{{/ifAny ~}}
 {{/each ~}}
 {
-  "width": 103,
+  "width": 150,
   "image": "{{> certificate_images_png_signature_minister}}",
   "alignment": "left",
-  "margin": [0, 10, 0, 0]
+  "margin": [-10, 10, 0, 0]
+},
+{
+  "text": "John Swinney",
+  "fontSize": 10,
+  "bold": true,
+  "alignment": "left",
+  "margin": [0, 0, 0, 0]
+},
+{
+  "text": "Minister of the Scottish Government",
+  "fontSize": 10,
+  "bold": true,
+  "alignment": "left",
+  "margin": [0, 0, 0, 0]
+},
+{
+  "text": "Saltire Awards are a positive recognition by the Scottish Government of 12-25 year old volunteers and their achievements",
+  "fontSize": 10,
+  "alignment": "left",
+  "width": 200,
+  "margin": [0, 0, 250, 0]
 },
 {{#if user.claim_code ~}}
 {
@@ -206,28 +227,24 @@
 },
 {{/if ~}}
 {
-  "columns": [
-    {
-      "width": "*",
-      "text": ""
-    },
-    {
-      "width": 110,
-      "image": "{{> certificate_images_png_global_goals}}",
-      "alignment": "center",
-      "link": "https://globalgoals.org",
-      "margin": [0, 0, 0, 0]
-    },
-    {
-      "width": 170,
-      "image": "{{> certificate_images_png_sg}}",
-      "alignment": "right",
-      "link": "https://gov.scot",
-      "margin": [0, 0, 0, 0]
-    }
-  ],
-  "columnGap": 10,
-  "margin": [0, 0, 0, 0]
+  "width": 110,
+  "image": "{{> certificate_images_png_global_goals}}",
+  "link": "https://globalgoals.org",
+  "margin": [0, 0, 0, 0],
+  "absolutePosition": {
+    "x": 430,
+    "y": 580
+  }
+},
+{
+  "width": 180,
+  "image": "{{> certificate_images_png_sg}}",
+  "link": "https://gov.scot",
+  "margin": [0, 0, 0, 0],
+  "absolutePosition": {
+    "x": 356,
+    "y": 715
+  }
 },
 {{#if (compare @root.route.name "group_certificate") ~}}
 {{#if last ~}}
