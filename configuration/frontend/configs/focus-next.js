@@ -1,4 +1,12 @@
 return {
+  change: {
+    tasks: [
+      {
+        type: "run",
+        config: { code: "window.formHasChanged = true" }
+      }
+    ]
+  },
   keypress: {
     preventDefault: "\{{#eq metadata.event.which '13'}}true\{{else}}false\{{/eq}}",
     tasks: [

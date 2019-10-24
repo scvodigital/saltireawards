@@ -1035,6 +1035,17 @@ footer {
   }
 }
 
+.inline-form-text {
+  // color: #333;
+  // background-color: #eee;
+  padding: $unit/5 $unit/2 0;
+  margin-bottom: $unit/4;
+  font-size: 95%;
+  line-height: 2;
+  display: inline-block;
+}
+
+
 .claim-code {
   // color: #333;
   // background-color: #eee;

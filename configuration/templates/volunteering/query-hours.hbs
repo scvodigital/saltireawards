@@ -1,8 +1,7 @@
 <div class="container">
   <h2>User: {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}} {{#if @root.data.accountInfo.school_college_name}}from {{@root.data.accountInfo.school_college_name}}{{/if}}</h2>
 
-  {{#each (distinct (pluck @root.data.tasksInfoUnverified "volunteer_manager_email")) ~}}
-  <section class="email-template">
+
     <p>
       {{!-- Modify hours for {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}} {{#if @root.data.accountInfo.school_college_name}}from {{@root.data.accountInfo.school_college_name}}{{/if}}. --}}
       If the volunteering details below are incorrect, please adjust the number and choose Verify. If the work did not occur, please choose Remove.
@@ -10,9 +9,12 @@
 
     {{#each @root.data.tasksInfoUnverified}}
     {{#compare unverified_hours_list.length ">=" 1}}
-    {{#compare this.volunteer_manager_email "===" ../this}}
-    Volunteering with <strong>{{organisation_name}}</strong>: {{#if task_description}}Tasks: {{task_description}}, {{/if}} Manager: {{volunteer_manager_first_name}} {{volunteer_manager_last_name}} ({{volunteer_manager_title}})
+    {{#compare this.volunteer_manager_email "===" @root.request.params.query.e}}
+      Volunteering with <strong>{{organisation_name}}</strong>: {{#if task_description}}Tasks: {{task_description}}, {{/if}} Manager: {{volunteer_manager_first_name}} {{volunteer_manager_last_name}} ({{volunteer_manager_title}})
     <div class="columns">
+      <div class="column col-2">
+        <strong>When</strong>
+      </div>
       <div class="column col-1">
         <strong>Hours</strong>
       </div>
@@ -29,9 +31,12 @@
       <input type="hidden" name="hours_id" value="{{hours_id}}">
       <input type="hidden" name="user_id" value="{{@root.request.params.query.user_id}}">
       <div class="columns">
+        <div class="column col-2">
+          <span class="inline-form-text">{{momentFormat (moment createdDate "YYYY-MM-DD") "MMMM Do YYYY"}}</span>
+        </div>
         <div class="column col-1">
           <div class="form-group r-margin b-margin">
-            <input class="form-input inline-edit" name="hours" value="{{hours}}">
+            <input class="form-input inline-edit" name="hours" min="0.1" value="{{hours}}">
           </div>
         </div>
         <div class="column col-4">
@@ -58,5 +63,4 @@
     {{/compare}}
     {{/each}}
   </section>
-  {{/each}}
 </div>

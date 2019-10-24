@@ -7,7 +7,7 @@
     change: { tasks: [ "validate-details-form" ] },
     keyup: { tasks: [ "validate-details-form" ] },
     load: { tasks: [ "validate-details-form" ] },
-    submit: { tasks: [ "just-spin" ]}
+    submit: { tasks: [ "submit-and-spin" ]}
   }'>
         {{> account_details_form_fields admin=(compare @root.data.accountInfo.user_type 'Group Admin')}}
 
@@ -66,7 +66,11 @@
         </div>
 
         {{#unless @root.data.isAdmin ~}}
-        <div class="column col-6 col-sm-12 b-padding-full form" id="change-email">
+        <form class="column col-6 col-sm-12 b-padding-full form" id="change-email" data-TasksTrigger='{
+    change: { tasks: [ "validate-form" ] },
+    keyup: { tasks: [ "validate-form" ] },
+    load: { tasks: [ "validate-form" ] }
+  }'>
           <h3>Change email</h3>
 
           <div id="change-email-alert" class="alert hidden bg-error s-rounded x-padding v-margin">
@@ -88,7 +92,7 @@
             data-confirm-task="change-email" data-confirm-verb="change your email" data-confirm-description="#change-email-description">
             Change email
           </button>
-        </div>
+        </form>
         {{/unless ~}}
       </div>
 
@@ -374,6 +378,10 @@
     config: {
       tasks: [
         {
+          type: "run",
+          config: { code: "window.formHasChanged = false" }
+        },
+        {
           type: "elementManipulator",
           config: { "#change-password": { addClass: "disabled" } }
         },
@@ -427,6 +435,10 @@
     type: "multiTask",
     config: {
       tasks: [
+        {
+          type: "run",
+          config: { code: "window.formHasChanged = false" }
+        },
         {
           type: "elementManipulator",
           config: { "#change-email": { addClass: "disabled" } }
@@ -524,6 +536,10 @@
     config: {
       tasks: [
         {
+          type: "run",
+          config: { code: "window.formHasChanged = false" }
+        },
+        {
           type: "elementManipulator",
           config: { "#link-unlink": { addClass: "disabled" } }
         },
@@ -577,6 +593,10 @@
     type: "multiTask",
     config: {
       tasks: [
+        {
+          type: "run",
+          config: { code: "window.formHasChanged = false" }
+        },
         {
           type: "elementManipulator",
           config: { "#link-unlink": { addClass: "disabled" } }
@@ -632,9 +652,17 @@
     config: {
       tasks: [
         {
+          type: "run",
+          config: { code: "window.formHasChanged = false" }
+        },
+        {
           name: "deleteRequest",
           type: "request",
           config: { url: "/delete-user" }
+        },
+        {
+        type: "run",
+        config: { code: "window.formHasChanged = false" }
         },
         {
           __doNotCompile: true,
@@ -715,9 +743,23 @@
   }
 </script>
 
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+
+
+
+    $(window).on('beforeunload', function(){
+      if (window.formHasChanged) return "Changes that you made to account info may not be saved.";
+    });
+
+  })
+</script>
+
 {{!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> --}}
 <script src="{{~>asset_url url='downloader.js'~}}"></script>
 <script>
+
+
   {{#if @root.data.export_user_data ~}}
   function exportUserData() {
     var dataUrl = 'data:application/json;base64,{{{btoa @root.data.export_user_data}}}';

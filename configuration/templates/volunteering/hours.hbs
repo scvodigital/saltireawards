@@ -332,14 +332,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $('#group-hours-form').show();
     $(this).hide();
   });
+
+  $(window).on('beforeunload', function(){
+    if($('form.has-error').length){
+      return true;
+    }
+    else return;
+  });
+
 })
 
-$(window).on('beforeunload', function(){
-  if($('form.squidsareafruit').length){
-    return 'You have unsaved information, are you sure you want to leave?';
-  }
-  else return;
-});
 
 
 </script>

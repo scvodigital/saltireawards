@@ -10,7 +10,7 @@
       "config": {
         "output": "body",
         "template": "{\"errors\": {{{safeStringify @root.errors}}} }",
-        "parseJson": false
+        "parseJson": true
       }
     }
   ]

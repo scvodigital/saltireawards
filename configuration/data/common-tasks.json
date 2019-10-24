@@ -117,7 +117,7 @@
 		"renderer": "handlebars",
 		"config": {
 			"appName": "saltireawards",
-			"pathTemplate": "/{{default @root.data.auth.uid 'no-such-write-profile'}}/verify-hours/",
+			"pathTemplate": "/{{default @root.data.auth.uid 'no-such-read-profile'}}/verify-hours/",
 			"defaultData": false
 		}
 	},
@@ -127,7 +127,7 @@
 		"renderer": "handlebars",
 		"config": {
 			"appName": "saltireawards",
-			"pathTemplate": "/{{default @root.request.params.query.user_id 'no-such-write-profile'}}/verify-hours/",
+			"pathTemplate": "/{{default @root.request.params.query.user_id 'no-such-read-profile'}}/verify-hours/",
 			"defaultData": false
 		}
 	},
