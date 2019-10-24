@@ -1,32 +1,32 @@
 {
   "parental-approval": {
     "mailgunConnection": "mg_saltireawards",
-    "from": "Saltire Awards <support@saltireawards.org.uk>",
-    "replyTo": "Saltire Awards <support@saltireawards.org.uk>",
+    "from": "Saltire Awards <support@saltireawards.scot>",
+    "replyTo": "Saltire Awards <support@saltireawards.scot>",
     "sendIfEmpty": false,
     "bodyPartial": "emails_parental_approval_body",
     "metaData": {}
   },
   "tsi-approval": {
     "mailgunConnection": "mg_saltireawards",
-    "from": "Saltire Awards <support@saltireawards.org.uk>",
-    "replyTo": "Saltire Awards <support@saltireawards.org.uk>",
+    "from": "Saltire Awards <support@saltireawards.scot>",
+    "replyTo": "Saltire Awards <support@saltireawards.scot>",
     "sendIfEmpty": false,
     "bodyPartial": "emails_admin_approval_body",
     "metaData": {}
   },
   "hours-verify": {
     "mailgunConnection": "mg_saltireawards",
-    "from": "Saltire Awards <support@saltireawards.org.uk>",
-    "replyTo": "Saltire Awards <support@saltireawards.org.uk>",
+    "from": "Saltire Awards <support@saltireawards.scot>",
+    "replyTo": "Saltire Awards <support@saltireawards.scot>",
     "sendIfEmpty": false,
     "bodyPartial": "emails_hours_verify_body",
     "metaData": {}
   },
   "welcome": {
     "mailgunConnection": "mg_saltireawards",
-    "from": "Saltire Awards <support@saltireawards.org.uk>",
-    "replyTo": "Saltire Awards <support@saltireawards.org.uk>",
+    "from": "Saltire Awards <support@saltireawards.scot>",
+    "replyTo": "Saltire Awards <support@saltireawards.scot>",
     "sendIfEmpty": false,
     "bodyPartial": "emails_welcome_body",
     "metaData": {}
