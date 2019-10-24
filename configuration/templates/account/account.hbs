@@ -27,7 +27,11 @@
       <h2>Settings</h2>
 
       <div class="columns">
-        <div class="column col-6 col-sm-12 form b-padding-full" id="change-password">
+        <form class="column col-6 col-sm-12 form b-padding-full" id="change-password" data-component="TasksTrigger" data-TasksTrigger='{
+    change: { tasks: [ "validate-form" ] },
+    keyup: { tasks: [ "validate-form" ] },
+    load: { tasks: [ "validate-form" ] }
+  }'>
           {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "password") ~}}
             <h3>Change password</h3>
           {{else}}
@@ -54,8 +58,8 @@
             <span class="form-icon far fa-key"></span>
           </div>
 
-          <button class="btn btn-primary" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal"
-            data-confirm-task="change-password" data-confirm-verb="change your password" data-confirm-description="#change-password-description">
+          <button type="button" class="btn btn-primary" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal"
+            data-confirm-task="change-password" disabled data-confirm-verb="change your password" data-confirm-description="#change-password-description">
             {{!-- <span class="far fa-lock" aria-hidden="true"></span> --}}
             {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "password") ~}}
               Change password
@@ -63,10 +67,10 @@
               Set password
             {{/if ~}}
           </button>
-        </div>
+        </form>
 
         {{#unless @root.data.isAdmin ~}}
-        <form class="column col-6 col-sm-12 b-padding-full form" id="change-email" data-TasksTrigger='{
+        <form class="column col-6 col-sm-12 b-padding-full form" id="change-email" data-component="TasksTrigger" data-TasksTrigger='{
     change: { tasks: [ "validate-form" ] },
     keyup: { tasks: [ "validate-form" ] },
     load: { tasks: [ "validate-form" ] }
@@ -78,18 +82,18 @@
           </div>
 
           <div class="form-group has-icon-left">
-            <input class="form-input" type="email" id="change-email-email" placeholder="New email" data-lpignore="true" autocomplete="nope"
+            <input class="form-input" type="email" id="change-email-value" placeholder="New email" data-lpignore="true" autocomplete="nope"
               data-component="TasksTrigger" data-TasksTrigger="focus-next" required />
             <span class="form-icon far fa-at"></span>
           </div>
           <div class="form-group has-icon-left">
-            <input class="form-input" type="email" id="change-email-confirm" placeholder="Confirm email" data-lpignore="true" autocomplete="nope"
+            <input class="form-input" type="email" id="change-email-value-confirm" placeholder="Confirm email" data-lpignore="true" autocomplete="nope"
               data-component="TasksTrigger" data-TasksTrigger="focus-next" required />
             <span class="form-icon far fa-at"></span>
           </div>
 
-          <button class="btn btn-primary" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal"
-            data-confirm-task="change-email" data-confirm-verb="change your email" data-confirm-description="#change-email-description">
+          <button type="button" class="btn btn-primary" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal"
+            data-confirm-task="change-email"  disabled data-confirm-verb="change your email" data-confirm-description="#change-email-description">
             Change email
           </button>
         </form>
@@ -447,8 +451,8 @@
           name: "changeEmail",
           type: "firebaseChangeEmail",
           config: {
-            email: { __template: "\{{jquery '#change-email-email' 'val'}}" },
-            emailConfirm: { __template: "\{{jquery '#change-email-confirm' 'val'}}" }
+            email: { __template: "\{{jquery '#change-email-value' 'val'}}" },
+            emailConfirm: { __template: "\{{jquery '#change-email-value-confirm' 'val'}}" }
           }
         },
         {
@@ -468,7 +472,7 @@
                       method: "POST",
                       dataType: "json",
                       data: {
-                        __template: `{ "email" : "\{{jquery '#change-email-email' 'val'}}" }`,
+                        __template: `{ "email" : "\{{jquery '#change-email-value' 'val'}}" }`,
                         __parser: "json"
                       }
                     }
@@ -485,8 +489,8 @@
                               config: {
                                 "#change-email-alert": { removeClass: "hidden" },
                                 "#change-email-alert .alert-message": { contents: "Email updated" },
-                                "#change-email-email": { value: "" },
-                                "#change-email-confirm": { value: "" }
+                                "#change-email-value": { value: "" },
+                                "#change-email-value-confirm": { value: "" }
                               }
                             }
                           ]
