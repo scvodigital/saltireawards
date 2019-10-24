@@ -8,6 +8,7 @@
   {
     "hours": 10,
     "certificate_name": "Ten",
+    "in_progress": true,
     "type": "approach",
     "type_name": "The Approach"
   },
@@ -15,24 +16,26 @@
     "hours": 25,
     "certificate_name": "Twenty five",
     "type": "approach",
-    "type_name": "The Approach",
-    "type_final": true
+    "type_name": "The Approach"
   },
   {
     "hours": 50,
     "certificate_name": "Fifty",
+    "in_progress": true,
     "type": "ascent",
     "type_name": "The Ascent"
   },
   {
     "hours": 100,
     "certificate_name": "One hundred",
+    "in_progress": true,
     "type": "ascent",
     "type_name": "The Ascent"
   },
   {
     "hours": 200,
     "certificate_name": "Two hundred",
+    "in_progress": true,
     "type": "ascent",
     "type_name": "The Ascent"
   },
@@ -40,8 +43,7 @@
     "hours": 500,
     "certificate_name": "Five hundred",
     "type": "ascent",
-    "type_name": "The Ascent",
-    "type_final": true
+    "type_name": "The Ascent"
   },
   {
     "hours": 0,
