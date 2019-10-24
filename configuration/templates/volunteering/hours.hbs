@@ -313,6 +313,7 @@
 document.addEventListener("DOMContentLoaded", function(event) {
   $('.inline-hours-form :input').on('input',function () {
     var unsaved = $(this).closest('form').addClass('has-error');
+    {{!-- This is the submit button --}}
     var submit = $(this).closest('form').find(':submit').show();
   });
 
@@ -332,16 +333,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
   });
 })
 
-function clearHoursForm(response){
-  var data = JSON.parse(response);
-  $('#' + data.id).hide();
-}
-
-function preSubmit() {
-  var form = document.getElementById("user-details-form");
-  var isValid = form.checkValidity();
-  if (isValid) {
-    onSubmit();
+$(window).on('beforeunload', function(){
+  if($('form.squidsareafruit').length){
+    return 'You have unsaved information, are you sure you want to leave?';
   }
-}
+  else return;
+});
+
+
 </script>
