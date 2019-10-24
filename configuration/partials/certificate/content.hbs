@@ -19,6 +19,7 @@
   "margin": [0, 0, 0, 0]
 },
 {{#each @root.context.metaData.certificates ~}}
+{{#compare ../award "hours" ~}}
 {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
 {{#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
 {
@@ -83,6 +84,9 @@
   "margin": [0, 0, 0, 0]
 },
 {{/unless ~}}
+{{/compare ~}}
+{{else}}
+{{!-- non-hours based volunteering --}}
 {{/compare ~}}
 {{/each ~}}
 {

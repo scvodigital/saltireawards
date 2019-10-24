@@ -9,6 +9,7 @@
   </ul>
   {{/compare ~}}
   {{#each @root.context.metaData.certificates ~}}
+  {{#compare hours ">" 0 ~}}
   {{!-- It's already awarded --}}
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
   {{#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
@@ -87,6 +88,7 @@
       </div>
     </div>
   </div>
+  {{/compare ~}}
   {{/compare ~}}
   {{/compare ~}}
   {{/compare ~}}
