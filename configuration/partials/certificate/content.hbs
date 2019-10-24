@@ -1,0 +1,182 @@
+{
+  "image": "{{> certificate_images_png_saltire}}",
+  "width": 160,
+  "alignment": "center",
+  "margin": [0, 0, 0, 0]
+},
+{
+  "text": {{>pdf_metadata_value key="title" default="VOLUNTEERING FOR"}},
+  "fontSize": 12,
+  "bold": true,
+  "alignment": "center",
+  "margin": [0, 5, 0, 0]
+},
+{
+  "text": {{>pdf_metadata_value key="title" default="12 TO 25 YEAR OLDS"}},
+  "fontSize": 12,
+  "bold": true,
+  "alignment": "center",
+  "margin": [0, 0, 0, 0]
+},
+{{#each @root.context.metaData.certificates ~}}
+{{#compare ../award "hours" ~}}
+{{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
+{{#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
+{
+  "columns": [
+    [
+      {
+        "width": "60%",
+        "text": {{>pdf_metadata_value key="title" default=(concat hours " hours")}},
+        "color": "{{getProperty @root.context.metaData.theme type}}",
+        "fontSize": 38,
+        "bold": false,
+        "alignment": "center",
+        "margin": [0, 10, 0, 0]
+      },
+      {
+        "text": {{>pdf_metadata_value key="title" default="VOLUNTEERING"}},
+        "color": "{{@root.context.metaData.theme.secondary}}",
+        "fontSize": 18,
+        "bold": true,
+        "alignment": "center",
+        "margin": [0, 0, 0, 5]
+      },
+      {
+        {{#if type_final ~}}
+        "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement of completing"}},
+        {{else}}
+        "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement on"}},
+        {{/if ~}}
+        "fontSize": 14,
+        "bold": false,
+        "alignment": "center",
+        "margin": [0, 0, 0, 0]
+      },
+      {
+        "text": {{>pdf_metadata_value key="title" default=type_name}},
+        "fontSize": 16,
+        "bold": true,
+        "color": "{{getProperty @root.context.metaData.theme type}}",
+        "alignment": "center",
+        "margin": [0, 0, 0, 0]
+      }
+    ],
+    {
+      "width": "*",
+      "text": ""
+    }
+    {{!-- [
+      ,
+      {
+        "width": "140",
+        {{#compare type 'approach' ~}}
+        "image": "{{> certificate_images_png_badge_approach}}",
+        {{else}}
+        "image": "{{> certificate_images_png_badge_ascent}}",
+        {{/compare ~}}
+        "alignment": "center",
+        "margin": [0, 0, 0, 0]
+      }
+    ] --}}
+  ],
+  "columnGap": 0,
+  "margin": [0, 0, 0, 0]
+},
+{{/unless ~}}
+{{/compare ~}}
+{{else}}
+{{!-- non-hours based volunteering --}}
+{{/compare ~}}
+{{/each ~}}
+{
+  "text": "{{user.first_name}} {{user.last_name}}",
+  "fontSize": 16,
+  "bold": true,
+  "alignment": "center",
+  "margin": [0, 30, 0, 0]
+},
+{{#each tasks ~}}
+{{#ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0)) (compare hours_verified ">" 0) ~}}
+{
+  "text": "For: {{organisation_name}}",
+  "fontSize": 16,
+  "bold": true,
+  "alignment": "left",
+  "margin": [0, 15, 0, 0]
+},
+{{#if task_description ~}}
+{
+  "text": "{{task_description}}",
+  "fontSize": 16,
+  "bold": true,
+  "alignment": "left",
+  "margin": [0, 15, 0, 0]
+},
+{{/if ~}}
+{{#if un_sustainable_development_goals ~}}
+{
+  "text": "{{> sdg_number sdg=un_sustainable_development_goals}}: {{un_sustainable_development_goals}}",
+  "fontSize": 16,
+  "color": "{{> sdg_color sdg=un_sustainable_development_goals}}",
+  "alignment": "left",
+  "margin": [0, 5, 0, 0]
+},
+{{/if ~}}
+{{/ifAny ~}}
+{{/each ~}}
+{
+  "width": 103,
+  "image": "{{> certificate_images_png_signature_minister}}",
+  "alignment": "left",
+  "margin": [0, 10, 0, 0]
+},
+{{#if user.claim_code ~}}
+{
+  "text": {{>pdf_metadata_value key="title" default="Claim code"}},
+  "fontSize": 22,
+  "bold": true,
+  "alignment": "center",
+  "margin": [0, 15, 0, 0]
+},
+{
+  "text": "{{substr user.claim_code 0 10}}",
+  "fontSize": 16,
+  "bold": true,
+  "alignment": "center",
+  "margin": [0, 15, 0, 0]
+},
+{{/if ~}}
+{
+  "columns": [
+    {
+      "width": "*",
+      "text": ""
+    },
+    {
+      "width": 110,
+      "image": "{{> certificate_images_png_global_goals}}",
+      "alignment": "center",
+      "link": "https://globalgoals.org",
+      "margin": [0, 0, 0, 0]
+    },
+    {
+      "width": 170,
+      "image": "{{> certificate_images_png_sg}}",
+      "alignment": "right",
+      "link": "https://gov.scot",
+      "margin": [0, 0, 0, 0]
+    }
+  ],
+  "columnGap": 10,
+  "margin": [0, 0, 0, 0]
+},
+{{#if (compare @root.route.name "group_certificate") ~}}
+{{#if last ~}}
+{{>pdf_text text="" pageBreak="none"}}
+{{else}}
+{{>pdf_text text="" pageBreak="after"}}
+{{/if ~}}
+{{else}}
+{{>pdf_text text="" pageBreak="none"}}
+{{/if ~}}

@@ -5,7 +5,7 @@
   <div class="post-info">
     {{#if organisation_name ~}}
     <div class="post-info-item post-info-organisation v-margin">
-      {{replace organisation_name "'" "&quot;"}}
+      {{{replace (replace organisation_name "'" "&apos;") "`" "&apos"}}}
     </div>
     {{/if ~}}
     {{#if map_postcode ~}}
@@ -15,7 +15,7 @@
     {{/if ~}}
     {{#if description ~}}
     <div style="max-height: 2.8rem;"  class="post-info-item post-info-description faded-overflow">
-      {{{replace description "'" "&quot;"}}}
+      {{{replace (replace description "'" "&apos;") "`" "&apos"}}}
     </div>
     {{/if ~}}
   </div>

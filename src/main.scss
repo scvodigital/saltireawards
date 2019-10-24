@@ -228,6 +228,10 @@ a.btn-link:hover {
   display: block;
   width: 100%;
 
+  .tt-input {
+    width: 100%;
+  }
+
   .tt-menu {
     border: 1px solid rgb(204, 204, 204);
     background-color: rgb(255, 255, 255);
@@ -519,11 +523,12 @@ header,
 .saltire-badge {
   position: relative;
   margin-bottom: $unit/2;
+  height: 100px;
   .badge-content {
     position: absolute;
     height: 85px;
     width: 85px;
-    top: 30px;
+    top: 10px;
     left: auto;
     margin-left: .5px;
     display: flex;
@@ -1039,6 +1044,11 @@ footer {
   line-height: 2;
   display: inline-block;
   font-family: 'Consolas', 'Monaco', 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
+}
+
+.bg-error .code code {
+  background: transparent;
+  color: white;
 }
 
 .table th,

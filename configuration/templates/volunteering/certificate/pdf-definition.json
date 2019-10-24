@@ -5,7 +5,7 @@
     "subject": "Saltire Awards certificate"
   },
   "pageSize": "A4",
-  "pageMargins": [40, 60, 40, 60],
+  "pageMargins": [70, 60, 70, 50],
   "styles": {
     "title": {
       "fontSize": 20,
@@ -42,12 +42,12 @@
   },
   "background": [
     {
-      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"596\" height=\"842\"><polygon fill=\"{{@root.context.metaData.theme.primary}}\" points=\"596,0 596,80 297,0\" /><polygon fill=\"{{@root.context.metaData.theme.secondary}}\" points=\"0,80 0,0 520,0\" /><polygon fill=\"{{@root.context.metaData.theme.primary}}\" points=\"0,762 0,842 297,842\" /><polygon fill=\"{{@root.context.metaData.theme.secondary}}\" points=\"596,762 842,842 100,842\" /></svg>"
+      "svg": "{{> certificate_images_svg_background}}"
     }
   ],
   "content": [
     {{#eachJoin @root.data.pdfObjects ","}}
-    {{> certificate_pdf last=@last}}
+    {{> certificate_content award="hours" last=@last}}
     {{/eachJoin}}
   ]
 }

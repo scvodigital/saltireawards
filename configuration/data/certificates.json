@@ -1,5 +1,11 @@
 [
   {
+    "hours": 0,
+    "certificate_name": "Team",
+    "type": "challenge",
+    "type_name": "The Challenge"
+  },
+  {
     "hours": 10,
     "certificate_name": "Ten",
     "type": "approach",
@@ -9,7 +15,8 @@
     "hours": 25,
     "certificate_name": "Twenty five",
     "type": "approach",
-    "type_name": "The Approach"
+    "type_name": "The Approach",
+    "type_final": true
   },
   {
     "hours": 50,
@@ -33,6 +40,13 @@
     "hours": 500,
     "certificate_name": "Five hundred",
     "type": "ascent",
-    "type_name": "The Ascent"
+    "type_name": "The Ascent",
+    "type_final": true
+  },
+  {
+    "hours": 0,
+    "certificate_name": "Outstanding",
+    "type": "summit",
+    "type_name": "The Summit"
   }
 ]

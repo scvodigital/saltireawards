@@ -30,8 +30,10 @@
         </div>
         <div class="column col-5 col-xl-7 col-sm-12 filter-location b-padding" id="location-fields">
           <div class="input-group has-icon-left">
-            <span class="form-icon far fa-location geo-lookup" tabindex="0" title="Find my location" data-component="TasksTrigger" data-TasksTrigger="geolocation"></span>
-            <input type="text" id="where-opportunities" name="location" class="form-input input-lg" value="{{@root.request.params.query.location}}" placeholder="Location" data-lpignore="true">
+            <span data-component="Typeahead" data-Typeahead="typeahead-location">
+              <span class="form-icon far fa-location geo-lookup" tabindex="0" title="Find my location" data-component="TasksTrigger" data-TasksTrigger="geolocation"></span>
+              <input type="text" id="where-opportunities" name="location" class="form-input input-lg" value="{{@root.request.params.query.location}}" placeholder="Location" data-lpignore="true">
+            </span>
             <select class="form-select select-lg" id="distance" name="distance">
               {{#each (split "1,2,5,10,15,20" ",")}}
               <option value="{{this}}" {{#compare (default @root.request.params.query.distance "5") "===" this}}selected{{/compare}}>{{inflect this "mile" "miles" true}}</option>
@@ -87,9 +89,7 @@
 {{{{raw}}}}
 <script data-component-config="geolocation" type="javascript/blocked">
   {
-    type: "multiTask",
-    config: {
-      __doNotCompile: true,
+    click: {
       tasks: [
         { name: "geolocation", type: "geolocation", config: {} },
         {
@@ -182,21 +182,12 @@
   }
 </script>
 
-<script data-component-config="empty-location-fields" type="javascript/blocked">
+<script data-task="empty-location-fields" type="javascript/blocked">
   {
-    click: {
-      tasks: [
-        {
-          name: "emptyLocationFields",
-          type: "elementManipulator",
-          config: {
-            "#location-fields": { addClass: "hidden" },
-            "#location-lat": { value: "" },
-            "#location-lng": { value: "" },
-            "#where-opportunities": { value: "" }
-          }
-        }
-      ]
+    type: "elementManipulator",
+    config: {
+      "#location-lat": { value: "" },
+      "#location-lng": { value: "" }
     }
   }
 </script>
@@ -215,6 +206,55 @@
 </script>
 {{{{/raw}}}}
 
+<script data-component-config="typeahead-location" type="javascript/blocked">
+{
+  typeaheadOptions: {
+    highlight: true,
+    minlength: 1
+  },
+  itemSelectedTasks: [
+    {
+      type: "elementManipulator",
+      config: {
+        "#location-lat": { value: { __pointer: "metadata.suggestion.point.lat" } },
+        "#location-lng": { value: { __pointer: "metadata.suggestion.point.lon" } },
+        ">.tt-input": { value: { __pointer: "metadata.suggestion.display" } }
+      }
+    },
+    {
+      type: "elementManipulator",
+      config: {
+        ">.tt-menu": { styles: { display: "none !important" } }
+      }
+    }
+  ],
+  nothingSelectedTasks: [
+    "empty-location-fields",
+    {
+      type: "run",
+      config: { code: "metadata.instance.clearSelection()" }
+    }
+  ],
+  datasets: [
+    {
+      name: "geo_lookup",
+      display: "display",
+      templates: { header: "<h3>Location</h3>" },
+      bloodhound: {
+        datumTokenizer: "objWhitespace",
+        datumTokenizerField: "place",
+        queryTokenizer: "whitespace",
+        remote: {
+          url: "/geo-lookup?q=*",
+          wildcard: "*"
+        }
+      }
+    },
+  ],
+  clearIfNothingSelected: true
+}
+</script>
+
 <script data-component-config="typeahead-terms" type="javascript/blocked">
 {
   typeaheadOptions: {
@@ -226,14 +266,8 @@
       type: "basic",
       name: "exists",
       config: {
-        __template: `\{{{get (jquery (concat "input[type='hidden'][value='" metadata.suggestion.value "']")) "length"}}}`,
+        __template: `\{{{get (jquery (concat ".chip > input[type='hidden'][value='" metadata.suggestion.value "']")) "length"}}}`,
         __parser: 'integer'
-      }
-    },
-    {
-      type: "run",
-      config: {
-        code: `console.log('DATA:', data)`
       }
     },
     {
@@ -241,40 +275,10 @@
       type: "switch",
       config: {
         which: {
-          __template: `
-            \{{~#unless data.exists~}}
-              \{{~#switch metadata.suggestion.datasetName "geo_lookup"~}}
-                \{{~#case "geo_lookup"~}}
-                  geo_lookup
-                \{{~/case~}}
-                \{{~#case "geo_services"~}}
-                  geo_services
-                \{{~/case~}}
-              \{{~else~}}
-                other
-              \{{~/switch~}}
-            \{{~/unless~}}
-          `
+          __template: `\{{#unless data.exists}}createChip\{{/unless}}`
         },
         branches: {
-          geo_lookup: {
-            tasks: [
-              {
-                __doNotCompile: true,
-                type: "elementManipulator",
-                config: {
-                  "#location-fields": { removeClass: "hidden" },
-                  "#location-lat": { value: { __pointer: "metadata.suggestion.point.lat" } },
-                  "#location-lng": { value: { __pointer: "metadata.suggestion.point.lon" } },
-                  "#where-opportunities": { value: { __pointer: "metadata.suggestion.display" } }
-                }
-              },
-            ]
-          },
-          geo_services: {
-            tasks: [ "geolocation" ]
-          },
-          other: {
+          createChip: {
             tasks: [
               {
                 type: "elementManipulator",
@@ -298,39 +302,21 @@
               }
             ]
           },
-          default: { tasks: [] },
+          default: { },
         }
       }
     },
     {
       type: "elementManipulator",
-      config: {
-        ">.tt-menu": { styles: { display: "none !important" } },
-        "#what-opportunities": { value: "", focus: true, }
-      }
+      config: { "#what-opportunities": { value: "", focus: true, } }
+    },
+    {
+      type: "run",
+      config: { code: "metadata.instance.clearSelection();metadata.instance.closeMenu()" }
     },
     "update-components"
   ],
   datasets: [
-    {
-      name: "geo_services",
-      display: "label",
-      templates: {
-        header: "<h3>Near me</h3>"
-      },
-      bloodhound: {
-        datumTokenizer: "objWhitespace",
-        datumTokenizerField: "other",
-        queryTokenizer: "whitespace",
-        local: [
-          {
-            label: "Use my current location",
-            value: "near-me",
-            other: "local near me here"
-          }
-        ]
-      }
-    },
     {{#each @root.context.metaData.volunteeringTerms}}
       {{#each termGroups}}
         {
@@ -360,22 +346,6 @@
         },
       {{/each}}
     {{/each}}
-    // {
-    //   name: "geo_lookup",
-    //   display: "display",
-    //   templates: {
-    //     header: "<h3>Location</h3>"
-    //   },
-    //   bloodhound: {
-    //     datumTokenizer: "objWhitespace",
-    //     datumTokenizerField: "place",
-    //     queryTokenizer: "whitespace",
-    //     remote: {
-    //       url: "/geo-lookup?q=*",
-    //       wildcard: "*"
-    //     }
-    //   }
-    // },
   ],
   clearIfNothingSelected: true
 }
