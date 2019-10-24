@@ -3,7 +3,7 @@
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) 0 ~}}
   You haven't logged any volunteering yet
   {{else}}
-  You have logged {{inflect (sumArray (pluck @root.data.tasksInfo "hours")) "hour" "hours" true}} so far
+  You have logged {{inflect (round (sumArray (pluck @root.data.tasksInfo "hours")) "down") "hour" "hours" true}} so far
   {{/compare ~}}
 </p>
 
@@ -15,7 +15,7 @@
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
   {{else}}
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) ">=" hours ~}}
-  {{#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
+  {{#unless (compare @root.data.verifyHoursInfo.award ">=" hours) ~}}
   <span class="working-towards"><a href="/achievements">{{hours}} hour certificate available!</a></span>
   {{/unless ~}}
   {{else}}
