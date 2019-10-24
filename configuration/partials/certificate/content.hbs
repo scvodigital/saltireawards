@@ -25,12 +25,19 @@
         "width": "60%",
         {{#compare award "hours" ~}}
         {{#each @root.context.metaData.certificates ~}}
+        {{#ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0) ~}}
+        {{#compare hours ../user.hours_verified ~}}
+        "text": {{>pdf_metadata_value key="title" default=(concat hours " hours")}},
+        "color": "{{getProperty @root.context.metaData.theme type}}",
+        {{/compare ~}}
+        {{else}}
         {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
         {{#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
         "text": {{>pdf_metadata_value key="title" default=(concat hours " hours")}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
         {{/unless ~}}
         {{/compare ~}}
+        {{/ifAll ~}}
         {{/each ~}}
         {{else}}
         {{#each @root.context.metaData.certificates ~}}
@@ -46,7 +53,11 @@
         "margin": [0, 10, 0, 0]
       },
       {
+        {{#compare award "summit" ~}}
+        "text": {{>pdf_metadata_value key="title" default="CONTRIBUTION"}},
+        {{else}}
         "text": {{>pdf_metadata_value key="title" default="VOLUNTEERING"}},
+        {{/compare ~}}
         "color": "{{@root.context.metaData.theme.secondary}}",
         "fontSize": 18,
         "bold": true,
@@ -127,7 +138,7 @@
   "margin": [0, 30, 0, 0]
 },
 {{#each tasks ~}}
-{{#ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0)) (compare hours_verified ">" 0) ~}}
+{{!-- {{#ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0)) (compare hours_verified ">" 0) ~}} --}}
 {
   "text": "For: {{organisation_name}}",
   "fontSize": 16,
@@ -153,7 +164,7 @@
   "margin": [0, 5, 0, 0]
 },
 {{/if ~}}
-{{/ifAny ~}}
+{{!-- {{/ifAny ~}} --}}
 {{/each ~}}
 {
   "width": 103,

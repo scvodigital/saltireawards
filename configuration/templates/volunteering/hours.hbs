@@ -230,9 +230,21 @@
             <div class="column col-2 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-7">
               {{!-- <input {{#unless claim_code}}disabled{{/unless}} class="inline-edit" type="number" step="any" min="0" name="hours" value="{{hours}}"> --}}
               <div class="form-group b-margin">
-                <select class="form-select" {{#unless claim_code}}disabled{{/unless}} required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
+                <select class="form-select"{{#unless claim_code}} disabled{{/unless}} required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
                   {{#each @root.context.metaData.certificates ~}}
-                  <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>{{certificate_name}} hours</option>
+                  {{#unless tsi_only ~}}
+                  <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>
+                    {{#compare hours ">" 0 ~}}
+                    {{type_name}}: {{hours}} hours
+                    {{else}}
+                    {{type_name}}
+                    {{/compare ~}}
+                  </option>
+                  {{else}}
+                  <option value="{{hours}}" disabled>
+                    {{type_name}}
+                  </option>
+                  {{/unless ~}}
                   {{/each ~}}
                 </select>
               </div>

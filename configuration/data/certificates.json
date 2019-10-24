@@ -1,6 +1,6 @@
 [
   {
-    "hours": 0,
+    "hours": -1,
     "certificate_name": "Team",
     "type": "challenge",
     "type_name": "The Challenge"
@@ -46,9 +46,10 @@
     "type_name": "The Ascent"
   },
   {
-    "hours": 0,
+    "hours": -2,
     "certificate_name": "Outstanding",
     "type": "summit",
-    "type_name": "The Summit"
+    "type_name": "The Summit",
+    "tsi_only": true
   }
 ]
