@@ -84,7 +84,7 @@
     <div class="column col-2 col-md-3 col-sm-4 col-xs-5">
       <div class="has-icon-right d-inline-block">
         <input class="form-input" id="postcode" name="postcode" type="text" value="{{@root.data.accountInfo.postcode}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="postcode-lookup" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.postcode}}>
-        <i class="form-icon fas {{#if hasPostcode}}fa-check-circle text-success{{else}}fa-times-circle text-error{{/if}}" id="postcode-validation-icon"></i>
+        <span class="form-icon fas {{#if hasPostcode}}fa-check text-success{{else}}fa-times text-error{{/if}}" id="postcode-validation-icon"></span>
       </div>
     </div>
   </div>
@@ -105,7 +105,6 @@
 
 
 
-
 <script data-task="postcode-lookup" type="javascript/blocked">
 {
   type: "multiTask",
@@ -121,10 +120,19 @@
                 {
                   type: "elementManipulator",
                   config: {
-                    "#postcode-validation-icon": { addClass: [ "fa-times-circle", "text-error" ], removeClass: [ "loading", "fa-check-circle", "text-primary", "text-success" ] },
-                    "#local_authority": { value: "" },
-                    "#tsi_area": { value: "" },
-                    "#tsi_contact_email": { value: "" }
+                    "#postcode-validation-icon": {
+                      addClass: [ "fa-times", "text-error" ],
+                      removeClass: [ "loading", "fa-check", "text-primary", "text-success" ]
+                    },
+                    "#local_authority": {
+                      value: ""
+                    },
+                    "#tsi_area": {
+                      value: ""
+                    },
+                    "#tsi_contact_email": {
+                      value: ""
+                    }
                   }
                 }
               ]
@@ -134,7 +142,12 @@
               tasks: [
                 {
                   type: "elementManipulator",
-                  config: { "#postcode-validation-icon": { addClass: [ "loading", "text-primary" ] , removeClass: [ "fa-check-circle", "fa-times-circle", "text-error", "text-success" ] } }
+                  config: {
+                    "#postcode-validation-icon": {
+                      addClass: [ "loading", "text-primary" ],
+                      removeClass: [ "fa-check", "fa-times", "text-error", "text-success" ]
+                    }
+                  }
                 },
                 {
                   name: "postcodeLookup",
@@ -152,10 +165,19 @@
                           {
                             type: "elementManipulator",
                             config: {
-                              "#postcode-validation-icon": { addClass: [ "fa-times-circle", "text-error" ], removeClass: [ "loading", "fa-check-circle", "text-primary", "text-success" ] },
-                              "#local_authority": { value: "" },
-                              "#tsi_area": { value: "" },
-                              "#tsi_contact_email": { value: "" }
+                              "#postcode-validation-icon": {
+                                addClass: [ "fa-times", "text-error" ],
+                                removeClass: [ "loading", "fa-check", "text-primary", "text-success" ]
+                              },
+                              "#local_authority": {
+                                value: ""
+                              },
+                              "#tsi_area": {
+                                value: ""
+                              },
+                              "#tsi_contact_email": {
+                                value: ""
+                              }
                             }
                           }
                         ]
@@ -165,11 +187,22 @@
                           {
                             type: "elementManipulator",
                             config: {
-                              "#postcode-validation-icon": { addClass: [ "fa-check-circle", "text-success" ], removeClass: [ "loading", "fa-times-circle", "text-primary", "text-error" ] },
-                              ">": { value: { __template: "{{data.postcodeLookup.[0].place}}" } },
-                              "#local_authority": { value: { __template: "{{data.postcodeLookup.[0].local_authority}}" } },
-                              "#tsi_area": { value: { __template: "{{data.postcodeLookup.[0].tsi_area}}" } },
-                              "#tsi_contact_email": { value: { __template: "{{data.postcodeLookup.[0].tsi_contact_email}}" } }
+                              "#postcode-validation-icon": {
+                                addClass: [ "fa-check", "text-success" ],
+                                removeClass: [ "loading", "fa-times", "text-primary", "text-error" ]
+                              },
+                              ">": {
+                                value: { __template: "{{data.postcodeLookup.[0].place}}" }
+                              },
+                              "#local_authority": {
+                                value: { __template: "{{data.postcodeLookup.[0].local_authority}}" }
+                              },
+                              "#tsi_area": {
+                                value: { __template: "{{data.postcodeLookup.[0].tsi_area}}" }
+                              },
+                              "#tsi_contact_email": {
+                                value: { __template: "{{data.postcodeLookup.[0].tsi_contact_email}}" }
+                              }
                             }
                           }
                         ]

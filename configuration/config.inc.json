@@ -20,8 +20,8 @@
     "url": "https://test.saltireawards.scot",
     "twitter": "saltireawards",
     "contacts": {
-      "admin": "support@saltireawards.org.uk",
-      "noreply": "noreply@saltireawards.org.uk",
+      "admin": "support@saltireawards.scot",
+      "noreply": "noreply@saltireawards.scot",
       "technical": "webhelpdesk@scvo.org.uk"
     },
     "emailSendSettings": "{:./data/email-send-settings.json}",
