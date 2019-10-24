@@ -1046,6 +1046,11 @@ footer {
   font-family: 'Consolas', 'Monaco', 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
 }
 
+.bg-error .code code {
+  background: transparent;
+  color: white;
+}
+
 .table th,
 .table td {
   border-bottom-width: 1px;

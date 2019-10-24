@@ -42,7 +42,11 @@
         "margin": [0, 0, 0, 5]
       },
       {
+        {{#if type_final ~}}
         "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement of completing"}},
+        {{else}}
+        "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement on"}},
+        {{/if ~}}
         "fontSize": 14,
         "bold": false,
         "alignment": "center",
@@ -117,6 +121,12 @@
 {{/if ~}}
 {{/ifAny ~}}
 {{/each ~}}
+{
+  "width": 103,
+  "image": "{{> certificate_images_png_signature_minister}}",
+  "alignment": "left",
+  "margin": [0, 10, 0, 0]
+},
 {{#if user.claim_code ~}}
 {
   "text": {{>pdf_metadata_value key="title" default="Claim code"}},
