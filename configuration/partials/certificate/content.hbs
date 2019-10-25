@@ -257,12 +257,8 @@
     "y": 715
   }
 },
-{{#if (compare @root.route.name "group_certificate") ~}}
 {{#if last ~}}
 {{>pdf_text text="" pageBreak="none"}}
 {{else}}
 {{>pdf_text text="" pageBreak="after"}}
-{{/if ~}}
-{{else}}
-{{>pdf_text text="" pageBreak="none"}}
 {{/if ~}}
