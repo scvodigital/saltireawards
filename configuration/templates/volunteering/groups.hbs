@@ -3,20 +3,24 @@
   <div class="empty-icon">
     <span class="fal fa-users fa-3x"></span>
   </div>
+  {{#compare (length @root.data.tasksInfo) 0 ~}}
+  <p class="empty-subtitle">
+    Add your first group to create {{@root.context.metaData.title}} certificates.<br />
+    Once you have entered details of the voluntary work you can add a list of participants.<br />
+    Individual participants can be awarded different certificates.
+  </p>
+  {{/compare ~}}
   <div class="empty-action">
     {{> log_action_buttons}}
   </div>
 </div>
 
+{{#unless (compare (length @root.data.tasksInfo) 0) ~}}
 <div class="content-break">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
     <polygon fill="#EEF0FA" points="100,0 100,100 0,0"></polygon>
   </svg>
   <div class="container">
-    <div class="bg-error s-rounded x-padding b-margin-full hidden" id="active-form-message">
-      <span id="form-message"></span>
-    </div>
-
     <div class="columns cards equal-height">
       {{#each @root.data.tasksInfo ~}}
       <div class="column col-4 col-sm-12 col-lg-6">
@@ -62,4 +66,5 @@
     </div>
   </div>
 </div>
+{{/unless ~}}
 {{/if ~}}
