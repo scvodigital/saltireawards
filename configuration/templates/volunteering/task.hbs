@@ -9,6 +9,10 @@
         {{/if ~}}
       </h2>
 
+      {{#unless @root.data.isAdmin ~}}
+      {{> log_age_limit}}
+      {{/unless ~}}
+
       <form id="task-details-form" class="active-form" action="/submit-task-details" method="POST" data-component="TasksTrigger" {{#if @root.data.isAdmin}}data-success-destination="/hours/" data-destination-include-id="true"{{else}}data-success-destination="/hours"{{/if}} data-TasksTrigger="ajax-form-handler">
         <input type="hidden" name="task_type" value="{{#if @root.data.isAdmin}}Group Task{{else}}Individual Task{{/if}}">
         <div class="l-margin r-margin">

@@ -2,9 +2,9 @@
 [
   {{#eachJoin (distinct (pluck @root.data.tasksInfoUnverified "volunteer_manager_email")) "," ~}}
   {
-    "from": "{{@root.context.metaData.contacts.noreply}}",
-    "h:sender": "{{@root.context.metaData.contacts.noreply}}",
-    "h:Reply-To": "{{>support_email_address}}",
+    "from": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+    "h:sender": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+    "h:Reply-To": "{{>support_name}} <{{>support_email_address}}>",
     "to": "{{{this}}}",
     "o:tag": "{{{../type}}}",
     "o:tracking": true,

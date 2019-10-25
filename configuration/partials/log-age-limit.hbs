@@ -1,0 +1,3 @@
+{{#compare (dateMath 'now-26y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD") ~}}
+<strong class="label label-warning">You may only log hours you volunteered before you turned 26</strong>
+{{/compare ~}}
