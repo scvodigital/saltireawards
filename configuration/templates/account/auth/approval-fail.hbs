@@ -1,10 +1,9 @@
 <div class="empty">
-  <div class="empty-icon">
-    <span class="fal fa-user-check fa-3x"></span>
+  <div class="empty-icon text-error">
+    <span class="fal fa-user-times fa-3x"></span>
   </div>
   <p class="empty-title h5">{{#compare @root.data.accountInfo.user_type "===" "Volunteer"}}Parent or guardian{{else}}Group administrator{{/compare}} account approval</p>
   <p class="empty-subtitle">
-    {{#compare @root.data.accountInfo.user_type "===" "Volunteer"}}Parent or guardian{{else}}Group administrator{{/compare}} approval has failed. Please <a href="mailto:{{>support_email_address}}">contact us</a> for assistance.
+    {{#compare @root.data.accountInfo.user_type "===" "Volunteer"}}Parent or guardian{{else}}Group administrator{{/compare}} approval has failed. Please <a href="/contact">contact us</a> for assistance.
   </p>
-  <div class="empty-action"></div>
 </div>
