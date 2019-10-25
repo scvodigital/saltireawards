@@ -5,17 +5,38 @@
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.getAccountInfo",
+    "context.metaData.commonTasks.getTasksInfoUnverified",
     "context.metaData.commonTasks.flushCache",
+    {
+      "name": "verifyHoursInfo",
+      "taskModule": "firebaseRtbGet",
+      "renderer": "handlebars",
+      "config": {
+        "appName": "saltireawards",
+        "pathTemplate": "/{{default @root.request.params.query.user_id 'no-such-write-profile'}}/verify-hours/",
+        "defaultData": {}
+      }
+    },
     {
       "name": "things",
       "taskModule": "render",
       "renderer": "handlebars",
       "config": {
         "output": "data",
-        "template": ">context.metaData.handlebars.templates.account_auth_update-email-body",
+        "template": "{{#eachJoin @root.data.tasksInfoUnverified ','}}{{#compare unverified_hours_list.length '>=' 1}}{{#compare this.volunteer_manager_email '===' 'anuttgens@gmail.com'}}{{task_id}}{{/compare}}{{/compare}}{{/eachJoin}}"
+      }
+    },
+    {
+      "name": "apexBody",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": ">context.metaData.handlebars.templates.volunteering_apex-verify-hours-body",
         "parseJson": true
       }
     },
+
     {
       "name": "destination",
       "taskModule": "renderLayout",
