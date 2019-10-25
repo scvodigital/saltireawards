@@ -2,11 +2,11 @@
 {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
 {{#each contacts ~}}
 {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
-<p class="no-margin">
+<p>
   {{#if @root.data.isAdmin ~}}
   For support administrating group volunteering,
   {{else}}
-  For information on how to get involved,
+  For help with your account or information on how to get involved,
   {{/if ~}}
   please contact <strong>{{title}}</strong> who are responsible for the {{@root.context.metaData.title}} {{#if island}}on{{else}}in{{/if}} {{#if area}}{{area}}{{else}}{{../local_authority}}{{/if}}.
 </p>

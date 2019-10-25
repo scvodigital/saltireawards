@@ -308,6 +308,20 @@ a.btn-link:hover {
   }
 }
 
+.content-primary-info-container.tabs {
+  .tab {
+    margin-bottom: -1px;
+  }
+  .panel-body.location-info {
+    padding: 0;
+  }
+  // .panel-body.key-info-extra,
+  // .panel-body.detailed-info {
+  //   padding-left: .8rem;
+  //   padding-right: .8rem;
+  // }
+}
+
 @media screen and (min-width: 961px) {
   .mobile-menu {
     display: none;
