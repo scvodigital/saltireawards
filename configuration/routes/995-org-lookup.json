@@ -14,7 +14,7 @@
         },
         "queryTemplates": {
           "index": "web-content-production",
-          "type": "milo-volunteering-organisation",
+          "type": "milo-organisation",
           "template": ">context.metaData.handlebars.queries.search-org-lookup"
         }
       },
