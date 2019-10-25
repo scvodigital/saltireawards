@@ -4,6 +4,7 @@
   "_source": [
     "title",
     "location_city",
+    "location_region",
     "registered_charity_number"
   ],
   "query": {
