@@ -14,6 +14,11 @@
              "fields": ["text_bag"],
              "query": {{{stringify q}}}
           }
+        },
+        {
+          "wildcard": {
+            "registered_charity_number": "?*"
+          }
         }
       ]
     }
