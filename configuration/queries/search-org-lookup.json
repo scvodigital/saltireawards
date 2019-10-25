@@ -1,0 +1,22 @@
+{{#withExtend this q=@root.request.params.query.q}}
+{
+  "size": 10,
+  "_source": [
+    "title",
+    "location_city",
+    "registered_charity_number"
+  ],
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "query_string": {
+             "fields": ["text_bag"],
+             "query": {{{stringify q}}}
+          }
+        }
+      ]
+    }
+  }
+}
+{{/withExtend}}

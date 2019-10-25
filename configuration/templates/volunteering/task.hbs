@@ -28,7 +28,9 @@
               </label>
             </div>
             <div class="column col-8 col-md-12">
-              <input id="organisation_name" name="organisation_name" class="form-input" placeholder="e.g. A Charity" value="{{@root.data.taskInfo.organisation_name}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.organisation_name}}>
+              <div data-component="Typeahead" data-Typeahead="typeahead-organisation">
+                <input id="organisation_name" name="organisation_name" class="form-input" placeholder="e.g. A Charity" value="{{@root.data.taskInfo.organisation_name}}" autocomplete="nope" data-lpignore="true" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.organisation_name}}>
+              </div>
             </div>
           </div>
           <div class="form-group">
@@ -184,6 +186,56 @@
   </div>
 </div>
 
+{{{{raw}}}}
+<script data-component-config="typeahead-organisation" type="javascript/blocked">
+{
+  typeaheadOptions: {
+    highlight: true,
+    minlength: 3
+  },
+  itemSelectedTasks: [
+    {
+      type: "elementManipulator",
+      config: {
+        ">.tt-input": { value: { __pointer: "metadata.suggestion.title" } },
+        "#location": { value: { __pointer: "metadata.suggestion.location" } },
+        "#organisation_charity_number": { value: { __pointer: "metadata.suggestion.registered_charity_number" } }
+      }
+    },
+    {
+      type: "elementManipulator",
+      config: {
+        ">.tt-menu": { styles: { display: "none !important" } }
+      }
+    }
+  ],
+  nothingSelectedTasks: [
+    "empty-location-fields",
+    {
+      type: "run",
+      config: { code: "metadata.instance.clearSelection()" }
+    }
+  ],
+  datasets: [
+    {
+      name: "org_lookup",
+      display: "title",
+      bloodhound: {
+        datumTokenizer: "objWhitespace",
+        datumTokenizerField: "other",
+        queryTokenizer: "whitespace",
+        remote: {
+          url: "/org-lookup?q=*",
+          wildcard: "*"
+        }
+      }
+    },
+  ],
+  clearIfNothingSelected: true
+}
+</script>
+{{{{/raw}}}}
+
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {
     $('#task-details-form').on('submit', function(e){
@@ -202,4 +254,3 @@
       };
   });
 </script>
-

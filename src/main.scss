@@ -233,16 +233,16 @@ a.btn-link:hover {
   }
 
   .tt-menu {
+    cursor: default;
     border: 1px solid rgb(204, 204, 204);
     background-color: rgb(255, 255, 255);
     padding: $unit/4;
     width: 100%;
-
-    h3 {
+    h3,
+    h4 {
       font-size: 1rem;
       margin: $unit/4 0;
     }
-
     .tt-cursor {
       background-color: $primary-color-light;
     }
