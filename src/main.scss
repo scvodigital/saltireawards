@@ -925,6 +925,9 @@ ul.fa-ul {
     padding: 0;
   }
 }
+.card-body ul.hours-info li:first-child {
+  margin-top: 0;
+}
 
 .form.disabled,
 form.disabled {
