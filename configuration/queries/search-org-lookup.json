@@ -11,7 +11,7 @@
       "must": [
         {
           "query_string": {
-             "fields": ["text_bag"],
+             "fields": ["text_bag_boost"],
              "query": {{{stringify q}}}
           }
         },
