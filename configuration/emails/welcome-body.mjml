@@ -1,5 +1,4 @@
 <mjml>
-  <mj-raw>{{#with @root.data.accountInfo}}</mj-raw>
   <mj-body background-color="#F5F5F5">
     <mj-wrapper background-color="#ffffff" padding="10px">
       <mj-section background-color="#ffffff" padding="10px">
@@ -7,10 +6,11 @@
         </mj-column>
       </mj-section>
 
+
       <mj-section>
         <mj-column padding="0px">
           <mj-text font-size="16px" padding="0px" line-height="20px" color="#000000" font-family="Montserrat, Helvetica, Arial, sans-serif">
-            <p>Hello {{first_name}}, welcome to the {{@root.context.metaData.title}}!</p>
+            <p>Hello {{@root.data.accountInfo.first_name}}, welcome to the {{@root.context.metaData.title}}!</p>
 
             <p>{{@root.context.metaData.fullTitle}} are the Scottish Government's way of celebrating, recognising and rewarding the commitment, contribution and achievements of young volunteers in Scotland.</p>
 
@@ -23,6 +23,7 @@
         </mj-column>
       </mj-section>
 
+
       <mj-section background-color="#D7D3CC" padding="0px">
         <mj-column padding="10px">
           <mj-text font-size="14px" color="#ffffff" font-family="Montserrat, helvetica, Arial, sans-serif" padding="0px 0px 15px">
@@ -34,5 +35,4 @@
       </mj-section>
     </mj-wrapper>
   </mj-body>
-  <mj-raw>{{/with}}</mj-raw>
 </mjml>
