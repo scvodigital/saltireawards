@@ -1,20 +1,5 @@
 <div class="header-image" style="background-image:url({{~>asset_url url='images/luke-porter-203637-unsplash-wide.jpg' ~}});">
   <div class="header-image-overlay">
-    <div class="container">
-      <div class="x-padding-full">
-        <!-- <h1 class="b-margin-full b-padding">
-          Celebrating youth volunteering in Scotland
-        </h1> -->
-        {{!-- <h2 class="t-margin-full t-padding">
-          Aged 12-25 and volunteer?
-        </h2>
-        <p class="b-margin-full">
-          <strong>The Saltire Awards are the Scottish Government's way of celebrating,<br />
-          recognising and rewarding the commitment, contribution and <br />
-          achievements of young volunteers in Scotland.</strong>
-        </p> --}}
-      </div>
-    </div>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" class="bottom">
       <polygon fill="white" points="0,100 100,100 0,0" />
     </svg>
@@ -25,7 +10,7 @@
     Aged 12-25 and volunteer?
   </h2>
   <p class="text-centre b-margin-full">
-    <strong>The Saltire Awards are the Scottish Government's way of celebrating,<br />
+    <strong>{{@root.context.metaData.fullTitle}} are the Scottish Government's way of celebrating,<br />
     recognising and rewarding the commitment, contribution and <br />
     achievements of young volunteers in Scotland.</strong>
   </p>
@@ -78,6 +63,29 @@
       <div class="columns">
         <div class="column col-6 my-saltire-item align-centre">
           <a href="/sign-up" class="btn btn-primary text-centre">Sign up now</a>
+        </div>
+        <div class="column col-6 my-saltire-item align-centre">
+          <a href="/sign-in" class="btn text-centre">Sign in</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="v-padding-full">
+    <div class="divider v-margin-full"></div>
+  </div>
+
+  <h3 class="text-centre">
+    Volunteering administrator?
+  </h3>
+  <p class="text-centre b-margin-full">
+    <strong>You can request approval to create {{@root.context.metaData.certificateName}} certificates for groups of volunteers.</strong>
+  </p>
+  <div class="my-saltire columns t-margin-full">
+    <div class="column col-sm-12 col-6 col-mx-auto">
+      <div class="columns">
+        <div class="column col-6 my-saltire-item align-centre">
+          <a href="/sign-up-admin" class="btn btn-primary text-centre">Request approval</a>
         </div>
         <div class="column col-6 my-saltire-item align-centre">
           <a href="/sign-in" class="btn text-centre">Sign in</a>
