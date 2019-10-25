@@ -210,7 +210,13 @@
     }
   ],
   nothingSelectedTasks: [
-    "empty-location-fields",
+    {
+      type: "elementManipulator",
+      config: {
+        "#location": { value: "" },
+        "#organisation_charity_number": { value: "" }
+      }
+    }
     {
       type: "run",
       config: { code: "metadata.instance.clearSelection()" }
