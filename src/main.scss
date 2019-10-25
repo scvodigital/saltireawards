@@ -227,24 +227,28 @@ a.btn-link:hover {
 .twitter-typeahead {
   display: block;
   width: 100%;
-
   .tt-input {
     width: 100%;
   }
-
   .tt-menu {
     cursor: default;
     border: 1px solid rgb(204, 204, 204);
     background-color: rgb(255, 255, 255);
-    padding: $unit/4;
     width: 100%;
     h3,
     h4 {
       font-size: 1rem;
       margin: $unit/4 0;
     }
+    .tt-dataset {
+      padding: $unit/4 0;
+      div {
+        padding: 0 $unit/4;
+      }
+    }
     .tt-cursor {
-      background-color: $primary-color-light;
+      background-color: $primary-color;
+      color: white;
     }
   }
 }
