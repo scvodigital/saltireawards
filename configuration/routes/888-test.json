@@ -5,6 +5,7 @@
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.getAccountInfo",
+    "context.metaData.commonTasks.getTasksInfoUnverified",
     "context.metaData.commonTasks.flushCache",
     {
       "name": "things",
@@ -12,8 +13,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "data",
-        "template": ">context.metaData.handlebars.templates.account_auth_update-email-body",
-        "parseJson": true
+        "template": "{{#eachJoin @root.data.tasksInfoUnverified ','}}{{#compare unverified_hours_list.length '>=' 1}}{{#compare this.volunteer_manager_email '===' 'anuttgens@gmail.com'}}{{task_id}}{{/compare}}{{/compare}}{{/eachJoin}}"
       }
     },
     {

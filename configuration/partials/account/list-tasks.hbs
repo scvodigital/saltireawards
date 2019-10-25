@@ -1,0 +1,1 @@
+{{#eachJoin @root.data.tasksInfoUnverified ","}}hi{{#compare unverified_hours_list.length ">=" 1}}{{#compare volunteer_manager_email "===" email}}{{task_id}}{{/compare}}{{/compare}}{{/eachJoin}}
