@@ -117,7 +117,8 @@
                 </strong>
               </label>
               <div class="input-group b-margin">
-                <input class="form-input input-lg" id="notes-{{task_id}}" name="notes" type="text" placeholder="Notes (optional)" />
+                <textarea class="form-input" id="notes-{{task_id}}" placeholder="Notes (optional)" rows="3"></textarea>
+                {{!-- <input class="form-input input-lg" id="notes-{{task_id}}" name="notes" type="text" placeholder="" /> --}}
               </div>
               <div class="input-group">
                 <input class="form-input input-lg" id="hours-{{task_id}}" name="hours" type="number" step="any" min="0.1" value="" placeholder="0" required >
