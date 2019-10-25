@@ -12,7 +12,7 @@ $bg-color-dark: darken($bg-color, 4%) !default;
 $dark-color: #10183A;
 $gray-color: #333E48;
 $light-color: #FFFFFF;
-  $success-color: #3BAA34;
+$success-color: #3BAA34;
 $warning-color: #F05B23;
 $error-color: #f03823;
 
@@ -227,24 +227,28 @@ a.btn-link:hover {
 .twitter-typeahead {
   display: block;
   width: 100%;
-
   .tt-input {
     width: 100%;
   }
-
   .tt-menu {
+    cursor: default;
     border: 1px solid rgb(204, 204, 204);
     background-color: rgb(255, 255, 255);
-    padding: $unit/4;
     width: 100%;
-
-    h3 {
+    h3,
+    h4 {
       font-size: 1rem;
       margin: $unit/4 0;
     }
-
+    .tt-dataset {
+      padding: $unit/4 0;
+      div {
+        padding: 0 $unit/4;
+      }
+    }
     .tt-cursor {
-      background-color: $primary-color-light;
+      background-color: $primary-color;
+      color: white;
     }
   }
 }
@@ -306,6 +310,23 @@ a.btn-link:hover {
   .form-horizontal {
     padding: 0;
   }
+}
+.form-horizontal .form-horizontal {
+  padding: 0;
+}
+
+.content-primary-info-container.tabs {
+  .tab {
+    margin-bottom: -1px;
+  }
+  .panel-body.location-info {
+    padding: 0;
+  }
+  // .panel-body.key-info-extra,
+  // .panel-body.detailed-info {
+  //   padding-left: .8rem;
+  //   padding-right: .8rem;
+  // }
 }
 
 @media screen and (min-width: 961px) {
@@ -908,6 +929,20 @@ ul.fa-ul {
     padding: 0;
   }
 }
+.card-body ul.hours-info li:first-child {
+  margin-top: 0;
+}
+
+.hours-logged {
+  .hours-log-entry {
+    display: none;
+  }
+  .hours-log-entry:nth-child(1),
+  .hours-log-entry:nth-child(2),
+  .hours-log-entry:nth-child(3) {
+    display: block;
+  }
+}
 
 .form.disabled,
 form.disabled {
@@ -1057,9 +1092,19 @@ footer {
   font-family: 'Consolas', 'Monaco', 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
 }
 
-.bg-error .code code {
-  background: transparent;
-  color: white;
+.bg-error {
+  .btn-primary,
+  .btn-link {
+    color: white !important;
+  }
+  .btn-primary {
+    border-color: white !important;
+    background-color: transparent;
+  }
+  .code code {
+    background: transparent;
+    color: white;
+  }
 }
 
 .table th,
@@ -1514,13 +1559,6 @@ footer {
   display: flex;
   justify-content: center;
 }
-
-.over-age {
-  color : $error-color;
-  display: flex;
-  justify-content: center;
-}
-
 
 .achievements > .working-towards ~ .working-towards,
 .hidden, .hide {

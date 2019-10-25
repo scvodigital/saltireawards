@@ -2,24 +2,26 @@
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
   <ul class="step">
     {{#each @root.context.metaData.certificates ~}}
+    {{#ifAny (compare type "approach") (compare type "ascent") ~}}
     <li class="step-item{{#compare @root.data.verifyHoursInfo.award hours}} active{{/compare}}">
       <a href="#" class="tooltip" data-tooltip="{{certificate_name}} hours">{{hours}}</a>
     </li>
+    {{/ifAny ~}}
     {{/each ~}}
   </ul>
   {{/compare ~}}
   {{#each @root.context.metaData.certificates ~}}
-  {{#compare hours ">" 0 ~}}
+  {{#ifAny (compare type "approach") (compare type "ascent") ~}}
   {{!-- It's already awarded --}}
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
   {{#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
   <div class="columns">
     <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
       <h2 class="text-center">
-        {{#if @last}}My{{else}}Current{{/if}} achievement
+        {{#if in_progress}}Current{{else}}My{{/if}} achievement
       </h2>
-      <p class="text-center text-primary">
-        <strong>{{type_name}}: {{certificate_name}} hours</strong>
+      <p class="text-center text-dark h5">
+        {{type_name}}: {{certificate_name}} hours
       </p>
       {{> badge type=type key=(slugify certificate_name) hours=hours}}
       <div class="text-center description">
@@ -37,8 +39,8 @@
     <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
       {{!-- It's being verified --}}
       <h2 class="text-center">Next achievement</h2>
-      <p class="text-center text-primary">
-        <strong>{{type_name}}: {{certificate_name}} hours</strong>
+      <p class="text-center text-dark h5">
+        {{type_name}}: {{certificate_name}} hours
       </p>
       {{> badge type=type key=(slugify certificate_name) hours=hours disabled=true}}
       <div class="text-center description">
@@ -61,8 +63,8 @@
     <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
       {{!-- It's ready to claim--}}
       <h2 class="text-center">Next achievement</h2>
-      <p class="text-center text-primary">
-        <strong>{{type_name}}: {{certificate_name}} hours</strong>
+      <p class="text-center text-dark h5">
+        {{type_name}}: {{certificate_name}} hours
       </p>
       {{> badge type=type key=(slugify certificate_name) hours=hours disabled=true}}
       <p class="text-center description">
@@ -78,8 +80,8 @@
     <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
       {{!-- It's not there yet --}}
       <h2 class="text-center">Working towards</h2>
-      <p class="text-center text-primary">
-        <strong>{{type_name}}: {{certificate_name}} hours</strong>
+      <p class="text-center text-dark h5">
+        {{type_name}}: {{certificate_name}} hours
       </p>
       {{> badge type=type key=(slugify certificate_name) hours=hours disabled=true}}
       <div class="text-center description">
@@ -92,6 +94,6 @@
   {{/compare ~}}
   {{/compare ~}}
   {{/compare ~}}
-  {{/compare ~}}
+  {{/ifAny ~}}
   {{/each ~}}
 </div>

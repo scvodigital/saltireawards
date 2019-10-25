@@ -8,7 +8,18 @@
             {{{json key='first_name' value=claim_first_name}}},
             {{{json key='last_name' value=claim_last_name}}},
             {{{json key='claim_code' value=claim_code}}},
-            {{{json key='hours_verified' value=hours}}},
+            {{#ifAny (compare hours 0) (compare hours 999) ~}}
+            {{#compare hours 0 ~}}
+            {{{json key='certificate_type' value="challenge"}}},
+            {{/compare ~}}
+            {{#compare hours 999 ~}}
+            {{{json key='certificate_type' value="summit"}}},
+            {{/compare ~}}
+            {{{json key='hours_verified' value=0}}}
+            {{else}}
+            {{{json key='certificate_type' value="hours"}}},
+            {{{json key='hours_verified' value=hours}}}
+            {{/ifAny ~}}
           {{/json}},
           {{#json type='array' key='tasks'}}
             {{{jsStringify ../this}}},
@@ -23,7 +34,19 @@
             {{{json key='first_name' value=claim_first_name}}},
             {{{json key='last_name' value=claim_last_name}}},
             {{{json key='claim_code' value=claim_code}}},
+            {{{json key='hours_verified' value=hours}}},
+            {{#ifAny (compare hours 0) (compare hours 999) ~}}
+            {{#compare hours 0 ~}}
+            {{{json key='certificate_type' value="challenge"}}},
+            {{/compare ~}}
+            {{#compare hours 999 ~}}
+            {{{json key='certificate_type' value="summit"}}},
+            {{/compare ~}}
+            {{{json key='hours_verified' value=0}}}
+            {{else}}
+            {{{json key='certificate_type' value="hours"}}},
             {{{json key='hours_verified' value=hours}}}
+            {{/ifAny ~}}
           {{/json}},
           {{#json type='array' key='tasks'}}
             {{{jsStringify ../this}}},

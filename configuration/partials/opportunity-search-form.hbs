@@ -13,7 +13,7 @@
     else=""
   )}}
 <div class="search-form">
-  <form id="search-view" class="search-form" action="{{@root.request.url.pathname}}" method="GET">
+  <form id="search-view" class="search-form" action="{{#compare @root.route.name 'volunteering_opportunity'}}/search{{else}}{{@root.request.url.pathname}}{{/compare}}" method="GET">
     <input type="hidden" name="lat" value="{{@root.request.params.query.lat}}" id="location-lat" />
     <input type="hidden" name="lng" value="{{@root.request.params.query.lng}}" id="location-lng" />
     <input type="hidden" name="sort" value="{{@root.request.params.query.sort}}" id="default-sort" />
@@ -28,7 +28,7 @@
             </select>
           </div>
         </div>
-        <div class="column col-5 col-xl-7 col-sm-12 filter-location b-padding" id="location-fields">
+        <div class="column col-4 col-xl-7 col-sm-12 filter-location b-padding" id="location-fields">
           <div class="input-group has-icon-left">
             <span data-component="Typeahead" data-Typeahead="typeahead-location">
               <span class="form-icon far fa-location geo-lookup" tabindex="0" title="Find my location" data-component="TasksTrigger" data-TasksTrigger="geolocation"></span>
@@ -41,7 +41,7 @@
             </select>
           </div>
         </div>
-        <div class="column col-5 col-xl-12 keywords b-padding">
+        <div class="column col-6 col-xl-12 keywords b-padding">
           <div class="form-group full-width">
             <div data-component="Typeahead" data-Typeahead="typeahead-terms">
               <input type="text" id="what-opportunities" name="keywords" class="form-input input-lg" value="{{@root.request.params.query.keywords}}" placeholder="Search for volunteering opportunities" autocomplete="off" data-lpignore="true">

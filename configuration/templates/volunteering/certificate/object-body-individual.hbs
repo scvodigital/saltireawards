@@ -5,6 +5,7 @@
       {{{json key='first_name' value=@root.data.accountInfo.first_name}}},
       {{{json key='last_name' value=@root.data.accountInfo.last_name}}},
       {{{json key='hours_verified' value=(sumArray (pluck @root.data.tasksInfo "hours_verified"))}}},
+      {{{json key='certificate_type' value="hours"}}}
     {{/json}},
     {{#json type='array' key='tasks'}}
       {{#eachJoin @root.data.tasksInfo ","}}

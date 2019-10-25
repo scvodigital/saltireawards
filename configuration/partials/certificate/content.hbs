@@ -158,7 +158,7 @@
 {{#ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0)) (compare hours_verified ">" 0) ~}}
 {
   "text": "For: {{organisation_name}}",
-  "fontSize": 16,
+  "fontSize": 12,
   "bold": false,
   "alignment": "left",
   "margin": [0, 15, 0, 0]
@@ -166,17 +166,18 @@
 {{#if task_description ~}}
 {
   "text": "{{task_description}}",
-  "fontSize": 16,
-  "bold": true,
+  "fontSize": 10,
+  "bold": false,
   "alignment": "left",
   "margin": [0, 15, 0, 0]
 },
 {{/if ~}}
 {{#if un_sustainable_development_goals ~}}
 {
-  "text": "{{> sdg_number sdg=un_sustainable_development_goals}}: {{un_sustainable_development_goals}}",
-  "fontSize": 16,
+  "text": "Contributing towards SDG {{> sdg_number sdg=un_sustainable_development_goals}}: {{un_sustainable_development_goals}}",
+  "fontSize": 10,
   "color": "{{> sdg_color sdg=un_sustainable_development_goals}}",
+  "bold": true,
   "alignment": "left",
   "margin": [0, 5, 0, 0]
 },
@@ -212,18 +213,28 @@
 },
 {{#if user.claim_code ~}}
 {
-  "text": {{>pdf_metadata_value key="title" default="Claim code"}},
-  "fontSize": 22,
-  "bold": true,
-  "alignment": "center",
-  "margin": [0, 15, 0, 0]
+  "text": {{>pdf_metadata_value key="title" default="Claim code:"}},
+  "fontSize": 10,
+  "bold": false,
+  "color": "#333E48",
+  "alignment": "left",
+  "margin": [0, 0, 0, 0],
+  "absolutePosition": {
+    "x": 70,
+    "y": 720
+  }
 },
 {
   "text": "{{substr user.claim_code 0 10}}",
-  "fontSize": 16,
+  "fontSize": 12,
   "bold": true,
-  "alignment": "center",
-  "margin": [0, 15, 0, 0]
+  "color": "#333E48",
+  "alignment": "left",
+  "margin": [0, 0, 0, 0],
+  "absolutePosition": {
+    "x": 70,
+    "y": 735
+  }
 },
 {{/if ~}}
 {
@@ -246,12 +257,8 @@
     "y": 715
   }
 },
-{{#if (compare @root.route.name "group_certificate") ~}}
 {{#if last ~}}
 {{>pdf_text text="" pageBreak="none"}}
 {{else}}
 {{>pdf_text text="" pageBreak="after"}}
-{{/if ~}}
-{{else}}
-{{>pdf_text text="" pageBreak="none"}}
 {{/if ~}}

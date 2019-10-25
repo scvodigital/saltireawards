@@ -25,20 +25,9 @@
   {{/compare ~}}
   {{/each ~}}
 </p>
-
-{{!-- <p class="empty-subtitle achievements text-centre">
-  {{#each @root.context.metaData.certificates ~}}
-  {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) "<" hours ~}}
-  {{else}}
-  {{!-- <span class="working-towards"></span> - -}}
-  {{/compare ~}}
-  {{/each ~}}
-</p> --}}
 {{/unless ~}}
 
-{{#if (compare (dateMath 'now-25y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD")) ~}}
-<p class="empty-subtitle achievements text-centre">
-  <span class="working-towards over-age">As you are now over 25 years old, you may now only log past hours. Please add a note giving the date of these hours</span>
+<p class="empty-subtitle text-centre">
+  {{> log_age_limit}}
 </p>
-{{/if ~}}
 {{/unless ~}}

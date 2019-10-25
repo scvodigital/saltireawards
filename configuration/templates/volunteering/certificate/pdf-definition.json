@@ -46,16 +46,8 @@
     }
   ],
   "content": [
-    {{#eachJoin @root.data.pdfObjects ","}}
-    {{#compare user.hours_verified -1 ~}}
-    {{> certificate_content award="challenge" last=@last}}
-    {{else}}
-    {{#compare user.hours_verified -2 ~}}
-    {{> certificate_content award="summit" last=@last}}
-    {{else}}
-    {{> certificate_content award="hours" last=@last}}
-    {{/compare ~}}
-    {{/compare ~}}
-    {{/eachJoin}}
+    {{#each @root.data.pdfObjects ~}}
+    {{> certificate_content award=user.certificate_type last=@last}}{{#unless @last}},{{/unless}}
+    {{/each ~}}
   ]
 }
