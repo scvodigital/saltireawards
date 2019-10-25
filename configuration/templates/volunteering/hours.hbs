@@ -138,16 +138,8 @@
     <div class="task task-{{task_id}}">
       <div class="columns">
         <div class="column col-9 col-lg-12 col-xl-11">
-          <h2>
-            Volunteering with {{{organisation_name}}}
-            {{#compare (length hours_list) ">" 0 ~}}
-            <a href="/task-csv/{{task_id}}/{{slugify organisation_name}}-volunteers.csv" class="pull-right btn btn-link" title="Download a CSV file of names, certificate types, and claim codes" download>
-              <span class="fas fa-file-csv fa-2x"></span>
-            </a>
-            {{/compare ~}}
-            {{!-- <span class="pull-right" data-collapse-target="#{{this.task_id}}-details">
-              <span class="far fa-chevron-up" aria-hidden="false"></span>
-            </span> --}}
+          <h2 class="no-margin">
+            {{{organisation_name}}}
           </h2>
         </div>
       </div>
@@ -161,7 +153,6 @@
               {{{task_description}}}
             </p>
             {{/if ~}}
-            {{#ifAny location un_sustainable_development_goals ~}}
             <ul class="fa-ul hours-info">
               {{#if location ~}}
               <li class="card-subtitle">
@@ -175,8 +166,13 @@
                 <span class="text-gray">{{> sdg_label sdg=un_sustainable_development_goals}}</span>
               </li>
               {{/if ~}}
+              {{#compare (length hours_list) ">" 0 ~}}
+              <li class="card-subtitle">
+                <span class="fa-li"><span class="fas fa-file-csv"></span></span>
+                <a href="/task-csv/{{task_id}}/{{slugify organisation_name}}-volunteers.csv" title="Download a CSV file of names, certificate types, and claim codes" download>Download participant details</a>
+              </li>
+              {{/compare ~}}
             </ul>
-            {{/ifAny ~}}
           </div>
         </div>
         {{/ifAny ~}}
@@ -300,10 +296,6 @@
                       {{type_name}}
                       {{/ifAny ~}}
                     </option>
-                    {{else}}
-                    <option value="{{hours}}" disabled>
-                      {{type_name}}
-                    </option>
                     {{/unless ~}}
                     {{/each ~}}
                   </select>
@@ -312,7 +304,7 @@
             </div>
             <div class="form-group">
               <div class="col-4"></div>
-              <div class="col-1">
+              <div class="col-2">
                 <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full" id="group-hours-submit">
                   Submit details
                 </button>

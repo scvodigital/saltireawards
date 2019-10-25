@@ -16,7 +16,9 @@
   {{else}}
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) ">=" hours ~}}
   {{#unless (compare @root.data.verifyHoursInfo.award ">=" hours) ~}}
-  <span class="working-towards"><a href="/achievements">{{hours}} hour certificate available!</a></span>
+  <span class="working-towards">
+    <a href="/achievements" class="label label-success label-rounded text-white">{{hours}} hour certificate available!</a>
+  </span>
   {{/unless ~}}
   {{else}}
   <span class="working-towards">You need to do {{subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))}} more {{inflect (subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))) "hour" "hours"}} of volunteering to reach your next award</span>

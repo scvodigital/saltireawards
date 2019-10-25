@@ -34,17 +34,17 @@
             {{/if ~}}
           </div>
           <div class="card-body">
-            <ul class="fa-ul hours">
-              {{#if un_sustainable_development_goals ~}}
-              <li class="card-subtitle">
-                <span class="fa-li"><span class="far fa-globe"></span></span>
-                <span class="text-gray">{{> sdg_label sdg=un_sustainable_development_goals}}</span>
-              </li>
-              {{/if ~}}
+            <ul class="fa-ul hours-info">
               {{#if location ~}}
               <li>
                 <span class="fa-li"><span class="far fa-map-marker-alt"></span></span>
                 <span class="text-gray">{{truncate location 140}}</span>
+              </li>
+              {{/if ~}}
+              {{#if un_sustainable_development_goals ~}}
+              <li class="card-subtitle">
+                <span class="fa-li"><span class="far fa-globe"></span></span>
+                <span class="text-gray">{{> sdg_label sdg=un_sustainable_development_goals}}</span>
               </li>
               {{/if ~}}
               <li class="card-subtitle">
@@ -64,6 +64,9 @@
       </div>
       {{/each ~}}
     </div>
+    {{!-- <div class="foot">
+      {{> pagination firstLastNavigation=true paging=null}}
+    </div> --}}
   </div>
 </div>
 {{/unless ~}}

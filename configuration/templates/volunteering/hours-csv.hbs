@@ -5,7 +5,7 @@
 "Name","Certificate","Claim code"
 {{#each hours_list ~}}
 {{#ifAny claim_first_name claim_code ~}}
-{{{stringify (concat claim_first_name ' ' claim_last_name)}}},{{hours}},{{substr claim_code 0 10}}
+{{{stringify (concat claim_first_name ' ' claim_last_name)}}},{{#compare hours 0}}"challenge"{{else}}{{#compare hours 999}}"summit"{{else}}{{hours}}{{/compare}}{{/compare}},{{substr claim_code 0 10}}
 {{/ifAny ~}}
 {{/each ~}}
 {{/compare ~}}
