@@ -46,10 +46,10 @@
     "type_name": "The Ascent"
   },
   {
-    "hours": 0,
+    "hours": 999,
     "certificate_name": "Outstanding",
     "type": "summit",
     "type_name": "The Summit",
-    "tsi_only": true
+    "tsi_only": false
   }
 ]

@@ -2,14 +2,16 @@
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
   <ul class="step">
     {{#each @root.context.metaData.certificates ~}}
+    {{#ifAny (compare type "approach") (compare type "ascent") ~}}
     <li class="step-item{{#compare @root.data.verifyHoursInfo.award hours}} active{{/compare}}">
       <a href="#" class="tooltip" data-tooltip="{{certificate_name}} hours">{{hours}}</a>
     </li>
+    {{/ifAny ~}}
     {{/each ~}}
   </ul>
   {{/compare ~}}
   {{#each @root.context.metaData.certificates ~}}
-  {{#compare hours ">" 0 ~}}
+  {{#ifAny (compare type "approach") (compare type "ascent") ~}}
   {{!-- It's already awarded --}}
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
   {{#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
@@ -92,6 +94,6 @@
   {{/compare ~}}
   {{/compare ~}}
   {{/compare ~}}
-  {{/compare ~}}
+  {{/ifAny ~}}
   {{/each ~}}
 </div>

@@ -233,11 +233,11 @@
                   {{#each @root.context.metaData.certificates ~}}
                   {{#unless tsi_only ~}}
                   <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>
-                    {{#compare hours ">" 0 ~}}
+                    {{#ifAny (compare type "approach") (compare type "ascent") ~}}
                     {{type_name}}: {{hours}} hours
                     {{else}}
                     {{type_name}}
-                    {{/compare ~}}
+                    {{/ifAny ~}}
                   </option>
                   {{else}}
                   <option value="{{hours}}" disabled>
@@ -298,11 +298,11 @@
                     {{#each @root.context.metaData.certificates ~}}
                     {{#unless tsi_only ~}}
                     <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>
-                      {{#compare hours ">" 0 ~}}
+                      {{#ifAny (compare type "approach") (compare type "ascent") ~}}
                       {{type_name}}: {{hours}} hours
                       {{else}}
                       {{type_name}}
-                      {{/compare ~}}
+                      {{/ifAny ~}}
                     </option>
                     {{else}}
                     <option value="{{hours}}" disabled>
