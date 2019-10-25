@@ -933,6 +933,17 @@ ul.fa-ul {
   margin-top: 0;
 }
 
+.hours-logged {
+  .hours-log-entry {
+    display: none;
+  }
+  .hours-log-entry:nth-child(1),
+  .hours-log-entry:nth-child(2),
+  .hours-log-entry:nth-child(3) {
+    display: block;
+  }
+}
+
 .form.disabled,
 form.disabled {
   pointer-events: none;

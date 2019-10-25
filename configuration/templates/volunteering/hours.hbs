@@ -51,15 +51,15 @@
                   <span class="text-gray">{{hours_verified}} verified {{inflect hours_verified "hour" "hours"}}</span>
                   <div class="popover-container">
                     <div class="card">
-                      {{!-- <div class="card-header">
-                        <strong>Logged {{inflect (subtract hours hours_verified) "hour" "hours"}}</strong>
-                      </div> --}}
-                      <ul class="card-body fa-ul">
+                      <div class="card-header">
+                        <strong>Recently added</strong>
+                      </div>
+                      <ul class="card-body hours-logged fa-ul">
                         {{#each hours_list ~}}
                         {{#if verified ~}}
-                        <li>
+                        <li class="hours-log-entry">
                           <span class="fa-li"><span class="far fa-user-check"></span></span>
-                          <span class="text-gray">{{inflect hours "hour" "hours" true}} added on {{momentFormat (moment createdDate 'YYYY-MM-DDTHH:mm:ssZ') "Do MMM YYYY"}}</span>
+                          <span class="text-gray">{{inflect hours "hour" "hours" true}}, on {{momentFormat (moment createdDate 'YYYY-MM-DDTHH:mm:ssZ') "MMMM Do"}}{{#compare (momentFormat (moment createdDate 'YYYY-MM-DDTHH:mm:ssZ') "YYYY") "!==" (momentFormat (moment) "YYYY")}} {{momentFormat (moment createdDate 'YYYY-MM-DDTHH:mm:ssZ') "YYYY"}}{{/compare}}</span>
                         </li>
                         {{/if ~}}
                         {{/each ~}}
@@ -76,15 +76,15 @@
                   <span class="text-gray">{{subtract hours hours_verified}} {{inflect (subtract hours hours_verified) "hour" "hours"}} logged but not yet verified</span>
                   <div class="popover-container">
                     <div class="card">
-                      {{!-- <div class="card-header">
-                        <strong>Logged {{inflect (subtract hours hours_verified) "hour" "hours"}}</strong>
-                      </div> --}}
-                      <ul class="card-body fa-ul">
+                      <div class="card-header">
+                        <strong>Recently added</strong>
+                      </div>
+                      <ul class="card-body hours-logged fa-ul">
                         {{#each hours_list ~}}
                         {{#unless verified ~}}
-                        <li>
+                        <li class="hours-log-entry">
                           <span class="fa-li"><span class="far fa-user-clock"></span></span>
-                          <span class="text-gray">{{inflect hours "hour" "hours" true}} added on {{momentFormat (moment createdDate 'YYYY-MM-DDTHH:mm:ssZ') "Do MMM YYYY"}}</span>
+                          <span class="text-gray">{{inflect hours "hour" "hours" true}}, on {{momentFormat (moment createdDate 'YYYY-MM-DDTHH:mm:ssZ') "MMMM Do"}}{{#compare (momentFormat (moment createdDate 'YYYY-MM-DDTHH:mm:ssZ') "YYYY") "!==" (momentFormat (moment) "YYYY")}} {{momentFormat (moment createdDate 'YYYY-MM-DDTHH:mm:ssZ') "YYYY"}}{{/compare}}</span>
                         </li>
                         {{/unless ~}}
                         {{/each ~}}
