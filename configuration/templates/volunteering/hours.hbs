@@ -166,17 +166,17 @@
             </p>
             {{/if ~}}
             {{#ifAny location un_sustainable_development_goals ~}}
-            <ul class="fa-ul">
+            <ul class="fa-ul hours-info">
               {{#if location ~}}
-              <li>
+              <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-map-marker-alt"></span></span>
-                <div class="">{{truncate location 140}}</div>
+                <span class="text-gray">{{truncate location 140}}</span>
               </li>
               {{/if ~}}
               {{#if un_sustainable_development_goals ~}}
-              <li>
+              <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-globe"></span></span>
-                <abbr title="Sustainable Development Goal">SDG</abbr>: {{un_sustainable_development_goals}}
+                <span class="text-gray">{{> sdg_label sdg=un_sustainable_development_goals}}</span>
               </li>
               {{/if ~}}
             </ul>
@@ -228,7 +228,6 @@
               </div>
             </div>
             <div class="column col-2 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-7">
-              {{!-- <input {{#unless claim_code}}disabled{{/unless}} class="inline-edit" type="number" step="any" min="0" name="hours" value="{{hours}}"> --}}
               <div class="form-group b-margin">
                 <select class="form-select"{{#unless claim_code}} disabled{{/unless}} required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
                   {{#each @root.context.metaData.certificates ~}}
@@ -294,11 +293,25 @@
                 </label>
               </div>
               <div class="col-2">
-                <select class="form-select" required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
-                  {{#each @root.context.metaData.certificates ~}}
-                  <option value="{{hours}}">{{certificate_name}} hours</option>
-                  {{/each ~}}
-                </select>
+                <div class="form-group b-margin">
+                  <select class="form-select" required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
+                    {{#each @root.context.metaData.certificates ~}}
+                    {{#unless tsi_only ~}}
+                    <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>
+                      {{#compare hours ">" 0 ~}}
+                      {{type_name}}: {{hours}} hours
+                      {{else}}
+                      {{type_name}}
+                      {{/compare ~}}
+                    </option>
+                    {{else}}
+                    <option value="{{hours}}" disabled>
+                      {{type_name}}
+                    </option>
+                    {{/unless ~}}
+                    {{/each ~}}
+                  </select>
+                </div>
               </div>
             </div>
             <div class="form-group">
