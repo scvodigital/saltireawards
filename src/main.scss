@@ -1092,9 +1092,19 @@ footer {
   font-family: 'Consolas', 'Monaco', 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace;
 }
 
-.bg-error .code code {
-  background: transparent;
-  color: white;
+.bg-error {
+  .btn-primary,
+  .btn-link {
+    color: white !important;
+  }
+  .btn-primary {
+    border-color: white !important;
+    background-color: transparent;
+  }
+  .code code {
+    background: transparent;
+    color: white;
+  }
 }
 
 .table th,
