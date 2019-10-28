@@ -6,7 +6,7 @@
     "h:Reply-To": "{{>support_name}} <{{>support_email_address}}>",
     {{#compare @root.data.accountInfo.user_type "Group Admin" ~}}
     "to": "alex.nuttgens@scvo.org.uk",
-    "wouldbe": "{{>support_email_address}}",
+    "wouldbe": "{{>support_name}} <{{>support_email_address}}>",
     {{else}}
     "to": "{{{verification_email}}}",
     {{/compare ~}}
