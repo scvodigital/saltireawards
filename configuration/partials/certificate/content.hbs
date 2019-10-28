@@ -25,7 +25,7 @@
         "width": "60%",
         {{#compare award "hours" ~}}
         {{#each @root.context.metaData.certificates ~}}
-        {{#ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0) ~}}
+        {{#ifAll (compare ../type "group") (compare ../user.hours_verified ">=" 0) ~}}
         {{#compare hours ../user.hours_verified ~}}
         "text": {{>pdf_metadata_value key="title" default=(concat hours " hours")}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
@@ -67,7 +67,7 @@
       {
         {{#compare award "hours" ~}}
         {{#each @root.context.metaData.certificates ~}}
-        {{#ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0) ~}}
+        {{#ifAll (compare ../type "group") (compare ../user.hours_verified ">=" 0) ~}}
         {{#compare hours ../user.hours_verified ~}}
         {{#unless in_progress ~}}
         "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement of completing"}},
@@ -98,7 +98,7 @@
       {
         {{#compare award "hours" ~}}
         {{#each @root.context.metaData.certificates ~}}
-        {{#ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0) ~}}
+        {{#ifAll (compare ../type "group") (compare ../user.hours_verified ">=" 0) ~}}
         {{#compare hours ../user.hours_verified ~}}
         "text": {{>pdf_metadata_value key="title" default=type_name}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
@@ -155,7 +155,7 @@
   "margin": [0, 30, 0, 0]
 },
 {{#each tasks ~}}
-{{#ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0)) (compare hours_verified ">" 0) ~}}
+{{#ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified ">=" 0)) (compare hours_verified ">=" 0) ~}}
 {
   "text": "For: {{organisation_name}}",
   "fontSize": 12,
@@ -211,7 +211,7 @@
   "width": 200,
   "margin": [0, 0, 250, 0]
 },
-{{#if user.claim_code ~}}
+{{#ifAll user.claim_code (ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 999)) (ifAll (compare user.hours_verified "!==" 0) (compare user.hours_verified "!==" 999))) ~}}
 {
   "text": {{>pdf_metadata_value key="title" default="Claim code:"}},
   "fontSize": 10,
@@ -236,7 +236,7 @@
     "y": 735
   }
 },
-{{/if ~}}
+{{/ifAll ~}}
 {
   "width": 110,
   "image": "{{> certificate_images_png_global_goals}}",
