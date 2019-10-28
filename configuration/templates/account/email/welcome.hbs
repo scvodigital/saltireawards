@@ -2,9 +2,9 @@
   {{#if @root.data.accountInfo.email ~}}
   {{!-- Don't try to send if there is no email --}}
   {
-    "from": "{{@root.context.metaData.contacts.noreply}}",
-    "h:sender": "{{@root.context.metaData.contacts.noreply}}",
-    "h:Reply-To": "{{>support_email_address}}",
+    "from": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+    "h:sender": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+    "h:Reply-To": "{{>support_name}} <{{>support_email_address}}>",
     "to": "{{{@root.data.accountInfo.email}}}",
     "o:tag": "welcome",
     "o:tracking": true,

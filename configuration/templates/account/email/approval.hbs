@@ -1,12 +1,12 @@
 {{#withExtend @root.data.accountInfo type=(if (compare @root.data.accountInfo.user_type "===" "Group Admin") "tsi-approval" else="parental-approval") ~}}
 [
   {
-    "from": "{{@root.context.metaData.contacts.noreply}}",
-    "h:sender": "{{@root.context.metaData.contacts.noreply}}",
-    "h:Reply-To": "{{>support_email_address}}",
+    "from": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+    "h:sender": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+    "h:Reply-To": "{{>support_name}} <{{>support_email_address}}>",
     {{#compare @root.data.accountInfo.user_type "Group Admin" ~}}
     "to": "alex.nuttgens@scvo.org.uk",
-    "wouldbe": "something",
+    "wouldbe": "{{>support_email_address}}",
     {{else}}
     "to": "{{{verification_email}}}",
     {{/compare ~}}
