@@ -2,6 +2,10 @@
   "name": "test-page",
   "pattern": "/test-page",
   "debug": true,
+  "metaData": {
+    "title": "Tasks",
+    "emailType": "hours-verify"
+  },
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.getAccountInfo",

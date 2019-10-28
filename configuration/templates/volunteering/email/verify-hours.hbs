@@ -1,26 +1,24 @@
-{{#withExtend this type="hours-verify"}}
 [
-  {{#eachJoin (distinct (pluck @root.data.tasksInfoUnverified "volunteer_manager_email")) "," ~}}
+{{#eachJoin (distinct (pluck @root.data.tasksInfoUnverified "volunteer_manager_email")) "," ~}}
   {
-    "from": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
-    "h:sender": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
-    "h:Reply-To": "{{>support_name}} <{{>support_email_address}}>",
-    "to": "{{{this}}}",
-    "o:tag": "{{{../type}}}",
-    "o:tracking": true,
-    {{!-- "o:testmode": true, --}}
-    "tag":  "{{{../type}}}",
-    "id":  "{{{../type}}}",
-    "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat ../type '.mailgunConnection'))}}},
-    "subject": "Verify volunteering",
-    "html":
-    {{~#blockStringify this ~}}
-      {{~>
-      (getProperty @root.context.metaData.emailSendSettings (concat ../type '.bodyPartial'))
-        this
-      ~}}
-    {{~/blockStringify}}
+  "from": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+  "h:sender": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+  "h:Reply-To": "{{>support_name}} <{{>support_email_address}}>",
+  "to": "{{{this}}}",
+  "o:tag": "{{{@root.route.metaData.emailType}}}",
+  "o:tracking": true,
+  {{!-- "o:testmode": true, --}}
+  "tag":  "{{{@root.route.metaData.emailType}}}",
+  "id":  "{{{@root.route.metaData.emailType}}}",
+  "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat @root.route.metaData.emailType '.mailgunConnection'))}}},
+  "subject": "Verify volunteering {{#compare @root.route.metaData.emailType '===' 'hours-verify-reminder'}}reminder{{/compare}}",
+  "html":
+  {{~#blockStringify this ~}}
+    {{~>
+    (getProperty @root.context.metaData.emailSendSettings (concat @root.route.metaData.emailType '.bodyPartial'))
+      this
+    ~}}
+  {{~/blockStringify}}
   }
-  {{/eachJoin ~}}
+{{/eachJoin ~}}
 ]
-{{/withExtend}}

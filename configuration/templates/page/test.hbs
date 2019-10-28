@@ -29,12 +29,30 @@
   <input type="hidden" name="redirect" id="redirect" value="home" />
 </form>
 
-{{#json}}
-  {{{json key="datetime_to" value=@root.data.verifyHoursInfo.datetime_to}}},
-  {{{json key="user_id" value=@root.request.params.query.user_id}}},
-  {{#json key="task_ids" type="array"}}{{#each (split @root.request.params.query.t ",")}}"{{this}}"{{#unless @last}},{{/unless}}{{/each}}{{/json}}
-{{/json}}
-
+  [
+  {{#eachJoin (distinct (pluck @root.data.tasksInfoUnverified "volunteer_manager_email")) "," ~}}
+    {
+    "from": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+    "h:sender": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+    "h:Reply-To": "{{>support_name}} <{{>support_email_address}}>",
+    "to": "{{{this}}}",
+    "o:tag": "{{{@root.route.metaData.emailType}}}",
+    "o:tracking": true,
+    {{!-- "o:testmode": true, --}}
+    "tag":  "{{{@root.route.metaData.emailType}}}",
+    "id":  "{{{@root.route.metaData.emailType}}}",
+    "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat @root.route.metaData.emailType '.mailgunConnection'))}}},
+    "subject": "Verify volunteering {{#compare @root.route.metaData.emailType '===' 'hours-verify-reminder'}}reminder{{/compare}},
+    "html":
+    {{~#blockStringify this ~}}
+      {{~>
+      (getProperty @root.context.metaData.emailSendSettings (concat @root.route.metaData.emailType '.bodyPartial'))
+        this
+      ~}}
+    {{~/blockStringify}}
+    }
+  {{/eachJoin ~}}
+  ]
 
 
 <script type="javascript/blocked" data-component-config="sign-up">

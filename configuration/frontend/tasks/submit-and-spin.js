@@ -3,14 +3,14 @@ return {
   config: {
     tasks: [
       {
+        type: "run",
+        config: { code: "window.formHasChanged = false" }
+      },
+      {
         type: "elementManipulator",
         config: {
           ">": {addClass: "disabled"}
         }
-      },
-      {
-        type: "run",
-        config: { code: "window.formHasChanged = false" }
       }
     ]
   }

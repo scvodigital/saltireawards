@@ -4,7 +4,8 @@
   "debug": true,
   "errorRoute": "five_hundred",
   "metaData": {
-    "title": "Tasks"
+    "title": "Tasks",
+    "emailType": "hours-verify"
   },
   "tasks": [
     "context.metaData.commonTasks.authRequired",
@@ -25,6 +26,27 @@
     },
     {
       "name": "sendEmail",
+      "taskModule": "mailgun",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "parseJson": true,
+        "template": ">context.metaData.handlebars.templates.volunteering_email_verify-hours"
+      }
+    },
+    {
+      "name": "setVerifyTime",
+      "taskModule": "salesforceApex",
+      "renderer": "handlebars",
+      "config": {
+        "connection": "scvoAlexSandbox",
+        "output": "data",
+        "method": "POST",
+        "body": ">context.metaData.handlebars.templates.volunteering_hours-set-verify-date-body",
+        "apexClassPath": "/SaltireHoursSetVerifyDate/"
+      }
+    },
+    {
       "taskModule": "mailgun",
       "renderer": "handlebars",
       "config": {

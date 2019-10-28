@@ -23,6 +23,14 @@
     "bodyPartial": "emails_hours_verify_body",
     "metaData": {}
   },
+  "hours-verify-reminder": {
+    "mailgunConnection": "mg_saltireawards",
+    "from": "Saltire Awards <support@saltireawards.scot>",
+    "replyTo": "Saltire Awards <support@saltireawards.scot>",
+    "sendIfEmpty": false,
+    "bodyPartial": "emails_hours_verify_reminder_body",
+    "metaData": {}
+  },
   "welcome": {
     "mailgunConnection": "mg_saltireawards",
     "from": "Saltire Awards <support@saltireawards.scot>",
