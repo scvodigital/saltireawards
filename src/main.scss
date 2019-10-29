@@ -241,8 +241,8 @@ a.btn-link:hover {
       margin: $unit/4 0;
     }
     .tt-dataset {
-      padding: $unit/4 0;
-      div {
+      // padding: $unit/4 0;
+      h3, div {
         padding: 0 $unit/4;
       }
     }
