@@ -4,11 +4,11 @@
       <h2>Details</h2>
 
       <form id="user-details-form" action="/update-account-details" method="POST" data-component="TasksTrigger" data-TasksTrigger='{
-    change: { tasks: [ "validate-details-form" ] },
-    keyup: { tasks: [ "validate-details-form" ] },
-    load: { tasks: [ "validate-details-form" ] },
-    submit: { tasks: [ "submit-and-spin" ]}
-  }'>
+        change: { tasks: [ "validate-details-form" ] },
+        keyup: { tasks: [ "validate-details-form" ] },
+        load: { tasks: [ "validate-details-form" ] },
+        submit: { tasks: [ "submit-and-spin" ]}
+      }'>
         {{> account_details_form_fields admin=(compare @root.data.accountInfo.user_type 'Group Admin')}}
 
         {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
