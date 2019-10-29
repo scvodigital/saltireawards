@@ -229,6 +229,21 @@
     highlight: true,
     minlength: 3
   },
+  datasets: [
+    {
+      name: "org_lookup",
+      display: "title",
+      bloodhound: {
+        datumTokenizer: "objWhitespace",
+        datumTokenizerField: "other",
+        queryTokenizer: "whitespace",
+        remote: {
+          url: "/org-lookup?q=*",
+          wildcard: "*"
+        }
+      }
+    },
+  ],
   itemSelectedTasks: [
     {
       type: "elementManipulator",
@@ -245,6 +260,7 @@
       }
     }
   ],
+  clearIfNothingSelected: true,
   nothingSelectedTasks: [
     {
       type: "elementManipulator",
@@ -257,23 +273,7 @@
     //   type: "run",
     //   config: { code: "metadata.instance.clearSelection()" }
     // }
-  ],
-  datasets: [
-    {
-      name: "org_lookup",
-      display: "title",
-      bloodhound: {
-        datumTokenizer: "objWhitespace",
-        datumTokenizerField: "other",
-        queryTokenizer: "whitespace",
-        remote: {
-          url: "/org-lookup?q=*",
-          wildcard: "*"
-        }
-      }
-    },
-  ],
-  clearIfNothingSelected: true
+  ]
 }
 </script>
 {{{{/raw}}}}
