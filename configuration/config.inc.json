@@ -35,13 +35,13 @@
       "footer": "#591669",
       "copyright": "#e7eaec"
     },
+    "elasticsearchUrl": "{$./data/elasticsearch-url.txt}",
     "menus": "{:./data/menus.json}",
-    "accountInfoValidation": "{:./data/account-info-validation.json}",
-    "taskInfoValidation": "{:./data/task-info-validation.json}",
     "certificates": "{:./data/certificates.json}",
     "tsiList": "{:./data/tsi-list.json}",
+    "taskInfoValidation": "{:./data/task-info-validation.json}",
+    "accountInfoValidation": "{:./data/account-info-validation.json}",
     "globalGoals": "{:./data/global-goals.json}",
-    "elasticsearchUrl": "{$./data/elasticsearch-url.txt}",
     "volunteeringTerms": "{:./data/volunteering-terms.json}",
     "handlebars": {
       "partials": {
