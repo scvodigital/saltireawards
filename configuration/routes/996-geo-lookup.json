@@ -15,7 +15,7 @@
         "queryTemplates": {
           "index": "geo_lookup",
           "type": "os_place,postcode,outcode",
-          "template": ">context.metaData.handlebars.queries.search-geo-lookup"
+          "template": ">context.metaData.handlebars.queries.utilities_search-geo-lookup"
         }
       },
       "renderer": "handlebars"
@@ -35,7 +35,7 @@
           "data": {
             "layout": ">context.metaData.handlebars.layouts.data",
             "parts": {
-              "content": ">context.metaData.handlebars.templates.search-geo-lookup"
+              "content": ">context.metaData.handlebars.templates.utilities_search-geo-lookup"
             },
             "contentType": "application/json; charset=utf-8"
           }

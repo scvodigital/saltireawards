@@ -23,7 +23,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "body",
-        "template": "{\"id\": \"{{{@root.data.saveTaskData}}}\" ERRPR {{#if @root.errors}}, \"errors\": {{{safeStringify @root.errors}}}{{/if}} }",
+        "template": "{\"id\": \"{{{@root.data.saveTaskData}}}\" ERROR {{#if @root.errors}}, \"errors\": {{{safeStringify @root.errors}}}{{/if}} }",
         "parseJson": false
       }
     }

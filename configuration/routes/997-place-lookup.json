@@ -15,7 +15,7 @@
         "queryTemplates": {
           "index": "geo_lookup",
           "type": "os_place",
-          "template": ">context.metaData.handlebars.queries.search-place-lookup"
+          "template": ">context.metaData.handlebars.queries.utilities_search-place-lookup"
         }
       },
       "renderer": "handlebars"
@@ -26,7 +26,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "body",
-        "template": ">context.metaData.handlebars.templates.search-place-lookup",
+        "template": ">context.metaData.handlebars.templates.utilities_search-place-lookup",
         "parseJson": true
       }
     }

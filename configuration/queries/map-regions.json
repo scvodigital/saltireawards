@@ -1,9 +1,0 @@
-{
-  "size": 10000,
-  "_source": [
-    "Id",
-    "place",
-    "point",
-    "shape"
-  ]
-}

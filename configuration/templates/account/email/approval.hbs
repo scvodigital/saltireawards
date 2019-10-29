@@ -16,7 +16,7 @@
     "tag": "{{{type}}}",
     "id": "{{{type}}}",
     "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat type '.mailgunConnection'))}}},
-    "subject": "Request for {{#compare type "tsi-approval"}}TSI{{else}}parental{{/compare}} approval",
+    "subject": "Request for {{@root.context.metaData.title}} {{#compare type "tsi-approval"}}TSI{{else}}parental{{/compare}} approval",
     "html":
     {{~#blockStringify this ~}}
       {{~>

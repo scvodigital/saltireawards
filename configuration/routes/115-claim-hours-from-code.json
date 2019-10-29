@@ -28,7 +28,7 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.page_head-tags",
+              "head": ">context.metaData.handlebars.templates.pages_head-tags",
               "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
               "body": ">context.metaData.handlebars.templates.volunteering_claim-hours"
             },
