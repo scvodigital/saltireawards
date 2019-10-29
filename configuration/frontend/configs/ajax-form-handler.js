@@ -16,6 +16,7 @@ return {
         config: {
           url: { __template: "\{{{jquery rootElement 'attr' (split 'action')}}}" },
           method: { __template: "\{{coalesce (jquery rootElement 'attr' (split 'method')) 'POST'}}" },
+          traditional : true,
           dataType: "json",
           data: {
             __template: `\{{{json value=(parse (jquery null "serialize" context=metadata.instance.element) type="querystring")}}}`,

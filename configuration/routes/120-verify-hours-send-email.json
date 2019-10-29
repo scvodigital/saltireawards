@@ -25,16 +25,6 @@
       }
     },
     {
-      "name": "sendEmail",
-      "taskModule": "mailgun",
-      "renderer": "handlebars",
-      "config": {
-        "output": "data",
-        "parseJson": true,
-        "template": ">context.metaData.handlebars.templates.volunteering_email_verify-hours"
-      }
-    },
-    {
       "name": "setVerifyDate",
       "taskModule": "salesforceApex",
       "renderer": "handlebars",
@@ -47,6 +37,7 @@
       }
     },
     {
+      "name": "sendEmail",
       "taskModule": "mailgun",
       "renderer": "handlebars",
       "config": {
