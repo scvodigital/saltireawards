@@ -1,122 +1,298 @@
-<form id="sign-up-form" method="POST" class="active-form" data-component="TasksTrigger" data-TasksTrigger="sign-up">
-  {{!-- <h1 class="x-padding">
-    Sign up
-  </h1> --}}
-  <div class="l-margin r-margin">
-    <div class="bg-error s-rounded x-padding v-margin" id="active-form-message">
-      <span id="form-message"></span>
-    </div>
-  </div>
-  <div class="x-padding">
-    <div class="form-group has-icon-left">
-      <input class="form-input" type="email" id="cat-name" placeholder="Cat Name" data-lpignore="true" autocomplete="nope" />
-    </div>
-    <div class="form-group has-icon-left">
-      <input class="form-input" type="password" id="dog-name" placeholder="Dog Name" data-lpignore="true" autocomplete="nope" />
-    </div>
-    <div id="form-section-sign-up-buttons" class="t-margin">
-      <button class="btn btn-primary" type="submit" id="sign-up-submit">
-        Sign up
-      </button>
-      <p class="v-margin-full">
-        Read our <a href="/privacy" target="_blank">privacy notice</a>
-      </p>
-      <p class="v-margin-full">
-        Already have an account? <a href="/sign-in">Sign in</a>
-      </p>
-    </div>
-  </div>
-  <input type="hidden" name="redirect" id="redirect" value="home" />
-</form>
+<div class="container">
+  <div class="columns">
+    <div class="column col-9 col-xl-12">
+      <h2>
+        {{#if @root.data.isAdmin ~}}
+          Group volunteering details
+        {{else}}
+          My volunteering details
+        {{/if ~}}
+      </h2>
 
-  [
-  {{#eachJoin (distinct (pluck @root.data.tasksInfoUnverified "volunteer_manager_email")) "," ~}}
+      {{!-- <div class="bg-warning x-padding"> --}}
+      <h4 class="no-margin">Checklist: What is volunteering?</h4>
+      <ul class="fa-ul">
+        <li>
+          <span class="fa-li"><span class="far fa-check-circle text-success"></span></span>
+          <span class="text-grey">Volunteering is a choice to give time or energy, of one's own free will, and a choice not motivated for financial gain or for a wage or salary.</span>
+        </li>
+        <li>
+          <span class="fa-li"><span class="far fa-times-circle text-error"></span></span>
+          <span class="text-grey">Paid internships, etc. [Need improved text]</span>
+        </li>
+      </ul>
+      {{!-- </div> --}}
+
+      {{#unless @root.data.isAdmin ~}}
+        {{> log_age_limit}}
+      {{/unless ~}}
+
+      <div class="divider v-margin-full"></div>
+
+      <form id="task-details-form" class="active-form" action="/test-page" method="POST" >
+        <input type="hidden" name="task_type" value="{{#if @root.data.isAdmin}}Group Task{{else}}Individual Task{{/if}}">
+        <div class="l-margin r-margin">
+          <div class="bg-error s-rounded x-padding v-margin" id="active-form-message">
+            <span id="form-message"></span>
+          </div>
+        </div>
+        <div class="form-horizontal">
+          <div class="form-group">
+            <div class="column col-4 col-md-12">
+              <label for="organisation_name" class="form-label">
+                {{#if @root.data.isAdmin ~}}
+                  Organisation your group has volunteered with
+                {{else}}
+                  Organisation you volunteer with
+                {{/if ~}}
+              </label>
+            </div>
+            <div class="column col-8 col-md-12">
+              <div data-component="Typeahead" data-Typeahead="typeahead-organisation">
+                <input id="organisation_name" name="organisation_name" class="form-input" placeholder="e.g. A Charity" value="{{@root.data.taskInfo.organisation_name}}" autocomplete="nope" data-lpignore="true" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.organisation_name}}>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="column col-4 col-md-12">
+              <label for="location" class="form-label">
+                Location
+              </label>
+            </div>
+            <div class="column col-8 col-md-12">
+              <input required id="location" name="location" class="form-input" placeholder="e.g. Edinburgh" value="{{@root.data.taskInfo.location}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.location}}>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="column col-4 col-md-12">
+              <label for="organisation_charity_number" class="form-label r-margin">
+                Scottish charity number (optional)
+              </label>
+            </div>
+            <div class="column col-3 col-md-4 col-sm-5 col-xs-6">
+              <div class="input-group">
+                {{!-- <span class="input-group-addon">SC</span> --}}
+                <input autocomplete="nope" id="organisation_charity_number" placeholder="e.g. SC003558" name="organisation_charity_number" class="form-input" value="{{@root.data.taskInfo.organisation_charity_number}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.organisation_charity_number}}>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="column col-4 col-md-12">
+              <label for="task_description" class="form-label">Volunteering description (optional)</label>
+            </div>
+            <div class="column col-8 col-md-12">
+              <textarea rows="4" cols="40" id="task_description" name="task_description" class="form-input" value="{{@root.data.taskInfo.task_description}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="column col-4 col-md-12">
+              <label for="un_sustainable_development_goals" class="form-label r-margin">
+                Which UN Sustainable Development Goals does this volunteering contribute towards? (optional)
+              </label>
+            </div>
+            <div class="column col-8 col-md-12">
+              <div class="dropdown">
+                <a href="#" class="btn btn-primary dropdown-toggle" tabindex="0">
+                  Select Sustainable Development Goals <span class="far fa-angle-down"></span>
+                </a>
+                <ul class="menu">
+                  {{#each @root.context.metaData.globalGoals ~}}
+                    <li class="menu-item">
+                      <label class="form-checkbox">
+                        <input type="checkbox" name="un_sustainable_development_goals" value="{{title}}" />
+                        <span class="form-icon"></span> <span class="label label-primary" style="background-color:{{> sdg_color sdg=title}}">{{> sdg_number sdg=title}}</span> {{title}}
+                      </label>
+                    </li>
+                  {{/each ~}}
+                </ul>
+              </div>
+
+              {{!-- <select class="form-select" id="un_sustainable_development_goals" name="un_sustainable_development_goals">
+                <option value="" selected></option>
+                {{#each @root.context.metaData.globalGoals ~}}
+                <option value="{{title}}">{{add @key 1}}: {{title}}</option>
+                {{/each ~}}
+              </select> --}}
+            </div>
+          </div>
+        </div>
+
+        <div class="divider v-margin-full"></div>
+
+        <h4>Volunteer manager</h4>
+
+        <div class="form-horizontal">
+          <div class="form-group">
+            <div class="column col-4 col-md-12">
+              <label for="volunteer_manager_first_name" class="form-label">
+                Volunteer manager
+              </label>
+            </div>
+            <div class="col-8 col-md-12">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <div class="column col-6">
+                    <input required id="volunteer_manager_first_name" name="volunteer_manager_first_name" placeholder="First name"
+                      {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_first_name}} class="form-input"
+                      {{#if @root.data.isAdmin ~}}
+                           value="{{default @root.data.taskInfo.volunteer_manager_first_name @root.data.accountInfo.first_name}}"
+                      {{else}}
+                           value="{{@root.data.taskInfo.volunteer_manager_first_name}}"
+                      {{/if ~}}
+                    >
+                  </div>
+                  <div class="column col-6">
+                    <input required id="volunteer_manager_last_name" name="volunteer_manager_last_name" placeholder="Last name"
+                      {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_last_name}} class="form-input"
+                      {{#if @root.data.isAdmin ~}}
+                           value="{{default @root.data.taskInfo.volunteer_manager_last_name @root.data.accountInfo.last_name}}"
+                      {{else}}
+                           value="{{@root.data.taskInfo.volunteer_manager_last_name}}"
+                      {{/if ~}}
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="column col-4 col-md-12">
+              <label for="volunteer_manager_title" class="form-label">
+                Job title
+              </label>
+            </div>
+            <div class="column col-8 col-md-12">
+              <input required id="volunteer_manager_title" name="volunteer_manager_title" placeholder="e.g. Volunteer manager"
+                {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_title}} class="form-input"
+                {{#if @root.data.isAdmin ~}}
+                     value="{{default @root.data.taskInfo.volunteer_manager_title @root.data.accountInfo.title}}"
+                {{else}}
+                     value="{{@root.data.taskInfo.volunteer_manager_title}}"
+                {{/if ~}}
+              >
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="column col-4 col-md-12">
+              <label for="volunteer_manager_email" class="form-label">
+                Email address
+              </label>
+            </div>
+            <div class="column col-8 col-md-12">
+              <input id="volunteer_manager_email" name="volunteer_manager_email" placeholder="e.g. name@charity.org"
+                {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_email}} class="form-input"
+                {{#if @root.data.isAdmin ~}}
+                     value="{{default @root.data.taskInfo.volunteer_manager_email @root.data.accountInfo.email}}"
+                {{else}}
+                     value="{{@root.data.taskInfo.volunteer_manager_email}}" pattern="^((?!{{@root.data.accountInfo.email}}).)*$"
+                {{/if ~}}>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="column col-4 col-md-12">
+              <label for="volunteer_manager_phone" class="form-label">
+                Phone number (optional)
+              </label>
+            </div>
+            <div class="column col-8 col-md-12">
+              <input id="volunteer_manager_phone" name="volunteer_manager_phone" placeholder="e.g. 01310001234"
+                {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_phone}} class="form-input"
+                {{#if @root.data.isAdmin ~}}
+                     value="{{default @root.data.taskInfo.volunteer_manager_phone @root.data.accountInfo.phone}}"
+                {{else}}
+                     value="{{@root.data.taskInfo.volunteer_manager_phone}}"
+                {{/if ~}}
+              >
+            </div>
+          </div>
+        </div>
+        <div class="form-horizontal">
+          <div class="form-group">
+            <div class="column col-4 hide-sm"></div>
+            <div class="column col-8 col-md-12">
+              {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
+              <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full">
+                Submit details
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{{{{raw}}}}
+<script data-component-config="typeahead-organisation" type="javascript/blocked">
+{
+  typeaheadOptions: {
+    highlight: true,
+    minlength: 3
+  },
+  itemSelectedTasks: [
     {
-    "from": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
-    "h:sender": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
-    "h:Reply-To": "{{>support_name}} <{{>support_email_address}}>",
-    "to": "{{{this}}}",
-    "o:tag": "{{{@root.route.metaData.emailType}}}",
-    "o:tracking": true,
-    {{!-- "o:testmode": true, --}}
-    "tag":  "{{{@root.route.metaData.emailType}}}",
-    "id":  "{{{@root.route.metaData.emailType}}}",
-    "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat @root.route.metaData.emailType '.mailgunConnection'))}}},
-    "subject": "Verify volunteering {{#compare @root.route.metaData.emailType '===' 'hours-verify-reminder'}}reminder{{/compare}},
-    "html":
-    {{~#blockStringify this ~}}
-      {{~>
-      (getProperty @root.context.metaData.emailSendSettings (concat @root.route.metaData.emailType '.bodyPartial'))
-        this
-      ~}}
-    {{~/blockStringify}}
+      type: "elementManipulator",
+      config: {
+        ">.tt-input": { value: { __pointer: "metadata.suggestion.title" } },
+        "#location": { value: { __pointer: "metadata.suggestion.location" } },
+        "#organisation_charity_number": { value: { __pointer: "metadata.suggestion.registered_charity_number" } }
+      }
+    },
+    {
+      type: "elementManipulator",
+      config: {
+        ">.tt-menu": { styles: { display: "none !important" } }
+      }
     }
-  {{/eachJoin ~}}
-  ]
-
-
-<script type="javascript/blocked" data-component-config="sign-up">
-  {
-    submit: {
-      preventDefault: true,
-      tasks: [
-       {
-          type: "elementManipulator",
-          config: { ">": { addClass: "disabled" } }
-          },
-          {
-          name: "testRequest",
-          type: "request",
-          config: { url: "/test-ajax" }
-          },
-          {
-            __doNotCompile: true,
-            name: "errorHandle",
-            type: "switch",
-            config: {
-              which: { __template: "\{{#if errors.testRequest}}error\{{else}}\{{data.testRequest.errors.[0].taskName}}\{{/if}}"
-                },
-            branches: {
-              default: {
-                tasks: [
-                  {
-                    type: "run",
-                    config: { code: "window.location.href = '/test-page?win=true'" }
-                  }
-                ]
-              },
-              error: {
-                tasks: [
-                  {
-                    type: "elementManipulator",
-                    config: {
-                      ">": { removeClass: "disabled" },
-                      "#active-form-message": { styles: { display: "block" } },
-                      "#form-message": { contents: { __template: "An error occurred \{{> partial}} "} }
-                    }
-                  }
-                ]
-              },
-              sendEmail: {
-                tasks: [
-                  {
-                    type: "elementManipulator",
-                    config: {
-                      ">": { removeClass: "disabled" },
-                      "#active-form-message": { styles: { display: "block" } },
-                      "#form-message": { contents: { __template: "\Email send was not successful" } }
-                    }
-                  }
-                ]
-              }
-
-            }
-          }
+  ],
+  nothingSelectedTasks: [
+    {
+      type: "elementManipulator",
+      config: {
+        "#location": { value: "" },
+        "#organisation_charity_number": { value: "" }
+      }
+    }
+    // {
+    //   type: "run",
+    //   config: { code: "metadata.instance.clearSelection()" }
+    // }
+  ],
+  datasets: [
+    {
+      name: "org_lookup",
+      display: "title",
+      bloodhound: {
+        datumTokenizer: "objWhitespace",
+        datumTokenizerField: "other",
+        queryTokenizer: "whitespace",
+        remote: {
+          url: "/org-lookup?q=*",
+          wildcard: "*"
         }
-      ]
-    }
-  }
+      }
+    },
+  ],
+  clearIfNothingSelected: true
+}
 </script>
-<script data-partial="partial" type="javascript/blocked">
-   Hello, I'm partial to errors!
+{{{{/raw}}}}
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    $('#task-details-form').on('submit', function(e){
+      $('#task-details-form').find('.submit-button').prop('disabled', true);
+    });
+
+    var element = document.getElementById("volunteer_manager_email");
+    element.oninvalid = function(e) {
+      e.target.setCustomValidity("");
+      if (!e.target.validity.valid) {
+        e.target.setCustomValidity("This must be a valid email, but not your own");
+      }
+    };
+    element.oninput = function(e) {
+      e.target.setCustomValidity("");
+    };
+  });
 </script>

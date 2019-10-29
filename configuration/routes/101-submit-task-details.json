@@ -13,6 +13,15 @@
     "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.fullSignUpRequired",
     {
+      "name": "makeTaskData",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": ">context.metaData.handlebars.templates.volunteering_task-body"
+      }
+    },
+    {
       "name": "saveTaskData",
       "taskModule": "salesforceApex",
       "renderer": "handlebars",

@@ -22,6 +22,15 @@
       }
     },
     {
+      "name": "makeTaskData",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": ">context.metaData.handlebars.templates.volunteering_task-body"
+      }
+    },
+    {
       "name": "things",
       "taskModule": "render",
       "renderer": "handlebars",
