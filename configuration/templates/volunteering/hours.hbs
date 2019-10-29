@@ -221,7 +221,7 @@
             </div>
             <div class="column col-2 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-7">
               <div class="form-group b-margin">
-                <select class="form-select"{{#unless claim_code}} disabled{{/unless}} required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
+                <select class="form-select hours"{{#unless claim_code}} disabled{{/unless}} required name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
                   {{#each @root.context.metaData.certificates ~}}
                   {{#unless tsi_only ~}}
                   <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>
@@ -241,9 +241,7 @@
               </div>
             </div>
             <div class="column col-2 col-xl-3 col-lg-2 col-md-3 col-sm-6 col-xs-5">
-              {{#ifAll claim_code (compare hours "!==" 0) (compare hours "!==" 999) ~}}
-              <mark class="claim-code">{{substr claim_code 0 10}}</mark>
-              {{/ifAll ~}}
+              <mark class="claim-code{{#unless (ifAll claim_code (compare hours '!==' 0) (compare hours '!==' 999))}} hidden{{/unless}}">{{substr claim_code 0 10}}</mark>
             </div>
             <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-4">
               {{#if claim_code ~}}
@@ -333,6 +331,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   $('.inline-update-button').click(function(){
     var saved = $(this).closest('form').removeClass('has-error');
+    var hours = $(this).closest('form').find('.hours').val();
+    if ((hours == 0) || (hours == 999)) {
+      $(this).closest('form').find('mark.claim-code').addClass('hidden');
+    } else {
+      $(this).closest('form').find('mark.claim-code').removeClass('hidden');
+    }
     $(this).hide();
   });
 
@@ -352,9 +356,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
     else return;
   });
-
-})
-
-
-
+});
 </script>

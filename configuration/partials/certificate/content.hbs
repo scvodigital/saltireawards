@@ -25,16 +25,18 @@
         "width": "60%",
         {{#compare award "hours" ~}}
         {{#each @root.context.metaData.certificates ~}}
-        {{#ifAll (compare ../type "group") (compare ../user.hours_verified ">=" 0) ~}}
+        {{#ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0) (compare ../user.hours_verified "<" 999) ~}}
         {{#compare hours ../user.hours_verified ~}}
         "text": {{>pdf_metadata_value key="title" default=(concat hours " hours")}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
         {{/compare ~}}
         {{else}}
         {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
+        {{#unless (compare hours 999) ~}}
         {{#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
         "text": {{>pdf_metadata_value key="title" default=(concat hours " hours")}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
+        {{/unless ~}}
         {{/unless ~}}
         {{/compare ~}}
         {{/ifAll ~}}
@@ -67,7 +69,7 @@
       {
         {{#compare award "hours" ~}}
         {{#each @root.context.metaData.certificates ~}}
-        {{#ifAll (compare ../type "group") (compare ../user.hours_verified ">=" 0) ~}}
+        {{#ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0) (compare ../user.hours_verified "<" 999) ~}}
         {{#compare hours ../user.hours_verified ~}}
         {{#unless in_progress ~}}
         "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement of completing"}},
@@ -77,11 +79,13 @@
         {{/compare ~}}
         {{else}}
         {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
+        {{#unless (compare hours 999) ~}}
         {{#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
         {{#unless in_progress ~}}
         "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement of completing"}},
         {{else}}
         "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement on"}},
+        {{/unless ~}}
         {{/unless ~}}
         {{/unless ~}}
         {{/compare ~}}
@@ -98,16 +102,18 @@
       {
         {{#compare award "hours" ~}}
         {{#each @root.context.metaData.certificates ~}}
-        {{#ifAll (compare ../type "group") (compare ../user.hours_verified ">=" 0) ~}}
+        {{#ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0) (compare ../user.hours_verified "<" 999) ~}}
         {{#compare hours ../user.hours_verified ~}}
         "text": {{>pdf_metadata_value key="title" default=type_name}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
         {{/compare ~}}
         {{else}}
         {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
+        {{#unless (compare hours 999) ~}}
         {{#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
         "text": {{>pdf_metadata_value key="title" default=type_name}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
+        {{/unless ~}}
         {{/unless ~}}
         {{/compare ~}}
         {{/ifAll ~}}
@@ -155,7 +161,7 @@
   "margin": [0, 30, 0, 0]
 },
 {{#each tasks ~}}
-{{#ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified ">=" 0)) (compare hours_verified ">=" 0) ~}}
+{{#ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0) (compare ../user.hours_verified "<" 999)) (ifAll (compare hours_verified ">" 0) (compare hours_verified "<" 999)) ~}}
 {
   "text": "For: {{organisation_name}}",
   "fontSize": 12,
