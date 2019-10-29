@@ -12,7 +12,7 @@
     "tag":  "welcome",
     "id":  "welcome",
     "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings 'welcome.mailgunConnection')}}},
-    "subject": "Welcome to the Saltire Awards",
+    "subject": "Welcome to the {{@root.context.metaData.title}}",
     "html":
     {{~#blockStringify this ~}}
       {{~>

@@ -1,30 +1,30 @@
 {{#withExtend @root.request.body code=(random 0 100000000)}}
-{{#json}}
-  {{#json key='users' type='array'}}
-    {{#json}}
-      {{#if @root.data.codeRequired}}
-        {{{json key='verification_code' value=code}}},
-        {{{json key='verification_email' value=verification_email}}},
-        {{#json key='verification_url' type="text"}}https://{{@root.request.headers.host}}/user-approval/?code={{code}}&user_id={{external_id}}{{/json}},
-        {{#json key='verification_needed' type="boolean"}}true{{/json}},
-      {{else}}
-        "verification_needed" : false, {{!-- Hack - it's not possible to enter false in the json parser due to a bug --}}
-      {{/if}}
-      {{{json key='first_name' value=first_name}}},
-      {{{json key='last_name' value=last_name}}},
-      {{{json key='postcode' value=postcode}}},
-      {{{json key='external_id' value=external_id}}},
-      {{{json key='date_of_birth' value=@root.data.accountInfo.date_of_birth}}}, {{!-- Can't update DOB after first submit --}}
-      {{{json key='school_college_name' value=school_college_name}}},
-      {{{json key='phone' value=phone}}},
-      {{{json key='title' value=title}}},
-      {{{json key='email' value=email}}},
-      {{{json key='local_authority' value=local_authority}}},
-      {{{json key='tsi_contact_email' value=tsi_contact_email}}},
-      {{{json key='tsi_area' value=tsi_area}}},
+  {{#json}}
+    {{#json key='users' type='array'}}
+      {{#json}}
+        {{#if @root.data.codeRequired}}
+          {{{json key='verification_code' value=code}}},
+          {{{json key='verification_email' value=verification_email}}},
+          {{#json key='verification_url' type="text"}}https://{{@root.request.headers.host}}/user-approval/?code={{code}}&user_id={{external_id}}{{/json}},
+          {{#json key='verification_needed' type="boolean"}}true{{/json}},
+        {{else}}
+          "verification_needed" : false, {{!-- Hack - it's not possible to enter false in the json parser due to a bug --}}
+        {{/if}}
+        {{{json key='first_name' value=first_name}}},
+        {{{json key='last_name' value=last_name}}},
+        {{{json key='postcode' value=postcode}}},
+        {{{json key='external_id' value=external_id}}},
+        {{{json key='date_of_birth' value=@root.data.accountInfo.date_of_birth}}}, {{!-- Can't update DOB after first submit --}}
+        {{{json key='school_college_name' value=school_college_name}}},
+        {{{json key='phone' value=phone}}},
+        {{{json key='title' value=title}}},
+        {{{json key='email' value=email}}},
+        {{{json key='local_authority' value=local_authority}}},
+        {{{json key='tsi_contact_email' value=tsi_contact_email}}},
+        {{{json key='tsi_area' value=tsi_area}}},
 
-      {{{json key='user_type' value=(if admin "Group Admin" else="Volunteer")}}}
-    {{/json}},
+        {{{json key='user_type' value=(if admin "Group Admin" else="Volunteer")}}}
+      {{/json}},
+    {{/json}}
   {{/json}}
-{{/json}}
 {{/withExtend}}

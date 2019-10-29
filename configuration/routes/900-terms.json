@@ -24,8 +24,8 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.page_head-tags",
-              "body": ">context.metaData.handlebars.templates.page_static_terms"
+              "head": ">context.metaData.handlebars.templates.pages_head-tags",
+              "body": ">context.metaData.handlebars.templates.pages_static_terms"
             },
             "contentType": "text/html"
           }

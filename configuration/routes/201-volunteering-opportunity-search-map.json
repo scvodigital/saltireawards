@@ -102,17 +102,17 @@
           "rss": {
             "layout": ">context.metaData.handlebars.layouts.rss",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.opportunity_search-rss-head-tags",
-              "body": ">context.metaData.handlebars.templates.opportunity_search-rss"
+              "head": ">context.metaData.handlebars.templates.opportunities_search-rss-head-tags",
+              "body": ">context.metaData.handlebars.templates.opportunities_search-rss"
             },
             "contentType": "application/rss+xml"
           },
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.opportunity_search-head-tags",
-              "body": ">context.metaData.handlebars.templates.opportunity_map",
-              "foot": ">context.metaData.handlebars.templates.opportunity_map-foot",
+              "head": ">context.metaData.handlebars.templates.opportunities_search-head-tags",
+              "body": ">context.metaData.handlebars.templates.opportunities_map",
+              "foot": ">context.metaData.handlebars.templates.opportunities_map-foot",
               "sidebar": ">context.metaData.handlebars.templates.account_sidebar"
             },
             "contentType": "text/html"
@@ -120,7 +120,7 @@
           "data": {
             "layout": ">context.metaData.handlebars.layouts.data",
             "parts": {
-              "content": ">context.metaData.handlebars.templates.opportunity_search-json"
+              "content": ">context.metaData.handlebars.templates.opportunities_search-json"
             },
             "contentType": "application/json"
           }

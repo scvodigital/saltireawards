@@ -40,8 +40,8 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.page_head-tags",
-              "body": ">context.metaData.handlebars.templates.page_contact"
+              "head": ">context.metaData.handlebars.templates.pages_head-tags",
+              "body": ">context.metaData.handlebars.templates.pages_contact"
             },
             "contentType": "text/html"
           }

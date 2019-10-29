@@ -15,7 +15,7 @@
         "queryTemplates": {
           "index": "web-content-production",
           "type": "milo-volunteering-organisation",
-          "template": ">context.metaData.handlebars.queries.search-org-lookup"
+          "template": ">context.metaData.handlebars.queries.utilities_search-org-lookup"
         }
       },
       "renderer": "handlebars"
@@ -35,7 +35,7 @@
           "data": {
             "layout": ">context.metaData.handlebars.layouts.data",
             "parts": {
-              "content": ">context.metaData.handlebars.templates.search-org-lookup"
+              "content": ">context.metaData.handlebars.templates.utilities_search-org-lookup"
             },
             "contentType": "application/json; charset=utf-8"
           }

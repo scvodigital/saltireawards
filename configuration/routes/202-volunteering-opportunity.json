@@ -100,9 +100,9 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.opportunity_opportunity-head-tags",
-              "body": ">context.metaData.handlebars.templates.opportunity_opportunity",
-              "foot": ">context.metaData.handlebars.templates.opportunity_opportunity-foot",
+              "head": ">context.metaData.handlebars.templates.opportunities_opportunity-head-tags",
+              "body": ">context.metaData.handlebars.templates.opportunities_opportunity",
+              "foot": ">context.metaData.handlebars.templates.opportunities_opportunity-foot",
               "sidebar": ">context.metaData.handlebars.templates.account_sidebar"
             },
             "contentType": "text/html"

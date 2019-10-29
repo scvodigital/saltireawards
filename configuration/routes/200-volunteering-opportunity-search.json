@@ -72,9 +72,9 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.opportunity_search-head-tags",
-              "body": ">context.metaData.handlebars.templates.opportunity_search",
-              "foot": ">context.metaData.handlebars.templates.opportunity_search-foot",
+              "head": ">context.metaData.handlebars.templates.opportunities_search-head-tags",
+              "body": ">context.metaData.handlebars.templates.opportunities_search",
+              "foot": ">context.metaData.handlebars.templates.opportunities_search-foot",
               "sidebar": ">context.metaData.handlebars.templates.account_sidebar"
             },
             "contentType": "text/html"
