@@ -1,17 +1,17 @@
 {{#with @root.request.body}}
-    {{#json}}
-      {{#json key='task'}}
-        {{{json key='organisation_name' value=organisation_name}}},
-        {{{json key='location' value=location}}},
-        {{{json key='organisation_charity_number' value=organisation_charity_number }}},
-        {{{json key='un_sustainable_development_goals' value=(join un_sustainable_development_goals ';')}}},
-        {{{json key='task_description' value=task_description}}},
-        {{{json key='volunteer_manager_email' value=volunteer_manager_email }}},
-        {{{json key='volunteer_manager_first_name' value=volunteer_manager_first_name}}},
-        {{{json key='volunteer_manager_last_name' value=volunteer_manager_last_name }}},
-        {{{json key='volunteer_manager_phone' value=volunteer_manager_phone }}},
-        {{{json key='volunteer_manager_title' value=volunteer_manager_title }}},
-        {{{json key='task_type' value=task_type}}}
-      {{/json}}
+  {{#json}}
+    {{#json key='task'}}
+      {{{json key='organisation_name' value=organisation_name}}},
+      {{{json key='location' value=location}}},
+      {{{json key='organisation_charity_number' value=organisation_charity_number }}},
+      {{{json key='un_sustainable_development_goals' value=(join un_sustainable_development_goals ';')}}},
+      {{{json key='task_description' value=task_description}}},
+      {{{json key='volunteer_manager_email' value=volunteer_manager_email }}},
+      {{{json key='volunteer_manager_first_name' value=volunteer_manager_first_name}}},
+      {{{json key='volunteer_manager_last_name' value=volunteer_manager_last_name }}},
+      {{{json key='volunteer_manager_phone' value=volunteer_manager_phone }}},
+      {{{json key='volunteer_manager_title' value=volunteer_manager_title }}},
+      {{{json key='task_type' value=task_type}}}
     {{/json}}
+  {{/json}}
 {{/with}}

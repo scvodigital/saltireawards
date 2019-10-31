@@ -17,7 +17,7 @@
       "taskModule": "render",
       "renderer": "handlebars",
       "config": {
-        "output": "data",
+        "output": "body",
         "template": ">context.metaData.handlebars.templates.volunteering_task-body"
       }
     },
@@ -34,7 +34,6 @@
       }
     },
     "context.metaData.commonTasks.flushCache",
-
     {
       "name": "destination",
       "taskModule": "render",
