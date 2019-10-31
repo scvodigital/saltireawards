@@ -25,14 +25,14 @@
         "width": "60%",
         {{#compare award "hours" ~}}
         {{#each @root.context.metaData.certificates ~}}
-        {{#ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0) (compare ../user.hours_verified "<" 999) ~}}
+        {{#ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0) (compare ../user.hours_verified "<" 1) ~}}
         {{#compare hours ../user.hours_verified ~}}
         "text": {{>pdf_metadata_value key="title" default=(concat hours " hours")}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
         {{/compare ~}}
         {{else}}
         {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
-        {{#unless (compare hours 999) ~}}
+        {{#unless (compare hours 1) ~}}
         {{#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
         "text": {{>pdf_metadata_value key="title" default=(concat hours " hours")}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
@@ -69,7 +69,7 @@
       {
         {{#compare award "hours" ~}}
         {{#each @root.context.metaData.certificates ~}}
-        {{#ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0) (compare ../user.hours_verified "<" 999) ~}}
+        {{#ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0) (compare ../user.hours_verified "<" 1) ~}}
         {{#compare hours ../user.hours_verified ~}}
         {{#unless in_progress ~}}
         "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement of completing"}},
@@ -79,7 +79,7 @@
         {{/compare ~}}
         {{else}}
         {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
-        {{#unless (compare hours 999) ~}}
+        {{#unless (compare hours 1) ~}}
         {{#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
         {{#unless in_progress ~}}
         "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement of completing"}},
@@ -102,14 +102,14 @@
       {
         {{#compare award "hours" ~}}
         {{#each @root.context.metaData.certificates ~}}
-        {{#ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0) (compare ../user.hours_verified "<" 999) ~}}
+        {{#ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0) (compare ../user.hours_verified "<" 1) ~}}
         {{#compare hours ../user.hours_verified ~}}
         "text": {{>pdf_metadata_value key="title" default=type_name}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
         {{/compare ~}}
         {{else}}
         {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
-        {{#unless (compare hours 999) ~}}
+        {{#unless (compare hours 1) ~}}
         {{#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
         "text": {{>pdf_metadata_value key="title" default=type_name}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
@@ -161,7 +161,7 @@
   "margin": [0, 30, 0, 0]
 },
 {{#each tasks ~}}
-{{#ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0) (compare ../user.hours_verified "<" 999)) (ifAll (compare hours_verified ">" 0) (compare hours_verified "<" 999)) ~}}
+{{#ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0) (compare ../user.hours_verified "<" 1)) (ifAll (compare hours_verified ">" 0) (compare hours_verified "<" 1)) ~}}
 {
   "text": "For: {{{organisation_name}}}",
   "fontSize": 12,
@@ -178,16 +178,6 @@
   "margin": [0, 5, 0, 0]
 },
 {{/if ~}}
-{{!-- {{#if un_sustainable_development_goals ~}}
-{
-  "text": "Contributing towards SDG {{> sdg_number sdg=un_sustainable_development_goals}}: {{un_sustainable_development_goals}}",
-  "fontSize": 10,
-  "color": "{{> sdg_color sdg=un_sustainable_development_goals}}",
-  "bold": true,
-  "alignment": "left",
-  "margin": [0, 5, 0, 0]
-},
-{{/if ~}} --}}
 {{/ifAny ~}}
 {{/each ~}}
 {{#if sdgs ~}}
@@ -239,7 +229,7 @@
   "width": 200,
   "margin": [0, 0, 250, 0]
 },
-{{#ifAll user.claim_code (ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 999)) (ifAll (compare user.hours_verified "!==" 0) (compare user.hours_verified "!==" 999))) ~}}
+{{#ifAll user.claim_code (ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1)) (ifAll (compare user.hours_verified "!==" 0) (compare user.hours_verified "!==" 1))) ~}}
 {
   "text": {{>pdf_metadata_value key="title" default="Claim code:"}},
   "fontSize": 10,

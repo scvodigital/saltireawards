@@ -243,7 +243,7 @@
               </div>
             </div>
             <div class="column col-2 col-xl-3 col-lg-2 col-md-3 col-sm-6 col-xs-5">
-              <mark class="claim-code{{#unless (ifAll claim_code (compare hours '!==' 0) (compare hours '!==' 999))}} hidden{{/unless}}">{{substr claim_code 0 10}}</mark>
+              <mark class="claim-code{{#unless (ifAll claim_code (compare hours '!==' 0) (compare hours '!==' 1))}} hidden{{/unless}}">{{substr claim_code 0 10}}</mark>
             </div>
             <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-4">
               {{#if claim_code ~}}
@@ -334,7 +334,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   $('.inline-update-button').click(function(){
     var saved = $(this).closest('form').removeClass('has-error');
     var hours = $(this).closest('form').find('.hours').val();
-    if ((hours == 0) || (hours == 999)) {
+    if ((hours == 0) || (hours == 1)) {
       $(this).closest('form').find('mark.claim-code').addClass('hidden');
     } else {
       $(this).closest('form').find('mark.claim-code').removeClass('hidden');

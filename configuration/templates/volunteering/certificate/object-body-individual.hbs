@@ -4,11 +4,11 @@
     {{#json key='user' ~}}
       {{{json key='first_name' value=@root.data.accountInfo.first_name}}},
       {{{json key='last_name' value=@root.data.accountInfo.last_name}}},
-      {{#ifAny (compare hours 0) (compare hours 999) ~}}
+      {{#ifAny (compare hours 0) (compare hours 1) ~}}
       {{#compare hours 0 ~}}
       {{{json key='certificate_type' value="challenge"}}},
       {{/compare ~}}
-      {{#compare hours 999 ~}}
+      {{#compare hours 1 ~}}
       {{{json key='certificate_type' value="summit"}}},
       {{/compare ~}}
       {{{json key='hours_verified' value=0}}}
@@ -17,7 +17,12 @@
       {{/ifAny ~}}
       {{{json key='hours_verified' value=(sumArray (pluck @root.data.tasksInfo "hours_verified"))}}}
     {{/json ~}},
-    {{{json key='sdgs' value=(join (map @root.data.tasksInfo (getProp "un_sustainable_development_goals")) ";")}}},
+    "sdgs": "{{~#each @root.data.tasksInfo ~}}
+      {{~#ifAll (compare hours_verified ">" 0) un_sustainable_development_goals ~}}
+      {{un_sustainable_development_goals}};
+      {{~/ifAll ~}}
+    {{~/each ~}}",
+    {{!-- {{{json key='sdgs' value=(join (map @root.data.tasksInfo (getProp "un_sustainable_development_goals")) ";")}}}, --}}
     {{#json type='array' key='tasks' ~}}
       {{#eachJoin @root.data.tasksInfo "," ~}}
         {{{jsStringify this}}}
