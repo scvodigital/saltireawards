@@ -163,6 +163,7 @@ a.btn-link:hover {
   left: 50%;
   width: 300px;
   margin-left: -150px;
+  pointer-events: none;
   .btn:hover,
   a {
     color: white;
@@ -170,6 +171,7 @@ a.btn-link:hover {
   .toast {
     position: relative;
     margin-top: $unit/4;
+    pointer-events: all;
   }
   .toast-in {
     animation: toast-in 0.4s ease-in,
