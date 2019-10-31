@@ -1,14 +1,23 @@
-<div class="container">
-  <h2>User: {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}} {{#if @root.data.accountInfo.school_college_name}}from {{@root.data.accountInfo.school_college_name}}{{/if}}</h2>
-
-    <p>
-      {{!-- Modify hours for {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}} {{#if @root.data.accountInfo.school_college_name}}from {{@root.data.accountInfo.school_college_name}}{{/if}}. --}}
-      If the volunteering details below are incorrect, please adjust the number and choose Verify. If the work did not occur, please choose Remove.
-    </p>
-
-    {{#each (filter @root.data.tasksInfoUnverified "task_id" "valueIn" (split @root.request.params.query.t ",")) }}
-    {{#compare unverified_hours_list.length ">=" 1}}
-      Volunteering with <strong>{{organisation_name}}</strong>: {{#if task_description}}Tasks: {{task_description}}, {{/if}} Manager: {{volunteer_manager_first_name}} {{volunteer_manager_last_name}} ({{volunteer_manager_title}})
+<div class="empty">
+  <div class="empty-icon">
+    <span class="fal fa-user-clock fa-3x"></span>
+  </div>
+  <p class="empty-title h5">Volunteering verification</p>
+  <p class="empty-subtitle">
+    Verifying volunteering for {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}} {{#if @root.data.accountInfo.school_college_name}}from {{@root.data.accountInfo.school_college_name}}{{/if}}
+  </p>
+  {{!-- <p class="empty-subtitle">
+    If the volunteering details below are incorrect, please adjust the number of hours and choose Verify.<br />
+    If the work did not occur, please choose Remove.
+  </p> --}}
+  {{#each (filter @root.data.tasksInfoUnverified "task_id" "valueIn" (split @root.request.params.query.t ",")) ~}}
+  {{#compare unverified_hours_list.length ">=" 1 ~}}
+  <p class="empty-subtitle">
+    Organisation: {{organisation_name}}<br />
+    {{#if task_description}}{{task_description}}<br />{{/if}}
+    Volunteering manager: {{volunter_manager_first_name}} {{volunteer_manager_last_name}} ({{volunteer_manager_title}})<br />
+  </p>
+  <div class="empty-action">
     <div class="columns">
       <div class="column col-2">
         <strong>When</strong>
@@ -16,12 +25,14 @@
       <div class="column col-1">
         <strong>Hours</strong>
       </div>
-      <div class="column col-4">
+      <div class="column col-xs-auto">
         <strong>Notes</strong>
       </div>
+      <div class="column col-{{#if claim_code}}4{{else}}2{{/if}}">
+      </div>
     </div>
-    {{#each this.hours_list}}
-    {{#unless verified}}
+    {{#each this.hours_list ~}}
+    {{#unless verified ~}}
     <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="inline-hours-form" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-form-handler">
       <input type="hidden" name="task_id" value="{{task_id}}">
       <input type="hidden" name="verified" value="true">
@@ -33,12 +44,12 @@
           <span class="inline-form-text">{{momentFormat (moment createdDate "YYYY-MM-DD") "MMMM Do YYYY"}}</span>
         </div>
         <div class="column col-1">
-          <div class="form-group r-margin b-margin">
+          <div class="form-group b-margin">
             <input class="form-input inline-edit" name="hours" min="0.1" value="{{hours}}">
           </div>
         </div>
-        <div class="column col-4">
-          <div class="form-group r-margin b-margin">
+        <div class="column col-xs-auto">
+          <div class="form-group b-margin">
             <input class="form-input inline-edit" name="notes" value="{{notes}}">
           </div>
         </div>
@@ -48,16 +59,16 @@
         <div class="column col-1">
           <a href="/admin-delete-hours?hours_id={{hours_id}}&c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="btn btn-block inline-delete-button" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
         </div>
+        {{#if claim_code ~}}
         <div class="column col-2">
-          {{#if claim_code ~}}
           <code class="claim-code">{{substr claim_code 0 10}}</code>
-          {{/if ~}}
         </div>
+        {{/if ~}}
       </div>
     </form>
-    {{/unless}}
+    {{/unless ~}}
     {{/each ~}}
-    {{/compare}}
-    {{/each}}
-  </section>
+  </div>
+  {{/compare ~}}
+  {{/each ~}}
 </div>

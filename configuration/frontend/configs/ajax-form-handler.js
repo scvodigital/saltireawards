@@ -7,10 +7,6 @@ return {
         config: { ">": { addClass: "disabled" } }
       },
       {
-        type: "elementManipulator",
-        config: { ">": { addClass: "disabled" } }
-      },
-      {
         name: "submitRequest",
         type: "request",
         config: {
