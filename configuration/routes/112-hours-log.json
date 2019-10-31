@@ -1,11 +1,10 @@
 {
-  "name": "hours-breakdown",
-  "pattern": "/hours-breakdown",
+  "name": "hours-log",
+  "pattern": "/hours-log",
   "debug": true,
   "errorRoute": "five_hundred",
   "metaData": {
-    "title": "My volunteering",
-    "adminTitle": "Volunteering groups"
+    "title": "My volunteering"
   },
   "tasks": [
     "context.metaData.commonTasks.authRequired",
@@ -13,6 +12,7 @@
     "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.fullSignUpRequired",
     "context.metaData.commonTasks.getHoursInfo",
+    "context.metaData.commonTasks.getTasksInfo",
     {
       "name": "destination",
       "taskModule": "renderLayout",
@@ -30,7 +30,7 @@
             "parts": {
               "head": ">context.metaData.handlebars.templates.pages_head-tags",
               "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
-              "body": ">context.metaData.handlebars.templates.volunteering_hours-breakdown"
+              "body": ">context.metaData.handlebars.templates.volunteering_hours-log"
             },
             "contentType": "text/html"
           }
