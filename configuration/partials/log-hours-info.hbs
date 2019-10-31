@@ -7,6 +7,12 @@
   {{/compare ~}}
 </p>
 
+{{#ifAll (compare (sumArray (pluck @root.data.tasksInfo "hours")) 0) (compare (dateMath 'now-26y') "<" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD")) ~}}
+<p class="empty-subtitle">
+  The Saltire Awards gives you recognition for the volunteering you do.
+</p>
+{{/ifAll ~}}
+
 {{#unless (compare (sumArray (pluck @root.data.tasksInfo "hours")) 0) ~}}
 <p class="empty-subtitle achievements text-centre">
   {{#each @root.context.metaData.certificates ~}}
@@ -21,7 +27,7 @@
   </span>
   {{/unless ~}}
   {{else}}
-  <span class="working-towards">You need to do {{subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))}} more {{inflect (subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))) "hour" "hours"}} of volunteering to reach your next award</span>
+  <span class="working-towards">You need to log {{subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))}} more {{inflect (subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))) "hour" "hours"}} of volunteering to reach your next award</span>
   {{/compare ~}}
   {{/compare ~}}
   {{/compare ~}}
@@ -29,7 +35,5 @@
 </p>
 {{/unless ~}}
 
-<p class="empty-subtitle text-centre">
-  {{> log_age_limit}}
-</p>
+{{> log_age_limit}}
 {{/unless ~}}

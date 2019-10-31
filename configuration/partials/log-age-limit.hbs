@@ -1,7 +1,11 @@
 {{#compare (dateMath 'now-28y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD") ~}}
-<strong class="label label-error">You cannot log hours as you are over the age limit for the {{@root.context.metaData.title}}</strong>
+<p class="empty-subtitle text-centre">
+  <strong class="label label-rounded label-error">You cannot log hours as you are over the age limit for the {{@root.context.metaData.title}}</strong>
+</p>
 {{else}}
 {{#compare (dateMath 'now-26y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD") ~}}
-<strong class="label label-warning">You may only log hours you volunteered before you turned 26</strong>
+<p class="empty-subtitle text-centre">
+  <strong class="label label-rounded label-warning">You may only log hours you volunteered before you turned 26</strong>
+</p>
 {{/compare ~}}
 {{/compare ~}}

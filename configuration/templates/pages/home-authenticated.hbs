@@ -20,11 +20,6 @@
     <span class="fal fa-user-clock fa-3x"></span>
   </div>
   {{> log_hours_info}}
-  {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) 0 ~}}
-  <p class="empty-subtitle">
-    The Saltire Awards gives you recognition for the volunteering you do.
-  </p>
-  {{/compare ~}}
   <div class="empty-action">
     {{#unless (compare (dateMath 'now-28y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD")) ~}}
     <a href="/hours" class="btn btn-primary">My volunteering - log hours</a>
