@@ -163,7 +163,7 @@
 {{#each tasks ~}}
 {{#ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified ">" 0) (compare ../user.hours_verified "<" 999)) (ifAll (compare hours_verified ">" 0) (compare hours_verified "<" 999)) ~}}
 {
-  "text": "For: {{organisation_name}}",
+  "text": "For: {{{organisation_name}}}",
   "fontSize": 12,
   "bold": false,
   "alignment": "left",
@@ -171,14 +171,14 @@
 },
 {{#if task_description ~}}
 {
-  "text": "{{task_description}}",
+  "text": "{{{task_description}}}",
   "fontSize": 10,
   "bold": false,
   "alignment": "left",
   "margin": [0, 5, 0, 0]
 },
 {{/if ~}}
-{{#if un_sustainable_development_goals ~}}
+{{!-- {{#if un_sustainable_development_goals ~}}
 {
   "text": "Contributing towards SDG {{> sdg_number sdg=un_sustainable_development_goals}}: {{un_sustainable_development_goals}}",
   "fontSize": 10,
@@ -187,9 +187,31 @@
   "alignment": "left",
   "margin": [0, 5, 0, 0]
 },
-{{/if ~}}
+{{/if ~}} --}}
 {{/ifAny ~}}
 {{/each ~}}
+{{#if sdgs ~}}
+{
+  "text": "Contributing towards {{inflect (length (split sdgs ";")) "SDG" "SDGs"}}:",
+  "fontSize": 10,
+  "color": "{{> sdg_color sdg=un_sustainable_development_goals}}",
+  "bold": true,
+  "alignment": "left",
+  "margin": [0, 5, 0, 0]
+},
+{{#each (split sdgs ";") ~}}
+{{#if this ~}}
+{
+  "text": "{{> sdg_number sdg=this}}: {{this}}",
+  "fontSize": 10,
+  "color": "{{> sdg_color sdg=this}}",
+  "bold": true,
+  "alignment": "left",
+  "margin": [0, 2, 0, 0]
+},
+{{/if ~}}
+{{/each ~}}
+{{/if ~}}
 {
   "width": 150,
   "image": "{{> certificate_images_png_signature_minister}}",
@@ -243,6 +265,7 @@
   }
 },
 {{/ifAll ~}}
+{{#if (length (split sdgs ";")) ~}}
 {
   "width": 110,
   "image": "{{> certificate_images_png_global_goals}}",
@@ -253,6 +276,7 @@
     "y": 580
   }
 },
+{{/if ~}}
 {
   "width": 180,
   "image": "{{> certificate_images_png_sg}}",

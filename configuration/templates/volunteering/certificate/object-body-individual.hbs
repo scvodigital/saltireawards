@@ -1,16 +1,27 @@
-{{#json type='array'}}
-  {{#json}}
+{{#json type='array' ~}}
+  {{#json ~}}
     {{{json key='type' value='individual'}}},
-    {{#json key='user'}}
+    {{#json key='user' ~}}
       {{{json key='first_name' value=@root.data.accountInfo.first_name}}},
       {{{json key='last_name' value=@root.data.accountInfo.last_name}}},
-      {{{json key='hours_verified' value=(sumArray (pluck @root.data.tasksInfo "hours_verified"))}}},
-      {{{json key='certificate_type' value="hours"}}}
-    {{/json}},
-    {{#json type='array' key='tasks'}}
-      {{#eachJoin @root.data.tasksInfo ","}}
+      {{#ifAny (compare hours 0) (compare hours 999) ~}}
+      {{#compare hours 0 ~}}
+      {{{json key='certificate_type' value="challenge"}}},
+      {{/compare ~}}
+      {{#compare hours 999 ~}}
+      {{{json key='certificate_type' value="summit"}}},
+      {{/compare ~}}
+      {{{json key='hours_verified' value=0}}}
+      {{else}}
+      {{{json key='certificate_type' value="hours"}}},
+      {{/ifAny ~}}
+      {{{json key='hours_verified' value=(sumArray (pluck @root.data.tasksInfo "hours_verified"))}}}
+    {{/json ~}},
+    {{{json key='sdgs' value=(join (map @root.data.tasksInfo (getProp "un_sustainable_development_goals")) ";")}}},
+    {{#json type='array' key='tasks' ~}}
+      {{#eachJoin @root.data.tasksInfo "," ~}}
         {{{jsStringify this}}}
-      {{/eachJoin}}
-    {{/json}}
-  {{/json}}
-{{/json}}
+      {{/eachJoin ~}}
+    {{/json ~}}
+  {{/json ~}}
+{{/json ~}}

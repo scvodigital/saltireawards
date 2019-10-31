@@ -21,6 +21,7 @@
             {{{json key='hours_verified' value=hours}}}
             {{/ifAny ~}}
           {{/json}},
+          {{{json key='sdgs' value=../this.un_sustainable_development_goals}}},
           {{#json type='array' key='tasks'}}
             {{{jsStringify ../this}}},
           {{/json}}
@@ -48,6 +49,7 @@
             {{{json key='hours_verified' value=hours}}}
             {{/ifAny ~}}
           {{/json}},
+          {{{json key='sdgs' value=../this.un_sustainable_development_goals}}},
           {{#json type='array' key='tasks'}}
             {{{jsStringify ../this}}},
           {{/json}}
