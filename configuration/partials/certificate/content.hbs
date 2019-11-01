@@ -189,7 +189,7 @@
   "alignment": "left",
   "margin": [0, 5, 0, 0]
 },
-{{#each (split sdgs ";") ~}}
+{{#each (unique (split sdgs ";")) ~}}
 {{#if this ~}}
 {
   "text": "{{> sdg_number sdg=this}}: {{this}}",
