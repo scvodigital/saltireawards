@@ -1,0 +1,41 @@
+{{~#compare (length @root.data.pdfObjects) ">" 1 ~}}
+{{slugify (concat "Group " @root.context.metaData.title " certificates")}}
+{{~else~}}
+{{~#each @root.data.pdfObjects ~}}
+{{~#compare user.certificate_type "hours" ~}}
+{{~#each @root.context.metaData.certificates ~}}
+{{~#ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1) ~}}
+{{~#compare hours ../user.hours_verified ~}}
+{{~#compare ../type "group" ~}}
+{{slugify (concat @root.context.metaData.certificateName " for " hours " hours " ../user.first_name " " ../user.last_name)}}
+{{~else~}}
+{{slugify (concat "My " @root.context.metaData.certificateName " for " hours " hours")}}
+{{~/compare ~}}
+{{~/compare ~}}
+{{~else~}}
+{{~#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
+{{~#unless (compare hours 1) ~}}
+{{~#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
+{{~#compare ../type "group" ~}}
+{{slugify (concat @root.context.metaData.certificateName " for " hours " hours " ../user.first_name " " ../user.last_name)}}
+{{~else~}}
+{{slugify (concat "My " @root.context.metaData.certificateName " for " hours " hours")}}
+{{~/compare ~}}
+{{~/unless ~}}
+{{~/unless ~}}
+{{~/compare ~}}
+{{~/ifAll ~}}
+{{~/each ~}}
+{{~else~}}
+{{~#each @root.context.metaData.certificates ~}}
+{{~#compare ../user.certificate_type type ~}}
+{{~#compare ../type "group" ~}}
+{{slugify (concat @root.context.metaData.title " " type " certificate " ../user.first_name " " ../user.last_name)}}
+{{~else~}}
+{{slugify (concat "My " @root.context.metaData.title " " type " certificate")}}
+{{~/compare ~}}
+{{~/compare ~}}
+{{~/each ~}}
+{{~/compare ~}}
+{{~/each ~}}
+{{~/compare ~}}
