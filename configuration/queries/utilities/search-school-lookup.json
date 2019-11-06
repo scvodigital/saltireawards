@@ -1,0 +1,21 @@
+{{#withExtend this q=@root.request.params.query.q}}
+{
+  "size": 10,
+  "_source": [
+    "Id",
+    "title"
+  ],
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "query_string": {
+             "fields": ["text_bag_boost"],
+             "query": {{{stringify q}}}
+          }
+        }
+      ]
+    }
+  }
+}
+{{/withExtend}}

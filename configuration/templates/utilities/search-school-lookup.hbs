@@ -1,0 +1,8 @@
+[
+  {{#eachJoin @root.data.search_data.hits.hits "," ~}}
+  {
+    "school_id": {{{stringify _source.Id}}},
+    "title": {{{stringify _source.title}}}
+  }
+  {{/eachJoin ~}}
+]
