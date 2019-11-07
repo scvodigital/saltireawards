@@ -275,7 +275,7 @@
                 <label for="task_description" class="form-label">List of volunteer names, one per line</label>
               </div>
               <div class="col-5">
-                <textarea rows="6" cols="40" id="volunteers" name="volunteers" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}>{{@root.data.taskInfo.task_description}}</textarea>
+                <textarea rows="6" cols="40" id="volunteers" pattern=".*\S.*" name="volunteers" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}>{{@root.data.taskInfo.task_description}}</textarea>
               </div>
             </div>
             <div class="form-group">

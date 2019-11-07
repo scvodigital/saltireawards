@@ -2,7 +2,7 @@
   {{#if @root.request.body.volunteers}}
     {{#json key='hours_input' type='array'}}
       {{#eachJoin (regexSplit @root.request.body.volunteers '\r?\n') ","}}
-        {{#if this}}
+        {{#if (trim this)}}
         {{#json}}
           {{{json key='task_id' value=@root.request.body.task_id}}},
           {{{json key='hours' value=@root.request.body.hours}}},

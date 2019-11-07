@@ -937,6 +937,16 @@ ul.fa-ul {
   display: none;
 }
 
+a.disabled{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+
 .form.disabled,
 form.disabled {
   pointer-events: none;

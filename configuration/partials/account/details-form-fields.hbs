@@ -56,10 +56,10 @@
       <div class="column col-9 col-sm-12">
         <div class="has-icon-right d-inline-block" data-component="Typeahead" data-Typeahead="typeahead-school">
           <input class="form-input" id="school_college_name" name="school_college_name" type="text" value="{{@root.data.accountInfo.school_college_name}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="school-lookup" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.school_college_name}}>
-          <span class="form-icon far {{#if hasSchool}}fa-check text-success{{else}}fa-times text-error{{/if}}" id="school-validation-icon"></span>
+          {{!-- Removed, whilst non-listed schools / colleges allowed. <span class="form-icon far {{#if hasSchool}}fa-check text-success{{else}}fa-times text-error{{/if}}" id="school-validation-icon"></span> --}}
         </div>
       </div>
-      <input type="hidden" name="school_id" id="school_id" value="{{@root.data.accountInfo.school_id}}" />
+      <input type="hidden" name="school_college_id" id="school_college_id" value="{{@root.data.accountInfo.school_college_id}}" />
     </div>
   {{else}}
     <div class="form-group">
@@ -253,7 +253,7 @@
       type: "elementManipulator",
       config: {
         ">.tt-input": { value: { __pointer: "metadata.suggestion.title" } },
-        "#school_id": { value: { __pointer: "metadata.suggestion.school_id" } },
+        "#school_college_id": { value: { __pointer: "metadata.suggestion.school_college_id" } },
         "#school-validation-icon": {
           addClass: [ "fa-check", "text-success" ],
           removeClass: [ "loading", "fa-times", "text-primary", "text-error" ]
@@ -267,7 +267,7 @@
       type: "elementManipulator",
       config: {
         ">.tt-menu": { styles: { display: "none !important" } },
-        "#school_id": { value: "" },
+        "#school_college_id": { value: "" },
         "#school-validation-icon": {
           addClass: [ "fa-times", "text-error" ],
           removeClass: [ "loading", "fa-check", "text-primary", "text-success" ]

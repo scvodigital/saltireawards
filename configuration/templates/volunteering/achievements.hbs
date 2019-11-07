@@ -29,7 +29,7 @@
         {{!-- <p>
           {{certificate_name}} hour certificate awarded!
         </p> --}}
-        <a href="/certificate" class="btn btn-primary b-margin">Download</a>
+        <a href="/certificate" data-component="TasksTrigger" data-TasksTrigger="no-multi-click"  class="btn btn-primary b-margin">Download</a>
       </div>
     </div>
   </div>
@@ -45,7 +45,7 @@
       </p>
       {{> badge type=type key=(slugify certificate_name) hours=hours disabled=true}}
       <div class="text-center description">
-        {{certificate_name}} hour award being verified. If you've been waiting for over a week, you can <a href="/verify-hours-email-send/?award={{hours}}">re-send the verification {{inflect (length @root.data.tasksInfo) "message" "messages"}}</a>.
+        {{certificate_name}} hour award being verified. If you've been waiting for over a week, you can <a data-component="TasksTrigger" data-TasksTrigger="no-multi-click" href="/verify-hours-email-send/?award={{hours}}">re-send the verification {{inflect (length @root.data.tasksInfo) "message" "messages"}}</a>.
       </div>
     </div>
   </div>

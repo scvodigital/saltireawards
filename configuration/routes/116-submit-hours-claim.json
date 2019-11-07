@@ -23,12 +23,20 @@
     },
     "context.metaData.commonTasks.flushCache",
     {
+      "name": "flushOtherCache",
+      "taskModule": "cacheFlush",
+      "renderer": "handlebars",
+      "config": {
+        "partition": "saltire-profiles-{{@root.data.claimHoursResult.group_admin_id}}"
+      }
+    },
+    {
       "name": "destination",
       "taskModule": "render",
       "renderer": "handlebars",
       "config": {
         "output": "body",
-        "template": "{\"id\": {{{stringify @root.data.claimHoursResult}}} }",
+        "template": "{{{stringify @root.data.claimHoursResult}}}",
         "parseJson": true
       }
     }
