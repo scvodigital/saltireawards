@@ -29,16 +29,6 @@
 			"notAuthenticatedRoute": "sign_in"
 		}
 	},
-	"getSignUpStatus": {
-		"name": "signUpStatus",
-		"taskModule": "firebaseRtbGet",
-		"renderer": "handlebars",
-		"config": {
-			"appName": "saltireawards",
-			"pathTemplate": "/{{default data.auth.uid 'no-such-read-profile'}}/signup-status",
-			"defaultData": ""
-		}
-	},
 	"getAccountInfo": {
 		"name": "accountInfo",
 		"taskModule": "salesforceApex",
@@ -117,7 +107,7 @@
 		"renderer": "handlebars",
 		"config": {
 			"appName": "saltireawards",
-			"pathTemplate": "/{{default @root.data.auth.uid 'no-such-read-profile'}}/verify-hours/",
+			"pathTemplate": "/users/{{default @root.data.auth.uid 'no-such-read-profile'}}/verify-hours/",
 			"defaultData": false
 		}
 	},
@@ -127,7 +117,7 @@
 		"renderer": "handlebars",
 		"config": {
 			"appName": "saltireawards",
-			"pathTemplate": "/{{default @root.request.params.query.user_id 'no-such-read-profile'}}/verify-hours/",
+			"pathTemplate": "/users/{{default @root.request.params.query.user_id 'no-such-read-profile'}}/verify-hours/",
 			"defaultData": false
 		}
 	},

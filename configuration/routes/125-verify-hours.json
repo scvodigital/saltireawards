@@ -11,7 +11,7 @@
       "renderer": "handlebars",
       "config": {
         "appName": "saltireawards",
-        "pathTemplate": "/{{default @root.request.params.query.user_id 'no-such-write-profile'}}/verify-hours/",
+        "pathTemplate": "/users/{{default @root.request.params.query.user_id 'no-such-write-profile'}}/verify-hours/",
         "defaultData": {}
       }
     },

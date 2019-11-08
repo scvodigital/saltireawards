@@ -9,7 +9,6 @@
   },
   "tasks": [
     "context.metaData.commonTasks.authRequired",
-    "context.metaData.commonTasks.getSignUpStatus",
     "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.fullSignUpRequired",
     "context.metaData.commonTasks.getTasksInfoUnverified",
@@ -19,7 +18,7 @@
       "renderer": "handlebars",
       "config": {
         "appName": "saltireawards",
-        "pathTemplate": "/{{default data.auth.uid 'no-such-write-profile'}}/verify-hours/",
+        "pathTemplate": "/users/{{default data.auth.uid 'no-such-write-profile'}}/verify-hours/",
         "setOrUpdate": "set",
         "dataTemplate": ">context.metaData.handlebars.templates.volunteering_fb-verify-hours-data"
       }

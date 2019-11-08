@@ -33,7 +33,7 @@
       "renderer": "handlebars",
       "config": {
         "appName": "saltireawards",
-        "pathTemplate": "/{{default data.auth.uid 'no-such-write-profile'}}/",
+        "pathTemplate": "/user/{{default data.auth.uid 'no-such-write-profile'}}/",
         "setOrUpdate": "set",
         "dataTemplate": "{}"
       }
