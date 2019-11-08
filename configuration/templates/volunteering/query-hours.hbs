@@ -1,4 +1,14 @@
-<div class="empty">
+<div class="tasks-empty empty hide">
+  <div class="empty-icon text-success">
+    <span class="fal fa-user-check fa-3x"></span>
+  </div>
+  <p class="empty-title h5">Volunteering verification</p>
+  <p class="empty-subtitle">
+    Volunteering verification successful. You can now close this page.
+  </p>
+</div>
+
+<div class="tasks-not-empty empty">
   <div class="empty-icon">
     <span class="fal fa-user-clock fa-3x"></span>
   </div>
@@ -11,64 +21,130 @@
     If the work did not occur, please choose Remove.
   </p> --}}
   {{#each (filter @root.data.tasksInfoUnverified "task_id" "valueIn" (split @root.request.params.query.t ",")) ~}}
-  {{#compare unverified_hours_list.length ">=" 1 ~}}
-  <p class="empty-subtitle">
-    Organisation: {{organisation_name}}<br />
-    {{#if task_description}}{{task_description}}<br />{{/if}}
-    Volunteering manager: {{volunter_manager_first_name}} {{volunteer_manager_last_name}} ({{volunteer_manager_title}})<br />
-  </p>
-  <div class="empty-action">
-    <div class="columns">
-      <div class="column col-2">
-        <strong>When</strong>
-      </div>
-      <div class="column col-1">
-        <strong>Hours</strong>
-      </div>
-      <div class="column col-xs-auto">
-        <strong>Notes</strong>
-      </div>
-      <div class="column col-{{#if claim_code}}4{{else}}2{{/if}}">
-      </div>
-    </div>
-    {{#each this.hours_list ~}}
-    {{#unless verified ~}}
-    <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="inline-hours-form" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-form-handler">
-      <input type="hidden" name="task_id" value="{{task_id}}">
-      <input type="hidden" name="verified" value="true">
-      <input type="hidden" name="claim_code" value="{{claim_code}}">
-      <input type="hidden" name="hours_id" value="{{hours_id}}">
-      <input type="hidden" name="user_id" value="{{@root.request.params.query.user_id}}">
-      <div class="columns">
-        <div class="column col-2">
-          <span class="inline-form-text">{{momentFormat (moment createdDate "YYYY-MM-DD") "MMMM Do YYYY"}}</span>
-        </div>
-        <div class="column col-1">
-          <div class="form-group b-margin">
-            <input class="form-input inline-edit" name="hours" min="0.1" value="{{hours}}">
+
+    {{#compare unverified_hours_list.length ">=" 1 ~}}
+      <div class="task-element">
+      <p class="empty-subtitle">
+        Organisation: {{organisation_name}}<br />
+        {{#if task_description}}{{task_description}}<br />{{/if}}
+        Volunteering manager: {{volunter_manager_first_name}} {{volunteer_manager_last_name}} ({{volunteer_manager_title}})<br />
+      </p>
+
+      <div class="empty-action">
+
+        <div class="columns">
+          <div class="column col-2">
+            <strong>When</strong>
+          </div>
+          <div class="column col-1">
+            <strong>Hours</strong>
+          </div>
+          <div class="column col-xs-auto">
+            <strong>Notes</strong>
+          </div>
+          <div class="column col-{{#if claim_code}}4{{else}}2{{/if}}">
           </div>
         </div>
-        <div class="column col-xs-auto">
-          <div class="form-group b-margin">
-            <input class="form-input inline-edit" name="notes" value="{{notes}}">
-          </div>
-        </div>
-        <div class="column col-1">
-          <button type="submit" class="btn btn-block btn-success inline-update-button">Verify</button>
-        </div>
-        <div class="column col-1">
-          <a href="/admin-delete-hours?hours_id={{hours_id}}&c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="btn btn-block inline-delete-button" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
-        </div>
-        {{#if claim_code ~}}
-        <div class="column col-2">
-          <code class="claim-code">{{substr claim_code 0 10}}</code>
-        </div>
-        {{/if ~}}
+        {{#each this.hours_list ~}}
+          {{#unless verified ~}}
+
+            <form id="{{hours_id}}" method="POST" action="/test-fine?c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="inline-hours-form" data-component="TasksTrigger" data-success-hide="true" data-next-task="empty-collapse" data-TasksTrigger="ajax-form-handler">
+              <input type="hidden" name="task_id" value="{{task_id}}">
+              <input type="hidden" name="verified" value="true">
+              <input type="hidden" name="claim_code" value="{{claim_code}}">
+              <input type="hidden" name="hours_id" value="{{hours_id}}">
+              <input type="hidden" name="user_id" value="{{@root.request.params.query.user_id}}">
+              <div class="columns">
+                <div class="column col-2">
+                  <span class="inline-form-text">{{momentFormat (moment createdDate "YYYY-MM-DD") "MMMM Do YYYY"}}</span>
+                </div>
+                <div class="column col-1">
+                  <div class="form-group b-margin">
+                    <input class="form-input inline-edit" name="hours" min="0.1" value="{{hours}}">
+                  </div>
+                </div>
+                <div class="column col-xs-auto">
+                  <div class="form-group b-margin">
+                    <input class="form-input inline-edit" name="notes" value="{{notes}}">
+                  </div>
+                </div>
+                <div class="column col-1">
+                  <button type="submit" class="btn btn-block btn-success inline-update-button">Verify</button>
+                </div>
+                <div class="column col-1">
+                  <a href="/admin-delete-hours?hours_id={{hours_id}}&c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="btn btn-block inline-delete-button" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
+                </div>
+                {{#if claim_code ~}}
+                  <div class="column col-2">
+                    <code class="claim-code">{{substr claim_code 0 10}}</code>
+                  </div>
+                {{/if ~}}
+              </div>
+            </form>
+          {{/unless ~}}
+        {{/each ~}}
       </div>
-    </form>
-    {{/unless ~}}
-    {{/each ~}}
-  </div>
-  {{/compare ~}}
+      </div>
+    {{/compare ~}}
   {{/each ~}}
 </div>
+
+<script type="javascript/blocked" data-task="empty-collapse">
+  {
+    type: "multiTask",
+      config: {
+        "tasks" : [
+          {
+            type: 'switch',
+            config: {
+              which: {
+                __template: `\{{#if (get (jquery "form:visible" context=(jquery rootElement "parent")) "length")}}hasVisible\{{/if}}`
+              },
+              branches: {
+                hasVisible: {
+                  tasks: []
+                },
+                default: {
+                  tasks: [
+                    {
+                      type: "elementManipulator",
+                      config: {
+                        "< | < ": {addClass: "hide"},
+                      }
+                    },
+                    {
+                      name: 'metaEmpty',
+                      type: 'switch',
+                      __doNotCompile: true,
+                      config: {
+                        which: {
+                          __template: `\{{#if (get (jquery ".task-element:visible" ) "length")}}hasVisible\{{/if}}`
+                        },
+                        branches: {
+                          hasVisible: {
+                            tasks: []
+                          },
+                          default: {
+                            tasks: [
+                              {
+                                type: "elementManipulator",
+                                config: {
+                                  ".tasks-not-empty": {addClass: "hide"},
+                                  ".tasks-empty": {removeClass: "hide"},
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+</script>

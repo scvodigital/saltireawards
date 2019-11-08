@@ -1,31 +1,20 @@
 {
-  "name": "test-ajax",
-  "pattern": "/test-ajax",
+  "name": "test-fine",
+  "pattern": "/test-fine",
   "acceptedVerbs": "POST,GET",
   "debug": true,
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
     {
-      "name": "saveTaskData",
-      "taskModule": "salesforceApex",
-      "renderer": "handlebars",
-      "config": {
-        "connection": "scvoAlexSandbox",
-        "output": "data",
-        "method": "POST",
-        "body": ">context.metaData.handlebars.templates.volunteering_task-body",
-        "apexClassPath": "/SaltireTosikTask/?user_id={{@root.data.auth.uid}}"
-      }
-    }
-  ,{
       "name": "destination",
       "taskModule": "render",
       "renderer": "handlebars",
       "config": {
         "output": "body",
-        "template": "{\"id\": \"{{{@root.data.saveTaskData}}}\" ERROR {{#if @root.errors}}, \"errors\": {{{safeStringify @root.errors}}}{{/if}} }",
-        "parseJson": false
+        "template": "{\"id\": \"whatever\" }",
+        "parseJson": true
       }
     }
+
   ]
 }
