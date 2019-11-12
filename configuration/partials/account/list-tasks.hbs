@@ -1,1 +1,1 @@
-{{#each @root.data.tasksInfoUnverified}}{{#compare unverified_hours_list.length ">=" 1}}{{#compare volunteer_manager_email "===" ../email}}{{task_id}},{{/compare}}{{/compare}}{{/each}}
+{{#eachJoin (filter (filter @root.data.tasksInfoUnverified "unverified_hours_list.length" ">=" 1) "volunteer_manager_email" "===" email) ","}}{{task_id}}{{/eachJoin}}
