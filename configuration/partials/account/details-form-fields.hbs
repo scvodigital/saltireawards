@@ -8,26 +8,26 @@
   <input style="display:none" type="text" name="fakeusernameremembered"/>
   <input style="display:none" type="password" name="fakepasswordremembered"/>
   <div class="form-group">
-    <div class="column col-3 col-sm-12">
+    <div class="column col-4 col-sm-12">
       <label class="form-label" for="first_name">First name</label>
     </div>
-    <div class="column col-9 col-sm-12">
+    <div class="column col-8 col-sm-12">
       <input class="form-input" id="first_name" name="first_name" type="text" value="{{@root.data.accountInfo.first_name}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="focus-next" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.first_name}}>
     </div>
   </div>
   <div class="form-group">
-    <div class="column col-3 col-sm-12">
+    <div class="column col-4 col-sm-12">
       <label class="form-label" for="last_name">Last name</label>
     </div>
-    <div class="column col-9 col-sm-12">
+    <div class="column col-8 col-sm-12">
       <input class="form-input" id="last_name" name="last_name" type="text" value="{{@root.data.accountInfo.last_name}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="focus-next" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.last_name}}>
     </div>
   </div>
   <div class="form-group">
-    <div class="column col-3 col-sm-12">
+    <div class="column col-4 col-sm-12">
       <label class="form-label" for="date_of_birth">Date of birth</label>
     </div>
-    <div class="column col-9 col-sm-12">
+    <div class="column col-8 col-sm-12">
       {{#unless @root.data.accountInfo.date_of_birth ~}}
         <input class="form-input" id="date_of_birth_checked" {{#if admin}}max="{{momentFormat (dateMath 'now-13y') 'YYYY-MM-DD'}}" min="{{momentFormat (dateMath 'now-120y') 'YYYY-MM-DD'}}"{{else}}max="{{momentFormat (dateMath 'now-12y') 'YYYY-MM-DD'}}" min="{{momentFormat (dateMath 'now-27y') 'YYYY-MM-DD'}}"{{/if}} name="date_of_birth" type="date" value="{{@root.data.accountInfo.date_of_birth}}" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="focus-next" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.date_of_birth}}>
       {{else}}
@@ -42,18 +42,21 @@
 
   {{#unless admin ~}}
     <div class="form-group" id="verification" style="display:none;">
-      <div class="column col-3 col-sm-12">
+      <div class="column col-4 col-sm-12">
         <label class="form-label" for="verification_email">Your parent or guardian's email address</label>
       </div>
-      <div class="column col-9 col-sm-12">
+      <div class="column col-8 col-sm-12">
         <input class="form-input" id="verification_email" name="verification_email" type="text" value="{{@root.data.accountInfo.verification_email}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="focus-next" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.verification_email}}>
       </div>
     </div>
     <div class="form-group">
-      <div class="column col-3 col-sm-12">
-        <label class="form-label" for="school_college_name">School/college name</label>
+      <div class="column col-4 col-sm-12">
+        <label class="form-label" for="school_college_name">
+          School/college/university
+          <div class="caption">Leave blank if not in education</div>
+        </label>
       </div>
-      <div class="column col-9 col-sm-12">
+      <div class="column col-8 col-sm-12">
         <div class="has-icon-right d-inline-block" data-component="Typeahead" data-Typeahead="typeahead-school">
           <input class="form-input" id="school_college_name" name="school_college_name" type="text" value="{{@root.data.accountInfo.school_college_name}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="school-lookup" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.school_college_name}}>
           {{!-- Removed, whilst non-listed schools / colleges allowed. <span class="form-icon far {{#if hasSchool}}fa-check text-success{{else}}fa-times text-error{{/if}}" id="school-validation-icon"></span> --}}
@@ -63,18 +66,18 @@
     </div>
   {{else}}
     <div class="form-group">
-      <div class="column col-3 col-sm-12">
+      <div class="column col-4 col-sm-12">
         <label class="form-label" for="title">Job title</label>
       </div>
-      <div class="column col-9 col-sm-12">
+      <div class="column col-8 col-sm-12">
         <input class="form-input" id="title" name="title" type="text" value="{{@root.data.accountInfo.title}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="focus-next" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.title}}>
       </div>
     </div>
     <div class="form-group">
-      <div class="column col-3 col-sm-12">
+      <div class="column col-4 col-sm-12">
         <label class="form-label" for="phone">Phone number</label>
       </div>
-      <div class="column col-9 col-sm-12">
+      <div class="column col-8 col-sm-12">
         <input class="form-input" id="phone" name="phone" type="text" value="{{@root.data.accountInfo.phone}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="focus-next" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.phone}}>
       </div>
     </div>
@@ -82,7 +85,7 @@
   {{/unless ~}}
   <input type="hidden" name="email" value="{{@root.data.auth.email}}">
   <div class="form-group">
-    <div class="column col-3 col-sm-12">
+    <div class="column col-4 col-sm-12">
       <label class="form-label" for="postcode">{{#if admin}}Work postcode{{else}}Home postcode{{/if}}</label>
     </div>
     <div class="column col-2 col-md-3 col-sm-4 col-xs-5">
