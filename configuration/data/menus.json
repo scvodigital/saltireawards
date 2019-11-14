@@ -107,7 +107,33 @@
       ]
     }
   ],
-  "footer-info": [
+  "footer-help": [
+    {
+      "label": "Accessibility",
+      "icon": "cog",
+      "path": "/accessibility",
+      "route": "^/accessibility"
+    },
+    {
+      "label": "Privacy notice",
+      "icon": "cog",
+      "path": "/privacy",
+      "route": "^/privacy"
+    },
+    {
+      "label": "Cookie policy",
+      "icon": "cog",
+      "path": "/cookies",
+      "route": "^/cookies"
+    },
+    {
+      "label": "Terms & conditions",
+      "icon": "cog",
+      "path": "/terms",
+      "route": "^/terms"
+    }
+  ],
+  "footer-about": [
     {
       "label": "Group administrator sign in",
       "icon": "user-cog",

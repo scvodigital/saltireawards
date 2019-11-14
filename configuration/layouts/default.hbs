@@ -325,15 +325,11 @@
                 manages your personal data in relation to the {{@root.context.metaData.title}}.
               </p>
               <ul class="b-margin">
-                <li>
-                  <a href="/privacy">Privacy notice</a>
-                </li>
-                <li>
-                  <a href="/terms">Terms &amp; conditions</a>
-                </li>
-                <li>
-                  <a href="/cookies">Cookie policy</a>
-                </li>
+                {{#each @root.context.metaData.menus.footer-help ~}}
+                  <li>
+                    <a href="{{stripTrailingSlash path}}">{{{label}}}</a>
+                  </li>
+                {{/each ~}}
               </ul>
             </div>
             <div class="column col-3 col-lg-6 col-md-12 contact">
@@ -404,7 +400,7 @@
                 {{@root.context.metaData.fullTitle}} is run by the <a href="https://scvo.org">Scottish Council for Voluntary Organisations</a> and supported by the <a href="https://www.gov.scot/policies/third-sector">Scottish Government</a> and Scotland's <a href="https://www.gov.scot/policies/third-sector/third-sector-interfaces">Third Sector Interfaces</a>.
               </p>
               <ul>
-                {{#each @root.context.metaData.menus.footer-info ~}}
+                {{#each @root.context.metaData.menus.footer-about ~}}
                   <li>
                     <a href="{{stripTrailingSlash path}}">{{{label}}}</a>
                   </li>
