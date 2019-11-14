@@ -109,16 +109,10 @@
   ],
   "footer-info": [
     {
-      "label": "About",
-      "icon": "info-circle",
-      "path": "/about",
-      "route": "^/about"
-    },
-    {
-      "label": "Contact us",
-      "icon": "envelope",
-      "path": "/contact",
-      "route": "^/contact"
+      "label": "Group administrator sign in",
+      "icon": "user-cog",
+      "path": "/sign-in-admin",
+      "route": "^/sign-in-admin"
     }
   ]
 }
