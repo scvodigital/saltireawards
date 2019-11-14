@@ -23,6 +23,7 @@
       <input class="form-input" id="last_name" name="last_name" type="text" value="{{@root.data.accountInfo.last_name}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="focus-next" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.last_name}}>
     </div>
   </div>
+  {{#unless admin}}
   <div class="form-group">
     <div class="column col-3 col-sm-12">
       <label class="form-label" for="date_of_birth">Date of birth</label>
@@ -39,7 +40,7 @@
       {{/unless ~}}
     </div>
   </div>
-
+  {{/unless}}
   {{#unless admin ~}}
     <div class="form-group" id="verification" style="display:none;">
       <div class="column col-3 col-sm-12">
@@ -95,6 +96,17 @@
     <input type="hidden" name="tsi_area" id="tsi_area" value="{{@root.data.accountInfo.tsi_area}}" />
     <input type="hidden" name="tsi_contact_email" id="tsi_contact_email" value="{{@root.data.accountInfo.tsi_contact_email}}" />
   </div>
+
+  {{#unless @root.data.accountInfo.external_id ~}}
+    <div class="form-group">
+    <div class="column col-3 col-sm-12">
+      <label class="form-label" for="title">I agree to the <a href="terms/">Terms and Conditions</a> of this site</label>
+    </div>
+    <div class="column col-9 col-sm-12">
+      <input  id="terms" name="terms" type="checkbox" required>
+    </div>
+  </div>
+  {{/unless}}
 </div>
 
 <input type="hidden" name="external_id" value="{{@root.data.auth.uid}}" />

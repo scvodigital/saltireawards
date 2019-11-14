@@ -7,7 +7,7 @@
   "to": "{{{this}}}",
   "o:tag": "{{{@root.route.metaData.emailType}}}",
   "o:tracking": true,
-  "o:tasks": "{{>account_list_tasks email=this}}",
+  "v:tasks": "{{>account_list_tasks email=this}}",
   "tag":  "{{{@root.route.metaData.emailType}}}",
   "id":  "{{{@root.route.metaData.emailType}}}",
   "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat @root.route.metaData.emailType '.mailgunConnection'))}}},
