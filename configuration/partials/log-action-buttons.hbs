@@ -2,7 +2,7 @@
   {{#unless @root.data.isAdmin ~}}
   {{#unless (compare (dateMath 'now-27y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD")) ~}}
   <a href="/task" class="btn btn-primary">
-    Add new volunteering task
+    Add an organisation
   </a>
   {{/unless ~}}
   <a href="/claim-hours" class="btn">

@@ -25,6 +25,12 @@
         <input class="form-input" type="password" id="sign-up-password-confirm" placeholder="Confirm password" data-lpignore="true" autocomplete="nope" required />
         <span class="form-icon far fa-key"></span>
       </div>
+      <div class="form-group">
+        <label class="form-checkbox">
+          <input type="checkbox" required>
+          <span class="form-icon"></span> I accept the <a href="/terms">terms & conditions</a> for the {{@root.context.metaData.title}}
+        </label>
+      </div>
     </div>
     <div id="form-section-sign-up-buttons" class="t-margin">
       <button class="btn btn-primary" type="submit" id="sign-up-submit">

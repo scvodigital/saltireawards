@@ -63,7 +63,7 @@
               <input required id="location" name="location" class="form-input" placeholder="e.g. Edinburgh" value="{{@root.data.taskInfo.location}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.location}}>
             </div>
           </div>
-          <div class="form-group">
+          {{!-- <div class="form-group">
             <div class="column col-4 col-md-12">
               <label for="organisation_charity_number" class="form-label r-margin">
                 Scottish charity number (optional)
@@ -71,14 +71,18 @@
             </div>
             <div class="column col-3 col-md-4 col-sm-5 col-xs-6">
               <div class="input-group">
-                {{!-- <span class="input-group-addon">SC</span> --}}
                 <input autocomplete="nope" id="organisation_charity_number" placeholder="e.g. SC003558" name="organisation_charity_number" class="form-input" value="{{@root.data.taskInfo.organisation_charity_number}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.organisation_charity_number}}>
               </div>
             </div>
-          </div>
+          </div> --}}
+          <input autocomplete="nope" id="organisation_charity_number" name="organisation_charity_number" value="{{@root.data.taskInfo.organisation_charity_number}}" type="hidden" />
+          <input autocomplete="nope" id="organisation_id" name="organisation_id" value="{{@root.data.taskInfo.organisation_id}}" type="hidden" />
           <div class="form-group">
             <div class="column col-4 col-md-12">
-              <label for="task_description" class="form-label">Volunteering description (optional)</label>
+              <label for="task_description" class="form-label">
+                Tell us about what you do (optional)
+                <div class="caption">Note: This may be shown on your certificate</div>
+              </label>
             </div>
             <div class="column col-8 col-md-12">
               <textarea rows="4" cols="40" id="task_description" name="task_description" class="form-input" value="{{@root.data.taskInfo.task_description}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}></textarea>
@@ -117,9 +121,16 @@
           </div>
         </div>
 
+        {{#unless @root.data.isAdmin ~}}
+
         <div class="divider v-margin-full"></div>
 
-        <h4>Volunteer manager</h4>
+        <h4>
+          Volunteer manager
+        </h4>
+        <p class="caption">
+          This is the person who will verify your hours, so it is important you enter their email address correctly
+        </p>
 
         <div class="form-horizontal">
           <div class="form-group">
@@ -134,21 +145,13 @@
                   <div class="column col-6">
                     <input required id="volunteer_manager_first_name" name="volunteer_manager_first_name" placeholder="First name"
                       {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_first_name}} class="form-input"
-                      {{#if @root.data.isAdmin ~}}
-                      value="{{default @root.data.taskInfo.volunteer_manager_first_name @root.data.accountInfo.first_name}}"
-                      {{else}}
                       value="{{@root.data.taskInfo.volunteer_manager_first_name}}"
-                      {{/if ~}}
                     >
                   </div>
                   <div class="column col-6">
                     <input required id="volunteer_manager_last_name" name="volunteer_manager_last_name" placeholder="Last name"
                       {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_last_name}} class="form-input"
-                      {{#if @root.data.isAdmin ~}}
-                      value="{{default @root.data.taskInfo.volunteer_manager_last_name @root.data.accountInfo.last_name}}"
-                      {{else}}
                       value="{{@root.data.taskInfo.volunteer_manager_last_name}}"
-                      {{/if ~}}
                     >
                   </div>
                 </div>
@@ -164,11 +167,7 @@
             <div class="column col-8 col-md-12">
               <input required id="volunteer_manager_title" name="volunteer_manager_title" placeholder="e.g. Volunteer manager"
                 {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_title}} class="form-input"
-                {{#if @root.data.isAdmin ~}}
-                value="{{default @root.data.taskInfo.volunteer_manager_title @root.data.accountInfo.title}}"
-                {{else}}
                 value="{{@root.data.taskInfo.volunteer_manager_title}}"
-                {{/if ~}}
               >
             </div>
           </div>
@@ -181,31 +180,30 @@
             <div class="column col-8 col-md-12">
               <input id="volunteer_manager_email" name="volunteer_manager_email" placeholder="e.g. name@charity.org"
                 {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_email}} class="form-input"
-                {{#if @root.data.isAdmin ~}}
-                value="{{default @root.data.taskInfo.volunteer_manager_email @root.data.accountInfo.email}}"
-                {{else}}
                 value="{{@root.data.taskInfo.volunteer_manager_email}}" pattern="^((?!{{@root.data.accountInfo.email}}).)*$"
-                {{/if ~}}>
             </div>
           </div>
           <div class="form-group">
             <div class="column col-4 col-md-12">
               <label for="volunteer_manager_phone" class="form-label">
-                Phone number (optional)
+                Phone number
               </label>
             </div>
             <div class="column col-8 col-md-12">
               <input id="volunteer_manager_phone" name="volunteer_manager_phone" placeholder="e.g. 01310001234"
                 {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_phone}} class="form-input"
-                {{#if @root.data.isAdmin ~}}
-                value="{{default @root.data.taskInfo.volunteer_manager_phone @root.data.accountInfo.phone}}"
-                {{else}}
                 value="{{@root.data.taskInfo.volunteer_manager_phone}}"
-                {{/if ~}}
-                >
+                />
             </div>
           </div>
         </div>
+        {{else}}
+        <input type="hidden" id="volunteer_manager_first_name" name="volunteer_manager_first_name" value="{{default @root.data.taskInfo.volunteer_manager_first_name @root.data.accountInfo.first_name}}" />
+        <input type="hidden" id="volunteer_manager_last_name" name="volunteer_manager_last_name" value="{{default @root.data.taskInfo.volunteer_manager_last_name @root.data.accountInfo.last_name}}" />
+        <input type="hidden" id="volunteer_manager_title" name="volunteer_manager_title" value="{{default @root.data.taskInfo.volunteer_manager_title @root.data.accountInfo.title}}" />
+        <input type="hidden" id="volunteer_manager_email" name="volunteer_manager_email" value="{{default @root.data.taskInfo.volunteer_manager_email @root.data.accountInfo.email}}" />
+        <input type="hidden" id="volunteer_manager_phone" name="volunteer_manager_phone" value="{{default @root.data.taskInfo.volunteer_manager_phone @root.data.accountInfo.phone}}" />
+        {{/unless ~}}
         <div class="form-horizontal">
           <div class="form-group">
             <div class="column col-4 hide-sm"></div>
