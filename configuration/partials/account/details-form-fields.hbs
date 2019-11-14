@@ -106,13 +106,18 @@
 
   {{#unless @root.data.accountInfo.external_id ~}}
     <div class="form-group">
-    <div class="column col-3 col-sm-12">
-      <label class="form-label" for="title">I agree to the <a href="terms/">Terms and Conditions</a> of this site</label>
+      <label class="form-checkbox">
+        <input type="checkbox" required>
+        <span class="form-icon"></span> I accept the <a href="/terms">terms & conditions</a> for the {{@root.context.metaData.title}}
+      </label>
     </div>
-    <div class="column col-9 col-sm-12">
-      <input  id="terms" name="terms" type="checkbox" required>
+    <div class="form-group">
+      <label class="form-checkbox">
+        <input type="checkbox" name="email_consent">
+        <span class="form-icon"></span> I would like to receive additional information about the {{@root.context.metaData.title}} from <span id="tsi_title">my local volunteering organisation</span> by email (optional)
+      </label>
     </div>
-  </div>
+
   {{/unless}}
 </div>
 
@@ -260,6 +265,9 @@
                               },
                               "#tsi_contact_email": {
                                 value: { __template: "{{data.postcodeLookup.[0].tsi_contact_email}}" }
+                              },
+                              "#tsi_title": {
+                                contents: { __template: "<strong>{{data.postcodeLookup.[0].tsi_title}}</strong>" }
                               },
                               "#postcode-validation-icon": {
                                 addClass: [ "fa-check", "text-success" ],
