@@ -33,7 +33,7 @@
       "ascent": "#F05B23",
       "summit": "#514680",
       "footer": "#591669",
-      "copyright": "#e7eaec"
+      "copyright": "#FEF9F9"
     },
     "elasticsearchUrl": "{$./data/elasticsearch-url.txt}",
     "menus": "{:./data/menus.json}",

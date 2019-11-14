@@ -9,20 +9,14 @@
     {
       "label": "Get an award",
       "icon": "medal",
-      "path": "/awards",
-      "route": "^/awards"
+      "path": "/get-an-award",
+      "route": "^/get-an-award"
     },
     {
       "label": "Support your volunteers",
       "icon": "info-circle",
-      "path": "/support",
-      "route": "^/support"
-    },
-    {
-      "label": "Blog",
-      "icon": "newspaper",
-      "path": "/blog",
-      "route": "^/blog"
+      "path": "/support-your-volunteers",
+      "route": "^/support-your-volunteers"
     },
     {
       "label": "Find opportunities",
