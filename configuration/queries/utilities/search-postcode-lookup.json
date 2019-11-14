@@ -1,7 +1,7 @@
 {{#withExtend this q=@root.request.params.query.q}}
 {
   "size": 1,
-  "_source": [ "district", "county", "point", "place", "country" ],
+  "_source": [ "district", "county", "point", "place", "country", "region_codes" ],
   "query": {
     "bool": {
       "filter": [

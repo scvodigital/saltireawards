@@ -3,6 +3,7 @@
   {
     "display": {{{stringify _source.place}}},
     "place": {{{stringify _source.place}}},
+    "region_codes": {{{stringify _source.region_codes}}},
     "tsi_area": "{{~#with (getProperty @root.context.metaData.tsiList (slugify (replace (replace (replace (replace (default _source.district _source.county) " and " " & ") " Islands" "") "City of " "") " City" ""))) ~}}
     {{~#each contacts ~}}
     {{~#if (regexMatch ../../_source.place pattern "gi") ~}}

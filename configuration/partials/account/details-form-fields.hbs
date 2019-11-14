@@ -95,6 +95,10 @@
       </div>
     </div>
     <input type="hidden" name="local_authority" id="local_authority" value="{{@root.data.accountInfo.local_authority}}" />
+    <input type="hidden" name="constituency_code" id="constituency_code" value="{{@root.data.accountInfo.constituency_code}}" />
+    <input type="hidden" name="nuts_3_code" id="nuts_3_code" value="{{@root.data.accountInfo.nuts_3_code}}" />
+    <input type="hidden" name="district_code" id="district_code" value="{{@root.data.accountInfo.district_code}}" />
+    <input type="hidden" name="ward_code" id="ward_code" value="{{@root.data.accountInfo.ward_code}}" />
     <input type="hidden" name="tsi_area" id="tsi_area" value="{{@root.data.accountInfo.tsi_area}}" />
     <input type="hidden" name="tsi_contact_email" id="tsi_contact_email" value="{{@root.data.accountInfo.tsi_contact_email}}" />
   </div>
@@ -135,6 +139,18 @@
                       removeClass: [ "loading", "fa-check", "text-primary", "text-success" ]
                     },
                     "#local_authority": {
+                      value: ""
+                    },
+                    "#constituency_code": {
+                      value: ""
+                    },
+                    "#nuts_3_code": {
+                      value: ""
+                    },
+                    "#district_code": {
+                      value: ""
+                    },
+                    "#ward_code": {
                       value: ""
                     },
                     "#tsi_area": {
@@ -178,6 +194,18 @@
                               "#local_authority": {
                                 value: ""
                               },
+                              "#constituency_code": {
+                                value: ""
+                              },
+                              "#nuts_3_code": {
+                                value: ""
+                              },
+                              "#district_code": {
+                                value: ""
+                              },
+                              "#ward_code": {
+                                value: ""
+                              },
                               "#tsi_area": {
                                 value: ""
                               },
@@ -202,6 +230,18 @@
                               },
                               "#local_authority": {
                                 value: { __template: "{{data.postcodeLookup.[0].local_authority}}" }
+                              },
+                              "#constituency_code": {
+                                value: { __template: "{{data.postcodeLookup.[0].region_codes.constituency}}" }
+                              },
+                              "#nuts_3_code": {
+                                value: { __template: "{{data.postcodeLookup.[0].region_codes.nuts_3}}" }
+                              },
+                              "#district_code": {
+                                value: { __template: "{{data.postcodeLookup.[0].region_codes.district}}" }
+                              },
+                              "#ward_code": {
+                                value: { __template: "{{data.postcodeLookup.[0].region_codes.ward}}" }
                               },
                               "#tsi_area": {
                                 value: { __template: "{{data.postcodeLookup.[0].tsi_area}}" }
