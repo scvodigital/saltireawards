@@ -94,10 +94,10 @@
       ]
     },
     {
-      "label": "My achievements",
+      "label": "My Awards",
       "icon": "medal",
-      "path": "/achievements",
-      "route": "^/achievements",
+      "path": "/awards",
+      "route": "^/awards",
       "user-types": [
         "Volunteer"
       ]
