@@ -4,7 +4,7 @@
       {{{json key='organisation_name' value=organisation_name}}},
       {{{json key='location' value=location}}},
       {{{json key='organisation_charity_number' value=organisation_charity_number }}},
-      {{{json key='un_sustainable_development_goals' value=(join un_sustainable_development_goals ';')}}},
+      {{{json key='un_sustainable_development_goals' value=(default (join un_sustainable_development_goals ';') un_sustainable_development_goals)}}},
       {{{json key='task_description' value=task_description}}},
       {{{json key='volunteer_manager_email' value=volunteer_manager_email }}},
       {{{json key='volunteer_manager_first_name' value=volunteer_manager_first_name}}},
