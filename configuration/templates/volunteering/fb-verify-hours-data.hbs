@@ -1,5 +1,5 @@
 {{#json}}
   {{{json key='code' value=(stringify (random 0 100000000))}}},
   {{{json key='datetime_to' value=(moment (dateMath "now") "x")}}},
-  {{#json key='award' type="number"}}{{@root.request.params.query.award}}{{/json}}
+  {{#json key='award' type="number"}}{{default @root.request.params.query.award 0}}{{/json}}
 {{/json}}

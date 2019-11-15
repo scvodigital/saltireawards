@@ -1,21 +1,22 @@
 {
-  "name": "group_certificate",
-  "pattern": "/group-certificate/:task_id(/:hours_id)",
+  "name": "tsi-certificate",
+  "pattern": "/tsi-certificate",
   "debug": true,
   "errorRoute": "five_hundred",
   "tasks": [
-    "context.metaData.commonTasks.authRequired",
-    "context.metaData.commonTasks.getAccountInfo",
-    "context.metaData.commonTasks.fullSignUpRequired",
-    "context.metaData.commonTasks.adminRequired",
-    "context.metaData.commonTasks.getTasksInfo",
+    "context.metaData.commonTasks.authNotRequired",
+    "context.metaData.commonTasks.getAccountInfoExternal",
+    "context.metaData.commonTasks.getTasksInfoExternal",
+    "context.metaData.commonTasks.verifyHoursInfoExternal",
+    "context.metaData.commonTasks.hoursCodeVerify",
+    "context.metaData.commonTasks.handleHoursVerifyFail",
     {
       "name": "pdfObjects",
       "taskModule": "render",
       "renderer": "handlebars",
       "config": {
         "output": "data",
-        "template": ">context.metaData.handlebars.templates.volunteering_certificate_object-body-admin",
+        "template": ">context.metaData.handlebars.templates.volunteering_certificate_object-body-individual",
         "parseJson": true
       }
     },

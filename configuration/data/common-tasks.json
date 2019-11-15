@@ -45,6 +45,18 @@
 			"apexClassPath": "/SaltireUser/?user_id={{@root.data.auth.uid}}"
 		}
 	},
+	"getAccountInfoExternal": {
+		"name": "accountInfo",
+		"taskModule": "salesforceApex",
+		"renderer": "handlebars",
+		"config": {
+			"connection": "scvoAlexSandbox",
+			"output": "data",
+			"method": "GET",
+			"apexClassPath": "/SaltireUser/?user_id={{@root.request.params.query.user_id}}"
+		}
+	},
+
 	"getTasksInfo": {
 		"name": "tasksInfo",
 		"taskModule": "salesforceApex",
@@ -130,6 +142,17 @@
 			"output": "data",
 			"method": "GET",
 			"apexClassPath": "/SaltireTask/?user_id={{@root.request.params.query.user_id }}&verified=false"
+		}
+	},
+	"getTasksInfoExternal": {
+		"name": "tasksInfo",
+		"taskModule": "salesforceApex",
+		"renderer": "handlebars",
+		"config": {
+			"connection": "scvoAlexSandbox",
+			"output": "data",
+			"method": "GET",
+			"apexClassPath": "/SaltireTask/?user_id={{@root.request.params.query.user_id }}"
 		}
 	},
 	"hoursCodeVerify": {
@@ -224,6 +247,23 @@
 			"output": "data"
 		}
 	},
+	"adminRequired": {
+		"name": "adminRequired",
+		"taskModule": "reroute",
+		"config": {
+			"if": [{
+				"and": [{
+					"!=": [{
+						"var": "data.accountInfo.user_type"
+					}, "Group Admin"]
+				}
+				]
+			},
+				"redirect-home",
+				null
+			]
+		}
+	},
 	"adminOrCodeRequired": {
 		"name": "adminOrCodeRequired",
 		"taskModule": "reroute",
@@ -241,6 +281,28 @@
 						}
 					]
 				},
+				"redirect-home",
+				null
+			]
+		}
+	},
+	"anyAuthorityRequired": {
+		"name": "anyAuthorityRequired",
+		"taskModule": "reroute",
+		"config": {
+			"if": [{
+				"and": [
+					{
+						"!=": [{"var": "data.accountInfo.user_type"}, "Group Admin"]
+					},
+					{
+						"!=": [{"var": "data.codeVerified"}, "pass"]
+					},
+					{
+						"!=": [{"var": "data.accountInfo.external_id"}, {"var": "data.auth.uid"} ]
+					}
+				]
+			},
 				"redirect-home",
 				null
 			]

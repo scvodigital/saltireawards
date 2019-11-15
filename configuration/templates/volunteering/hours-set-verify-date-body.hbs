@@ -1,3 +1,4 @@
 {{#json}}
-{{{json key='user_id' value=@root.data.auth.uid}}}
+{{{json key='user_id' value=@root.data.auth.uid}}},
+{{{json key='certificate_url' value=(concat 'https://' @root.request.headers.host '/tsi-certificate/?c=' @root.data.setVerifyHoursCode.data.code '&user_id=' @root.data.auth.uid)}}}
 {{/json}}

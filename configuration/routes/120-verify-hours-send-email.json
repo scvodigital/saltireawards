@@ -49,7 +49,7 @@
       "name": "destination",
       "taskModule": "redirect",
       "config": {
-        "location": "/achievements",
+        "location": "/awards",
         "statusCode": 302
       }
     }
