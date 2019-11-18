@@ -1,0 +1,18 @@
+{{#with @root.request.body}}
+  {{#json}}
+    {{#json key='task'}}
+      {{{json key='organisation_name' value=@root.data.taskInfo.organisation_name}}},
+      {{{json key='location' value=@root.data.taskInfo.location}}},
+      {{{json key='organisation_charity_number' value=@root.data.taskInfo.organisation_charity_number }}},
+      {{{json key='un_sustainable_development_goals' value=@root.data.taskInfo.un_sustainable_development_goals}}},
+      {{{json key='task_description' value=@root.data.taskInfo.task_description}}},
+      {{{json key='task_id' value=@root.data.taskInfo.task_id}}},
+      {{{json key='task_type' value=@root.data.taskInfo.task_type}}},
+      {{{json key='volunteer_manager_email' value=volunteer_manager_email }}},
+      {{{json key='volunteer_manager_first_name' value=volunteer_manager_first_name}}},
+      {{{json key='volunteer_manager_last_name' value=volunteer_manager_last_name }}},
+      {{{json key='volunteer_manager_phone' value=volunteer_manager_phone }}},
+      {{{json key='volunteer_manager_title' value=volunteer_manager_title }}}
+    {{/json}}
+  {{/json}}
+{{/with}}

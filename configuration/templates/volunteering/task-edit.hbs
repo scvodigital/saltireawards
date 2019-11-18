@@ -1,0 +1,109 @@
+<div class="container">
+  <div class="columns">
+    <div class="column col-9 col-xl-12">
+      <h2>
+          Edit Volunteer manager
+      </h2>
+      <form id="task-details-form" class="active-form" action="/update-task-details/{{@root.data.taskInfo.task_id}}" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="ajax-form-handler">
+        <input type="hidden" name="task_type" value="{{@root.data.taskInfo.task_type}}">
+        <input type="hidden" name="task_id" value="{{@root.data.taskInfo.task_id}}">
+        <div class="form-horizontal">
+            <div class="form-group">
+              <div class="column col-4 col-md-12">
+                <label for="volunteer_manager_first_name" class="form-label">
+                  Volunteer manager
+                </label>
+              </div>
+              <div class="col-8 col-md-12">
+                <div class="form-horizontal">
+                  <div class="form-group">
+                    <div class="column col-6">
+                      <input required id="volunteer_manager_first_name" name="volunteer_manager_first_name" placeholder="First name"
+                        {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_first_name}} class="form-input"
+                             value="{{@root.data.taskInfo.volunteer_manager_first_name}}"
+                      >
+                    </div>
+                    <div class="column col-6">
+                      <input required id="volunteer_manager_last_name" name="volunteer_manager_last_name" placeholder="Last name"
+                        {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_last_name}} class="form-input"
+                             value="{{@root.data.taskInfo.volunteer_manager_last_name}}"
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="column col-4 col-md-12">
+                <label for="volunteer_manager_title" class="form-label">
+                  Job title
+                </label>
+              </div>
+              <div class="column col-8 col-md-12">
+                <input required id="volunteer_manager_title" name="volunteer_manager_title" placeholder="e.g. Volunteer manager"
+                  {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_title}} class="form-input"
+                       value="{{@root.data.taskInfo.volunteer_manager_title}}"
+                >
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="column col-4 col-md-12">
+                <label for="volunteer_manager_email" class="form-label">
+                  Email address
+                </label>
+              </div>
+              <div class="column col-8 col-md-12">
+                <input id="volunteer_manager_email" name="volunteer_manager_email" placeholder="e.g. name@charity.org"
+                  {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_email}} class="form-input"
+                       value="{{@root.data.taskInfo.volunteer_manager_email}}" pattern="^((?!{{@root.data.accountInfo.email}}).)*$" >
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="column col-4 col-md-12">
+                <label for="volunteer_manager_phone" class="form-label">
+                  Phone number
+                </label>
+              </div>
+              <div class="column col-8 col-md-12">
+                <input id="volunteer_manager_phone" name="volunteer_manager_phone" placeholder="e.g. 01310001234"
+                  {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_phone}} class="form-input"
+                       value="{{@root.data.taskInfo.volunteer_manager_phone}}"
+                />
+              </div>
+            </div>
+          </div>
+        <div class="form-horizontal">
+          <div class="form-group">
+            <div class="column col-4 hide-sm"></div>
+            <div class="column col-8 col-md-12">
+              {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
+              <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full">
+                Submit details
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    $('#task-details-form').on('submit', function(e){
+      $('#task-details-form').find('.submit-button').prop('disabled', true);
+    });
+
+    var element = document.getElementById("volunteer_manager_email");
+    element.oninvalid = function(e) {
+      e.target.setCustomValidity("");
+      if (!e.target.validity.valid) {
+        e.target.setCustomValidity("This must be a valid email, but not your own");
+      }
+    };
+    element.oninput = function(e) {
+      e.target.setCustomValidity("");
+    };
+  });
+</script>

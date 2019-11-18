@@ -43,6 +43,7 @@
                 <span class="text-gray">{{> sdg_label sdg=un_sustainable_development_goals}}</span>
               </li>
               {{/if ~}}
+
               {{#compare hours ">" 0 ~}}
               {{#if hours_verified ~}}
               <li class="card-subtitle">
@@ -102,6 +103,11 @@
                 <span class="text-gray">No hours added yet</span>
               </li>
               {{/compare ~}}
+              <li class="card-subtitle">
+                <span class="fa-li"><span class="far fa-id-card-alt"></span></span>
+                <a href="/task-edit/{{task_id}}">{{volunteer_manager_first_name}} {{volunteer_manager_last_name}}</a>
+              </li>
+
             </ul>
           </div>
           <div class="card-footer">

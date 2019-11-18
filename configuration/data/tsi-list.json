@@ -45,11 +45,11 @@
     }
   },
   "argyll-bute": {
-    "local_authority": "Argyll &amp; Bute",
+    "local_authority": "Argyll & Bute",
     "contacts": {
       "all": {
         "pattern": "^.*$",
-        "title": "Argyll &amp; Bute TSI",
+        "title": "Argyll & Bute TSI",
         "email": "support@argylltsi.org.uk",
         "phone": "03003034141",
         "logo": "https://www.whatdotheyknow.com/request/312587/response/769437/attach/html/4/foiextract20190622-7733-su8i4u-1_3.jpg",
@@ -75,7 +75,7 @@
     }
   },
   "dumfries-galloway": {
-    "local_authority": "Dumfries &amp; Galloway",
+    "local_authority": "Dumfries & Galloway",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -476,7 +476,7 @@
     }
   },
   "perth-kinross": {
-    "local_authority": "Perth &amp; Kinross",
+    "local_authority": "Perth & Kinross",
     "contacts": {
       "all": {
         "pattern": "^.*$",

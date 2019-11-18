@@ -180,7 +180,7 @@
             <div class="column col-8 col-md-12">
               <input id="volunteer_manager_email" name="volunteer_manager_email" placeholder="e.g. name@charity.org"
                 {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_email}} class="form-input"
-                value="{{@root.data.taskInfo.volunteer_manager_email}}" pattern="^((?!{{@root.data.accountInfo.email}}).)*$"
+                value="{{@root.data.taskInfo.volunteer_manager_email}}" pattern="^((?!{{@root.data.accountInfo.email}}).)*$">
             </div>
           </div>
           <div class="form-group">

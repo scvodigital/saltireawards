@@ -2,11 +2,7 @@
   <div class="columns">
     <div class="column col-9 col-xl-12">
       <h2>
-        {{#if @root.data.isAdmin ~}}
-          Group volunteering details
-        {{else}}
-          My volunteering details
-        {{/if ~}}
+        {{{@root.context.metaData.tsiList.argyll-bute.local_authority}}}
       </h2>
       {{join 'Zero Hunger' ';'}}
       {{!-- <div class="bg-warning x-padding"> --}}

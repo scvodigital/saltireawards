@@ -1,6 +1,6 @@
 {
-  "name": "submit-task-details",
-  "pattern": "/submit-task-details",
+  "name": "update-task-details",
+  "pattern": "/update-task-details/:id",
   "debug": true,
   "errorRoute": "five_hundred_json",
   "acceptedVerbs": "POST",
@@ -12,12 +12,23 @@
     "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.fullSignUpRequired",
     {
+      "name": "taskInfo",
+      "taskModule": "salesforceApex",
+      "renderer": "handlebars",
+      "config": {
+        "connection": "scvoAlexSandbox",
+        "output": "data",
+        "method": "GET",
+        "apexClassPath": "/SaltireTask/?task_id={{@root.request.params.id}}"
+      }
+    },
+    {
       "name": "makeTaskData",
       "taskModule": "render",
       "renderer": "handlebars",
       "config": {
         "output": "body",
-        "template": ">context.metaData.handlebars.templates.volunteering_task-body-submit"
+        "template": ">context.metaData.handlebars.templates.volunteering_task-body-update"
       }
     },
     {
@@ -28,7 +39,7 @@
         "connection": "scvoAlexSandbox",
         "output": "data",
         "method": "POST",
-        "body": ">context.metaData.handlebars.templates.volunteering_task-body-submit",
+        "body": ">context.metaData.handlebars.templates.volunteering_task-body-update",
         "apexClassPath": "/SaltireTask/?user_id={{@root.data.auth.uid}}"
       }
     },

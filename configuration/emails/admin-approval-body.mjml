@@ -12,7 +12,7 @@
           <mj-text font-size="16px" padding="0px" line-height="20px" color="#000000" font-family="Montserrat, Helvetica, Arial, sans-serif">
             <p>Hello,</p>
 
-            <p>This is a request for approval from the {{@root.context.metaData.title}} website. {{first_name}} {{last_name}}, has signed up as a group administrator for the {{@root.context.metaData.title}}.</p>
+            <p>This is a request for approval from the {{@root.context.metaData.title}} website. {{first_name}} {{last_name}}, has signed up as a group administrator on behalf of {{organisation_name}} for the {{@root.context.metaData.title}}.</p>
 
             <p>Please check with your records that this user is an appropriate person to be administrating {{@root.context.metaData.title}} volunteer groups, and if so, click the link below.</p>
 

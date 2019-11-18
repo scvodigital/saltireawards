@@ -68,6 +68,14 @@
   {{else}}
     <div class="form-group">
       <div class="column col-4 col-sm-12">
+        <label class="form-label" for="title">Organisation Name</label>
+      </div>
+      <div class="column col-8 col-sm-12">
+        <input class="form-input" id="organisation_name" name="organisation_name" type="text" value="{{@root.data.accountInfo.organisation_name}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="focus-next" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.organisation_name}}>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="column col-4 col-sm-12">
         <label class="form-label" for="title">Job title</label>
       </div>
       <div class="column col-8 col-sm-12">
@@ -243,31 +251,31 @@
                             type: "elementManipulator",
                             config: {
                               ">": {
-                                value: { __template: "{{data.postcodeLookup.[0].place}}" }
+                                value: { __template: "{{{data.postcodeLookup.[0].place}}}" }
                               },
                               "#local_authority": {
-                                value: { __template: "{{data.postcodeLookup.[0].local_authority}}" }
+                                value: { __template: "{{{data.postcodeLookup.[0].local_authority}}}" }
                               },
                               "#constituency_code": {
-                                value: { __template: "{{data.postcodeLookup.[0].region_codes.constituency}}" }
+                                value: { __template: "{{{data.postcodeLookup.[0].region_codes.constituency}}}" }
                               },
                               "#nuts_3_code": {
                                 value: { __template: "{{data.postcodeLookup.[0].region_codes.nuts_3}}" }
                               },
                               "#district_code": {
-                                value: { __template: "{{data.postcodeLookup.[0].region_codes.district}}" }
+                                value: { __template: "{{{data.postcodeLookup.[0].region_codes.district}}}" }
                               },
                               "#ward_code": {
-                                value: { __template: "{{data.postcodeLookup.[0].region_codes.ward}}" }
+                                value: { __template: "{{{data.postcodeLookup.[0].region_codes.ward}}}" }
                               },
                               "#tsi_area": {
-                                value: { __template: "{{data.postcodeLookup.[0].tsi_area}}" }
+                                value: { __template: "{{{data.postcodeLookup.[0].tsi_area}}}" }
                               },
                               "#tsi_contact_email": {
-                                value: { __template: "{{data.postcodeLookup.[0].tsi_contact_email}}" }
+                                value: { __template: "{{{data.postcodeLookup.[0].tsi_contact_email}}}" }
                               },
                               "#tsi_title": {
-                                contents: { __template: "<strong>{{data.postcodeLookup.[0].tsi_title}}</strong>" }
+                                contents: { __template: "<strong>{{{data.postcodeLookup.[0].tsi_title}}}</strong>" }
                               },
                               "#postcode-validation-icon": {
                                 addClass: [ "fa-check", "text-success" ],
