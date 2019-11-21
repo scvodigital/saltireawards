@@ -47,12 +47,6 @@
       "route": "^/about"
     },
     {
-      "label": "Blog",
-      "icon": "newspaper",
-      "path": "/blog",
-      "route": "^/blog"
-    },
-    {
       "label": "Contact us",
       "icon": "question-circle",
       "path": "/contact",
