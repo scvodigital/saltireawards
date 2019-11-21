@@ -927,12 +927,12 @@ ul.fa-ul {
     padding: .1rem .4rem;
   }
 }
-.achievements > .working-towards {
+.awards > .working-towards {
   display: flex;
   justify-content: center;
 }
 
-.achievements > .working-towards ~ .working-towards,
+.awards > .working-towards ~ .working-towards,
 .hidden, .hide {
   display: none;
 }
@@ -1622,7 +1622,7 @@ footer {
 //     }
 //   }
 // }
-// .achievements {
+// .awards {
 //   .responsive-img {
 //     max-width: 75%;
 //     margin: 0 auto;
