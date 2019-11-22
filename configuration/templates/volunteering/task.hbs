@@ -80,9 +80,14 @@
           <div class="form-group">
             <div class="column col-4 col-md-12">
               <label for="task_description" class="form-label">
-                Tell us about what you do (optional)
-                <div class="caption">Note: This may be shown on your certificate</div>
-              </label>
+              {{#unless @root.data.isAdmin ~}}
+                Tell us about what you have been doing
+                  <div class="caption">Note: This may be shown on your certificate</div>
+              {{else}}
+                Tell us about what your volunteers have been doing
+                <div class="caption">Note: This may be shown on their certificates</div>
+              {{/unless}}
+                </label>
             </div>
             <div class="column col-8 col-md-12">
               <textarea rows="4" cols="40" id="task_description" name="task_description" class="form-input" value="{{@root.data.taskInfo.task_description}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}></textarea>
