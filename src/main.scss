@@ -1,10 +1,21 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,800&display=swap');
+@font-face {
+    font-family: 'Sonder Sans 3';
+    src: url('/assets/fonts/Sonder-Sans3.eot');
+    src: url('/assets/fonts/Sonder-Sans3.eot?#iefix') format('embedded-opentype'),
+        url('/assets/fonts/Sonder-Sans3.woff2') format('woff2'),
+        url('/assets/fonts/Sonder-Sans3.woff') format('woff'),
+        url('/assets/fonts/Sonder-Sans3.ttf') format('truetype'),
+        url('/assets/fonts/Sonder-Sans3.svg#Sonder-Sans3') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
-$primary-color: #009DDA;
+$primary-color: #008EDF;
 $primary-color-light: lighten($primary-color, 30%) !default;
 $primary-color-dark: darken($primary-color, 6%) !default;
-$secondary-color: #253887;
-$secondary-color-light: lighten($secondary-color, 30%) !default;
+$secondary-color: #1B2875;
+$secondary-color-light: lighten($secondary-color, 35%) !default;
 $secondary-color-dark: darken($secondary-color, 10%) !default;
 $bg-color: lighten($secondary-color-light, 32%) !default;
 $bg-color-light: lighten($bg-color, 4%) !default;
@@ -16,10 +27,14 @@ $success-color: #3BAA34;
 $warning-color: #F05B23;
 $error-color: #f03823;
 
-$theme-challenge: #008DDE;
+$theme-challenge: $primary-color;
+$theme-challenge-light: #8FCFF2;
 $theme-approach: #3BAA34;
+$theme-approach-light: #BEDBB0;
 $theme-ascent: #F05B23;
+$theme-ascent-light: #FBD3AA;
 $theme-summit: #514680;
+$theme-summit-light: #B2A2C7;
 
 $theme-footer: #591669;
 $theme-footer-light: #FEF9F9;
@@ -27,7 +42,9 @@ $theme-footer-dark: #333E48;
 
 $unit: 1rem;
 $link-font-weight: 500;
-$heading-font-weight: 600;
+$heading-font-weight: 400;
+$heading-font-family: "Sonder Sans 3";
+$body-font-family: "Montserrat";
 $badge-font-weight: 800;
 $page-width: 1200px;
 $home-splash-height: 25vh;
@@ -60,7 +77,7 @@ input,
 select,
 textarea,
 body * {
-  font-family: 'Montserrat', sans-serif;
+  font-family: $body-font-family, sans-serif;
   box-sizing: border-box;
 }
 body::after,
@@ -77,16 +94,29 @@ body *::before {
 }
 
 h1 {
-  font-size: 1.8rem;
+  font-size: 3rem;
   margin: $unit/2 0 $unit;
+}
+h2 {
+  font-size: 2.6rem;
+}
+h3 {
+  font-size: 2.3rem;
+}
+h4 {
+  font-size: 2rem;
+}
+h5 {
+  font-size: 1.75rem;
 }
 h1,
 h2,
 h3,
 h4,
 h5 {
+  font-family: $heading-font-family;
   font-weight: $heading-font-weight;
-  letter-spacing: -0.05rem;
+  // letter-spacing: -0.05rem;
 }
 a,
 .btn,
@@ -477,18 +507,35 @@ header,
 
 .saltire-badge {
   position: relative;
-  margin-bottom: $unit/2;
-  height: 100px;
-  .badge-content {
+  margin: 0 0 $unit/2;
+  height: 140px;
+  .badge-edge {
+    border: 8px solid $secondary-color;
+    border-radius: 50%;
     position: absolute;
-    height: 85px;
-    width: 85px;
+    height: 146px;
+    width: 146px;
+  }
+  .badge-border {
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 130px;
+    width: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .badge-content {
     top: 10px;
     left: auto;
     margin-left: .5px;
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 85px;
+    width: 85px;
     letter-spacing: -0.1rem;
     font-weight: $badge-font-weight;
     color: white;
@@ -496,24 +543,44 @@ header,
     border-radius: 50%;
   }
   .type-challenge {
-    background-color: $theme-challenge;
-    .img-responsive {
-      max-width: 60%;
+    .badge-border {
+      background-color: $theme-challenge-light;
+    }
+    .badge-content {
+      background-color: $theme-challenge;
+      .img-responsive {
+        max-width: 60%;
+      }
     }
   }
   .type-approach {
-    font-size: 2.25rem;
-    background-color: $theme-approach;
+    .badge-border {
+      background-color: $theme-approach-light;
+    }
+    .badge-content {
+      background-color: $theme-approach;
+      font-size: 2.25rem;
+    }
   }
   .type-ascent {
-    font-size: 2rem;
-    background-color: $theme-ascent;
+    .badge-border {
+      background-color: $theme-ascent-light;
+    }
+    .badge-content {
+      background-color: $theme-ascent;
+      font-size: 2rem;
+    }
   }
   .type-summit {
-    background-color: $theme-summit;
-    .img-responsive {
-      max-width: 70%;
-      margin-top: 10%;
+    .badge-border {
+      background-color: $theme-summit-light;
+    }
+    .badge-content {
+      background-color: $theme-summit;
+      .img-responsive {
+        max-width: 70%;
+        margin-top: 10%;
+      }
     }
   }
 }
@@ -537,6 +604,7 @@ header,
   min-width: 252px;
   border: 1px solid rgba(0, 0, 0, 0.12);
   .menu {
+    background: transparent;
     box-shadow: none;
     .menu-item a {
       border-radius: 0 $unit*2 $unit*2 0;
