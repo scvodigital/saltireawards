@@ -408,6 +408,10 @@ header {
   margin-bottom: -($unit);
   .brand {
     float: left;
+    .logo img {
+      height: 100%;
+      width: 100%;
+    }
   }
   .mobile-menu-button {
     float: right;
@@ -506,83 +510,7 @@ header,
 }
 
 .saltire-badge {
-  position: relative;
-  margin: 0 0 $unit/2;
-  height: 140px;
-  .badge-edge {
-    border: 8px solid $secondary-color;
-    border-radius: 50%;
-    position: absolute;
-    height: 146px;
-    width: 146px;
-  }
-  .badge-border {
-    border-radius: 50%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 130px;
-    width: 130px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .badge-content {
-    top: 10px;
-    left: auto;
-    margin-left: .5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 85px;
-    width: 85px;
-    letter-spacing: -0.1rem;
-    font-weight: $badge-font-weight;
-    color: white;
-    text-align: center;
-    border-radius: 50%;
-  }
-  .type-challenge {
-    .badge-border {
-      background-color: $theme-challenge-light;
-    }
-    .badge-content {
-      background-color: $theme-challenge;
-      .img-responsive {
-        max-width: 60%;
-      }
-    }
-  }
-  .type-approach {
-    .badge-border {
-      background-color: $theme-approach-light;
-    }
-    .badge-content {
-      background-color: $theme-approach;
-      font-size: 2.25rem;
-    }
-  }
-  .type-ascent {
-    .badge-border {
-      background-color: $theme-ascent-light;
-    }
-    .badge-content {
-      background-color: $theme-ascent;
-      font-size: 2rem;
-    }
-  }
-  .type-summit {
-    .badge-border {
-      background-color: $theme-summit-light;
-    }
-    .badge-content {
-      background-color: $theme-summit;
-      .img-responsive {
-        max-width: 70%;
-        margin-top: 10%;
-      }
-    }
-  }
+  margin-bottom: $unit/2;
 }
 .saltire-badge.disabled {
   filter: grayscale(1);

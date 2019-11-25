@@ -1,18 +1,9 @@
 <div class="saltire-badge align-centre{{#if disabled}} disabled{{/if}}">
-  {{!-- <img src="{{~>asset_url url='images/badge-background.png' ~}}" class="img-responsive" /> --}}
-  <span class="badge-edge type-{{type}}">
-    <span class="badge-border">
-      <span class="badge-content">
-        {{#ifAny (compare type 'approach') (compare type 'ascent') ~}}
-        {{#if hours ~}}
-        <span class="hours-{{key}}">
-          {{hours}}
-        </span>
-        {{/if ~}}
-        {{else}}
-        <img src="{{~>asset_url url=(concat 'images/badge-icon-' type '.png') ~}}" class="img-responsive" />
-        {{/ifAny ~}}
-      </span>
-    </span>
-  </span>
+  {{#ifAny (compare type 'approach') (compare type 'ascent') ~}}
+  {{#if hours ~}}
+  <img src="{{~>asset_url url=(concat 'images/badges/' type '-' hours '.svg') ~}}" class="img-responsive" />
+  {{/if ~}}
+  {{else}}
+  <img src="{{~>asset_url url=(concat 'images/badges/' type '.svg') ~}}" class="img-responsive" />
+  {{/ifAny ~}}
 </div>
