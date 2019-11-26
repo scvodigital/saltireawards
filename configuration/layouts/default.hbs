@@ -90,7 +90,7 @@
 
     <header class="container">
       <section class="brand">
-        <a href="/" class="logo"><img src="{{~>asset_url url='images/logos/saltire-awards-white.png'~}}" alt="{{@root.context.metaData.title}}" /></a>
+        <a href="/" class="logo"><img src="{{~>asset_url url='images/logos/saltire-awards-white.svg'~}}" alt="{{@root.context.metaData.title}}" /></a>
       </section>
       <div class="mobile-menu-button show-lg">
         <a href="#" class="btn btn-link" aria-label="Menu" data-component="TasksTrigger"
@@ -217,6 +217,40 @@
       }'></div>
       <aside class="mobile-menu_contents sidebar">
         <div class="b-margin-full b-padding-full v-padding">
+          <h2 class="l-padding-full">
+            Menu
+            <span class="far fa-angle-left fa-fw pull-right" data-component="TasksTrigger" data-TasksTrigger='{
+              click: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      ".mobile-menu": {
+                        removeClass: "mobile-menu_open",
+                        addClass: "mobile-menu_closing"
+                      }
+                    }
+                  },
+                  {
+                    type: "delay",
+                    config: {
+                      "500": [
+                        {
+                          type: "elementManipulator",
+                          config: {
+                            ".mobile-menu": {
+                              addClass: "mobile-menu_closed",
+                              removeClass: "mobile-menu_closing"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }'></span>
+          </h2>
           <ul class="menu">
             <li class="menu-item">
               <a href="/" class="l-padding-full {{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}}active{{/if}}">

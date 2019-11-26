@@ -3,9 +3,11 @@
     <span class="fal fa-user{{#if @root.data.isAdmin}}s{{else}}-clock{{/if}} fa-3x"></span>
   </div>
   {{> log_hours_info}}
+  {{#if (compare (sumArray (pluck @root.data.tasksInfo "hours")) 0) ~}}
   <div class="empty-action">
     {{> log_action_buttons}}
   </div>
+  {{/if ~}}
 </div>
 
 <div class="content-break">
@@ -339,6 +341,16 @@
     {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
   </div>
 </div>
+{{#unless (compare (sumArray (pluck @root.data.tasksInfo "hours")) 0) ~}}
+<div class="empty content-break">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <polygon fill="#FFFFFF" points="0,0 100,0 0,100"></polygon>
+  </svg>
+  <div class="empty-action">
+    {{> log_action_buttons}}
+  </div>
+</div>
+{{/unless ~}}
 
 {{!-- <script src="https://#/recaptcha/api.js" async defer></script> --}}
 <script>
