@@ -19,7 +19,8 @@
       "renderer": "handlebars",
       "config": {
         "output": "data",
-        "body": ">context.metaData.handlebars.templates.volunteering_hours-set-verify-info-body"
+        "template": ">context.metaData.handlebars.templates.volunteering_hours-set-verify-info-body",
+        "parseJson": true
       }
     },
     {

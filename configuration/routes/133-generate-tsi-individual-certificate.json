@@ -7,7 +7,6 @@
     "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.getAccountInfoExternal",
     "context.metaData.commonTasks.getTasksInfoExternal",
-    "context.metaData.commonTasks.verifyHoursInfoExternal",
     "context.metaData.commonTasks.hoursCodeVerify",
     "context.metaData.commonTasks.handleHoursVerifyFail",
     {
