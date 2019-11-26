@@ -14,14 +14,23 @@
     "context.metaData.commonTasks.fullSignUpRequired",
     "context.metaData.commonTasks.getTasksInfoUnverified",
     {
-      "name": "setVerifyDate",
+      "name": "verifyInfoBody",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "body": ">context.metaData.handlebars.templates.volunteering_hours-set-verify-info-body"
+      }
+    },
+    {
+      "name": "setVerifyInfo",
       "taskModule": "salesforceApex",
       "renderer": "handlebars",
       "config": {
         "connection": "scvoAlexSandbox",
         "output": "data",
         "method": "POST",
-        "body": ">context.metaData.handlebars.templates.volunteering_hours-set-verify-info-body",
+        "body": ">data.verifyInfoBody",
         "apexClassPath": "/SaltireHoursSetVerifyInfo/"
       }
     },
