@@ -8,21 +8,11 @@
     "emailType": "hours-verify"
   },
   "tasks": [
+    "context.metaData.commonTasks.flushCache",
     "context.metaData.commonTasks.authRequired",
     "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.fullSignUpRequired",
     "context.metaData.commonTasks.getTasksInfoUnverified",
-    {
-      "name": "setVerifyHoursCode",
-      "taskModule": "firebaseRtbSet",
-      "renderer": "handlebars",
-      "config": {
-        "appName": "saltireawards",
-        "pathTemplate": "/users/{{default data.auth.uid 'no-such-write-profile'}}/verify-hours/",
-        "setOrUpdate": "set",
-        "dataTemplate": ">context.metaData.handlebars.templates.volunteering_fb-verify-hours-data"
-      }
-    },
     {
       "name": "setVerifyDate",
       "taskModule": "salesforceApex",
@@ -31,8 +21,8 @@
         "connection": "scvoAlexSandbox",
         "output": "data",
         "method": "POST",
-        "body": ">context.metaData.handlebars.templates.volunteering_hours-set-verify-date-body",
-        "apexClassPath": "/SaltireHoursSetVerifyDate/"
+        "body": ">context.metaData.handlebars.templates.volunteering_hours-set-verify-info-body",
+        "apexClassPath": "/SaltireHoursSetVerifyInfo/"
       }
     },
     {

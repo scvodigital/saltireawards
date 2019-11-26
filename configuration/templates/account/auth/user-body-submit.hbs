@@ -25,7 +25,7 @@
         {{{json key='local_authority' value=local_authority}}},
         {{{json key='tsi_contact_email' value=tsi_contact_email}}},
         {{{json key='tsi_area' value=tsi_area}}},
-
+        "summit_certificate_permission" : {{#if @root.data.accountInfo.summit_certificate_permission}}true{{else}}false{{/if}},
         {{{json key='user_type' value=(if admin "Group Admin" else="Volunteer")}}}
       {{/json}},
     {{/json}}

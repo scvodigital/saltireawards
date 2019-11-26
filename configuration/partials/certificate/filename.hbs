@@ -15,7 +15,7 @@
 {{~else~}}
 {{~#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
 {{~#unless (compare hours 1) ~}}
-{{~#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
+{{~#unless (compare @root.data.accountInfo.hours_verify_award ">" hours) ~}}
 {{~#compare ../type "group" ~}}
 {{slugify (concat @root.context.metaData.certificateName " for " hours " hours " ../user.first_name " " ../user.last_name)}}
 {{~else~}}

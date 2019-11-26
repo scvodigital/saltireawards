@@ -223,7 +223,7 @@
         </div>
         {{#each hours_list ~}}
         {{#ifAny claim_first_name claim_code ~}}
-        <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours" style="position:relative" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Participant details updated" data-TasksTrigger="ajax-form-handler">
+        <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?user_id={{@root.data.auth.uid}}" style="position:relative" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Participant details updated" data-TasksTrigger="ajax-form-handler">
           <input type="hidden" name="task_id" value="{{../task_id}}">
           <input type="hidden" name="verified" value="{{verified}}">
           <input type="hidden" name="claim_code" value="{{claim_code}}">
