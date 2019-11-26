@@ -61,7 +61,7 @@
         "output": "data",
         "method": "POST",
         "body": ">context.metaData.handlebars.templates.account_auth_approval-body",
-        "apexClassPath": "/SaltireUserValidate/"
+        "apexClassPath": "/SaltireUserApprove/"
       }
     },
     {
