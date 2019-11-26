@@ -18,7 +18,7 @@
 
             <p>As {{first_name}} is under 12, we require their parent or guardian to give permission to use the {{@root.context.metaData.title}} website. You can indicate that you give permission, by clicking on the link below</p>
 
-            <a href="{{verification_url}}" color="#42842A" style="color:#42842A;font-weight:bold;">I give permission for {{first_name}} {{last_name}} to use the {{@root.context.metaData.title}} website</a>
+            <a href="{{approval_url}}" color="#42842A" style="color:#42842A;font-weight:bold;">I give permission for {{first_name}} {{last_name}} to use the {{@root.context.metaData.title}} website</a>
 
             <p><a href="https://{{@root.request.headers.host}}/about">Find out more about the {{@root.context.metaData.title}}</a>.</p>
 

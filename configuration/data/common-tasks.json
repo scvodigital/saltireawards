@@ -195,7 +195,7 @@
 		"taskModule": "reroute",
 		"config": {
 			"if": [{
-					"var": "data.accountInfo.verification_needed"
+					"var": "data.accountInfo.approvalneeded"
 				},
 				"approval-required",
 				null
@@ -212,7 +212,7 @@
 				"sd-needed",
 				{
 					"if": [{
-							"var": "data.accountInfo.verification_needed"
+							"var": "data.accountInfo.approval_needed"
 						},
 						"approval-required",
 						null

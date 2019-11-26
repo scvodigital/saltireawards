@@ -16,7 +16,7 @@
 
             <p>Please check with your records that this user is an appropriate person to be administrating {{@root.context.metaData.title}} volunteer groups, and if so, click the link below.</p>
 
-            <a href="{{verification_url}}" color="#42842A" style="color:#42842A;font-weight:bold;">I give permission for {{first_name}} {{last_name}} to use the {{@root.context.metaData.title}} website as a group administrator</a>
+            <a href="{{approval_url}}" color="#42842A" style="color:#42842A;font-weight:bold;">I give permission for {{first_name}} {{last_name}} to use the {{@root.context.metaData.title}} website as a group administrator</a>
 
             <p>Thank you</p>
 
