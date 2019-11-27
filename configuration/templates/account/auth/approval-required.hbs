@@ -37,18 +37,18 @@
       {{!-- Please enter the new email address below --}}
       <input type="hidden" name="signup" value="true">
       {{#each (getKeys @root.data.accountInfo) ~}}
-      {{#unless (compare this "verification_email") ~}}
+      {{#unless (compare this "approval_email") ~}}
       <input type="hidden" name="{{this}}" value="{{getProperty @root.data.accountInfo this}}">
       {{/unless ~}}
       {{/each ~}}
       <div id="approval" class="columns">
         <div class="column col-6 col-mx-auto">
           <div class="form-group">
-            {{!-- <label for="verification_email" class="form-label">
+            {{!-- <label for="approval_email" class="form-label">
               <strong>Your parent or guardian's email address</strong>
             </label> --}}
             <div class="input-group">
-              <input type="email" id="verification_email" name="verification_email" class="form-input" value="{{@root.data.accountInfo.verification_email}}" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.verification_email}}>
+              <input type="email" id="approval_email" name="approval_email" class="form-input" value="{{@root.data.accountInfo.approval_email}}" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.approval_email}}>
               <button type="submit" class="btn btn-primary input-group-btn">Update and resend</button>
             </div>
           </div>

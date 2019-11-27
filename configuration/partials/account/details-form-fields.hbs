@@ -42,12 +42,12 @@
   </div>
   {{/unless}}
   {{#unless admin ~}}
-    <div class="form-group" id="verification" style="display:none;">
+    <div class="form-group" id="approval" style="display:none;">
       <div class="column col-4 col-sm-12">
-        <label class="form-label" for="verification_email">Your parent or guardian's email address</label>
+        <label class="form-label" for="approval_email">Your parent or guardian's email address</label>
       </div>
       <div class="column col-8 col-sm-12">
-        <input class="form-input" id="verification_email" name="verification_email" type="text" value="{{@root.data.accountInfo.verification_email}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="focus-next" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.verification_email}}>
+        <input class="form-input" id="approval_email" name="approval_email" type="text" value="{{@root.data.accountInfo.approval_email}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="focus-next" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.approval_email}}>
       </div>
     </div>
     <div class="form-group">
@@ -358,8 +358,8 @@
   document.addEventListener("DOMContentLoaded", function(event) {
     var $dobc = $('#date_of_birth_checked');
     var $dob = $('#date_of_birth');
-    var $v_block = $('#verification')
-    var $v_email = $('#verification_email')
+    var $v_block = $('#approval')
+    var $v_email = $('#approval_email')
 
     $dobc.change(function(){
        var dob = $dobc.val();

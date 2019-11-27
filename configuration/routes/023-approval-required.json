@@ -33,7 +33,7 @@
       "taskModule": "reroute",
       "config":
       {
-        "if" : [{"var" : "data.accountInfo.verification_needed"},
+        "if" : [{"var" : "data.accountInfo.approval_needed"},
           null,
           "redirect-home"
         ]
