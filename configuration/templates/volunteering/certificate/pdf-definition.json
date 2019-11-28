@@ -9,36 +9,46 @@
   "styles": {
     "title": {
       "fontSize": 20,
-      "bold": true
+      "bold": true,
+      "font": "Sonder-Sans3"
     },
     "subtitle": {
-      "fontSize": 16
+      "fontSize": 16,
+      "font": "Sonder-Sans3"
     },
     "h1": {
       "fontSize": 20,
       "bold": true,
-      "margin": [0, 10, 0, 5]
+      "margin": [0, 10, 0, 5],
+      "font": "Sonder-Sans3"
     },
     "h2": {
       "fontSize": 18,
       "bold": true,
-      "margin": [0, 10, 0, 5]
+      "margin": [0, 10, 0, 5],
+      "font": "Sonder-Sans3"
     },
     "h3": {
       "fontSize": 16,
       "bold": true,
-      "margin": [0, 10, 0, 5]
+      "margin": [0, 10, 0, 5],
+      "font": "Sonder-Sans3"
     },
     "h4": {
       "fontSize": 14,
       "bold": true,
-      "margin": [0, 10, 0, 5]
+      "margin": [0, 10, 0, 5],
+      "font": "Sonder-Sans3"
     },
     "h5": {
       "fontSize": 13,
       "bold": true,
-      "margin": [0, 10, 0, 5]
+      "margin": [0, 10, 0, 5],
+      "font": "Sonder-Sans3"
     }
+  },
+  "defaultStyle": {
+    "font": "Montserrat"
   },
   "background": [
     {

@@ -1,15 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,800&display=swap');
-@font-face {
-  font-family: 'Sonder Sans 3';
-  src: url('/assets/fonts/Sonder-Sans3.eot');
-  src: url('/assets/fonts/Sonder-Sans3.eot?#iefix') format('embedded-opentype'),
-       url('/assets/fonts/Sonder-Sans3.woff2') format('woff2'),
-       url('/assets/fonts/Sonder-Sans3.woff') format('woff'),
-       url('/assets/fonts/Sonder-Sans3.ttf') format('truetype'),
-       url('/assets/fonts/Sonder-Sans3.svg#Sonder-Sans3') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
 
 $primary-color: #008EDF;
 $primary-color-light: lighten($primary-color, 30%) !default;
@@ -105,6 +94,7 @@ h3 {
 }
 h4 {
   font-size: 2rem;
+  letter-spacing: 0.02rem;
 }
 h5 {
   font-size: 1.75rem;
@@ -474,7 +464,7 @@ header {
   }
   .my-account {
     background: white !important;
-    border-radius: 2rem;
+    border-radius: $unit*2;
     margin-left: $unit/3;
     .dropdown-toggle {
       border-color: transparent !important;
