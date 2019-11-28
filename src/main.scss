@@ -105,6 +105,7 @@ h3 {
 }
 h4 {
   font-size: 2rem;
+  letter-spacing: 0.02rem;
 }
 h5 {
   font-size: 1.75rem;
@@ -474,7 +475,7 @@ header {
   }
   .my-account {
     background: white !important;
-    border-radius: 2rem;
+    border-radius: $unit*2;
     margin-left: $unit/3;
     .dropdown-toggle {
       border-color: transparent !important;
