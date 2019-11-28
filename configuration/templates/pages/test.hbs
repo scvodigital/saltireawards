@@ -2,13 +2,15 @@
   <div class="columns">
     <div class="column col-9 col-xl-12">
       <h2>
-        {{#withExtend this hoursCode=(stringify (random 0 100000000))}}
-          {{#json}}
-            {{{json key='user_id' value=@root.data.auth.uid}}},
-            {{{json key='hours_code' value=hoursCode}}},
-            {{#json key='hours_award' type="number"}}{{default @root.request.params.query.award 0}}{{/json}},
-            {{{json key='certificate_url' value=(concat 'https://' @root.request.headers.host '/tsi-certificate/?c=' hoursCode '&user_id=' @root.data.auth.uid)}}}
-          {{/json}}
+        {{#withExtend this user_id='9qDL8hMHLEgoADBnY8O1l692eB62' user_id_na='horse'}}
+          >>>{{#ifAll (compare data.accountInfo.user_type 'Group Admin') (compare data.accountInfo.external_id data.auth.uid)}}true{{/ifAll}}<<<
+
+          >>>{{#ifAll (compare data.accountInfo.user_type 'dGroup Admin') (compare data.accountInfo.external_id data.auth.uid)}}true{{else}}false{{/ifAll}}<<<
+
+          >>>{{#ifAll (compare data.accountInfo.user_type 'Group Admin') (compare user_id_na data.auth.uid)}}false{{/ifAll}}<<<
+
+          >>>{{#ifAll (compare data.accountInfo.user_type 'Group Admin') (compare data.accountInfo.external_id user_id_na)}}false{{/ifAll}}<<<
+
         {{/withExtend}}
       </h2>
       {{join 'Zero Hunger' ';'}}

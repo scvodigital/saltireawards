@@ -11,6 +11,7 @@
     "context.metaData.commonTasks.authRequired",
     "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.hoursCodeVerify",
+    "context.metaData.commonTasks.isAdmin",
     "context.metaData.commonTasks.adminOrCodeRequired",
     {
       "name": "saveHoursData",

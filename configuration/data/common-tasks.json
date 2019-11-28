@@ -243,7 +243,7 @@
 		"taskModule": "render",
 		"renderer": "handlebars",
 		"config": {
-			"template": "{{compare data.accountInfo.user_type 'Group Admin'}}",
+			"template": "{{#ifAll (compare data.accountInfo.user_type 'Group Admin') (compare data.accountInfo.external_id data.auth.uid)}}true{{/ifAll}}",
 			"output": "data"
 		}
 	},
@@ -271,26 +271,10 @@
 			"if": [{
 					"and": [
 						{
-							"!=": [{
-								"and": [
-									{
-										"===": [{
-											"var": "data.accountInfo.user_type"
-										}, "Group Admin"]
-									},
-									{
-										"===": [
-											{"var": "data.accountInfo.external_Id"},
-											{"var": "data.auth.uid"}
-										]
-									}
-								]
-							}]
+							"!=": [{"var": "data.isAdmin"}, "true"]
 						},
 						{
-							"!=": [{
-								"var": "data.codeVerified"
-							}, "pass"]
+							"!=": [{"var": "data.codeVerified"}, "pass"]
 						}
 					]
 				},
@@ -306,21 +290,7 @@
 			"if": [{
 				"and": [
 					{
-						"!=": [{
-							"and": [
-								{
-									"===": [{
-										"var": "data.accountInfo.user_type"
-									}, "Group Admin"]
-								},
-								{
-									"===": [
-										{"var": "data.accountInfo.external_Id"},
-										{"var": "data.auth.uid"}
-									]
-								}
-							]
-						}]
+						"!=": [{"var": "data.isAdmin"}, "true"]
 					},
 					{
 						"!=": [{"var": "data.codeVerified"}, "pass"]

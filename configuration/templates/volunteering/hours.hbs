@@ -282,18 +282,45 @@
         </form>
         {{/ifAny ~}}
         {{/each ~}}
-        <form action="/task-add-testimonial" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Testimonial updated" data-TasksTrigger="ajax-form-handler">
+
+          <form action="/update-task-testimonial/{{task_id}}?user_id={{@root.data.auth.uid}}" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Testimonial updated" data-TasksTrigger="ajax-form-handler">
           <div class="form-group">
-            <div class="col-4">
-              <label for="testimonial" class="form-label">Testimonial</label>
+            <label for="testimonial" class="form-label">
+              Testimonial:
+            </label>
+            <div class="columns">
+            <div class="col-8">
+              <textarea rows="3"  placeholder="Let people know what your volunteers have achieved" cols="40" id="testimonial" name="testimonial" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.testimonial}}>{{testimonial}}</textarea>
             </div>
-            <div class="col-5">
-              <textarea rows="6" cols="40" id="volunteers" name="volunteers" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.testimonial}}>{{@root.data.taskInfoValidation.testimonial}}</textarea>
+              <div class="col-1"></div>
+            <div class="col-3">
+              <button type="submit" class="btn btn-success btn-block inline-update-button b-margin" style="display: none">Save</button>
             </div>
+            </div>
+
           </div>
         </form>
+
+          <form action="/do-not-act/{{task_id}}?user_id={{@root.data.auth.uid}}" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Testimonial updated" data-TasksTrigger="ajax-form-handler">
+            <div class="form-group">
+              <label for="testimonial" class="form-label">
+                Skills used:
+              </label>
+              <div class="columns">
+                <div class="col-8">
+                  <textarea rows="3"  placeholder="What skills were used (disabled for now)" disabled cols="40" id="testimonial" name="testimonial" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.skills}}>{{skills}}</textarea>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-3">
+                  <button type="submit" class="btn btn-success btn-block inline-update-button b-margin" style="display: none">Save</button>
+                </div>
+              </div>
+
+            </div>
+          </form>
+        </div>
         <a href="#" class="btn btn-primary show-group-hours-form">
-          Let people know about your volunteer's achievements here.
+          Add more participants
         </a>
         {{/compare ~}}
 
@@ -301,9 +328,6 @@
           <div class="form-horizontal">
             <input type="hidden" name="task_id" value="{{task_id}}">
             <div class="form-group">
-              <div class="col-4">
-                <label for="task_description" class="form-label">List of volunteer names, one per line</label>
-              </div>
               <div class="col-5">
                 <textarea rows="6" cols="40" id="volunteers" pattern=".*\S.*" name="volunteers" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}>{{@root.data.taskInfo.task_description}}</textarea>
               </div>

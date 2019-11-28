@@ -11,6 +11,7 @@
     "context.metaData.commonTasks.authRequired",
     "context.metaData.commonTasks.getAccountInfoExternal",
     "context.metaData.commonTasks.hoursCodeVerify",
+    "context.metaData.commonTasks.isAdmin",
     "context.metaData.commonTasks.adminOrCodeRequired",
     {
       "name": "taskInfo",
@@ -29,7 +30,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "body",
-        "template": ">context.metaData.handlebars.templates.volunteering_task-body-update"
+        "template": ">context.metaData.handlebars.templates.volunteering_task-testimonial-update"
       }
     },
     {
@@ -40,8 +41,8 @@
         "connection": "scvoAlexSandbox",
         "output": "data",
         "method": "POST",
-        "body": ">context.metaData.handlebars.templates.volunteering_task-body-update",
-        "apexClassPath": "/SaltireTask/?user_id={{@root.data.auth.uid}}"
+        "body": ">context.metaData.handlebars.templates.volunteering_task-testimonial-update",
+        "apexClassPath": "/SaltireTask/?user_id={{@root.request.params.query.user_id}}"
       }
     },
     "context.metaData.commonTasks.flushCache",

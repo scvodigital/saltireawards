@@ -13,7 +13,6 @@
   </ul>
   {{/compare ~}}
   {{#each @root.context.metaData.certificates ~}}
-    {{hours}} <---
   {{#ifAny (compare type "approach") (compare type "ascent") ~}}
   {{!-- It's already awarded --}}
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" (stringify hours) ~}}
