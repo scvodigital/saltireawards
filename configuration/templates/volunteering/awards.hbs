@@ -1,6 +1,7 @@
+
 {{#unless @root.data.isAdmin ~}}
 <div class="container awards">
-  {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
+  {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" (stringify hours) ~}}
   <ul class="step">
     {{#each @root.context.metaData.certificates ~}}
     {{#ifAny (compare type "approach") (compare type "ascent") ~}}
@@ -12,9 +13,10 @@
   </ul>
   {{/compare ~}}
   {{#each @root.context.metaData.certificates ~}}
+    {{hours}} <---
   {{#ifAny (compare type "approach") (compare type "ascent") ~}}
   {{!-- It's already awarded --}}
-  {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
+  {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" (stringify hours) ~}}
   {{#unless (compare @root.data.accountInfo.hours_verify_award ">" hours) ~}}
   <div class="columns">
     <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
@@ -35,7 +37,7 @@
   </div>
   {{/unless ~}}
   {{else}}
-  {{#compare @root.data.accountInfo.hours_verify_award "===" hours ~}}
+  {{#compare @root.data.accountInfo.hours_verify_award "===" (stringify hours) ~}}
   <div class="columns">
     <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
       {{!-- It's being verified --}}
@@ -51,7 +53,7 @@
   </div>
   {{else}}
   {{!-- A bigger award is being verified --}}
-  {{#compare @root.data.accountInfo.hours_verify_award ">" hours ~}}
+  {{#compare @root.data.accountInfo.hours_verify_award ">" (stringify hours) ~}}
   {{!-- It's being verified --}}
   {{!-- {{> badge type=type key=(slugify certificate_name) hours=hours}}
   <div class="text-center description">
@@ -59,7 +61,8 @@
   </div> --}}
   {{else}}
 
-  {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) ">=" hours ~}}
+  {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) ">=" (stringify hours) ~}}
+Hello?
   <div class="columns working-towards">
     <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
       {{!-- It's ready to claim--}}

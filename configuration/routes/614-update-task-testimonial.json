@@ -1,6 +1,6 @@
 {
-  "name": "update-task-details",
-  "pattern": "/update-task-details/:task_id",
+  "name": "update-task-testimonial",
+  "pattern": "/update-task-testimonial/:task_id",
   "debug": true,
   "errorRoute": "five_hundred_json",
   "acceptedVerbs": "POST",
@@ -9,8 +9,9 @@
   },
   "tasks": [
     "context.metaData.commonTasks.authRequired",
-    "context.metaData.commonTasks.getAccountInfo",
-    "context.metaData.commonTasks.fullSignUpRequired",
+    "context.metaData.commonTasks.getAccountInfoExternal",
+    "context.metaData.commonTasks.hoursCodeVerify",
+    "context.metaData.commonTasks.adminOrCodeRequired",
     {
       "name": "taskInfo",
       "taskModule": "salesforceApex",

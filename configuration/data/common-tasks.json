@@ -269,10 +269,23 @@
 		"taskModule": "reroute",
 		"config": {
 			"if": [{
-					"and": [{
+					"and": [
+						{
 							"!=": [{
-								"var": "data.accountInfo.user_type"
-							}, "Group Admin"]
+								"and": [
+									{
+										"===": [{
+											"var": "data.accountInfo.user_type"
+										}, "Group Admin"]
+									},
+									{
+										"===": [
+											{"var": "data.accountInfo.external_Id"},
+											{"var": "data.auth.uid"}
+										]
+									}
+								]
+							}]
 						},
 						{
 							"!=": [{
@@ -293,7 +306,21 @@
 			"if": [{
 				"and": [
 					{
-						"!=": [{"var": "data.accountInfo.user_type"}, "Group Admin"]
+						"!=": [{
+							"and": [
+								{
+									"===": [{
+										"var": "data.accountInfo.user_type"
+									}, "Group Admin"]
+								},
+								{
+									"===": [
+										{"var": "data.accountInfo.external_Id"},
+										{"var": "data.auth.uid"}
+									]
+								}
+							]
+						}]
 					},
 					{
 						"!=": [{"var": "data.codeVerified"}, "pass"]

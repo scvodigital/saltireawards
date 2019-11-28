@@ -35,6 +35,7 @@
         "apexClassPath": "/SaltireHoursSetVerifyInfo/"
       }
     },
+    "context.metaData.commonTasks.flushCache",
     {
       "name": "sendEmail",
       "taskModule": "mailgun",
