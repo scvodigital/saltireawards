@@ -244,6 +244,7 @@
             <div class="column col-2 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-7">
               <div class="form-group b-margin">
                 <select class="form-select hours"{{#unless claim_code}} disabled{{/unless}} required name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
+                <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>
                   {{#each @root.context.metaData.certificates ~}}
                   {{#unless tsi_only ~}}
                   <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>
@@ -254,7 +255,7 @@
                     {{/ifAny ~}}
                   </option>
                   {{else}}
-                  <option value="{{hours}}" disabled>
+                  <option value="{{hours}}" {{#unless @root.data.accountInfo.summit_certificate_permission}}disabled{{/unless}}>
                     {{type_name}}
                   </option>
                   {{/unless ~}}

@@ -2,6 +2,10 @@
   {{#json}}
     {{#json key='users' type='array'}}
       {{#json}}
+        {{{json key='hours_verify_code' value=@root.data.accountInfo.hours_verify_code}}},
+        {{{json key='hours_verify_award' value=@root.data.accountInfo.hours_verify_award }}},
+        {{{json key='certificate_url' value=@root.data.accountInfo.certificate_url}}},
+
         {{#if @root.data.codeRequired}}
           {{{json key='approval_code' value=code}}},
           {{{json key='approval_email' value=approval_email}}},
@@ -10,6 +14,7 @@
         {{else}}
           "approval_needed" : false, {{!-- Hack - it's not possible to enter false in the json parser due to a bug --}}
         {{/if}}
+
         {{{json key='first_name' value=first_name}}},
         {{{json key='last_name' value=last_name}}},
         {{{json key='postcode' value=postcode}}},
