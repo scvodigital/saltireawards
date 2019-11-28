@@ -2,21 +2,24 @@
   "image": "{{> certificate_images_png_saltire}}",
   "width": 160,
   "alignment": "center",
-  "margin": [0, 0, 0, 0]
+  "margin": [0, 0, 0, 0],
+  "font": "Sonder-Sans3"
 },
 {
   "text": {{>pdf_metadata_value key="title" default="VOLUNTEERING FOR"}},
   "fontSize": 12,
   "bold": true,
   "alignment": "center",
-  "margin": [0, 5, 0, 0]
+  "margin": [0, 5, 0, 0],
+  "font": "Sonder-Sans3"
 },
 {
   "text": {{>pdf_metadata_value key="title" default="12 TO 25 YEAR OLDS"}},
   "fontSize": 12,
   "bold": true,
   "alignment": "center",
-  "margin": [0, 0, 0, 0]
+  "margin": [0, 0, 0, 0],
+  "font": "Sonder-Sans3"
 },
 {
   "columns": [
@@ -33,7 +36,7 @@
         {{else}}
         {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
         {{#unless (compare hours 1) ~}}
-        {{#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
+        {{#unless (compare @root.data.accountInfo.hours_verify_award ">" hours) ~}}
         "text": {{>pdf_metadata_value key="title" default=(concat hours " hours")}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
         {{/unless ~}}
@@ -52,7 +55,8 @@
         "fontSize": 38,
         "bold": false,
         "alignment": "center",
-        "margin": [0, 10, 0, 0]
+        "margin": [0, 10, 0, 0],
+        "font": "Sonder-Sans3"
       },
       {
         {{#compare award "summit" ~}}
@@ -64,7 +68,8 @@
         "fontSize": 18,
         "bold": true,
         "alignment": "center",
-        "margin": [0, 0, 0, 5]
+        "margin": [0, 0, 0, 5],
+        "font": "Sonder-Sans3"
       },
       {
         {{#compare award "hours" ~}}
@@ -80,7 +85,7 @@
         {{else}}
         {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
         {{#unless (compare hours 1) ~}}
-        {{#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
+        {{#unless (compare @root.data.accountInfo.hours_verify_award ">" hours) ~}}
         {{#unless in_progress ~}}
         "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement of completing"}},
         {{else}}
@@ -110,7 +115,7 @@
         {{else}}
         {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
         {{#unless (compare hours 1) ~}}
-        {{#unless (compare @root.data.verifyHoursInfo.award ">" hours) ~}}
+        {{#unless (compare @root.data.accountInfo.hours_verify_award ">" hours) ~}}
         "text": {{>pdf_metadata_value key="title" default=type_name}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
         {{/unless ~}}
@@ -158,7 +163,8 @@
   "fontSize": 20,
   "bold": false,
   "alignment": "center",
-  "margin": [0, 30, 0, 0]
+  "margin": [0, 30, 0, 0],
+  "font": "Sonder-Sans3"
 },
 {{#each tasks ~}}
 {{#ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1)) (ifAll (compare hours_verified "!==" 0) (compare hours_verified "!==" 1)) ~}}

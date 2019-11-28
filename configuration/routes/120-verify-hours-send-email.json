@@ -8,33 +8,34 @@
     "emailType": "hours-verify"
   },
   "tasks": [
+    "context.metaData.commonTasks.flushCache",
     "context.metaData.commonTasks.authRequired",
     "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.fullSignUpRequired",
     "context.metaData.commonTasks.getTasksInfoUnverified",
     {
-      "name": "setVerifyHoursCode",
-      "taskModule": "firebaseRtbSet",
+      "name": "verifyInfoBody",
+      "taskModule": "render",
       "renderer": "handlebars",
       "config": {
-        "appName": "saltireawards",
-        "pathTemplate": "/users/{{default data.auth.uid 'no-such-write-profile'}}/verify-hours/",
-        "setOrUpdate": "set",
-        "dataTemplate": ">context.metaData.handlebars.templates.volunteering_fb-verify-hours-data"
+        "output": "data",
+        "template": ">context.metaData.handlebars.templates.volunteering_hours-set-verify-info-body",
+        "parseJson": true
       }
     },
     {
-      "name": "setVerifyDate",
+      "name": "setVerifyInfo",
       "taskModule": "salesforceApex",
       "renderer": "handlebars",
       "config": {
         "connection": "scvoAlexSandbox",
         "output": "data",
         "method": "POST",
-        "body": ">context.metaData.handlebars.templates.volunteering_hours-set-verify-date-body",
-        "apexClassPath": "/SaltireHoursSetVerifyDate/"
+        "body": ">data.verifyInfoBody",
+        "apexClassPath": "/SaltireHoursSetVerifyInfo/"
       }
     },
+    "context.metaData.commonTasks.flushCache",
     {
       "name": "sendEmail",
       "taskModule": "mailgun",

@@ -12,7 +12,6 @@
     "context.metaData.commonTasks.fullSignUpRequired",
     "context.metaData.commonTasks.isAdmin",
     "context.metaData.commonTasks.getTasksInfo",
-    "context.metaData.commonTasks.verifyHoursInfo",
     "context.metaData.commonTasks.tasksRequired",
     {
       "name": "destination",

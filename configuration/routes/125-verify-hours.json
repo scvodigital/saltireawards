@@ -5,16 +5,7 @@
   "errorRoute": "five_hundred",
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
-    {
-      "name": "verifyHoursInfo",
-      "taskModule": "firebaseRtbGet",
-      "renderer": "handlebars",
-      "config": {
-        "appName": "saltireawards",
-        "pathTemplate": "/users/{{default @root.request.params.query.user_id 'no-such-write-profile'}}/verify-hours/",
-        "defaultData": {}
-      }
-    },
+    "context.metaData.commonTasks.getAccountInfoExternal",
     {
       "name": "codeVerified",
       "taskModule": "render",

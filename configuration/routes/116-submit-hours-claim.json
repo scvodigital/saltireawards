@@ -5,7 +5,6 @@
   "errorRoute": "five_hundred_json",
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
-    "context.metaData.commonTasks.verifyHoursInfo",
     "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.fullSignUpRequired",
     {

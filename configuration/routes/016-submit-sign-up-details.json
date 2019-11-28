@@ -19,17 +19,6 @@
       }
     },
     {
-      "name": "setVerifyHoursCode",
-      "taskModule": "firebaseRtbSet",
-      "renderer": "handlebars",
-      "config": {
-        "appName": "saltireawards",
-        "pathTemplate": "/users/{{default data.auth.uid 'no-such-write-profile'}}/verify-hours/",
-        "setOrUpdate": "set",
-        "dataTemplate": ">context.metaData.handlebars.templates.volunteering_fb-verify-hours-data"
-      }
-    },
-    {
       "name": "saveUserData",
       "taskModule": "salesforceApex",
       "renderer": "handlebars",

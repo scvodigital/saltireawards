@@ -9,7 +9,6 @@
     "context.metaData.commonTasks.fullSignUpRequired",
     "context.metaData.commonTasks.isAdmin",
     "context.metaData.commonTasks.getTasksInfo",
-    "context.metaData.commonTasks.verifyHoursInfo",
     {
       "name": "pdfObjects",
       "taskModule": "render",

@@ -223,7 +223,7 @@
         </div>
         {{#each hours_list ~}}
         {{#ifAny claim_first_name claim_code ~}}
-        <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours" style="position:relative" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Participant details updated" data-TasksTrigger="ajax-form-handler">
+        <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?user_id={{@root.data.auth.uid}}" style="position:relative" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Participant details updated" data-TasksTrigger="ajax-form-handler">
           <input type="hidden" name="task_id" value="{{../task_id}}">
           <input type="hidden" name="verified" value="{{verified}}">
           <input type="hidden" name="claim_code" value="{{claim_code}}">
@@ -282,8 +282,18 @@
         </form>
         {{/ifAny ~}}
         {{/each ~}}
+        <form action="/task-add-testimonial" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Testimonial updated" data-TasksTrigger="ajax-form-handler">
+          <div class="form-group">
+            <div class="col-4">
+              <label for="testimonial" class="form-label">Testimonial</label>
+            </div>
+            <div class="col-5">
+              <textarea rows="6" cols="40" id="volunteers" name="volunteers" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.testimonial}}>{{@root.data.taskInfoValidation.testimonial}}</textarea>
+            </div>
+          </div>
+        </form>
         <a href="#" class="btn btn-primary show-group-hours-form">
-          Add more participants
+          Let people know about your volunteer's achievements here.
         </a>
         {{/compare ~}}
 

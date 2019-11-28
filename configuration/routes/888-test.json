@@ -12,16 +12,6 @@
     "context.metaData.commonTasks.getTasksInfoUnverified",
     "context.metaData.commonTasks.flushCache",
     {
-      "name": "verifyHoursInfo",
-      "taskModule": "firebaseRtbGet",
-      "renderer": "handlebars",
-      "config": {
-        "appName": "saltireawards",
-        "pathTemplate": "/users/{{default @root.request.params.query.user_id 'no-such-write-profile'}}/verify-hours/",
-        "defaultData": {}
-      }
-    },
-    {
       "name": "makeTaskData",
       "taskModule": "render",
       "renderer": "handlebars",

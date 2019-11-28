@@ -2,7 +2,14 @@
   <div class="columns">
     <div class="column col-9 col-xl-12">
       <h2>
-        {{{@root.context.metaData.tsiList.argyll-bute.local_authority}}}
+        {{#withExtend this hoursCode=(stringify (random 0 100000000))}}
+          {{#json}}
+            {{{json key='user_id' value=@root.data.auth.uid}}},
+            {{{json key='hours_code' value=hoursCode}}},
+            {{#json key='hours_award' type="number"}}{{default @root.request.params.query.award 0}}{{/json}},
+            {{{json key='certificate_url' value=(concat 'https://' @root.request.headers.host '/tsi-certificate/?c=' hoursCode '&user_id=' @root.data.auth.uid)}}}
+          {{/json}}
+        {{/withExtend}}
       </h2>
       {{join 'Zero Hunger' ';'}}
       {{!-- <div class="bg-warning x-padding"> --}}
