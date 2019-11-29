@@ -16,7 +16,7 @@
   {{#ifAny (compare type "approach") (compare type "ascent") ~}}
   {{!-- It's already awarded --}}
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" (stringify hours) ~}}
-  {{#unless (compare @root.data.accountInfo.hours_verify_award ">" hours) ~}}
+    {{#unless (compare @root.data.accountInfo.hours_verify_award ">" hours) ~}}
   <div class="columns">
     <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
       <h2 class="text-center">

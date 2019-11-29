@@ -72,7 +72,7 @@
                   <button type="submit" class="btn btn-block btn-success inline-update-button">Verify</button>
                 </div>
                 <div class="column col-1">
-                  <a href="/admin-delete-hours?hours_id={{hours_id}}&c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="btn btn-block inline-delete-button" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
+                  <a href="/admin-delete-hours?hours_id={{hours_id}}&c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="btn btn-block inline-delete-button" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler" data-next-task="empty-collapse">Remove</a>
                 </div>
                 {{#if claim_code ~}}
                   <div class="column col-2">
@@ -94,7 +94,7 @@
 
             <div class="columns">
               <div class="col-8">
-                <textarea rows="3"  placeholder="Let people know what your volunteers have achieved" cols="40" id="testimonial" name="testimonial" class="inline-form-input inline-edit" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.testimonial}}>{{testimonial}}</textarea>
+                <textarea rows="3"  placeholder="Let people know what {{accountInfo.first_name}} has achieved with your organisation" cols="40" id="testimonial" name="testimonial" class="inline-form-input inline-edit" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.testimonial}}>{{testimonial}}</textarea>
               </div>
               <div class="col-1"></div>
               <div class="col-3">
@@ -129,7 +129,7 @@
                     {
                       type: "elementManipulator",
                       config: {
-                        "< | < ": {addClass: "hide"},
+                        "<.task-element ": {addClass: "hide"},
                       }
                     },
                     {

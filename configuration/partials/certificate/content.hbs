@@ -36,7 +36,7 @@
         {{else}}
         {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
         {{#unless (compare hours 1) ~}}
-        {{#unless (compare @root.data.accountInfo.hours_verify_award ">" hours) ~}}
+        {{#unless (compare @root.data.accountInfo.hours_verify_award ">" next_award_hours) ~}}
         "text": {{>pdf_metadata_value key="title" default=(concat hours " hours")}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
         {{/unless ~}}
@@ -85,7 +85,7 @@
         {{else}}
         {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
         {{#unless (compare hours 1) ~}}
-        {{#unless (compare @root.data.accountInfo.hours_verify_award ">" hours) ~}}
+        {{#unless (compare @root.data.accountInfo.hours_verify_award ">" next_award_hours) ~}}
         {{#unless in_progress ~}}
         "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement of completing"}},
         {{else}}
@@ -115,7 +115,7 @@
         {{else}}
         {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
         {{#unless (compare hours 1) ~}}
-        {{#unless (compare @root.data.accountInfo.hours_verify_award ">" hours) ~}}
+        {{#unless (compare @root.data.accountInfo.hours_verify_award ">" next_award_hours) ~}}
         "text": {{>pdf_metadata_value key="title" default=type_name}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
         {{/unless ~}}
