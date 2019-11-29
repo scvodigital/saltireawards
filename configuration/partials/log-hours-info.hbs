@@ -14,7 +14,7 @@
 {{/ifAll ~}}
 
 {{#unless (compare (sumArray (pluck @root.data.tasksInfo "hours")) 0) ~}}
-<p class="empty-subtitle achievements text-centre">
+<p class="empty-subtitle awards text-centre">
   {{#each @root.context.metaData.certificates ~}}
   {{#compare hours ">" 0 ~}}
   {{!-- It's already awarded --}}
