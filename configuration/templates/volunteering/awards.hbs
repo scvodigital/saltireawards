@@ -1,8 +1,7 @@
 
 {{#unless @root.data.isAdmin ~}}
 <div class="container awards">
-  {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" (stringify hours) ~}}
-  <ul class="step">
+  {{!-- <ul class="step">
     {{#each @root.context.metaData.certificates ~}}
     {{#ifAny (compare type "approach") (compare type "ascent") ~}}
     <li class="step-item{{#compare @root.data.accountInfo.hours_verify_award hours}} active{{/compare}}">
@@ -10,15 +9,14 @@
     </li>
     {{/ifAny ~}}
     {{/each ~}}
-  </ul>
-  {{/compare ~}}
+  </ul> --}}
   {{#each @root.context.metaData.certificates ~}}
   {{#ifAny (compare type "approach") (compare type "ascent") ~}}
   {{!-- It's already awarded --}}
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" (stringify hours) ~}}
-    {{#unless (compare @root.data.accountInfo.hours_verify_award ">" hours) ~}}
+  {{#unless (compare @root.data.accountInfo.hours_verify_award ">" hours) ~}}
   <div class="columns">
-    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
+    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto">
       <h2 class="text-center">
         {{#if in_progress}}Current{{else}}My{{/if}} Award
       </h2>
@@ -26,11 +24,12 @@
         {{type_name}}: {{certificate_name}} hours
       </p>
       {{> badge type=type key=(slugify certificate_name) hours=hours}}
-      <div class="text-center description">
+      <div class="text-center t-margin-full description">
         {{!-- <p>
           {{certificate_name}} hour certificate awarded!
         </p> --}}
-        <a href="/certificate" data-component="TasksTrigger" data-TasksTrigger="no-multi-click"  class="btn btn-primary b-margin">Download</a>
+        <a href="/certificate" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary b-margin">Download</a>
+        <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" class="btn b-margin">Print request</a>
       </div>
     </div>
   </div>
@@ -100,3 +99,52 @@
   {{/each ~}}
 </div>
 {{/unless ~}}
+
+<div class="modal" id="certificate-request">
+  <a href="#" class="modal-overlay" aria-label="Close"></a>
+  <div class="modal-container">
+    <div class="modal-header">
+      <a href="#close" class="btn btn-clear float-right" aria-label="Close" data-component="TasksTrigger" data-TasksTrigger="hide-modal"></a>
+      <div class="modal-title h5">
+        Print request
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="content">
+        To request a printed copy of your award, please send an email to <a href="mailto:{{> support_email_address}}">{{> support_name}}</a> asking for a printed certificate and provide your address so they can post it to you.
+      </div>
+    </div>
+  </div>
+</div>
+
+<script data-component-config="show-certificate-request" type="javascript/blocked">
+  {
+    click: {
+      tasks: [
+        {
+          type: "elementManipulator",
+          config: {
+            "#certificate-request": { addClass: "active" }
+          }
+        }
+      ]
+    }
+  }
+</script>
+
+<script data-component-config="hide-modal" type="javascript/blocked">
+  {
+    click: {
+      tasks: [
+        {
+          type: "elementManipulator",
+          config: {
+            "<.modal": { removeClass: "active" },
+            "<.modal | >.alert": { addClass: "hidden" }
+          }
+        }
+      ]
+    }
+  }
+</script>
+

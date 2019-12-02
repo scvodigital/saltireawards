@@ -58,8 +58,7 @@
             <span class="form-icon far fa-key"></span>
           </div>
 
-          <button type="button" class="btn btn-primary" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal"
-            data-confirm-task="change-password" disabled data-confirm-verb="change your password" data-confirm-description="#change-password-description">
+          <button type="button" class="btn btn-primary" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-confirm-task="change-password" disabled data-confirm-verb="change your password" data-confirm-description="#change-password-description">
             {{!-- <span class="far fa-lock" aria-hidden="true"></span> --}}
             {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "password") ~}}
               Change password
@@ -356,9 +355,6 @@
     }
   }
 </script>
-
-
-
 
 
 <script data-component-config="show-confirm-modal" type="javascript/blocked">
