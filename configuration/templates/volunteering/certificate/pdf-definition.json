@@ -53,11 +53,66 @@
   "background": [
     {
       "svg": "{{> certificate_images_svg_background}}"
+    },
+    {
+      "text": "www.saltireawards.scot",
+      "link": "https://saltireawards.scot",
+      "fontSize": 14,
+      "bold": true,
+      "color": "#ffffff",
+      "alignment": "left",
+      "margin": [0, 0, 0, 0],
+      "font": "Montserrat",
+      "absolutePosition": {
+        "x": 392,
+        "y": 808
+      }
     }
   ],
   "content": [
     {{#each @root.data.pdfObjects ~}}
     {{> certificate_content award=user.certificate_type last=@last}}{{#unless @last}},{{/unless}}
     {{/each ~}}
-  ]
+  ],
+  "styles": {
+    "bold": {
+      "bold": true
+    },
+    "subtitle": {
+      "font": "Montserrat",
+      "fontSize": 11,
+      "alignment": "center"
+    },
+    "award": {
+      "font": "Sonder-Sans3",
+      "fontSize": 38,
+      "alignment": "center"
+    },
+    "congratulations": {
+      "font": "Montserrat",
+      "fontSize": 13,
+      "alignment": "center"
+    },
+    "award_name": {
+      "font": "Montserrat",
+      "fontSize": 16,
+      "alignment": "center"
+    },
+    "volunteer_name": {
+      "font": "Sonder-Sans3",
+      "color": "#008EDF",
+      "fontSize": 30,
+      "alignment": "center"
+    },
+    "volunteering_organisation": {
+      "font": "Montserrat",
+      "fontSize": 12,
+      "alignment": "left"
+    },
+    "volunteering_detail": {
+      "font": "Montserrat",
+      "fontSize": 10,
+      "alignment": "left"
+    }
+  }
 }

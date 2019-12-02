@@ -2,24 +2,17 @@
   "image": "{{> certificate_images_png_saltire}}",
   "width": 160,
   "alignment": "center",
-  "margin": [0, 0, 0, 0],
-  "font": "Sonder-Sans3"
+  "margin": [0, 0, 0, 5]
 },
 {
-  "text": {{>pdf_metadata_value key="title" default="VOLUNTEERING FOR"}},
-  "fontSize": 12,
-  "bold": true,
-  "alignment": "center",
-  "margin": [0, 5, 0, 0],
-  "font": "Sonder-Sans3"
+  "text": {{>pdf_metadata_value key="title" default="V O L U N T E E R I N G   F O R"}},
+  "margin": [0, 0, 0, 0],
+  "style": ["subtitle", "bold"]
 },
 {
-  "text": {{>pdf_metadata_value key="title" default="12 TO 25 YEAR OLDS"}},
-  "fontSize": 12,
-  "bold": true,
-  "alignment": "center",
-  "margin": [0, 0, 0, 0],
-  "font": "Sonder-Sans3"
+  "text": {{>pdf_metadata_value key="title" default="1 2   T O   2 5   Y E A R   O L D S"}},
+  "margin": [0, 0, 0, 20],
+  "style": ["subtitle", "bold"]
 },
 {
   "columns": [
@@ -52,11 +45,8 @@
         {{/compare ~}}
         {{/each ~}}
         {{/compare ~}}
-        "fontSize": 38,
-        "bold": false,
-        "alignment": "center",
-        "margin": [0, 10, 0, 0],
-        "font": "Sonder-Sans3"
+        "margin": [0, 0, 0, 0],
+        "style": ["award", "bold"]
       },
       {
         {{#compare award "summit" ~}}
@@ -65,11 +55,8 @@
         "text": {{>pdf_metadata_value key="title" default="VOLUNTEERING"}},
         {{/compare ~}}
         "color": "{{@root.context.metaData.theme.secondary}}",
-        "fontSize": 18,
-        "bold": true,
-        "alignment": "center",
         "margin": [0, 0, 0, 5],
-        "font": "Sonder-Sans3"
+        "style": ["award", "bold"]
       },
       {
         {{#compare award "hours" ~}}
@@ -99,10 +86,8 @@
         {{else}}
         "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement of completing"}},
         {{/compare ~}}
-        "fontSize": 14,
-        "bold": false,
-        "alignment": "center",
-        "margin": [0, 0, 0, 0]
+        "margin": [0, 0, 0, 0],
+        "style": "congratulations"
       },
       {
         {{#compare award "hours" ~}}
@@ -131,57 +116,108 @@
         {{/compare ~}}
         {{/each ~}}
         {{/compare ~}}
-        "fontSize": 16,
-        "bold": true,
-        "alignment": "center",
-        "margin": [0, 0, 0, 0]
+        "margin": [0, 0, 0, 0],
+        "style": ["award_name", "bold"]
       }
     ],
     {
       "width": "*",
       "text": ""
+    },
+    {
+      "width": 120,
+      {{#compare award "hours" ~}}
+      {{#each @root.context.metaData.certificates ~}}
+      {{#ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1) ~}}
+      {{#compare hours ../user.hours_verified ~}}
+      {{#switch hours ~}}
+      {{#case 10 ~}}
+      "image": "{{> certificate_images_png_badges_approach_10}}",
+      {{/case ~}}
+      {{#case 25 ~}}
+      "image": "{{> certificate_images_png_badges_approach_25}}",
+      {{/case ~}}
+      {{#case 50 ~}}
+      "image": "{{> certificate_images_png_badges_ascent_50}}",
+      {{/case ~}}
+      {{#case 100 ~}}
+      "image": "{{> certificate_images_png_badges_ascent_100}}",
+      {{/case ~}}
+      {{#case 200 ~}}
+      "image": "{{> certificate_images_png_badges_ascent_200}}",
+      {{/case ~}}
+      {{#case 500 ~}}
+      "image": "{{> certificate_images_png_badges_ascent_500}}",
+      {{/case ~}}
+      {{/switch ~}}
+      {{/compare ~}}
+      {{else}}
+      {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
+      {{#unless (compare hours 1) ~}}
+      {{#unless (compare @root.data.accountInfo.hours_verify_award ">" next_award_hours) ~}}
+      {{#switch hours ~}}
+      {{#case 10 ~}}
+      "image": "{{> certificate_images_png_badges_approach_10}}",
+      {{/case ~}}
+      {{#case 25 ~}}
+      "image": "{{> certificate_images_png_badges_approach_25}}",
+      {{/case ~}}
+      {{#case 50 ~}}
+      "image": "{{> certificate_images_png_badges_ascent_50}}",
+      {{/case ~}}
+      {{#case 100 ~}}
+      "image": "{{> certificate_images_png_badges_ascent_100}}",
+      {{/case ~}}
+      {{#case 200 ~}}
+      "image": "{{> certificate_images_png_badges_ascent_200}}",
+      {{/case ~}}
+      {{#case 500 ~}}
+      "image": "{{> certificate_images_png_badges_ascent_500}}",
+      {{/case ~}}
+      {{/switch ~}}
+      {{/unless ~}}
+      {{/unless ~}}
+      {{/compare ~}}
+      {{/ifAll ~}}
+      {{/each ~}}
+      {{else}}
+      {{#each @root.context.metaData.certificates ~}}
+      {{#compare ../award type ~}}
+      {{#switch type ~}}
+      {{#case "challenge" ~}}
+      "image": "{{> certificate_images_png_badges_challenge}}",
+      {{/case ~}}
+      {{#case "summit" ~}}
+      "image": "{{> certificate_images_png_badges_summit}}",
+      {{/case ~}}
+      {{/switch ~}}
+      {{/compare ~}}
+      {{/each ~}}
+      {{/compare ~}}
+      "alignment": "center",
+      "margin": [0, 0, 0, 0]
     }
-    {{!-- [
-      ,
-      {
-        "width": "140",
-        {{#compare type 'approach' ~}}
-        "image": "{{> certificate_images_png_badge_approach}}",
-        {{else}}
-        "image": "{{> certificate_images_png_badge_ascent}}",
-        {{/compare ~}}
-        "alignment": "center",
-        "margin": [0, 0, 0, 0]
-      }
-    ] --}}
   ],
   "columnGap": 0,
   "margin": [0, 0, 0, 0]
 },
 {
   "text": "{{user.first_name}} {{user.last_name}}",
-  "fontSize": 20,
-  "bold": false,
-  "alignment": "center",
-  "margin": [0, 30, 0, 0],
-  "font": "Sonder-Sans3"
+  "margin": [0, 20, 0, 0],
+  "style": ["volunteer_name", "bold"]
 },
 {{#each tasks ~}}
 {{#ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1)) (ifAll (compare hours_verified "!==" 0) (compare hours_verified "!==" 1)) ~}}
 {
   "text": "For: {{{organisation_name}}}",
-  "fontSize": 12,
-  "bold": false,
-  "alignment": "left",
-  "margin": [0, 15, 0, 0]
+  "margin": [0, 15, 0, 0],
+  "style": "volunteering_organisation"
 },
 {{#if task_description ~}}
 {
   "text": "{{{task_description}}}",
-  "fontSize": 10,
-  "bold": false,
-  "alignment": "left",
-  "margin": [0, 5, 0, 0]
+  "margin": [0, 5, 0, 0],
+  "style": "volunteering_detail"
 },
 {{/if ~}}
 {{/ifAny ~}}
@@ -189,21 +225,17 @@
 {{#if sdgs ~}}
 {
   "text": "Contributing towards {{inflect (length (split sdgs ";")) "SDG" "SDGs"}}:",
-  "fontSize": 10,
   "color": "{{> sdg_color sdg=un_sustainable_development_goals}}",
-  "bold": true,
-  "alignment": "left",
-  "margin": [0, 5, 0, 0]
+  "margin": [0, 5, 0, 0],
+  "style": ["volunteering_detail", "bold"]
 },
 {{#each (unique (split sdgs ";")) ~}}
 {{#if this ~}}
 {
   "text": "{{> sdg_number sdg=this}}: {{this}}",
-  "fontSize": 10,
   "color": "{{> sdg_color sdg=this}}",
-  "bold": true,
-  "alignment": "left",
-  "margin": [0, 2, 0, 0]
+  "margin": [0, 2, 0, 0],
+  "style": ["volunteering_detail", "bold"]
 },
 {{/if ~}}
 {{/each ~}}
@@ -212,37 +244,44 @@
   "width": 150,
   "image": "{{> certificate_images_png_signature_minister}}",
   "alignment": "left",
-  "margin": [-10, 10, 0, 0]
+  "absolutePosition": {
+    "x": 60,
+    "y": 600
+  }
 },
 {
   "text": "John Swinney",
-  "fontSize": 10,
-  "bold": true,
-  "alignment": "left",
-  "margin": [0, 0, 0, 0]
+  "style": ["volunteering_detail", "bold"],
+  "absolutePosition": {
+    "x": 70,
+    "y": 680
+  }
 },
 {
   "text": "Minister of the Scottish Government",
-  "fontSize": 10,
-  "bold": true,
-  "alignment": "left",
-  "margin": [0, 0, 0, 0]
+  "style": ["volunteering_detail", "bold"],
+  "absolutePosition": {
+    "x": 70,
+    "y": 695
+  }
 },
 {
-  "text": "Saltire Awards are a positive recognition by the Scottish Government of 12-25 year old volunteers and their achievements",
-  "fontSize": 10,
-  "alignment": "left",
-  "width": 200,
-  "margin": [0, 0, 250, 0]
+  "text": [
+    "Saltire Awards are a positive recognition by\n",
+    "the Scottish Government of 12-25 year old\n",
+    "volunteers and their achievements"
+  ],
+  "style": "volunteering_detail",
+  "absolutePosition": {
+    "x": 70,
+    "y": 710
+  }
 },
 {{#ifAll user.claim_code (ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1)) (ifAll (compare user.hours_verified "!==" 0) (compare user.hours_verified "!==" 1))) ~}}
 {
   "text": {{>pdf_metadata_value key="title" default="Claim code:"}},
-  "fontSize": 10,
-  "bold": false,
   "color": "#333E48",
-  "alignment": "left",
-  "margin": [0, 0, 0, 0],
+  "style": ["volunteering_detail"],
   "absolutePosition": {
     "x": 70,
     "y": 720
@@ -250,11 +289,9 @@
 },
 {
   "text": "{{substr user.claim_code 0 10}}",
-  "fontSize": 12,
-  "bold": true,
   "color": "#333E48",
-  "alignment": "left",
   "margin": [0, 0, 0, 0],
+  "style": ["volunteering_organisation", "bold"],
   "absolutePosition": {
     "x": 70,
     "y": 735
