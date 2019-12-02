@@ -16,7 +16,7 @@
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" (stringify hours) ~}}
   {{#unless (compare @root.data.accountInfo.hours_verify_award ">" hours) ~}}
   <div class="columns">
-    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto">
+    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
       <h2 class="text-center">
         {{#if in_progress}}Current{{else}}My{{/if}} Award
       </h2>
@@ -37,7 +37,7 @@
   {{else}}
   {{#compare @root.data.accountInfo.hours_verify_award "===" (stringify hours) ~}}
   <div class="columns">
-    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
+    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
       {{!-- It's being verified --}}
       <h2 class="text-center">Next Award</h2>
       <p class="text-center text-dark h5">
@@ -61,7 +61,7 @@
 
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) ">=" (stringify hours) ~}}
   <div class="columns working-towards">
-    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
+    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
       {{!-- It's ready to claim--}}
       <h2 class="text-center">Next Award</h2>
       <p class="text-center text-dark h5">
@@ -78,7 +78,7 @@
   </div>
   {{else}}
   <div class="columns working-towards">
-    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
+    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
       {{!-- It's not there yet --}}
       <h2 class="text-center">Working towards</h2>
       <p class="text-center text-dark h5">
