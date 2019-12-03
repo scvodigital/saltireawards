@@ -10,6 +10,7 @@
   "tasks": [
     "context.metaData.commonTasks.authRequired",
     "context.metaData.commonTasks.getAccountInfo",
+    "context.metaData.commonTasks.getAwardsStatus",
     "context.metaData.commonTasks.fullSignUpRequired",
     "context.metaData.commonTasks.isAdmin",
     "context.metaData.commonTasks.getTasksInfo",

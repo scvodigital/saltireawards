@@ -16,24 +16,20 @@
 {{#unless (compare (sumArray (pluck @root.data.tasksInfo "hours")) 0) ~}}
 <p class="empty-subtitle awards text-centre">
   {{#each @root.context.metaData.certificates ~}}
-  {{#compare hours ">" 0 ~}}
-  {{!-- It's already awarded --}}
-  {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
-  {{else}}
-  {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) ">=" hours ~}}
-  {{#unless (compare @root.data.accountInfo.hours_verify_award ">=" hours) ~}}
-  <span class="working-towards">
-    <a href="/awards" class="label label-success label-rounded text-white">{{hours}} hour certificate available!</a>
-  </span>
-  {{/unless ~}}
-  {{else}}
-  <span class="working-towards">You need to log {{subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))}} more {{inflect (subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))) "hour" "hours"}} of volunteering to reach your next award</span>
-  {{/compare ~}}
-  {{/compare ~}}
-  {{/compare ~}}
+    {{#compare @root.data.awardsStatus.claimable "===" hours}}
+      <span class="working-towards">
+       <a href="/awards" class="label label-success label-rounded text-white">{{hours}} hour certificate available!</a>
+      </span>
+    {{else}}
+      {{#compare @root.data.awardsStatus.working_towards "===" hours}}
+      <span class="working-towards">You need to log {{subtract hours @root.data.accountInfo.total_hours}} more {{inflect (subtract hours @root.data.accountInfo.total_hours) "hour" "hours"}} of volunteering to reach your next award</span>
+      {{/compare}}
+    {{/compare}}
   {{/each ~}}
 </p>
 {{/unless ~}}
 
 {{> log_age_limit}}
 {{/unless ~}}
+
+
