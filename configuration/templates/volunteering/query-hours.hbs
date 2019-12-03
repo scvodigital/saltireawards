@@ -94,7 +94,7 @@
 
             <div class="columns">
               <div class="col-8">
-                <textarea rows="3"  placeholder="Let people know what {{accountInfo.first_name}} has achieved with your organisation" cols="40" id="testimonial" name="testimonial" class="inline-form-input inline-edit" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.testimonial}}>{{testimonial}}</textarea>
+                <textarea rows="3"  placeholder="Let people know what {{@root.data.accountInfo.first_name}} has achieved with your organisation" cols="40" id="testimonial" name="testimonial" class="inline-form-input inline-edit" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.testimonial}}>{{testimonial}}</textarea>
               </div>
               <div class="col-1"></div>
               <div class="col-3">
