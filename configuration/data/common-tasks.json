@@ -247,6 +247,16 @@
 			"output": "data"
 		}
 	},
+	"getAwardsStatus" : {
+		"name": "awardsStatus",
+		"taskModule": "render",
+		"renderer": "handlebars",
+		"config": {
+			"template": ">context.metaData.handlebars.partials.awards_status",
+			"output": "data",
+			"parseJson": true
+		}
+	},
 	"adminRequired": {
 		"name": "adminRequired",
 		"taskModule": "reroute",

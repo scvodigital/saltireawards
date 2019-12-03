@@ -26,7 +26,10 @@
   {{#unless admin}}
   <div class="form-group">
     <div class="column col-4 col-sm-12">
-      <label class="form-label" for="date_of_birth">Date of birth</label>
+      <label class="form-label" for="date_of_birth">Date of birth
+        <div class="caption">You must be 12-27 years old to sign up</div>
+      </label>
+
     </div>
     <div class="column col-8 col-sm-12">
       {{#unless @root.data.accountInfo.date_of_birth ~}}

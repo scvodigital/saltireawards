@@ -3,36 +3,67 @@
     <div class="column col-9 col-xl-12">
       <h2>
 
-
-        {{
         {{#json key="awards_status"}}
           {{#each @root.context.metaData.certificates ~}}
             {{#ifAny (compare type "approach") (compare type "ascent") ~}}
 
-              {{#ifAll (compare @root.accountInfo.verified_hours ">=" (stringify hours)) (compare @root.accountInfo.verified_hours "<" (stringify next_award_hours))}}{{{json name="current" value=hours}}}{{/ifAll}}
+              {{#ifAll (compare @root.data.accountInfo.verified_hours ">=" hours) (compare @root.data.accountInfo.verified_hours "<" next_award_hours)}}{{{json key="current" value=hours}}},{{/ifAll}}
 
-              {{#compare @root.data.accountInfo.hours_verify_award "===" (stringify hours) ~}}{{{json name="being_verified" value=hours}}}
+              {{#compare @root.data.accountInfo.hours_verify_award "===" (stringify hours) ~}}{{{json key="being_verified" value=hours}}},
               {{/compare}}
 
               {{#ifAll
                 (compare @root.data.accountInfo.hours_verify_award "!==" (stringify hours))
-                (compare @root.accountInfo.verified_hours "<" (stringify hours))
-                (compare @root.accountInfo.total_hours ">=" (stringify hours))
-                (compare @root.accountInfo.total_hours "<" (stringify next_award_hours))
-              }}{{{json key="claimable" value=hours ~}}}
+                (compare @root.data.accountInfo.verified_hours "<" hours)
+                (compare @root.data.accountInfo.total_hours ">=" hours)
+                (compare @root.data.accountInfo.total_hours "<" next_award_hours)
+              }}{{{json key="claimable" value=hours }}},
               {{/ifAll}}
 
               {{#ifAll
-                (compare @root.accountInfo.total_hours "<" (stringify hours))
-                (compare @root.accountInfo.total_hours ">=" (stringify last_award_hours))
-              }}{{{json key="working_towards" value=hours ~}}}
+                (compare @root.data.accountInfo.total_hours "<" hours)
+                (compare @root.data.accountInfo.total_hours ">=" last_award_hours)
+              }}{{{json key="working_towards" value=hours }}},
               {{/ifAll}}
-
             {{/ifAny}}
           {{/each}}
         {{/json}}
 
 
+        <p>Current verified = {{@root.request.params.query.verified_hours}}</p>
+        <p>Current total = {{@root.request.params.query.total_hours}}</p>
+        <p>Current underway = {{@root.request.params.query.hours_verify_award}}</p>
+
+        {{@root.request.params.query.verified_hours}}
+        {{#json key="awards_status"}}
+          {{#each @root.context.metaData.certificates ~}}
+            {{#ifAny (compare type "approach") (compare type "ascent") ~}}
+
+              {{#ifAll (compare @root.request.params.query.verified_hours ">=" hours) (compare @root.request.params.query.verified_hours "<" next_award_hours)}}{{{json key="current" value=hours}}},{{/ifAll}}
+
+              {{#compare @root.request.params.query.hours_verify_award "===" (stringify hours) ~}}{{{json key="being_verified" value=hours}}},
+              {{/compare}}
+
+              {{#ifAll
+                (compare @root.request.params.query.hours_verify_award "!==" (stringify hours))
+                (compare @root.request.params.query.verified_hours "<" hours)
+                (compare @root.request.params.query.total_hours ">=" hours)
+                (compare @root.request.params.query.total_hours "<" next_award_hours)
+              }}{{{json key="claimable" value=hours }}},
+              {{/ifAll}}
+
+              {{#ifAll
+                (compare @root.request.params.query.total_hours "<" hours)
+                (compare @root.request.params.query.total_hours ">=" last_award_hours)
+              }}{{{json key="working_towards" value=hours }}},
+              {{/ifAll}}
+
+
+            {{/ifAny}}
+          {{/each}}
+          {{{json key="lastvalue" value="x"}}},
+
+        {{/json}}
 
 
       </h2>

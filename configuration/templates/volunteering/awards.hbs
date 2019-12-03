@@ -10,75 +10,73 @@
     {{/ifAny ~}}
     {{/each ~}}
   </ul> --}}
-  {{#each @root.context.metaData.certificates ~}}
-  {{#ifAny (compare type "approach") (compare type "ascent") ~}}
-  {{!-- It's already awarded --}}
-  {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" (stringify hours) ~}}
-  {{#unless (compare @root.data.accountInfo.hours_verify_award ">" hours) ~}}
-  <div class="columns">
-    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
-      <h2 class="text-center">
-        {{#if in_progress}}Current{{else}}My{{/if}} Award
-      </h2>
-      <p class="text-center text-dark h5">
-        {{type_name}}: {{certificate_name}} hours
-      </p>
-      {{> badge type=type key=(slugify certificate_name) hours=hours}}
-      <div class="text-center t-margin-full description">
-        {{!-- <p>
-          {{certificate_name}} hour certificate awarded!
-        </p> --}}
-        <a href="/certificate" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary b-margin">Download</a>
-        <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" class="btn b-margin">Print request</a>
-      </div>
-    </div>
-  </div>
-  {{/unless ~}}
-  {{else}}
-  {{#compare @root.data.accountInfo.hours_verify_award "===" (stringify hours) ~}}
-  <div class="columns">
-    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
-      {{!-- It's being verified --}}
-      <h2 class="text-center">Next Award</h2>
-      <p class="text-center text-dark h5">
-        {{type_name}}: {{certificate_name}} hours
-      </p>
-      {{> badge type=type key=(slugify certificate_name) hours=hours disabled=true}}
-      <div class="text-center description">
-        {{certificate_name}} hour award being verified. If you've been waiting for over a week, you can <a data-component="TasksTrigger" data-TasksTrigger="no-multi-click" href="/verify-hours-email-send/?award={{hours}}">re-send the verification {{inflect (length @root.data.tasksInfo) "message" "messages"}}</a>.
-      </div>
-    </div>
-  </div>
-  {{else}}
-  {{!-- A bigger award is being verified --}}
-  {{#compare @root.data.accountInfo.hours_verify_award ">" (stringify hours) ~}}
-  {{!-- It's being verified --}}
-  {{!-- {{> badge type=type key=(slugify certificate_name) hours=hours}}
-  <div class="text-center description">
-    Larger award being verified.
-  </div> --}}
-  {{else}}
 
-  {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) ">=" (stringify hours) ~}}
-  <div class="columns working-towards">
-    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
-      {{!-- It's ready to claim--}}
-      <h2 class="text-center">Next Award</h2>
-      <p class="text-center text-dark h5">
-        {{type_name}}: {{certificate_name}} hours
-      </p>
-      {{> badge type=type key=(slugify certificate_name) hours=hours disabled=true}}
-      <p class="text-center description">
-        {{certificate_name}} hour certificate available! Claiming this certificate will send {{inflect (length @root.data.tasksInfo) "an email" "emails"}} to the {{inflect (length @root.data.tasksInfo) "person" "people"}} managing your volunteering to verify the hours you've logged.
-      </p>
-      <p class="text-center">
-        <a href="/verify-hours-email-send/?award={{hours}}" class="btn btn-primary btn-success">Claim this certificate</a>
-      </p>
+  {{!-- It's already awarded --}}
+  {{#each @root.context.metaData.certificates}}
+
+  {{#compare @root.data.awardsStatus.current "===" hours ~}}
+      <div class="columns">
+        <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
+          <h2 class="text-center">
+            {{#if in_progress}}Current{{else}}My{{/if}} Award
+          </h2>
+          <p class="text-center text-dark h5">
+            {{type_name}}: {{certificate_name}} hours
+          </p>
+          {{> badge type=type key=(slugify certificate_name) hours=hours}}
+          <div class="text-center description">
+            {{!-- <p>
+              {{certificate_name}} hour certificate awarded!
+            </p> --}}
+            <a href="/certificate" data-component="TasksTrigger" data-TasksTrigger="no-multi-click"  class="btn btn-primary b-margin">Download</a>
+          </div>
+        </div>
+      </div>
+  {{/compare}}
+
+
+  {{!-- being verified --}}
+  {{#compare @root.data.awardsStatus.being_verified "===" hours ~}}
+    <div class="columns">
+      <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
+        {{!-- It's being verified --}}
+        <h2 class="text-center">Next Award</h2>
+        <p class="text-center text-dark h5">
+          {{type_name}}: {{certificate_name}} hours
+        </p>
+        {{> badge type=type key=(slugify certificate_name) hours=hours disabled=true}}
+        <div class="text-center description">
+          {{certificate_name}} hour award being verified. If you've been waiting for over a week, you can <a data-component="TasksTrigger" data-TasksTrigger="no-multi-click" href="/verify-hours-email-send/?award={{hours}}">re-send the verification {{inflect (length @root.data.tasksInfo) "message" "messages"}}</a>.
+        </div>
+      </div>
     </div>
-  </div>
-  {{else}}
+  {{/compare}}
+
+  {{!-- claimable --}}
+
+  {{#compare @root.data.awardsStatus.claimable "===" hours ~}}
+    <div class="columns working-towards">
+      <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
+        {{!-- It's ready to claim--}}
+        <h2 class="text-center">Next Award</h2>
+        <p class="text-center text-dark h5">
+          {{type_name}}: {{certificate_name}} hours
+        </p>
+        {{> badge type=type key=(slugify certificate_name) hours=hours disabled=true}}
+        <p class="text-center description">
+          {{certificate_name}} hour certificate available! Claiming this certificate will send {{inflect (length @root.data.tasksInfo) "an email" "emails"}} to the {{inflect (length @root.data.tasksInfo) "person" "people"}} managing your volunteering to verify the hours you've logged.
+        </p>
+        <p class="text-center">
+          <a href="/verify-hours-email-send/?award={{hours}}" class="btn btn-primary btn-success">Claim this certificate</a>
+        </p>
+      </div>
+    </div>
+  {{/compare}}
+
+  {{!-- working on --}}
+{{#compare @root.data.awardsStatus.working_towards "===" hours ~}}
   <div class="columns working-towards">
-    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
+    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
       {{!-- It's not there yet --}}
       <h2 class="text-center">Working towards</h2>
       <p class="text-center text-dark h5">
@@ -91,13 +89,8 @@
       </div>
     </div>
   </div>
-  {{/compare ~}}
-  {{/compare ~}}
-  {{/compare ~}}
-  {{/compare ~}}
-  {{/ifAny ~}}
-  {{/each ~}}
-</div>
+{{/compare}}
+  {{/each}}
 {{/unless ~}}
 
 <div class="modal" id="certificate-request">
