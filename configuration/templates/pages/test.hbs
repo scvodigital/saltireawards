@@ -2,16 +2,39 @@
   <div class="columns">
     <div class="column col-9 col-xl-12">
       <h2>
-        {{#withExtend this user_id='9qDL8hMHLEgoADBnY8O1l692eB62' user_id_na='horse'}}
-          >>>{{#ifAll (compare data.accountInfo.user_type 'Group Admin') (compare data.accountInfo.external_id data.auth.uid)}}true{{/ifAll}}<<<
 
-          >>>{{#ifAll (compare data.accountInfo.user_type 'dGroup Admin') (compare data.accountInfo.external_id data.auth.uid)}}true{{else}}false{{/ifAll}}<<<
 
-          >>>{{#ifAll (compare data.accountInfo.user_type 'Group Admin') (compare user_id_na data.auth.uid)}}false{{/ifAll}}<<<
+        {{
+        {{#json key="awards_status"}}
+          {{#each @root.context.metaData.certificates ~}}
+            {{#ifAny (compare type "approach") (compare type "ascent") ~}}
 
-          >>>{{#ifAll (compare data.accountInfo.user_type 'Group Admin') (compare data.accountInfo.external_id user_id_na)}}false{{/ifAll}}<<<
+              {{#ifAll (compare @root.accountInfo.verified_hours ">=" (stringify hours)) (compare @root.accountInfo.verified_hours "<" (stringify next_award_hours))}}{{{json name="current" value=hours}}}{{/ifAll}}
 
-        {{/withExtend}}
+              {{#compare @root.data.accountInfo.hours_verify_award "===" (stringify hours) ~}}{{{json name="being_verified" value=hours}}}
+              {{/compare}}
+
+              {{#ifAll
+                (compare @root.data.accountInfo.hours_verify_award "!==" (stringify hours))
+                (compare @root.accountInfo.verified_hours "<" (stringify hours))
+                (compare @root.accountInfo.total_hours ">=" (stringify hours))
+                (compare @root.accountInfo.total_hours "<" (stringify next_award_hours))
+              }}{{{json key="claimable" value=hours ~}}}
+              {{/ifAll}}
+
+              {{#ifAll
+                (compare @root.accountInfo.total_hours "<" (stringify hours))
+                (compare @root.accountInfo.total_hours ">=" (stringify last_award_hours))
+              }}{{{json key="working_towards" value=hours ~}}}
+              {{/ifAll}}
+
+            {{/ifAny}}
+          {{/each}}
+        {{/json}}
+
+
+
+
       </h2>
       {{join 'Zero Hunger' ';'}}
       {{!-- <div class="bg-warning x-padding"> --}}
