@@ -22,9 +22,25 @@
         <div class="column col-2 col-xl-5 col-sm-12 filter-age b-padding">
           <div class="form-group">
             <select class="form-select select-lg" id="age" name="age">
-              {{#each (split "12,13,14,15,16,17,18" ",")}}
-              <option value="{{this}}" {{#compare (default @root.request.params.query.age '18') this}}selected{{/compare}}>For age {{this}}+</option>
-              {{/each}}
+              {{#unless @root.data.auth ~}}
+              {{#each (split "12,13,14,15,16,17,18" ",") ~}}
+              <option value="{{this}}"{{#compare this '18'}} selected{{/compare}}>For age {{this}}+</option>
+              {{/each ~}}
+              {{else}}
+              {{#if @root.request.params.query.age ~}}
+              {{#each (split "12,13,14,15,16,17,18" ",") ~}}
+              <option value="{{this}}"{{#compare this @root.request.params.query.age}} selected{{/compare}}>For age {{this}}+</option>
+              {{/each ~}}
+              {{else}}
+              <option value="12"{{#ifAll (compare (dateMath 'now-12y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) (compare (dateMath 'now-13y') '<' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD'))}} selected{{/ifAll}}>For age 12+</option>
+              <option value="13"{{#ifAll (compare (dateMath 'now-13y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) (compare (dateMath 'now-14y') '<' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD'))}} selected{{/ifAll}}>For age 13+</option>
+              <option value="14"{{#ifAll (compare (dateMath 'now-14y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) (compare (dateMath 'now-15y') '<' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD'))}} selected{{/ifAll}}>For age 14+</option>
+              <option value="15"{{#ifAll (compare (dateMath 'now-15y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) (compare (dateMath 'now-16y') '<' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD'))}} selected{{/ifAll}}>For age 15+</option>
+              <option value="16"{{#ifAll (compare (dateMath 'now-16y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) (compare (dateMath 'now-17y') '<' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD'))}} selected{{/ifAll}}>For age 16+</option>
+              <option value="17"{{#ifAll (compare (dateMath 'now-17y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) (compare (dateMath 'now-18y') '<' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD'))}} selected{{/ifAll}}>For age 17+</option>
+              <option value="18"{{#compare (dateMath 'now-18y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')}} selected{{/compare}}>For age 18+</option>
+              {{/if ~}}
+              {{/unless ~}}
             </select>
           </div>
         </div>
