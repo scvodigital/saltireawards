@@ -8,7 +8,7 @@ return  {
           config: {
             owner: {
               type: "HTMLElement",
-              selector: ">"
+              selector: "form"
             },
             functionName: "checkValidity"
           }
