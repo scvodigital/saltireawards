@@ -900,6 +900,10 @@ ul.fa-ul {
     color: white;
   }
 }
+.btn.btn-error {
+  border-color: $error-color !important;
+  color: white !important;
+}
 
 .table th,
 .table td {

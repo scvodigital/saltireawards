@@ -11,91 +11,91 @@
     Verification of hours volunteered by {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}}{{#if @root.data.accountInfo.school_college_name}} from {{@root.data.accountInfo.school_college_name}}{{/if}}.<br />
     You may use this page to verify hours or make alterations if necessary.
   </p>
-  {{#each (filter @root.data.tasksInfoUnverified "task_id" "valueIn" (split @root.request.params.query.t ",")) ~}}
-    {{#compare unverified_hours_list.length ">=" 1 ~}}
-    <div class="task-element">
-      <div class="empty-action">
-        <div class="columns">
-          <div class="column col-2 text-left">
-            <strong>Organisation</strong>
+  <div class="task-element">
+    {{#each (filter @root.data.tasksInfoUnverified "task_id" "valueIn" (split @root.request.params.query.t ",")) ~}}
+      {{#compare unverified_hours_list.length ">=" 1 ~}}
+        <div class="empty-action">
+          <div class="columns">
+            <div class="column col-2 text-left">
+              <strong>Organisation</strong>
+            </div>
+            <div class="column col-2 text-left">
+              <strong>Volunteer manager</strong>
+            </div>
+            {{#if task_description ~}}
+            <div class="column col-xs-auto text-left">
+              <strong>Volunteering description</strong>
+            </div>
+            {{/if ~}}
           </div>
-          <div class="column col-2 text-left">
-            <strong>Volunteer manager</strong>
+          <div class="columns b-margin">
+            <div class="column col-2 text-left">
+              {{{organisation_name}}}
+            </div>
+            <div class="column col-2 text-left">
+              {{volunter_manager_first_name}} {{volunteer_manager_last_name}} ({{volunteer_manager_title}})
+            </div>
+            {{#if task_description ~}}
+            <div class="column col-xs-auto text-left">
+              {{{task_description}}}
+            </div>
+            {{/if ~}}
           </div>
-          {{#if task_description ~}}
-          <div class="column col-xs-auto text-left">
-            <strong>Volunteering description</strong>
+          <div class="columns">
+            <div class="column col-1 text-left">
+              <strong>Hours</strong>
+            </div>
+            <div class="column col-1"></div>
+            <div class="column col-2 text-left">
+              <strong>Logged on</strong>
+            </div>
+            <div class="column col-xs-auto text-left">
+              <strong>Reason for change of hours logged</strong>
+            </div>
+            <div class="column col-{{#if claim_code}}4{{else}}2{{/if}} text-left">
+            </div>
           </div>
-          {{/if ~}}
-        </div>
-        <div class="columns b-margin">
-          <div class="column col-2 text-left">
-            {{{organisation_name}}}
-          </div>
-          <div class="column col-2 text-left">
-            {{volunter_manager_first_name}} {{volunteer_manager_last_name}} ({{volunteer_manager_title}})
-          </div>
-          {{#if task_description ~}}
-          <div class="column col-xs-auto text-left">
-            {{{task_description}}}
-          </div>
-          {{/if ~}}
-        </div>
-        <div class="columns">
-          <div class="column col-1 text-left">
-            <strong>Hours</strong>
-          </div>
-          <div class="column col-1"></div>
-          <div class="column col-2 text-left">
-            <strong>Logged on</strong>
-          </div>
-          <div class="column col-xs-auto text-left">
-            <strong>Reason for change of hours logged</strong>
-          </div>
-          <div class="column col-{{#if claim_code}}4{{else}}2{{/if}} text-left">
-          </div>
-        </div>
-        {{#each this.hours_list ~}}
-          {{#unless verified ~}}
-            <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="inline-hours-form" data-component="TasksTrigger" data-success-hide="true" data-next-task="empty-collapse" data-TasksTrigger="ajax-form-handler">
-              <input type="hidden" name="task_id" value="{{task_id}}">
-              <input type="hidden" name="verified" value="true">
-              <input type="hidden" name="claim_code" value="{{claim_code}}">
-              <input type="hidden" name="hours_id" value="{{hours_id}}">
-              <input type="hidden" name="user_id" value="{{@root.request.params.query.user_id}}">
-              <div class="columns">
-                <div class="column col-1 text-left">
-                  <div class="form-group b-margin">
-                    <input class="form-input inline-edit" name="hours" min="0.1" value="{{hours}}">
+          {{#each this.hours_list ~}}
+            {{#unless verified ~}}
+              <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="inline-hours-form" data-component="TasksTrigger" data-success-hide="true" data-next-task="empty-collapse" data-TasksTrigger="ajax-form-handler">
+                <input type="hidden" name="task_id" value="{{task_id}}">
+                <input type="hidden" name="verified" value="true">
+                <input type="hidden" name="claim_code" value="{{claim_code}}">
+                <input type="hidden" name="hours_id" value="{{hours_id}}">
+                <input type="hidden" name="user_id" value="{{@root.request.params.query.user_id}}">
+                <div class="columns">
+                  <div class="column col-1 text-left">
+                    <div class="form-group b-margin">
+                      <input class="form-input inline-edit" name="hours" min="0.1" value="{{hours}}">
+                    </div>
                   </div>
-                </div>
-                <div class="column col-1"></div>
-                <div class="column col-2 text-left">
-                  {{momentFormat (moment createdDate "YYYY-MM-DD") "Do MMMM YYYY"}}
-                </div>
-                <div class="column col-xs-auto text-left">
-                  <div class="form-group b-margin">
-                    <input class="form-input inline-edit" name="notes" value="{{notes}}">
-                  </div>
-                </div>
-                <div class="column col-1 text-left">
-                  <button type="submit" class="btn btn-block btn-success inline-update-button">Verify</button>
-                </div>
-                <div class="column col-1 text-left">
-                  <a href="/admin-delete-hours?hours_id={{hours_id}}&c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="btn btn-block inline-delete-button" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler" data-next-task="empty-collapse">Remove</a>
-                </div>
-                {{#if claim_code ~}}
+                  <div class="column col-1"></div>
                   <div class="column col-2 text-left">
-                    <code class="claim-code">{{substr claim_code 0 10}}</code>
+                    {{momentFormat (moment createdDate "YYYY-MM-DD") "Do MMMM YYYY"}}
                   </div>
-                {{/if ~}}
-              </div>
-            </form>
-          {{/unless ~}}
-        {{/each ~}}
-      </div>
-    {{/compare ~}}
-  {{/each ~}}
+                  <div class="column col-xs-auto text-left">
+                    <div class="form-group b-margin">
+                      <input class="form-input inline-edit" name="notes" value="{{notes}}">
+                    </div>
+                  </div>
+                  <div class="column col-1 text-left">
+                    <button type="submit" class="btn btn-block btn-success inline-update-button">Verify</button>
+                  </div>
+                  <div class="column col-1 text-left">
+                    <a href="/admin-delete-hours?hours_id={{hours_id}}&c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="btn btn-block btn-error inline-delete-button" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler" data-next-task="empty-collapse">Remove</a>
+                  </div>
+                  {{#if claim_code ~}}
+                    <div class="column col-2 text-left">
+                      <code class="claim-code">{{substr claim_code 0 10}}</code>
+                    </div>
+                  {{/if ~}}
+                </div>
+              </form>
+            {{/unless ~}}
+          {{/each ~}}
+      {{/compare ~}}
+    {{/each ~}}
+  </div>
   {{> verify_testimonials task_ids=@root.request.params.query.t type='query'}}
 </div>
 
