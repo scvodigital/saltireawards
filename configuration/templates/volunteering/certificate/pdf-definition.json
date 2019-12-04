@@ -7,74 +7,6 @@
   "pageSize": "A4",
   "pageMargins": [70, 60, 70, 50],
   "styles": {
-    "title": {
-      "fontSize": 20,
-      "bold": true,
-      "font": "Sonder-Sans3"
-    },
-    "subtitle": {
-      "fontSize": 16,
-      "font": "Sonder-Sans3"
-    },
-    "h1": {
-      "fontSize": 20,
-      "bold": true,
-      "margin": [0, 10, 0, 5],
-      "font": "Sonder-Sans3"
-    },
-    "h2": {
-      "fontSize": 18,
-      "bold": true,
-      "margin": [0, 10, 0, 5],
-      "font": "Sonder-Sans3"
-    },
-    "h3": {
-      "fontSize": 16,
-      "bold": true,
-      "margin": [0, 10, 0, 5],
-      "font": "Sonder-Sans3"
-    },
-    "h4": {
-      "fontSize": 14,
-      "bold": true,
-      "margin": [0, 10, 0, 5],
-      "font": "Sonder-Sans3"
-    },
-    "h5": {
-      "fontSize": 13,
-      "bold": true,
-      "margin": [0, 10, 0, 5],
-      "font": "Sonder-Sans3"
-    }
-  },
-  "defaultStyle": {
-    "font": "Montserrat"
-  },
-  "background": [
-    {
-      "svg": "{{> certificate_images_svg_background}}"
-    },
-    {
-      "text": "www.saltireawards.scot",
-      "link": "https://saltireawards.scot",
-      "fontSize": 14,
-      "bold": true,
-      "color": "#ffffff",
-      "alignment": "left",
-      "margin": [0, 0, 0, 0],
-      "font": "Montserrat",
-      "absolutePosition": {
-        "x": 392,
-        "y": 808
-      }
-    }
-  ],
-  "content": [
-    {{#each @root.data.pdfObjects ~}}
-    {{> certificate_content award=user.certificate_type last=@last}}{{#unless @last}},{{/unless}}
-    {{/each ~}}
-  ],
-  "styles": {
     "bold": {
       "bold": true
     },
@@ -114,5 +46,32 @@
       "fontSize": 10,
       "alignment": "left"
     }
-  }
+  },
+  "defaultStyle": {
+    "font": "Montserrat"
+  },
+  "background": [
+    {
+      "svg": "{{> certificate_images_svg_background}}"
+    },
+    {
+      "text": "www.saltireawards.scot",
+      "link": "https://saltireawards.scot",
+      "fontSize": 14,
+      "bold": true,
+      "color": "#ffffff",
+      "alignment": "left",
+      "margin": [0, 0, 0, 0],
+      "font": "Montserrat",
+      "absolutePosition": {
+        "x": 392,
+        "y": 808
+      }
+    }
+  ],
+  "content": [
+    {{#each @root.data.pdfObjects ~}}
+    {{> certificate_content award=user.certificate_type last=@last}}{{#unless @last}},{{/unless}}
+    {{/each ~}}
+  ]
 }

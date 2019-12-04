@@ -50,12 +50,12 @@
       },
       {
         {{#compare award "summit" ~}}
-        "text": {{>pdf_metadata_value key="title" default="CONTRIBUTION"}},
+        "text": {{>pdf_metadata_value key="title" default="contribution"}},
         {{else}}
-        "text": {{>pdf_metadata_value key="title" default="VOLUNTEERING"}},
+        "text": {{>pdf_metadata_value key="title" default="volunteering"}},
         {{/compare ~}}
         "color": "{{@root.context.metaData.theme.secondary}}",
-        "margin": [0, 0, 0, 5],
+        "margin": [0, -10, 0, 5],
         "style": ["award", "bold"]
       },
       {
@@ -213,9 +213,16 @@
   "margin": [0, 15, 0, 0],
   "style": "volunteering_organisation"
 },
-{{#if task_description ~}}
+{{!-- {{#if task_description ~}}
 {
   "text": "{{{task_description}}}",
+  "margin": [0, 5, 0, 0],
+  "style": "volunteering_detail"
+},
+{{/if ~}} --}}
+{{#if testimonial ~}}
+{
+  "text": "\"{{{truncate testimonial 500}}}\"",
   "margin": [0, 5, 0, 0],
   "style": "volunteering_detail"
 },
@@ -224,9 +231,9 @@
 {{/each ~}}
 {{#if sdgs ~}}
 {
-  "text": "Contributing towards {{inflect (length (split sdgs ";")) "SDG" "SDGs"}}:",
+  "text": "Contributing towards {{inflect (length (split sdgs ";")) "Goal" "Goals"}}:",
   "color": "{{> sdg_color sdg=un_sustainable_development_goals}}",
-  "margin": [0, 5, 0, 0],
+  "margin": [0, 10, 0, 0],
   "style": ["volunteering_detail", "bold"]
 },
 {{#each (unique (split sdgs ";")) ~}}
@@ -234,6 +241,7 @@
 {
   "text": "{{> sdg_number sdg=this}}: {{this}}",
   "color": "{{> sdg_color sdg=this}}",
+  "link": "https://globalgoals.org/{{> sdg_number sdg=this}}-{{slugify this}}",
   "margin": [0, 2, 0, 0],
   "style": ["volunteering_detail", "bold"]
 },
