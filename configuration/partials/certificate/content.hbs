@@ -208,11 +208,6 @@
 },
 {{#each tasks ~}}
 {{#ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1)) (ifAll (compare hours_verified "!==" 0) (compare hours_verified "!==" 1)) ~}}
-{
-  "text": "For: {{{organisation_name}}}",
-  "margin": [0, 15, 0, 0],
-  "style": "volunteering_organisation"
-},
 {{!-- {{#if task_description ~}}
 {
   "text": "{{{task_description}}}",
@@ -223,6 +218,22 @@
 {{#if testimonial ~}}
 {
   "text": "\"{{{truncate testimonial 500}}}\"",
+  "margin": [0, 15, 0, 0],
+  "style": "volunteering_title"
+},
+{
+  "text": "{{{volunteer_manager_first_name}}} {{{volunteer_manager_last_name}}}, {{{volunteer_manager_title}}} at {{{organisation_name}}}",
+  "margin": [0, 5, 0, 0],
+  "style": "volunteering_detail"
+},
+{{else}}
+{
+  "text": "{{{truncate task_description 500}}}",
+  "margin": [0, 15, 0, 0],
+  "style": "volunteering_title"
+},
+{
+  "text": "Volunteering with {{{organisation_name}}}",
   "margin": [0, 5, 0, 0],
   "style": "volunteering_detail"
 },
