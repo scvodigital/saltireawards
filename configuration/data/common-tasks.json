@@ -141,7 +141,7 @@
 			"connection": "scvoAlexSandbox",
 			"output": "data",
 			"method": "GET",
-			"apexClassPath": "/SaltireTask/?user_id={{@root.request.params.query.user_id }}&verified=false"
+			"apexClassPath": "/SaltireTask/?user_id={{@root.request.params.query.user_id}}&verified=false"
 		}
 	},
 	"getTasksInfoExternal": {
@@ -152,7 +152,7 @@
 			"connection": "scvoAlexSandbox",
 			"output": "data",
 			"method": "GET",
-			"apexClassPath": "/SaltireTask/?user_id={{@root.request.params.query.user_id }}"
+			"apexClassPath": "/SaltireTask/?user_id={{@root.request.params.query.user_id}}"
 		}
 	},
 	"hoursCodeVerify": {

@@ -16,7 +16,7 @@
 
   {{#compare @root.data.awardsStatus.current "===" hours ~}}
       <div class="columns">
-        <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
+        <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
           <h2 class="text-center">
             {{#if in_progress}}Current{{else}}My{{/if}} Award
           </h2>
@@ -69,7 +69,7 @@
           {{certificate_name}} hour certificate available! Claiming this certificate will send {{inflect (length @root.data.tasksInfo) "an email" "emails"}} to the {{inflect (length @root.data.tasksInfo) "person" "people"}} managing your volunteering to verify the hours you've logged.
         </p>
         <p class="text-center">
-          <a href="/verify-hours-email-send/?award={{hours}}" class="btn btn-primary btn-success">Claim this certificate</a>
+          <a href="/verify-hours-email-send/?award={{hours}}" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary btn-success">Claim this certificate</a>
         </p>
       </div>
     </div>
@@ -78,7 +78,7 @@
   {{!-- working on --}}
 {{#compare @root.data.awardsStatus.working_towards "===" hours ~}}
   <div class="columns working-towards">
-    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto t-margin-full">
+    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
       {{!-- It's not there yet --}}
       <h2 class="text-center">Working towards</h2>
       <div class="text-center h5 b-margin">

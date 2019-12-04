@@ -6,6 +6,7 @@
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.getAccountInfoExternal",
+    "context.metaData.commonTasks.getTasksInfoExternal",
     {
       "name": "codeVerified",
       "taskModule": "render",
@@ -69,8 +70,7 @@
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
               "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.volunteering_verify-hours-pass",
-              "foot": ""
+              "body": ">context.metaData.handlebars.templates.volunteering_verify-hours-pass"
             },
             "contentType": "text/html"
           }

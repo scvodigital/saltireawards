@@ -10,6 +10,7 @@
     "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.getAccountInfoExternal",
     "context.metaData.commonTasks.getTasksInfoUnverifiedExternal",
+    "context.metaData.commonTasks.getTasksInfoExternal",
     "context.metaData.commonTasks.hoursCodeVerify",
     "context.metaData.commonTasks.handleHoursVerifyFail",
     {
@@ -28,7 +29,6 @@
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
               "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
               "body": ">context.metaData.handlebars.templates.volunteering_query-hours"
             },
             "contentType": "text/html"

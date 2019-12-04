@@ -2,11 +2,14 @@
   <div class="empty-icon text-error">
     <span class="fal fa-user-times fa-3x"></span>
   </div>
-  <p class="empty-title h5">Volunteering verification</p>
+  <p class="empty-title h4">Volunteering verification</p>
   <p class="empty-subtitle">
-    <strong>Volunteering hours could not be verified.</strong> This may be because the request email was re-sent.
+    <strong>Verification of hours volunteered by {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}} could not be recorded.</strong>
   </p>
   <p class="empty-subtitle">
-    Please <a href="/contact">contact us</a> if you think this is incorrect.
+    This may be because the verification request email was re-sent, please check in case you have received a more recent email.
+  </p>
+  <p class="empty-subtitle">
+    If the latest email for this volunteer also failed to verify or you did not receive any further emails, please <a href="/contact">contact us</a>.
   </p>
 </div>

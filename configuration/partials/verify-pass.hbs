@@ -1,0 +1,9 @@
+<div class="empty-icon text-success">
+  <span class="fal fa-user-check fa-3x"></span>
+</div>
+<p class="empty-title h4">Volunteering verification</p>
+<p class="empty-subtitle">
+  Verification of hours volunteered by {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}} has been recorded.<br />
+  You may now close this page or write a testimonial.
+</p>
+{{> verify_testimonials task_ids=task_ids type=type}}

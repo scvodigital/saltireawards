@@ -1,0 +1,25 @@
+<div class="empty-action t-margin-full">
+  <div class="h5 b-margin">
+    {{inflect (length (split task_ids ",")) "Testimonial" "Testimonials"}} (optional)
+  </div>
+  {{#each (filter @root.data.tasksInfo "task_id" "valueIn" (split task_ids ",")) ~}}
+  <form action="/update-task-testimonial/{{task_id}}?c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-hide="true" data-TasksTrigger="ajax-form-handler">
+    <div class="columns">
+      <div class="column col-6 col-lg-8 col-md-9 col-sm-12 col-mx-auto">
+        <div class="b-margin">
+          Write about what {{@root.data.accountInfo.first_name}} has achieved with
+          {{{organisation_name}}}
+          <br />
+          <span class="caption">Note: This may be shown on their certificate</span>
+        </div>
+          <div class="form-group">
+          <textarea rows="3" placeholder="" cols="40" width="100%" id="testimonial" name="testimonial" class="inline-form-input inline-edit" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.testimonial}}>{{{testimonial}}}</textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success inline-update-button b-margin">Add testimonial</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  {{/each ~}}
+</div>
