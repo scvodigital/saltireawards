@@ -2,81 +2,75 @@
 {{#unless @root.data.isAdmin ~}}
 <div class="container awards">
   {{!-- <ul class="step">
-    {{#each @root.context.metaData.certificates ~}}
-    {{#ifAny (compare type "approach") (compare type "ascent") ~}}
-    <li class="step-item{{#compare @root.data.accountInfo.hours_verify_award hours}} active{{/compare}}">
-      <a href="#" class="tooltip" data-tooltip="{{certificate_name}} hours">{{hours}}</a>
-    </li>
-    {{/ifAny ~}}
-    {{/each ~}}
+  {{#each @root.context.metaData.certificates ~}}
+  {{#ifAny (compare type "approach") (compare type "ascent") ~}}
+  <li class="step-item{{#compare @root.data.accountInfo.hours_verify_award hours}} active{{/compare}}">
+  <a href="#" class="tooltip" data-tooltip="{{certificate_name}} hours">{{hours}}</a>
+  </li>
+  {{/ifAny ~}}
+  {{/each ~}}
   </ul> --}}
 
+  {{#each @root.context.metaData.certificates ~}}
+
   {{!-- It's already awarded --}}
-  {{#each @root.context.metaData.certificates}}
-
-  {{#compare @root.data.awardsStatus.current "===" hours ~}}
-      <div class="columns">
-        <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
-          <h2 class="text-center">
-            {{#if in_progress}}Current{{else}}My{{/if}} Award
-          </h2>
-          <div class="text-center h5 b-margin">
-            {{type_name}}: {{certificate_name}} hours
-          </div>
-          {{> badge type=type key=(slugify certificate_name) hours=hours}}
-          <div class="text-center description">
-            {{!-- <p>
-              {{certificate_name}} hour certificate awarded!
-            </p> --}}
-            <a href="/certificate" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary b-margin">Download</a>
-            <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" class="btn b-margin">Print request</a>
-
-          </div>
-        </div>
+  {{#compare @root.data.awardsStatus.current hours ~}}
+  <div class="columns">
+    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
+      <h2 class="text-center">
+        {{#if in_progress}}Current{{else}}My{{/if}} Award
+      </h2>
+      <div class="text-center h5 b-margin">
+        {{type_name}}: {{certificate_name}} hours
       </div>
-  {{/compare}}
-
+      {{> badge type=type key=(slugify certificate_name) hours=hours}}
+      <div class="text-center description">
+        <a href="/certificate" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary b-margin">Download</a>
+        <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" class="btn b-margin">Print request</a>
+      </div>
+    </div>
+  </div>
+  {{/compare ~}}
 
   {{!-- being verified --}}
-  {{#compare @root.data.awardsStatus.being_verified "===" hours ~}}
-    <div class="columns">
-      <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
-        {{!-- It's being verified --}}
-        <h2 class="text-center">Next Award</h2>
-        <div class="text-center h5 b-margin">
-          {{type_name}}: {{certificate_name}} hours
-        </div>
-        {{> badge type=type key=(slugify certificate_name) hours=hours disabled=true}}
-        <div class="text-center description">
-          {{certificate_name}} hour award being verified. If you've been waiting for over a week, you can <a data-component="TasksTrigger" data-TasksTrigger="no-multi-click" href="/verify-hours-email-send/?award={{hours}}">re-send the verification {{inflect (length @root.data.tasksInfo) "message" "messages"}}</a>.
-        </div>
+  {{#compare @root.data.awardsStatus.being_verified hours ~}}
+  <div class="columns">
+    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
+      {{!-- It's being verified --}}
+      <h2 class="text-center">Next Award</h2>
+      <div class="text-center h5 b-margin">
+        {{type_name}}: {{certificate_name}} hours
+      </div>
+      {{> badge type=type key=(slugify certificate_name) hours=hours disabled=true}}
+      <div class="text-center description">
+        {{certificate_name}} hour award being verified. If you've been waiting for over a week, you can <a data-component="TasksTrigger" data-TasksTrigger="no-multi-click" href="/verify-hours-email-send/?award={{hours}}">re-send the verification {{inflect (length @root.data.tasksInfo) "message" "messages"}}</a>.
       </div>
     </div>
-  {{/compare}}
+  </div>
+  {{/compare ~}}
 
   {{!-- claimable --}}
-
-  {{#compare @root.data.awardsStatus.claimable "===" hours ~}}
-    <div class="columns working-towards">
-      <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
-        {{!-- It's ready to claim--}}
-        <h2 class="text-center">Next Award</h2>
-        <div class="text-center h5 b-margin">
-          {{type_name}}: {{certificate_name}} hours
-        </div>
-        {{> badge type=type key=(slugify certificate_name) hours=hours disabled=true}}
-        <p class="text-center description">
-          {{certificate_name}} hour certificate available! Claiming this certificate will send {{inflect (length @root.data.tasksInfo) "an email" "emails"}} to the {{inflect (length @root.data.tasksInfo) "person" "people"}} managing your volunteering to verify the hours you've logged.
-        </p>
-        <p class="text-center">
-          <a href="/verify-hours-email-send/?award={{hours}}" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary btn-success">Claim this certificate</a>
-        </p>
+  {{#compare @root.data.awardsStatus.claimable hours ~}}
+  <div class="columns working-towards">
+    <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
+      {{!-- It's ready to claim--}}
+      <h2 class="text-center">Next Award</h2>
+      <div class="text-center h5 b-margin">
+        {{type_name}}: {{certificate_name}} hours
       </div>
+      {{> badge type=type key=(slugify certificate_name) hours=hours disabled=true}}
+      <p class="text-center description">
+        {{certificate_name}} hour certificate available! Claiming this certificate will send {{inflect (length @root.data.tasksInfo) "an email" "emails"}} to the {{inflect (length @root.data.tasksInfo) "person" "people"}} managing your volunteering to verify the hours you've logged.
+      </p>
+      <p class="text-center">
+        <a href="/verify-hours-email-send/?award={{hours}}" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary btn-success">Claim this certificate</a>
+      </p>
     </div>
-  {{/compare}}
+  </div>
+  {{/compare ~}}
 
   {{!-- working on --}}
-{{#compare @root.data.awardsStatus.working_towards "===" hours ~}}
+  {{#compare @root.data.awardsStatus.working_towards hours ~}}
   <div class="columns working-towards">
     <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
       {{!-- It's not there yet --}}
@@ -93,8 +87,9 @@
       </div>
     </div>
   </div>
-{{/compare}}
-  {{/each}}
+  {{/compare ~}}
+  {{/each ~}}
+</div>
 {{/unless ~}}
 
 <div class="modal" id="certificate-request">
@@ -115,33 +110,32 @@
 </div>
 
 <script data-component-config="show-certificate-request" type="javascript/blocked">
-  {
-    click: {
-      tasks: [
-        {
-          type: "elementManipulator",
-          config: {
-            "#certificate-request": { addClass: "active" }
-          }
+{
+  click: {
+    tasks: [
+      {
+        type: "elementManipulator",
+        config: {
+          "#certificate-request": { addClass: "active" }
         }
-      ]
-    }
+      }
+    ]
   }
+}
 </script>
 
 <script data-component-config="hide-modal" type="javascript/blocked">
-  {
-    click: {
-      tasks: [
-        {
-          type: "elementManipulator",
-          config: {
-            "<.modal": { removeClass: "active" },
-            "<.modal | >.alert": { addClass: "hidden" }
-          }
+{
+  click: {
+    tasks: [
+      {
+        type: "elementManipulator",
+        config: {
+          "<.modal": { removeClass: "active" },
+          "<.modal | >.alert": { addClass: "hidden" }
         }
-      ]
-    }
+      }
+    ]
   }
+}
 </script>
-
