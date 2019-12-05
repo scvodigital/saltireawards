@@ -24,7 +24,7 @@
       "noreply": "noreply@saltireawards.scot",
       "technical": "webhelpdesk@scvo.org.uk"
     },
-    "emailSendSettings": "{:./data/email-send-settings.json}",
+    "emailSendSettings": "{:./data/email-settings.json}",
     "theme": {
       "primary": "#009DDA",
       "secondary": "#253887",
@@ -36,13 +36,13 @@
       "copyright": "#FEF9F9"
     },
     "elasticsearchUrl": "{$./data/elasticsearch-url.txt}",
-    "menus": "{:./data/menus.json}",
-    "certificates": "{:./data/certificates.json}",
-    "tsiList": "{:./data/tsi-list.json}",
-    "taskInfoValidation": "{:./data/task-info-validation.json}",
-    "accountInfoValidation": "{:./data/account-info-validation.json}",
-    "globalGoals": "{:./data/global-goals.json}",
-    "volunteeringTerms": "{:./data/volunteering-terms.json}",
+    "menus": "{:./data/menu-layout.json}",
+    "certificates": "{:./data/info-certificates.json}",
+    "tsiList": "{:./data/info-volunteering-organisations.json}",
+    "taskInfoValidation": "{:./data/validation-tasks.json}",
+    "accountInfoValidation": "{:./data/validation-account.json}",
+    "globalGoals": "{:./data/info-global-goals.json}",
+    "volunteeringTerms": "{:./data/info-volunteering-terms.json}",
     "handlebars": {
       "partials": {
         "{$./partials/**/*.*}": "includeRelativePath=false&regexExpression=(-)&regexOptions=gi&regexReplace=_"
