@@ -254,9 +254,11 @@
                     {{/ifAny ~}}
                   </option>
                   {{else}}
-                  <option value="{{hours}}"{{#unless @root.data.accountInfo.summit_certificate_permission}} disabled{{/unless}}>
+                  {{#if @root.data.accountInfo.summit_certificate_permission ~}}
+                  <option value="{{hours}}">
                     {{type_name}}
                   </option>
+                  {{/if ~}}
                   {{/unless ~}}
                   {{/each ~}}
                 </select>
