@@ -31,9 +31,9 @@
       "alignment": "center"
     },
     "volunteer_name": {
-      "font": "Sonder-Sans3",
-      "color": "#008EDF",
-      "fontSize": 40,
+      "font": "Montserrat",
+      "color": "{{@root.context.metaData.theme.primary}}",
+      "fontSize": 30,
       "alignment": "center"
     },
     "volunteering_title": {
