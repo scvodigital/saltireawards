@@ -1,5 +1,5 @@
 {
-  "image": "{{> certificate_images_png_saltire}}",
+  "image": "{{> certificate_images_png_saltire_awards}}",
   "width": 160,
   "alignment": "center",
   "margin": [0, 0, 0, 5]
@@ -202,7 +202,7 @@
   "margin": [0, 0, 0, 0]
 },
 {
-  "text": "{{user.first_name}} {{user.last_name}}",
+  "text": {{>pdf_metadata_value key="title" default=(concat user.first_name " " user.last_name)}},
   "margin": [0, 20, 0, 0],
   "style": ["volunteer_name", "bold"]
 },
@@ -217,23 +217,23 @@
 {{/if ~}} --}}
 {{#if testimonial ~}}
 {
-  "text": "\"{{{truncate testimonial 500}}}\"",
+  "text": {{>pdf_metadata_value key="title" default=(concat "\"" (truncate (replace testimonial "\n" " ") 98) "\"")}},
   "margin": [0, 15, 0, 0],
   "style": "volunteering_title"
 },
 {
-  "text": "{{{volunteer_manager_first_name}}} {{{volunteer_manager_last_name}}}, {{{volunteer_manager_title}}} at {{{organisation_name}}}",
+  "text": {{>pdf_metadata_value key="title" default=(concat volunteer_manager_first_name " " volunteer_manager_last_name ", " volunteer_manager_title " at " organisation_name)}},
   "margin": [0, 5, 0, 0],
   "style": "volunteering_detail"
 },
 {{else}}
 {
-  "text": "{{{truncate task_description 500}}}",
+  "text": {{>pdf_metadata_value key="title" default=(truncate (replace task_description "\n" " ") 98)}},
   "margin": [0, 15, 0, 0],
   "style": "volunteering_title"
 },
 {
-  "text": "Volunteering with {{{organisation_name}}}",
+  "text": {{>pdf_metadata_value key="title" default=(concat "Volunteering with " organisation_name)}},
   "margin": [0, 5, 0, 0],
   "style": "volunteering_detail"
 },
@@ -242,7 +242,7 @@
 {{/each ~}}
 {{#if sdgs ~}}
 {
-  "text": "Contributing towards {{inflect (length (split sdgs ";")) "Goal" "Goals"}}:",
+  "text": {{>pdf_metadata_value key="title" default=(concat "Contributing towards " (inflect (length (split sdgs ';')) 'Goal' 'Goals'))}},
   "color": "{{> sdg_color sdg=un_sustainable_development_goals}}",
   "margin": [0, 10, 0, 0],
   "style": ["volunteering_detail", "bold"]
@@ -269,7 +269,7 @@
   }
 },
 {
-  "text": "John Swinney",
+  "text": {{>pdf_metadata_value key="title" default=@root.context.metaData.certificateSignatureName}},
   "style": ["volunteering_detail", "bold"],
   "absolutePosition": {
     "x": 70,
@@ -277,7 +277,7 @@
   }
 },
 {
-  "text": "Minister of the Scottish Government",
+  "text": {{>pdf_metadata_value key="title" default=@root.context.metaData.certificateSignatureTitle}},
   "style": ["volunteering_detail", "bold"],
   "absolutePosition": {
     "x": 70,
@@ -307,7 +307,7 @@
   }
 },
 {
-  "text": "{{substr user.claim_code 0 10}}",
+  "text": {{>pdf_metadata_value key="title" default=(substr user.claim_code 0 10)}},
   "color": "#333E48",
   "margin": [0, 0, 0, 0],
   "style": ["volunteering_organisation", "bold"],
