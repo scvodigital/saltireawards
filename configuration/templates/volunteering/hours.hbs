@@ -111,10 +111,10 @@
                 <a href="/task-edit/{{task_id}}">{{volunteer_manager_first_name}} {{volunteer_manager_last_name}}</a>
               </li>
               {{else}}
-                <li class="card-subtitle">
-                  <span class="fa-li"><span class="far fa-trophy"></span></span>
-                  <span class="text-gray">Claimed task</span>
-                </li>
+              <li class="card-subtitle">
+                <span class="fa-li"><span class="far fa-trophy"></span></span>
+                <span class="text-gray">Claimed task</span>
+              </li>
               {{/unless}}
             </ul>
           </div>
@@ -134,7 +134,7 @@
                 </strong>
               </label>
 
-          <div class="input-group b-margin">
+              <div class="input-group b-margin">
 
                 <textarea class="form-input" id="notes-{{task_id}}" placeholder="Notes (optional)" rows="3"></textarea>
                 {{!-- <input class="form-input input-lg" id="notes-{{task_id}}" name="notes" type="text" placeholder="" /> --}}
@@ -143,7 +143,7 @@
                 <input class="form-input input-lg" id="hours-{{task_id}}" name="hours" type="number" step="0.5" min="0.5" value="" placeholder="0" required >
                 <button type="submit" class="btn btn-primary btn-lg input-group-btn">Add hours</button>
               </div>
-      {{/unless }}
+              {{/unless }}
             </form>
           </div>
 
@@ -244,7 +244,6 @@
             <div class="column col-2 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-7">
               <div class="form-group b-margin">
                 <select class="form-select hours"{{#unless claim_code}} disabled{{/unless}} required name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
-                <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>
                   {{#each @root.context.metaData.certificates ~}}
                   {{#unless tsi_only ~}}
                   <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>
@@ -255,9 +254,11 @@
                     {{/ifAny ~}}
                   </option>
                   {{else}}
-                  <option value="{{hours}}"{{#unless @root.data.accountInfo.summit_certificate_permission}} disabled{{/unless}}>
+                  {{#if @root.data.accountInfo.summit_certificate_permission ~}}
+                  <option value="{{hours}}">
                     {{type_name}}
                   </option>
+                  {{/if ~}}
                   {{/unless ~}}
                   {{/each ~}}
                 </select>
@@ -284,101 +285,107 @@
         {{/ifAny ~}}
         {{/each ~}}
 
-          <form action="/update-task-testimonial/{{task_id}}?user_id={{@root.data.auth.uid}}" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Testimonial updated" data-TasksTrigger="ajax-form-handler">
+        <form action="/update-task-testimonial/{{task_id}}?user_id={{@root.data.auth.uid}}" class="form-horizontal inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Testimonial updated" data-TasksTrigger="ajax-form-handler">
           <div class="form-group">
-            <label for="testimonial" class="form-label">
-              Testimonial:
-            </label>
-            <div class="columns">
-            <div class="col-8">
-              <textarea rows="3"  placeholder="Let people know what your volunteers have achieved" cols="40" id="testimonial" name="testimonial" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.testimonial}}>{{testimonial}}</textarea>
-            </div>
-              <div class="col-1"></div>
-            <div class="col-3">
-              <button type="submit" class="btn btn-success btn-block inline-update-button b-margin" style="display: none">Save</button>
-            </div>
-            </div>
-
-          </div>
-        </form>
-
-          <form action="/do-not-act/{{task_id}}?user_id={{@root.data.auth.uid}}" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Testimonial updated" data-TasksTrigger="ajax-form-handler">
-            <div class="form-group">
+            <div class="col-4">
               <label for="testimonial" class="form-label">
-                Skills used:
+                Group testimonial
               </label>
+            </div>
+            <div class="column col-7">
               <div class="columns">
                 <div class="col-8">
-                  <textarea rows="3"  placeholder="What skills were used (disabled for now)" disabled cols="40" id="testimonial" name="testimonial" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.skills}}>{{skills}}</textarea>
+                  <textarea rows="3" placeholder="Let people know what your volunteers have achieved" cols="40" id="testimonial" name="testimonial" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.testimonial}}>{{testimonial}}</textarea>
                 </div>
                 <div class="col-1"></div>
                 <div class="col-3">
                   <button type="submit" class="btn btn-success btn-block inline-update-button b-margin" style="display: none">Save</button>
                 </div>
               </div>
-
             </div>
-          </form>
-        </div>
-        <a href="#" class="btn btn-primary show-group-hours-form">
-          Add more participants
-        </a>
-        {{/compare ~}}
+          </div>
+        </form>
 
-        <form action="/admin-submit-group-hours" id="group-hours-form" method="POST" data-component="TasksTrigger" {{#if @root.data.isAdmin}}data-success-destination="/hours/{{task_id}}/{{slugify organisation_name}}" data-destination-include-id="false"{{else}}data-success-destination="/hours"{{/if}} data-TasksTrigger="ajax-form-handler"{{#compare (length hours_list) '>' 0}} style="display:none;"{{/compare}}>
-          <div class="form-horizontal">
-            <input type="hidden" name="task_id" value="{{task_id}}">
-            <div class="form-group">
-              <div class="col-5">
-                <textarea rows="6" cols="40" id="volunteers" pattern=".*\S.*" name="volunteers" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}>{{@root.data.taskInfo.task_description}}</textarea>
-              </div>
+        <form action="/do-not-act/{{task_id}}?user_id={{@root.data.auth.uid}}" class="form-horizontal inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Testimonial updated" data-TasksTrigger="ajax-form-handler">
+          <div class="form-group">
+            <div class="col-4">
+              <label for="testimonial" class="form-label">
+                Skills developed
+              </label>
             </div>
-            <div class="form-group">
-              <div class="col-4">
-                <label for="hours" class="form-label">
-                  Certificate to award
-                </label>
-              </div>
-              <div class="col-2">
-                <div class="form-group b-margin">
-                  <select class="form-select" required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
-                    {{#each @root.context.metaData.certificates ~}}
-                    {{#unless tsi_only ~}}
-                    <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>
-                      {{#ifAny (compare type "approach") (compare type "ascent") ~}}
-                      {{type_name}}: {{hours}} hours
-                      {{else}}
-                      {{type_name}}
-                      {{/ifAny ~}}
-                    </option>
-                    {{else}}
-                    <option value="{{hours}}"{{#unless @root.data.accountInfo.summit_certificate_permission}} disabled{{/unless}}>
-                      {{type_name}}
-                    </option>
-                    {{/unless ~}}
-                    {{/each ~}}
-                  </select>
+            <div class="column col-7">
+              <div class="columns">
+                <div class="col-8">
+                  <textarea rows="3" placeholder="What skills were used (NOT DEVELOPED YET)" disabled cols="40" id="testimonial" name="testimonial" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.skills}}>{{skills}}</textarea>
                 </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-4"></div>
-              <div class="col-2">
-                <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full" id="group-hours-submit">
-                  Submit details
-                </button>
+                <div class="col-1"></div>
+                <div class="col-3">
+                  <button type="submit" class="btn btn-success btn-block inline-update-button b-margin" style="display: none">Save</button>
+                </div>
               </div>
             </div>
           </div>
         </form>
       </div>
+      <a href="#" class="btn btn-primary show-group-hours-form">
+        Add more participants
+      </a>
+      {{/compare ~}}
+
+      <form action="/admin-submit-group-hours" id="group-hours-form" method="POST" data-component="TasksTrigger" {{#if @root.data.isAdmin}}data-success-destination="/hours/{{task_id}}/{{slugify organisation_name}}" data-destination-include-id="false"{{else}}data-success-destination="/hours"{{/if}} data-TasksTrigger="ajax-form-handler"{{#compare (length hours_list) '>' 0}} style="display:none;"{{/compare}}>
+        <div class="form-horizontal">
+          <input type="hidden" name="task_id" value="{{task_id}}">
+          <div class="form-group">
+            <div class="col-4">Participant names</div>
+            <div class="col-5">
+              <textarea rows="6" cols="40" id="volunteers" pattern=".*\S.*" name="volunteers" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}>{{@root.data.taskInfo.task_description}}</textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-4">
+              <label for="hours" class="form-label">
+                Certificate to award
+              </label>
+            </div>
+            <div class="col-2">
+              <div class="form-group b-margin">
+                <select class="form-select" required id="hours" name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
+                  {{#each @root.context.metaData.certificates ~}}
+                  {{#unless tsi_only ~}}
+                  <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>
+                    {{#ifAny (compare type "approach") (compare type "ascent") ~}}
+                    {{type_name}}: {{hours}} hours
+                    {{else}}
+                    {{type_name}}
+                    {{/ifAny ~}}
+                  </option>
+                  {{else}}
+                  <option value="{{hours}}"{{#unless @root.data.accountInfo.summit_certificate_permission}} disabled{{/unless}}>
+                    {{type_name}}
+                  </option>
+                  {{/unless ~}}
+                  {{/each ~}}
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-4"></div>
+            <div class="col-2">
+              <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full" id="group-hours-submit">
+                Submit details
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
     </div>
-    {{/compare ~}}
-    {{/each ~}}
-    {{/if ~}}
-    {{/unless ~}}
-    {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
   </div>
+  {{/compare ~}}
+  {{/each ~}}
+  {{/if ~}}
+  {{/unless ~}}
+  {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
 </div>
 {{#unless (compare (sumArray (pluck @root.data.tasksInfo "hours")) 0) ~}}
 <div class="empty content-break">
