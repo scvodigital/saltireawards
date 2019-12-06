@@ -217,7 +217,7 @@
 {{/if ~}} --}}
 {{#if testimonial ~}}
 {
-  "text": "\"{{{truncate testimonial 500}}}\"",
+  "text": {{{json value=(truncate testimonial 500)}}},
   "margin": [0, 15, 0, 0],
   "style": "volunteering_title"
 },
@@ -228,7 +228,7 @@
 },
 {{else}}
 {
-  "text": "{{{truncate task_description 500}}}",
+  "text": {{{json value=(truncate task_description 500)}}},
   "margin": [0, 15, 0, 0],
   "style": "volunteering_title"
 },
