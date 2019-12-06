@@ -40,7 +40,7 @@
         {{else}}
         {{#each @root.context.metaData.certificates ~}}
         {{#compare ../award type ~}}
-        "text": {{>pdf_metadata_value key="title" default=certificate_name}},
+        "text": {{>pdf_metadata_value key="title" default=(lowercase certificate_name)}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
         {{/compare ~}}
         {{/each ~}}
@@ -202,7 +202,7 @@
   "margin": [0, 0, 0, 0]
 },
 {
-  "text": {{>pdf_metadata_value key="title" default=(concat user.first_name " " user.last_name)}},
+  "text": {{>pdf_metadata_value key="title" default=(lowercase (concat user.first_name " " user.last_name))}},
   "margin": [0, 20, 0, 0],
   "style": ["volunteer_name", "bold"]
 },
@@ -222,7 +222,11 @@
   "style": "volunteering_title"
 },
 {
+  {{#compare ../type "group" ~}}
+  "text": {{>pdf_metadata_value key="title" default=(concat "Volunteering with " organisation_name)}},
+  {{else}}
   "text": {{>pdf_metadata_value key="title" default=(concat volunteer_manager_first_name " " volunteer_manager_last_name ", " volunteer_manager_title " at " organisation_name)}},
+  {{/compare ~}}
   "margin": [0, 5, 0, 0],
   "style": "volunteering_detail"
 },
@@ -300,20 +304,20 @@
 {
   "text": {{>pdf_metadata_value key="title" default="Claim code:"}},
   "color": "#333E48",
-  "style": ["volunteering_detail"],
+  "style": "claim_code",
   "absolutePosition": {
     "x": 70,
-    "y": 720
+    "y": 758
   }
 },
 {
-  "text": {{>pdf_metadata_value key="title" default=(substr user.claim_code 0 10)}},
+  "text": {{>pdf_metadata_value key="title" default=(uppercase (substr user.claim_code 0 10))}},
   "color": "#333E48",
   "margin": [0, 0, 0, 0],
-  "style": ["volunteering_organisation", "bold"],
+  "style": "claim_code",
   "absolutePosition": {
-    "x": 70,
-    "y": 735
+    "x": 150,
+    "y": 758
   }
 },
 {{/ifAll ~}}

@@ -33,7 +33,7 @@
     "volunteer_name": {
       "font": "Sonder-Sans3",
       "color": "#008EDF",
-      "fontSize": 30,
+      "fontSize": 40,
       "alignment": "center"
     },
     "volunteering_title": {
@@ -44,6 +44,11 @@
     "volunteering_detail": {
       "font": "Montserrat",
       "fontSize": 10,
+      "alignment": "left"
+    },
+    "claim_code": {
+      "font": "Consolas",
+      "fontSize": 12,
       "alignment": "left"
     }
   },
