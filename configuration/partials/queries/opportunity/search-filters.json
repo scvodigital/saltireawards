@@ -36,5 +36,26 @@
 {{/if ~}}
 {{#if age ~}}
 {{>queries_terms field="volunteersearch_age_slugs" terms=age}},
+{{else}}
+{{#if @root.data.auth ~}}
+{{#ifAll (compare (dateMath 'now-12y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) (compare (dateMath 'now-13y') '<' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) ~}}
+{{>queries_terms field="volunteersearch_age_slugs" terms=12}},
+{{/ifAll ~}}
+{{#ifAll (compare (dateMath 'now-13y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) (compare (dateMath 'now-14y') '<' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) ~}}
+{{>queries_terms field="volunteersearch_age_slugs" terms=13}},
+{{/ifAll ~}}
+{{#ifAll (compare (dateMath 'now-14y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) (compare (dateMath 'now-15y') '<' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) ~}}
+{{>queries_terms field="volunteersearch_age_slugs" terms=14}},
+{{/ifAll ~}}
+{{#ifAll (compare (dateMath 'now-15y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) (compare (dateMath 'now-16y') '<' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) ~}}
+{{>queries_terms field="volunteersearch_age_slugs" terms=15}},
+{{/ifAll ~}}
+{{#ifAll (compare (dateMath 'now-16y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) (compare (dateMath 'now-17y') '<' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) ~}}
+{{>queries_terms field="volunteersearch_age_slugs" terms=16}},
+{{/ifAll ~}}
+{{#ifAll (compare (dateMath 'now-17y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) (compare (dateMath 'now-18y') '<' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) ~}}
+{{>queries_terms field="volunteersearch_age_slugs" terms=17}},
+{{/ifAll ~}}
+{{/if ~}}
 {{/if ~}}
 {{>queries_do_nothing}}
