@@ -4,7 +4,10 @@
     "next_award_hours": 10,
     "certificate_name": "Team",
     "type": "challenge",
-    "type_name": "The Challenge"
+    "type_name": "The Challenge",
+    "signature_name": "John Swinney",
+    "signature_image": "john-swinney",
+    "signature_title": "Cabinet Secretary for Education and Skills"
   },
   {
     "hours": 10,
@@ -13,7 +16,10 @@
     "certificate_name": "Ten",
     "in_progress": true,
     "type": "approach",
-    "type_name": "The Approach"
+    "type_name": "The Approach",
+    "signature_name": "John Swinney",
+    "signature_image": "john-swinney",
+    "signature_title": "Cabinet Secretary for Education and Skills"
   },
   {
     "hours": 25,
@@ -22,7 +28,10 @@
     "certificate_name": "Twenty five",
     "in_progress": true,
     "type": "approach",
-    "type_name": "The Approach"
+    "type_name": "The Approach",
+    "signature_name": "John Swinney",
+    "signature_image": "john-swinney",
+    "signature_title": "Cabinet Secretary for Education and Skills"
   },
   {
     "hours": 50,
@@ -31,7 +40,10 @@
     "certificate_name": "Fifty",
     "in_progress": true,
     "type": "ascent",
-    "type_name": "The Ascent"
+    "type_name": "The Ascent",
+    "signature_name": "John Swinney",
+    "signature_image": "john-swinney",
+    "signature_title": "Cabinet Secretary for Education and Skills"
   },
   {
     "hours": 100,
@@ -40,7 +52,10 @@
     "certificate_name": "One hundred",
     "in_progress": true,
     "type": "ascent",
-    "type_name": "The Ascent"
+    "type_name": "The Ascent",
+    "signature_name": "John Swinney",
+    "signature_image": "john-swinney",
+    "signature_title": "Cabinet Secretary for Education and Skills"
   },
   {
     "hours": 200,
@@ -49,7 +64,10 @@
     "certificate_name": "Two hundred",
     "in_progress": true,
     "type": "ascent",
-    "type_name": "The Ascent"
+    "type_name": "The Ascent",
+    "signature_name": "John Swinney",
+    "signature_image": "john-swinney",
+    "signature_title": "Cabinet Secretary for Education and Skills"
   },
   {
     "hours": 500,
@@ -57,13 +75,19 @@
     "last_award_hours": 200,
     "certificate_name": "Five hundred",
     "type": "ascent",
-    "type_name": "The Ascent"
+    "type_name": "The Ascent",
+    "signature_name": "Nicola Sturgeon",
+    "signature_image": "nicola-sturgeon",
+    "signature_title": "First Minister"
   },
   {
     "hours": 1,
     "certificate_name": "Outstanding",
     "type": "summit",
     "type_name": "The Summit",
+    "signature_name": "Nicola Sturgeon",
+    "signature_image": "nicola-sturgeon",
+    "signature_title": "First Minister",
     "tsi_only": true
   }
 ]

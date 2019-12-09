@@ -63,21 +63,21 @@
         {{#each @root.context.metaData.certificates ~}}
         {{#ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1) ~}}
         {{#compare hours ../user.hours_verified ~}}
-        {{#unless in_progress ~}}
-        "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement of completing"}},
-        {{else}}
+        {{#if in_progress ~}}
         "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement on"}},
-        {{/unless ~}}
+        {{else}}
+        "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement of completing"}},
+        {{/if ~}}
         {{/compare ~}}
         {{else}}
         {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
         {{#unless (compare hours 1) ~}}
         {{#unless (compare @root.data.accountInfo.hours_verify_award ">" next_award_hours) ~}}
-        {{#unless in_progress ~}}
-        "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement of completing"}},
-        {{else}}
+        {{#if in_progress ~}}
         "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement on"}},
-        {{/unless ~}}
+        {{else}}
+        "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement of completing"}},
+        {{/if ~}}
         {{/unless ~}}
         {{/unless ~}}
         {{/compare ~}}
@@ -265,15 +265,91 @@
 {{/if ~}}
 {
   "width": 150,
-  "image": "{{> certificate_images_png_signature_minister}}",
-  "alignment": "left",
+  {{#compare award "hours" ~}}
+  {{#each @root.context.metaData.certificates ~}}
+  {{#ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1) ~}}
+  {{#compare hours ../user.hours_verified ~}}
+  {{#compare signature_image "nicola-sturgeon" ~}}
+  "image": "{{> certificate_images_png_signatures_nicola_sturgeon}}",
+  "absolutePosition": {
+    "x": 60,
+    "y": 640
+  },
+  {{else}}
+  "image": "{{> certificate_images_png_signatures_john_swinney}}",
   "absolutePosition": {
     "x": 60,
     "y": 600
-  }
+  },
+  {{/compare ~}}
+  {{/compare ~}}
+  {{else}}
+  {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
+  {{#unless (compare hours 1) ~}}
+  {{#unless (compare @root.data.accountInfo.hours_verify_award ">" next_award_hours) ~}}
+  {{#compare signature_image "nicola-sturgeon" ~}}
+  "image": "{{> certificate_images_png_signatures_nicola_sturgeon}}",
+  "absolutePosition": {
+    "x": 60,
+    "y": 640
+  },
+  {{else}}
+  "image": "{{> certificate_images_png_signatures_john_swinney}}",
+  "absolutePosition": {
+    "x": 60,
+    "y": 600
+  },
+  {{/compare ~}}
+  {{/unless ~}}
+  {{/unless ~}}
+  {{/compare ~}}
+  {{/ifAll ~}}
+  {{/each ~}}
+  {{else}}
+  {{#each @root.context.metaData.certificates ~}}
+  {{#compare ../award type ~}}
+  {{#compare signature_image "nicola-sturgeon" ~}}
+  "image": "{{> certificate_images_png_signatures_nicola_sturgeon}}",
+  "absolutePosition": {
+    "x": 60,
+    "y": 640
+  },
+  {{else}}
+  "image": "{{> certificate_images_png_signatures_john_swinney}}",
+  "absolutePosition": {
+    "x": 60,
+    "y": 600
+  },
+  {{/compare ~}}
+  {{/compare ~}}
+  {{/each ~}}
+  {{/compare ~}}
+  "alignment": "left"
 },
 {
-  "text": {{>pdf_metadata_value key="title" default=@root.context.metaData.certificateSignatureName}},
+  {{#compare award "hours" ~}}
+  {{#each @root.context.metaData.certificates ~}}
+  {{#ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1) ~}}
+  {{#compare hours ../user.hours_verified ~}}
+  "text": {{>pdf_metadata_value key="title" default=signature_name}},
+  {{/compare ~}}
+  {{else}}
+  {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
+  {{#unless (compare hours 1) ~}}
+  {{#unless (compare @root.data.accountInfo.hours_verify_award ">" next_award_hours) ~}}
+  "text": {{>pdf_metadata_value key="title" default=signature_name}},
+  {{/unless ~}}
+  {{/unless ~}}
+  {{/compare ~}}
+  {{/ifAll ~}}
+  {{/each ~}}
+  {{else}}
+  {{#each @root.context.metaData.certificates ~}}
+  {{#compare ../award type ~}}
+  "text": {{>pdf_metadata_value key="title" default=signature_name}},
+  {{/compare ~}}
+  {{/each ~}}
+  {{/compare ~}}
   "style": ["volunteering_detail", "bold"],
   "absolutePosition": {
     "x": 70,
@@ -281,7 +357,29 @@
   }
 },
 {
-  "text": {{>pdf_metadata_value key="title" default=@root.context.metaData.certificateSignatureTitle}},
+  {{#compare award "hours" ~}}
+  {{#each @root.context.metaData.certificates ~}}
+  {{#ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1) ~}}
+  {{#compare hours ../user.hours_verified ~}}
+  "text": {{>pdf_metadata_value key="title" default=signature_title}},
+  {{/compare ~}}
+  {{else}}
+  {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
+  {{#unless (compare hours 1) ~}}
+  {{#unless (compare @root.data.accountInfo.hours_verify_award ">" next_award_hours) ~}}
+  "text": {{>pdf_metadata_value key="title" default=signature_title}},
+  {{/unless ~}}
+  {{/unless ~}}
+  {{/compare ~}}
+  {{/ifAll ~}}
+  {{/each ~}}
+  {{else}}
+  {{#each @root.context.metaData.certificates ~}}
+  {{#compare ../award type ~}}
+  "text": {{>pdf_metadata_value key="title" default=signature_title}},
+  {{/compare ~}}
+  {{/each ~}}
+  {{/compare ~}}
   "style": ["volunteering_detail", "bold"],
   "absolutePosition": {
     "x": 70,
