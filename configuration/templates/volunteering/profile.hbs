@@ -5,6 +5,11 @@
   <p class="empty-title h5">
     {{{@root.data.accountInfo.first_name}}} {{{@root.data.accountInfo.last_name}}}
   </p>
+  {{#if @root.data.awardsStatus.current ~}}
+  <p class="empty-subtitle">
+    {{> badge hours=@root.data.awardsStatus.current}}
+  </p>
+  {{/if ~}}
   {{!-- <p class="empty-subtitle">
   </p> --}}
   {{!-- <div class="empty-action">
@@ -16,6 +21,6 @@
     <polygon fill="#EEF0FA" points="100,0 100,100 0,0"></polygon>
   </svg>
   <div class="container">
-    profile content
+    {{!-- profile content --}}
   </div>
 </div>

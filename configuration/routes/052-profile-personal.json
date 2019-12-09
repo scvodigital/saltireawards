@@ -25,7 +25,7 @@
       "taskModule": "reroute",
       "config": {
         "if": [
-          { "!=": [{"var": "data.accountInfo.external_id"}, "data.auth.uid"] },
+          { "!=": [{"var": "data.accountInfo.external_id"}, {"var": "data.auth.uid"}] },
           "profile_public",
           false
         ]
@@ -44,8 +44,8 @@
     },
     "context.metaData.commonTasks.fullSignUpRequired",
     "context.metaData.commonTasks.isAdmin",
-    "context.metaData.commonTasks.getHoursInfo",
     "context.metaData.commonTasks.getTasksInfo",
+    "context.metaData.commonTasks.getAwardsStatus",
     {
       "name": "destination",
       "taskModule": "renderLayout",
