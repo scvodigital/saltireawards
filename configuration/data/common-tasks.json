@@ -53,10 +53,9 @@
 			"connection": "scvoAlexSandbox",
 			"output": "data",
 			"method": "GET",
-			"apexClassPath": "/SaltireUser/?user_id={{@root.request.params.query.user_id}}"
+			"apexClassPath": "/SaltireUser/?user_id={{default @root.request.params.uid @root.request.params.query.user_id}}"
 		}
 	},
-
 	"getTasksInfo": {
 		"name": "tasksInfo",
 		"taskModule": "salesforceApex",

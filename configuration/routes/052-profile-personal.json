@@ -8,7 +8,18 @@
   },
   "tasks": [
     "context.metaData.commonTasks.authRequired",
-    "context.metaData.commonTasks.getAccountInfo",
+    "context.metaData.commonTasks.getAccountInfoExternal",
+    {
+      "name": "reroute",
+      "taskModule": "reroute",
+      "config": {
+        "if": [
+          { "missing": ["data.accountInfo.external_id"] },
+          "four_oh_four",
+          false
+        ]
+      }
+    },
     "context.metaData.commonTasks.fullSignUpRequired",
     "context.metaData.commonTasks.isAdmin",
     {

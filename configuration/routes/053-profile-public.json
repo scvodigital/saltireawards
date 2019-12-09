@@ -4,10 +4,22 @@
   "pattern": "/profile-public",
   "errorRoute": "five_hundred",
   "metaData": {
-    "title": "Profile"
+    "title": "Saltire Awards Profile"
   },
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
+    "context.metaData.commonTasks.getAccountInfoExternal",
+    {
+      "name": "reroute",
+      "taskModule": "reroute",
+      "config": {
+        "if": [
+          { "missing": ["data.accountInfo.external_id"] },
+          "four_oh_four",
+          false
+        ]
+      }
+    },
     {
       "name": "destination",
       "taskModule": "renderLayout",
