@@ -20,8 +20,32 @@
         ]
       }
     },
+    {
+      "name": "reroute",
+      "taskModule": "reroute",
+      "config": {
+        "if": [
+          { "!=": [{"var": "data.accountInfo.external_id"}, "data.auth.uid"] },
+          "profile_public",
+          false
+        ]
+      }
+    },
+    {
+      "name": "reroute",
+      "taskModule": "reroute",
+      "config": {
+        "if": [
+          { "==": [{"var": "data.accountInfo.user_type"}, "Group Admin"] },
+          "four_oh_four",
+          false
+        ]
+      }
+    },
     "context.metaData.commonTasks.fullSignUpRequired",
     "context.metaData.commonTasks.isAdmin",
+    "context.metaData.commonTasks.getHoursInfo",
+    "context.metaData.commonTasks.getTasksInfo",
     {
       "name": "destination",
       "taskModule": "renderLayout",

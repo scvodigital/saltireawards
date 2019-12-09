@@ -20,6 +20,8 @@
         ]
       }
     },
+    "context.metaData.commonTasks.getHoursInfo",
+    "context.metaData.commonTasks.getTasksInfo",
     {
       "name": "destination",
       "taskModule": "renderLayout",

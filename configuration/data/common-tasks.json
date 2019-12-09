@@ -35,7 +35,7 @@
 		"renderer": "handlebars",
 		"cache": {
 			"keyProperties": ["$accountInfo"],
-			"partition": "saltire-profiles-{{data.auth.uid}}",
+			"partition": "saltire-profiles-{{@root.data.auth.uid}}",
 			"ttl": 3600
 		},
 		"config": {
@@ -53,7 +53,7 @@
 			"connection": "scvoAlexSandbox",
 			"output": "data",
 			"method": "GET",
-			"apexClassPath": "/SaltireUser/?user_id={{default @root.request.params.uid @root.request.params.query.user_id}}"
+			"apexClassPath": "/SaltireUser/?user_id={{default @root.request.params.query.user_id @root.request.params.uid}}"
 		}
 	},
 	"getTasksInfo": {
@@ -62,14 +62,14 @@
 		"renderer": "handlebars",
 		"cache": {
 			"keyProperties": ["$tasksInfo"],
-			"partition": "saltire-profiles-{{data.auth.uid}}",
+			"partition": "saltire-profiles-{{default @root.data.auth.uid @root.request.params.uid}}",
 			"ttl": 3600
 		},
 		"config": {
 			"connection": "scvoAlexSandbox",
 			"output": "data",
 			"method": "GET",
-			"apexClassPath": "/SaltireTask/?user_id={{@root.data.auth.uid}}"
+			"apexClassPath": "/SaltireTask/?user_id={{default @root.data.auth.uid @root.request.params.uid}}"
 		}
 	},
 	"getHoursInfo": {
@@ -78,14 +78,14 @@
 		"renderer": "handlebars",
 		"cache": {
 			"keyProperties": ["$hoursInfo"],
-			"partition": "saltire-profiles-{{data.auth.uid}}",
+			"partition": "saltire-profiles-{{default @root.data.auth.uid @root.request.params.uid}}",
 			"ttl": 3600
 		},
 		"config": {
 			"connection": "scvoAlexSandbox",
 			"output": "data",
 			"method": "GET",
-			"apexClassPath": "/SaltireHours/?user_id={{@root.data.auth.uid}}"
+			"apexClassPath": "/SaltireHours/?user_id={{default @root.data.auth.uid @root.request.params.uid}}"
 		}
 	},
 	"getTasksInfoUnverified": {
@@ -94,7 +94,7 @@
 		"renderer": "handlebars",
 		"cache": {
 			"keyProperties": ["$tasksInfoUnverified"],
-			"partition": "saltire-profiles-{{data.auth.uid}}",
+			"partition": "saltire-profiles-{{@root.data.auth.uid}}",
 			"ttl": 3600
 		},
 		"config": {
@@ -109,7 +109,7 @@
 		"taskModule": "cacheFlush",
 		"renderer": "handlebars",
 		"config": {
-			"partition": "saltire-profiles-{{data.auth.uid}}"
+			"partition": "saltire-profiles-{{@root.data.auth.uid}}"
 		}
 	},
 	"verifyHoursInfo": {
