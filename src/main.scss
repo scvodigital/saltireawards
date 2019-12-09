@@ -554,6 +554,13 @@ header,
   }
 }
 
+.menu .menu-item .menu-badge {
+  margin-right: 0.4rem;
+}
+
+.menu .menu-item>a {
+  border-radius: 0;
+}
 .menu .menu-item>a.active {
   background-color: $primary-color;
   color: white;
@@ -563,6 +570,9 @@ header,
 .menu .menu-item>a:active {
   background-color: $primary-color-dark;
   color: white;
+}
+.menu .menu-item:hover .form-checkbox {
+  // color: white;
 }
 
 .sidebar-not-present {

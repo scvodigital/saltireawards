@@ -1,0 +1,28 @@
+{
+  "name": "profile_redirect",
+  "debug": true,
+  "pattern": "/profile",
+  "errorRoute": "five_hundred",
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.getAccountInfo",
+    "context.metaData.commonTasks.fullSignUpRequired",
+    {
+      "name": "profileUrl",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": "/profile/{{data.auth.uid}}{{#if data.auth.displayName}}/{{slugify data.auth.displayName}}{{/if}}"
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": ">data.profileUrl",
+        "statusCode": 302
+      }
+    }
+  ]
+}

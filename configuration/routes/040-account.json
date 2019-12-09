@@ -1,11 +1,10 @@
 {
-  "name": "task",
+  "name": "account",
   "debug": true,
-  "pattern": "/task",
+  "pattern": "/account",
   "errorRoute": "five_hundred",
   "metaData": {
-    "title": "My volunteering",
-    "adminTitle": "Volunteering groups"
+    "title": "My account"
   },
   "tasks": [
     "context.metaData.commonTasks.authRequired",
@@ -29,7 +28,7 @@
             "parts": {
               "head": ">context.metaData.handlebars.templates.pages_head-tags",
               "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
-              "body": ">context.metaData.handlebars.templates.volunteering_task"
+              "body": ">context.metaData.handlebars.templates.account_account"
             },
             "contentType": "text/html"
           }

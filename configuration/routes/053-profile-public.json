@@ -1,11 +1,13 @@
 {
-  "name": "sign_out",
+  "name": "profile_public",
   "debug": true,
-  "pattern": "/sign-out",
+  "pattern": "/profile-public",
   "errorRoute": "five_hundred",
+  "metaData": {
+    "title": "Profile"
+  },
   "tasks": [
-    "context.metaData.commonTasks.authRequired",
-    "context.metaData.commonTasks.flushCache",
+    "context.metaData.commonTasks.authNotRequired",
     {
       "name": "destination",
       "taskModule": "renderLayout",
@@ -21,13 +23,14 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.account_auth_sign-out"
+              "head": ">context.metaData.handlebars.templates.volunteering_profile-head-tags",
+              "body": ">context.metaData.handlebars.templates.volunteering_profile"
             },
             "contentType": "text/html"
           }
         }
       }
     }
+
   ]
 }

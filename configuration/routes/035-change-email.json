@@ -1,7 +1,7 @@
 {
   "name": "change-email",
-  "pattern": "/change-email",
   "debug": true,
+  "pattern": "/change-email",
   "acceptedVerbs": "POST",
   "errorRoute": "five_hundred",
   "tasks": [

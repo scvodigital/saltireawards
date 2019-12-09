@@ -1,0 +1,20 @@
+{
+  "name": "profile",
+  "debug": true,
+  "pattern": "/profile/:uid(/:junk)",
+  "errorRoute": "five_hundred",
+  "tasks": [
+    "context.metaData.commonTasks.authNotRequired",
+    {
+      "name": "reroute",
+      "taskModule": "reroute",
+      "config": {
+        "if": [
+          { "missing": ["data.auth.uid"] },
+          "profile_public",
+          "profile_personal"
+        ]
+      }
+    }
+  ]
+}

@@ -1,10 +1,10 @@
 {
-  "name": "account",
-  "pattern": "/account",
+  "name": "profile_personal",
   "debug": true,
+  "pattern": "/profile-personal",
   "errorRoute": "five_hundred",
   "metaData": {
-    "title": "My account"
+    "title": "My profile"
   },
   "tasks": [
     "context.metaData.commonTasks.authRequired",
@@ -26,9 +26,9 @@
           "default": {
             "layout": ">context.metaData.handlebars.layouts.default",
             "parts": {
-              "head": ">context.metaData.handlebars.templates.pages_head-tags",
+              "head": ">context.metaData.handlebars.templates.volunteering_profile-head-tags",
               "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
-              "body": ">context.metaData.handlebars.templates.account_account"
+              "body": ">context.metaData.handlebars.templates.volunteering_profile"
             },
             "contentType": "text/html"
           }

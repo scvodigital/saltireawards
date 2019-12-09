@@ -1,0 +1,15 @@
+<title>{{> page_title location="head"}}</title>
+<meta property="og:title" content="{{> page_title location="head"}}" data-dynamic="true">
+{{#if @root.data.primaryResponse.hits.hits.[0] ~}}
+{{#with @root.data.primaryResponse.hits.hits.[0]._source ~}}
+{{#if files.0.uploadUrl ~}}
+<meta property="og:image" content="{{files.0.uploadUrl}}" data-dynamic="true">
+<meta property="og:image:width" content="128" data-dynamic="true">
+<meta property="og:image:height" content="128" data-dynamic="true">
+{{/if ~}}
+{{#ifAny og_summary description ../og_summary ../description ~}}
+<meta property="og:summary" content="{{stripTags (regexReplace (default og_summary (default ../og_summary (default description ../description))) '\r|\n' 'gi' '')}}" data-dynamic="true">
+<meta name="description" content="{{stripTags (regexReplace (default description (default ../description (default og_summary ../og_summary))) '\r|\n' 'gi' '')}}" data-dynamic="true">
+{{/ifAny ~}}
+{{/with ~}}
+{{/if ~}}

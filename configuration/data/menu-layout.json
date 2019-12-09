@@ -64,6 +64,16 @@
       ]
     },
     {
+      "label": "My profile",
+      "icon": "user",
+      "path": "/profile",
+      "route": "^/profile",
+      "public_checkbox": true,
+      "user-types": [
+        "DISABLED"
+      ]
+    },
+    {
       "label": "My volunteering",
       "icon": "user-clock",
       "path": "/hours",
