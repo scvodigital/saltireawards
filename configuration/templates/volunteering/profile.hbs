@@ -2,25 +2,89 @@
   <div class="empty-icon">
     <span class="fal fa-user fa-3x"></span>
   </div>
-  <p class="empty-title h5">
-    {{{@root.data.accountInfo.first_name}}} {{{@root.data.accountInfo.last_name}}}
+  {{#with @root.data.accountInfo ~}}
+  <p class="empty-title h3">
+    {{{first_name}}} {{{last_name}}}
   </p>
-  {{#if @root.data.awardsStatus.current ~}}
+  {{#if school_college_name ~}}
   <p class="empty-subtitle">
-    {{> badge hours=@root.data.awardsStatus.current}}
+    {{{school_college_name}}}
   </p>
   {{/if ~}}
-  {{!-- <p class="empty-subtitle">
-  </p> --}}
-  {{!-- <div class="empty-action">
-  </div> --}}
+  {{/with ~}}
+  {{#if @root.data.awardsStatus.current ~}}
+  {{#each @root.context.metaData.certificates ~}}
+  {{#compare @root.data.awardsStatus.current hours ~}}
+  <p class="empty-title h5">
+    {{type_name}}: {{certificate_name}} hours
+  </p>
+  {{> badge hours=hours}}
+  {{/compare ~}}
+  {{/each ~}}
+  {{/if ~}}
 </div>
 
+{{#if @root.data.tasksInfo ~}}
 <div class="content-break">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
     <polygon fill="#EEF0FA" points="100,0 100,100 0,0"></polygon>
   </svg>
   <div class="container">
-    {{!-- profile content --}}
+    <div class="columns cards equal-height">
+      {{#each @root.data.tasksInfo ~}}
+      <div class="column col-6 col-xl-12">
+        <div class="card b-margin-full">
+          <div class="card-header">
+            <div class="card-title h5">{{{organisation_name}}}</div>
+            {{#if task_description ~}}
+            <div class="card-subtitle text-gray">{{truncate task_description 140}}</div>
+            {{/if ~}}
+            <ul class="card-subtitle hours-logged fa-ul">
+              {{#if location ~}}
+              <li class="card-subtitle">
+                <span class="fa-li"><span class="far fa-map-marker-alt"></span></span>
+                <span class="text-gray">{{truncate location 140}}</span>
+              </li>
+              {{/if ~}}
+              {{#if un_sustainable_development_goals ~}}
+              <li class="card-subtitle">
+                <span class="fa-li"><span class="far fa-globe"></span></span>
+                <span class="text-gray">{{> sdg_label sdg=un_sustainable_development_goals}}</span>
+              </li>
+              {{/if ~}}
+              {{#compare hours_verified ">" 0 ~}}
+              <li class="card-subtitle">
+                <span class="fa-li"><span class="far fa-user-check"></span></span>
+                <span class="text-gray">{{hours_verified}} verified hours</span>
+              </li>
+              {{/compare ~}}
+            </ul>
+          </div>
+          {{#if testimonial ~}}
+          <div class="card-body">
+            {{#if testimonial ~}}
+            <blockquote>
+              {{{testimonial}}}
+              {{#ifAny volunteer_manager_first_name volunteer_manager_last_name ~}}
+              <footer>
+                <cite>
+                  {{{volunteer_manager_first_name}}} {{{volunteer_manager_last_name}}}{{#if volunteer_manager_title}}, {{{volunteer_manager_title}}}{{#if organisation_name}} at {{organisation_name}}{{/if}}{{/if}}
+                </cite>
+              </footer>
+              {{/ifAny ~}}
+            </blockquote>
+            {{/if ~}}
+          </div>
+          {{/if ~}}
+          {{!-- {{#if un_sustainable_development_goals ~}}
+          <div class="card-footer">
+            Contributing towards {{> sdg_label sdg=un_sustainable_development_goals}}
+          </div>
+          {{/if ~}} --}}
+        </div>
+      </div>
+      {{/each ~}}
+    </div>
   </div>
 </div>
+{{/if ~}}

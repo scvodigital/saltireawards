@@ -240,6 +240,38 @@ a.btn-link:hover {
   }
 }
 
+blockquote {
+  position: relative;
+  margin: 0.5em;
+  padding: 0.5em 2em 0.5em 3em;
+  border: none;
+}
+blockquote:before {
+  position: absolute;
+  font-size: 6em;
+  line-height: 1;
+  top: 0;
+  left: 0;
+  content: "\201C";
+}
+blockquote:after {
+  position: absolute;
+  float:right;
+  font-size:6em;
+  line-height: 1;
+  right:0;
+  bottom:-0.5em;
+  content: "\201D";
+}
+blockquote footer {
+  padding: 0 2em 0 0;
+  text-align:right;
+  margin: $unit/2 0 0 0;
+}
+blockquote cite:before {
+  content: "\2013";
+}
+
 .twitter-typeahead {
   display: block;
   width: 100%;

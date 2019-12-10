@@ -1,10 +1,10 @@
-<div class="saltire-badge align-centre{{#if disabled}} disabled{{/if}}">
+<div class="saltire-badge empty-subtitle align-centre{{#if disabled}} disabled{{/if}}">
   {{#each @root.context.metaData.certificates ~}}
   {{#compare hours ../hours ~}}
   {{#ifAny (compare type 'approach') (compare type 'ascent') ~}}
-  <img src="{{~>asset_url url=(concat 'images/badges/' type '-' hours '.svg') ~}}" class="img-responsive" />
+  <img src="{{~>asset_url url=(concat 'images/badges/' type '-' hours '.svg') ~}}" class="img-responsive" title="{{type_name}} - {{certificate_name}} hours" />
   {{else}}
-  <img src="{{~>asset_url url=(concat 'images/badges/' type '.svg') ~}}" class="img-responsive" />
+  <img src="{{~>asset_url url=(concat 'images/badges/' type '.svg') ~}}" class="img-responsive" title="{{type_name}}" />
   {{/ifAny ~}}
   {{/compare ~}}
   {{/each ~}}
