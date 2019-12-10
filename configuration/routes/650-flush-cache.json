@@ -25,7 +25,7 @@
       "config": {
         "output": "body",
         "template": "{\"success\": true , \"user_flushed\" : \"{{{@root.request.params.query.user_id}}}\" }",
-        "parseJson": false
+        "parseJson": true
       }
     }
   ]
