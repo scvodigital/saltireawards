@@ -22,6 +22,20 @@
   {{/compare ~}}
   {{/each ~}}
   {{/if ~}}
+  {{#compare @root.data.auth.uid @root.data.accountInfo.external_id ~}}
+  <div class="empty-subtitle">
+    <div class="columns">
+      <div class="column col-auto col-xs-12 col-mx-auto">
+        <div class="form-group text-left">
+          <label class="form-switch">
+            <input type="checkbox">
+            <i class="form-icon"></i> Make my profile public
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/compare ~}}
 </div>
 
 {{#if @root.data.tasksInfo ~}}
@@ -55,7 +69,12 @@
               {{#compare hours_verified ">" 0 ~}}
               <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-user-check"></span></span>
-                <span class="text-gray">{{hours_verified}} verified hours</span>
+                <span class="text-gray">
+                  {{hours_verified}} verified hours
+                  {{#compare @root.data.auth.uid @root.data.accountInfo.external_id ~}}
+                  &ensp;<a href="/hours">Add more</a>
+                  {{/compare ~}}
+                </span>
               </li>
               {{/compare ~}}
             </ul>
