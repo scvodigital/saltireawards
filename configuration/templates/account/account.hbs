@@ -1,194 +1,205 @@
-<div class="container">
-  <div class="columns">
-    <div class="column col-9 col-xl-12">
-      <h2>Details</h2>
+<div class="empty">
+  <div class="empty-icon">
+    <span class="fal fa-user-cog fa-3x"></span>
+  </div>
+</div>
 
-      <form id="user-details-form" action="/update-account-details" method="POST" class="details-form" data-component="TasksTrigger" data-TasksTrigger='{
-        change: { tasks: [ "validate-details-form" ] },
-        keyup: { tasks: [ "validate-details-form" ] },
-        load: { tasks: [ "validate-details-form" ] },
-        submit: { tasks: [ "submit-and-spin" ]}
-      }'>
-        {{> account_details_form_fields admin=(compare @root.data.accountInfo.user_type 'Group Admin')}}
+<div class="content-break">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <polygon fill="#ebedfa" points="100,0 100,100 0,0"></polygon>
+  </svg>
+  <div class="container">
+    <div class="columns">
+      <div class="column col-9 col-xl-12">
+        <h2>Details</h2>
 
-        {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
-        <div class="columns h-padding">
-          <div class="column col-4 hide-sm"></div>
-          <div class="column col-2">
-            <button id="detail-submit" class="btn btn-primary b-margin-full">
-              Save details
-            </button>
+        <form id="user-details-form" action="/update-account-details" method="POST" class="details-form" data-component="TasksTrigger" data-TasksTrigger='{
+          change: { tasks: [ "validate-details-form" ] },
+          keyup: { tasks: [ "validate-details-form" ] },
+          load: { tasks: [ "validate-details-form" ] },
+          submit: { tasks: [ "submit-and-spin" ]}
+        }'>
+          {{> account_details_form_fields admin=(compare @root.data.accountInfo.user_type 'Group Admin')}}
+
+          {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
+          <div class="columns h-padding">
+            <div class="column col-4 hide-sm"></div>
+            <div class="column col-2">
+              <button id="detail-submit" class="btn btn-primary b-margin-full">
+                Save details
+              </button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
 
-      <div class="divider v-margin-full"></div>
+        <div class="divider v-margin-full"></div>
 
-      <h2>Settings</h2>
+        <h2>Settings</h2>
 
-      <div class="columns">
-        <form class="column col-6 col-sm-12 form b-padding-full" id="change-password" data-component="TasksTrigger" data-TasksTrigger='{
-    change: { tasks: [ "validate-password-form" ] },
-    keyup: { tasks: [ "validate-password-form" ] },
-    load: { tasks: [ "validate-password-form" ] }
-  }'>
-          {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "password") ~}}
-            <h3>Change password</h3>
-          {{else}}
-            <h3>Set password</h3>
-            <p>
-              You are currently using a social media account to sign in. If you set a password you will also be able to sign in with your email address.
-            </p>
-          {{/if ~}}
-
-          <div id="change-password-alert" class="alert hidden bg-error s-rounded x-padding v-margin">
-            <span class="alert-message"></span>
-          </div>
-
-          <div class="form-group has-icon-left">
-            <!-- <label class="form-label" for="change-password-password">New password</label> -->
-            <input class="form-input" type="password" id="change-password-value" pattern=".{6,}" placeholder="New password" data-lpignore="true" autocomplete="nope"
-              data-component="TasksTrigger" data-TasksTrigger="focus-next" required />
-            <span class="form-icon far fa-key"></span>
-          </div>
-          <div class="form-group has-icon-left">
-            <!-- <label class="form-label" for="change-password-confirm">New password (confirm)</label> -->
-            <input class="form-input" type="password" id="change-password-confirm" pattern=".{6,}" placeholder="Confirm password" data-lpignore="true" autocomplete="nope"
-              data-component="TasksTrigger" data-TasksTrigger="focus-next" required />
-            <span class="form-icon far fa-key"></span>
-          </div>
-
-          <button type="button" class="btn btn-primary" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-confirm-task="change-password" disabled data-confirm-verb="change your password" data-confirm-description="#change-password-description">
-            {{!-- <span class="far fa-lock" aria-hidden="true"></span> --}}
+        <div class="columns">
+          <form class="column col-6 col-sm-12 form b-padding-full" id="change-password" data-component="TasksTrigger" data-TasksTrigger='{
+      change: { tasks: [ "validate-password-form" ] },
+      keyup: { tasks: [ "validate-password-form" ] },
+      load: { tasks: [ "validate-password-form" ] }
+    }'>
             {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "password") ~}}
-              Change password
+              <h3>Change password</h3>
             {{else}}
-              Set password
+              <h3>Set password</h3>
+              <p>
+                You are currently using a social media account to sign in. If you set a password you will also be able to sign in with your email address.
+              </p>
             {{/if ~}}
-          </button>
-        </form>
 
+            <div id="change-password-alert" class="alert hidden bg-error s-rounded x-padding v-margin">
+              <span class="alert-message"></span>
+            </div>
 
-      {{#unless @root.data.isAdmin ~}}
-        <form class="column col-6 col-sm-12 b-padding-full form" id="change-email" data-component="TasksTrigger" data-TasksTrigger='{
-    change: { tasks: [ "validate-email-form" ] },
-    keyup: { tasks: [ "validate-email-form" ] },
-    load: { tasks: [ "validate-email-form" ] }
-  }'>
-          <h3>Change email</h3>
+            <div class="form-group has-icon-left">
+              <!-- <label class="form-label" for="change-password-password">New password</label> -->
+              <input class="form-input" type="password" id="change-password-value" pattern=".{6,}" placeholder="New password" data-lpignore="true" autocomplete="nope"
+                data-component="TasksTrigger" data-TasksTrigger="focus-next" required />
+              <span class="form-icon far fa-key"></span>
+            </div>
+            <div class="form-group has-icon-left">
+              <!-- <label class="form-label" for="change-password-confirm">New password (confirm)</label> -->
+              <input class="form-input" type="password" id="change-password-confirm" pattern=".{6,}" placeholder="Confirm password" data-lpignore="true" autocomplete="nope"
+                data-component="TasksTrigger" data-TasksTrigger="focus-next" required />
+              <span class="form-icon far fa-key"></span>
+            </div>
 
-          <div id="change-email-alert" class="alert hidden bg-error s-rounded x-padding v-margin">
-            <span class="alert-message"></span>
-          </div>
-
-          <div class="form-group has-icon-left">
-            <input class="form-input" type="email" id="change-email-value" placeholder="New email" data-lpignore="true" autocomplete="nope" data-component="TasksTrigger" data-TasksTrigger="focus-next" required />
-            <span class="form-icon far fa-envelope"></span>
-          </div>
-          <div class="form-group has-icon-left">
-            <input class="form-input" type="email" id="change-email-confirm" placeholder="Confirm new email" data-lpignore="true" autocomplete="nope" data-component="TasksTrigger" data-TasksTrigger="focus-next" required />
-            <span class="form-icon far fa-envelope"></span>
-          </div>
-
-          <button type="button" class="btn btn-primary" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-confirm-task="change-email" disabled data-confirm-verb="change your email" data-confirm-description="#check-email-show-confirm">
-            Change email
-          </button>
-        </form>
-      {{/unless ~}}
-      </div>
-
-      <div class="columns">
-        {{#unless @root.data.isAdmin ~}}
-        <div class="column col-6 col-sm-12 form b-padding-full" id="link-unlink">
-          {{#ifAny (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com") ~}}
-          <h3>Linked accounts</h3>
-
-          <div id="unlink-provider-alert" class="alert hidden bg-error s-rounded x-padding v-margin">
-            <span class="alert-message"></span>
-          </div>
-
-          {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com") ~}}
-            <button class="chip bg-primary bg-google b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="google.com"
-              data-confirm-task="unlink-provider" data-confirm-verb="unlink from Google" data-confirm-description="#unlink-provider-description" data-confirm-data='{ "providerId": "google.com" }'>
-              <span class="fab fa-fw fa-google"></span>
-              Unlink from Google
+            <button type="button" class="btn btn-primary" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-confirm-task="change-password" disabled data-confirm-verb="change your password" data-confirm-description="#change-password-description">
+              {{!-- <span class="far fa-lock" aria-hidden="true"></span> --}}
+              {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "password") ~}}
+                Change password
+              {{else}}
+                Set password
+              {{/if ~}}
             </button>
-          {{/if ~}}
+          </form>
 
-          {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") ~}}
-            <button class="chip bg-primary bg-twitter b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="twitter.com"
-              data-confirm-task="unlink-provider" data-confirm-verb="unlink from Twitter" data-confirm-description="#unlink-provider-description" data-confirm-data='{ "providerId": "twitter.com" }'>
-              <span class="fab fa-fw fa-twitter"></span>
-              Unlink from Twitter
-            </button>
-          {{/if ~}}
-
-          {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com") ~}}
-            <button class="chip bg-primary bg-facebook b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="facebook.com"
-              data-confirm-task="unlink-provider" data-confirm-verb="unlink from Facebook" data-confirm-description="#unlink-provider-description" data-confirm-data='{ "providerId": "facebook.com" }'>
-              <span class="fab fa-fw fa-facebook"></span>
-              Unlink from Facebook
-            </button>
-          {{/if ~}}
-          {{/ifAny ~}}
-
-          {{#unless (ifAll (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com")) ~}}
-          <h3>Available providers</h3>
-
-          <div id="link-provider-alert" class="alert hidden bg-error s-rounded x-padding v-margin">
-            <span class="alert-message"></span>
-          </div>
-
-          {{#unless (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com") ~}}
-            <button class="chip bg-primary bg-google b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="google.com"
-              data-confirm-task="link-provider" data-confirm-verb="link to Google" data-confirm-description="#link-provider-description" data-confirm-data='{ "providerId": "google.com" }'>
-              <span class="fab fa-fw fa-google"></span>
-              Link to Google
-            </button>
-          {{/unless ~}}
-
-          {{#unless (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") ~}}
-            <button class="chip bg-primary bg-twitter b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="twitter.com"
-              data-confirm-task="link-provider" data-confirm-verb="link to Twitter" data-confirm-description="#link-provider-description" data-confirm-data='{ "providerId": "twitter.com" }'>
-              <span class="fab fa-fw fa-twitter"></span>
-              Link to Twitter
-            </button>
-          {{/unless ~}}
-
-          {{#unless (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com") ~}}
-            <button class="chip bg-primary bg-facebook b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="facebook.com"
-              data-confirm-task="link-provider" data-confirm-verb="link to Facebook" data-confirm-description="#link-provider-description" data-confirm-data='{ "providerId": "facebook.com" }'>
-              <span class="fab fa-fw fa-facebook"></span>
-              Link to Facebook
-            </button>
-          {{/unless ~}}
-          {{/unless ~}}
-        </div>
-        {{/unless ~}}
 
         {{#unless @root.data.isAdmin ~}}
-        <div class="column col-6 col-sm-12 form b-padding-full">
-          <h3>Account data</h3>
+          <form class="column col-6 col-sm-12 b-padding-full form" id="change-email" data-component="TasksTrigger" data-TasksTrigger='{
+      change: { tasks: [ "validate-email-form" ] },
+      keyup: { tasks: [ "validate-email-form" ] },
+      load: { tasks: [ "validate-email-form" ] }
+    }'>
+            <h3>Change email</h3>
 
-          <div id="delete-account-alert" class="alert hidden bg-error s-rounded x-padding v-margin">
-            <span class="alert-message"></span>
-          </div>
+            <div id="change-email-alert" class="alert hidden bg-error s-rounded x-padding v-margin">
+              <span class="alert-message"></span>
+            </div>
 
-          <!-- <button type="button" class="btn v-margin" onclick="exportUserData();">
-            Export account settings
-          </button>
-          <button class="btn v-margin" data-dialog-target="#import-user-dialog">
-            <span class="far fa-download" aria-hidden="true"></span>
-            Import account settings
-          </button> -->
-          <button class="btn btn-error" id="delete-account-button" data-component="TasksTrigger"
-            data-TasksTrigger="show-confirm-modal" data-confirm-task="delete-account" data-confirm-verb="delete your account"
-            data-confirm-description="#delete-account-description">
-            <!-- <span class="far fa-trash" aria-hidden="true"></span> -->
-            Delete account
-          </button>
-        </div>
+            <div class="form-group has-icon-left">
+              <input class="form-input" type="email" id="change-email-value" placeholder="New email" data-lpignore="true" autocomplete="nope" data-component="TasksTrigger" data-TasksTrigger="focus-next" required />
+              <span class="form-icon far fa-envelope"></span>
+            </div>
+            <div class="form-group has-icon-left">
+              <input class="form-input" type="email" id="change-email-confirm" placeholder="Confirm new email" data-lpignore="true" autocomplete="nope" data-component="TasksTrigger" data-TasksTrigger="focus-next" required />
+              <span class="form-icon far fa-envelope"></span>
+            </div>
+
+            <button type="button" class="btn btn-primary" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-confirm-task="change-email" disabled data-confirm-verb="change your email" data-confirm-description="#check-email-show-confirm">
+              Change email
+            </button>
+          </form>
         {{/unless ~}}
+        </div>
+
+        <div class="columns">
+          {{#unless @root.data.isAdmin ~}}
+          <div class="column col-6 col-sm-12 form b-padding-full" id="link-unlink">
+            {{#ifAny (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com") ~}}
+            <h3>Linked accounts</h3>
+
+            <div id="unlink-provider-alert" class="alert hidden bg-error s-rounded x-padding v-margin">
+              <span class="alert-message"></span>
+            </div>
+
+            {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com") ~}}
+              <button class="chip bg-primary bg-google b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="google.com"
+                data-confirm-task="unlink-provider" data-confirm-verb="unlink from Google" data-confirm-description="#unlink-provider-description" data-confirm-data='{ "providerId": "google.com" }'>
+                <span class="fab fa-fw fa-google"></span>
+                Unlink from Google
+              </button>
+            {{/if ~}}
+
+            {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") ~}}
+              <button class="chip bg-primary bg-twitter b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="twitter.com"
+                data-confirm-task="unlink-provider" data-confirm-verb="unlink from Twitter" data-confirm-description="#unlink-provider-description" data-confirm-data='{ "providerId": "twitter.com" }'>
+                <span class="fab fa-fw fa-twitter"></span>
+                Unlink from Twitter
+              </button>
+            {{/if ~}}
+
+            {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com") ~}}
+              <button class="chip bg-primary bg-facebook b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="facebook.com"
+                data-confirm-task="unlink-provider" data-confirm-verb="unlink from Facebook" data-confirm-description="#unlink-provider-description" data-confirm-data='{ "providerId": "facebook.com" }'>
+                <span class="fab fa-fw fa-facebook"></span>
+                Unlink from Facebook
+              </button>
+            {{/if ~}}
+            {{/ifAny ~}}
+
+            {{#unless (ifAll (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com")) ~}}
+            <h3>Available providers</h3>
+
+            <div id="link-provider-alert" class="alert hidden bg-error s-rounded x-padding v-margin">
+              <span class="alert-message"></span>
+            </div>
+
+            {{#unless (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com") ~}}
+              <button class="chip bg-primary bg-google b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="google.com"
+                data-confirm-task="link-provider" data-confirm-verb="link to Google" data-confirm-description="#link-provider-description" data-confirm-data='{ "providerId": "google.com" }'>
+                <span class="fab fa-fw fa-google"></span>
+                Link to Google
+              </button>
+            {{/unless ~}}
+
+            {{#unless (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") ~}}
+              <button class="chip bg-primary bg-twitter b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="twitter.com"
+                data-confirm-task="link-provider" data-confirm-verb="link to Twitter" data-confirm-description="#link-provider-description" data-confirm-data='{ "providerId": "twitter.com" }'>
+                <span class="fab fa-fw fa-twitter"></span>
+                Link to Twitter
+              </button>
+            {{/unless ~}}
+
+            {{#unless (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com") ~}}
+              <button class="chip bg-primary bg-facebook b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="facebook.com"
+                data-confirm-task="link-provider" data-confirm-verb="link to Facebook" data-confirm-description="#link-provider-description" data-confirm-data='{ "providerId": "facebook.com" }'>
+                <span class="fab fa-fw fa-facebook"></span>
+                Link to Facebook
+              </button>
+            {{/unless ~}}
+            {{/unless ~}}
+          </div>
+          {{/unless ~}}
+
+          {{#unless @root.data.isAdmin ~}}
+          <div class="column col-6 col-sm-12 form b-padding-full">
+            <h3>Account data</h3>
+
+            <div id="delete-account-alert" class="alert hidden bg-error s-rounded x-padding v-margin">
+              <span class="alert-message"></span>
+            </div>
+
+            <!-- <button type="button" class="btn v-margin" onclick="exportUserData();">
+              Export account settings
+            </button>
+            <button class="btn v-margin" data-dialog-target="#import-user-dialog">
+              <span class="far fa-download" aria-hidden="true"></span>
+              Import account settings
+            </button> -->
+            <button class="btn btn-error" id="delete-account-button" data-component="TasksTrigger"
+              data-TasksTrigger="show-confirm-modal" data-confirm-task="delete-account" data-confirm-verb="delete your account"
+              data-confirm-description="#delete-account-description">
+              <!-- <span class="far fa-trash" aria-hidden="true"></span> -->
+              Delete account
+            </button>
+          </div>
+          {{/unless ~}}
+        </div>
       </div>
     </div>
   </div>

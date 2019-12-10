@@ -4,7 +4,7 @@
   "pattern": "/profile-public",
   "errorRoute": "five_hundred",
   "metaData": {
-    "title": "Saltire Awards Profile"
+    "title": "Volunteer Profile"
   },
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
