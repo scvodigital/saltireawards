@@ -1,0 +1,32 @@
+{
+  "name": "flush-cache",
+  "pattern": "/flush-cache",
+  "debug": true,
+  "errorRoute": "five_hundred_json",
+  "acceptedVerbs": "GET",
+  "defaultParams": {
+    "context": "results"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authNotRequired",
+    "context.metaData.commonTasks.flushCache",
+    {
+      "name": "flushOtherCache",
+      "taskModule": "cacheFlush",
+      "renderer": "handlebars",
+      "config": {
+        "partition": "saltire-profiles-{{@root.request.params.query.user_id}}"
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "body",
+        "template": "{\"success\": true , \"user_flushed\" : \"{{{@root.request.params.query.user_id}}}\" }",
+        "parseJson": false
+      }
+    }
+  ]
+}

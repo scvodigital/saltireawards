@@ -8,9 +8,9 @@
     "emailType": "hours-verify"
   },
   "tasks": [
-    "context.metaData.commonTasks.flushCache",
     "context.metaData.commonTasks.authRequired",
     "context.metaData.commonTasks.getAccountInfo",
+    "context.metaData.commonTasks.flushCache",
     "context.metaData.commonTasks.fullSignUpRequired",
     "context.metaData.commonTasks.getTasksInfoUnverified",
     {
