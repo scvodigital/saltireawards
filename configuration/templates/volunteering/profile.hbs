@@ -28,7 +28,7 @@
       <div class="column col-auto col-xs-12 col-mx-auto">
         <div class="form-group text-left">
           <label class="form-switch">
-            <input type="checkbox">
+            <input type="checkbox" checked="checked" disabled>
             <i class="form-icon"></i> Make my profile public
           </label>
         </div>
@@ -44,8 +44,11 @@
     <polygon fill="#ebedfa" points="100,0 100,100 0,0"></polygon>
   </svg>
   <div class="container">
+    <h2>Volunteering details</h2>
+
     <div class="columns cards equal-height">
       {{#each @root.data.tasksInfo ~}}
+      {{#compare hours_verified ">" 0 ~}}
       <div class="column col-6 col-xl-12">
         <div class="card b-margin-full">
           <div class="card-header">
@@ -102,6 +105,7 @@
           {{/if ~}} --}}
         </div>
       </div>
+      {{/compare ~}}
       {{/each ~}}
     </div>
   </div>
