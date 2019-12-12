@@ -80,7 +80,7 @@
     "next_award_hours": 1000000,
     "last_award_hours": 200,
     "certificate_name": "Five hundred",
-    "highest": true,
+    "highest": false,
     "type": "ascent",
     "type_name": "The Ascent",
     "signature_image": "signatureNicolaSturgeon",
