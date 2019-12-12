@@ -5,8 +5,9 @@
     "certificate_name": "Team",
     "type": "challenge",
     "type_name": "The Challenge",
+    "signature_image": "signatureJohnSwinney",
+    "signature_image_position": 600,
     "signature_name": "John Swinney",
-    "signature_image": "john-swinney",
     "signature_title": "Cabinet Secretary for Education and Skills"
   },
   {
@@ -17,8 +18,9 @@
     "in_progress": true,
     "type": "approach",
     "type_name": "The Approach",
+    "signature_image": "signatureJohnSwinney",
+    "signature_image_position": 600,
     "signature_name": "John Swinney",
-    "signature_image": "john-swinney",
     "signature_title": "Cabinet Secretary for Education and Skills"
   },
   {
@@ -29,8 +31,9 @@
     "in_progress": true,
     "type": "approach",
     "type_name": "The Approach",
+    "signature_image": "signatureJohnSwinney",
+    "signature_image_position": 600,
     "signature_name": "John Swinney",
-    "signature_image": "john-swinney",
     "signature_title": "Cabinet Secretary for Education and Skills"
   },
   {
@@ -41,8 +44,9 @@
     "in_progress": true,
     "type": "ascent",
     "type_name": "The Ascent",
+    "signature_image": "signatureJohnSwinney",
+    "signature_image_position": 600,
     "signature_name": "John Swinney",
-    "signature_image": "john-swinney",
     "signature_title": "Cabinet Secretary for Education and Skills"
   },
   {
@@ -53,8 +57,9 @@
     "in_progress": true,
     "type": "ascent",
     "type_name": "The Ascent",
+    "signature_image": "signatureJohnSwinney",
+    "signature_image_position": 600,
     "signature_name": "John Swinney",
-    "signature_image": "john-swinney",
     "signature_title": "Cabinet Secretary for Education and Skills"
   },
   {
@@ -65,8 +70,9 @@
     "in_progress": true,
     "type": "ascent",
     "type_name": "The Ascent",
+    "signature_image": "signatureJohnSwinney",
+    "signature_image_position": 600,
     "signature_name": "John Swinney",
-    "signature_image": "john-swinney",
     "signature_title": "Cabinet Secretary for Education and Skills"
   },
   {
@@ -76,8 +82,9 @@
     "certificate_name": "Five hundred",
     "type": "ascent",
     "type_name": "The Ascent",
+    "signature_image": "signatureNicolaSturgeon",
+    "signature_image_position": 640,
     "signature_name": "Nicola Sturgeon",
-    "signature_image": "nicola-sturgeon",
     "signature_title": "First Minister"
   },
   {
@@ -85,8 +92,9 @@
     "certificate_name": "Outstanding",
     "type": "summit",
     "type_name": "The Summit",
+    "signature_image": "signatureNicolaSturgeon",
+    "signature_image_position": 640,
     "signature_name": "Nicola Sturgeon",
-    "signature_image": "nicola-sturgeon",
     "signature_title": "First Minister",
     "tsi_only": true
   }

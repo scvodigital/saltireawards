@@ -55,6 +55,10 @@
   "defaultStyle": {
     "font": "Montserrat"
   },
+  "images": {
+    "signatureNicolaSturgeon": "{{> certificate_images_png_signatures_nicola_sturgeon}}",
+    "signatureJohnSwinney": "{{> certificate_images_png_signatures_john_swinney}}"
+  },
   "background": [
     {
       "svg": "{{> certificate_images_svg_background}}"

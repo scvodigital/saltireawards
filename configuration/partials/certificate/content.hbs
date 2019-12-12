@@ -269,37 +269,21 @@
   {{#each @root.context.metaData.certificates ~}}
   {{#ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1) ~}}
   {{#compare hours ../user.hours_verified ~}}
-  {{#compare signature_image "nicola-sturgeon" ~}}
-  "image": "{{> certificate_images_png_signatures_nicola_sturgeon}}",
+  "image": "{{signature_image}}",
   "absolutePosition": {
     "x": 60,
-    "y": 640
+    "y": {{signature_image_position}}
   },
-  {{else}}
-  "image": "{{> certificate_images_png_signatures_john_swinney}}",
-  "absolutePosition": {
-    "x": 60,
-    "y": 600
-  },
-  {{/compare ~}}
   {{/compare ~}}
   {{else}}
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
   {{#unless (compare hours 1) ~}}
   {{#unless (compare @root.data.accountInfo.hours_verify_award ">" next_award_hours) ~}}
-  {{#compare signature_image "nicola-sturgeon" ~}}
-  "image": "{{> certificate_images_png_signatures_nicola_sturgeon}}",
+  "image": "{{signature_image}}",
   "absolutePosition": {
     "x": 60,
-    "y": 640
+    "y": {{signature_image_position}}
   },
-  {{else}}
-  "image": "{{> certificate_images_png_signatures_john_swinney}}",
-  "absolutePosition": {
-    "x": 60,
-    "y": 600
-  },
-  {{/compare ~}}
   {{/unless ~}}
   {{/unless ~}}
   {{/compare ~}}
@@ -308,19 +292,11 @@
   {{else}}
   {{#each @root.context.metaData.certificates ~}}
   {{#compare ../award type ~}}
-  {{#compare signature_image "nicola-sturgeon" ~}}
-  "image": "{{> certificate_images_png_signatures_nicola_sturgeon}}",
+  "image": "{{signature_image}}",
   "absolutePosition": {
     "x": 60,
-    "y": 640
+    "y": {{signature_image_position}}
   },
-  {{else}}
-  "image": "{{> certificate_images_png_signatures_john_swinney}}",
-  "absolutePosition": {
-    "x": 60,
-    "y": 600
-  },
-  {{/compare ~}}
   {{/compare ~}}
   {{/each ~}}
   {{/compare ~}}
