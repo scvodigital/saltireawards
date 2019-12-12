@@ -56,6 +56,9 @@
 {{#ifAll (compare (dateMath 'now-17y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) (compare (dateMath 'now-18y') '<' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) ~}}
 {{>queries_terms field="volunteersearch_age_slugs" terms=17}},
 {{/ifAll ~}}
+{{#if (compare (dateMath 'now-18y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) ~}}
+{{>queries_terms field="volunteersearch_age_slugs" terms=18}},
+{{/if ~}}
 {{/if ~}}
 {{/if ~}}
 {{>queries_do_nothing}}
