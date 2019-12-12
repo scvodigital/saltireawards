@@ -108,7 +108,11 @@
               {{#unless (compare task_type "===" 'Copy Task')}}
               <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-id-card-alt"></span></span>
-                <a href="/task-edit/{{task_id}}">{{volunteer_manager_first_name}} {{volunteer_manager_last_name}}</a>
+                {{#unless (getProperty (itemAt @root.context.metaData.certificates (indexOf (map @root.context.metaData.certificates (getProp 'hours')) @root.data.awardsStatus.current)) "highest") ~}}
+                <a href="/task-edit/{{task_id}}">{{{volunteer_manager_first_name}}} {{{volunteer_manager_last_name}}}</a>
+                {{else}}
+                {{{volunteer_manager_first_name}}} {{{volunteer_manager_last_name}}}
+                {{/unless ~}}
               </li>
               {{else}}
               <li class="card-subtitle">
@@ -118,10 +122,12 @@
               {{/unless}}
             </ul>
           </div>
+
+          {{#unless (getProperty (itemAt @root.context.metaData.certificates (indexOf (map @root.context.metaData.certificates (getProp 'hours')) @root.data.awardsStatus.current)) "highest") ~}}
           <div class="card-footer">
             <form action="/submit-hours" method="POST" data-component="TasksTrigger" {{#if admin}}data-success-destination="/hours/" data-destination-include-id="true"{{else}}data-success-destination="/hours"{{/if}} data-TasksTrigger="ajax-form-handler">
               <input type="hidden" name="task_id" value="{{task_id}}">
-              {{#unless (compare task_type "===" 'Copy Task')}}
+              {{#unless (compare task_type "===" 'Copy Task') ~}}
 
               <label class="form-label" for="hours-{{task_id}}">
                 <strong>
@@ -135,18 +141,20 @@
               </label>
 
               <div class="input-group b-margin">
-
                 <textarea class="form-input" id="notes-{{task_id}}" placeholder="Notes (optional)" rows="3"></textarea>
-                {{!-- <input class="form-input input-lg" id="notes-{{task_id}}" name="notes" type="text" placeholder="" /> --}}
               </div>
               <div class="input-group">
                 <input class="form-input input-lg" id="hours-{{task_id}}" name="hours" type="number" step="0.5" min="0.5" value="" placeholder="0" required >
                 <button type="submit" class="btn btn-primary btn-lg input-group-btn">Add hours</button>
               </div>
-              {{/unless }}
+              {{/unless ~}}
             </form>
           </div>
-
+          {{else}}
+          {{!-- <div class="card-footer">
+            You have reached 500 hours volunteering
+          </div> --}}
+          {{/unless ~}}
         </div>
       </div>
       {{/each ~}}
@@ -388,6 +396,7 @@
   {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
 </div>
 {{#unless (compare (sumArray (pluck @root.data.tasksInfo "hours")) 0) ~}}
+{{#unless (getProperty (itemAt @root.context.metaData.certificates (indexOf (map @root.context.metaData.certificates (getProp 'hours')) @root.data.awardsStatus.current)) "highest") ~}}
 <div class="empty content-break">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
     <polygon fill="#FFFFFF" points="0,0 100,0 0,100"></polygon>
@@ -396,6 +405,7 @@
     {{> log_action_buttons}}
   </div>
 </div>
+{{/unless ~}}
 {{/unless ~}}
 
 {{!-- <script src="https://#/recaptcha/api.js" async defer></script> --}}

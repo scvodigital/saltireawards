@@ -22,7 +22,9 @@
   {{> log_hours_info}}
   <div class="empty-action">
     {{#unless (compare (dateMath 'now-28y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD")) ~}}
+    {{#unless (getProperty (itemAt @root.context.metaData.certificates (indexOf (map @root.context.metaData.certificates (getProp 'hours')) @root.data.awardsStatus.current)) "highest") ~}}
     <a href="/hours" class="btn btn-primary">My volunteering - log hours</a>
+    {{/unless ~}}
     {{/unless ~}}
     <a href="/search" class="btn btn-link">Find a new volunteering opportunity</a>
   </div>

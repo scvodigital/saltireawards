@@ -3,7 +3,11 @@
   {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) 0 ~}}
   You haven't logged any volunteering yet
   {{else}}
+  {{#unless (getProperty (itemAt @root.context.metaData.certificates (indexOf (map @root.context.metaData.certificates (getProp 'hours')) @root.data.awardsStatus.current)) "highest") ~}}
   You have logged {{inflect (round (sumArray (pluck @root.data.tasksInfo "hours")) "down") "hour" "hours" true}} so far
+  {{else}}
+  You have achieved the highest level of the {{@root.context.metaData.title}}
+  {{/unless ~}}
   {{/compare ~}}
 </p>
 
