@@ -1,5 +1,9 @@
-{{#*inline "profile_title" ~}}
-{{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}} – Saltire Awards
-{{/inline ~}}
+{{#*inline "profile_title" ~}}{{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}} – Saltire Awards{{/inline ~}}
 <title>{{> profile_title}}</title>
+<meta property="og:site_name" content="{{@root.context.metaData.title}}" />
+<meta property="og:type" content="profile" />
 <meta property="og:title" content="{{> profile_title}}" data-dynamic="true">
+<meta property="og:url" content="{{@root.request.fullUrl}}" />
+<meta property="profile:first_name" content="{{{@root.data.accountInfo.first_name}}}">
+<meta property="profile:last_name" content="{{{@root.data.accountInfo.last_name}}}">
+<meta property="profile:username" content="{{slugify (concat @root.data.accountInfo.first_name " " @root.data.accountInfo.last_name)}}">
