@@ -25,7 +25,12 @@
         {{{json key='phone' value=phone}}},
         {{{json key='title' value=title}}},
         {{{json key='email' value=email}}},
-          "email_consent" : {{#compare email_consent '===' 'on'}}true{{else}}false{{/compare}},
+        "email_consent" : {{#compare email_consent '===' 'on'}}true{{else}}false{{/compare}},
+        "public_profile" : {{#compare public_profile '===' 'on'}}true{{else}}false{{/compare}},
+        {{{json key='admin_ward' value=admin_ward}}},
+        {{{json key='msoa' value=msoa}}},
+        {{{json key='nuts' value=nuts}}},
+
         {{{json key='local_authority' value=local_authority}}},
         {{{json key='tsi_contact_email' value=tsi_contact_email}}},
         {{{json key='tsi_area' value=tsi_area}}},
