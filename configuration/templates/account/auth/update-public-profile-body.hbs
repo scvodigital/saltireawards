@@ -1,0 +1,14 @@
+{{#with @root.data.accountInfo}}
+  {{#json}}
+    {{#json key='users' type='array'}}
+      {{#json}}
+        {{#each (keyValue this)}}
+          {{#unless (compare key 'public_profile')}}
+            {{{json key=key value=value}}},
+          {{/unless}}
+        {{/each}}
+        "public_profile" : {{#compare @root.request.body.public_profile '===' 'on'}}true{{else}}false{{/compare}}
+      {{/json}},
+    {{/json}}
+  {{/json}}
+{{/with}}

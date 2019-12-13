@@ -1,0 +1,35 @@
+{
+  "name": "toggle-profile-public",
+  "pattern": "/toggle-profile-public",
+  "debug": true,
+  "errorRoute": "five_hundred",
+  "acceptedVerbs": "POST",
+  "defaultParams": {
+    "context": "results"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.getAccountInfo",
+    {
+      "name": "saveUserData",
+      "taskModule": "salesforceApex",
+      "renderer": "handlebars",
+      "config": {
+        "connection": "scvoAlexSandbox",
+        "output": "data",
+        "method": "POST",
+        "body": ">context.metaData.handlebars.templates.account_auth_update-public-profile-body",
+        "apexClassPath": "/SaltireUser/"
+      }
+    },
+    "context.metaData.commonTasks.flushCache",
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": ">request.body.here",
+        "statusCode": 302
+      }
+    }
+  ]
+}
