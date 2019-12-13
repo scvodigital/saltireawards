@@ -51,7 +51,7 @@
               <input type="text" id="where-opportunities" name="location" class="form-input input-lg" value="{{@root.request.params.query.location}}" placeholder="Location" data-lpignore="true">
             </span>
             <select class="form-select select-lg" id="distance" name="distance">
-              {{#each (split "1,2,5,10,15,20" ",")}}
+              {{#each (split "1,2,5,10,15,20,30,50" ",")}}
               <option value="{{this}}" {{#compare (default @root.request.params.query.distance "5") "===" this}}selected{{/compare}}>{{inflect this "mile" "miles" true}}</option>
               {{/each}}
             </select>
