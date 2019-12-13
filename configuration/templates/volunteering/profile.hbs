@@ -28,7 +28,7 @@
       <div class="column col-auto col-xs-12 col-mx-auto">
         <div class="form-group text-left">
           <label class="form-switch">
-            <input type="checkbox" checked="checked" disabled>
+            <input type="checkbox"{{#if @root.data.accountInfo.public_profile}} checked="checked"{{/if}}>
             <span class="form-icon"></span> Make my profile public
           </label>
         </div>
