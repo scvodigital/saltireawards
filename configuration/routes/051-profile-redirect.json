@@ -8,6 +8,21 @@
     "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.fullSignUpRequired",
     {
+      "name": "reroute",
+      "taskModule": "reroute",
+      "config": {
+        "if": [{ "!=": [
+            {
+              "var": "data.accountInfo.user_type"
+            },
+            "Volunteer"
+          ]},
+          "four_oh_four",
+          false
+        ]
+      }
+    },
+    {
       "name": "profileUrl",
       "taskModule": "render",
       "renderer": "handlebars",

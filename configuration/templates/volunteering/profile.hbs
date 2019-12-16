@@ -27,12 +27,12 @@
     <div class="columns">
       <div class="column col-auto col-xs-12 col-mx-auto">
         <div class="form-group text-left">
-          <form action="/toggle-profile-public/" method="post" >
-          <label class="form-switch">
-            <input type="hidden" name="here" value="{{@root.request.fullUrl}}" />
-            <input type="checkbox" name="public_profile" {{#if @root.data.accountInfo.public_profile}}checked="true"{{else}}{{/if}} onChange="this.form.submit()">
-            <span class="form-icon"></span> Make my profile public
-          </label>
+          <form action="/toggle-profile-public/" method="post">
+            <label class="form-switch">
+              <input type="hidden" name="here" value="{{@root.request.fullUrl}}" />
+              <input type="checkbox" name="public_profile"{{#if @root.data.accountInfo.public_profile}} checked="true"{{/if}} onChange="this.form.submit()">
+              <span class="form-icon"></span> Make my profile public
+            </label>
           </form>
         </div>
       </div>

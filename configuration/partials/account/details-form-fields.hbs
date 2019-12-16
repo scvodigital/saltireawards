@@ -26,14 +26,16 @@
   {{#unless admin}}
   <div class="form-group">
     <div class="column col-4 col-sm-12">
-      <label class="form-label" for="date_of_birth">Date of birth
-        <div class="caption">You must be 12-27 years old to sign up</div>
-      </label>
-
+      <label class="form-label" for="date_of_birth">Date of birth</label>
     </div>
     <div class="column col-8 col-sm-12">
       {{#unless @root.data.accountInfo.date_of_birth ~}}
         <input class="form-input" id="date_of_birth_checked" {{#if admin}}max="{{momentFormat (dateMath 'now-13y') 'YYYY-MM-DD'}}" min="{{momentFormat (dateMath 'now-120y') 'YYYY-MM-DD'}}"{{else}}max="{{momentFormat (dateMath 'now-12y') 'YYYY-MM-DD'}}" min="{{momentFormat (dateMath 'now-27y') 'YYYY-MM-DD'}}"{{/if}} name="date_of_birth" type="date" value="{{@root.data.accountInfo.date_of_birth}}" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="focus-next" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.date_of_birth}}>
+        {{#unless admin ~}}
+        <div class="caption">
+          You must be 12-27 years old to sign up. If you are over 25 you can only log volunteering undertaken in the last two years until you turned 26.
+        </div>
+        {{/unless ~}}
       {{else}}
         <input class="form-input" id="date_of_birth_checked" name="date_of_birth_checked" type="date" value="{{@root.data.accountInfo.date_of_birth}}" autocomplete="nope" data-lpignore="true" disabled>
         <input type="hidden" name="date_of_birth" value="{{@root.data.accountInfo.date_of_birth}}">
@@ -57,12 +59,14 @@
       <div class="column col-4 col-sm-12">
         <label class="form-label" for="school_college_name">
           School/college/university
-          <div class="caption">Leave blank if not in education</div>
         </label>
       </div>
       <div class="column col-8 col-sm-12">
         <div class="has-icon-right d-inline-block" data-component="Typeahead" data-Typeahead="typeahead-school">
           <input class="form-input" id="school_college_name" name="school_college_name" type="text" value="{{@root.data.accountInfo.school_college_name}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="school-lookup" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.school_college_name}}>
+          <div class="caption">
+            Leave blank if not in education
+          </div>
           {{!-- Removed, whilst non-listed schools / colleges allowed. <span class="form-icon far {{#if hasSchool}}fa-check text-success{{else}}fa-times text-error{{/if}}" id="school-validation-icon"></span> --}}
         </div>
       </div>

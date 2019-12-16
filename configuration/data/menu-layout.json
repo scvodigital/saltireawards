@@ -68,9 +68,8 @@
       "icon": "user",
       "path": "/profile",
       "route": "^/profile",
-      "public_checkbox": true,
       "user-types": [
-        "DISABLED"
+        "Volunteer"
       ]
     },
     {
