@@ -1,6 +1,6 @@
 {
   "name": "certificate",
-  "pattern": "/certificate",
+  "pattern": "/certificate(/:junk)",
   "debug": true,
   "errorRoute": "five_hundred",
   "tasks": [
