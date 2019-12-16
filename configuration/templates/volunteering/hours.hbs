@@ -263,7 +263,7 @@
                   </option>
                   {{else}}
                   {{#if @root.data.accountInfo.summit_certificate_permission ~}}
-                  <option value="{{hours}}">
+                  <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>
                     {{type_name}}
                   </option>
                   {{/if ~}}
@@ -281,7 +281,7 @@
               {{/if ~}}
             </div>
             <div class="column col-2 col-xl-2 col-lg-2 col-md-3 col-sm-4">
-              <a href="/group-certificate/{{../task_id}}/{{hours_id}}" class="btn btn-block b-margin">Download</a>
+              <a href="/group-certificate/{{../task_id}}/{{hours_id}}/saltire-award-{{#compare hours 0}}challenge-certificate{{else}}{{#compare hours 1}}summit-certificate{{else}}for-{{hours}}-hours{{/compare}}{{/compare}}-{{slugify claim_first_name}}-{{slugify claim_last_name}}.pdf" class="btn btn-block b-margin">Download</a>
             </div>
             <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-4">
               {{#if claim_code ~}}
