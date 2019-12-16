@@ -204,7 +204,8 @@
 {
   "text": {{>pdf_metadata_value key="title" default=(concat user.first_name " " user.last_name)}},
   "margin": [0, 20, 0, 0],
-  "style": ["volunteer_name", "bold"]
+  "style": ["volunteer_name", "bold"],
+  "fontSize": {{#compare (length (concat user.first_name " " user.last_name)) "<" 60}}30{{else}}{{#compare (length (concat user.first_name " " user.last_name)) "<" 100}}25{{else}}20{{/compare}}{{/compare}}
 },
 {{#each tasks ~}}
 {{#ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1)) (ifAll (compare hours_verified "!==" 0) (compare hours_verified "!==" 1)) ~}}
