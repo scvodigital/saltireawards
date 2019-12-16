@@ -272,6 +272,16 @@ blockquote cite:before {
   content: "\2013";
 }
 
+[type="date"] {
+  background: #fff url('https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png') 99% 50% no-repeat !important;
+}
+[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
 .twitter-typeahead {
   display: block;
   width: 100%;
