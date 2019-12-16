@@ -45,6 +45,9 @@ $home-splash-height: 25vh;
 .container {
   padding: 0 $unit;
 }
+body {
+  word-break: break-word;
+}
 body,
 .footer-copyright {
   background-color: $theme-footer-light;
@@ -545,6 +548,9 @@ header,
 
 .saltire-badge {
   margin-bottom: $unit;
+  img {
+    width: 120px;
+  }
 }
 .saltire-badge.disabled {
   filter: grayscale(1);
