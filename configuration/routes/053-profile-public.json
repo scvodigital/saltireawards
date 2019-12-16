@@ -20,6 +20,17 @@
         ]
       }
     },
+    {
+      "name": "reroute",
+      "taskModule": "reroute",
+      "config": {
+        "if": [
+          { "==": [{"var": "data.accountInfo.public_profile"}, false] },
+          "profile_hidden",
+          false
+        ]
+      }
+    },
     "context.metaData.commonTasks.getTasksInfo",
     "context.metaData.commonTasks.getAwardsStatus",
     {
