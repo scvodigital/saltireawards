@@ -31,7 +31,7 @@
           <div class="card-title h5">{{#if island}}{{{../local_authority}}}{{else}}{{{default area ../local_authority}}}{{/if}}</div>
           {{/ifAny ~}}
           {{#ifAll title ~}}
-          <div class="card-subtitle"><a href="{{website}}">{{{title}}}</a></div>
+          <div class="card-subtitle"><a href="{{fixUrl website}}">{{{title}}}</a></div>
           {{/ifAll ~}}
         </div>
         <div class="card-body"></div>
@@ -43,19 +43,19 @@
           <a href="mailto:{{email}}" class="btn btn-primary"><span class="far fa-fw fa-envelope"></span></a>
           {{/if ~}}
           {{#if phone ~}}
-          <a href="tel:+44{{phone}}" class="btn"><span class="fas fa-fw fa-phone fa-flip-horizontal"></span></a>
-          {{/if ~}}
-          {{#if facebook ~}}
-          <a href="{{facebook}}" class="btn"><span class="fab fa-fw fa-facebook"></span></a>
+          <a href="tel:+44{{replace phone ' ' ''}}" class="btn"><span class="fas fa-fw fa-phone fa-flip-horizontal"></span></a>
           {{/if ~}}
           {{#if twitter ~}}
-          <a href="{{twitter}}" class="btn"><span class="fab fa-fw fa-twitter"></span></a>
+          <a href="{{fixUrl twitter}}" class="btn"><span class="fab fa-fw fa-twitter"></span></a>
+          {{/if ~}}
+          {{#if facebook ~}}
+          <a href="{{fixUrl facebook}}" class="btn"><span class="fab fa-fw fa-facebook"></span></a>
           {{/if ~}}
           {{#if instagram ~}}
-          <a href="{{instagram}}" class="btn"><span class="fab fa-fw fa-instagram"></span></a>
+          <a href="{{fixUrl instagram}}" class="btn"><span class="fab fa-fw fa-instagram"></span></a>
           {{/if ~}}
           {{#if youtube ~}}
-          <a href="{{youtube}}" class="btn"><span class="fab fa-fw fa-youtube"></span></a>
+          <a href="{{fixUrl youtube}}" class="btn"><span class="fab fa-fw fa-youtube"></span></a>
           {{/if ~}}
         </div>
       </div>

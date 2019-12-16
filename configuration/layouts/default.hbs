@@ -426,31 +426,31 @@
                         {{#if website ~}}
                           <li>
                             <span class="fa-li"><span class="fas fa-link"></span></span>
-                            <a href="{{website}}" target="_blank">{{replace (replace (replace website 'https://' '') 'http://' '') 'www.' ''}}</a>
+                            <a href="{{fixUrl website}}" target="_blank">{{replace (replace (replace website 'https://' '') 'http://' '') 'www.' ''}}</a>
                           </li>
                         {{/if ~}}
                         {{#if twitter ~}}
                           <li>
                             <span class="fa-li"><span class="fab fa-twitter"></span></span>
-                            <a href="{{twitter}}" target="_blank">Twitter</a>
+                            <a href="{{fixUrl twitter}}" target="_blank">Twitter</a>
                           </li>
                         {{/if ~}}
                         {{#if facebook ~}}
                           <li>
                             <span class="fa-li"><span class="fab fa-facebook"></span></span>
-                            <a href="{{facebook}}" target="_blank">Facebook</a>
-                          </li>
-                        {{/if ~}}
-                        {{#if youtube ~}}
-                          <li>
-                            <span class="fa-li"><span class="fab fa-youtube"></span></span>
-                            <a href="{{youtube}}" target="_blank">YouTube</a>
+                            <a href="{{fixUrl facebook}}" target="_blank">Facebook</a>
                           </li>
                         {{/if ~}}
                         {{#if instagram ~}}
                           <li>
                             <span class="fa-li"><span class="fab fa-instagram"></span></span>
-                            <a href="{{instagram}}" target="_blank">Instagram</a>
+                            <a href="{{fixUrl instagram}}" target="_blank">Instagram</a>
+                          </li>
+                        {{/if ~}}
+                        {{#if youtube ~}}
+                          <li>
+                            <span class="fa-li"><span class="fab fa-youtube"></span></span>
+                            <a href="{{fixUrl youtube}}" target="_blank">YouTube</a>
                           </li>
                         {{/if ~}}
                       {{/if ~}}
