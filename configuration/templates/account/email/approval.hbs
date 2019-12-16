@@ -5,8 +5,8 @@
     "h:sender": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
     "h:Reply-To": "{{>support_name}} <{{>support_email_address}}>",
     {{#compare @root.data.accountInfo.user_type "Group Admin" ~}}
-    "to": "alex.nuttgens@scvo.org.uk",
-    "wouldbe": "{{>support_name}} <{{>support_email_address}}>",
+    {{!-- "to": "alex.nuttgens@scvo.org.uk", --}}
+    "to": "{{>support_name}} <{{>support_email_address}}>",
     {{else}}
     "to": "{{{approval_email}}}",
     {{/compare ~}}

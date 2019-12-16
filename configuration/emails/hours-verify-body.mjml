@@ -10,10 +10,12 @@
       <mj-section>
         <mj-column padding="0px">
           <mj-text font-size="16px" padding="0px" line-height="20px" color="#000000" font-family="Montserrat, Helvetica, Arial, sans-serif">
+            <p><strong>This is a test from the new Saltire Awards service in development</strong></p>
+
             <p>Dear Sir or Madam,</p>
 
             <p>
-            {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}}
+              {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}}
               {{#if @root.data.accountInfo.school_college_name}}from {{@root.data.accountInfo.school_college_name}}{{/if}}
               is applying for a {{@root.context.metaData.certificateName}} for volunteering with you. Please confirm the following volunteering hours are accurate below.
             </p>
@@ -48,7 +50,6 @@
             <p style="margin:0px;">
             </p>
           </mj-text>
-
         </mj-column>
       </mj-section>
     </mj-wrapper>

@@ -10,6 +10,8 @@
       <mj-section>
         <mj-column padding="0px">
           <mj-text font-size="16px" padding="0px" line-height="20px" color="#000000" font-family="Montserrat, Helvetica, Arial, sans-serif">
+            <p><strong>This is a test from the new Saltire Awards service in development</strong></p>
+
             <p>Hello,</p>
 
             <p>This is a confirmation email from the {{@root.context.metaData.title}} website. {{first_name}} {{last_name}}, has named you as their parent or guardian.</p>
@@ -37,7 +39,6 @@
             <p style="margin:0px;">
             </p>
           </mj-text>
-
         </mj-column>
       </mj-section>
     </mj-wrapper>

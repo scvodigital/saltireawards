@@ -10,6 +10,8 @@
       <mj-section>
         <mj-column padding="0px">
           <mj-text font-size="16px" padding="0px" line-height="20px" color="#000000" font-family="Montserrat, Helvetica, Arial, sans-serif">
+            <p><strong>This is a test from the new Saltire Awards service in development</strong></p>
+
             <p>Hello,</p>
 
             <p>This is a request for approval from the {{@root.context.metaData.title}} website. {{first_name}} {{last_name}}, has signed up as a group administrator on behalf of {{organisation_name}} for the {{@root.context.metaData.title}}.</p>
@@ -33,7 +35,6 @@
             <p style="margin:0px;">
             </p>
           </mj-text>
-
         </mj-column>
       </mj-section>
     </mj-wrapper>
