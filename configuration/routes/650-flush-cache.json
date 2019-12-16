@@ -9,7 +9,6 @@
   },
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
-    "context.metaData.commonTasks.flushCache",
     {
       "name": "flushOtherCache",
       "taskModule": "cacheFlush",
