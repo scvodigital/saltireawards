@@ -1,6 +1,6 @@
 {
-  "name": "verify-hours-email-send-reminder",
-  "pattern": "/verify-hours-email-send-reminder",
+  "name": "reminder-action",
+  "pattern": "/reminder-action",
   "debug": true,
   "errorRoute": "five_hundred",
   "metaData": {
@@ -9,7 +9,7 @@
   },
   "tasks": [
     "context.metaData.commonTasks.authRequired",
-    "context.metaData.commonTasks.getAccountInfo",
+    "context.metaData.commonTasks.getAccountInfoExternal",
     "context.metaData.commonTasks.fullSignUpRequired",
     "context.metaData.commonTasks.getTasksInfoUnverified",
     {
@@ -19,7 +19,7 @@
       "config": {
         "output": "data",
         "parseJson": true,
-        "template": ">context.metaData.handlebars.templates.volunteering_email_verify-hours"
+        "template": ">context.metaData.handlebars.templates.volunteering_email_verify-hours-reminder"
       }
     },
     {

@@ -1,0 +1,49 @@
+{{#unless (compare @root.request.params.query.action "===" "tsi_email")}}
+[
+{{#eachJoin (distinct (pluck @root.data.tasksInfoUnverified "volunteer_manager_email")) "," ~}}
+  {
+  "from": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+  "h:sender": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+  "h:Reply-To": "{{>support_name}} <{{>support_email_address}}>",
+  "to": "{{{this}}}",
+  "o:tag": "reminder",
+  "o:tracking": true,
+  "v:tasks": "{{>account_list_tasks email=this}}",
+  "tag":  "reminder",
+  "id":  "reminder",
+  "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat @root.request.params.query.action '.mailgunConnection'))}}},
+  "subject": "Verify volunteering - {{#if (compare @root.request.params.query.action "===" "second_reminder")}}Second {{/if}}Reminder",
+  "html":
+  {{~#blockStringify this ~}}
+    {{~>
+    (getProperty @root.context.metaData.emailSendSettings (concat @root.request.params.query.action '.bodyPartial'))
+      this
+    ~}}
+  {{~/blockStringify}}
+  }
+{{/eachJoin ~}}
+]
+{{else}}
+  [
+  {
+  "from": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+  "h:sender": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+  "h:Reply-To": "{{>support_name}} <{{>support_email_address}}>",
+  "to": "anuttgens@gmail.com", {{!-- will be tsi email --}}
+  "o:tag": "tsi_email_reminder",
+  "o:tracking": true,
+  "v:tasks": "{{>account_list_tasks email='tsi_email'}}",
+  "tag":  "tsi_email_reminder",
+  "id":  "tsi_email_reminder",
+  "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat @root.request.params.query.action '.mailgunConnection'))}}},
+  "subject": "Verify volunteering - TSI notification of failure to verify award.",
+  "html":
+  {{~#blockStringify this ~}}
+    {{~>
+    (getProperty @root.context.metaData.emailSendSettings (concat @root.request.params.query.action '.bodyPartial'))
+      "anuttgens@gmail.com"
+    ~}}
+  {{~/blockStringify}}
+  }
+  ]
+{{/unless}}

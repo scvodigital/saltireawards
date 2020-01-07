@@ -1,1 +1,1 @@
-{{#eachJoin (filter (filter @root.data.tasksInfoUnverified "unverified_hours_list.length" ">=" 1) "volunteer_manager_email" "===" email) ","}}{{task_id}}{{/eachJoin}}
+{{#if email}}{{#eachJoin (filter (filter @root.data.tasksInfoUnverified "unverified_hours_list.length" ">=" 1) "volunteer_manager_email" "===" email) ","}}{{task_id}}{{/eachJoin}}{{else}}{{#eachJoin (filter @root.data.tasksInfoUnverified "unverified_hours_list.length" ">=" 1) ","}}{{task_id}}{{/eachJoin}}{{/if}}
