@@ -1,0 +1,34 @@
+{
+  "name": "user-action",
+  "pattern": "/user-action",
+  "debug": true,
+  "errorRoute": "five_hundred",
+  "metaData": {
+    "title": "Tasks"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.getAccountInfoExternal",
+    "context.metaData.commonTasks.fullSignUpRequired",
+    "context.metaData.commonTasks.getTasksInfoUnverified",
+    {
+      "name": "sendEmail",
+      "taskModule": "mailgun",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "parseJson": true,
+        "template": ">context.metaData.handlebars.templates.volunteering_email_user_action"
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": "/awards",
+        "statusCode": 302
+      }
+    }
+
+  ]
+}

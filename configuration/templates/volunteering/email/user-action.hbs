@@ -1,0 +1,26 @@
+[
+{
+"from": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+"h:sender": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+"h:Reply-To": "{{>support_name}} <{{>support_email_address}}>",
+"to": "{{@root.data.accountInfo.email}}",
+"o:tag": "user-action-{{@root.request.params.query.action}}",
+"o:tracking": true,
+"tag":  "user-action-{{@root.request.params.query.action}}",
+"id":  "user-action-{{@root.request.params.query.action}}",
+"connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat @root.request.params.query.action '.mailgunConnection'))}}},
+"subject":
+{{~#blockStringify this ~}}
+  {{~>
+  getProperty @root.context.metaData.emailSendSettings (concat @root.request.params.query.action '.subjectPartial'))
+  ~}}
+{{~/blockStringify}}
+"html":
+{{~#blockStringify this ~}}
+  {{~>
+  (getProperty @root.context.metaData.emailSendSettings (concat @root.request.params.query.action '.bodyPartial'))
+    "anuttgens@gmail.com"
+  ~}}
+{{~/blockStringify}}
+}
+]
