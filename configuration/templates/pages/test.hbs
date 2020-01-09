@@ -3,31 +3,19 @@
     <div class="column col-9 col-xl-12">
       <h2>
 
-        {{#json key="awards_status"}}
-          {{#each @root.context.metaData.certificates ~}}
-            {{#ifAny (compare type "approach") (compare type "ascent") ~}}
 
-              {{#ifAll (compare @root.data.accountInfo.verified_hours ">=" hours) (compare @root.data.accountInfo.verified_hours "<" next_award_hours)}}{{{json key="current" value=hours}}},{{/ifAll}}
-
-              {{#compare @root.data.accountInfo.hours_verify_award "===" (stringify hours) ~}}{{{json key="being_verified" value=hours}}},
-              {{/compare}}
-
-              {{#ifAll
-                (compare @root.data.accountInfo.hours_verify_award "!==" (stringify hours))
-                (compare @root.data.accountInfo.verified_hours "<" hours)
-                (compare @root.data.accountInfo.total_hours ">=" hours)
-                (compare @root.data.accountInfo.total_hours "<" next_award_hours)
-              }}{{{json key="claimable" value=hours }}},
-              {{/ifAll}}
-
-              {{#ifAll
-                (compare @root.data.accountInfo.total_hours "<" hours)
-                (compare @root.data.accountInfo.total_hours ">=" last_award_hours)
-              }}{{{json key="working_towards" value=hours }}},
-              {{/ifAll}}
-            {{/ifAny}}
-          {{/each}}
-        {{/json}}
+        {{@root.data.accountInfo.hours_verify_award}}
+        {{@root.data.accountInfo.total_hours}}
+        {{~#if (compare @root.data.accountInfo.hours_verify_award "<" 9) ~}}
+          <p>
+            Our records show that you have now worked sufficient additional hours to be eligible for the award. Please
+            <a href="https://{{@root.request.headers.host}}/awards">go to the SaltireAwards site</a> and request re-verification
+          </p>
+        {{else}}
+          <p>
+            Our records show that you will need to work a further {{ subtract @root.data.accountInfo.hours_verify_award 9}} hours before once again claiming this award.
+          </p>
+        {{/if}}
 
 
         <p>Current verified = {{@root.request.params.query.verified_hours}}</p>

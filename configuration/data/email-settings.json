@@ -33,7 +33,7 @@
     "subjectPartial": "emails_hours_verify_reject_subject",
     "metaData": {}
   },
-  "hours-verify-success": {
+  "hours-verify-complete": {
     "mailgunConnection": "mg_saltireawards",
     "from": "Saltire Awards <support@saltireawards.scot>",
     "replyTo": "Saltire Awards <support@saltireawards.scot>",

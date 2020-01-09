@@ -12,9 +12,9 @@
 "subject":
 {{~#blockStringify this ~}}
   {{~>
-  getProperty @root.context.metaData.emailSendSettings (concat @root.request.params.query.action '.subjectPartial'))
+  (getProperty @root.context.metaData.emailSendSettings (concat @root.request.params.query.action '.subjectPartial'))
   ~}}
-{{~/blockStringify}}
+{{~/blockStringify}},
 "html":
 {{~#blockStringify this ~}}
   {{~>
