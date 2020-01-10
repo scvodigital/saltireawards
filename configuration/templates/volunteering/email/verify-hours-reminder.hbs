@@ -29,7 +29,7 @@
   "from": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
   "h:sender": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
   "h:Reply-To": "{{>support_name}} <{{>support_email_address}}>",
-  "to": "anuttgens@gmail.com", {{!-- will be tsi email --}}
+  "to": "{{@root.data.accountInfo.tsi_contact_email}}",
   "o:tag": "tsi_email_reminder",
   "o:tracking": true,
   "v:tasks": "{{>account_list_tasks email='tsi_email'}}",
@@ -41,7 +41,6 @@
   {{~#blockStringify this ~}}
     {{~>
     (getProperty @root.context.metaData.emailSendSettings (concat @root.request.params.query.action '.bodyPartial'))
-      "anuttgens@gmail.com"
     ~}}
   {{~/blockStringify}}
   }

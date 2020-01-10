@@ -19,7 +19,6 @@
 {{~#blockStringify this ~}}
   {{~>
   (getProperty @root.context.metaData.emailSendSettings (concat @root.request.params.query.action '.bodyPartial'))
-    "anuttgens@gmail.com"
   ~}}
 {{~/blockStringify}}
 }
