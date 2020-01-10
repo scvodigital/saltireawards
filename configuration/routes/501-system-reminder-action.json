@@ -8,10 +8,13 @@
     "emailType": "hours-verify-reminder"
   },
   "tasks": [
-    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.getAccountInfoExternal",
     "context.metaData.commonTasks.fullSignUpRequired",
     "context.metaData.commonTasks.getTasksInfoUnverified",
+    "context.metaData.commonTasks.hoursCodeVerify",
+    "context.metaData.commonTasks.handleHoursVerifyFail",
+
     {
       "name": "sendEmail",
       "taskModule": "mailgun",
