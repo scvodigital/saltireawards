@@ -24,7 +24,7 @@
     "bodyPartial": "emails_hours_verify_body",
     "metaData": {}
   },
-  "hours-verify-reject": {
+  "hours_verify_reject": {
     "mailgunConnection": "mg_saltireawards",
     "from": "Saltire Awards <support@saltireawards.scot>",
     "replyTo": "Saltire Awards <support@saltireawards.scot>",
@@ -33,7 +33,7 @@
     "subjectPartial": "emails_hours_verify_reject_subject",
     "metaData": {}
   },
-  "hours-verify-complete": {
+  "hours_verify_complete": {
     "mailgunConnection": "mg_saltireawards",
     "from": "Saltire Awards <support@saltireawards.scot>",
     "replyTo": "Saltire Awards <support@saltireawards.scot>",

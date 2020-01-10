@@ -3,6 +3,12 @@
     <div class="column col-9 col-xl-12">
       <h2>
 
+        >>{{
+        getProperty @root.context.metaData.emailSendSettings (concat 'hours_verify_complete' '.subjectPartial')
+        }}<<
+
+        {{>emails_hours_verify_complete_body}}
+        {{>emails_hours_verify_complete_subject}}
 
         {{@root.data.accountInfo.hours_verify_award}}
         {{@root.data.accountInfo.total_hours}}
