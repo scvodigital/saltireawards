@@ -9,8 +9,7 @@
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.getAccountInfoExternal",
-    "context.metaData.commonTasks.fullSignUpRequired",
-    "context.metaData.commonTasks.getTasksInfoUnverified",
+    "context.metaData.commonTasks.getTasksInfoUnverifiedExternal",
     "context.metaData.commonTasks.hoursCodeVerify",
     "context.metaData.commonTasks.handleHoursVerifyFail",
 
