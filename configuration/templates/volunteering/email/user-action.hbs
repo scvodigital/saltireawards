@@ -9,7 +9,7 @@
 "tag":  "user-action-{{@root.request.params.query.action}}",
 "id":  "user-action-{{@root.request.params.query.action}}",
 "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat @root.request.params.query.action '.mailgunConnection'))}}},
-"subject": "whats",
+"subject":
 {{~#blockStringify this ~}}
   {{~>
   (getProperty @root.context.metaData.emailSendSettings (concat @root.request.params.query.action '.subjectPartial'))
