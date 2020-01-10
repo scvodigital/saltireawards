@@ -24,10 +24,12 @@
     },
     {
       "name": "destination",
-      "taskModule": "redirect",
+      "taskModule": "render",
+      "renderer": "handlebars",
       "config": {
-        "location": "/awards",
-        "statusCode": 302
+        "output": "body",
+        "template": "{\"success\": true, \"action_on\" : \"{{@root.data.accountInfo.external_id}}\" }",
+        "parseJson": true
       }
     }
 
