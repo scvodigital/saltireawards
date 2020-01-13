@@ -3,9 +3,11 @@
     <div class="column col-9 col-xl-12">
       <h2>
 
-        >>{{
-        getProperty @root.context.metaData.emailSendSettings (concat 'hours_verify_complete' '.subjectPartial')
-        }}<<
+        <p>Took</p>
+        {{@root.data.ysCode}}
+
+        <p>Now</p>
+        {{slice @root.data.codeValues.codes 1 undefined}}
 
         {{>emails_hours_verify_complete_body}}
         {{>emails_hours_verify_complete_subject}}

@@ -1,0 +1,98 @@
+{
+  "name": "complete-action",
+  "pattern": "/complete-action",
+  "debug": true,
+  "metaData": {
+    "title": "Tasks"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authNotRequired",
+    "context.metaData.commonTasks.getAccountInfoExternal",
+    "context.metaData.commonTasks.getTasksInfoUnverifiedExternal",
+    "context.metaData.commonTasks.hoursCodeVerify",
+    "context.metaData.commonTasks.handleHoursVerifyFail",
+    {
+      "name": "codeValues",
+      "taskModule": "firebaseRtbGet",
+      "renderer": "handlebars",
+      "config": {
+        "appName": "saltireawards",
+        "pathTemplate": "/young-scot-codes/",
+        "setOrUpdate": "get"
+      }
+    },
+    {
+      "name": "ysCode",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": "{{@root.data.codeValues.codes.[0]}}"
+      }
+    },
+    {
+      "name": "newCodeValues",
+      "taskModule": "firebaseRtbSet",
+      "renderer": "handlebars",
+      "config": {
+        "appName": "saltireawards",
+        "pathTemplate": "/young-scot-codes/",
+        "setOrUpdate": "set",
+        "dataTemplate": "{\"codes\" : [{{#eachJoin (slice @root.data.codeValues.codes 1 undefined) \",\"}}\"{{this}}\"{{/eachJoin}}] }"
+      }
+    },
+    {
+      "name": "sendEmail",
+      "taskModule": "mailgun",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "parseJson": true,
+        "template": ">context.metaData.handlebars.templates.volunteering_email_user-action"
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "body",
+        "template": "{\"success\": true, \"action_on\" : \"{{@root.data.accountInfo.external_id}}\" }",
+        "parseJson": true
+      }
+    },
+    {
+      "name": "codesLeft",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": "{{length @root.data.codeValues.codes}}",
+        "parseJson": true
+      }
+    },
+
+    {
+      "name": "moreCodesPlease",
+      "taskModule": "reroute",
+      "config": {
+        "if": [{
+          "or": [
+            {
+              "==": [{"var": "data.codesLeft"}, {"var": "context.metaData.youngScotSettings.low-codes-reminder"}]
+            },
+            {
+              "==": [{"var": "data.codesLeft"}, {"var": "context.metaData.youngScotSettings.low-codes-reminder2"}]
+            },
+            {
+              "==": [{"var": "data.codesLeft"}, 1]
+            }
+          ]
+        },
+          "ys-code-reminder",
+          null
+        ]
+      }
+    }
+  ]
+}

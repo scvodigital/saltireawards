@@ -1,0 +1,26 @@
+{
+  "name": "ys-code-reminder",
+  "pattern": "/",
+  "debug": true,
+  "errorRoute": "five_hundred",
+  "metaData": {
+    "title": "Tasks"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authNotRequired",
+    "context.metaData.commonTasks.getAccountInfoExternal",
+    "context.metaData.commonTasks.getTasksInfoUnverifiedExternal",
+    "context.metaData.commonTasks.hoursCodeVerify",
+    "context.metaData.commonTasks.handleHoursVerifyFail",
+    {
+      "name": "sendEmail",
+      "taskModule": "mailgun",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "parseJson": true,
+        "template": ">context.metaData.handlebars.templates.volunteering_email_ys-code-reminder"
+      }
+    }
+  ]
+}

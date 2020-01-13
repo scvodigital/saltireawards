@@ -1,0 +1,6 @@
+{
+  "points-per-certificate" : 10,
+  "low-codes-reminder" : 1000,
+  "low-codes-reminder2" : 500,
+  "low-codes-reminder-email" : "alex.nuttgens@scvo.org.uk"
+}

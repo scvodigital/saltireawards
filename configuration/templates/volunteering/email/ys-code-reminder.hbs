@@ -1,0 +1,20 @@
+[
+{
+"from": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+"h:sender": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+"h:Reply-To": "{{>support_name}} <{{>support_email_address}}>",
+"to": "{{@root.context.metaData.youngScotSettings.low-codes-reminder-email}}",
+"o:tag": "low-ys-codes",
+"o:tracking": true,
+"tag":  "low-ys-codes",
+"id":  "low-ys-codes",
+"connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat 'ys-code-reminder' '.mailgunConnection'))}}},
+"subject": "Running low on YoungScot codes for Saltire Awards",
+"html":
+{{~#blockStringify this ~}}
+  {{~>
+  (getProperty @root.context.metaData.emailSendSettings (concat 'ys-code-reminder' '.bodyPartial'))
+  ~}}
+{{~/blockStringify}}
+}
+]

@@ -1,0 +1,55 @@
+{
+  "name": "test-add-code",
+  "pattern": "/test-add-code",
+  "acceptedVerbs": "POST,GET",
+  "debug": true,
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.getAccountInfo",
+    {
+      "name": "firebaseSetValues",
+      "taskModule": "firebaseRtbSet",
+      "renderer": "handlebars",
+      "config": {
+        "appName": "saltireawards",
+        "pathTemplate": "/young-scot-codes/",
+        "setOrUpdate": "set",
+        "dataTemplate": "{\"codes\" : [{{#eachJoin (range 1 1001) \",\"}}\"YOUNGSCOT{{this}}\"{{/eachJoin}}] }"
+      }
+    },
+    {
+      "name": "codeValues",
+      "taskModule": "firebaseRtbGet",
+      "renderer": "handlebars",
+      "config": {
+        "appName": "saltireawards",
+        "pathTemplate": "/young-scot-codes/",
+        "setOrUpdate": "get"
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "renderLayout",
+      "renderer": "handlebars",
+      "config": {
+        "logic": {
+          "if": [
+            "default"
+          ]
+        },
+        "output": "body",
+        "layouts": {
+          "default": {
+            "layout": ">context.metaData.handlebars.layouts.default",
+            "parts": {
+              "head": ">context.metaData.handlebars.templates.pages_head-tags",
+              "body": ">context.metaData.handlebars.templates.pages_test",
+              "sidebar": ">context.metaData.handlebars.templates.account_sidebar"
+            },
+            "contentType": "text/html"
+          }
+        }
+      }
+    }
+  ]
+}
