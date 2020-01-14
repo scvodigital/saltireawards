@@ -7,9 +7,14 @@
     {{@root.context.metaData.fullTitle}} gives you recognition for the volunteering you do.
   </p>
   <p class="empty-subtitle">
-    Add your first volunteering task to begin logging hours. You can also claim hours from an existing certificate.
+    Add your first volunteering task to begin logging hours.
   </p>
   <div class="empty-action">
     {{> log_action_buttons}}
   </div>
+  {{#unless @root.data.isAdmin ~}}
+  <p class="empty-subtitle">
+    Already received a certificate from a group? <a href="/claim-hours">Add the certificate</a> to this account with the claim code.
+  </p>
+  {{/unless ~}}
 </div>

@@ -5,9 +5,9 @@
     Add an organisation
   </a>
   {{/unless ~}}
-  <a href="/claim-hours" class="btn">
+  {{!-- <a href="/claim-hours" class="btn">
     Claim hours with code
-  </a>
+  </a> --}}
   {{else}}
   {{#unless (compare @root.route.name "groups") ~}}
   <a href="/groups" class="btn btn-primary">
