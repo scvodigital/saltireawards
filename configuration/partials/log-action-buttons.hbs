@@ -5,9 +5,11 @@
     Add an organisation
   </a>
   {{/unless ~}}
-  {{!-- <a href="/claim-hours" class="btn">
+  {{#unless (compare (sumArray (pluck @root.data.tasksInfo "hours")) 0) ~}}
+  <a href="/claim-hours" class="btn">
     Claim hours with code
-  </a> --}}
+  </a>
+  {{/unless ~}}
   {{else}}
   {{#unless (compare @root.route.name "groups") ~}}
   <a href="/groups" class="btn btn-primary">
