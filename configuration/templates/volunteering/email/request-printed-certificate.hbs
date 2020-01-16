@@ -1,0 +1,20 @@
+[
+{
+"from": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+"h:sender": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+"h:Reply-To": "{{>support_name}} <{{>support_email_address}}>",
+"to": "anuttgens@gmail.com", {{!-- "{{@root.data.accountInfo.tsi_contact_email}}", --}}
+"o:tag": "tsi_certificate_request",
+"o:tracking": true,
+"tag":  "tsi_certificate_request",
+"id":  "tsi_certificate_request",
+"connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat 'request-printed-certificate' '.mailgunConnection'))}}},
+"subject": "Saltire Awards - Request for printed certificate.",
+"html":
+{{~#blockStringify this ~}}
+  {{~>
+  (getProperty @root.context.metaData.emailSendSettings (concat 'request-printed-certificate' '.bodyPartial'))
+  ~}}
+{{~/blockStringify}}
+}
+]

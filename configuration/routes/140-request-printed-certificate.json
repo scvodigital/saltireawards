@@ -1,0 +1,31 @@
+{
+  "name": "request-printed-certificate",
+  "debug": true,
+  "pattern": "/request-printed-certificate",
+  "acceptedVerbs": "POST",
+  "errorRoute": "five_hundred",
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.getAccountInfo",
+    {
+      "name": "sendEmail",
+      "taskModule": "mailgun",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "parseJson": true,
+        "template": ">context.metaData.handlebars.templates.volunteering_email_request-printed-certificate"
+      }
+    },
+    {
+      "name": "destination",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "template": "{\"id\": \"{{{@root.data.auth.uid}}}\" }",
+        "output": "body",
+        "parseJson": true
+      }
+    }
+  ]
+}
