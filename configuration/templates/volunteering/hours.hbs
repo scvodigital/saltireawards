@@ -218,7 +218,7 @@
           <div class="column col-4 hide-xl">
             <strong>Volunteer name</strong>
           </div>
-          <div class="column col-2 hide-xl">
+          <div class="column col-3 hide-xl">
             <strong>Certificate</strong>
           </div>
           <div class="column col-2 hide-xl">
@@ -231,27 +231,29 @@
         </div>
         {{#each hours_list ~}}
         {{#ifAny claim_first_name claim_code ~}}
-        <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?user_id={{@root.data.auth.uid}}" style="position:relative" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Participant details updated" data-TasksTrigger="ajax-form-handler">
+        {{!-- <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?user_id={{@root.data.auth.uid}}" style="position:relative" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Participant details updated" data-TasksTrigger="ajax-form-handler">
           <input type="hidden" name="task_id" value="{{../task_id}}">
           <input type="hidden" name="verified" value="{{verified}}">
           <input type="hidden" name="claim_code" value="{{claim_code}}">
           <input type="hidden" name="hours_id" value="{{hours_id}}">
-          <input type="hidden" name="user_id" value="{{@root.data.auth.uid}}">
+          <input type="hidden" name="user_id" value="{{@root.data.auth.uid}}"> --}}
 
           <div class="columns">
             <div class="column col-2 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6">
               <div class="form-group b-margin">
-                <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="claim_first_name" value="{{claim_first_name}}">
+                {{!-- <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="claim_first_name" value="{{{claim_first_name}}}"> --}}
+                {{{claim_first_name}}}
               </div>
             </div>
             <div class="column col-2 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6">
               <div class="form-group b-margin">
-                <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="claim_last_name" value="{{claim_last_name}}">
+                {{!-- <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="claim_last_name" value="{{{claim_last_name}}}"> --}}
+                {{{claim_last_name}}}
               </div>
             </div>
-            <div class="column col-2 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-7">
+            <div class="column col-3 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-7">
               <div class="form-group b-margin">
-                <select class="form-select hours"{{#unless claim_code}} disabled{{/unless}} required name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
+                {{!-- <select class="form-select hours"{{#unless claim_code}} disabled{{/unless}} required name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
                   {{#each @root.context.metaData.certificates ~}}
                   {{#unless tsi_only ~}}
                   <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>
@@ -269,27 +271,103 @@
                   {{/if ~}}
                   {{/unless ~}}
                   {{/each ~}}
-                </select>
+                </select> --}}
+                {{#each @root.context.metaData.certificates ~}}
+                {{#unless tsi_only ~}}
+                {{#compare hours ../hours ~}}
+                {{#ifAny (compare type "approach") (compare type "ascent") ~}}
+                {{type_name}}: {{hours}} hours
+                {{else}}
+                {{type_name}}
+                {{/ifAny ~}}
+                {{/compare ~}}
+                {{/unless ~}}
+                {{/each ~}}
               </div>
             </div>
             <div class="column col-2 col-xl-3 col-lg-2 col-md-3 col-sm-6 col-xs-5">
-              <mark class="claim-code{{#unless (ifAll claim_code (compare hours '!==' 0) (compare hours '!==' 1))}} hidden{{/unless}}">{{substr claim_code 0 10}}</mark>
+              {{#unless (ifAll claim_code (compare hours '!==' 0) (compare hours '!==' 1)) ~}}
+              Claimed!
+              {{else}}
+              <mark class="claim-code">{{substr claim_code 0 10}}</mark>
+              {{/unless ~}}
             </div>
             <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-4">
-              {{#if claim_code ~}}
+              {{!-- {{#if claim_code ~}}
               <button type="submit" class="btn btn-success btn-block inline-update-button b-margin" style="display:none;">Save</button>
+              {{/if ~}} --}}
+              {{#if (ifAll claim_code (compare hours '!==' 0) (compare hours '!==' 1)) ~}}
+              <button type="button" class="btn btn-block edit-button b-margin">Edit</button>
+              <div class="modal modal-sm" id="{{hours_id}}">
+                <a href="#close" class="modal-overlay modal-close" aria-label="Close"></a>
+                <div class="modal-container">
+                  <div class="modal-header">
+                    <a href="#close" class="btn btn-clear modal-close float-right" aria-label="Close"></a>
+                    <div class="modal-title h5">{{{claim_first_name}}} {{{claim_last_name}}}</div>
+                  </div>
+                  <div class="modal-body">
+                    <div class="content">
+                      <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?user_id={{@root.data.auth.uid}}" style="position:relative" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Participant details updated" data-TasksTrigger="ajax-form-handler">
+                        <input type="hidden" name="task_id" value="{{../task_id}}">
+                        <input type="hidden" name="verified" value="{{verified}}">
+                        <input type="hidden" name="claim_code" value="{{claim_code}}">
+                        <input type="hidden" name="hours_id" value="{{hours_id}}">
+                        <input type="hidden" name="user_id" value="{{@root.data.auth.uid}}">
+
+                        <div class="form-group b-margin">
+                          <input {{#unless (ifAll claim_code (compare hours '!==' 0) (compare hours '!==' 1)) ~}}disabled{{/unless}} class="form-input inline-edit" name="claim_first_name" value="{{{claim_first_name}}}">
+                        </div>
+                        <div class="form-group b-margin">
+                          <input {{#unless (ifAll claim_code (compare hours '!==' 0) (compare hours '!==' 1)) ~}}disabled{{/unless}} class="form-input inline-edit" name="claim_last_name" value="{{{claim_last_name}}}">
+                        </div>
+                        <div class="form-group b-margin">
+                          <select class="form-select hours" {{#unless (ifAll claim_code (compare hours '!==' 0) (compare hours '!==' 1)) ~}}disabled{{/unless}} required name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
+                            {{#each @root.context.metaData.certificates ~}}
+                            {{#unless tsi_only ~}}
+                            <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>
+                              {{#ifAny (compare type "approach") (compare type "ascent") ~}}
+                              {{type_name}}: {{hours}} hours
+                              {{else}}
+                              {{type_name}}
+                              {{/ifAny ~}}
+                            </option>
+                            {{else}}
+                            {{#if @root.data.accountInfo.summit_certificate_permission ~}}
+                            <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>
+                              {{type_name}}
+                            </option>
+                            {{/if ~}}
+                            {{/unless ~}}
+                            {{/each ~}}
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <textarea {{#unless (ifAll claim_code (compare hours '!==' 0) (compare hours '!==' 1)) ~}}disabled{{/unless}} rows="3" placeholder="Description" cols="40" id="description_override" name="description_override" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}>{{{../task_description}}}</textarea>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    {{#if (ifAll claim_code (compare hours '!==' 0) (compare hours '!==' 1)) ~}}
+                    <button type="submit" class="btn btn-success btn-block inline-update-button b-margin">Save</button>
+                    <a href="/admin-delete-hours?hours_id={{hours_id}}&user_id={{@root.data.auth.uid}}" class="btn btn-error btn-block b-margin" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
+                    {{/if ~}}
+                  </div>
+                </div>
+              </div>
               {{/if ~}}
             </div>
             <div class="column col-2 col-xl-2 col-lg-2 col-md-3 col-sm-4">
               <a href="/group-certificate/{{../task_id}}/{{hours_id}}/saltire-award-{{#compare hours 0}}challenge-certificate{{else}}{{#compare hours 1}}summit-certificate{{else}}for-{{hours}}-hours{{/compare}}{{/compare}}-{{slugify claim_first_name}}-{{slugify claim_last_name}}.pdf" class="btn btn-block b-margin">Download</a>
             </div>
-            <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-4">
+            {{!-- <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-4">
               {{#if claim_code ~}}
-              <a href="/admin-delete-hours?hours_id={{hours_id}}&user_id={{@root.data.auth.uid}}" class="btn btn-block b-margin" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
+              <a href="/admin-delete-hours?hours_id={{hours_id}}&user_id={{@root.data.auth.uid}}" class="btn btn-error btn-block b-margin" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
               {{/if ~}}
-            </div>
+            </div> --}}
           </div>
-        </form>
+        {{!-- </form> --}}
+
         {{/ifAny ~}}
         {{/each ~}}
 
@@ -314,17 +392,17 @@
           </div>
         </form>
 
-        <form action="/do-not-act/{{task_id}}?user_id={{@root.data.auth.uid}}" class="form-horizontal inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Testimonial updated" data-TasksTrigger="ajax-form-handler">
+        <form action="/do-not-act/{{task_id}}?user_id={{@root.data.auth.uid}}" class="form-horizontal inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Skills updated" data-TasksTrigger="ajax-form-handler">
           <div class="form-group">
             <div class="col-4">
-              <label for="testimonial" class="form-label">
+              <label for="skills" class="form-label">
                 Skills developed
               </label>
             </div>
             <div class="column col-7">
               <div class="columns">
                 <div class="col-8">
-                  <textarea rows="3" placeholder="What skills were used (NOT DEVELOPED YET)" disabled cols="40" id="testimonial" name="testimonial" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.skills}}>{{skills}}</textarea>
+                  <textarea rows="3" placeholder="What skills were used (NOT DEVELOPED YET)" disabled cols="40" id="skills" name="skills" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.skills}}>{{skills}}</textarea>
                 </div>
                 <div class="col-1"></div>
                 <div class="col-3">
@@ -426,6 +504,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
       $(this).closest('form').find('mark.claim-code').removeClass('hidden');
     }
     $(this).hide();
+  });
+
+  $('.edit-button').click(function(){
+    var hours_id = $(this).closest('.column').find('.modal').attr('id');
+    $('#'+hours_id).addClass('active');
+  });
+
+  $('.modal-close').click(function(){
+    $(this).closest('.column').find('.modal').removeClass('active');
   });
 
   $('.inline-delete-button').click(function(){
