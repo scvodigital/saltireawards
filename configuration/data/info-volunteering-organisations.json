@@ -94,11 +94,11 @@
     "contacts": {
       "all": {
         "pattern": "^.*$",
-        "title": "Volunteer Dundee",
-        "email": "saltireawards@volunteerdundee.org.uk",
+        "title": "Dundee Volunteer and Voluntary Action",
+        "email": "saltireawards@dvva.scot",
         "phone": "01382305705",
-        "logo": "https://diwc.co.uk/wp-content/uploads/2018/01/Volunteer-Dundee-72dpi-425px-Transparent-PNG.png",
-        "website": "http://www.volunteerdundee.org.uk",
+        "logo": "https://storage.googleapis.com/scvo-assets/test/saltireawards/images/logos/organisations/dvva.png",
+        "website": "http://www.dvva.scot",
         "twitter": "https://twitter.com/volunteerdundee",
         "facebook": "https://facebook.com/VolunteerDundee/",
         "instagram": "https://www.instagram.com/volunteerdundee/"
