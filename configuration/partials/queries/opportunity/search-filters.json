@@ -18,7 +18,6 @@
     "should": [
       {{>queries_opportunity_search_filters_locations @root.request.params.query}}
       {{>queries_opportunity_search_filters_areas @root.request.params.query}}
-      {{>queries_opportunity_search_filters_home @root.request.params.query}}
       {{>queries_do_nothing}}
     ],
     "minimum_should_match": {{#if distance}}2{{else}}1{{/if}}
