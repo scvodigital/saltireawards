@@ -22,7 +22,7 @@
   {{/compare ~}}
   {{/each ~}}
   {{/if ~}}
-  {{#compare @root.data.auth.uid @root.data.accountInfo.external_id ~}}
+  {{#ifAll (compare @root.data.auth.uid @root.data.accountInfo.external_id) (compare (length @root.data.tasksInfo) ">" 0) ~}}
   <div class="empty-subtitle">
     <div class="columns">
       <div class="column col-auto col-xs-12 col-mx-auto">
@@ -38,10 +38,10 @@
       </div>
     </div>
   </div>
-  {{/compare ~}}
+  {{/ifAll ~}}
 </div>
 
-{{#compare (length @root.data.tasksInfo) ">" 0 ~}}
+{{#ifAll (compare (length @root.data.tasksInfo) ">" 0) (compare @root.data.accountInfo.verified_hours ">" 0) ~}}
 <div class="content-break">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
     <polygon fill="#ebedfa" points="100,0 100,100 0,0"></polygon>
@@ -113,4 +113,4 @@
     </div>
   </div>
 </div>
-{{/compare ~}}
+{{/ifAll ~}}

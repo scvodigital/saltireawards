@@ -304,7 +304,7 @@ blockquote cite:before {
     }
     .tt-dataset {
       // padding: $unit/4 0;
-      h3, div {
+      strong.title, div {
         padding: 0 $unit/4;
       }
     }

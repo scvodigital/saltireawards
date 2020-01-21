@@ -3,7 +3,11 @@
   <strong>
     {{addCommas paging.totalResults}}
   </strong>
-  volunteering {{inflect paging.totalResults "opportunity" "opportunities"}}
+  {{inflect paging.totalResults "opportunity" "opportunities"}}
+  for age
+  {{default @root.request.params.query.age 18}}+
+  on
+  <a href="https://search.volunteerscotland.net{{@root.request.url.path}}">Volunteer Scotland</a>
   {{if @root.request.params.query.exclude "(filtered)"}}
   {{#compare @root.route.name "!==" "opportunity_map" ~}}
   {{#compare paging.totalResults ">" 10 ~}} -

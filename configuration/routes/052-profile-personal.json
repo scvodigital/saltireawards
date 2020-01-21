@@ -46,6 +46,7 @@
     "context.metaData.commonTasks.isAdmin",
     "context.metaData.commonTasks.getTasksInfo",
     "context.metaData.commonTasks.getAwardsStatus",
+    "context.metaData.commonTasks.tasksRequired",
     {
       "name": "destination",
       "taskModule": "renderLayout",

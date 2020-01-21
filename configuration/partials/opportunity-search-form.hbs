@@ -255,7 +255,7 @@
     {
       name: "geo_lookup",
       display: "display",
-      templates: { header: "<h3>Location</h3>" },
+      templates: { header: "<strong class=\"title\">Location</strong>" },
       bloodhound: {
         datumTokenizer: "objWhitespace",
         datumTokenizerField: "place",
@@ -340,9 +340,9 @@
           display: "label",
           templates: {
             {{#compare (length ../termGroups) 1}}
-              header: "<h3>{{{../label}}}</h3>"
+              header: "<strong class=\"title\">{{{../label}}}</strong>"
             {{else}}
-              header: "<h3>{{{../label}}} &gt; {{{label}}}</h3>"
+              header: "<strong class=\"title\">{{{../label}}} &gt; {{{label}}}</strong>"
             {{/compare}}
           },
           bloodhound: {
