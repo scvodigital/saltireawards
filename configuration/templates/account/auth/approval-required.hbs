@@ -65,4 +65,9 @@
     var y = document.getElementById("primary-actions");
     y.style.display = "none";
   }
+
+  // this doesn't work and needs fixed
+  document.addEventListener("DOMContentLoaded", function(event) {
+    firebase.auth().signOut();
+  });
 </script>
