@@ -37,6 +37,7 @@ $body-font-family: "Montserrat";
 $badge-font-weight: 800;
 $page-width: 1200px;
 $home-splash-height: 25vh;
+$transition-speed: .2s;
 
 @import "../node_modules/spectre.css/src/spectre";
 @import url('../node_modules/leaflet.markercluster/dist/MarkerCluster.css');
@@ -127,6 +128,7 @@ a:link {
   color: $secondary-color;
   text-decoration: none;
   text-decoration-skip-ink: auto;
+  transition: border $transition-speed, color $transition-speed, background-color $transition-speed;
 }
 a:hover {
   color: $secondary-color-dark;
