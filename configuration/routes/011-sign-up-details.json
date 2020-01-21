@@ -4,7 +4,8 @@
   "debug": true,
   "errorRoute": "five_hundred",
   "metaData": {
-    "title": "Volunteer sign up"
+    "title": "Volunteer sign up",
+    "adminTitle": "Group administrator sign up"
   },
   "tasks": [
     "context.metaData.commonTasks.authRequired",

@@ -7,7 +7,6 @@
     "context.metaData.commonTasks.authRequired",
     "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.flushCache",
-
     {
       "name": "apexUrl",
       "taskModule": "render",
@@ -37,6 +36,15 @@
           null,
           "redirect-home"
         ]
+      }
+    },
+    {
+      "name": "auth",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": ""
       }
     },
     {
