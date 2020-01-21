@@ -137,11 +137,5 @@
     }
   ],
   "footer-about": [
-    {
-      "label": "Group administrator sign in",
-      "icon": "user-cog",
-      "path": "/sign-in-admin",
-      "route": "^/sign-in-admin"
-    }
   ]
 }
