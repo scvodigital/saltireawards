@@ -110,6 +110,15 @@
         <span class="form-icon far {{#if hasPostcode}}fa-check text-success{{else}}fa-times text-error{{/if}}" id="postcode-validation-icon"></span>
       </div>
     </div>
+    {{#if @root.data.accountInfo.external_id ~}}
+    <div class="column col-6 col-sm-12"></div>
+    <div class="column col-4 col-sm-12"></div>
+    <div class="column col-8 col-sm-12">
+      <div class="caption">
+        Please note: your personal details and the record of your volunteering will be shared with <span id="tsi_title"><strong>{{> support_name}}</strong></span>.
+      </div>
+    </div>
+    {{/if ~}}
     <input type="hidden" name="local_authority" id="local_authority" value="{{@root.data.accountInfo.local_authority}}" />
     <input type="hidden" name="constituency_code" id="constituency_code" value="{{@root.data.accountInfo.constituency_code}}" />
     <input type="hidden" name="nuts_3_code" id="nuts_3_code" value="{{@root.data.accountInfo.nuts_3_code}}" />
@@ -120,20 +129,19 @@
   </div>
 
   {{#unless @root.data.accountInfo.external_id ~}}
-    <div class="form-group">
-      <label class="form-checkbox">
-        <input type="checkbox" required>
-        <span class="form-icon"></span> I accept the <a target="_blank" href="/terms">terms & conditions</a> for the {{@root.context.metaData.title}}
-      </label>
-    </div>
-    <div class="form-group">
-      <label class="form-checkbox">
-        <input type="checkbox" name="email_consent">
-        <span class="form-icon"></span> I would like to receive additional information about the {{@root.context.metaData.title}} from <span id="tsi_title">my local volunteering organisation</span> by email (optional)
-      </label>
-    </div>
-
-  {{/unless}}
+  <div class="form-group">
+    <label class="form-checkbox">
+      <input type="checkbox" required>
+      <span class="form-icon"></span> I accept the <a target="_blank" href="/terms">terms & conditions</a> for the {{@root.context.metaData.title}}
+    </label>
+  </div>
+  <div class="form-group">
+    <label class="form-checkbox">
+      <input type="checkbox" name="email_consent">
+      <span class="form-icon"></span> I would like to receive additional information about the {{@root.context.metaData.title}} from <span id="tsi_title">my local volunteering organisation</span> by email (optional)
+    </label>
+  </div>
+  {{/unless ~}}
 </div>
 
 <input type="hidden" name="external_id" value="{{@root.data.auth.uid}}" />
