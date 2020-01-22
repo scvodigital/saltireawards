@@ -129,7 +129,7 @@
       <section class="nav hide-lg">
         <div class="main-menu">
           {{#if @root.data.auth ~}}
-            {{#if @root.data.accountInfo.user_type ~}}
+            {{#ifAll @root.data.accountInfo.user_type (compare @root.data.accountInfo.approval_needed false) ~}}
               {{#each @root.context.metaData.menus.main-signed-in ~}}
                 <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
               {{/each}}
@@ -186,7 +186,7 @@
                 <a href="{{stripTrailingSlash path}}" class="btn btn-link{{#if (regexMatch @root.request.url.pathname route 'gi')}} btn-active{{/if}}">{{label}}</a>
               {{/each}}
               <a href="/sign-out" class="btn btn-link" data-component="TasksTrigger" data-TasksTrigger="sign-out">Sign out</a>
-            {{/if ~}}
+            {{/ifAll ~}}
           {{else}}
             <a href="/" class="btn btn-link{{#if (regexMatch @root.request.url.pathname '^/$' 'gi')}} btn-active{{/if}}">Home</a>
             {{#each @root.context.metaData.menus.main-not-signed-in ~}}
