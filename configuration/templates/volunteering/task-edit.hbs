@@ -39,7 +39,7 @@
                   Job title
                 </label>
               </div>
-              <div class="column col-8 col-md-12">
+              <div class="col-8 col-md-12">
                 <input required id="volunteer_manager_title" name="volunteer_manager_title" placeholder="e.g. Volunteer manager"
                   {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_title}} class="form-input"
                        value="{{@root.data.taskInfo.volunteer_manager_title}}"
@@ -52,7 +52,7 @@
                   Email address
                 </label>
               </div>
-              <div class="column col-8 col-md-12">
+              <div class="col-8 col-md-12">
                 <input id="volunteer_manager_email" name="volunteer_manager_email" placeholder="e.g. name@charity.org"
                   {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_email}} class="form-input"
                        value="{{@root.data.taskInfo.volunteer_manager_email}}" pattern="^((?!{{@root.data.accountInfo.email}}).)*$" >
@@ -64,7 +64,7 @@
                   Phone number
                 </label>
               </div>
-              <div class="column col-8 col-md-12">
+              <div class="col-8 col-md-12">
                 <input id="volunteer_manager_phone" name="volunteer_manager_phone" placeholder="e.g. 01310001234"
                   {{>form_validation_attributes @root.context.metaData.taskInfoValidation.volunteer_manager_phone}} class="form-input"
                        value="{{@root.data.taskInfo.volunteer_manager_phone}}"
@@ -75,7 +75,7 @@
         <div class="form-horizontal">
           <div class="form-group">
             <div class="column col-4 hide-sm"></div>
-            <div class="column col-8 col-md-12">
+            <div class="col-8 col-md-12">
               {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
               <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full">
                 Submit details
