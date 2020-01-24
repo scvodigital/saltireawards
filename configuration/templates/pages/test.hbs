@@ -17,7 +17,7 @@
         {{~#if (compare @root.data.accountInfo.hours_verify_award "<" 9) ~}}
           <p>
             Our records show that you have now worked sufficient additional hours to be eligible for the award. Please
-            <a href="https://{{@root.request.headers.host}}/awards">go to the SaltireAwards site</a> and request re-verification
+            <a href="{{@root.context.metaData.url}}/awards">go to the SaltireAwards site</a> and request re-verification
           </p>
         {{else}}
           <p>

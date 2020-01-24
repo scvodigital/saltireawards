@@ -9,7 +9,7 @@
         {{#if @root.data.codeRequired}}
           {{{json key='approval_code' value=code}}},
           {{{json key='approval_email' value=approval_email}}},
-          {{#json key='approval_url' type="text"}}https://{{@root.request.headers.host}}/user-approval/?code={{code}}&user_id={{external_id}}{{/json}},
+          {{#json key='approval_url' type="text"}}{{@root.context.metaData.url}}/user-approval/?code={{code}}&user_id={{external_id}}{{/json}},
           {{#json key='approval_needed' type="boolean"}}true{{/json}},
         {{else}}
           "approval_needed" : false, {{!-- Hack - it's not possible to enter false in the json parser due to a bug --}}

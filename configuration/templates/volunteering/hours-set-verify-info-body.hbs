@@ -3,6 +3,6 @@
     {{{json key='user_id' value=@root.data.auth.uid}}},
     {{{json key='hours_verify_code' value=hoursCode}}},
     {{#json key='hours_verify_award' type="number"}}{{default @root.request.params.query.award 0}}{{/json}},
-    {{{json key='certificate_url' value=(concat 'https://' @root.context.metaData.url '/tsi-certificate/?c=' hoursCode '&user_id=' @root.data.auth.uid)}}}
+    {{{json key='certificate_url' value=(concat @root.context.metaData.url '/tsi-certificate/?c=' hoursCode '&user_id=' @root.data.auth.uid)}}}
   {{/json}}
 {{/withExtend}}

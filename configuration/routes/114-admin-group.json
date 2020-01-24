@@ -1,0 +1,44 @@
+{
+  "name": "admin-group",
+  "pattern": "/admin-group(/:task_id)(/:junk)",
+  "debug": true,
+  "errorRoute": "five_hundred",
+  "metaData": {
+    "title": "My volunteering",
+    "adminTitle": "Volunteering group"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.getAccountInfo",
+    "context.metaData.commonTasks.getAwardsStatus",
+    "context.metaData.commonTasks.fullSignUpRequired",
+    "context.metaData.commonTasks.isAdmin",
+    "context.metaData.commonTasks.getTasksInfo",
+    "context.metaData.commonTasks.tasksRequired",
+    {
+      "name": "destination",
+      "taskModule": "renderLayout",
+      "renderer": "handlebars",
+      "config": {
+        "logic": {
+          "if": [
+            "default"
+          ]
+        },
+        "output": "body",
+        "layouts": {
+          "default": {
+            "layout": ">context.metaData.handlebars.layouts.default",
+            "parts": {
+              "head": ">context.metaData.handlebars.templates.pages_head-tags",
+              "sidebar": ">context.metaData.handlebars.templates.account_sidebar",
+              "body": ">context.metaData.handlebars.templates.volunteering_admin-group"
+            },
+            "contentType": "text/html"
+          }
+        }
+      }
+    }
+
+  ]
+}

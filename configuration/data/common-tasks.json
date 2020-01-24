@@ -49,6 +49,11 @@
 		"name": "accountInfo",
 		"taskModule": "salesforceApex",
 		"renderer": "handlebars",
+		"cache": {
+			"keyProperties": ["$accountInfo"],
+			"partition": "saltire-profiles-{{default @root.request.params.query.user_id @root.request.params.uid}}",
+			"ttl": 3600
+		},
 		"config": {
 			"connection": "scvoAlexSandbox",
 			"output": "data",
@@ -147,6 +152,11 @@
 		"name": "tasksInfo",
 		"taskModule": "salesforceApex",
 		"renderer": "handlebars",
+		"cache": {
+			"keyProperties": ["$tasksInfo"],
+			"partition": "saltire-profiles-{{@root.request.params.query.user_id}}",
+			"ttl": 3600
+		},
 		"config": {
 			"connection": "scvoAlexSandbox",
 			"output": "data",

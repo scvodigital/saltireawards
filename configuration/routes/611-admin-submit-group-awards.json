@@ -1,6 +1,6 @@
 {
-  "name": "admin-submit-group-hours",
-  "pattern": "/admin-submit-group-hours",
+  "name": "admin-submit-group-awards",
+  "pattern": "/admin-submit-group-awards",
   "debug": true,
   "errorRoute": "five_hundred_json",
   "acceptedVerbs": "POST",
@@ -21,8 +21,8 @@
         "connection": "scvoAlexSandbox",
         "output": "data",
         "method": "POST",
-        "body": ">context.metaData.handlebars.templates.admin_group-hours-body",
-        "apexClassPath": "/SaltireHours/"
+        "body": ">context.metaData.handlebars.templates.admin_group-awards-submit-body",
+        "apexClassPath": "/SaltireAward/"
       }
     },
     "context.metaData.commonTasks.flushCache",

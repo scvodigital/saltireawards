@@ -11,6 +11,17 @@
     "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.flushCache",
     {
+      "name": "taskInfo",
+      "taskModule": "salesforceApex",
+      "renderer": "handlebars",
+      "config": {
+        "connection": "scvoAlexSandbox",
+        "output": "data",
+        "method": "GET",
+        "apexClassPath": "/SaltireTask/?task_id=a1T5E000001bxiyUAA"
+      }
+    },
+    {
       "name": "destination",
       "taskModule": "renderLayout",
       "renderer": "handlebars",

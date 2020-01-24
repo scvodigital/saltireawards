@@ -8,7 +8,7 @@
   },
   "tasks": [
     "context.metaData.commonTasks.authRequired",
-    "context.metaData.commonTasks.getAccountInfoExternal",
+    "context.metaData.commonTasks.getAccountInfo",
     {
       "name": "reroute",
       "taskModule": "reroute",

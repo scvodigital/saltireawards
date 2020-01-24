@@ -9,5 +9,7 @@
   "volunteer_manager_email" : {"required": true, "type":"email", "maxlength": 255},
   "task_description"  : {"maxlength" : 1024},
   "task-code"  : {"maxlength" : 10, "required" : true, "pattern": "^[A-Fa-f0-9]{10}$"},
-  "hours"  : {"required": true, "type":"number"}
+  "hours"  : {"required": true, "type":"number"},
+  "award"  : {"required": true}
+
 }
