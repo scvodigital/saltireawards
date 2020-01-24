@@ -41,7 +41,7 @@
 
       <div class="divider v-margin-full"></div>
 
-      <form id="task-details-form" class="active-form" action="/submit-task-details" method="POST" data-component="TasksTrigger" {{#if @root.data.isAdmin}}data-success-destination="/hours/" data-destination-include-id="true"{{else}}data-success-destination="/hours"{{/if}} data-TasksTrigger="ajax-form-handler">
+      <form id="task-details-form" class="active-form" action="/submit-task-details" method="POST" data-component="TasksTrigger" {{#if @root.data.isAdmin}}data-success-destination="/admin-group/" data-destination-include-id="true"{{else}}data-success-destination="/hours"{{/if}} data-TasksTrigger="ajax-form-handler">
         <input type="hidden" name="task_type" value="{{#if @root.data.isAdmin}}Group Task{{else}}Individual Task{{/if}}">
         <div class="l-margin r-margin">
           <div class="bg-error s-rounded x-padding v-margin" id="active-form-message">
@@ -102,9 +102,23 @@
                 </label>
             </div>
             <div class="column col-8 col-md-12">
-              <textarea rows="4" cols="40" id="task_description" name="task_description" class="form-input" value="{{@root.data.taskInfo.task_description}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}></textarea>
+              <textarea rows="4" cols="40" id="task_description" placeholder="Description" name="task_description" class="form-input" value="{{@root.data.taskInfo.task_description}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}></textarea>
             </div>
           </div>
+          {{#if @root.data.isAdmin ~}}
+            <div class="form-group">
+              <div class="column col-4 col-md-12">
+                <label for="task_description" class="form-label">
+                  Let people know about your volunteers achievements with a testimonial:
+                    <div class="caption">Note: This may be shown on their certificates</div>
+                </label>
+              </div>
+              <div class="column col-8 col-md-12">
+                <textarea rows="4" cols="40" id="testimonial" placeholder="Testimonial" name="testimonial" class="form-input" value="{{@root.data.taskInfo.testimonial}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.testimonial}}></textarea>
+              </div>
+            </div>
+
+          {{/if}}
           <div class="form-group">
             <div class="column col-4 col-md-12">
               <label for="un_sustainable_development_goals" class="form-label r-margin">

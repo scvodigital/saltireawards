@@ -14,7 +14,7 @@
     "context.metaData.commonTasks.isAdmin",
     "context.metaData.commonTasks.adminOrCodeRequired",
     {
-      "name": "saveHoursData",
+      "name": "saveAwardsData",
       "taskModule": "salesforceApex",
       "renderer": "handlebars",
       "config": {
@@ -32,7 +32,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "body",
-        "template": "{\"id\": \"{{{@root.data.saveHoursData}}}\" }",
+        "template": "{\"id\": \"{{{@root.data.saveAwardsData}}}\" }",
         "parseJson": false
       }
     }

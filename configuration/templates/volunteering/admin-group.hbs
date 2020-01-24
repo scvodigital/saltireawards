@@ -1,14 +1,3 @@
-<div class="empty">
-  <div class="empty-icon">
-    <span class="fal fa-user{{#if @root.data.isAdmin}}s{{else}}-clock{{/if}} fa-3x"></span>
-  </div>
-  {{> log_hours_info}}
-  {{#if (compare (sumArray (pluck @root.data.tasksInfo "hours")) 0) ~}}
-    <div class="empty-action">
-      {{> log_action_buttons}}
-    </div>
-  {{/if ~}}
-</div>
 
 <div class="content-break">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -71,7 +60,7 @@
           Participants <span id="myelement">e</span> <span id="a1w5e000000jmlhuaq">f</span>
         </h3>
 
-        {{#compare (length hours_list) ">" 0 ~}}
+        {{#compare (length awards_list) ">" 0 ~}}
           <div class="columns">
             <div class="column col-4 hide-xl">
               <strong>Volunteer name</strong>
@@ -87,7 +76,9 @@
               <a href="/group-certificate/{{task_id}}" class="btn btn-primary btn-block b-margin">Download all</a>
             </div>
           </div>
+
           {{#each awards_list ~}}
+            One
             {{#ifAny group_award_first_name claim_code ~}}
             {{!-- <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?user_id={{@root.data.auth.uid}}" style="position:relative" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Participant details updated" data-TasksTrigger="ajax-form-handler">
             <input type="hidden" name="task_id" value="{{../task_id}}">
@@ -111,25 +102,6 @@
                 </div>
                 <div class="column col-3 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-7">
                   <div class="form-group b-margin">
-                    {{!-- <select class="form-select hours"{{#unless claim_code}} disabled{{/unless}} required name="hours" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.hours}}>
-                    {{#each @root.context.metaData.certificates ~}}
-                    {{#unless tsi_only ~}}
-                    <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>
-                    {{#ifAny (compare type "approach") (compare type "ascent") ~}}
-                    {{type_name}}: {{hours}} hours
-                    {{else}}
-                    {{type_name}}
-                    {{/ifAny ~}}
-                    </option>
-                    {{else}}
-                    {{#if @root.data.accountInfo.summit_certificate_permission ~}}
-                    <option value="{{hours}}"{{#compare hours ../hours}} selected{{/compare}}>
-                    {{type_name}}
-                    </option>
-                    {{/if ~}}
-                    {{/unless ~}}
-                    {{/each ~}}
-                    </select> --}}
                     <span id="{{award_id}}-award_level">
                     {{#each @root.context.metaData.certificates ~}}
                       {{#unless tsi_only ~}}
@@ -176,7 +148,6 @@
                               <input type="hidden" name="un_sustainable_development_goals" value="{{../un_sustainable_development_goals}}">
                               <input type="hidden" name="organisation_name_1" value="{{../organisation_name}}">
 
-
                               <div class="form-group b-margin">
                                 <input id="{{award_id}}-modal-group_award_first_name" {{#unless claim_code ~}}disabled{{/unless}} class="form-input inline-edit" name="group_award_first_name" value="{{{group_award_first_name}}}">
                               </div>
@@ -204,14 +175,18 @@
                                 </select>
                               </div>
                               <div class="form-group">
-                                <textarea {{#unless claim_code~}}disabled{{/unless}} rows="3" placeholder="Description" cols="40" id="description_1" name="description_1" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}>{{{description_1}}}</textarea>
+                                <textarea {{#unless claim_code~}}disabled{{/unless}} rows="3" placeholder="Description" cols="40" id="description_1" name="description_1" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}>{{{default description_1 ../task_description}}}</textarea>
                               </div>
+
+                            <div class="form-group">
+                              <textarea {{#unless claim_code~}}disabled{{/unless}} rows="3"  placeholder="Testimonial" cols="40" id="testimonial_1" name="testimonial_1" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}>{{{default testimonial_1 ../testimonial}}}</textarea>
+                            </div>
                           </div>
                         </div>
                         <div class="modal-footer">
-                          {{#if (ifAll claim_code (compare hours '!==' 0) (compare hours '!==' 1)) ~}}
+                          {{#if claim_code~}}
                             <button type="submit" class="btn btn-success btn-block inline-update-button b-margin">Save</button>
-                            <a href="/admin-delete-hours?hours_id={{hours_id}}&user_id={{@root.data.auth.uid}}" class="btn btn-error btn-block b-margin" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
+                            <a href="/admin-delete-award?award_id={{award_id}}&user_id={{@root.data.auth.uid}}" class="btn btn-error btn-block b-margin" data-component="TasksTrigger" data-success-hide="true" data-next-task="close-and-destroy"  data-next-action data-TasksTrigger="ajax-delete-handler">Remove</a>
                           {{/if ~}}
                         </div>
                         </form>
@@ -221,7 +196,7 @@
                   {{/if ~}}
                 </div>
                 <div class="column col-2 col-xl-2 col-lg-2 col-md-3 col-sm-4">
-                  <a href="/group-certificate/{{../task_id}}/{{hours_id}}/saltire-award-{{#compare hours 0}}challenge-certificate{{else}}{{#compare hours 1}}summit-certificate{{else}}for-{{hours}}-hours{{/compare}}{{/compare}}-{{slugify group_award_first_name}}{{#if group_award_last_name}}-{{slugify group_award_last_name}}{{/if}}.pdf" class="btn btn-block b-margin">Download</a>
+                  <a href="/group-certificate/{{../task_id}}/{{award_id}}/saltire-award-{{#compare hours 0}}challenge-certificate{{else}}{{#compare hours 1}}summit-certificate{{else}}for-{{hours}}-hours{{/compare}}{{/compare}}-{{slugify group_award_first_name}}{{#if group_award_last_name}}-{{slugify group_award_last_name}}{{/if}}.pdf" class="btn btn-block b-margin">Download</a>
                 </div>
                 {{!-- <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-4">
                 {{#if claim_code ~}}
@@ -234,60 +209,39 @@
             {{/ifAny ~}}
           {{/each ~}}
 
-          <form action="/update-task-testimonial/{{task_id}}?user_id={{@root.data.auth.uid}}" class="form-horizontal inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-next-task="hide-modal" data-success-message="Testimonial updated" data-TasksTrigger="ajax-form-handler">
-            <div class="form-group">
-              <div class="col-4">
-                <label for="testimonial" class="form-label">
-                  Group testimonial
-                </label>
-              </div>
-              <div class="column col-7">
-                <div class="columns">
-                  <div class="col-8">
-                    <textarea rows="3" placeholder="Let people know what your volunteers have achieved" cols="40" id="testimonial" name="testimonial" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.testimonial}}>{{testimonial}}</textarea>
-                  </div>
-                  <div class="col-1"></div>
-                  <div class="col-3">
-                    <button type="submit" class="btn btn-success btn-block inline-update-button b-margin" style="display: none">Save</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
-
-          <form action="/do-not-act/{{task_id}}?user_id={{@root.data.auth.uid}}" class="form-horizontal inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Skills updated" data-TasksTrigger="ajax-form-handler">
-            <div class="form-group">
-              <div class="col-4">
-                <label for="skills" class="form-label">
-                  Skills developed
-                </label>
-              </div>
-              <div class="column col-7">
-                <div class="columns">
-                  <div class="col-8">
-                    <textarea rows="3" placeholder="What skills were used (NOT DEVELOPED YET)" disabled cols="40" id="skills" name="skills" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.skills}}>{{skills}}</textarea>
-                  </div>
-                  <div class="col-1"></div>
-                  <div class="col-3">
-                    <button type="submit" class="btn btn-success btn-block inline-update-button b-margin" style="display: none">Save</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </form>
+          <!--<form action="/do-not-act/{{task_id}}?user_id={{@root.data.auth.uid}}" class="form-horizontal inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Skills updated" data-TasksTrigger="ajax-form-handler">-->
+            <!--<div class="form-group">-->
+              <!--<div class="col-4">-->
+                <!--<label for="skills" class="form-label">-->
+                  <!--Skills developed-->
+                <!--</label>-->
+              <!--</div>-->
+              <!--<div class="column col-7">-->
+                <!--<div class="columns">-->
+                  <!--<div class="col-8">-->
+                    <!--<textarea rows="3" placeholder="What skills were used (NOT DEVELOPED YET)" disabled cols="40" id="skills" name="skills" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.skills}}>{{skills}}</textarea>-->
+                  <!--</div>-->
+                  <!--<div class="col-1"></div>-->
+                  <!--<div class="col-3">-->
+                    <!--<button type="submit" class="btn btn-success btn-block inline-update-button b-margin" style="display: none">Save</button>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</form>-->
         </div>
           <a href="#" class="btn btn-primary show-group-awards-form">
             Add more participants
           </a>
         {{/compare ~}}
 
-        <form action="/admin-submit-group-awards" id="group-awards-form" method="POST" data-component="TasksTrigger" {{#if @root.data.isAdmin}}data-success-destination="/hours/{{task_id}}/{{slugify organisation_name}}" data-destination-include-id="false"{{else}}data-success-destination="/hours"{{/if}} data-TasksTrigger="ajax-form-handler"{{#compare (length hours_list) '>' 0}} style="display:none;"{{/compare}}>
+        <form action="/admin-submit-group-awards" id="group-awards-form" method="POST" data-component="TasksTrigger" data-success-destination="/admin-group/{{task_id}}/{{slugify organisation_name}}" data-destination-include-id="false" data-TasksTrigger="ajax-form-handler"{{#compare (length awards_list) '>' 0}} style="display:none;"{{/compare}}>
           <div class="form-horizontal">
             <input type="hidden" name="task_id" value="{{task_id}}">
             <input type="hidden" name="un_sustainable_development_goals" value="{{un_sustainable_development_goals}}">
             <input type="hidden" name="description_1" value="{{task_description}}">
             <input type="hidden" name="organisation_name_1" value="{{organisation_name}}">
-
+            <input type="hidden" name="testimonial_1" value="{{testimonial}}">
 
             <div class="form-group">
               <div class="col-4">Participant names</div>
@@ -353,6 +307,19 @@
   }
 </script>
 
+<script data-task="close-and-destroy" type="javascript/blocked">
+  {
+    type: "multiTask",
+    config: {
+      tasks: [
+        "destroy",
+        "hide-modal",
+      ]
+    }
+  }
+</script>
+
+
 <script data-task="populate" type="javascript/blocked">
   {
   type: "multiTask",
@@ -380,6 +347,22 @@
 }
 </script>
 
+<script data-task="destroy" type="javascript/blocked">
+  {
+  type: "multiTask",
+  config: {
+    tasks:[
+      {
+        type: "elementManipulator",
+        __doNotCompile: true,
+        config: {
+         "#\{{{jquery rootElement 'data' (split 'award-id')}}}-row" : { addClass: "hidden" },
+         }
+      }
+    ]
+  }
+}
+</script>
 
 <script data-task="hide-modal" type="javascript/blocked">
 {
@@ -395,6 +378,23 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {
+
+    $('.inline-hours-form :input').on('input',function () {
+      var unsaved = $(this).closest('form').addClass('has-error');
+      {{!-- This is the submit button --}}
+      var submit = $(this).closest('form').find(':submit').show();
+    });
+
+    $('.inline-update-button').click(function(){
+      var saved = $(this).closest('form').removeClass('has-error');
+      var hours = $(this).closest('form').find('.hours').val();
+      if ((hours == 0) || (hours == 1)) {
+        $(this).closest('form').find('mark.claim-code').addClass('hidden');
+      } else {
+        $(this).closest('form').find('mark.claim-code').removeClass('hidden');
+      }
+      $(this).hide();
+    });
 
     $('.edit-button').click(function(){
       var hours_id = $(this).closest('.column').find('.modal').attr('id');

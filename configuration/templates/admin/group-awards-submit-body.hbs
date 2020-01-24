@@ -16,7 +16,8 @@
           {{{json key='claim_code' value=(hash (concat " " (random 0 1000000000000)) 'md5')}}},
           {{{json key='un_sustainable_development_goals' value=@root.request.body.un_sustainable_development_goals}}},
           {{{json key='description_1' value=@root.request.body.description_1}}},
-          {{{json key='organisation_name_1' value=@root.request.body.organisation_name_1}}}
+          {{{json key='organisation_name_1' value=@root.request.body.organisation_name_1}}},
+          {{{json key='testimonial_1' value=@root.request.body.testimonial_1}}}
         {{/json}}
         {{/if}}
       {{/eachJoin}}
