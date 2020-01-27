@@ -19,7 +19,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "data",
-        "template": "/SaltireAward/?award_id={{@root.request.params.query.hours_id}}&user_id={{@root.request.params.query.user_id}}"
+        "template": "/SaltireAward/?award_id={{@root.request.params.query.award_id}}&user_id={{@root.request.params.query.user_id}}"
       }
     },
     {

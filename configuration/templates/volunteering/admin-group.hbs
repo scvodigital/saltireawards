@@ -57,7 +57,7 @@
         <div class="divider v-margin-full"></div>
 
         <h3>
-          Participants <span id="myelement">e</span> <span id="a1w5e000000jmlhuaq">f</span>
+          Participants
         </h3>
 
         {{#compare (length awards_list) ">" 0 ~}}
@@ -78,16 +78,8 @@
           </div>
 
           {{#each awards_list ~}}
-            One
             {{#ifAny group_award_first_name claim_code ~}}
-            {{!-- <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?user_id={{@root.data.auth.uid}}" style="position:relative" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Participant details updated" data-TasksTrigger="ajax-form-handler">
-            <input type="hidden" name="task_id" value="{{../task_id}}">
-            <input type="hidden" name="verified" value="{{verified}}">
-            <input type="hidden" name="claim_code" value="{{claim_code}}">
-            <input type="hidden" name="hours_id" value="{{hours_id}}">
-            <input type="hidden" name="user_id" value="{{@root.data.auth.uid}}"> --}}
-
-              <div class="columns">
+              <div class="columns" id="{{award_id}}-row">
                 <div class="column col-2 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6">
                   <div class="form-group b-margin">
                     {{!-- <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="group_award_first_name" value="{{{group_award_first_name}}}"> --}}
@@ -137,7 +129,7 @@
                           <a href="#close" class="btn btn-clear modal-close float-right" aria-label="Close"></a>
                           <div class="modal-title h5">{{{group_award_first_name}}} {{{group_award_last_name}}}</div>
                         </div>
-                        <form id="{{award_id}}" method="POST" action="/admin-update-individual-award?user_id={{@root.data.auth.uid}}" style="position:relative" class="inline-hours-form" data-award-id="{{award_id}}"  data-component="TasksTrigger" data-form-element=">" data-next-task="close-and-complete" data-success-message="Participant details updated" data-TasksTrigger="ajax-form-handler">
+                        <form id="{{award_id}}" method="POST" action="/admin-update-individual-award?user_id={{@root.data.auth.uid}}" style="position:relative" class="inline-hours-form" data-award-id="{{award_id}}"  data-component="TasksTrigger" data-form-element=">"  data-next-task="close-and-complete" data-success-message="Participant details updated" data-TasksTrigger="ajax-form-handler">
                         <div class="modal-body">
                           <div class="content">
 
@@ -186,7 +178,7 @@
                         <div class="modal-footer">
                           {{#if claim_code~}}
                             <button type="submit" class="btn btn-success btn-block inline-update-button b-margin">Save</button>
-                            <a href="/admin-delete-award?award_id={{award_id}}&user_id={{@root.data.auth.uid}}" class="btn btn-error btn-block b-margin" data-component="TasksTrigger" data-success-hide="true" data-next-task="close-and-destroy"  data-next-action data-TasksTrigger="ajax-delete-handler">Remove</a>
+                            <a href="/admin-delete-award?award_id={{award_id}}&user_id={{@root.data.auth.uid}}" class="btn btn-error btn-block b-margin" data-component="TasksTrigger" data-award-id="{{award_id}}"  data-success-hide="true" data-next-task="close-and-destroy"  data-next-action data-TasksTrigger="ajax-delete-handler">Remove</a>
                           {{/if ~}}
                         </div>
                         </form>
