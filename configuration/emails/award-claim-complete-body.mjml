@@ -15,7 +15,7 @@
             <p>Dear {{@root.data.accountInfo.first_name}},</p>
 
             <p>
-              Congratulations! You have been awarded your Saltire {{@root.request.body.award}}{{#if (regexMatch @root.request.body.award '[0-9]+')}} Hours{{/if}} Award!
+              Congratulations! Thank you for claiming your Saltire {{@root.request.body.award}}{{#if (regexMatch @root.request.body.award '[0-9]+')}} Hours{{/if}} Award!
             </p>
             <p>
               Please <a href="{{@root.context.metaData.url}}/awards">visit the Saltire Awards site</a> to view, download or print it.
