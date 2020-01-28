@@ -51,8 +51,8 @@
               {{/if ~}}
               <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-users"></span></span>
-                <span class="text-gray">{{#compare (length hours_list) ">" 0 ~}}
-                {{inflect (length hours_list) "participant" "participants" true}}
+                <span class="text-gray">{{#compare (length awards_list) ">" 0 ~}}
+                {{inflect (length awards_list) "participant" "participants" true}}
                 {{else}}
                 No participants have been added yet
                 {{/compare ~}}</span>

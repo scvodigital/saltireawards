@@ -15,8 +15,8 @@
         "connection": "scvoAlexSandbox",
         "output": "data",
         "method": "POST",
-        "body": ">context.metaData.handlebars.templates.volunteering_hours-claim-body",
-        "apexClassPath": "/SaltireHoursClaim/"
+        "body": ">context.metaData.handlebars.templates.volunteering_award-claim-body",
+        "apexClassPath": "/SaltireAwardClaim/"
       }
     },
     "context.metaData.commonTasks.flushCache",

@@ -1,6 +1,6 @@
 {
-  "name": "claim-hours",
-  "pattern": "/claim-hours",
+  "name": "claim-award",
+  "pattern": "/claim-award",
   "debug": true,
   "errorRoute": "five_hundred",
   "metaData": {

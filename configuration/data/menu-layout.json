@@ -76,7 +76,7 @@
       "label": "My volunteering",
       "icon": "user-clock",
       "path": "/hours",
-      "route": "^/hours|^/task|^/claim-hours",
+      "route": "^/hours|^/task|^/claim-award",
       "user-types": [
         "Volunteer"
       ]
