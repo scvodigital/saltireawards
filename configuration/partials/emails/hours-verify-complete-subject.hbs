@@ -1,1 +1,1 @@
-Congratulations on achieving your Saltire {{@root.request.body.award}}{{#if (regexMatch @root.request.body.award '[0-9]+')}} Hours{{/if}} Award!
+Congratulations on achieving your Saltire {{@root.request.params.query.award}}{{#if (regexMatch @root.request.params.query.award '[0-9]+' 'gi')}} Hours{{/if}} Award!

@@ -1,1 +1,1 @@
-There is a problem with your application for the Saltire {{@root.data.accountInfo.hours_verify_award}} Hours Award
+There is a problem with your application for the Saltire {{@root.request.params.query.award}}{{#if (regexMatch @root.request.params.query.award '[0-9]+' 'gi')}} Hours{{/if}} Award
