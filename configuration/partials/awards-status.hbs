@@ -2,7 +2,13 @@
   {{#each @root.context.metaData.certificates ~}}
     {{#ifAny (compare type "approach") (compare type "ascent") ~}}
 
-      {{#ifAll (compare @root.data.accountInfo.verified_hours ">=" hours) (compare @root.data.accountInfo.verified_hours "<" next_award_hours)}}{{{json key="current" value=hours}}},{{/ifAll}}
+      {{#if @root.data.accountInfo.awards_list.[0]}}
+        {{{json key="currentAward" value=@root.data.accountInfo.awards_list.[0]}}},
+      {{/if}}
+
+      {{#ifAll (compare @root.data.accountInfo.verified_hours ">=" hours) (compare @root.data.accountInfo.verified_hours "<" next_award_hours)}}
+        {{{json key="current" value=hours}}},
+      {{/ifAll}}
 
       {{#ifAll
         (compare @root.data.accountInfo.hours_verify_award "===" (stringify hours))

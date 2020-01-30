@@ -7,6 +7,7 @@
   "tasks": [
     "context.metaData.commonTasks.authRequired",
     "context.metaData.commonTasks.getAccountInfo",
+    "context.metaData.commonTasks.getAwardInfo",
     {
       "name": "sendEmail",
       "taskModule": "mailgun",
@@ -17,6 +18,19 @@
         "template": ">context.metaData.handlebars.templates.volunteering_email_request-printed-certificate"
       }
     },
+    {
+      "name": "setCertRequested",
+      "taskModule": "salesforceApex",
+      "renderer": "handlebars",
+      "config": {
+        "connection": "scvoAlexSandbox",
+        "output": "data",
+        "method": "POST",
+        "body": ">context.metaData.handlebars.templates.volunteering_certificate_request-printed-certificate-body",
+        "apexClassPath": "/SaltireAward/"
+      }
+    },
+    "context.metaData.commonTasks.flushCache",
     {
       "name": "destination",
       "taskModule": "render",

@@ -1,6 +1,7 @@
 {
   "name": "test-page",
   "pattern": "/test-page",
+  "errorRoute": "five_hundred",
   "debug": true,
   "metaData": {
     "title": "Tasks",
@@ -10,6 +11,7 @@
     "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.flushCache",
+    "context.metaData.commonTasks.getAwardInfo",
     {
       "name": "taskInfo",
       "taskModule": "salesforceApex",

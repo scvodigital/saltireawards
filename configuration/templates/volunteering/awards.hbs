@@ -21,9 +21,14 @@
     {{type_name}}: {{certificate_name}} hours
   </p>
   {{> badge hours=hours}}
+  {{!-- (ifAll (compare @root.data.awardInfo.award_numerical_value '==' hours) @root.data.awardInfo.printed_certificate_requested ) --}}
   <div class="empty-action">
     <a href="/certificate/my-saltire-award-for-{{hours}}-hours.pdf" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary b-margin">Download</a>
+    {{#unless @root.data.awardsStatus.currentAward.printed_certificate_requested }}
     <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" class="btn b-margin">Print request</a>
+    {{else}}
+      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" disabled class="btn b-margin">Print requested</a>
+    {{/unless}}
   </div>
 </div>
 {{/compare ~}}

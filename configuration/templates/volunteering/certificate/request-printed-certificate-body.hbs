@@ -1,0 +1,14 @@
+{{#with @root.data.awardInfo}}
+  {{#json}}
+    {{#json key='award_input' type='array'}}
+      {{#json}}
+        {{#each (keyValue this)}}
+          {{#unless (compare key 'printed_certificate_requested')}}
+            {{{json key=key value=value}}},
+          {{/unless}}
+        {{/each}}
+        {{{json key='printed_certificate_requested' value=true}}}
+      {{/json}},
+    {{/json}}
+  {{/json}}
+{{/with}}
