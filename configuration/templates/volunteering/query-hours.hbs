@@ -57,7 +57,7 @@
           </div>
           {{#each this.hours_list ~}}
             {{#unless verified ~}}
-              <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="inline-hours-form" data-component="TasksTrigger" data-success-hide="true" data-next-task="empty-collapse" data-TasksTFrigger="ajax-form-handler">
+              <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="inline-hours-form" data-component="TasksTrigger" data-success-hide="true" data-next-task="empty-collapse" data-TasksTrigger="ajax-form-handler">
                 <input type="hidden" name="task_id" value="{{task_id}}">
                 <input type="hidden" name="verified" value="true">
                 <input type="hidden" name="claim_code" value="{{claim_code}}">
