@@ -27,7 +27,11 @@
     {{#unless @root.data.awardsStatus.currentAward.printed_certificate_requested }}
     <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" class="btn b-margin">Print request</a>
     {{else}}
+      {{#unless @root.data.awardsStatus.currentAward.printed_certificate_issued}}
       <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" disabled class="btn b-margin">Print requested</a>
+      {{else}}
+      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" disabled class="btn b-margin">Printed certificate sent</a>
+      {{/unless}}
     {{/unless}}
   </div>
 </div>
@@ -119,7 +123,7 @@
     </div>
     <div class="modal-body">
       <div class="content">
-        <form action="/request-printed-certificate" class="b-padding-full" method="POST" id="request-certificate" data-component="TasksTrigger" data-next-task="hide-modal" data-success-message="Certificate request sent" data-TasksTrigger="ajax-form-handler">
+        <form action="/request-printed-certificate" class="b-padding-full" method="POST" id="request-certificate" data-component="TasksTrigger"  data-success-destination="awards" data-TasksTrigger="ajax-form-handler">
           <div class="form-group">
             <textarea class="form-input" action="request-printed-certificate" name="address_value" id="address_value" placeholder="Your address" autocomplete="on" rows="4" required></textarea>
           </div>
