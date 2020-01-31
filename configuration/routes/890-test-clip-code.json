@@ -7,14 +7,13 @@
     "context.metaData.commonTasks.authRequired",
     "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.isAdmin",
-    "context.metaData.commonTasks.adminOrCodeRequired",
     {
       "name": "codeValues",
       "taskModule": "firebaseRtbGet",
       "renderer": "handlebars",
       "config": {
         "appName": "saltireawards",
-        "pathTemplate": "/YoungScot-codes/",
+        "pathTemplate": "/young-scot-codes/unclaimed/{{default @root.request.params.query.award 'nope'}}/",
         "setOrUpdate": "get"
       }
     },
@@ -24,7 +23,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "data",
-        "template": "{{@root.data.codeValues.codes.[0]}}"
+        "template": "{{@root.data.codeValues.[0]}}"
       }
     },
     {
@@ -33,9 +32,20 @@
       "renderer": "handlebars",
       "config": {
         "appName": "saltireawards",
-        "pathTemplate": "/YoungScot-codes/",
+        "pathTemplate": "/young-scot-codes/unclaimed/{{default @root.request.params.query.award 'dubious'}}/",
         "setOrUpdate": "set",
-        "dataTemplate": "{\"codes\" : [{{#eachJoin (slice @root.data.codeValues.codes 1 undefined) \",\"}}\"{{this}}\"{{/eachJoin}}] }"
+        "dataTemplate": "[{{#eachJoin (slice @root.data.codeValues 1 undefined) \",\"}}\"{{this}}\"{{/eachJoin}}]"
+      }
+    },
+    {
+      "name": "newCodeValue",
+      "taskModule": "firebaseRtbSet",
+      "renderer": "handlebars",
+      "config": {
+        "appName": "saltireawards",
+        "pathTemplate": "/young-scot-codes/claimed/{{default @root.request.params.query.award 'nope'}}/{{default @root.data.ysCode 'nope'}}",
+        "setOrUpdate": "set",
+        "dataTemplate": "\"{{default @root.request.params.query.user_id 'unknown'}}\""
       }
     },
     {

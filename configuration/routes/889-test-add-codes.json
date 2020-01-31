@@ -12,19 +12,9 @@
       "renderer": "handlebars",
       "config": {
         "appName": "saltireawards",
-        "pathTemplate": "/young-scot-codes/",
+        "pathTemplate": "/young-scot-codes/unclaimed/{{default @root.request.params.query.award 'dubious'}}/",
         "setOrUpdate": "set",
-        "dataTemplate": "{\"codes\" : [{{#eachJoin (range 1 1001) \",\"}}\"YOUNGSCOT{{this}}\"{{/eachJoin}}] }"
-      }
-    },
-    {
-      "name": "codeValues",
-      "taskModule": "firebaseRtbGet",
-      "renderer": "handlebars",
-      "config": {
-        "appName": "saltireawards",
-        "pathTemplate": "/young-scot-codes/",
-        "setOrUpdate": "get"
+        "dataTemplate": "[{{#eachJoin (range 1 100) \",\"}}\"YOUNGSCOT-{{@root.request.params.query.award}}-{{this}}\"{{/eachJoin}}] "
       }
     },
     {
