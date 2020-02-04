@@ -1,32 +1,33 @@
+{{#each @root.data.accountInfo.awards_list ~}}
+{{#compare @root.request.params.award_id award_id ~}}
 {{#json type='array' ~}}
   {{#json ~}}
     {{{json key='type' value='individual'}}},
     {{#json key='user' ~}}
       {{{json key='first_name' value=@root.data.accountInfo.first_name}}},
       {{{json key='last_name' value=@root.data.accountInfo.last_name}}},
-      {{#ifAny (compare hours 0) (compare hours 1) ~}}
-      {{#compare hours 0 ~}}
-      {{{json key='certificate_type' value="challenge"}}},
-      {{/compare ~}}
-      {{#compare hours 1 ~}}
-      {{{json key='certificate_type' value="summit"}}},
-      {{/compare ~}}
-      {{{json key='hours_verified' value=0}}}
-      {{else}}
+      {{#compare award_level_numerical_value ">" 0 ~}}
       {{{json key='certificate_type' value="hours"}}},
-      {{/ifAny ~}}
-      {{{json key='hours_verified' value=(sumArray (pluck @root.data.tasksInfo "hours_verified"))}}}
+      {{{json key='hours_verified' value=award_level_numerical_value}}}
+      {{else}}
+      {{{json key='certificate_type' value=award_level}}},
+      {{{json key='hours_verified' value=0}}}
+      {{/compare ~}}
     {{/json ~}},
-    "sdgs": "{{~#each @root.data.tasksInfo ~}}
-      {{~#ifAll (compare hours_verified ">" 0) un_sustainable_development_goals ~}}
-      {{un_sustainable_development_goals}};
-      {{~/ifAll ~}}
-    {{~/each ~}}",
-    {{!-- {{{json key='sdgs' value=(join (map @root.data.tasksInfo (getProp "un_sustainable_development_goals")) ";")}}}, --}}
-    {{#json type='array' key='tasks' ~}}
-      {{#eachJoin @root.data.tasksInfo "," ~}}
-        {{{jsStringify this}}}
-      {{/eachJoin ~}}
-    {{/json ~}}
+    {{{json key='organisation_name_1' value=organisation_name_1}}},
+    {{{json key='description_1' value=description_1}}},
+    {{{json key='testimonial_1' value=testimonial_1}}},
+    {{{json key='organisation_name_2' value=organisation_name_2}}},
+    {{{json key='description_2' value=description_2}}},
+    {{{json key='testimonial_2' value=testimonial_2}}},
+    {{{json key='organisation_name_3' value=organisation_name_3}}},
+    {{{json key='description_3' value=description_3}}},
+    {{{json key='testimonial_3' value=testimonial_3}}},
+    {{{json key='sdgs' value=un_sustainable_development_goals}}},
+    {{{json key='claim_code' value=claim_code}}},
+    {{{json key='group_award_claimed' value=group_award_claimed}}},
+    {{{json key='extra_organisations' value=extra_organisations}}}
   {{/json ~}}
 {{/json ~}}
+{{/compare ~}}
+{{/each ~}}

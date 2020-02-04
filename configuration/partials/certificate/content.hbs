@@ -19,31 +19,12 @@
     [
       {
         "width": "60%",
-        {{#compare award "hours" ~}}
-        {{#each @root.context.metaData.certificates ~}}
-        {{#ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1) ~}}
-        {{#compare hours ../user.hours_verified ~}}
-        "text": {{>pdf_metadata_value key="title" default=(concat hours " hours")}},
+        {{#compare certificate_type "hours"}}
+        "text": {{>pdf_metadata_value key="title" default=(concat user.hours_verified " hours")}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
-        {{/compare ~}}
         {{else}}
-        {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
-        {{#unless (compare hours 1) ~}}
-        {{#unless (compare @root.data.accountInfo.hours_verify_award ">" next_award_hours) ~}}
-        "text": {{>pdf_metadata_value key="title" default=(concat hours " hours")}},
+        "text": {{>pdf_metadata_value key="title" default=(lowercase certificate_type)}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
-        {{/unless ~}}
-        {{/unless ~}}
-        {{/compare ~}}
-        {{/ifAll ~}}
-        {{/each ~}}
-        {{else}}
-        {{#each @root.context.metaData.certificates ~}}
-        {{#compare ../award type ~}}
-        "text": {{>pdf_metadata_value key="title" default=(lowercase certificate_name)}},
-        "color": "{{getProperty @root.context.metaData.theme type}}",
-        {{/compare ~}}
-        {{/each ~}}
         {{/compare ~}}
         "margin": [0, -10, 0, 0],
         "style": ["award", "bold"]
@@ -70,7 +51,7 @@
         {{/if ~}}
         {{/compare ~}}
         {{else}}
-        {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
+        {{#compare ../user.hours_verified ">=" hours ~}}
         {{#unless (compare hours 1) ~}}
         {{#unless (compare @root.data.accountInfo.hours_verify_award ">" next_award_hours) ~}}
         {{#if in_progress ~}}
@@ -98,7 +79,7 @@
         "color": "{{getProperty @root.context.metaData.theme type}}",
         {{/compare ~}}
         {{else}}
-        {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
+        {{#compare ../user.hours_verified ">=" hours ~}}
         {{#unless (compare hours 1) ~}}
         {{#unless (compare @root.data.accountInfo.hours_verify_award ">" next_award_hours) ~}}
         "text": {{>pdf_metadata_value key="title" default=type_name}},
@@ -152,9 +133,7 @@
       {{/switch ~}}
       {{/compare ~}}
       {{else}}
-      {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
-      {{#unless (compare hours 1) ~}}
-      {{#unless (compare @root.data.accountInfo.hours_verify_award ">" next_award_hours) ~}}
+      {{#compare ../user.hours_verified ">=" hours ~}}
       {{#switch hours ~}}
       {{#case 10 ~}}
       "image": "{{> certificate_images_png_badges_approach_10}}",
@@ -175,8 +154,6 @@
       "image": "{{> certificate_images_png_badges_ascent_500}}",
       {{/case ~}}
       {{/switch ~}}
-      {{/unless ~}}
-      {{/unless ~}}
       {{/compare ~}}
       {{/ifAll ~}}
       {{/each ~}}
@@ -207,24 +184,15 @@
   "style": ["volunteer_name", "bold"],
   "fontSize": {{#compare (length (concat user.first_name " " user.last_name)) "<" 60}}30{{else}}{{#compare (length (concat user.first_name " " user.last_name)) "<" 100}}25{{else}}20{{/compare}}{{/compare}}
 },
-{{#each tasks ~}}
-{{#ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1)) (ifAll (compare hours_verified "!==" 0) (compare hours_verified "!==" 1)) ~}}
-{{!-- {{#if task_description ~}}
+{{#if testimonial_1 ~}}
 {
-  "text": "{{{task_description}}}",
-  "margin": [0, 5, 0, 0],
-  "style": "volunteering_detail"
-},
-{{/if ~}} --}}
-{{#if testimonial ~}}
-{
-  "text": {{>pdf_metadata_value key="title" default=(concat "\"" (truncate (replace testimonial "\n" " ") 98) "\"")}},
+  "text": {{>pdf_metadata_value key="title" default=(concat "\"" (truncate (replace testimonial_1 "\n" " ") 98) "\"")}},
   "margin": [0, 15, 0, 0],
   "style": "volunteering_title"
 },
 {
   {{#compare ../type "group" ~}}
-  "text": {{>pdf_metadata_value key="title" default=(concat "Volunteering with " organisation_name)}},
+  "text": {{>pdf_metadata_value key="title" default=(concat "Volunteering with " organisation_name_1)}},
   {{else}}
   "text": {{>pdf_metadata_value key="title" default=(concat volunteer_manager_first_name " " volunteer_manager_last_name ", " volunteer_manager_title " at " organisation_name)}},
   {{/compare ~}}
@@ -233,7 +201,7 @@
 },
 {{else}}
 {
-  "text": {{>pdf_metadata_value key="title" default=(truncate (replace task_description "\n" " ") 98)}},
+  "text": {{>pdf_metadata_value key="title" default=(truncate (replace description_1 "\n" " ") 98)}},
   "margin": [0, 15, 0, 0],
   "style": "volunteering_title"
 },
@@ -243,8 +211,6 @@
   "style": "volunteering_detail"
 },
 {{/if ~}}
-{{/ifAny ~}}
-{{/each ~}}
 {{#if sdgs ~}}
 {
   "text": {{>pdf_metadata_value key="title" default=(concat "Contributing towards " (inflect (length (split sdgs ';')) 'Goal' 'Goals'))}},
@@ -257,7 +223,7 @@
 {
   "text": "{{> sdg_number sdg=this}}: {{this}}",
   "color": "{{> sdg_color sdg=this}}",
-  "link": "https://globalgoals.org/{{> sdg_number sdg=this}}-{{slugify this}}",
+  "link": "https://next.globalgoals.org/{{> sdg_number sdg=this}}-{{slugify this}}",
   "margin": [0, 2, 0, 0],
   "style": ["volunteering_detail", "bold"]
 },
@@ -277,16 +243,12 @@
   },
   {{/compare ~}}
   {{else}}
-  {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
-  {{#unless (compare hours 1) ~}}
-  {{#unless (compare @root.data.accountInfo.hours_verify_award ">" next_award_hours) ~}}
+  {{#compare ../user.hours_verified ">=" hours ~}}
   "image": "{{signature_image}}",
   "absolutePosition": {
     "x": 60,
     "y": {{signature_image_position}}
   },
-  {{/unless ~}}
-  {{/unless ~}}
   {{/compare ~}}
   {{/ifAll ~}}
   {{/each ~}}
@@ -311,12 +273,8 @@
   "text": {{>pdf_metadata_value key="title" default=signature_name}},
   {{/compare ~}}
   {{else}}
-  {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
-  {{#unless (compare hours 1) ~}}
-  {{#unless (compare @root.data.accountInfo.hours_verify_award ">" next_award_hours) ~}}
+  {{#compare ../user.hours_verified ">=" hours ~}}
   "text": {{>pdf_metadata_value key="title" default=signature_name}},
-  {{/unless ~}}
-  {{/unless ~}}
   {{/compare ~}}
   {{/ifAll ~}}
   {{/each ~}}
@@ -336,17 +294,13 @@
 {
   {{#compare award "hours" ~}}
   {{#each @root.context.metaData.certificates ~}}
-  {{#ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1) ~}}
+  {{#ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) ~}}
   {{#compare hours ../user.hours_verified ~}}
   "text": {{>pdf_metadata_value key="title" default=signature_title}},
   {{/compare ~}}
   {{else}}
-  {{#compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours ~}}
-  {{#unless (compare hours 1) ~}}
-  {{#unless (compare @root.data.accountInfo.hours_verify_award ">" next_award_hours) ~}}
+  {{#compare ../user.hours_verified ">=" hours ~}}
   "text": {{>pdf_metadata_value key="title" default=signature_title}},
-  {{/unless ~}}
-  {{/unless ~}}
   {{/compare ~}}
   {{/ifAll ~}}
   {{/each ~}}
@@ -375,7 +329,7 @@
     "y": 710
   }
 },
-{{#ifAll user.claim_code (ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1)) (ifAll (compare user.hours_verified "!==" 0) (compare user.hours_verified "!==" 1))) ~}}
+{{#ifAll user.claim_code (ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0)) (compare user.hours_verified "!==" 0)) ~}}
 {
   "text": {{>pdf_metadata_value key="title" default="Claim code:"}},
   "color": "#333E48",
@@ -400,7 +354,7 @@
 {
   "width": 110,
   "image": "{{> certificate_images_png_global_goals}}",
-  "link": "https://globalgoals.org",
+  "link": "https://next.globalgoals.org",
   "margin": [0, 0, 0, 0],
   "absolutePosition": {
     "x": 430,

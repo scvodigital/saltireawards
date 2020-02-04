@@ -1,16 +1,32 @@
 {{#unless @root.data.isAdmin ~}}
-{{!-- <ul class="step">
+{{#if @root.data.accountInfo.awards_list ~}}
+<div class="empty">
+  <div class="empty-icon">
+    <span class="fal fa-user fa-3x"></span>
+  </div>
+  <div class="columns">
+    {{#each @root.data.accountInfo.awards_list ~}}
+    <div class="column col-3 col-lg-4 col-md-6 col-sm-12">
+      <p class="empty-title h5">
+        {{#compare award_level_numerical_value ">" 0 ~}}
+        {{award_level}} hours
+        {{else}}
+        {{award_level}}
+        {{/compare ~}}
+      </p>
+      {{#compare award_level_numerical_value ">" 0 ~}}
+      <a href="/certificate/{{award_id}}/my-saltire-award-for-{{award_level_numerical_value}}-hours.pdf" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary b-margin">Download</a>
+      {{else}}
+      <a href="/certificate/{{award_id}}/my-saltire-{{lowercase award_level}}-award.pdf" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary b-margin">Download</a>
+      {{/compare ~}}
+    </div>
+    {{/each ~}}
+  </div>
+</div>
+{{/if ~}}
+<br /><br /><br /><br /><br /><br />
+<h3>Old method (for reference):</h3>
 {{#each @root.context.metaData.certificates ~}}
-{{#ifAny (compare type "approach") (compare type "ascent") ~}}
-<li class="step-item{{#compare @root.data.accountInfo.hours_verify_award hours}} active{{/compare}}">
-<a href="#" class="tooltip" data-tooltip="{{certificate_name}} hours">{{hours}}</a>
-</li>
-{{/ifAny ~}}
-{{/each ~}}
-</ul> --}}
-
-{{#each @root.context.metaData.certificates ~}}
-
 {{!-- It's already awarded --}}
 {{#compare @root.data.awardsStatus.current hours ~}}
 <div class="empty">

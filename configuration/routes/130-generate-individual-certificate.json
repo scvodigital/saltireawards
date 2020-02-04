@@ -1,6 +1,6 @@
 {
   "name": "certificate",
-  "pattern": "/certificate(/:junk)",
+  "pattern": "/certificate/:award_id(/:junk)",
   "debug": true,
   "errorRoute": "five_hundred",
   "tasks": [
