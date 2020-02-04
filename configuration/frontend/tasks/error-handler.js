@@ -60,7 +60,7 @@ return {
                         tasks: [
                           {
                             type: "run",
-                            config: {code: {__template: "window.location.href = '\{{jquery rootElement 'data' (split 'success-destination')}}{{#if (jquery rootElement 'data' (split 'destination-include-id')) }}{{data.submitRequest.id}}{{/if}}' "}}
+                            config: {code: {__template: "window.location.href = '\{{{jquery rootElement 'data' (split 'success-destination')}}}{{#if (jquery rootElement 'data' (split 'destination-include-id')) }}{{data.submitRequest.id}}{{/if}}' "}}
                           }
                         ]
                       },

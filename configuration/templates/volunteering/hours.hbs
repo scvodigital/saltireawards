@@ -9,6 +9,9 @@
   </div>
   {{/if ~}}
 </div>
+{{#if @root.request.params.query.new}}
+  <div id="clickme" data-component="TasksTrigger" data-TasksTrigger="{click: {tasks: ['load-hours-toast']}}"></div>
+{{/if}}
 
 <div class="content-break">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -35,7 +38,7 @@
             <ul class="fa-ul hours-info">
               {{#if location ~}}
               <li class="card-subtitle">
-                <span class="fa-li"><span class="far fa-map-marker-alt"></span></span>
+                <span class="fa-li"><span class="far fa-map-marker-alt"></span></span>id
                 <span class="text-gray">{{truncate location 140}}</span>
               </li>
               {{/if ~}}
@@ -77,7 +80,7 @@
               <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-user-clock"></span></span>
                 <div class="popover popover-bottom">
-                  <span class="text-gray">{{subtract hours hours_verified}} {{inflect (subtract hours hours_verified) "hour" "hours"}} logged but not yet verified</span>
+                  <span class="text-gray"><span id="{{task_id}}-hours">{{subtract hours hours_verified}} {{inflect (subtract hours hours_verified) "hour" "hours"}}</span> logged but not yet verified</span>
                   <div class="popover-container">
                     <div class="card">
                       <div class="card-header">
@@ -100,7 +103,11 @@
               </li>
               {{/compare ~}}
               {{else}}
-              <li class="card-subtitle">
+                <li id="{{task_id}}-now-hours" class="card-subtitle hidden">
+                  <span class="fa-li"><span class="far fa-user-clock"></span></span>
+                    <span class="text-gray"><span id="{{task_id}}-hours"></span> logged but not yet verified</span>
+                </li>
+                <li id="{{task_id}}-no-hours" class="card-subtitle">
                 <span class="fa-li"><span class="far fa-user-times"></span></span>
                 <span class="text-gray">No hours added yet</span>
               </li>
@@ -125,7 +132,7 @@
 
           {{#unless (getProperty (itemAt @root.context.metaData.certificates (indexOf (map @root.context.metaData.certificates (getProp 'hours')) @root.data.awardsStatus.current)) "highest") ~}}
           <div class="card-footer">
-            <form action="/submit-hours" method="POST" data-component="TasksTrigger" {{#if admin}}data-success-destination="/hours/" data-destination-include-id="true"{{else}}data-success-destination="/hours"{{/if}} data-TasksTrigger="ajax-form-handler">
+            <form action="/submit-hours" method="POST" data-component="TasksTrigger" {{#if admin}}data-success-destination="/hours?new=true" data-destination-include-id="true"{{else}}data-success-destination="/hours?new=true"{{/if}} data-TasksTrigger="ajax-form-handler">
               <input type="hidden" name="task_id" value="{{task_id}}">
               {{#unless (compare task_type "===" 'Copy Task') ~}}
 
@@ -178,9 +185,36 @@
 {{/unless ~}}
 {{/unless ~}}
 
+
+<script data-task="load-hours-toast" type="javascript/blocked">
+
+{
+  type: "multiTask",
+  config : {
+    tasks : [
+      {
+        name: "toast",
+        type: "basic",
+        config: {
+          message: "Hours updated",
+          class: "success"
+        }
+      },
+      "toast"
+    ]
+  }
+}
+</script>
+
 {{!-- <script src="https://#/recaptcha/api.js" async defer></script> --}}
 <script>
 document.addEventListener("DOMContentLoaded", function(event) {
+
+  setTimeout(function(){
+    $('#clickme').click();
+  }, 10);
+
+
   $('.inline-hours-form :input').on('input',function () {
     var unsaved = $(this).closest('form').addClass('has-error');
     {{!-- This is the submit button --}}
@@ -217,6 +251,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     $(this).hide();
   });
 
+
   $(window).on('beforeunload', function(){
     if($('form.has-error').length){
       return true;
@@ -225,3 +260,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
   });
 });
 </script>
+
+

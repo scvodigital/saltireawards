@@ -8,8 +8,19 @@
     <span id="form-message"></span>
   </div>
 
+  <!--<div class="modal" id="confirm-modal">-->
+    <!--<a href="#" class="modal-overlay" aria-label="Close"></a>-->
+    <!--<div class="modal-container">-->
+      <!--<div class="modal-body">-->
+        <!--<div class="content">-->
+          <!---->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
 
-{{#if @root.request.params.task_id ~}}
+
+  {{#if @root.request.params.task_id ~}}
   {{#each @root.data.tasksInfo ~}}
     {{#compare task_id @root.request.params.task_id ~}}
       <div class="task task-{{task_id}}">
