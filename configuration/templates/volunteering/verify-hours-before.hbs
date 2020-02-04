@@ -1,0 +1,13 @@
+<div class="tasks-empty empty {{#if @root.data.tasksInfoUnverified.[0]}}hide{{/if}}">
+  {{> verify_pass task_ids=@root.request.params.query.t type='validate'}}
+</div>
+
+<div class="tasks-not-empty empty {{#unless @root.data.tasksInfoUnverified.[0]}}hide{{/unless}}">
+  <p class="empty-title h4">Volunteering verification</p>
+  <div id="testimonials" class="task-element">
+    <div class="empty-icon">
+      <span class="fal fa-user-clock fa-3x"></span>
+    </div>
+    {{> verify_testimonials task_ids=@root.request.params.query.t type='validate'}}
+  </div>
+</div>

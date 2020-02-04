@@ -3,7 +3,16 @@
     {{inflect (length (split task_ids ",")) "Testimonial" "Testimonials"}} (optional)
   </div>
   {{#each (filter @root.data.tasksInfo "task_id" "valueIn" (split task_ids ",")) ~}}
-  <form action="/update-task-testimonial/{{task_id}}?c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-hide="true" data-TasksTrigger="ajax-form-handler">
+
+    <form action="/update-task-testimonial/{{task_id}}?c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="inline-hours-form"  data-component="TasksTrigger" data-form-element=">" {{#if (compare (length (split ../task_ids ",")) "===" 1)}}
+          {{#compare ../type "===" "query"}}
+          data-next-task="testimonial-done"
+          data-success-message="testimonial updated"
+          {{else}}
+          data-url="/verify-hours-done/?c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" data-next-task="complete-verify"
+          data-success-message="testimonial updated"
+          {{/compare}}
+          {{else}}data-success-hide="true"{{/if}}  data-TasksTrigger="ajax-form-handler">
     <div class="columns">
       <div class="column col-6 col-lg-8 col-md-9 col-sm-12 col-mx-auto">
         <div class="b-margin">
@@ -22,4 +31,34 @@
     </div>
   </form>
   {{/each ~}}
+  <div class="columns">
+    <div class="column col-6 col-lg-8 col-md-9 col-sm-12 col-mx-auto">
+      <div class="b-margin">
+        {{#compare type "===" "query"}}
+        <button  class="btn btn-success inline-update-button b-margin" data-component="TasksTrigger" data-TasksTrigger="{click: {tasks: ['testimonial-done']}}">Next</button>
+        {{else}}
+          <button class="btn btn-success inline-update-button b-margin" data-component="TasksTrigger"  data-TasksTrigger="{click: {tasks: ['complete-verify']}}">Verify All Hours</button>
+        {{/compare}}
+      </div>
+    </div>
+  </div>
+
 </div>
+
+<script type="javascript/blocked" data-task="testimonial-done">
+  {
+    name: "testimonialHider",
+    type: "elementManipulator",
+    config: {
+      "#testimonials": {addClass: "hide"},
+      "#after-testimonials": {removeClass: "hide"},
+    }
+  }
+</script>
+
+<script type="javascript/blocked" data-task="complete-verify">
+  {
+    type: "run",
+    config: { code: "window.location.href = '{{{concat '/verify-hours-done/?c=' @root.request.params.query.c '&t=' @root.request.params.query.t '&user_id=' @root.request.params.query.user_id }}}'" }
+  }
+</script>

@@ -2,18 +2,27 @@
   {{> verify_pass task_ids=@root.request.params.query.t type='query'}}
 </div>
 
-<div class="tasks-not-empty empty {{#unless @root.data.tasksInfoUnverified.[0]}}hide{{/unless}}">
-  <div class="empty-icon">
-    <span class="fal fa-user-clock fa-3x"></span>
-  </div>
-  <p class="empty-title h4">Volunteering verification</p>
-  <p class="empty-subtitle">
-    Verification of hours volunteered by {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}}{{#if @root.data.accountInfo.school_college_name}} from {{@root.data.accountInfo.school_college_name}}{{/if}}.<br />
-    You may use this page to verify hours or make alterations if necessary.
-  </p>
-  <div class="task-element">
-    {{#each (filter @root.data.tasksInfoUnverified "task_id" "valueIn" (split @root.request.params.query.t ",")) ~}}
-      {{#compare unverified_hours_list.length ">=" 1 ~}}
+
+
+  <div class="tasks-not-empty empty {{#unless @root.data.tasksInfoUnverified.[0]}}hide{{/unless}}">
+    <div id="testimonials" class="task-element">
+      <div class="empty-icon">
+        <span class="fal fa-user-clock fa-3x"></span>
+      </div>
+      {{> verify_testimonials task_ids=@root.request.params.query.t type='query'}}
+    </div>
+    <div id="after-testimonials" class="task-element hide" >
+      <div class="empty-icon">
+        <span class="fal fa-user-clock fa-3x"></span>
+      </div>
+      <p class="empty-title h4">Volunteering verification</p>
+      <p class="empty-subtitle">
+        Verification of hours volunteered by {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}}{{#if @root.data.accountInfo.school_college_name}} from {{@root.data.accountInfo.school_college_name}}{{/if}}.<br />
+        You may use this page to verify hours or make alterations if necessary.
+      </p>
+
+      {{#each (filter @root.data.tasksInfoUnverified "task_id" "valueIn" (split @root.request.params.query.t ",")) ~}}
+        {{#compare unverified_hours_list.length ">=" 1 ~}}
         <div class="empty-action">
           <div class="columns">
             <div class="column col-2 text-left">
@@ -23,9 +32,9 @@
               <strong>Volunteer manager</strong>
             </div>
             {{#if task_description ~}}
-            <div class="column col-xs-auto text-left">
-              <strong>Volunteering description</strong>
-            </div>
+              <div class="column col-xs-auto text-left">
+                <strong>Volunteering description</strong>
+              </div>
             {{/if ~}}
           </div>
           <div class="columns b-margin">
@@ -36,9 +45,9 @@
               {{volunter_manager_first_name}} {{volunteer_manager_last_name}} ({{volunteer_manager_title}})
             </div>
             {{#if task_description ~}}
-            <div class="column col-xs-auto text-left">
-              {{{task_description}}}
-            </div>
+              <div class="column col-xs-auto text-left">
+                {{{task_description}}}
+              </div>
             {{/if ~}}
           </div>
           <div class="columns">
@@ -93,11 +102,12 @@
               </form>
             {{/unless ~}}
           {{/each ~}}
-      {{/compare ~}}
-    {{/each ~}}
+        {{/compare ~}}
+      {{/each ~}}
+    </div>
+
+    </div>
   </div>
-  {{> verify_testimonials task_ids=@root.request.params.query.t type='query'}}
-</div>
 
 <script type="javascript/blocked" data-task="empty-collapse">
   {
