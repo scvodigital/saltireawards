@@ -117,7 +117,16 @@
                 <textarea rows="4" cols="40" id="testimonial" placeholder="Testimonial" name="testimonial" class="form-input" value="{{@root.data.taskInfo.testimonial}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.testimonial}}></textarea>
               </div>
             </div>
-
+            <div class="form-group">
+              <div class="column col-4 col-md-12">
+                <label for="internal_reference" class="form-label">
+                  Your reference
+                </label>
+              </div>
+              <div class="column col-8 col-md-12">
+                <input required id="internal_reference" name="internal_reference" class="form-input" placeholder="e.g. VO1234" value="{{@root.data.taskInfo.internal_reference}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.internal_reference}}>
+              </div>
+            </div>
           {{/if}}
           <div class="form-group">
             <div class="column col-4 col-md-12">

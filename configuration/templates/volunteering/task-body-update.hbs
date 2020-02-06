@@ -2,6 +2,7 @@
   {{#json}}
     {{#json key='task'}}
       {{{json key='organisation_name' value=@root.data.taskInfo.organisation_name}}},
+      {{{json key='internal_reference' value=@root.data.taskInfo.internal_reference}}},
       {{{json key='location' value=@root.data.taskInfo.location}}},
       {{{json key='organisation_charity_number' value=@root.data.taskInfo.organisation_charity_number }}},
       {{{json key='un_sustainable_development_goals' value=@root.data.taskInfo.un_sustainable_development_goals}}},

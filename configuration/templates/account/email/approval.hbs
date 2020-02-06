@@ -1,4 +1,4 @@
-{{#withExtend @root.data.accountInfo type=(if (compare @root.data.accountInfo.user_type "===" "Group Admin") "tsi-approval" else="parental-approval") ~}}
+{{#withExtend @root.data.accountInfo type=(if (compare @root.data.accountInfo.user_type "===" "Group Admin") "tsi-approval" else="parental-approval") notice_type="await-approval"~}}
 [
   {
     "from": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
@@ -25,5 +25,28 @@
       ~}}
     {{~/blockStringify ~}}
   }
+{{#compare @root.data.accountInfo.user_type "Group Admin" ~}}
+,
+{
+  "from": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+  "h:sender": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+  "h:Reply-To": "{{>support_name}} <{{>support_email_address}}>",
+    "to": "{{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}}  <{{@root.data.accountInfo.email}}>",
+  "o:tag": "{{{notice_type}}}",
+  "o:tracking": true,
+  {{!-- "o:testmode": true, --}}
+  "tag": "{{{notice_type}}}",
+  "id": "{{{notice_type}}}",
+  "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat notice_type '.mailgunConnection'))}}},
+  "subject": "Awaiting {{@root.context.metaData.title}} {{#compare type "tsi-approval"}}TSI{{else}}parental{{/compare}} approval",
+  "html":
+  {{~#blockStringify this ~}}
+    {{~>
+    (getProperty @root.context.metaData.emailSendSettings (concat notice_type '.bodyPartial'))
+      this
+    ~}}
+  {{~/blockStringify ~}}
+}
+{{/compare}}
 ]
 {{/withExtend ~}}

@@ -16,6 +16,15 @@
     "bodyPartial": "emails_admin_approval_body",
     "metaData": {}
   },
+  "await-approval": {
+    "mailgunConnection": "mg_saltireawards",
+    "from": "Saltire Awards <support@saltireawards.scot>",
+    "replyTo": "Saltire Awards <support@saltireawards.scot>",
+    "sendIfEmpty": false,
+    "bodyPartial": "emails_admin_await_approval_body",
+    "metaData": {}
+  },
+
   "request-printed-certificate": {
     "mailgunConnection": "mg_saltireawards",
     "from": "Saltire Awards <support@saltireawards.scot>",

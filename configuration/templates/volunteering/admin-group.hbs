@@ -54,6 +54,13 @@
                     <span class="text-gray">{{> sdg_label sdg=un_sustainable_development_goals}}</span>
                   </li>
                 {{/if ~}}
+                {{#if internal_reference ~}}
+                  <li class="card-subtitle">
+                    <span class="fa-li"><span class="far fa-hashtag"></span></span>
+                    <span class="text-gray">{{truncate internal_reference 140}}</span>
+                  </li>
+                {{/if ~}}
+
                 {{#compare (length hours_list) ">" 0 ~}}
                   <li class="card-subtitle">
                     <span class="fa-li"><span class="fas fa-file-csv"></span></span>
