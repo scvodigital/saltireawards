@@ -21,4 +21,29 @@
   {{~/blockStringify}}
   }
 {{/eachJoin ~}}
+{{#compare (num @root.data.accountInfo.hours_verify_award) ">" (num @root.data.accountInfo.tsi_award_authorization_level)}}
+  {{#compare (length @root.data.tasksInfoUnverified) ">" 0}},{{/compare}}
+
+  {
+  "from": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+  "h:sender": "{{@root.context.metaData.title}} <{{@root.context.metaData.contacts.noreply}}>",
+  "h:Reply-To": "{{>support_name}} <{{>support_email_address}}>",
+  {{!-- "to": "{{>support_name}} <{{>support_email_address}}>", --}}
+  "to": "anuttgens@gmail.com",
+  "o:tag": "{{{@root.route.metaData.TSIEmailType}}}",
+  "o:tracking": true,
+  "v:tasks": "{{>account_list_tasks email=this}}",
+  "tag":  "{{{@root.route.metaData.TSIEmailType}}}",
+  "id":  "{{{@root.route.metaData.TSIEmailType}}}",
+  "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat @root.route.metaData.TSIEmailType '.mailgunConnection'))}}},
+  "subject": "TSI Authorization needed {{#compare @root.route.metaData.emailType '===' 'hours-verify-reminder'}}reminder{{/compare}}",
+  "html":
+  {{~#blockStringify this ~}}
+    {{~>
+    (getProperty @root.context.metaData.emailSendSettings (concat @root.route.metaData.TSIEmailType '.bodyPartial'))
+      this
+    ~}}
+  {{~/blockStringify}}
+  }
+{{/compare}}
 ]

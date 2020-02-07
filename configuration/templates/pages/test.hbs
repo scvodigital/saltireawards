@@ -13,7 +13,11 @@
 
       Note - this will result in an error if the award is bad, or the user doesn't have it, we could easily divert to a no award page though, rather than 500.
 
-
+      {{num @root.data.accountInfo.hours_verify_award}}
+      {{num @root.data.accountInfo.tsi_award_authorization_level}}
+      {{#compare (num @root.data.accountInfo.hours_verify_award) ">" (num @root.data.accountInfo.tsi_award_authorization_level)}}
+        Yep!
+      {{/compare}}
     </div>
   </div>
 </div>

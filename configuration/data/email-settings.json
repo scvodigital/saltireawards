@@ -108,5 +108,14 @@
     "sendIfEmpty": false,
     "bodyPartial": "emails_ys_code_reminder",
     "metaData": {}
+  },
+  "award-authorize" : {
+    "mailgunConnection": "mg_saltireawards",
+    "from": "Saltire Awards <support@saltireawards.scot>",
+    "replyTo": "Saltire Awards <support@saltireawards.scot>",
+    "sendIfEmpty": false,
+    "bodyPartial": "emails_award_authorize_body",
+    "metaData": {}
   }
+
 }
