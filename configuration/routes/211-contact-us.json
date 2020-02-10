@@ -1,0 +1,14 @@
+{
+  "name": "redirect_contact_us",
+  "pattern": "/contact-us",
+  "tasks": [
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": "/contact",
+        "statusCode": 301
+      }
+    }
+  ]
+}
