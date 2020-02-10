@@ -999,6 +999,10 @@ ul.fa-ul {
   display: none;
 }
 
+.modal-container form {
+  overflow-y: auto;
+}
+
 a.disabled{
   -webkit-touch-callout: none;
   -webkit-user-select: none;

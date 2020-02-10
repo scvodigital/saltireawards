@@ -177,9 +177,11 @@
                                         {{/ifAny ~}}
                                       </option>
                                     {{else}}
-                                      <option value="{{api_name}}"{{#unless @root.data.accountInfo.summit_certificate_permission}} disabled{{/unless}}>
+                                      {{#if @root.data.accountInfo.summit_certificate_permission ~}}
+                                      <option value="{{api_name}}">
                                         {{type_name}}
                                       </option>
+                                      {{/if ~}}
                                     {{/unless ~}}
                                   {{/each ~}}
                                 </select>
@@ -206,7 +208,7 @@
                   {{/if ~}}
                 </div>
                 <div class="column col-2 col-xl-2 col-lg-2 col-md-3 col-sm-4">
-                  <a href="/group-certificate/{{../task_id}}/{{award_id}}/saltire-award-{{#compare hours 0}}challenge-certificate{{else}}{{#compare hours 1}}summit-certificate{{else}}for-{{hours}}-hours{{/compare}}{{/compare}}-{{slugify group_award_first_name}}{{#if group_award_last_name}}-{{slugify group_award_last_name}}{{/if}}.pdf" class="btn btn-block b-margin">Download</a>
+                  <a href="/group-certificate/{{../task_id}}/{{award_id}}/saltire-award-{{lowercase award_level}}-for-{{slugify group_award_first_name}}{{#if group_award_last_name}}-{{slugify group_award_last_name}}{{/if}}.pdf" class="btn btn-block b-margin">Download</a>
                 </div>
                 {{!-- <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-4">
                 {{#if claim_code ~}}
@@ -270,7 +272,7 @@
                   <select class="form-select" required id="award" name="award" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.award}}>
                     {{#each @root.context.metaData.certificates ~}}
                       {{#unless tsi_only ~}}
-                        <option value="{{api_name}}"{{#compare award ../award}} selected{{/compare}}>
+                        <option value="{{api_name}}"{{#compare api_name ../api_name}} selected{{/compare}}>
                           {{#ifAny (compare type "approach") (compare type "ascent") ~}}
                             {{type_name}}: {{hours}} hours
                           {{else}}
@@ -278,9 +280,11 @@
                           {{/ifAny ~}}
                         </option>
                       {{else}}
-                        <option value="{{api_name}}"{{#unless @root.data.accountInfo.summit_certificate_permission}} disabled{{/unless}}>
+                        {{#if @root.data.accountInfo.summit_certificate_permission ~}}
+                        <option value="{{api_name}}">
                           {{type_name}}
                         </option>
+                        {{/if ~}}
                       {{/unless ~}}
                     {{/each ~}}
                   </select>
