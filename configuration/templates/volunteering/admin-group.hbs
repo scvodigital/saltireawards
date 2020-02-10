@@ -178,9 +178,11 @@
                                             {{/ifAny ~}}
                                           </option>
                                         {{else}}
-                                          <option value="{{api_name}}"{{#unless @root.data.accountInfo.summit_certificate_permission}} disabled{{/unless}}>
-                                            {{type_name}}
-                                          </option>
+                                          {{#if @root.data.accountInfo.summit_certificate_permission ~}}
+                                            <option value="{{api_name}}">
+                                              {{type_name}}
+                                            </option>
+                                          {{/if ~}}
                                         {{/unless ~}}
                                       {{/each ~}}
                                     </select>
@@ -200,28 +202,6 @@
                                   <button type="submit" class="btn btn-success btn-block inline-update-button b-margin">Save</button>
                                   <button type="button" class="btn btn-error btn-block b-margin" data-component="TasksTrigger" data-TasksTrigger="{click: {tasks: ['form-to-confirm']}}">Remove</button>
                                 {{/if ~}}
-                              </div>
-                              <div class="form-group b-margin">
-
-                                <select id="{{award_id}}-modal-award_level"  class="form-select hours" {{#unless claim_code~}}disabled{{/unless}} required name="award" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.award}}>
-                                  {{#each @root.context.metaData.certificates ~}}
-                                    {{#unless tsi_only ~}}
-                                      <option value="{{api_name}}"{{#compare api_name ../award_level}} selected{{/compare}}>
-                                        {{#ifAny (compare type "approach") (compare type "ascent") ~}}
-                                          {{type_name}}: {{hours}} hours
-                                        {{else}}
-                                          {{type_name}}
-                                        {{/ifAny ~}}
-                                      </option>
-                                    {{else}}
-                                      {{#if @root.data.accountInfo.summit_certificate_permission ~}}
-                                      <option value="{{api_name}}">
-                                        {{type_name}}
-                                      </option>
-                                      {{/if ~}}
-                                    {{/unless ~}}
-                                  {{/each ~}}
-                                </select>
                               </div>
                             </form>
 
@@ -245,12 +225,6 @@
                             </div>
                             </form>
                           </div>
-                        </div>
-                        <div class="modal-footer">
-                          {{#if claim_code~}}
-                            <button type="submit" class="btn btn-success btn-block inline-update-button b-margin">Save</button>
-                            <a href="/admin-delete-award?award_id={{award_id}}&user_id={{@root.data.auth.uid}}" class="btn btn-error btn-block b-margin" data-component="TasksTrigger" data-award-id="{{award_id}}"  data-success-hide="true" data-next-task="close-and-destroy"  data-next-action data-TasksTrigger="ajax-delete-handler">Remove</a>
-                          {{/if ~}}
                         </div>
                         </form>
                       </div>
