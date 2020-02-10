@@ -10,7 +10,8 @@
   {{/if ~}}
 </div>
 {{#if @root.request.params.query.new}}
-  <div id="clickme" data-component="TasksTrigger" data-TasksTrigger="{click: {tasks: ['load-hours-toast']}}"></div>
+  <div id="clickme" data-task-id="taskytask" data-component="TasksTrigger" data-TasksTrigger="{click: {tasks: ['load-hours-toast']}}">34</div>
+  <div id="taskytask-horse">44</div>
 {{/if}}
 
 <div class="content-break">
@@ -196,7 +197,7 @@
         name: "toast",
         type: "basic",
         config: {
-          message: "Hours updated",
+          message: {__template: `\{{sum (parse (jquery '#clickme' 'text') type='number') 12}}` },
           class: "success"
         }
       },
