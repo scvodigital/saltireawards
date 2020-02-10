@@ -1,7 +1,7 @@
 [
   {
     "hours": 0,
-    "api_name" : "Challenge",
+    "api_name": "Challenge",
     "next_award_hours": 10,
     "certificate_name": "Team",
     "type": "challenge",
@@ -13,7 +13,7 @@
   },
   {
     "hours": 10,
-    "api_name" : "10",
+    "api_name": "10",
     "next_award_hours": 25,
     "last_award_hours": 0,
     "certificate_name": "Ten",
@@ -27,7 +27,7 @@
   },
   {
     "hours": 25,
-    "api_name" : "25",
+    "api_name": "25",
     "next_award_hours": 50,
     "last_award_hours": 10,
     "certificate_name": "Twenty five",
@@ -41,7 +41,7 @@
   },
   {
     "hours": 50,
-    "api_name" : "50",
+    "api_name": "50",
     "next_award_hours": 100,
     "last_award_hours": 25,
     "certificate_name": "Fifty",
@@ -55,7 +55,7 @@
   },
   {
     "hours": 100,
-    "api_name" : "100",
+    "api_name": "100",
     "next_award_hours": 200,
     "last_award_hours": 50,
     "certificate_name": "One hundred",
@@ -69,7 +69,7 @@
   },
   {
     "hours": 200,
-    "api_name" : "200",
+    "api_name": "200",
     "next_award_hours": 500,
     "last_award_hours": 100,
     "certificate_name": "Two hundred",
@@ -83,11 +83,10 @@
   },
   {
     "hours": 500,
-    "api_name" : "500",
+    "api_name": "500",
     "next_award_hours": 1000000,
     "last_award_hours": 200,
     "certificate_name": "Five hundred",
-    "highest": false,
     "type": "ascent",
     "type_name": "The Ascent",
     "signature_image": "signatureNicolaSturgeon",
@@ -96,8 +95,8 @@
     "signature_title": "First Minister"
   },
   {
-    "hours": 1,
-    "api_name" : "Summit",
+    "hours": 0,
+    "api_name": "Summit",
     "certificate_name": "Outstanding",
     "type": "summit",
     "type_name": "The Summit",

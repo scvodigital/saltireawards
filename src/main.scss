@@ -439,6 +439,7 @@ blockquote cite:before {
 }
 
 header {
+  z-index: 1;
   background: linear-gradient(179.4deg, $secondary-color 89.5%, rgba(255,255,255,0) 90%);
   min-height: 176px;
   position: relative;

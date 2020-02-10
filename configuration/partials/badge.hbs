@@ -1,6 +1,6 @@
 <div class="saltire-badge empty-subtitle align-centre{{#if disabled}} disabled{{/if}}">
   {{#each @root.context.metaData.certificates ~}}
-  {{#compare hours ../hours ~}}
+  {{#compare api_name ../api_name ~}}
   {{#ifAny (compare type 'approach') (compare type 'ascent') ~}}
   <img src="{{~>asset_url url=(concat 'images/badges/' type '-' hours '.svg') ~}}" class="img-responsive" title="{{type_name}} - {{certificate_name}} hours" />
   {{else}}

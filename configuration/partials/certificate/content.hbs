@@ -11,7 +11,7 @@
 },
 {
   "text": {{>pdf_metadata_value key="title" default="1 2   T O   2 5   Y E A R   O L D S"}},
-  "margin": [0, 0, 0, 20],
+  "margin": [0, 0, 0, 30],
   "style": ["subtitle", "bold"]
 },
 {
@@ -19,18 +19,18 @@
     [
       {
         "width": "60%",
-        {{#compare certificate_type "hours"}}
+        {{#compare user.certificate_type "hours"}}
         "text": {{>pdf_metadata_value key="title" default=(concat user.hours_verified " hours")}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
         {{else}}
-        "text": {{>pdf_metadata_value key="title" default=(lowercase certificate_type)}},
+        "text": {{>pdf_metadata_value key="title" default=(lowercase user.certificate_type)}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
         {{/compare ~}}
         "margin": [0, -10, 0, 0],
         "style": ["award", "bold"]
       },
       {
-        {{#compare award "summit" ~}}
+        {{#compare user.certificate_type "Summit" ~}}
         "text": {{>pdf_metadata_value key="title" default="contribution"}},
         {{else}}
         "text": {{>pdf_metadata_value key="title" default="volunteering"}},
@@ -40,29 +40,15 @@
         "style": ["award", "bold"]
       },
       {
-        {{#compare award "hours" ~}}
+        {{#compare user.certificate_type "hours" ~}}
         {{#each @root.context.metaData.certificates ~}}
-        {{#ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1) ~}}
-        {{#compare hours ../user.hours_verified ~}}
+        {{#compare api_name ../award_level ~}}
         {{#if in_progress ~}}
         "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement on"}},
         {{else}}
         "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement of completing"}},
         {{/if ~}}
         {{/compare ~}}
-        {{else}}
-        {{#compare ../user.hours_verified ">=" hours ~}}
-        {{#unless (compare hours 1) ~}}
-        {{#unless (compare @root.data.accountInfo.hours_verify_award ">" next_award_hours) ~}}
-        {{#if in_progress ~}}
-        "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement on"}},
-        {{else}}
-        "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement of completing"}},
-        {{/if ~}}
-        {{/unless ~}}
-        {{/unless ~}}
-        {{/compare ~}}
-        {{/ifAll ~}}
         {{/each ~}}
         {{else}}
         "text": {{>pdf_metadata_value key="title" default="Congratulations on your achievement of completing"}},
@@ -73,25 +59,14 @@
       {
         {{#compare award "hours" ~}}
         {{#each @root.context.metaData.certificates ~}}
-        {{#ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1) ~}}
-        {{#compare hours ../user.hours_verified ~}}
+        {{#compare api_name ../award_level ~}}
         "text": {{>pdf_metadata_value key="title" default=type_name}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
         {{/compare ~}}
-        {{else}}
-        {{#compare ../user.hours_verified ">=" hours ~}}
-        {{#unless (compare hours 1) ~}}
-        {{#unless (compare @root.data.accountInfo.hours_verify_award ">" next_award_hours) ~}}
-        "text": {{>pdf_metadata_value key="title" default=type_name}},
-        "color": "{{getProperty @root.context.metaData.theme type}}",
-        {{/unless ~}}
-        {{/unless ~}}
-        {{/compare ~}}
-        {{/ifAll ~}}
         {{/each ~}}
         {{else}}
         {{#each @root.context.metaData.certificates ~}}
-        {{#compare ../award type ~}}
+        {{#compare api_name ../award_level ~}}
         "text": {{>pdf_metadata_value key="title" default=type_name}},
         "color": "{{getProperty @root.context.metaData.theme type}}",
         {{/compare ~}}
@@ -107,11 +82,8 @@
     },
     {
       "width": 100,
-      {{#compare award "hours" ~}}
-      {{#each @root.context.metaData.certificates ~}}
-      {{#ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1) ~}}
-      {{#compare hours ../user.hours_verified ~}}
-      {{#switch hours ~}}
+      {{#if user.hours_verified ~}}
+      {{#switch user.hours_verified ~}}
       {{#case 10 ~}}
       "image": "{{> certificate_images_png_badges_approach_10}}",
       {{/case ~}}
@@ -131,46 +103,16 @@
       "image": "{{> certificate_images_png_badges_ascent_500}}",
       {{/case ~}}
       {{/switch ~}}
-      {{/compare ~}}
       {{else}}
-      {{#compare ../user.hours_verified ">=" hours ~}}
-      {{#switch hours ~}}
-      {{#case 10 ~}}
-      "image": "{{> certificate_images_png_badges_approach_10}}",
-      {{/case ~}}
-      {{#case 25 ~}}
-      "image": "{{> certificate_images_png_badges_approach_25}}",
-      {{/case ~}}
-      {{#case 50 ~}}
-      "image": "{{> certificate_images_png_badges_ascent_50}}",
-      {{/case ~}}
-      {{#case 100 ~}}
-      "image": "{{> certificate_images_png_badges_ascent_100}}",
-      {{/case ~}}
-      {{#case 200 ~}}
-      "image": "{{> certificate_images_png_badges_ascent_200}}",
-      {{/case ~}}
-      {{#case 500 ~}}
-      "image": "{{> certificate_images_png_badges_ascent_500}}",
-      {{/case ~}}
-      {{/switch ~}}
-      {{/compare ~}}
-      {{/ifAll ~}}
-      {{/each ~}}
-      {{else}}
-      {{#each @root.context.metaData.certificates ~}}
-      {{#compare ../award type ~}}
-      {{#switch type ~}}
-      {{#case "challenge" ~}}
+      {{#switch user.certificate_type ~}}
+      {{#case "Challenge" ~}}
       "image": "{{> certificate_images_png_badges_challenge}}",
       {{/case ~}}
-      {{#case "summit" ~}}
+      {{#case "Summit" ~}}
       "image": "{{> certificate_images_png_badges_summit}}",
       {{/case ~}}
       {{/switch ~}}
-      {{/compare ~}}
-      {{/each ~}}
-      {{/compare ~}}
+      {{/if ~}}
       "alignment": "center",
       "margin": [0, 0, 0, 0]
     }
@@ -191,25 +133,73 @@
   "style": "volunteering_title"
 },
 {
-  {{#compare ../type "group" ~}}
   "text": {{>pdf_metadata_value key="title" default=(concat "Volunteering with " organisation_name_1)}},
-  {{else}}
-  "text": {{>pdf_metadata_value key="title" default=(concat volunteer_manager_first_name " " volunteer_manager_last_name ", " volunteer_manager_title " at " organisation_name)}},
-  {{/compare ~}}
   "margin": [0, 5, 0, 0],
   "style": "volunteering_detail"
 },
 {{else}}
+{{#if organisation_name_1 ~}}
 {
   "text": {{>pdf_metadata_value key="title" default=(truncate (replace description_1 "\n" " ") 98)}},
   "margin": [0, 15, 0, 0],
   "style": "volunteering_title"
 },
 {
-  "text": {{>pdf_metadata_value key="title" default=(concat "Volunteering with " organisation_name)}},
+  "text": {{>pdf_metadata_value key="title" default=(concat "Volunteering with " organisation_name_1)}},
   "margin": [0, 5, 0, 0],
   "style": "volunteering_detail"
 },
+{{/if ~}}
+{{/if ~}}
+{{#if testimonial_2 ~}}
+{
+  "text": {{>pdf_metadata_value key="title" default=(concat "\"" (truncate (replace testimonial_2 "\n" " ") 98) "\"")}},
+  "margin": [0, 15, 0, 0],
+  "style": "volunteering_title"
+},
+{
+  "text": {{>pdf_metadata_value key="title" default=(concat "Volunteering with " organisation_name_2)}},
+  "margin": [0, 5, 0, 0],
+  "style": "volunteering_detail"
+},
+{{else}}
+{{#if organisation_name_2 ~}}
+{
+  "text": {{>pdf_metadata_value key="title" default=(truncate (replace description_2 "\n" " ") 98)}},
+  "margin": [0, 15, 0, 0],
+  "style": "volunteering_title"
+},
+{
+  "text": {{>pdf_metadata_value key="title" default=(concat "Volunteering with " organisation_name_2)}},
+  "margin": [0, 5, 0, 0],
+  "style": "volunteering_detail"
+},
+{{/if ~}}
+{{/if ~}}
+{{#if testimonial_3 ~}}
+{
+  "text": {{>pdf_metadata_value key="title" default=(concat "\"" (truncate (replace testimonial_3 "\n" " ") 98) "\"")}},
+  "margin": [0, 15, 0, 0],
+  "style": "volunteering_title"
+},
+{
+  "text": {{>pdf_metadata_value key="title" default=(concat "Volunteering with " organisation_name_3)}},
+  "margin": [0, 5, 0, 0],
+  "style": "volunteering_detail"
+},
+{{else}}
+{{#if organisation_name_3 ~}}
+{
+  "text": {{>pdf_metadata_value key="title" default=(truncate (replace description_3 "\n" " ") 98)}},
+  "margin": [0, 15, 0, 0],
+  "style": "volunteering_title"
+},
+{
+  "text": {{>pdf_metadata_value key="title" default=(concat "Volunteering with " organisation_name_3)}},
+  "margin": [0, 5, 0, 0],
+  "style": "volunteering_detail"
+},
+{{/if ~}}
 {{/if ~}}
 {{#if sdgs ~}}
 {
@@ -232,29 +222,8 @@
 {{/if ~}}
 {
   "width": 150,
-  {{#compare award "hours" ~}}
   {{#each @root.context.metaData.certificates ~}}
-  {{#ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1) ~}}
-  {{#compare hours ../user.hours_verified ~}}
-  "image": "{{signature_image}}",
-  "absolutePosition": {
-    "x": 60,
-    "y": {{signature_image_position}}
-  },
-  {{/compare ~}}
-  {{else}}
-  {{#compare ../user.hours_verified ">=" hours ~}}
-  "image": "{{signature_image}}",
-  "absolutePosition": {
-    "x": 60,
-    "y": {{signature_image_position}}
-  },
-  {{/compare ~}}
-  {{/ifAll ~}}
-  {{/each ~}}
-  {{else}}
-  {{#each @root.context.metaData.certificates ~}}
-  {{#compare ../award type ~}}
+  {{#compare api_name ../award_level ~}}
   "image": "{{signature_image}}",
   "absolutePosition": {
     "x": 60,
@@ -262,29 +231,14 @@
   },
   {{/compare ~}}
   {{/each ~}}
-  {{/compare ~}}
   "alignment": "left"
 },
 {
-  {{#compare award "hours" ~}}
   {{#each @root.context.metaData.certificates ~}}
-  {{#ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1) ~}}
-  {{#compare hours ../user.hours_verified ~}}
-  "text": {{>pdf_metadata_value key="title" default=signature_name}},
-  {{/compare ~}}
-  {{else}}
-  {{#compare ../user.hours_verified ">=" hours ~}}
-  "text": {{>pdf_metadata_value key="title" default=signature_name}},
-  {{/compare ~}}
-  {{/ifAll ~}}
-  {{/each ~}}
-  {{else}}
-  {{#each @root.context.metaData.certificates ~}}
-  {{#compare ../award type ~}}
+  {{#compare api_name ../award_level ~}}
   "text": {{>pdf_metadata_value key="title" default=signature_name}},
   {{/compare ~}}
   {{/each ~}}
-  {{/compare ~}}
   "style": ["volunteering_detail", "bold"],
   "absolutePosition": {
     "x": 70,
@@ -292,25 +246,11 @@
   }
 },
 {
-  {{#compare award "hours" ~}}
   {{#each @root.context.metaData.certificates ~}}
-  {{#ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) ~}}
-  {{#compare hours ../user.hours_verified ~}}
-  "text": {{>pdf_metadata_value key="title" default=signature_title}},
-  {{/compare ~}}
-  {{else}}
-  {{#compare ../user.hours_verified ">=" hours ~}}
-  "text": {{>pdf_metadata_value key="title" default=signature_title}},
-  {{/compare ~}}
-  {{/ifAll ~}}
-  {{/each ~}}
-  {{else}}
-  {{#each @root.context.metaData.certificates ~}}
-  {{#compare ../award type ~}}
+  {{#compare api_name ../award_level ~}}
   "text": {{>pdf_metadata_value key="title" default=signature_title}},
   {{/compare ~}}
   {{/each ~}}
-  {{/compare ~}}
   "style": ["volunteering_detail", "bold"],
   "absolutePosition": {
     "x": 70,
@@ -329,7 +269,7 @@
     "y": 710
   }
 },
-{{#ifAll user.claim_code (ifAny (ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0)) (compare user.hours_verified "!==" 0)) ~}}
+{{#if claim_code ~}}
 {
   "text": {{>pdf_metadata_value key="title" default="Claim code:"}},
   "color": "#333E48",
@@ -340,7 +280,7 @@
   }
 },
 {
-  "text": {{>pdf_metadata_value key="title" default=(uppercase (substr user.claim_code 0 10))}},
+  "text": {{>pdf_metadata_value key="title" default=(uppercase (substr claim_code 0 10))}},
   "color": "#333E48",
   "margin": [0, 0, 0, 0],
   "style": "claim_code",
@@ -349,7 +289,7 @@
     "y": 758
   }
 },
-{{/ifAll ~}}
+{{/if ~}}
 {{#if (length (split sdgs ";")) ~}}
 {
   "width": 110,

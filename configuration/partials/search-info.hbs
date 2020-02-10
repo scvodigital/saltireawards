@@ -7,7 +7,7 @@
   for age
   {{default @root.request.params.query.age 18}}+
   on
-  <a href="https://search.volunteerscotland.net{{@root.request.url.path}}">Volunteer Scotland</a>
+  <a href="https://search.volunteerscotland.net{{@root.request.url.path}}{{#unless @root.request.params.query.age}}{{#compare @root.request.url.path '/search'}}?{{else}}&amp;{{/compare}}age=18{{/unless}}">Volunteer Scotland</a>
   {{if @root.request.params.query.exclude "(filtered)"}}
   {{#compare @root.route.name "!==" "opportunity_map" ~}}
   {{#compare paging.totalResults ">" 10 ~}} -
