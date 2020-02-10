@@ -1,6 +1,6 @@
 {{#each (filter @root.data.tasksInfo "task_id" "===" @root.request.params.task_id) ~}}
-  {{#json type='array' ~}}
-    {{#if @root.request.params.award_id ~}}
+  {{#if @root.request.params.award_id ~}}
+    {{#json type='array' ~}}
       {{#each (filter awards_list "award_id" "===" @root.request.params.award_id) ~}}
         {{#json ~}}
           {{{json key='type' value='group'}}},
@@ -31,8 +31,10 @@
           {{{json key='extra_organisations' value=extra_organisations}}}
         {{/json ~}}
       {{/each ~}}
-    {{else}}
-      {{#each awards_list ~}}
+    {{/json ~}}
+  {{else}}
+  {{#json type='array' ~}}
+    {{#each awards_list ~}}
         {{#json ~}}
           {{{json key='type' value='group'}}},
           {{#json key='user' ~}}
@@ -60,8 +62,8 @@
           {{{json key='claim_code' value=claim_code}}},
           {{{json key='group_award_claimed' value=group_award_claimed}}},
           {{{json key='extra_organisations' value=extra_organisations}}}
-        {{/json ~}}
+        {{/json ~}}{{#unless @last}},{{/unless}}
       {{/each ~}}
-    {{/if ~}}
-  {{/json ~}}
+    {{/json ~}}
+  {{/if ~}}
  {{/each ~}}
