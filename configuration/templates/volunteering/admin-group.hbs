@@ -223,7 +223,15 @@
                                   {{/each ~}}
                                 </select>
                               </div>
-                              <div class="modal-body">
+                            </form>
+
+                          </div>
+                          <div class="modal-confirm hidden">
+                            <form>
+                              <div class="modal-container">
+                                <div class="modal-header">
+                                </div>
+                                <div class="modal-body">
                                 <div class="content">
                                   <p>Please confirm that you wish to delete this award.</p>
                                   <p>If the claim code has already been issued, this award will not be claimable.</p>
@@ -256,10 +264,6 @@
                   <a href="/admin-delete-hours?hours_id={{hours_id}}&user_id={{@root.data.auth.uid}}" class="btn btn-error btn-block b-margin" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
                   {{/if ~}}
                   </div> --}}
-                </div>
-                <div class="column col-2 col-xl-2 col-lg-2 col-md-3 col-sm-4">
-                  <a href="/group-certificate/{{../task_id}}/{{award_id}}/saltire-award-{{lowercase award_level}}-for-{{slugify group_award_first_name}}{{#if group_award_last_name}}-{{slugify group_award_last_name}}{{/if}}.pdf" class="btn btn-block b-margin">Download</a>
-                </div>
                 {{!-- <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-4">
                 {{#if claim_code ~}}
                 <a href="/admin-delete-hours?hours_id={{hours_id}}&user_id={{@root.data.auth.uid}}" class="btn btn-error btn-block b-margin" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
