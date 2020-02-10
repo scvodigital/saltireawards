@@ -1,6 +1,6 @@
 {
   "name": "group_certificate",
-  "pattern": "/group-certificate/:task_id(/:hours_id)(/:junk)",
+  "pattern": "/group-certificate/:task_id(/:award_id)(/:junk)",
   "debug": true,
   "errorRoute": "five_hundred",
   "tasks": [
