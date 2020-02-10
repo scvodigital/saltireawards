@@ -37,7 +37,7 @@
   <p class="empty-title h5">
     {{type_name}}: {{certificate_name}} hours
   </p>
-  {{> badge hours=hours}}
+  {{> badge api_name=api_name}}
   {{/compare ~}}
   {{/each ~}}
   {{!-- (ifAll (compare @root.data.awardInfo.award_numerical_value '==' hours) @root.data.awardInfo.printed_certificate_requested ) --}}
@@ -79,7 +79,7 @@
         <div class="text-center h5 b-margin">
           {{type_name}}: {{certificate_name}} hours
         </div>
-        {{> badge hours=hours disabled=true}}
+        {{> badge api_name=hours disabled=true}}
         <div class="text-center description">
           {{certificate_name}} hour award being verified. If you've been waiting for over a week, you can <a data-component="TasksTrigger" data-TasksTrigger="no-multi-click" href="/verify-hours-email-send/?award={{hours}}">re-send the verification {{inflect (length @root.data.tasksInfo) "message" "messages"}}</a>.
         </div>
@@ -98,7 +98,7 @@
         <div class="text-center h5 b-margin">
           {{type_name}}: {{certificate_name}} hours
         </div>
-        {{> badge hours=hours disabled=true}}
+        {{> badge api_name=hours disabled=true}}
         <p class="text-center description">
           {{certificate_name}} hour certificate available! Claiming this certificate will send {{inflect (length @root.data.tasksInfo) "an email" "emails"}} to the {{inflect (length @root.data.tasksInfo) "person" "people"}} managing your volunteering to verify the hours you've logged.
         </p>
@@ -120,7 +120,7 @@
         <div class="text-center h5 b-margin">
           {{type_name}}: {{certificate_name}} hours
         </div>
-        {{> badge hours=hours disabled=true}}
+        {{> badge api_name=hours disabled=true}}
         <div class="text-center description h5">
           <strong>{{subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))}} {{inflect (subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))) "hour" "hours"}} to go.</strong>
         </div>
