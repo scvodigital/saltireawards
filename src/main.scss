@@ -975,6 +975,14 @@ ul.fa-ul {
   color: white !important;
 }
 
+.modal-form {
+  overflow-y: auto;
+}
+.modal-container .modal-container {
+  box-shadow: none;
+  padding: 0;
+}
+
 .table th,
 .table td {
   border-bottom-width: 1px;
