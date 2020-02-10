@@ -978,6 +978,10 @@ ul.fa-ul {
 .modal-form {
   overflow-y: auto;
 }
+.modal-container .modal-container {
+  box-shadow: none;
+  padding: 0;
+}
 
 .table th,
 .table td {
