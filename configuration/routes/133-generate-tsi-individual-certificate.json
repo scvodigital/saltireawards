@@ -1,6 +1,6 @@
 {
   "name": "tsi-certificate",
-  "pattern": "/tsi-certificate(/:junk)",
+  "pattern": "/tsi-certificate/:award_id(/:junk)",
   "debug": true,
   "errorRoute": "five_hundred",
   "tasks": [
