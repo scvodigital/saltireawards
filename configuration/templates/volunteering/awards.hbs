@@ -1,5 +1,5 @@
 {{#unless @root.data.isAdmin ~}}
-{{#if @root.data.accountInfo.awards_list ~}}
+{{!-- {{#with (itemAt @root.data.accountInfo.awards_list (subtract (length @root.data.accountInfo.awards_list) 1)) ~}}
 <div class="empty">
   <div class="empty-icon">
     <span class="fal fa-user fa-3x"></span>
@@ -23,34 +23,42 @@
     {{/each ~}}
   </div>
 </div>
-{{/if ~}}
-<br /><br /><br /><br /><br /><br />
-<h3>Old method (for reference):</h3>
+{{/with ~}} --}}
 {{#each @root.context.metaData.certificates ~}}
 {{!-- It's already awarded --}}
 {{#compare @root.data.awardsStatus.current hours ~}}
+{{#with @root.data.awardsStatus.currentAward ~}}
 <div class="empty">
   <div class="empty-icon">
     <span class="fal fa-user fa-3x"></span>
   </div>
+  {{#each @root.context.metaData.certificates ~}}
+  {{#compare api_name ../award_level ~}}
   <p class="empty-title h5">
     {{type_name}}: {{certificate_name}} hours
   </p>
   {{> badge hours=hours}}
+  {{/compare ~}}
+  {{/each ~}}
   {{!-- (ifAll (compare @root.data.awardInfo.award_numerical_value '==' hours) @root.data.awardInfo.printed_certificate_requested ) --}}
   <div class="empty-action">
-    <a href="/certificate/my-saltire-award-for-{{hours}}-hours.pdf" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary b-margin">Download</a>
-    {{#unless @root.data.awardsStatus.currentAward.printed_certificate_requested }}
+    {{#compare award_level_numerical_value ">" 0 ~}}
+    <a href="/certificate/{{award_id}}/my-saltire-award-for-{{award_level_numerical_value}}-hours.pdf" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary b-margin">Download</a>
+    {{else}}
+    <a href="/certificate/{{award_id}}/my-saltire-{{lowercase award_level}}-award.pdf" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary b-margin">Download</a>
+    {{/compare ~}}
+    {{#unless printed_certificate_requested ~}}
     <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" class="btn b-margin">Print request</a>
     {{else}}
-      {{#unless @root.data.awardsStatus.currentAward.printed_certificate_issued}}
-      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" disabled class="btn b-margin">Print requested</a>
-      {{else}}
-      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" disabled class="btn b-margin">Printed certificate sent</a>
-      {{/unless}}
-    {{/unless}}
+    {{#unless printed_certificate_issued ~}}
+    <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" disabled class="btn b-margin">Print requested</a>
+    {{else}}
+    <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" disabled class="btn b-margin">Printed certificate sent</a>
+    {{/unless ~}}
+    {{/unless ~}}
   </div>
 </div>
+{{/with ~}}
 {{/compare ~}}
 
 {{#ifAny (compare @root.data.awardsStatus.being_verified hours) (compare @root.data.awardsStatus.claimable hours) (compare @root.data.awardsStatus.working_towards hours) ~}}
