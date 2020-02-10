@@ -455,33 +455,10 @@
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {
 
-    $('.inline-hours-form :input').on('input',function () {
-      var unsaved = $(this).closest('form').addClass('has-error');
-      {{!-- This is the submit button --}}
-      var submit = $(this).closest('form').find(':submit').show();
-    });
-
-
     $('.edit-button').click(function(){
       var hours_id = $(this).closest('.column').find('.modal').attr('id');
       $('#'+hours_id).addClass('active');
     });
-
-    $('.inline-delete-button').click(function(){
-      var submit = $(this).closest('form').hide();
-    });
-
-    $('.show-group-awards-form').click(function(e){
-      e.preventDefault();
-      $('#group-awards-form').show();
-      $(this).hide();
-    });
-
-    $(window).on('beforeunload', function(){
-      if($('form.has-error').length){
-        return true;
-      }
-      else return;
-    });
+    
   });
 </script>
