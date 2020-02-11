@@ -64,6 +64,15 @@
     }
   </style>
   <style type="text/css">
+    @media only screen and (max-width:480px) {
+      table.full-width-mobile {
+        width: 100% !important;
+      }
+
+      td.full-width-mobile {
+        width: auto !important;
+      }
+    }
   </style>
 </head>
 
@@ -95,8 +104,8 @@
         <tr>
           <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
       <![endif]-->
-              <div style="background:#ffffff;background-color:#ffffff;margin:0px auto;max-width:580px;">
-                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#ffffff;background-color:#ffffff;width:100%;">
+              <div style="background:{{@root.context.metaData.theme.primary}};background-color:{{@root.context.metaData.theme.primary}};margin:0px auto;max-width:580px;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:{{@root.context.metaData.theme.primary}};background-color:{{@root.context.metaData.theme.primary}};width:100%;">
                   <tbody>
                     <tr>
                       <td style="direction:ltr;font-size:0px;padding:10px;text-align:center;">
@@ -115,6 +124,19 @@
                               <tr>
                                 <td style="vertical-align:top;padding:0px;">
                                   <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
+                                    <tr>
+                                      <td align="center" style="font-size:0px;padding:0px;word-break:break-word;">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:collapse;border-spacing:0px;">
+                                          <tbody>
+                                            <tr>
+                                              <td style="width:190px;">
+                                                <img height="auto" src="https://storage.googleapis.com/scvo-assets/saltireawards/saltire-awards-white.png" style="border:0;display:block;outline:none;text-decoration:none;height:auto;width:100%;font-size:13px;" width="190" />
+                                              </td>
+                                            </tr>
+                                          </tbody>
+                                        </table>
+                                      </td>
+                                    </tr>
                                   </table>
                                 </td>
                               </tr>
@@ -174,18 +196,19 @@
                                   <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
                                     <tr>
                                       <td align="left" style="font-size:0px;padding:0px;word-break:break-word;">
-                                        <div style="font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:16px;line-height:20px;text-align:left;color:#000000;">
+                                        <div style="font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:16px;line-height:20px;text-align:left;color:#16204e;">
                                           <p><strong>This is a test from the new Saltire Awards service in development</strong></p>
-                                          <p>Dear {{@root.data.accountInfo.first_name}},</p>
+                                          <p> Hello {{@root.data.accountInfo.first_name}}, </p>
                                           <p> Congratulations! Thank you for claiming your Saltire {{@root.request.params.query.award}}{{#if (regexMatch @root.request.params.query.award '[0-9]+' 'gi')}} Hours{{/if}} Award! </p>
                                           <p> Please <a href="{{@root.context.metaData.url}}/awards">visit the Saltire Awards site</a> to view, download or print it. </p>
                                           {{#if @root.data.ysCode}}
                                             <p>To recognise all your hard work you have earned {{@root.context.metaData.youngScotSettings.points-per-certificate}} Young Scot Rewards points. You can use your points to access some amazing opportunities through Rewards ranging from behind the scenes experiences, work shadowing opportunities, tickets for events and so much more!</p>
                                             <p>To redeem your points and access Rewards become a Young Scot Member.</p>
-                                            <p><a href="https://membership.young.scot//home/webHP?requestType=ApplicationRH&actionVal=homePage&screenId=114&redirectPage=V21LVTEwdnRidnZSMW5BNGZoa2hsZzlSRUJVcFJuMHZyZ3RCdEgyRnR6Smhvc1UvTlUvOW1yTklhTEFocEhtd0pwM0FtUzdDUUQrTHR2Mkp1RFdoaGlvVUpRZ1d3TjZISTJkRDh1ZUQ2TzQ9&templateId=138&dynamicURL=TGxxc0tGU1F5ZGZrYjk2eHpkY3BQNGIwL05Zb0J1eTB5ak9tWDVDdDRyUHpxdGRqMjBLakNiZDViK2diaTdzbGJha0ZWSlBVOVNDejlJU0JxTjhqOWc9PQ%3d%3d#MQ==">Log in to the YoungScot site</a> to add your points code: {{@root.data.ysCode}}</p>
-                                            <p>Rewards opportunities change all the time so remember to log in regularly to see what’s new.</p>
+                                            <p>
+                                              <a href="https://membership.young.scot//home/webHP?requestType=ApplicationRH&actionVal=homePage&screenId=114&redirectPage=V21LVTEwdnRidnZSMW5BNGZoa2hsZzlSRUJVcFJuMHZyZ3RCdEgyRnR6Smhvc1UvTlUvOW1yTklhTEFocEhtd0pwM0FtUzdDUUQrTHR2Mkp1RFdoaGlvVUpRZ1d3TjZISTJkRDh1ZUQ2TzQ9&templateId=138&dynamicURL=TGxxc0tGU1F5ZGZrYjk2eHpkY3BQNGIwL05Zb0J1eTB5ak9tWDVDdDRyUHpxdGRqMjBLakNiZDViK2diaTdzbGJha0ZWSlBVOVNDejlJU0JxTjhqOWc9PQ%3d%3d#MQ==">Log in to the YoungScot site</a> to add your points code: {{@root.data.ysCode}}
+                                            </p>
+                                            <p> Rewards opportunities change all the time so remember to log in regularly to see what’s new. </p>
                                           {{/if}}
-                                          <p>This email was automatically generated by the <a href="{{@root.context.metaData.url}}" title="{{@root.context.metaData.title}}" target="_blank">{{@root.context.metaData.title}}</a> website</p>
                                         </div>
                                       </td>
                                     </tr>
@@ -226,8 +249,8 @@
         <tr>
           <td style="line-height:0px;font-size:0px;mso-line-height-rule:exactly;">
       <![endif]-->
-              <div style="background:#D7D3CC;background-color:#D7D3CC;margin:0px auto;max-width:580px;">
-                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:#D7D3CC;background-color:#D7D3CC;width:100%;">
+              <div style="background:{{@root.context.metaData.theme.copyright}};background-color:{{@root.context.metaData.theme.copyright}};margin:0px auto;max-width:580px;">
+                <table align="center" border="0" cellpadding="0" cellspacing="0" role="presentation" style="background:{{@root.context.metaData.theme.copyright}};background-color:{{@root.context.metaData.theme.copyright}};width:100%;">
                   <tbody>
                     <tr>
                       <td style="direction:ltr;font-size:0px;padding:0px;text-align:center;">
@@ -248,9 +271,8 @@
                                   <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="" width="100%">
                                     <tr>
                                       <td align="left" style="font-size:0px;padding:0px 0px 15px;word-break:break-word;">
-                                        <div style="font-family:Montserrat, helvetica, Arial, sans-serif;font-size:14px;line-height:1;text-align:left;color:#ffffff;">
-                                          <p style="margin:0px;">
-                                          </p>
+                                        <div style="font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:14px;line-height:1;text-align:left;color:#333E48;">
+                                          <p> This email was automatically generated by the <a href="{{@root.context.metaData.url}}" title="{{@root.context.metaData.title}}" target="_blank">{{@root.context.metaData.title}}</a> website. </p>
                                         </div>
                                       </td>
                                     </tr>
