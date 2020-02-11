@@ -7,16 +7,16 @@
       "route": "^/about"
     },
     {
-      "label": "Get an award",
+      "label": "Info for volunteers",
       "icon": "medal",
-      "path": "/get-an-award",
-      "route": "^/get-an-award"
+      "path": "/info-for-volunteers",
+      "route": "^/info-for-volunteers"
     },
     {
-      "label": "Support your volunteers",
+      "label": "Info for groups",
       "icon": "info-circle",
-      "path": "/support-your-volunteers",
-      "route": "^/support-your-volunteers"
+      "path": "/info-for-groups",
+      "route": "^/info-for-groups"
     },
     {
       "label": "Find opportunities",
@@ -135,7 +135,5 @@
       "path": "/terms",
       "route": "^/terms"
     }
-  ],
-  "footer-about": [
   ]
 }
