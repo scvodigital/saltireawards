@@ -138,7 +138,7 @@
                 </label>
             </div>
             <div class="column col-8 col-md-12">
-              <textarea rows="4" cols="40" id="task_role" placeholder="Role" name="task_role" class="form-input" value="{{@root.data.taskInfo.task_role}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_role}}></textarea>
+              <textarea rows="4" cols="40" id="task_role" placeholder="e.g. Volunteering" name="task_role" class="form-input" value="{{@root.data.taskInfo.task_role}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_role}}></textarea>
             </div>
           </div>
           {{#unless @root.data.isAdmin ~}}
@@ -152,7 +152,7 @@
               </label>
             </div>
             <div class="column col-8 col-md-12">
-              <textarea rows="4" cols="40" id="task_description" placeholder="Description" name="task_description" class="form-input" value="{{@root.data.taskInfo.task_description}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}></textarea>
+              <textarea rows="4" cols="40" id="task_description" placeholder="e.g. Description" name="task_description" class="form-input" value="{{@root.data.taskInfo.task_description}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}></textarea>
             </div>
           </div>
           {{/unless}}
