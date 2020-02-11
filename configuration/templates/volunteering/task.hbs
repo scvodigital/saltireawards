@@ -53,9 +53,15 @@
             <div class="column col-4 col-md-12">
               <label for="organisation_name" class="form-label">
                 {{#if @root.data.isAdmin ~}}
-                Organisation your group has volunteered with
+                Organisation or organisations your group has volunteered with
+                <div class="caption">
+                  This information will appear on each young person’s certificate so please make sure it is accurate
+                </div>
                 {{else}}
                 Organisation you volunteer with
+                <div class="caption">
+                  This information will appear on your certificate so please make sure it is accurate
+                </div>
                 {{/if ~}}
               </label>
             </div>
@@ -91,32 +97,53 @@
           <input autocomplete="nope" id="organisation_id" name="organisation_id" value="{{@root.data.taskInfo.organisation_id}}" type="hidden" />
           <div class="form-group">
             <div class="column col-4 col-md-12">
-              <label for="task_description" class="form-label">
+              <label for="task_role" class="form-label">
               {{#unless @root.data.isAdmin ~}}
-                Tell us about what you have been doing
-                  <div class="caption">(This may be changed on individual awards)</div>
+                My volunteer role
+                <div class="caption">
+                  This information will appear on your certificate so please make sure it is accurate
+                </div>
               {{else}}
-                Tell us about what your volunteers have been doing
-                <div class="caption">(This may be changed on individual awards)</div>
+                Volunteer role
+                <div class="caption">
+                  This can be altered on each individual certificate
+                </div>
               {{/unless}}
                 </label>
+            </div>
+            <div class="column col-8 col-md-12">
+              <textarea rows="4" cols="40" id="task_role" placeholder="Role" name="task_role" class="form-input" value="{{@root.data.taskInfo.task_role}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_role}}></textarea>
+            </div>
+          </div>
+          {{#unless @root.data.isAdmin ~}}
+          <div class="form-group">
+            <div class="column col-4 col-md-12">
+              <label for="task_description" class="form-label">
+                Tell us what you have been doing in your role
+                <div class="caption">
+                  You could make a note of all the activities you have been doing, the skills and experience you have gained as well as any challenges you have faced.  You will be able to look back at this for reference and use it to as part of a CV or job application
+                </div>
+              </label>
             </div>
             <div class="column col-8 col-md-12">
               <textarea rows="4" cols="40" id="task_description" placeholder="Description" name="task_description" class="form-input" value="{{@root.data.taskInfo.task_description}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}></textarea>
             </div>
           </div>
+          {{/unless}}
           {{#if @root.data.isAdmin ~}}
-            <div class="form-group">
+            {{!-- <div class="form-group">
               <div class="column col-4 col-md-12">
-                <label for="task_description" class="form-label">
-                  Let people know about your volunteers achievements with a testimonial:
-                    <div class="caption">Note: This may be shown on their certificates</div>
+                <label for="testimonial" class="form-label">
+                  Let people know about your volunteers achievements with a testimonial
+                  <div class="caption">
+                    This will be shown on their certificates
+                  </div>
                 </label>
               </div>
               <div class="column col-8 col-md-12">
                 <textarea rows="4" cols="40" id="testimonial" placeholder="Testimonial" name="testimonial" class="form-input" value="{{@root.data.taskInfo.testimonial}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.testimonial}}></textarea>
               </div>
-            </div>
+            </div> --}}
             <div class="form-group">
               <div class="column col-4 col-md-12">
                 <label for="internal_reference" class="form-label">
@@ -150,13 +177,9 @@
                   {{/each ~}}
                 </ul>
               </div>
-
-              {{!-- <select class="form-select" id="un_sustainable_development_goals" name="un_sustainable_development_goals">
-                <option value="" selected></option>
-                {{#each @root.context.metaData.globalGoals ~}}
-                <option value="{{title}}">{{add @key 1}}: {{title}}</option>
-                {{/each ~}}
-              </select> --}}
+              <div class="caption t-margin">
+                The United Nations <a href="https://next.globalgoals.org" target="_blank">Sustainable Development Goals</a> (SDGs) are key to ensuring that everyone, regardless of who you are, has access to the best possible livelihood and future. The SDGs, are a set of seventeen goals that tackle a range of issues: from improving health, ending hunger, poverty, and inequality to acting on the climate emergency that requires rapid change. The 2030 Agenda for Sustainable Development recognises volunteer groups as key stakeholders to achieve the 17 SDGs. We must all do our bit if we are to realise the ambition of the SDGs by 2030
+              </div>
             </div>
           </div>
         </div>
