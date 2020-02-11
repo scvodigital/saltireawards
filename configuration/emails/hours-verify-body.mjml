@@ -2,14 +2,14 @@
   <mj-raw>{{#with @root.data.accountInfo}}</mj-raw>
   <mj-body background-color="#F5F5F5">
     <mj-wrapper background-color="#ffffff" padding="10px">
-      <mj-section background-color="{{@root.context.metaData.theme.primary}}" padding="10px">
-        <mj-column padding="0px">
+      <mj-section background-color="{{@root.context.metaData.theme.secondary}}" padding="0px" margin="0px" width="100%">
+        <mj-column padding="10px">
           <mj-image src="https://storage.googleapis.com/scvo-assets/saltireawards/saltire-awards-white.png" width="190px" align="center" padding="0px"></mj-image>
         </mj-column>
       </mj-section>
 
-      <mj-section>
-        <mj-column padding="0px">
+      <mj-section padding="0px" margin="0px" width="100%">
+        <mj-column padding="10px">
           <mj-text font-size="16px" padding="0px" line-height="20px" color="#16204e" font-family="Montserrat, Helvetica, Arial, sans-serif">
             <p><strong>This is a test from the new Saltire Awards service in development</strong></p>
 
@@ -48,7 +48,7 @@
         </mj-column>
       </mj-section>
 
-      <mj-section background-color="{{@root.context.metaData.theme.copyright}}" padding="0px">
+      <mj-section background-color="{{@root.context.metaData.theme.copyright}}" padding="0px" margin="0px" width="100%">
         <mj-column padding="10px">
           <mj-text font-size="14px" color="#333E48" font-family="Montserrat, Helvetica, Arial, sans-serif" padding="0px 0px 15px">
             <p>
