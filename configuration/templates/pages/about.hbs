@@ -1,0 +1,91 @@
+<div class="header-image" style="background-image:url({{~>asset_url url='images/luke-porter-203637-unsplash-wide.jpg' ~}});">
+  <div class="header-image-overlay">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none" class="bottom">
+      <polygon fill="white" points="0,100 100,100 0,0" />
+    </svg>
+  </div>
+</div>
+<div class="container">
+  <h2 class="text-centre">
+    Aged 12-25 and volunteer?
+  </h2>
+  <p class="text-centre b-margin-full">
+    <strong>{{@root.context.metaData.fullTitle}} are the Scottish Government's way of celebrating,<br />
+    recognising and rewarding the commitment, contribution and <br />
+    achievements of young volunteers in Scotland.</strong>
+  </p>
+  <h3 class="text-centre no-margin">
+    Get certificates
+  </h3>
+  <p class="text-centre b-margin-full b-padding">
+    <strong>Signed by Scottish Government Ministers</strong>
+  </p>
+  <div class="columns certificates">
+    <div class="column col-sm-6 col-3 certificate text-centre">
+      {{> badge api_name="Challenge"}}
+      <h4 class="t-margin-full">
+        The Challenge
+      </h4>
+      <p>
+        For those getting started in volunteering through team challenges
+      </p>
+    </div>
+    <div class="column col-sm-6 col-3 certificate text-centre">
+      {{> badge api_name="10"}}
+      <h4 class="t-margin-full">
+        The Approach
+      </h4>
+      <p>
+        For when you've reached 10 and 25 hours volunteering
+      </p>
+    </div>
+    <div class="column col-sm-6 col-3 certificate text-centre">
+      {{> badge api_name="50"}}
+      <h4 class="t-margin-full">
+        The Ascent
+      </h4>
+      <p>
+        For when you've reached 50, 100, 200 or even 500 hours
+      </p>
+    </div>
+    <div class="column col-sm-6 col-3 certificate text-centre">
+      {{> badge api_name="Summit"}}
+      <h4 class="t-margin-full">
+        The Summit
+      </h4>
+      <p>
+        For those that have made an outstanding contribution to volunteering
+      </p>
+    </div>
+  </div>
+  <h3 class="text-centre t-margin">
+    Volunteer?
+  </h3>
+  <div class="my-saltire columns b-margin-full">
+    <div class="column col-sm-12 col-6 col-mx-auto">
+      <div class="columns">
+        <div class="column col-6 my-saltire-item align-centre">
+          <a href="/sign-up" class="btn btn-block btn-primary text-centre">Sign up now</a>
+        </div>
+        <div class="column col-6 my-saltire-item align-centre">
+          <a href="/sign-in" class="btn btn-block text-centre">Sign in</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h3 class="text-centre t-margin">
+    Group administrator?
+  </h3>
+  <div class="my-saltire columns b-margin-full">
+    <div class="column col-sm-12 col-6 col-mx-auto">
+      <div class="columns">
+        <div class="column col-6 my-saltire-item align-centre">
+          <a href="/sign-up-admin" class="btn btn-block text-centre">Request approval</a>
+        </div>
+        <div class="column col-6 my-saltire-item align-centre">
+          <a href="/sign-in-admin" class="btn btn-block text-centre">Group administrator sign in</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
