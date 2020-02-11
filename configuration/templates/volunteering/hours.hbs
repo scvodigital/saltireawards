@@ -117,9 +117,9 @@
               <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-id-card-alt"></span></span>
                 {{#unless (getProperty (itemAt @root.context.metaData.certificates (indexOf (map @root.context.metaData.certificates (getProp 'hours')) @root.data.awardsStatus.current)) "highest") ~}}
-                <a href="/task-edit/{{task_id}}">{{{volunteer_manager_first_name}}} {{{volunteer_manager_last_name}}}</a>
+                <a href="/task-edit/{{task_id}}">{{volunteer_manager_first_name}} {{volunteer_manager_last_name}}</a>
                 {{else}}
-                {{{volunteer_manager_first_name}}} {{{volunteer_manager_last_name}}}
+                {{volunteer_manager_first_name}} {{volunteer_manager_last_name}}
                 {{/unless ~}}
               </li>
               {{else}}

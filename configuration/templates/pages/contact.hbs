@@ -28,7 +28,7 @@
       <div class="card">
         <div class="card-header">
           {{#ifAny area ../local_authority ~}}
-          <div class="card-title h5">{{#if island}}{{{../local_authority}}}{{else}}{{{default area ../local_authority}}}{{/if}}</div>
+          <div class="card-title h5">{{#if island}}{{../local_authority}}{{else}}{{default area ../local_authority}}{{/if}}</div>
           {{/ifAny ~}}
           {{#ifAll title ~}}
           <div class="card-subtitle"><a href="{{fixUrl website}}">{{{title}}}</a></div>

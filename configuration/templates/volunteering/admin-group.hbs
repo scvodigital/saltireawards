@@ -27,7 +27,7 @@
           <div class="columns">
             <div class="column col-9 col-lg-12 col-xl-11">
               <h2 class="no-margin">
-                {{{organisation_name}}}
+                {{organisation_name}}
               </h2>
             </div>
           </div>
@@ -38,7 +38,7 @@
               <div class="column col-9 col-lg-12 col-xl-11">
                 {{#if task_description ~}}
                   <p>
-                    {{{task_description}}}
+                    {{task_description}}
                   </p>
                 {{/if ~}}
                 <ul class="fa-ul hours-info">
@@ -100,14 +100,14 @@
                 <div class="columns" id="{{award_id}}-row">
                   <div class="column col-2 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6">
                     <div class="form-group b-margin">
-                      {{!-- <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="group_award_first_name" value="{{{group_award_first_name}}}"> --}}
-                      <span id="{{award_id}}-group_award_first_name">{{{group_award_first_name }}}</span>
+                      {{!-- <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="group_award_first_name" value="group_award_first_name}}}"> --}}
+                      <span id="{{award_id}}-group_award_first_name">{{group_award_first_name }}</span>
                     </div>
                   </div>
                   <div class="column col-2 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6">
                     <div class="form-group b-margin">
-                      {{!-- <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="group_award_last_name" value="{{{group_award_last_name}}}"> --}}
-                      <span id="{{award_id}}-group_award_last_name">{{{group_award_last_name }}}</span>
+                      {{!-- <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="group_award_last_name" value="group_award_last_name}}}"> --}}
+                      <span id="{{award_id}}-group_award_last_name">{{group_award_last_name }}</span>
                     </div>
                   </div>
                   <div class="column col-3 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-7">
@@ -146,7 +146,7 @@
                           <div class="modal-form">
                             <div class="modal-header">
                               <a href="#close" class="btn btn-clear modal-close float-right" aria-label="Close" data-component="TasksTrigger" data-TasksTrigger="{click: {tasks: ['hide-modal']}}"></a>
-                              <div class="modal-title h5">{{{group_award_first_name}}} {{{group_award_last_name}}}</div>
+                              <div class="modal-title h5">{{group_award_first_name}} {{group_award_last_name}}</div>
                             </div>
                             <form id="{{award_id}}" method="POST" action="/admin-update-individual-award?user_id={{@root.data.auth.uid}}" style="position:relative" class="inline-hours-form" data-award-id="{{award_id}}"  data-component="TasksTrigger" data-form-element=">"  data-next-task="close-and-complete" data-success-message="Participant details updated" data-TasksTrigger="ajax-form-handler">
                               <div class="modal-body">
@@ -160,10 +160,10 @@
                                   <input type="hidden" name="organisation_name_1" value="{{../organisation_name}}">
 
                                   <div class="form-group b-margin">
-                                    <input id="{{award_id}}-modal-group_award_first_name" {{#unless claim_code ~}}disabled{{/unless}} class="form-input inline-edit" name="group_award_first_name" value="{{{group_award_first_name}}}">
+                                    <input id="{{award_id}}-modal-group_award_first_name" {{#unless claim_code ~}}disabled{{/unless}} class="form-input inline-edit" name="group_award_first_name" value="{{group_award_first_name}}">
                                   </div>
                                   <div class="form-group b-margin">
-                                    <input id="{{award_id}}-modal-group_award_last_name"  {{#unless claim_code ~}}disabled{{/unless}} class="form-input inline-edit" name="group_award_last_name" value="{{{group_award_last_name}}}">
+                                    <input id="{{award_id}}-modal-group_award_last_name"  {{#unless claim_code ~}}disabled{{/unless}} class="form-input inline-edit" name="group_award_last_name" value="{{group_award_last_name}}">
                                   </div>
                                   <div class="form-group b-margin">
 
@@ -188,11 +188,11 @@
                                     </select>
                                   </div>
                                   <div class="form-group">
-                                    <textarea {{#unless claim_code~}}disabled{{/unless}} rows="3" placeholder="Description" cols="40" id="description_1" name="description_1" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}>{{{default description_1 ../task_description}}}</textarea>
+                                    <textarea {{#unless claim_code~}}disabled{{/unless}} rows="3" placeholder="Description" cols="40" id="description_1" name="description_1" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}>{{default description_1 ../task_description}}</textarea>
                                   </div>
 
                                   <div class="form-group">
-                                    <textarea {{#unless claim_code~}}disabled{{/unless}} rows="3"  placeholder="Testimonial" cols="40" id="testimonial_1" name="testimonial_1" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}>{{{default testimonial_1 ../testimonial}}}</textarea>
+                                    <textarea {{#unless claim_code~}}disabled{{/unless}} rows="3"  placeholder="Testimonial" cols="40" id="testimonial_1" name="testimonial_1" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}>{{default testimonial_1 ../testimonial}}</textarea>
                                   </div>
                                 </div>
                               </div>

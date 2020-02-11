@@ -4,11 +4,11 @@
   </div>
   {{#with @root.data.accountInfo ~}}
   <p class="empty-title h3">
-    {{{first_name}}} {{{last_name}}}
+    {{first_name}} {{last_name}}
   </p>
   {{#if school_college_name ~}}
   <p class="empty-subtitle">
-    {{{school_college_name}}}
+    {{school_college_name}}
   </p>
   {{/if ~}}
   {{/with ~}}
@@ -55,7 +55,7 @@
       <div class="column col-6 col-xl-12">
         <div class="card b-margin-full">
           <div class="card-header">
-            <div class="card-title h5">{{{organisation_name}}}</div>
+            <div class="card-title h5">{{organisation_name}}</div>
             {{#if task_description ~}}
             <div class="card-subtitle text-gray">{{truncate task_description 140}}</div>
             {{/if ~}}
@@ -89,11 +89,11 @@
           <div class="card-body">
             {{#if testimonial ~}}
             <blockquote>
-              {{{testimonial}}}
+              {{testimonial}}
               {{#ifAny volunteer_manager_first_name volunteer_manager_last_name ~}}
               <footer>
                 <cite>
-                  {{{volunteer_manager_first_name}}} {{{volunteer_manager_last_name}}}{{#if volunteer_manager_title}}, {{{volunteer_manager_title}}}{{#if organisation_name}} at {{organisation_name}}{{/if}}{{/if}}
+                  {{volunteer_manager_first_name}} {{volunteer_manager_last_name}}{{#if volunteer_manager_title}}, {{volunteer_manager_title}}{{#if organisation_name}} at {{organisation_name}}{{/if}}{{/if}}
                 </cite>
               </footer>
               {{/ifAny ~}}
