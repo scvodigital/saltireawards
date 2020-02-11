@@ -10,29 +10,55 @@
       </h2>
 
       {{!-- <div class="bg-warning x-padding"> --}}
-        <h4 class="no-margin">What is volunteering?</h4>
-        <ul class="fa-ul">
-          <li>
-            <span class="fa-li"><span class="far fa-check-circle text-success"></span></span>
-            <span class="text-grey">Unpaid</span>
-          </li>
-          <li>
-            <span class="fa-li"><span class="far fa-check-circle text-success"></span></span>
-            <span class="text-grey">Your own choice to take part</span>
-          </li>
-          <li>
-            <span class="fa-li"><span class="far fa-check-circle text-success"></span></span>
-            <span class="text-grey">Benefits the community or the environment</span>
-          </li>
-          <li>
-            <span class="fa-li"><span class="far fa-times-circle text-error"></span></span>
-            <span class="text-grey">Work experience</span>
-          </li>
-          <li>
-            <span class="fa-li"><span class="far fa-times-circle text-error"></span></span>
-            <span class="text-grey">Mandatory college / university placements</span>
-          </li>
-        </ul>
+      {{#if @root.data.isAdmin ~}}
+      <h4 class="no-margin">What is volunteering?</h4>
+      <ul class="fa-ul">
+        <li>
+          <span class="fa-li"><span class="far fa-check-circle text-success"></span></span>
+          <span class="text-grey">Your organisation demonstrates good practice around youth volunteering</span>
+        </li>
+        <li>
+          <span class="fa-li"><span class="far fa-check-circle text-success"></span></span>
+          <span class="text-grey">Your organisation has a clear understanding of volunteering and the criteria The Saltire Awards recognises</span>
+        </li>
+        <li>
+          <span class="fa-li"><span class="far fa-check-circle text-success"></span></span>
+          <span class="text-grey">Your organisation can keep its own accurate records of young people's volunteering hours</span>
+        </li>
+        <li>
+          <span class="fa-li"><span class="far fa-times-circle text-success"></span></span>
+          <span class="text-grey">Your organisation can follow the print standard guidelines to produce Saltire Awards certificates</span>
+        </li>
+        <li>
+          <span class="fa-li"><span class="far fa-times-circle text-success"></span></span>
+          <span class="text-grey">Your organisation is committed to encouraging and supporting young people to create their own My Saltire account (where possible)</span>
+        </li>
+      </ul>
+      {{else}}
+      <h4 class="no-margin">What is volunteering?</h4>
+      <ul class="fa-ul">
+        <li>
+          <span class="fa-li"><span class="far fa-check-circle text-success"></span></span>
+          <span class="text-grey">Unpaid</span>
+        </li>
+        <li>
+          <span class="fa-li"><span class="far fa-check-circle text-success"></span></span>
+          <span class="text-grey">Your own choice to take part</span>
+        </li>
+        <li>
+          <span class="fa-li"><span class="far fa-check-circle text-success"></span></span>
+          <span class="text-grey">Benefits the community or the environment</span>
+        </li>
+        <li>
+          <span class="fa-li"><span class="far fa-times-circle text-error"></span></span>
+          <span class="text-grey">Work experience</span>
+        </li>
+        <li>
+          <span class="fa-li"><span class="far fa-times-circle text-error"></span></span>
+          <span class="text-grey">Mandatory college / university placements</span>
+        </li>
+      </ul>
+      {{/if ~}}
       {{!-- </div> --}}
 
       {{#unless @root.data.isAdmin ~}}
@@ -55,7 +81,7 @@
                 {{#if @root.data.isAdmin ~}}
                 Organisation or organisations your group has volunteered with
                 <div class="caption">
-                  This information will appear on each young person’s certificate so please make sure it is accurate
+                  This information will appear on each young person's certificate so please make sure it is accurate
                 </div>
                 {{else}}
                 Organisation you volunteer with
