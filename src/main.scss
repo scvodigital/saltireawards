@@ -664,6 +664,14 @@ header,
   }
 }
 
+.body .award-not-present div svg,
+.body .award-present div svg {
+  display: none;
+}
+.body .award-present div:nth-child(2) svg {
+  display: block;
+}
+
 .caption {
   font-size: 92%;
 }
