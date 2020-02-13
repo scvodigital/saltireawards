@@ -13,6 +13,12 @@
           <mj-text font-size="16px" padding="0px" line-height="20px" color="#16204e" font-family="Montserrat, Helvetica, Arial, sans-serif">
             <p><strong>This is a test from the new Saltire Awards service in development</strong></p>
 
+            <p>
+              {{#if (compare @root.request.params.query.action "===" "reminder")}}Reminder{{/if}}
+              {{#if (compare @root.request.params.query.action "===" "second_reminder")}}Second Reminder{{/if}}
+            </p>
+
+
             <p>Hello,</p>
 
             <p>
@@ -22,7 +28,9 @@
             </p>
 
             <p>
-              Please check Salesforce hours records for this user, and set the TSI Award Authorization level to {{@root.data.verifyInfoBody.hours_verify_award}} if you wish this award to be authorized.
+              Please check Salesforce Saltire Volunteering Task records for this user, ensuring that Task Role and Description appear to fit criteria,
+              and that organisations volunteered for and their contact emails appear to be genuine (Organisations themselves will validate the volunteers' hours).
+              Set the TSI Award Authorization level to {{@root.data.verifyInfoBody.hours_verify_award}} if you wish this award to be authorized.
             </p>
           </mj-text>
         </mj-column>

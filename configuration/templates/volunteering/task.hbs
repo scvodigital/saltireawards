@@ -177,7 +177,7 @@
                 </label>
               </div>
               <div class="column col-8 col-md-12">
-                <input required id="internal_reference" name="internal_reference" class="form-input" placeholder="e.g. VO1234" value="{{@root.data.taskInfo.internal_reference}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.internal_reference}}>
+                <input id="internal_reference" name="internal_reference" class="form-input" placeholder="e.g. VO1234" value="{{@root.data.taskInfo.internal_reference}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.internal_reference}}>
               </div>
             </div>
           {{/if}}

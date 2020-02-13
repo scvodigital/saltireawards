@@ -5,7 +5,8 @@
   "errorRoute": "five_hundred",
   "metaData": {
     "title": "Tasks",
-    "emailType": "hours-verify-reminder"
+    "emailType": "hours-verify-reminder",
+    "TSIEmailType": "award-authorize"
   },
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",

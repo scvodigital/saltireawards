@@ -209,7 +209,7 @@
                                                   <li>
                                                     <strong>Volunteering</strong> for <strong>{{organisation_name}}</strong>, Manager: {{volunteer_manager_first_name}} {{volunteer_manager_last_name}} - {{volunteer_manager_title}}
                                                     <ul>
-                                                      <li>Description: {{substr task_description 0 140}}{{#compare (length task_description) '>' 140}}...{{/compare}}</li>
+                                                      <li>Role: {{substr task_role 0 140}}{{#compare (length task_role) '>' 140}}...{{/compare}}</li>
                                                       {{#each this.unverified_hours_list}}
                                                         <li>Hours: {{hours}} - logged on: {{momentFormat (moment createdDate "YYYY-MM-DD") "MMMM Do YYYY"}}</li>
                                                       {{/each}}
