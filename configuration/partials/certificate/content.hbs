@@ -140,7 +140,7 @@
 {{else}}
 {{#if organisation_name_1 ~}}
 {
-  "text": {{>pdf_metadata_value key="title" default=(truncate (replace description_1 "\n" " ") 98)}},
+  "text": {{>pdf_metadata_value key="title" default=(truncate (replace role_1 "\n" " ") 98)}},
   "margin": [0, 15, 0, 0],
   "style": "volunteering_title"
 },
@@ -165,7 +165,7 @@
 {{else}}
 {{#if organisation_name_2 ~}}
 {
-  "text": {{>pdf_metadata_value key="title" default=(truncate (replace description_2 "\n" " ") 98)}},
+  "text": {{>pdf_metadata_value key="title" default=(truncate (replace role_2 "\n" " ") 98)}},
   "margin": [0, 15, 0, 0],
   "style": "volunteering_title"
 },
@@ -190,7 +190,7 @@
 {{else}}
 {{#if organisation_name_3 ~}}
 {
-  "text": {{>pdf_metadata_value key="title" default=(truncate (replace description_3 "\n" " ") 98)}},
+  "text": {{>pdf_metadata_value key="title" default=(truncate (replace role_3 "\n" " ") 98)}},
   "margin": [0, 15, 0, 0],
   "style": "volunteering_title"
 },

@@ -188,7 +188,7 @@
                                     </select>
                                   </div>
                                   <div class="form-group">
-                                    <textarea {{#unless claim_code~}}disabled{{/unless}} rows="3" placeholder="Role" cols="40" id="role_1" name="role_1" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_role}}>{{default role_1 ../task_role}}</textarea>
+                                    <textarea {{#unless claim_code~}}disabled{{/unless}} rows="3" placeholder="Role" cols="40" id="task_role" name="role_1" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_role}}>{{default role_1 ../task_role}}</textarea>
                                   </div>
 
                                   {{!-- <div class="form-group">
