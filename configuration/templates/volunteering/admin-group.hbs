@@ -459,6 +459,10 @@
       var hours_id = $(this).closest('.column').find('.modal').attr('id');
       $('#'+hours_id).addClass('active');
     });
-
+    $('.show-group-awards-form').click(function(e){
+      e.preventDefault();
+      $('#group-awards-form').show();
+      $(this).hide();
+    });
   });
 </script>
