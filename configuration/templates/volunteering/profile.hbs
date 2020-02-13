@@ -56,8 +56,8 @@
         <div class="card b-margin-full">
           <div class="card-header">
             <div class="card-title h5">{{organisation_name}}</div>
-            {{#if task_description ~}}
-            <div class="card-subtitle text-gray">{{truncate task_description 140}}</div>
+            {{#if task_role ~}}
+            <div class="card-subtitle text-gray">{{truncate task_role 140}}</div>
             {{/if ~}}
             <ul class="card-subtitle hours-logged fa-ul">
               {{#if location ~}}

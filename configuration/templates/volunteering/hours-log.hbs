@@ -18,7 +18,7 @@
         <strong>Organisation</strong>
       </div>
       <div class="column col-4 col-md-12 hide-md">
-        <strong>Description</strong>
+        <strong>Role</strong>
       </div>
       <div class="column col-2 col-md-12 hide-md">
         <strong>Date logged</strong>
@@ -38,9 +38,9 @@
         {{organisation_name}}
       </div>
       <div class="column col-4 col-md-12">
-        {{#if task_description ~}}
-        <strong class="show-md">Description</strong>
-        {{task_description}}
+        {{#if task_role ~}}
+        <strong class="show-md">Role</strong>
+        {{truncate task_role 140}}
         {{/if ~}}
       </div>
       <div class="column col-2 col-md-12">

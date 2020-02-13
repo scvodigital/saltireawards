@@ -31,8 +31,8 @@
               <a href="/{{#if @root.data.isAdmin}}admin-group{{else}}hours{{/if}}/{{task_id}}/{{slugify organisation_name}}">{{organisation_name}}</a>
 
             </div>
-            {{#if task_description ~}}
-            <div class="card-subtitle text-gray">{{truncate task_description 140}}</div>
+            {{#if task_role ~}}
+            <div class="card-subtitle text-gray">{{truncate task_role 140}}</div>
             {{/if ~}}
           </div>
           <div class="card-body">
