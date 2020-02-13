@@ -1,139 +1,141 @@
 {{#unless @root.data.isAdmin ~}}
-{{!-- {{#with (itemAt @root.data.accountInfo.awards_list (subtract (length @root.data.accountInfo.awards_list) 1)) ~}}
-<div class="empty">
-  <div class="empty-icon">
-    <span class="fal fa-user fa-3x"></span>
-  </div>
-  <div class="columns">
-    {{#each @root.data.accountInfo.awards_list ~}}
-    <div class="column col-3 col-lg-4 col-md-6 col-sm-12">
-      <p class="empty-title h5">
+<div class="award-{{#unless @root.data.awardsStatus.current}}not-{{/unless}}present">
+  {{!-- {{#with (itemAt @root.data.accountInfo.awards_list (subtract (length @root.data.accountInfo.awards_list) 1)) ~}}
+  <div class="empty">
+    <div class="empty-icon">
+      <span class="fal fa-user fa-3x"></span>
+    </div>
+    <div class="columns">
+      {{#each @root.data.accountInfo.awards_list ~}}
+      <div class="column col-3 col-lg-4 col-md-6 col-sm-12">
+        <p class="empty-title h5">
+          {{#compare award_level_numerical_value ">" 0 ~}}
+          {{award_level}} hours
+          {{else}}
+          {{award_level}}
+          {{/compare ~}}
+        </p>
         {{#compare award_level_numerical_value ">" 0 ~}}
-        {{award_level}} hours
+        <a href="/certificate/{{award_id}}/my-saltire-award-for-{{award_level_numerical_value}}-hours.pdf" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary b-margin">Download</a>
         {{else}}
-        {{award_level}}
+        <a href="/certificate/{{award_id}}/my-saltire-{{lowercase award_level}}-award.pdf" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary b-margin">Download</a>
         {{/compare ~}}
-      </p>
+      </div>
+      {{/each ~}}
+    </div>
+  </div>
+  {{/with ~}} --}}
+
+  {{#each @root.context.metaData.certificates ~}}
+  {{!-- It's already awarded --}}
+  {{#compare @root.data.awardsStatus.current hours ~}}
+  {{#with @root.data.awardsStatus.currentAward ~}}
+  <div class="empty">
+    <div class="empty-icon">
+      <span class="fal fa-user fa-3x"></span>
+    </div>
+    {{#each @root.context.metaData.certificates ~}}
+    {{#compare api_name ../award_level ~}}
+    <p class="empty-title h5">
+      {{type_name}}: {{certificate_name}} hours
+    </p>
+    {{> badge api_name=api_name}}
+    {{/compare ~}}
+    {{/each ~}}
+    {{!-- (ifAll (compare @root.data.awardInfo.award_numerical_value '==' hours) @root.data.awardInfo.printed_certificate_requested ) --}}
+    <div class="empty-action">
       {{#compare award_level_numerical_value ">" 0 ~}}
       <a href="/certificate/{{award_id}}/my-saltire-award-for-{{award_level_numerical_value}}-hours.pdf" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary b-margin">Download</a>
       {{else}}
       <a href="/certificate/{{award_id}}/my-saltire-{{lowercase award_level}}-award.pdf" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary b-margin">Download</a>
       {{/compare ~}}
+      {{#unless printed_certificate_requested ~}}
+      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" class="btn b-margin">Print request</a>
+      {{else}}
+      {{#unless printed_certificate_issued ~}}
+      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" disabled class="btn b-margin">Print requested</a>
+      {{else}}
+      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" disabled class="btn b-margin">Printed certificate sent</a>
+      {{/unless ~}}
+      {{/unless ~}}
     </div>
-    {{/each ~}}
   </div>
-</div>
-{{/with ~}} --}}
-
-{{#each @root.context.metaData.certificates ~}}
-{{!-- It's already awarded --}}
-{{#compare @root.data.awardsStatus.current hours ~}}
-{{#with @root.data.awardsStatus.currentAward ~}}
-<div class="empty">
-  <div class="empty-icon">
-    <span class="fal fa-user fa-3x"></span>
-  </div>
-  {{#each @root.context.metaData.certificates ~}}
-  {{#compare api_name ../award_level ~}}
-  <p class="empty-title h5">
-    {{type_name}}: {{certificate_name}} hours
-  </p>
-  {{> badge api_name=api_name}}
+  {{/with ~}}
   {{/compare ~}}
-  {{/each ~}}
-  {{!-- (ifAll (compare @root.data.awardInfo.award_numerical_value '==' hours) @root.data.awardInfo.printed_certificate_requested ) --}}
-  <div class="empty-action">
-    {{#compare award_level_numerical_value ">" 0 ~}}
-    <a href="/certificate/{{award_id}}/my-saltire-award-for-{{award_level_numerical_value}}-hours.pdf" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary b-margin">Download</a>
-    {{else}}
-    <a href="/certificate/{{award_id}}/my-saltire-{{lowercase award_level}}-award.pdf" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary b-margin">Download</a>
+
+  {{#ifAny (compare @root.data.awardsStatus.being_verified hours) (compare @root.data.awardsStatus.claimable hours) (compare @root.data.awardsStatus.working_towards hours) ~}}
+  <div class="content-break">
+    {{#if @root.data.awardsStatus.current ~}}
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <polygon fill="#ebedfa" points="100,0 100,100 0,0"></polygon>
+    </svg>
+    {{/if ~}}
+
+    {{!-- being verified --}}
+    {{#compare @root.data.awardsStatus.being_verified hours ~}}
+    <div class="container awards">
+      <div class="columns">
+        <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
+          {{!-- It's being verified --}}
+          <h2 class="text-center">Next Award</h2>
+          <div class="text-center h5 b-margin">
+            {{type_name}}: {{certificate_name}} hours
+          </div>
+          {{> badge api_name=hours disabled=true}}
+          <div class="text-center description">
+            {{certificate_name}} hour award being verified. If you've been waiting for over a week, you can <a data-component="TasksTrigger" data-TasksTrigger="no-multi-click" href="/verify-hours-email-send/?award={{hours}}">re-send the verification {{inflect (length @root.data.tasksInfo) "message" "messages"}}</a>.
+          </div>
+        </div>
+      </div>
+    </div>
     {{/compare ~}}
-    {{#unless printed_certificate_requested ~}}
-    <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" class="btn b-margin">Print request</a>
-    {{else}}
-    {{#unless printed_certificate_issued ~}}
-    <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" disabled class="btn b-margin">Print requested</a>
-    {{else}}
-    <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" disabled class="btn b-margin">Printed certificate sent</a>
-    {{/unless ~}}
-    {{/unless ~}}
+    {{!-- claimable --}}
+    {{#compare @root.data.awardsStatus.claimable hours ~}}
+    <div class="container awards">
+      <div class="columns working-towards">
+        <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
+          {{!-- It's ready to claim--}}
+          <h2 class="text-center">Next Award</h2>
+          <div class="text-center h5 b-margin">
+            {{type_name}}: {{certificate_name}} hours
+          </div>
+          {{> badge api_name=hours disabled=true}}
+          <p class="text-center description">
+            {{certificate_name}} hour certificate available! Claiming this certificate will send {{inflect (length @root.data.tasksInfo) "an email" "emails"}} to the {{inflect (length @root.data.tasksInfo) "person" "people"}} managing your volunteering to verify the hours you've logged.
+          </p>
+          <p class="text-center">
+            <a href="/verify-hours-email-send/?award={{hours}}" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary btn-success">Claim this certificate</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    {{/compare ~}}
+
+    {{!-- working on --}}
+    {{#compare @root.data.awardsStatus.working_towards hours ~}}
+    <div class="container awards">
+      <div class="columns working-towards">
+        <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
+          {{!-- It's not there yet --}}
+          <h2 class="text-center">Working towards</h2>
+          <div class="text-center h5 b-margin">
+            {{type_name}}: {{certificate_name}} hours
+          </div>
+          {{> badge api_name=hours disabled=true}}
+          <div class="text-center description h5">
+            <strong>{{subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))}} {{inflect (subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))) "hour" "hours"}} to go.</strong>
+          </div>
+          <div class="text-center description">
+            Once you have reached {{hours}} hours, you can request verification by the nominated {{inflect (length @root.data.tasksInfo) "person" "people"}} at the {{inflect (length @root.data.tasksInfo) "place" "places"}} you volunteer.
+          </div>
+        </div>
+      </div>
+    </div>
+    {{/compare ~}}
   </div>
+  {{/ifAny ~}}
+  {{/each ~}}
 </div>
-{{/with ~}}
-{{/compare ~}}
-
-{{#ifAny (compare @root.data.awardsStatus.being_verified hours) (compare @root.data.awardsStatus.claimable hours) (compare @root.data.awardsStatus.working_towards hours) ~}}
-<div class="content-break">
-  {{#if @root.data.awardsStatus.current ~}}
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-    <polygon fill="#ebedfa" points="100,0 100,100 0,0"></polygon>
-  </svg>
-  {{/if ~}}
-
-  {{!-- being verified --}}
-  {{#compare @root.data.awardsStatus.being_verified hours ~}}
-  <div class="container awards">
-    <div class="columns">
-      <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
-        {{!-- It's being verified --}}
-        <h2 class="text-center">Next Award</h2>
-        <div class="text-center h5 b-margin">
-          {{type_name}}: {{certificate_name}} hours
-        </div>
-        {{> badge api_name=hours disabled=true}}
-        <div class="text-center description">
-          {{certificate_name}} hour award being verified. If you've been waiting for over a week, you can <a data-component="TasksTrigger" data-TasksTrigger="no-multi-click" href="/verify-hours-email-send/?award={{hours}}">re-send the verification {{inflect (length @root.data.tasksInfo) "message" "messages"}}</a>.
-        </div>
-      </div>
-    </div>
-  </div>
-  {{/compare ~}}
-  {{!-- claimable --}}
-  {{#compare @root.data.awardsStatus.claimable hours ~}}
-  <div class="container awards">
-    <div class="columns working-towards">
-      <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
-        {{!-- It's ready to claim--}}
-        <h2 class="text-center">Next Award</h2>
-        <div class="text-center h5 b-margin">
-          {{type_name}}: {{certificate_name}} hours
-        </div>
-        {{> badge api_name=hours disabled=true}}
-        <p class="text-center description">
-          {{certificate_name}} hour certificate available! Claiming this certificate will send {{inflect (length @root.data.tasksInfo) "an email" "emails"}} to the {{inflect (length @root.data.tasksInfo) "person" "people"}} managing your volunteering to verify the hours you've logged.
-        </p>
-        <p class="text-center">
-          <a href="/verify-hours-email-send/?award={{hours}}" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary btn-success">Claim this certificate</a>
-        </p>
-      </div>
-    </div>
-  </div>
-  {{/compare ~}}
-
-  {{!-- working on --}}
-  {{#compare @root.data.awardsStatus.working_towards hours ~}}
-  <div class="container awards">
-    <div class="columns working-towards">
-      <div class="column col-4 col-xl-6 col-md-8 col-sm-10 col-xs-12 col-mx-auto b-margin-full">
-        {{!-- It's not there yet --}}
-        <h2 class="text-center">Working towards</h2>
-        <div class="text-center h5 b-margin">
-          {{type_name}}: {{certificate_name}} hours
-        </div>
-        {{> badge api_name=hours disabled=true}}
-        <div class="text-center description h5">
-          <strong>{{subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))}} {{inflect (subtract hours (sumArray (pluck @root.data.tasksInfo "hours"))) "hour" "hours"}} to go.</strong>
-        </div>
-        <div class="text-center description">
-          Once you have reached {{hours}} hours, you can request verification by the nominated {{inflect (length @root.data.tasksInfo) "person" "people"}} at the {{inflect (length @root.data.tasksInfo) "place" "places"}} you volunteer.
-        </div>
-      </div>
-    </div>
-  </div>
-  {{/compare ~}}
-</div>
-{{/ifAny ~}}
-{{/each ~}}
 {{/unless ~}}
 
 <div class="modal" id="certificate-request">
