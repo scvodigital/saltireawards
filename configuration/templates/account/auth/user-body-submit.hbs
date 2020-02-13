@@ -1,8 +1,8 @@
-{{#withExtend @root.request.body code=(random 0 100000000)}}
+{{#withExtend @root.request.body code=(random 0 100000000) vcode=(random 0 100000000)}}
   {{#json}}
     {{#json key='users' type='array'}}
       {{#json}}
-        {{{json key='hours_verify_code' value=@root.data.accountInfo.hours_verify_code}}},
+        {{{json key='hours_verify_code' value=(default @root.data.accountInfo.hours_verify_code cvode)}}},
         {{{json key='hours_verify_award' value=@root.data.accountInfo.hours_verify_award }}},
 
         {{#if @root.data.codeRequired}}
