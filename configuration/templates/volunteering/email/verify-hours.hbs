@@ -21,7 +21,7 @@
   {{~/blockStringify}}
   }
 {{/eachJoin ~}}
-{{#compare (num @root.data.accountInfo.hours_verify_award) ">" (num @root.data.accountInfo.tsi_award_authorization_level)}}
+{{#compare (num @root.data.verifyInfoBody.hours_verify_award) ">" (num @root.data.accountInfo.tsi_award_authorization_level)}}
   {{#compare (length @root.data.tasksInfoUnverified) ">" 0}},{{/compare}}
 
   {

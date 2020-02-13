@@ -24,6 +24,7 @@
   </div>
 </div>
 {{/with ~}} --}}
+
 {{#each @root.context.metaData.certificates ~}}
 {{!-- It's already awarded --}}
 {{#compare @root.data.awardsStatus.current hours ~}}
@@ -87,7 +88,6 @@
     </div>
   </div>
   {{/compare ~}}
-
   {{!-- claimable --}}
   {{#compare @root.data.awardsStatus.claimable hours ~}}
   <div class="container awards">
