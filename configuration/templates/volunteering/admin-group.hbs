@@ -33,12 +33,12 @@
           </div>
 
         <div id="{{this.task_id}}-details" class="b-margin-full">
-          {{#ifAny task_description location un_sustainable_development_goals ~}}
+          {{#ifAny task_role location un_sustainable_development_goals ~}}
             <div class="columns">
               <div class="column col-9 col-lg-12 col-xl-11">
-                {{#if task_description ~}}
+                {{#if task_role ~}}
                   <p>
-                    {{task_description}}
+                    {{task_role}}
                   </p>
                 {{/if ~}}
                 <ul class="fa-ul hours-info">
@@ -188,12 +188,12 @@
                                     </select>
                                   </div>
                                   <div class="form-group">
-                                    <textarea {{#unless claim_code~}}disabled{{/unless}} rows="3" placeholder="Description" cols="40" id="description_1" name="description_1" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}>{{default description_1 ../task_description}}</textarea>
+                                    <textarea {{#unless claim_code~}}disabled{{/unless}} rows="3" placeholder="Role" cols="40" id="role_1" name="role_1" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_role}}>{{default role_1 ../task_role}}</textarea>
                                   </div>
 
-                                  <div class="form-group">
-                                    <textarea {{#unless claim_code~}}disabled{{/unless}} rows="3"  placeholder="Testimonial" cols="40" id="testimonial_1" name="testimonial_1" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}>{{default testimonial_1 ../testimonial}}</textarea>
-                                  </div>
+                                  {{!-- <div class="form-group">
+                                    <textarea {{#unless claim_code~}}disabled{{/unless}} rows="3"  placeholder="Testimonial" cols="40" id="testimonial_1" name="testimonial_1" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.testimonial}}>{{default testimonial_1 ../testimonial}}</textarea>
+                                  </div> --}}
                                 </div>
                               </div>
 
@@ -279,14 +279,13 @@
             <div class="form-horizontal">
               <input type="hidden" name="task_id" value="{{task_id}}">
               <input type="hidden" name="un_sustainable_development_goals" value="{{un_sustainable_development_goals}}">
-              <input type="hidden" name="description_1" value="{{task_description}}">
+              <input type="hidden" name="role_1" value="{{task_role}}">
               <input type="hidden" name="organisation_name_1" value="{{organisation_name}}">
-              <input type="hidden" name="testimonial_1" value="{{testimonial}}">
 
               <div class="form-group">
                 <div class="col-4">Participant names</div>
                 <div class="col-5">
-                  <textarea rows="6" cols="30" maxlength="700" id="volunteers" pattern=".*\S.*" name="volunteers" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}>{{@root.data.taskInfo.task_description}}</textarea>
+                  <textarea rows="6" cols="30" maxlength="700" id="volunteers" pattern=".*\S.*" name="volunteers" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}></textarea>
                 </div>
               </div>
               <div class="form-group">
