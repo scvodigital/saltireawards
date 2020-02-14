@@ -330,7 +330,7 @@
         "title": "CVS Inverclyde",
         "email": "admin@cvsinverclyde.org.uk",
         "phone": "01475711733",
-        "logo": "https://pbs.twimg.com/profile_images/1138042126900563968/z260y86q.png",
+        "logo": "cvsi.jpg",
         "website": "http://www.cvsinverclyde.org.uk",
         "twitter": "https://twitter.com/cvsinverclyde",
         "facebook": "https://www.facebook.com/CVSInverclyde/"
@@ -345,7 +345,7 @@
         "title": "Volunteer Midlothian",
         "email": "info@volunteermidlothian.org.uk",
         "phone": "01316601216",
-        "logo": "https://www.volunteermidlothian.org.uk/vcm/includes/themes/vcm/images/logo.jpg",
+        "logo": "vm.jpg",
         "website": "http://www.volunteermidlothian.org.uk",
         "twitter": "https://twitter.com/VolMidlothian",
         "facebook": "https://www.facebook.com/pages/Volunteer-Centre-Midlothian/200665366658460"
@@ -360,7 +360,7 @@
         "title": "tsiMORAY",
         "email": "info@tsimoray.org.uk",
         "phone": "01343541713",
-        "logo": "https://static.wixstatic.com/media/16cb40_89d357e9a3284536add31447cc868939~mv2.png/v1/fill/w_308,h_272,al_c/16cb40_89d357e9a3284536add31447cc868939~mv2.png",
+        "logo": "tsim.png",
         "website": "http://www.tsimoray.org.uk",
         "twitter": "https://twitter.com/tsiMORAY",
         "facebook": "https://www.facebook.com/tsimoray/"
@@ -375,7 +375,7 @@
         "title": "Volunteer Centre Western Isles",
         "email": "info@volunteercentrewi.org",
         "phone": "01851700366",
-        "logo": "https://volunteercentrewi.org/wp-content/themes/vwi/img/vwi_logo.png",
+        "logo": "vwi.png",
         "website": "http://volunteercentrewi.org",
         "twitter": "https://twitter.com/VolunteeringWI/",
         "facebook": "https://www.facebook.com/Volunteer-Centre-Western-Isles-Stornoway-109240205826891/"
@@ -387,7 +387,7 @@
         "island": true,
         "email": "lewis@volunteercentrewi.org",
         "phone": "01851700366",
-        "logo": "https://volunteercentrewi.org/wp-content/themes/vwi/img/vwi_logo.png",
+        "logo": "vwi.png",
         "website": "http://volunteercentrewi.org/lewis",
         "twitter": "https://twitter.com/VolunteeringWI/",
         "facebook": "https://www.facebook.com/Volunteer-Centre-Western-Isles-Stornoway-109240205826891/"
@@ -399,19 +399,19 @@
         "island": true,
         "email": "harris@volunteercentrewi.org",
         "phone": "01851700366",
-        "logo": "https://volunteercentrewi.org/wp-content/themes/vwi/img/vwi_logo.png",
+        "logo": "vwi.png",
         "website": "http://volunteercentrewi.org/harris",
         "twitter": "https://twitter.com/VolunteeringWI/",
         "facebook": "https://www.facebook.com/Volunteer-Centre-Western-Isles-Harris-211691128889432/"
       },
       "uist": {
         "pattern": "^HS(6|7|8).*$",
-        "area": "Uist",
+        "area": "Uists and Benbecula",
         "title": "Volunteer Centre Western Isles",
         "island": true,
         "email": "uist@volunteercentrewi.org",
         "phone": "01851700366",
-        "logo": "https://volunteercentrewi.org/wp-content/themes/vwi/img/vwi_logo.png",
+        "logo": "vwi.png",
         "website": "http://volunteercentrewi.org/uist",
         "twitter": "https://twitter.com/VolunteeringWI/",
         "facebook": "https://www.facebook.com/UistVolunteerCentreWesternIsles/"
@@ -423,7 +423,7 @@
         "island": true,
         "email": "barra@volunteercentrewi.org",
         "phone": "01851700366",
-        "logo": "https://volunteercentrewi.org/wp-content/themes/vwi/img/vwi_logo.png",
+        "logo": "vwi.png",
         "website": "http://volunteercentrewi.org/barra",
         "twitter": "https://twitter.com/VolunteeringWI/",
         "facebook": "https://www.facebook.com/volunteercentre.barra"
@@ -438,7 +438,7 @@
         "title": "The Ayrshire Community Trust",
         "email": "info@theayrshirecommunitytrust.co.uk",
         "phone": "01294443044",
-        "logo": "http://www.theayrshirecommunitytrust.co.uk/wp-content/uploads/2017/04/logonew.png",
+        "logo": "act.png",
         "twitter": "https://twitter.com/TAyrshireCT",
         "facebook": "https://www.facebook.com/TheAyrshireCommunityTrust/"
       }
@@ -452,7 +452,7 @@
         "title": "Voluntary Action North Lanarkshire",
         "email": "dutyofficer@vanl.co.uk",
         "phone": "01698358866",
-        "logo": "http://www.voluntaryactionnorthlanarkshire.org/sites/default/files/transparentvanllogofixedtext_1.png",
+        "logo": "vanl.png",
         "website": "http://www.voluntaryactionnorthlanarkshire.org",
         "twitter": "https://twitter.com/VANLinfo",
         "facebook": "https://www.facebook.com/VoluntaryActionNL/"
@@ -469,7 +469,7 @@
         "island": true,
         "email": "enquiries@vaorkney.org.uk",
         "phone": "01856872897",
-        "logo": "https://pbs.twimg.com/profile_images/631785148036567040/j83qfUwf_400x400.jpg",
+        "logo": "vao.jpg",
         "website": "http://www.vaorkney.org.uk",
         "twitter": "https://twitter.com/vaorkney",
         "facebook": "https://www.facebook.com/VoluntaryActionOrkney/"
@@ -484,7 +484,7 @@
         "title": "Perth and Kinross Association of Voluntary Service",
         "phone": "01738567076",
         "email": "admin@pkavs.org.uk",
-        "logo": "https://www.pkavs.org.uk/css/pkavsLogo1000.jpg",
+        "logo": "pkavs.jpg",
         "website": "https://www.pkavs.org.uk/",
         "twitter": "https://twitter.com/PKAVScharity",
         "youtube": "https://www.youtube.com/channel/UCD21ENEfEwACFqHrnKoCpyw",
@@ -500,7 +500,7 @@
         "title": "Engage Renfrewshire",
         "email": "info@engagerenfrewshire.com",
         "phone": "01418877707",
-        "logo": "https://www.engagerenfrewshire.com/files/6514/8854/1767/logo-engage.png",
+        "logo": "engage.png",
         "website": "http://www.engagerenfrewshire.com",
         "twitter": "https://twitter.com/EngageNews1",
         "facebook": "https://www.facebook.com/engagerenfrewshire/"
@@ -515,7 +515,7 @@
         "title": "Volunteer Centre Borders",
         "email": "enquiries@vcborders.org.uk",
         "phone": "01896754312",
-        "logo": "http://www.vcborders.org.uk/templates/vcborders/images/blue/logo.png",
+        "logo": "vcborders.jpg",
         "website": "http://www.vcborders.org.uk/",
         "twitter": "https://twitter.com/VCBORDERS",
         "facebook": "https://www.facebook.com/vcborders/"
@@ -532,7 +532,7 @@
         "island": true,
         "email": "vasvolunteering@shetland.org",
         "phone": "01595743900",
-        "logo": "https://www.learnshetland.com/assets/images/vas_logo.jpg",
+        "logo": "vas.jpg",
         "website": "http://www.va-shetland.org.uk",
         "twitter": "https://www.twitter.com/vashetland",
         "youtube": "https://www.youtube.com/watch?v=ycj5UPOBAUk",
@@ -548,7 +548,7 @@
         "title": "Voluntary Action South Ayrshire",
         "email": "saltire@vasa.scot",
         "phone": "01292432661",
-        "logo": "https://volunteer.thirdsectorhub.scot//vk/shared_uploads/media_gallery/app_347/VASA%20logo.jpg",
+        "logo": "vasa.jpg",
         "website": "http://www.saltireawardssouthayrshire.org",
         "website2": "http://www.voluntaryactionsouthayrshire.org.uk",
         "twitter": "https://twitter.com/VASouthAyrshire",
