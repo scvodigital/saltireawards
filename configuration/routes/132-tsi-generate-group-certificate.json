@@ -1,12 +1,12 @@
 {
-  "name": "tsi-certificate",
-  "pattern": "/tsi-certificate/:award_id(/:junk)",
+  "name": "tsi_group_certificate",
+  "pattern": "/tsi-group-certificate/:task_id(/:award_id)(/:junk)",
   "debug": true,
   "errorRoute": "five_hundred",
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.getAccountInfoExternal",
-    "context.metaData.commonTasks.getAwardsInfoExternal",
+    "context.metaData.commonTasks.getTasksInfoExternal",
     "context.metaData.commonTasks.hoursCodeVerify",
     "context.metaData.commonTasks.handleHoursVerifyFail",
     {
@@ -15,7 +15,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "data",
-        "template": ">context.metaData.handlebars.templates.volunteering_certificate_object-body-tsi",
+        "template": ">context.metaData.handlebars.templates.volunteering_certificate_object-body-admin",
         "parseJson": true
       }
     },

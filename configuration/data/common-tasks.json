@@ -164,6 +164,17 @@
 			"apexClassPath": "/SaltireTask/?user_id={{@root.request.params.query.user_id}}"
 		}
 	},
+	"getAwardsInfoExternal": {
+		"name": "awardsInfo",
+		"taskModule": "salesforceApex",
+		"renderer": "handlebars",
+		"config": {
+			"connection": "scvoAlexSandbox",
+			"output": "data",
+			"method": "GET",
+			"apexClassPath": "/SaltireAward/?user_id={{@root.request.params.query.user_id}}&award_id={{@root.request.params.award_id}}"
+		}
+	},
 	"hoursCodeVerify": {
 		"name": "codeVerified",
 		"taskModule": "render",

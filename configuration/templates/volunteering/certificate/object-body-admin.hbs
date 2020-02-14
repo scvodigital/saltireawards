@@ -3,7 +3,7 @@
     {{#json type='array' ~}}
       {{#each (filter awards_list "award_id" "===" @root.request.params.award_id) ~}}
         {{#json ~}}
-          {{{json key='type' value='group'}}},
+          {{{json key='type' value=award_type}}},
           {{#json key='user' ~}}
             {{{json key='first_name' value=recipient_first_name}}},
             {{{json key='last_name' value=recipient_last_name}}},
@@ -36,7 +36,7 @@
   {{#json type='array' ~}}
     {{#each awards_list ~}}
         {{#json ~}}
-          {{{json key='type' value='group'}}},
+          {{{json key='type' value=award_type}}},
           {{#json key='user' ~}}
             {{{json key='first_name' value=recipient_first_name}}},
             {{{json key='last_name' value=recipient_last_name}}},

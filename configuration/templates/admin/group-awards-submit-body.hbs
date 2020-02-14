@@ -6,6 +6,7 @@
         {{#json}}
           {{{json key='task_id' value=@root.request.body.task_id}}},
           {{{json key='user_id' value=@root.data.auth.uid}}},
+          {{{json key='user_sf_id' value=@root.data.accountInfo.user_sf_id}}},
           {{{json key='award_level' value=@root.request.body.award}}},
           {{{json key='award_type' value='Group Award'}}},
           {{{json key='group_award_first_name' value=(firstItem (split this " "))}}},

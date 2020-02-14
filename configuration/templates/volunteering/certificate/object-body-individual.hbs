@@ -2,7 +2,7 @@
 {{#compare @root.request.params.award_id award_id ~}}
 {{#json type='array' ~}}
   {{#json ~}}
-    {{{json key='type' value='individual'}}},
+    {{{json key='type' value=award_type}}},
     {{#json key='user' ~}}
       {{{json key='first_name' value=@root.data.accountInfo.first_name}}},
       {{{json key='last_name' value=@root.data.accountInfo.last_name}}},

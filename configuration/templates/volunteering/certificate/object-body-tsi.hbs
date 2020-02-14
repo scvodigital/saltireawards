@@ -1,0 +1,34 @@
+{{#each @root.data.awardsInfo ~}}
+  {{#compare @root.request.params.award_id award_id ~}}
+    {{#json type='array' ~}}
+      {{#json ~}}
+        {{{json key='type' value=award_type}}},
+        {{#json key='user' ~}}
+          {{{json key='first_name' value=recipient_first_name}}},
+          {{{json key='last_name' value=recipient_first_name}}},
+          {{#compare award_level_numerical_value ">" 0 ~}}
+            {{{json key='certificate_type' value="hours"}}},
+            {{{json key='hours_verified' value=award_level_numerical_value}}}
+          {{else}}
+            {{{json key='certificate_type' value=award_level}}},
+            {{{json key='hours_verified' value=0}}}
+          {{/compare ~}}
+        {{/json ~}},
+        {{{json key='award_level' value=award_level}}},
+        {{{json key='organisation_name_1' value=organisation_name_1}}},
+        {{{json key='role_1' value=role_1}}},
+        {{{json key='testimonial_1' value=testimonial_1}}},
+        {{{json key='organisation_name_2' value=organisation_name_2}}},
+        {{{json key='role_2' value=role_2}}},
+        {{{json key='testimonial_2' value=testimonial_2}}},
+        {{{json key='organisation_name_3' value=organisation_name_3}}},
+        {{{json key='role_3' value=role_3}}},
+        {{{json key='testimonial_3' value=testimonial_3}}},
+        {{{json key='sdgs' value=un_sustainable_development_goals}}},
+        {{{json key='claim_code' value=claim_code}}},
+        {{{json key='group_award_claimed' value=group_award_claimed}}},
+        {{{json key='extra_organisations' value=extra_organisations}}}
+      {{/json ~}}
+    {{/json ~}}
+  {{/compare ~}}
+{{/each ~}}

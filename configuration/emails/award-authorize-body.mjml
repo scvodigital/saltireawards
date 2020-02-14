@@ -30,6 +30,8 @@
             <p>
               Please check Salesforce Saltire Volunteering Task records for this user, ensuring that Task Role and Description appear to fit criteria,
               and that organisations volunteered for and their contact emails appear to be genuine (Organisations themselves will validate the volunteers' hours).
+            </p>
+            <p>
               Set the TSI Award Authorization level to {{@root.data.verifyInfoBody.hours_verify_award}} if you wish this award to be authorized.
             </p>
           </mj-text>
