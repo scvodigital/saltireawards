@@ -3,7 +3,7 @@
 {{#each contacts ~}}
 {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
 {{#ifAll logo website ~}}
-<a href="{{fixUrl website}}" target="_blank"><img src="{{logo}}" class="img-responsive" alt="{{title}}" /></a>
+<a href="{{fixUrl website}}" target="_blank"><img src="{{~>asset_url url=(concat 'images/logos/organisations/' logo)~}}" class="img-responsive" alt="{{title}}" /></a>
 {{/ifAll ~}}
 {{/if ~}}
 {{/each ~}}
