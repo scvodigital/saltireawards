@@ -220,8 +220,7 @@
         "logo": "glasgow.png",
         "website": "http://www.volunteerglasgow.org",
         "twitter": "http://www.twitter.com/volunteerglasgo",
-        "facebook": "http://www.facebook.com/volunteerglasgow",
-        "logo": "https://www.volunteerglasgow.org/wp-content/themes/vg_theme_2.2_broke/images/logo.png"
+        "facebook": "http://www.facebook.com/volunteerglasgow"
       }
     }
   },
@@ -564,7 +563,7 @@
         "title": "Voluntary Action South Lanarkshire",
         "email": "saltire@vaslan.org.uk",
         "phone": "01698300390",
-        "logo": "https://storage.googleapis.com/elasticsauce.appspot.com/goodmoves-files/0680N000005VHOXQA4-3388.png",
+        "logo": "vaslan.png",
         "website": "http://www.vaslan.org.uk",
         "twitter": "https://twitter.com/VA_SLAN",
         "facebook": "https://www.facebook.com/vasouthlanarkshire/"
@@ -579,7 +578,7 @@
         "title": "Stirlingshire Voluntary Enterprise",
         "email": "info@sventerprise.org.uk",
         "phone": "01786430000",
-        "logo": "https://www.sventerprise.org.uk/themes/sve/images/mbl-logo.png",
+        "logo": "sve.png",
         "website": "http://www.sventerprise.org.uk",
         "twitter": "https://twitter.com/StirVolunteer",
         "facebook": "https://www.facebook.com/Stirlingshire-Voluntary-Enterprise-208612419156913/"
@@ -594,7 +593,7 @@
         "title": "West Dunbartonshire CVS",
         "email": "info@wdcvs.com",
         "phone": "01419410886",
-        "logo": "https://storage.googleapis.com/elasticsauce.appspot.com/goodmoves-files/0680N000005VHFcQAO-648.png",
+        "logo": "wdcvs.png",
         "website": "http://www.wdcvs.com",
         "twitter": "https://twitter.com/WDCVS",
         "facebook": "https://www.facebook.com/WDCVS/"
@@ -609,7 +608,7 @@
         "title": "Voluntary Sector Gateway West Lothian",
         "email": "vsg@vsgwl.org",
         "phone": "01506650111",
-        "logo": "https://www.westspace.org.uk/wp-content/uploads/2014/07/Vol-sector-gateway-WL.jpg",
+        "logo": "vsgwl.jpg",
         "website": "http://www.voluntarysectorgateway.org",
         "twitter": "https://twitter.com/VSGWL"
       }
