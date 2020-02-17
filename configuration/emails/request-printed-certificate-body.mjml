@@ -23,7 +23,7 @@
             </p>
 
             <p>
-              The certificate can be <a href="{{@root.data.accountInfo.certificate_url}}">viewed, downloaded, or printed</a>.
+              The certificate can be viewed, downloaded, or printed using this {{{@root.data.awardInfo.certificate_url}}}
             </p>
 
             <p>

@@ -2,7 +2,7 @@
   "name": "request-printed-certificate",
   "debug": true,
   "pattern": "/request-printed-certificate",
-  "acceptedVerbs": "POST",
+  "acceptedVerbs": "POST, GET",
   "errorRoute": "five_hundred",
   "tasks": [
     "context.metaData.commonTasks.authRequired",
