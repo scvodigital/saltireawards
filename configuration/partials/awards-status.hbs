@@ -12,7 +12,7 @@
 
       {{#ifAll
         (compare @root.data.accountInfo.hours_verify_award "===" (stringify hours))
-        (compare @root.data.accountInfo.verified_hours "<" hours)
+        (ifAny (compare @root.data.accountInfo.verified_hours "<" hours) (compare @root.data.accountInfo.tsi_award_authorization_required "===" true))
       }}{{{json key="being_verified" value=hours }}},
       {{/ifAll}}
 

@@ -152,7 +152,7 @@
     </div>
     <div class="modal-body">
       <div class="content">
-        <form action="/request-printed-certificate" class="b-padding-full" method="POST" id="request-certificate" data-component="TasksTrigger"  data-success-destination="awards" data-TasksTrigger="ajax-form-handler">
+        <form action="/request-printed-certificate?award={{@root.data.awardsStatus.current}}" class="b-padding-full" method="POST" id="request-certificate" data-component="TasksTrigger"  data-success-destination="awards" data-TasksTrigger="ajax-form-handler">
           <div class="form-group">
             <textarea class="form-input" action="request-printed-certificate" name="address_value" id="address_value" placeholder="Your address" autocomplete="on" rows="4" required></textarea>
           </div>

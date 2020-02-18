@@ -11,6 +11,7 @@
     "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.fullSignUpRequired",
     "context.metaData.commonTasks.isAdmin",
+    "context.metaData.commonTasks.getAwardInfo",
     "context.metaData.commonTasks.getTasksInfo",
     "context.metaData.commonTasks.tasksRequired",
     "context.metaData.commonTasks.getAwardsStatus",
