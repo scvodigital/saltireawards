@@ -158,7 +158,8 @@
               </label>
             </div>
             <div class="column col-8 col-md-12">
-              <textarea rows="4" cols="40" id="task_role" placeholder="e.g. Volunteering" name="task_role" class="form-input" value="{{@root.data.taskInfo.task_role}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_role}}></textarea>
+              <input required id="task_role" name="task_role" class="form-input" placeholder="e.g. Volunteering" value="{{@root.data.taskInfo.task_role}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_role}}>
+              {{!-- <textarea rows="4" cols="40" id="task_role" placeholder="e.g. Volunteering" name="task_role" class="form-input" value="{{@root.data.taskInfo.task_role}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_role}}></textarea> --}}
             </div>
           </div>
           {{#unless @root.data.isAdmin ~}}

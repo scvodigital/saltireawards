@@ -27,12 +27,10 @@
         <div class="card">
           <div class="card-header">
             <div class="card-title h5">
-
-              <a href="/{{#if @root.data.isAdmin}}admin-group{{else}}hours{{/if}}/{{task_id}}/{{slugify organisation_name}}">{{organisation_name}}</a>
-
+              <a href="/{{#if @root.data.isAdmin}}admin-group{{else}}hours{{/if}}/{{task_id}}/{{slugify organisation_name}}">{{truncate organisation_name 45}}</a>
             </div>
             {{#if task_role ~}}
-            <div class="card-subtitle text-gray">{{truncate task_role 140}}</div>
+            <div class="card-subtitle text-gray">{{truncate task_role 70}}</div>
             {{/if ~}}
           </div>
           <div class="card-body">
@@ -40,7 +38,7 @@
               {{#if location ~}}
               <li>
                 <span class="fa-li"><span class="far fa-map-marker-alt"></span></span>
-                <span class="text-gray">{{truncate location 140}}</span>
+                <span class="text-gray">{{truncate location 70}}</span>
               </li>
               {{/if ~}}
               {{#if un_sustainable_development_goals ~}}

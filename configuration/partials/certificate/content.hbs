@@ -128,61 +128,61 @@
 },
 {{#if organisation_name_1 ~}}
 {
-  "text": {{>pdf_metadata_value key="title" default=(concat "Volunteering with " organisation_name_1)}},
+  "text": {{>pdf_metadata_value key="title" default=(concat "Volunteering with " (truncate organisation_name_1 45))}},
   "margin": [0, 15, 0, 0],
-  "style": "volunteering_detail"
+  "style": "volunteering_title"
 },
 {{#if testimonial_1 ~}}
 {
-  "text": {{>pdf_metadata_value key="title" default=(concat "\"" (truncate (replace testimonial_1 "\n" " ") 98) "\"")}},
+  "text": {{>pdf_metadata_value key="title" default=(concat "\"" (truncate (replace testimonial_1 "\n" " ") 68) "\"")}},
   "margin": [0, 5, 0, 0],
-  "style": "volunteering_title"
+  "style": "volunteering_detail"
 },
 {{else}}
 {
-  "text": {{>pdf_metadata_value key="title" default=(truncate (replace role_1 "\n" " ") 98)}},
-  "margin": [0, 15, 0, 0],
-  "style": "volunteering_title"
+  "text": {{>pdf_metadata_value key="title" default=(truncate (replace role_1 "\n" " ") 70)}},
+  "margin": [0, 5, 0, 0],
+  "style": "volunteering_detail"
 },
 {{/if ~}}
 {{/if ~}}
 {{#if organisation_name_2 ~}}
 {
-  "text": {{>pdf_metadata_value key="title" default=(concat "Volunteering with " organisation_name_2)}},
+  "text": {{>pdf_metadata_value key="title" default=(concat "Volunteering with " (truncate organisation_name_2 45))}},
   "margin": [0, 15, 0, 0],
-  "style": "volunteering_detail"
+  "style": "volunteering_title"
 },
 {{#if testimonial_2 ~}}
 {
-  "text": {{>pdf_metadata_value key="title" default=(concat "\"" (truncate (replace testimonial_2 "\n" " ") 98) "\"")}},
+  "text": {{>pdf_metadata_value key="title" default=(concat "\"" (truncate (replace testimonial_2 "\n" " ") 68) "\"")}},
   "margin": [0, 5, 0, 0],
-  "style": "volunteering_title"
+  "style": "volunteering_detail"
 },
 {{else}}
 {
-  "text": {{>pdf_metadata_value key="title" default=(truncate (replace role_2 "\n" " ") 98)}},
-  "margin": [0, 15, 0, 0],
-  "style": "volunteering_title"
+  "text": {{>pdf_metadata_value key="title" default=(truncate (replace role_2 "\n" " ") 70)}},
+  "margin": [0, 5, 0, 0],
+  "style": "volunteering_detail"
 },
 {{/if ~}}
 {{/if ~}}
 {{#if organisation_name_3 ~}}
 {
-  "text": {{>pdf_metadata_value key="title" default=(concat "Volunteering with " organisation_name_3)}},
+  "text": {{>pdf_metadata_value key="title" default=(concat "Volunteering with " (truncate organisation_name_3 45))}},
   "margin": [0, 15, 0, 0],
-  "style": "volunteering_detail"
+  "style": "volunteering_title"
 },
 {{#if testimonial_3 ~}}
 {
-  "text": {{>pdf_metadata_value key="title" default=(concat "\"" (truncate (replace testimonial_3 "\n" " ") 98) "\"")}},
+  "text": {{>pdf_metadata_value key="title" default=(concat "\"" (truncate (replace testimonial_3 "\n" " ") 68) "\"")}},
   "margin": [0, 5, 0, 0],
-  "style": "volunteering_title"
+  "style": "volunteering_detail"
 },
 {{else}}
 {
-  "text": {{>pdf_metadata_value key="title" default=(truncate (replace role_3 "\n" " ") 98)}},
-  "margin": [0, 15, 0, 0],
-  "style": "volunteering_title"
+  "text": {{>pdf_metadata_value key="title" default=(truncate (replace role_3 "\n" " ") 70)}},
+  "margin": [0, 5, 0, 0],
+  "style": "volunteering_detail"
 },
 {{/if ~}}
 {{/if ~}}

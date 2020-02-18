@@ -30,9 +30,9 @@
       <div class="column col-6 col-xl-12">
         <div class="card">
           <div class="card-header">
-            <div class="card-title h5">{{organisation_name}}</div>
+            <div class="card-title h5">{{truncate organisation_name 45}}</div>
             {{#if task_role ~}}
-            <div class="card-subtitle text-gray">{{truncate task_role 140}}</div>
+            <div class="card-subtitle text-gray">{{truncate task_role 70}}</div>
             {{/if ~}}
           </div>
           <div class="card-body">
@@ -40,7 +40,7 @@
               {{#if location ~}}
               <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-map-marker-alt"></span></span>
-                <span class="text-gray">{{truncate location 140}}</span>
+                <span class="text-gray">{{truncate location 70}}</span>
               </li>
               {{/if ~}}
               {{#if un_sustainable_development_goals ~}}

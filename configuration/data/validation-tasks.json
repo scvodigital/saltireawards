@@ -1,5 +1,5 @@
 {
-  "organisation_name": {"required": true, "maxlength": 80},
+  "organisation_name": {"required": true, "maxlength": 45},
   "location": {"required": true, "maxlength": 255},
   "organisation_charity_number": {"maxlength": 12, "pattern": "SC[0-9]{6}"},
   "volunteer_manager_first_name": {"required": true, "maxlength": 255},
@@ -7,9 +7,9 @@
   "volunteer_manager_title": {"required": true, "maxlength": 255},
   "volunteer_manager_phone": {"maxlength": 14},
   "volunteer_manager_email": {"required": true, "type":"email", "maxlength": 255},
-  "task_role": {"maxlength": 255},
+  "task_role": {"maxlength": 70},
   "task_description": {"maxlength": 1024},
-  "task-code": {"maxlength": 10, "required": true, "pattern": "^[A-Fa-f0-9]{10}$"},
+  "task_code": {"maxlength": 10, "required": true, "pattern": "^[A-Fa-f0-9]{10}$"},
   "hours": {"required": true, "type":"number"},
   "award": {"required": true}
 }
