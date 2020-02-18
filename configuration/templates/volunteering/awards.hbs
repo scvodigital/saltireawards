@@ -43,21 +43,24 @@
     {{/compare ~}}
     {{/each ~}}
     {{!-- (ifAll (compare @root.data.awardInfo.award_numerical_value '==' hours) @root.data.awardInfo.printed_certificate_requested ) --}}
-    <div class="empty-action">
+    <div class="empty-action b-padding">
       {{#compare award_level_numerical_value ">" 0 ~}}
-      <a href="/certificate/{{award_id}}/my-saltire-award-for-{{award_level_numerical_value}}-hours.pdf" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary b-margin">Download</a>
+      <a href="/certificate/{{award_id}}/my-saltire-award-for-{{award_level_numerical_value}}-hours.pdf" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary">Download</a>
       {{else}}
-      <a href="/certificate/{{award_id}}/my-saltire-{{lowercase award_level}}-award.pdf" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary b-margin">Download</a>
+      <a href="/certificate/{{award_id}}/my-saltire-{{lowercase award_level}}-award.pdf" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary">Download</a>
       {{/compare ~}}
       {{#unless printed_certificate_requested ~}}
-      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" class="btn b-margin">Print request</a>
+      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" class="btn">Print request</a>
       {{else}}
       {{#unless printed_certificate_issued ~}}
-      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" disabled class="btn b-margin">Print requested</a>
+      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" disabled class="btn">Print requested</a>
       {{else}}
-      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" disabled class="btn b-margin">Printed certificate sent</a>
+      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" disabled class="btn">Printed certificate sent</a>
       {{/unless ~}}
       {{/unless ~}}
+      {{#compare (length @root.data.accountInfo.awards_list) ">" 1 ~}}
+      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-previous-awards" class="btn btn-link">Previous awards</a>
+      {{/compare ~}}
     </div>
   </div>
   {{/with ~}}
@@ -176,6 +179,48 @@
         type: "elementManipulator",
         config: {
           "#certificate-request": { addClass: "active" }
+        }
+      }
+    ]
+  }
+}
+</script>
+
+<div class="modal" id="previous-awards">
+  <a href="#" class="modal-overlay" aria-label="Close"></a>
+  <div class="modal-container">
+    <div class="modal-header">
+      <a href="#close" class="btn btn-clear float-right" aria-label="Close" data-component="TasksTrigger" data-TasksTrigger="hide-modal"></a>
+      <div class="modal-title h5">
+        Previous awards
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="content">
+        <div class="b-margin">
+          {{#each @root.data.accountInfo.awards_list ~}}
+          {{#unless (compare award_level @root.data.awardsStatus.currentAward.award_level) ~}}
+          {{#compare award_level_numerical_value ">" 0 ~}}
+          <a href="/certificate/{{award_id}}/my-saltire-award-for-{{award_level_numerical_value}}-hours.pdf" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn">{{award_level}} hours</a>
+          {{else}}
+          <a href="/certificate/{{award_id}}/my-saltire-{{lowercase award_level}}-award.pdf" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn">{{award_level}}</a>
+          {{/compare ~}}
+          {{/unless ~}}
+          {{/each ~}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script data-component-config="show-previous-awards" type="javascript/blocked">
+{
+  click: {
+    tasks: [
+      {
+        type: "elementManipulator",
+        config: {
+          "#previous-awards": { addClass: "active" }
         }
       }
     ]
