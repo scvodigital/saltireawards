@@ -61,7 +61,7 @@
     {{/if ~}}
     {{#ifAll _source.point.lat _source.point.lon ~}}
     "coordinates": {{{stringify (concat _source.point.lat "," _source.point.lon)}}},
-    {{/if ~}}
+    {{/ifAll ~}}
     "point": {{{stringify _source.point}}}
   }
   {{/eachJoin ~}}
