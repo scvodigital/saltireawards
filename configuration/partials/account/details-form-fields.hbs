@@ -121,6 +121,7 @@
     </div>
     {{/if ~}}
     <input type="hidden" name="local_authority" id="local_authority" value="{{@root.data.accountInfo.local_authority}}" />
+    <input type="hidden" name="coordinates" id="coordinates" value="{{@root.data.accountInfo.coordinates}}" />
     <input type="hidden" name="constituency" id="constituency" value="{{@root.data.accountInfo.constituency}}" />
     <input type="hidden" name="constituency_code" id="constituency_code" value="{{@root.data.accountInfo.constituency_code}}" />
     <input type="hidden" name="nuts_3" id="nuts_3" value="{{@root.data.accountInfo.nuts_3}}" />
@@ -188,6 +189,9 @@
                       removeClass: [ "loading", "fa-check", "text-primary", "text-success" ]
                     },
                     "#local_authority": {
+                      value: ""
+                    },
+                    "#coordinates": {
                       value: ""
                     },
                     "#constituency": {
@@ -273,6 +277,9 @@
                               "#local_authority": {
                                 value: ""
                               },
+                              "#coordinates": {
+                                value: ""
+                              },
                               "#constituency": {
                                 value: ""
                               },
@@ -345,6 +352,9 @@
                                         "#local_authority": {
                                           value: ""
                                         },
+                                        "#coordinates": {
+                                          value: ""
+                                        },
                                         "#constituency": {
                                           value: ""
                                         },
@@ -411,6 +421,9 @@
                                         },
                                         "#local_authority": {
                                           value: { __template: "{{{data.postcodeLookup.[0].local_authority}}}" }
+                                        },
+                                        "#coordinates": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].coordinates}}}" }
                                         },
                                         "#constituency": {
                                           value: { __template: "{{{data.postcodeLookup.[0].constituency}}}" }

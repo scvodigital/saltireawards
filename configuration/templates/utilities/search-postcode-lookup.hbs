@@ -59,6 +59,9 @@
     {{#if _source.simd_rank ~}}
     "simd_rank": {{{stringify _source.simd_rank}}},
     {{/if ~}}
+    {{#ifAll _source.point.lat _source.point.lon ~}}
+    "coordinates": {{{stringify (concat _source.point.lat "," _source.point.lon)}}},
+    {{/if ~}}
     "point": {{{stringify _source.point}}}
   }
   {{/eachJoin ~}}
