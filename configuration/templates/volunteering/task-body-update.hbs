@@ -11,11 +11,11 @@
       {{{json key='task_id' value=@root.data.taskInfo.task_id}}},
       {{{json key='task_type' value=@root.data.taskInfo.task_type}}},
       {{{json key='testimonial' value=@root.data.taskInfo.testimonial}}},
-      {{{json key='volunteer_manager_email' value=volunteer_manager_email }}},
-      {{{json key='volunteer_manager_first_name' value=volunteer_manager_first_name}}},
-      {{{json key='volunteer_manager_last_name' value=volunteer_manager_last_name }}},
-      {{{json key='volunteer_manager_phone' value=volunteer_manager_phone }}},
-      {{{json key='volunteer_manager_title' value=volunteer_manager_title }}}
+      {{{json key='volunteer_manager_email' value=(stripTags volunteer_manager_email )}}},
+      {{{json key='volunteer_manager_first_name' value=(stripTags volunteer_manager_first_name)}}},
+      {{{json key='volunteer_manager_last_name' value=(stripTags volunteer_manager_last_name )}}},
+      {{{json key='volunteer_manager_phone' value=(stripTags volunteer_manager_phone )}}},
+      {{{json key='volunteer_manager_title' value=(stripTags volunteer_manager_title )}}}
     {{/json}}
   {{/json}}
 {{/with}}

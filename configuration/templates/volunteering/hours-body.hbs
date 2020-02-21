@@ -2,10 +2,10 @@
   {{#json}}
   {{#json key='hours_input' type='array'}}
     {{#json}}
-        {{{json key='task_id' value=task_id}}},
+        {{{json key='task_id' value=(stripTags task_id)}}},
         {{{json key='verified' value=false}}},
-        {{{json key='hours' value=hours}}},
-        {{{json key='notes' value=notes}}}
+        {{{json key='hours' value=(stripTags hours)}}},
+        {{{json key='notes' value=(stripTags notes)}}}
     {{/json}}
   {{/json}}
   {{/json}}
