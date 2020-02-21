@@ -14,7 +14,10 @@
   </div>
   {{#unless @root.data.isAdmin ~}}
   <p class="empty-subtitle">
-    Already received a certificate from a group? <a href="/claim-award">Add the certificate</a> to this account with the claim code.
+    Already received a certificate from a group? Add the certificate to your account with a claim code.
+  </p>
+  <p class="empty-subtitle">
+    <a href="/claim-award" class="btn">Claim award with code</a>
   </p>
   {{/unless ~}}
 </div>
