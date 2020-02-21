@@ -105,7 +105,7 @@
       <label class="form-label" for="postcode">{{#if admin}}Work postcode{{else}}Home postcode{{/if}}</label>
     </div>
     <div class="column col-2 col-md-3 col-sm-4 col-xs-5">
-      <div class="has-icon-right d-inline-block">
+      <div class="has-icon-right d-inline-block" id="postcode-wrapper">
         <input class="form-input" id="postcode" name="postcode" type="text" value="{{@root.data.accountInfo.postcode}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="postcode-lookup" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.postcode}}>
         <span class="form-icon far {{#if hasPostcode}}fa-check text-success{{else}}fa-times text-error{{/if}}" id="postcode-validation-icon"></span>
       </div>
@@ -113,17 +113,26 @@
     {{#if @root.data.accountInfo.external_id ~}}
     <div class="column col-6 col-sm-12"></div>
     <div class="column col-4 col-sm-12"></div>
-    <div class="column col-8 col-sm-12">
+    <div class="column col-8 col-sm-12 has-error">
+      <div class="form-input-hint" id="postcode-validation-message"></div>
       <div class="caption">
         Please note: your personal details and the record of your volunteering will be shared with <span id="tsi_title"><strong>{{> support_name}}</strong></span>.
       </div>
     </div>
     {{/if ~}}
     <input type="hidden" name="local_authority" id="local_authority" value="{{@root.data.accountInfo.local_authority}}" />
+    <input type="hidden" name="constituency" id="constituency" value="{{@root.data.accountInfo.constituency}}" />
     <input type="hidden" name="constituency_code" id="constituency_code" value="{{@root.data.accountInfo.constituency_code}}" />
+    <input type="hidden" name="nuts_3" id="nuts_3" value="{{@root.data.accountInfo.nuts_3}}" />
     <input type="hidden" name="nuts_3_code" id="nuts_3_code" value="{{@root.data.accountInfo.nuts_3_code}}" />
     <input type="hidden" name="district_code" id="district_code" value="{{@root.data.accountInfo.district_code}}" />
+    <input type="hidden" name="ward" id="ward" value="{{@root.data.accountInfo.ward}}" />
     <input type="hidden" name="ward_code" id="ward_code" value="{{@root.data.accountInfo.ward_code}}" />
+    <input type="hidden" name="simd_datazone" id="simd_datazone" value="{{@root.data.accountInfo.simd_datazone}}" />
+    <input type="hidden" name="simd_decile" id="simd_decile" value="{{@root.data.accountInfo.simd_decile}}" />
+    <input type="hidden" name="simd_quintile" id="simd_quintile" value="{{@root.data.accountInfo.simd_quintile}}" />
+    <input type="hidden" name="simd_vigintile" id="simd_vigintile" value="{{@root.data.accountInfo.simd_vigintile}}" />
+    <input type="hidden" name="simd_rank" id="simd_rank" value="{{@root.data.accountInfo.simd_rank}}" />
     <input type="hidden" name="tsi_area" id="tsi_area" value="{{@root.data.accountInfo.tsi_area}}" />
     <input type="hidden" name="tsi_contact_email" id="tsi_contact_email" value="{{@root.data.accountInfo.tsi_contact_email}}" />
   </div>
@@ -181,7 +190,13 @@
                     "#local_authority": {
                       value: ""
                     },
+                    "#constituency": {
+                      value: ""
+                    },
                     "#constituency_code": {
+                      value: ""
+                    },
+                    "#nuts_3": {
                       value: ""
                     },
                     "#nuts_3_code": {
@@ -190,7 +205,25 @@
                     "#district_code": {
                       value: ""
                     },
+                    "#ward": {
+                      value: ""
+                    },
                     "#ward_code": {
+                      value: ""
+                    },
+                    "#datazone": {
+                      value: ""
+                    },
+                    "#simd_decile": {
+                      value: ""
+                    },
+                    "#simd_quintile": {
+                      value: ""
+                    },
+                    "#simd_vigintile": {
+                      value: ""
+                    },
+                    "#simd_rank": {
                       value: ""
                     },
                     "#tsi_area": {
@@ -198,6 +231,12 @@
                     },
                     "#tsi_contact_email": {
                       value: ""
+                    },
+                    "#postcode-validation-message": {
+                      contents: { __template: "" }
+                    },
+                    "#postcode-wrapper": {
+                      removeClass: [ "has-error" ],
                     }
                   }
                 }
@@ -234,7 +273,13 @@
                               "#local_authority": {
                                 value: ""
                               },
+                              "#constituency": {
+                                value: ""
+                              },
                               "#constituency_code": {
+                                value: ""
+                              },
+                              "#nuts_3": {
                                 value: ""
                               },
                               "#nuts_3_code": {
@@ -243,7 +288,25 @@
                               "#district_code": {
                                 value: ""
                               },
+                              "#ward": {
+                                value: ""
+                              },
                               "#ward_code": {
+                                value: ""
+                              },
+                              "#datazone": {
+                                value: ""
+                              },
+                              "#simd_decile": {
+                                value: ""
+                              },
+                              "#simd_quintile": {
+                                value: ""
+                              },
+                              "#simd_vigintile": {
+                                value: ""
+                              },
+                              "#simd_rank": {
                                 value: ""
                               },
                               "#tsi_area": {
@@ -251,6 +314,12 @@
                               },
                               "#tsi_contact_email": {
                                 value: ""
+                              },
+                              "#postcode-validation-message": {
+                                contents: { __template: "" }
+                              },
+                              "#postcode-wrapper": {
+                                removeClass: [ "has-error" ],
                               },
                               "#postcode-validation-icon": {
                                 addClass: [ "fa-times", "text-error" ],
@@ -263,38 +332,145 @@
                       found: {
                         tasks: [
                           {
-                            type: "elementManipulator",
+                            __doNotCompile: true,
+                            type: "switch",
                             config: {
-                              ">": {
-                                value: { __template: "{{{data.postcodeLookup.[0].place}}}" }
-                              },
-                              "#local_authority": {
-                                value: { __template: "{{{data.postcodeLookup.[0].local_authority}}}" }
-                              },
-                              "#constituency_code": {
-                                value: { __template: "{{{data.postcodeLookup.[0].region_codes.constituency}}}" }
-                              },
-                              "#nuts_3_code": {
-                                value: { __template: "{{data.postcodeLookup.[0].region_codes.nuts_3}}" }
-                              },
-                              "#district_code": {
-                                value: { __template: "{{{data.postcodeLookup.[0].region_codes.district}}}" }
-                              },
-                              "#ward_code": {
-                                value: { __template: "{{{data.postcodeLookup.[0].region_codes.ward}}}" }
-                              },
-                              "#tsi_area": {
-                                value: { __template: "{{{data.postcodeLookup.[0].tsi_area}}}" }
-                              },
-                              "#tsi_contact_email": {
-                                value: { __template: "{{{data.postcodeLookup.[0].tsi_contact_email}}}" }
-                              },
-                              "#tsi_title": {
-                                contents: { __template: "<strong>{{{data.postcodeLookup.[0].tsi_title}}}</strong>" }
-                              },
-                              "#postcode-validation-icon": {
-                                addClass: [ "fa-check", "text-success" ],
-                                removeClass: [ "loading", "fa-times", "text-primary", "text-error" ]
+                              which: { __template: "{{#eq data.postcodeLookup.[0].country 'Scotland'}}scotland{{/eq}}" },
+                              branches: {
+                                default: {
+                                  tasks: [
+                                    {
+                                      type: "elementManipulator",
+                                      config: {
+                                        "#local_authority": {
+                                          value: ""
+                                        },
+                                        "#constituency": {
+                                          value: ""
+                                        },
+                                        "#constituency_code": {
+                                          value: ""
+                                        },
+                                        "#nuts_3": {
+                                          value: ""
+                                        },
+                                        "#nuts_3_code": {
+                                          value: ""
+                                        },
+                                        "#district_code": {
+                                          value: ""
+                                        },
+                                        "#ward": {
+                                          value: ""
+                                        },
+                                        "#ward_code": {
+                                          value: ""
+                                        },
+                                        "#datazone": {
+                                          value: ""
+                                        },
+                                        "#simd_decile": {
+                                          value: ""
+                                        },
+                                        "#simd_quintile": {
+                                          value: ""
+                                        },
+                                        "#simd_vigintile": {
+                                          value: ""
+                                        },
+                                        "#simd_rank": {
+                                          value: ""
+                                        },
+                                        "#tsi_area": {
+                                          value: ""
+                                        },
+                                        "#tsi_contact_email": {
+                                          value: ""
+                                        },
+                                        "#postcode-validation-message": {
+                                          contents: { __template: "Please enter a postcode in Scotland" }
+                                        },
+                                        "#postcode-wrapper": {
+                                          addClass: [ "has-error" ],
+                                        },
+                                        "#postcode-validation-icon": {
+                                          addClass: [ "fa-times", "text-error" ],
+                                          removeClass: [ "loading", "fa-check", "text-primary", "text-success" ]
+                                        }
+                                      }
+                                    }
+                                  ]
+                                },
+                                scotland: {
+                                  tasks: [
+                                    {
+                                      type: "elementManipulator",
+                                      config: {
+                                        ">": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].place}}}" }
+                                        },
+                                        "#local_authority": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].local_authority}}}" }
+                                        },
+                                        "#constituency": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].constituency}}}" }
+                                        },
+                                        "#constituency_code": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].region_codes.constituency}}}" }
+                                        },
+                                        "#nuts_3": {
+                                          value: { __template: "{{data.postcodeLookup.[0].nuts_3}}" }
+                                        },
+                                        "#nuts_3_code": {
+                                          value: { __template: "{{data.postcodeLookup.[0].region_codes.nuts_3}}" }
+                                        },
+                                        "#district_code": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].region_codes.district}}}" }
+                                        },
+                                        "#ward": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].ward}}}" }
+                                        },
+                                        "#ward_code": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].region_codes.ward}}}" }
+                                        },
+                                        "#datazone": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].simd_datazone}}}" }
+                                        },
+                                        "#simd_decile": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].simd_decile}}}" }
+                                        },
+                                        "#simd_quintile": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].simd_quintile}}}" }
+                                        },
+                                        "#simd_vigintile": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].simd_vigintile}}}" }
+                                        },
+                                        "#simd_rank": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].simd_rank}}}" }
+                                        },
+                                        "#tsi_area": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].tsi_area}}}" }
+                                        },
+                                        "#tsi_contact_email": {
+                                          value: { __template: "{{{data.postcodeLookup.[0].tsi_contact_email}}}" }
+                                        },
+                                        "#tsi_title": {
+                                          contents: { __template: "<strong>{{{data.postcodeLookup.[0].tsi_title}}}</strong>" }
+                                        },
+                                        "#postcode-validation-message": {
+                                          contents: { __template: "" }
+                                        },
+                                        "#postcode-wrapper": {
+                                          removeClass: [ "has-error" ],
+                                        },
+                                        "#postcode-validation-icon": {
+                                          addClass: [ "fa-check", "text-success" ],
+                                          removeClass: [ "loading", "fa-times", "text-primary", "text-error" ]
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
                               }
                             }
                           }

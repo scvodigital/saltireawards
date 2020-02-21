@@ -1,12 +1,23 @@
 {{#withExtend this q=@root.request.params.query.q}}
 {
   "size": 1,
-  "_source": [ "district", "county", "point", "place", "country", "region_codes" ],
+  "_source": [
+    "district",
+    "county",
+    "point",
+    "place",
+    "country",
+    "region_codes",
+    "simd*",
+    "nuts*",
+    "dz",
+    "constituency",
+    "ward"
+  ],
   "query": {
     "bool": {
       "filter": [
         { "terms": { "_type": [ "os_place", "postcode" ] } },
-        { "term": { "country": { "value": "Scotland" } } },
         { "exists": { "field": "district" } },
         {
           "ids": {
