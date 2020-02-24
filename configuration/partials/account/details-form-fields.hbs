@@ -125,16 +125,9 @@
     <input type="hidden" name="local_authority" id="local_authority" value="{{@root.data.accountInfo.local_authority}}" />
     <input type="hidden" name="coordinates" id="coordinates" value="{{@root.data.accountInfo.coordinates}}" />
     <input type="hidden" name="constituency" id="constituency" value="{{@root.data.accountInfo.constituency}}" />
-    <input type="hidden" name="constituency_code" id="constituency_code" value="{{@root.data.accountInfo.constituency_code}}" />
     <input type="hidden" name="nuts_3" id="nuts_3" value="{{@root.data.accountInfo.nuts_3}}" />
-    <input type="hidden" name="nuts_3_code" id="nuts_3_code" value="{{@root.data.accountInfo.nuts_3_code}}" />
-    <input type="hidden" name="district_code" id="district_code" value="{{@root.data.accountInfo.district_code}}" />
     <input type="hidden" name="ward" id="ward" value="{{@root.data.accountInfo.ward}}" />
-    <input type="hidden" name="ward_code" id="ward_code" value="{{@root.data.accountInfo.ward_code}}" />
     <input type="hidden" name="simd_datazone" id="simd_datazone" value="{{@root.data.accountInfo.simd_datazone}}" />
-    <input type="hidden" name="simd_decile" id="simd_decile" value="{{@root.data.accountInfo.simd_decile}}" />
-    <input type="hidden" name="simd_quintile" id="simd_quintile" value="{{@root.data.accountInfo.simd_quintile}}" />
-    <input type="hidden" name="simd_vigintile" id="simd_vigintile" value="{{@root.data.accountInfo.simd_vigintile}}" />
     <input type="hidden" name="simd_rank" id="simd_rank" value="{{@root.data.accountInfo.simd_rank}}" />
     <input type="hidden" name="tsi_area" id="tsi_area" value="{{@root.data.accountInfo.tsi_area}}" />
     <input type="hidden" name="tsi_contact_email" id="tsi_contact_email" value="{{@root.data.accountInfo.tsi_contact_email}}" />
@@ -199,25 +192,13 @@
                     "#constituency": {
                       value: ""
                     },
-                    "#constituency_code": {
-                      value: ""
-                    },
                     "#nuts_3": {
-                      value: ""
-                    },
-                    "#nuts_3_code": {
-                      value: ""
-                    },
-                    "#district_code": {
                       value: ""
                     },
                     "#ward": {
                       value: ""
                     },
-                    "#ward_code": {
-                      value: ""
-                    },
-                    "#datazone": {
+                    "#simd_datazone": {
                       value: ""
                     },
                     "#simd_decile": {
@@ -285,34 +266,13 @@
                               "#constituency": {
                                 value: ""
                               },
-                              "#constituency_code": {
-                                value: ""
-                              },
                               "#nuts_3": {
-                                value: ""
-                              },
-                              "#nuts_3_code": {
-                                value: ""
-                              },
-                              "#district_code": {
                                 value: ""
                               },
                               "#ward": {
                                 value: ""
                               },
-                              "#ward_code": {
-                                value: ""
-                              },
-                              "#datazone": {
-                                value: ""
-                              },
-                              "#simd_decile": {
-                                value: ""
-                              },
-                              "#simd_quintile": {
-                                value: ""
-                              },
-                              "#simd_vigintile": {
+                              "#simd_datazone": {
                                 value: ""
                               },
                               "#simd_rank": {
@@ -360,34 +320,13 @@
                                         "#constituency": {
                                           value: ""
                                         },
-                                        "#constituency_code": {
-                                          value: ""
-                                        },
                                         "#nuts_3": {
-                                          value: ""
-                                        },
-                                        "#nuts_3_code": {
-                                          value: ""
-                                        },
-                                        "#district_code": {
                                           value: ""
                                         },
                                         "#ward": {
                                           value: ""
                                         },
-                                        "#ward_code": {
-                                          value: ""
-                                        },
-                                        "#datazone": {
-                                          value: ""
-                                        },
-                                        "#simd_decile": {
-                                          value: ""
-                                        },
-                                        "#simd_quintile": {
-                                          value: ""
-                                        },
-                                        "#simd_vigintile": {
+                                        "#simd_datazone": {
                                           value: ""
                                         },
                                         "#simd_rank": {
@@ -430,35 +369,14 @@
                                         "#constituency": {
                                           value: { __template: "{{{data.postcodeLookup.[0].constituency}}}" }
                                         },
-                                        "#constituency_code": {
-                                          value: { __template: "{{{data.postcodeLookup.[0].region_codes.constituency}}}" }
-                                        },
                                         "#nuts_3": {
                                           value: { __template: "{{data.postcodeLookup.[0].nuts_3}}" }
-                                        },
-                                        "#nuts_3_code": {
-                                          value: { __template: "{{data.postcodeLookup.[0].region_codes.nuts_3}}" }
-                                        },
-                                        "#district_code": {
-                                          value: { __template: "{{{data.postcodeLookup.[0].region_codes.district}}}" }
                                         },
                                         "#ward": {
                                           value: { __template: "{{{data.postcodeLookup.[0].ward}}}" }
                                         },
-                                        "#ward_code": {
-                                          value: { __template: "{{{data.postcodeLookup.[0].region_codes.ward}}}" }
-                                        },
-                                        "#datazone": {
+                                        "#simd_datazone": {
                                           value: { __template: "{{{data.postcodeLookup.[0].simd_datazone}}}" }
-                                        },
-                                        "#simd_decile": {
-                                          value: { __template: "{{{data.postcodeLookup.[0].simd_decile}}}" }
-                                        },
-                                        "#simd_quintile": {
-                                          value: { __template: "{{{data.postcodeLookup.[0].simd_quintile}}}" }
-                                        },
-                                        "#simd_vigintile": {
-                                          value: { __template: "{{{data.postcodeLookup.[0].simd_vigintile}}}" }
                                         },
                                         "#simd_rank": {
                                           value: { __template: "{{{data.postcodeLookup.[0].simd_rank}}}" }
