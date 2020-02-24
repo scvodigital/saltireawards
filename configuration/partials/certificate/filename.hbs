@@ -1,41 +1,11 @@
-{{~#compare (length @root.data.pdfObjects) ">" 1 ~}}
-{{slugify (concat "Group " @root.context.metaData.title " certificates")}}
+{{~#compare (length @root.data.pdfObjects) ">" 1~}}
+{{slugify (concat "Group " @root.context.metaData.title " certificates")}}.pdf
 {{~else~}}
-{{~#each @root.data.pdfObjects ~}}
-{{~#compare user.certificate_type "hours" ~}}
-{{~#each @root.context.metaData.certificates ~}}
-{{~#ifAll (compare ../type "group") (compare ../user.hours_verified "!==" 0) (compare ../user.hours_verified "!==" 1) ~}}
-{{~#compare hours ../user.hours_verified ~}}
-{{~#compare ../type "group" ~}}
-{{slugify (concat @root.context.metaData.certificateName " for " hours " hours " ../user.first_name " " ../user.last_name)}}
+{{~#with @root.data.pdfObjects.[0] ~}}
+{{~#compare user.certificate_type "hours"~}}
+{{slugify (concat "Saltire Award for " user.hours_verified " hours " user.first_name " " user.last_name)}}.pdf
 {{~else~}}
-{{slugify (concat "My " @root.context.metaData.certificateName " for " hours " hours")}}
-{{~/compare ~}}
-{{~/compare ~}}
-{{~else~}}
-{{~#ifAll (compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) ">=" hours) (compare (sumArray (pluck @root.data.tasksInfo "hours_verified")) "<" next_award_hours) }}
-{{~#unless (compare hours 1) ~}}
-{{~#unless (compare @root.data.accountInfo.hours_verify_award ">" hours) ~}}
-{{~#compare ../type "group" ~}}
-{{slugify (concat @root.context.metaData.certificateName " for " hours " hours " ../user.first_name " " ../user.last_name)}}
-{{~else~}}
-{{slugify (concat "My " @root.context.metaData.certificateName " for " hours " hours")}}
-{{~/compare ~}}
-{{~/unless ~}}
-{{~/unless ~}}
-{{~/ifAll ~}}
-{{~/ifAll ~}}
-{{~/each ~}}
-{{~else~}}
-{{~#each @root.context.metaData.certificates ~}}
-{{~#compare ../user.certificate_type type ~}}
-{{~#compare ../type "group" ~}}
-{{slugify (concat @root.context.metaData.title " " type " certificate " ../user.first_name " " ../user.last_name)}}
-{{~else~}}
-{{slugify (concat "My " @root.context.metaData.title " " type " certificate")}}
-{{~/compare ~}}
-{{~/compare ~}}
-{{~/each ~}}
-{{~/compare ~}}
-{{~/each ~}}
-{{~/compare ~}}
+{{slugify (concat "Saltire " user.certificate_type " Award " user.first_name " " user.last_name)}}.pdf
+{{~/compare~}}
+{{~/with~}}
+{{~/compare~}}

@@ -25,7 +25,7 @@
       "renderer": "handlebars",
       "config": {
         "definitionTemplate": ">context.metaData.handlebars.templates.volunteering_certificate_pdf-definition",
-        "contentDispositionTemplate": "attachment; filename={{> certificate_filename}}.pdf"
+        "contentDispositionTemplate": "attachment; filename={{> certificate_filename}}"
       }
     }
   ]
