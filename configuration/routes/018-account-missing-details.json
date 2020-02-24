@@ -1,0 +1,38 @@
+{
+  "name": "account-missing-details",
+  "debug": true,
+  "pattern": "/account-missing-details",
+  "errorRoute": "five_hundred",
+  "metaData": {
+    "title": "My account"
+  },
+  "tasks": [
+    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.getAccountInfo",
+    "context.metaData.commonTasks.isAdmin",
+    {
+      "name": "destination",
+      "taskModule": "renderLayout",
+      "renderer": "handlebars",
+      "config": {
+        "logic": {
+          "if": [
+            "default"
+          ]
+        },
+        "output": "body",
+        "layouts": {
+          "default": {
+            "layout": ">context.metaData.handlebars.layouts.default",
+            "parts": {
+              "head": ">context.metaData.handlebars.templates.pages_head-tags",
+              "body": ">context.metaData.handlebars.templates.account_account"
+            },
+            "contentType": "text/html"
+          }
+        }
+      }
+    }
+
+  ]
+}

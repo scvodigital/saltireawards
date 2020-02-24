@@ -63,7 +63,7 @@
       </div>
       <div class="column col-8 col-sm-12">
         <div class="has-icon-right d-inline-block" data-component="Typeahead" data-Typeahead="typeahead-school">
-          <input class="form-input" id="school_college_name" name="school_college_name" type="text" value="{{@root.data.accountInfo.school_college_name}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="school-lookup" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.school_college_name}}>
+          <input class="form-input" id="school_college_name" name="school_college_name" type="text" value="{{@root.data.accountInfo.school_college_name}}" placeholder="" autocomplete="nope" data-lpignore="true" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.school_college_name}}>
           <div class="caption">
             Leave blank if not in education
           </div>
@@ -106,7 +106,9 @@
     </div>
     <div class="column col-2 col-md-3 col-sm-4 col-xs-5">
       <div class="has-icon-right d-inline-block" id="postcode-wrapper">
-        <input class="form-input" id="postcode" name="postcode" type="text" value="{{@root.data.accountInfo.postcode}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="postcode-lookup" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.postcode}}>
+        <input class="form-input" id="postcode" name="postcode" type="text"
+        value="{{#unless (compare @root.data.accountInfo.postcode '===' 'TR19 7AA')}}{{@root.data.accountInfo.postcode}}{{/unless}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="postcode-lookup" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.postcode}}>
+
         <span class="form-icon far {{#if hasPostcode}}fa-check text-success{{else}}fa-times text-error{{/if}}" id="postcode-validation-icon"></span>
       </div>
     </div>
