@@ -11,8 +11,11 @@
   <div class="container">
     <div class="columns">
       <div class="column col-9 col-xl-12">
+        {{#if @root.data.accountInfo.postcode}}
         <h2>Details</h2>
-
+        {{else}}
+          <h2>Some of your details are missing or incorrect, please update these to continue using the site</h2>
+        {{/if}}
         <form id="user-details-form" action="/update-account-details" method="POST" class="details-form" data-component="TasksTrigger" data-TasksTrigger='{
           change: { tasks: [ "validate-details-form" ] },
           keyup: { tasks: [ "validate-details-form" ] },

@@ -237,21 +237,32 @@
 		"name": "signUpReroute",
 		"taskModule": "reroute",
 		"config": {
-			"if": [{
-					"missing": "data.accountInfo.external_id"
-				},
-				"sd-needed",
-				{
-					"if": [{
-							"var": "data.accountInfo.approval_needed"
+			"if": [
+						{
+							"missing": "data.accountInfo.external_id"
 						},
-						"approval-required",
+						"sign-up-details",
+				{
+					"if": [
+						{
+							"or": [
+								{
+									"missing": "data.accountInfo.postcode"
+								},
+								{
+									"===": [{"var": "data.accountInfo.postcode"},"TR19 7AA"]
+								}
+							]
+						},
+						"account-missing-details",
 						null
 					]
 				}
 			]
-		}
-	},
+				}
+
+		},
+
   "tasksRequired": {
 		"name": "noTasksReroute",
 		"taskModule": "reroute",

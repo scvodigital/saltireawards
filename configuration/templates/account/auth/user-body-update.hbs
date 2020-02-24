@@ -5,19 +5,20 @@
         {{{json key='hours_verify_code' value=@root.data.accountInfo.hours_verify_code}}},
         {{{json key='hours_verify_award' value=@root.data.accountInfo.hours_verify_award }}},
         {{{json key='hours_verify_sent_date' value=@root.data.accountInfo.hours_verify_sent_date}}},
-
         {{#if @root.data.codeRequired}}
           {{{json key='approval_code' value=code}}},
           {{{json key='approval_email' value=approval_email}}},
           {{#json key='approval_url' type="text"}}{{@root.context.metaData.url}}/user-approval/?code={{code}}&user_id={{external_id}}{{/json}},
           {{#json key='approval_needed' type="boolean"}}true{{/json}},
         {{else}}
+          {{{json key='approval_email' value=@root.data.accountInfo.approval_email}}},
+          {{{json key='approval_code' value=@root.data.accountInfo.approval_code}}},
           "approval_needed" : false, {{!-- Hack - it's not possible to enter false in the json parser due to a bug --}}
         {{/if}}
         {{{json key='first_name' value=(stripTags first_name)}}},
         {{{json key='last_name' value=(stripTags last_name)}}},
         {{{json key='postcode' value=(stripTags postcode)}}},
-        {{{json key='external_id' value=(stripTags external_id)}}},
+        {{{json key='external_id' value=@root.data.auth.uid}}},
         {{{json key='date_of_birth' value=@root.data.accountInfo.date_of_birth}}}, {{!-- Can't update DOB after first submit --}}
         {{{json key='organisation_name' value=(stripTags organisation_name)}}},
         {{{json key='school_college_name' value=(stripTags school_college_name)}}},
