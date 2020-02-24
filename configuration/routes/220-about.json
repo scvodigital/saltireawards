@@ -5,6 +5,7 @@
   "errorRoute": "five_hundred",
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
+    "context.metaData.commonTasks.getAccountInfo",
     {
       "name": "destination",
       "taskModule": "renderLayout",

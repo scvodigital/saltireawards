@@ -514,6 +514,7 @@ header {
     color: $secondary-color !important;
   }
   .my-account {
+    z-index: 100;
     background: white !important;
     border-radius: $unit*2;
     margin-left: $unit/3;
