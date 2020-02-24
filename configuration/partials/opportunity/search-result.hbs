@@ -1,4 +1,40 @@
 <div class="card search-result b-margin-full" data-opportunity-id="{{Id}}" data-opportunity-layout="Search Result" data-opportunity-context="{{default viewContext "Search Results"}}">
+  {{#unless (compare action 'organisation') ~}}
+  {{#compare @root.route.name "volunteering_search" ~}}
+  {{#ifAll @root.request.params.query.location @root.request.params.query.lat @root.request.params.query.lng ~}}
+  {{#if distance ~}}
+  {{#compare distance "!==" "Infinity" ~}}
+  <div class="caption search-info label t-padding b-padding l-padding-full r-padding-full">
+    <span class="fa-li"><span class="fas fa-location-arrow fa-fw" title="Distance"></span></span>
+    {{#compare distance "<" 4 ~}}
+      Less than {{inflect (round distance "up") "mile" "miles" true}} away
+    {{else}}
+      {{#compare distance "<" 10 ~}}
+        Within {{round distance "up"}} miles
+      {{else}}
+        {{round distance "up"}} miles away
+      {{/compare ~}}
+    {{/compare ~}}
+  </div>
+  {{/compare ~}}
+  {{else}}
+  <div class="caption search-info label t-padding b-padding l-padding-full r-padding-full">
+  {{#compare advertised_areas.length ">" 0 ~}}
+  This opportunity is not listed at a specific location but is advertised across
+  {{#compare (getType advertised_areas) "string" ~}}
+  {{{advertised_areas}}}.
+  {{else}}
+  {{#each advertised_areas ~}}
+  {{#if @last}} and {{/if}}{{{this}}}{{#unless @last}}{{#compare ../advertised_areas.length ">" 2}},{{/compare}} {{else}}.{{/unless}}
+  {{/each ~}}
+  {{/compare ~}}
+  {{/compare ~}}
+  </div>
+  {{/if ~}}
+  {{/ifAll ~}}
+  {{/compare ~}}
+  {{/unless ~}}
+
   {{> opportunity_key_info type="search-result"}}
   {{!-- <div class="divider"></div> --}}
   {{#compare (trim (getProperty @root.data.profileInfo.notes Id)) "!==" "" ~}}
