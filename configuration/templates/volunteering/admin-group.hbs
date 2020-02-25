@@ -80,16 +80,20 @@
 
           {{#compare (length awards_list) ">" 0 ~}}
             <div class="columns">
-              <div class="column col-4 hide-xl">
+              <div class="column col-2 hide-xl">
                 <strong>Volunteer name</strong>
               </div>
               <div class="column col-3 hide-xl">
+                <strong>Volunteer role</strong>
+              </div>
+              <div class="column col-2 hide-xl">
                 <strong>Certificate</strong>
               </div>
               <div class="column col-2 hide-xl">
                 <strong>Claim code</strong>
               </div>
-              <div class="column col-1 hide-xl"></div>
+              <div class="column col-1 hide-xl">
+              </div>
               <div class="column col-2 col-xl-3 col-lg-4 col-md-6 col-sm-8 col-xs-9">
                 <a href="/group-certificate/{{task_id}}" class="btn btn-primary btn-block b-margin">Download all</a>
               </div>
@@ -100,24 +104,22 @@
                 <div class="columns" id="{{award_id}}-row">
                   <div class="column col-2 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6">
                     <div class="form-group b-margin">
-                      {{!-- <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="group_award_first_name" value="group_award_first_name}}}"> --}}
-                      <span id="{{award_id}}-group_award_first_name">{{group_award_first_name }}</span>
+                      {{group_award_first_name}} {{group_award_last_name}}
                     </div>
                   </div>
-                  <div class="column col-2 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6">
+                  <div class="column col-3 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6">
                     <div class="form-group b-margin">
-                      {{!-- <input {{#unless claim_code}}disabled{{/unless}} class="form-input inline-edit" name="group_award_last_name" value="group_award_last_name}}}"> --}}
-                      <span id="{{award_id}}-group_award_last_name">{{group_award_last_name }}</span>
+                      {{role_1}}
                     </div>
                   </div>
-                  <div class="column col-3 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-7">
+                  <div class="column col-2 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-7">
                     <div class="form-group b-margin">
                     <span id="{{award_id}}-award_level">
                       {{#each @root.context.metaData.certificates ~}}
                         {{#unless tsi_only ~}}
                           {{#compare api_name ../award_level ~}}
                             {{#ifAny (compare type "approach") (compare type "ascent") ~}}
-                              {{type_name}}: {{hours}} hours
+                              {{hours}} hours
                             {{else}}
                               {{type_name}}
                             {{/ifAny ~}}

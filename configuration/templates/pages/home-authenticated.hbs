@@ -5,7 +5,7 @@
     <span class="fal fa-users fa-3x"></span>
   </div>
   <p class="empty-title h5">
-    {{#compare (sumArray (pluck @root.data.tasksInfo "hours")) 0 ~}}
+    {{#compare (length @root.data.tasksInfo) 0 ~}}
     You haven't added any groups yet
     {{else}}
     You have added {{inflect (length @root.data.tasksInfo) "group" "groups" true}}
