@@ -7,6 +7,6 @@
   "school_college_name": {"maxlength": 64},
   "organisation_name": {"required": true, "maxlength": 255},
   "approval_email": {"type": "email", "maxlength": 128},
-  "phone": {"type": "number", "maxlength": 15},
+  "phone": {"required": true, "maxlength": 64},
   "title": {"required": true, "maxlength": 128}
 }
