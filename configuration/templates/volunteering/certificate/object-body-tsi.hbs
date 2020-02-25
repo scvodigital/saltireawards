@@ -5,7 +5,7 @@
         {{{json key='type' value=award_type}}},
         {{#json key='user' ~}}
           {{{json key='first_name' value=recipient_first_name}}},
-          {{{json key='last_name' value=recipient_first_name}}},
+          {{{json key='last_name' value=recipient_last_name}}},
           {{#compare award_level_numerical_value ">" 0 ~}}
             {{{json key='certificate_type' value="hours"}}},
             {{{json key='hours_verified' value=award_level_numerical_value}}}
