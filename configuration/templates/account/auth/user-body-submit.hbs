@@ -13,7 +13,6 @@
         {{else}}
           "approval_needed" : false, {{!-- Hack - it's not possible to enter false in the json parser due to a bug --}}
         {{/if}}
-
         {{{json key='first_name' value=(stripTags first_name)}}},
         {{{json key='last_name' value=(stripTags last_name)}}},
         {{{json key='postcode' value=(stripTags postcode)}}},
