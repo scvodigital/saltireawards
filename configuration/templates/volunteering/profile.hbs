@@ -130,6 +130,23 @@
       {{/compare ~}}
       {{/each ~}}
     </div>
+
+    {{#ifAny @root.data.accountInfo.awards_list.[0].un_sustainable_development_goals @root.data.accountInfo.awards_list.[1].un_sustainable_development_goals @root.data.accountInfo.awards_list.[2].un_sustainable_development_goals @root.data.accountInfo.awards_list.[3].un_sustainable_development_goals @root.data.accountInfo.awards_list.[4].un_sustainable_development_goals @root.data.accountInfo.awards_list.[5].un_sustainable_development_goals @root.data.accountInfo.awards_list.[6].un_sustainable_development_goals @root.data.accountInfo.awards_list.[7].un_sustainable_development_goals ~}}
+    <h2>Sustainable Development Goals</h2>
+
+    <p>
+      Contributing towards:
+      {{#each (unique (split (concat @root.data.accountInfo.awards_list.[0].un_sustainable_development_goals ';' @root.data.accountInfo.awards_list.[1].un_sustainable_development_goals ';' @root.data.accountInfo.awards_list.[2].un_sustainable_development_goals ';' @root.data.accountInfo.awards_list.[3].un_sustainable_development_goals ';' @root.data.accountInfo.awards_list.[4].un_sustainable_development_goals ';' @root.data.accountInfo.awards_list.[5].un_sustainable_development_goals ';' @root.data.accountInfo.awards_list.[6].un_sustainable_development_goals ';' @root.data.accountInfo.awards_list.[7].un_sustainable_development_goals) ';'))}}
+      {{#if this ~}}
+      <br />
+      <a href="https://globalgoals.org/{{> sdg_number sdg=this}}-{{slugify this}}"><span style="color:{{> sdg_color sdg=this}};">{{> sdg_number sdg=this}}: {{this}}</span></a>
+      {{/if ~}}
+      {{/each ~}}
+    </p>
+    <p>
+      <a href="/sustainable-development-goals">Read more about the UN Sustainable Development Goals</a>
+    </p>
+    {{/ifAny ~}}
   </div>
 </div>
 {{/ifAll ~}}
