@@ -186,6 +186,13 @@
 },
 {{/if ~}}
 {{/if ~}}
+{{#if extra_organisations ~}}
+{
+  "text": {{>pdf_metadata_value key="title" default=(concat "Plus " (inflect extra_organisations "other organisation" "other organisations" true))}},
+  "margin": [0, 15, 0, 0],
+  "style": "volunteering_detail"
+},
+{{/if ~}}
 {{!-- {{#if sdgs ~}}
 {
   "text": {{>pdf_metadata_value key="title" default=(concat "Contributing towards " (inflect (length (split sdgs ';')) 'Goal' 'Goals'))}},

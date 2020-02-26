@@ -39,12 +39,12 @@
     "volunteering_title": {
       "font": "Montserrat",
       "fontSize": 13,
-      "alignment": "left"
+      "alignment": "center"
     },
     "volunteering_detail": {
       "font": "Montserrat",
       "fontSize": 12,
-      "alignment": "left"
+      "alignment": "center"
     },
     "signature": {
       "font": "Montserrat",
