@@ -12,7 +12,9 @@
       This runs off the common task getAwardInfo, which itself listens to the url (?award=) or failing that, the user's maximum_award_level.
 
       Note - this will result in an error if the award is bad, or the user doesn't have it, we could easily divert to a no award page though, rather than 500.
-
+>>>
+      <p>{{getProperty  @root.context.metaData.youngScotSettings.points-per-certificate (lowercase @root.request.params.query.award)}}</p>
+   <<<
       {{num @root.data.accountInfo.hours_verify_award}}
       {{num @root.data.accountInfo.tsi_award_authorization_level}}
       {{#compare (num @root.data.accountInfo.hours_verify_award) ">" (num @root.data.accountInfo.tsi_award_authorization_level)}}

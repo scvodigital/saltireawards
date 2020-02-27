@@ -1,5 +1,14 @@
 {
-  "points-per-certificate" : 10,
+  "points-per-certificate" : {
+    "challenge" : 250,
+    "10" : 250,
+    "25" : 500,
+    "50" : 500,
+    "100" : 1000,
+    "200" : 1500,
+    "500" : 2000,
+    "summit" : 2500
+  },
   "low-codes-reminder" : 40,
   "low-codes-reminder2" : 15,
   "low-codes-reminder-email" : "alex.nuttgens@scvo.org.uk"
