@@ -13,7 +13,17 @@
     "context.metaData.commonTasks.getAwardsStatus",
     "context.metaData.commonTasks.fullSignUpRequired",
     "context.metaData.commonTasks.isAdmin",
-    "context.metaData.commonTasks.getTasksInfo",
+    {
+      "name": "taskInfo",
+      "taskModule": "salesforceApex",
+      "renderer": "handlebars",
+      "config": {
+        "connection": "scvoAlexSandbox",
+        "output": "data",
+        "method": "GET",
+        "apexClassPath": "/SaltireTask/?task_id={{@root.request.params.task_id}}"
+      }
+    },
     "context.metaData.commonTasks.tasksRequired",
     {
       "name": "destination",

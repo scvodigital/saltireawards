@@ -21,7 +21,7 @@
 
 
   {{#if @root.request.params.task_id ~}}
-    {{#each @root.data.tasksInfo ~}}
+    {{#with @root.data.taskInfo ~}}
       {{#compare task_id @root.request.params.task_id ~}}
         <div class="task task-{{task_id}}">
           <div class="columns">
@@ -329,7 +329,7 @@
         </div>
       </div>
       {{/compare ~}}
-    {{/each ~}}
+    {{/with ~}}
   {{/if ~}}
 </div>
 

@@ -2,7 +2,7 @@
   {{#json}}
     {{#json key='users' type='array'}}
       {{#json}}
-        {{{json key='hours_verify_code' value=@root.data.accountInfo.hours_verify_code}}},
+        {{{json key='hours_verify_code' value=(default @root.data.accountInfo.hours_verify_code code)}}},
         {{{json key='hours_verify_award' value=@root.data.accountInfo.hours_verify_award }}},
         {{{json key='hours_verify_sent_date' value=@root.data.accountInfo.hours_verify_sent_date}}},
         {{#if @root.data.codeRequired}}
