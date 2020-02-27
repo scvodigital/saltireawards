@@ -1,0 +1,14 @@
+{
+  "name": "redirect_3",
+  "pattern": "/get-an-award",
+  "tasks": [
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": "/info-for-volunteers",
+        "statusCode": 301
+      }
+    }
+  ]
+}

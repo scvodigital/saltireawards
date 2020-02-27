@@ -1,0 +1,14 @@
+{
+  "name": "redirect_2",
+  "pattern": "/resources-for-organisations",
+  "tasks": [
+    {
+      "name": "destination",
+      "taskModule": "redirect",
+      "config": {
+        "location": "/info-for-groups",
+        "statusCode": 301
+      }
+    }
+  ]
+}
