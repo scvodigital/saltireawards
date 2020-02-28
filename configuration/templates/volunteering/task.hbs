@@ -77,24 +77,26 @@
         <div class="form-horizontal">
           <div class="form-group">
             <div class="column col-4 col-md-12">
-              <label for="organisation_name" class="form-label popover popover-bottom">
+              <label for="organisation_name" class="form-label">
                 {{#if @root.data.isAdmin ~}}
                 Organisation or organisations your group has volunteered with
                 {{else}}
                 Organisation you volunteer with
                 {{/if ~}}
-                <span class="far fa-info-circle"></span>
-                <div class="popover-container">
-                  <div class="card">
-                    <div class="card-body">
-                      {{#if @root.data.isAdmin ~}}
-                      This information will appear on each young person's certificate so please make sure it is accurate
-                      {{else}}
-                      This information will appear on your certificate so please make sure it is accurate
-                      {{/if ~}}
+                <span class="far fa-info-circle popover popover-bottom">
+                  <div class="popover-container">
+                    <div class="card">
+                      <div class="card-body caption">
+                        Required.
+                        {{#if @root.data.isAdmin ~}}
+                        This information will appear on each young person's certificate so please make sure it is accurate.
+                        {{else}}
+                        This information will appear on your certificate so please make sure it is accurate.
+                        {{/if ~}}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </span>
               </label>
             </div>
             <div class="column col-8 col-md-12">
@@ -105,16 +107,21 @@
           </div>
           <div class="form-group">
             <div class="column col-4 col-md-12">
-              <label for="location" class="form-label popover popover-bottom">
+              <label for="location" class="form-label">
                 Location
-                <span class="far fa-info-circle"></span>
-                <div class="popover-container">
-                  <div class="card">
-                    <div class="card-body">
-                      Optional
+                <span class="far fa-info-circle popover popover-bottom">
+                  <div class="popover-container">
+                    <div class="card">
+                      <div class="card-body caption">
+                        {{#if @root.data.isAdmin ~}}
+                        Optional. This is for your own reference and not shown on certificates.
+                        {{else}}
+                        Optional. This is not shown on certificates but is shown on your profile.
+                        {{/if ~}}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </span>
               </label>
             </div>
             <div class="column col-8 col-md-12">
@@ -137,24 +144,26 @@
           <input autocomplete="nope" id="organisation_id" name="organisation_id" value="{{@root.data.taskInfo.organisation_id}}" type="hidden" />
           <div class="form-group">
             <div class="column col-4 col-md-12">
-              <label for="task_role" class="form-label popover popover-bottom">
+              <label for="task_role" class="form-label">
                 {{#if @root.data.isAdmin ~}}
                 Volunteer role
                 {{else}}
                 My volunteer role
                 {{/if ~}}
-                <span class="far fa-info-circle"></span>
-                <div class="popover-container">
-                  <div class="card">
-                    <div class="card-body">
-                      {{#if @root.data.isAdmin ~}}
-                      This can be altered on each individual certificate
-                      {{else}}
-                      This information may appear on your certificate so please make sure it is accurate
-                      {{/if ~}}
+                <span class="far fa-info-circle popover popover-bottom">
+                  <div class="popover-container">
+                    <div class="card">
+                      <div class="card-body caption">
+                        Required.
+                        {{#if @root.data.isAdmin ~}}
+                        This can be altered on each individual certificate.
+                        {{else}}
+                        This information may appear on your certificate so please make sure it is accurate.
+                        {{/if ~}}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </span>
               </label>
             </div>
             <div class="column col-8 col-md-12">
@@ -165,16 +174,17 @@
           {{#unless @root.data.isAdmin ~}}
           <div class="form-group">
             <div class="column col-4 col-md-12">
-              <label for="task_description" class="form-label popover popover-bottom">
+              <label for="task_description" class="form-label">
                 Tell us what you have been doing in your role
-                <span class="far fa-info-circle"></span>
-                <div class="popover-container">
-                  <div class="card">
-                    <div class="card-body">
-                      You could make a note of all the activities you have been doing, the skills and experience you have gained as well as any challenges you have faced.  You will be able to look back at this for reference and use it to as part of a CV or job application
+                <span class="far fa-info-circle popover popover-bottom">
+                  <div class="popover-container">
+                    <div class="card">
+                      <div class="card-body caption">
+                        You could make a note of all the activities you have been doing, the skills and experience you have gained as well as any challenges you have faced.  You will be able to look back at this for reference and use it to as part of a CV or job application.
+                      </div>
                     </div>
                   </div>
-                </div>
+                </span>
               </label>
             </div>
             <div class="column col-8 col-md-12">
@@ -185,7 +195,7 @@
           {{#if @root.data.isAdmin ~}}
             {{!-- <div class="form-group">
               <div class="column col-4 col-md-12">
-                <label for="testimonial" class="form-label popover popover-bottom">
+                <label for="testimonial" class="form-label">
                   Let people know about your volunteers achievements with a testimonial
                   <div class="caption">
                     This will be shown on their certificates
@@ -198,16 +208,17 @@
             </div> --}}
             <div class="form-group">
               <div class="column col-4 col-md-12">
-                <label for="internal_reference" class="form-label popover popover-bottom">
+                <label for="internal_reference" class="form-label">
                   Your reference
-                  <span class="far fa-info-circle"></span>
-                  <div class="popover-container">
-                    <div class="card">
-                      <div class="card-body">
-                        This is just for your own reference and is not shown on certificates
+                  <span class="far fa-info-circle popover popover-bottom">
+                    <div class="popover-container">
+                      <div class="card">
+                        <div class="card-body caption">
+                          Optional. This is for your own reference and not shown on certificates.
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </span>
                 </label>
               </div>
               <div class="column col-8 col-md-12">
@@ -217,16 +228,19 @@
           {{/if}}
           <div class="form-group">
             <div class="column col-4 col-md-12">
-              <label for="un_sustainable_development_goals" class="form-label popover popover-bottom r-margin">
-                Which UN Sustainable Development Goals does this volunteering contribute towards? (optional)
-                <span class="far fa-info-circle"></span>
-                <div class="popover-container">
-                  <div class="card">
-                    <div class="card-body">
-                      The United Nations <a href="https://globalgoals.org" target="_blank">Sustainable Development Goals</a> (SDGs) are key to ensuring that everyone, regardless of who you are, has access to the best possible livelihood and future. The SDGs, are a set of seventeen goals that tackle a range of issues: from improving health, ending hunger, poverty, and inequality to acting on the climate emergency that requires rapid change. The 2030 Agenda for Sustainable Development recognises volunteer groups as key stakeholders to achieve the 17 SDGs. We must all do our bit if we are to realise the ambition of the SDGs by 2030. <a href="/sustainable-development-goals" target="_blank">Read more</a>
+              <label for="un_sustainable_development_goals" class="form-label r-margin">
+                Which UN Sustainable Development Goals does this volunteering contribute towards?
+                <span class="far fa-info-circle popover popover-bottom">
+                  <div class="popover-container">
+                    <div class="card">
+                      <div class="card-body caption">
+                        Optional. If you choose any, the SDG logo will appear on your certificates and the SDGs you contribute towards will appear on your profile.<br />
+                        The United Nations <a href="https://globalgoals.org" target="_blank">Sustainable Development Goals</a> (SDGs) are key to ensuring that everyone, regardless of who you are, has access to the best possible livelihood and future. The SDGs, are a set of seventeen goals that tackle a range of issues: from improving health, ending hunger, poverty, and inequality to acting on the climate emergency that requires rapid change. The 2030 Agenda for Sustainable Development recognises volunteer groups as key stakeholders to achieve the 17 SDGs. We must all do our bit if we are to realise the ambition of the SDGs by 2030.<br />
+                        <a href="/sustainable-development-goals" target="_blank">Read more</a>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </span>
               </label>
             </div>
             <div class="column col-8 col-md-12">
