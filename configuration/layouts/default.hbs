@@ -83,11 +83,11 @@
   <link type="text/css" rel="stylesheet" href="{{~>asset_url url='main.css'}}" />
 </head>
 <body>
-  {{!-- {{#unless (contains request.url.hostname ".local") ~}}
+  {{#unless (contains request.url.hostname ".local") ~}}
   <div class="text-white bg-warning text-centre v-padding">
-    This website is currently in development, but it will send emails so please only use your own email addresses when testing
+    This website is currently in development, but it will send emails so please only use your own email addresses when testing. Any accounts you create will be deleted by w/c 9th March.
   </div>
-  {{/unless ~}} --}}
+  {{/unless ~}}
   <div class="page">
   {{#ifAny request.params.query.debug (contains request.url.hostname ".local") ~}}
     {{#if errors.[0]}}
