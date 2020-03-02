@@ -5,7 +5,21 @@
   </strong>
   {{inflect paging.totalResults "opportunity" "opportunities"}}
   for age
-  {{default @root.request.params.query.age 18}}+
+  {{#unless @root.data.auth ~}}
+  18+
+  {{else}}
+  {{#if @root.request.params.query.age ~}}
+  {{@root.request.params.query.age}}+
+  {{else}}
+  {{#ifAll (compare (dateMath 'now-12y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) (compare (dateMath 'now-13y') '<' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD'))}}12+{{/ifAll}}
+  {{#ifAll (compare (dateMath 'now-13y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) (compare (dateMath 'now-14y') '<' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD'))}}13+{{/ifAll}}
+  {{#ifAll (compare (dateMath 'now-14y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) (compare (dateMath 'now-15y') '<' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD'))}}14+{{/ifAll}}
+  {{#ifAll (compare (dateMath 'now-15y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) (compare (dateMath 'now-16y') '<' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD'))}}15+{{/ifAll}}
+  {{#ifAll (compare (dateMath 'now-16y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) (compare (dateMath 'now-17y') '<' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD'))}}16+{{/ifAll}}
+  {{#ifAll (compare (dateMath 'now-17y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')) (compare (dateMath 'now-18y') '<' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD'))}}17+{{/ifAll}}
+  {{#compare (dateMath 'now-18y') '>=' (moment @root.data.accountInfo.date_of_birth 'YYYY-MM-DD')}}18+{{/compare}}
+  {{/if ~}}
+  {{/unless}}
   on
   <a href="https://search.volunteerscotland.net{{@root.request.url.path}}{{#unless @root.request.params.query.age}}{{#compare @root.request.url.path '/search'}}?{{else}}&amp;{{/compare}}age=18{{/unless}}">Volunteer Scotland</a>
   {{if @root.request.params.query.exclude "(filtered)"}}
