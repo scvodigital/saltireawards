@@ -20,7 +20,7 @@
     "twitter": "saltireawards",
     "contacts": {
       "admin": "support@saltireawards.scot",
-      "noreply": "noreply@saltireawards.scot",
+      "noreply": "no-reply@saltireawards.scot",
       "technical": "webhelpdesk@scvo.org.uk"
     },
     "youngScotSettings": "{:./data/young-scot-settings.json}",

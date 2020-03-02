@@ -15,10 +15,17 @@
     "subject": "Welcome to the {{@root.context.metaData.title}}",
     "html":
     {{~#blockStringify this ~}}
+    {{~#compare @root.data.accountInfo.user_type 'Group Admin' ~}}
+      {{~>
+      (getProperty @root.context.metaData.emailSendSettings 'welcome_admin.bodyPartial')
+        this
+      ~}}
+    {{else}}
       {{~>
       (getProperty @root.context.metaData.emailSendSettings 'welcome.bodyPartial')
         this
       ~}}
+    {{~/compare ~}}
     {{~/blockStringify ~}}
   }
   {{/if ~}}
