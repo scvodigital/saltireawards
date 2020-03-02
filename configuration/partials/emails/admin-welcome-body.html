@@ -197,28 +197,13 @@
                                     <tr>
                                       <td align="left" style="font-size:0px;padding:0px;word-break:break-word;">
                                         <div style="font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:16px;line-height:20px;text-align:left;color:#16204e;">
-                                          <p> Hello, </p>
-                                          <p> You are receiving this email because {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}}
-                                            {{#if @root.data.accountInfo.school_college_name}}from {{@root.data.accountInfo.school_college_name}}{{/if}} is applying for a {{@root.context.metaData.title}} {{@root.context.metaData.certificateName}} for volunteering with your organisation and has named you as their volunteer manager. </p>
-                                          <p> Please confirm the following volunteering hours are accurate and were completed with your organisation and within the last two years by clicking on the appropriate link below. </p>
-                                          <ul>
-                                            {{#each @root.data.tasksInfoUnverified}}
-                                              {{#compare unverified_hours_list.length ">=" 1}}
-                                                {{#compare this.volunteer_manager_email "===" ../this}}
-                                                  <li>
-                                                    <strong>Volunteering</strong> for <strong>{{organisation_name}}</strong>, Manager: {{volunteer_manager_first_name}} {{volunteer_manager_last_name}} - {{volunteer_manager_title}}
-                                                    <ul>
-                                                      <li>Role: {{truncate task_role 140}}</li>
-                                                      {{#each this.unverified_hours_list}}
-                                                        <li>Hours: {{hours}} - logged on: {{momentFormat (moment createdDate "YYYY-MM-DD") "MMMM Do YYYY"}}</li>
-                                                      {{/each}}
-                                                    </ul>
-                                                  </li>
-                                                {{/compare}}
-                                              {{/compare}}
-                                            {{/each}}
-                                          </ul>
-                                          <p> Please <a href="{{@root.context.metaData.url}}/verify-hours/?t={{>account_list_tasks email=this}}&c={{@root.data.verifyInfoBody.hours_verify_code}}&user_id={{@root.data.auth.uid}}">confirm these hours are correct</a> or <a href="{{@root.context.metaData.url}}/query-hours/?t={{>account_list_tasks email=this}}&c={{@root.data.verifyInfoBody.hours_verify_code}}&user_id={{@root.data.auth.uid}}">make any amendments</a>. </p>
+                                          <p> Hello {{@root.data.accountInfo.first_name}}, welcome to the {{@root.context.metaData.title}}! </p>
+                                          <p> As you are now a {{@root.context.metaData.title}} Group Administrator, you’ll be helping young people in your area be celebrated, recognised and rewarded for the volunteering they are doing. </p>
+                                          <p> There are lots of hints and tips on the website to help you in your role as Group Administrator, so all you need to do is <a href="{{@root.context.metaData.url}}/sign-in-admin">sign in and get started</a>! </p>
+                                          <p> Don’t forget your local Third Sector Interface (TSI) are always on hand to help too. </p>
+                                          <p> Thank you<br />
+                                            {{@root.context.metaData.title}}
+                                          </p>
                                         </div>
                                       </td>
                                     </tr>
