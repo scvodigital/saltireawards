@@ -25,7 +25,7 @@
         "logo": "avashire.png",
         "website": "http://www.avashire.org.uk",
         "twitter": "https://twitter.com/avashire",
-        "facebook": "https://en-gb.facebook.com/AberdeenshireVoluntaryAction1/"
+        "facebook": "https://en-gb.facebook.com/AberdeenshireVoluntaryAction1"
       }
     }
   },
@@ -55,7 +55,7 @@
         "logo": "abtsi.png",
         "website": "http://www.argylltsi.org.uk",
         "twitter": "https://twitter.com/argyll_butetsi",
-        "facebook": "https://www.facebook.com/ArgyllTSI/"
+        "facebook": "https://www.facebook.com/ArgyllTSI"
       }
     }
   },
@@ -70,7 +70,7 @@
         "logo": "ctsi.png",
         "website": "http://ctsi.org.uk",
         "twitter": "https://twitter.com/clacksctsi",
-        "facebook": "https://www.facebook.com/CTSIalloa/"
+        "facebook": "https://www.facebook.com/CTSIalloa"
       }
     }
   },
@@ -84,8 +84,9 @@
         "phone": "03003038558",
         "logo": "dg.jpg",
         "website": "http://www.tsdg.org.uk",
-        "twitter": "https://twitter.com/3rdSectorDG",
-        "facebook": "https://www.facebook.com/thirdsectordg/"
+        "twitter": "https://twitter.com/thirdsectordg",
+        "instagram": "https://www.instagram.com/thirdsectordg",
+        "facebook": "https://www.facebook.com/thirdsectordg"
       }
     }
   },
@@ -100,8 +101,8 @@
         "logo": "dvva.png",
         "website": "http://www.dvva.scot",
         "twitter": "https://twitter.com/volunteerdundee",
-        "facebook": "https://facebook.com/VolunteerDundee/",
-        "instagram": "https://www.instagram.com/volunteerdundee/"
+        "facebook": "https://facebook.com/VolunteerDundee",
+        "instagram": "https://www.instagram.com/volunteerdundee"
       }
     }
   },
@@ -129,7 +130,7 @@
         "logo": "edva.jpg",
         "website": "http://www.edva.org",
         "twitter": "https://twitter.com/EastDunVA",
-        "facebook": "https://www.facebook.com/EastDunVA/"
+        "facebook": "https://www.facebook.com/EastDunVA"
       }
     }
   },
@@ -159,7 +160,7 @@
         "logo": "vaer.png",
         "website": "http://www.va-er.org.uk",
         "twitter": "https://twitter.com/vaerenf",
-        "facebook": "https://www.facebook.com/volacter/"
+        "facebook": "https://www.facebook.com/volacter"
       }
     }
   },
@@ -175,7 +176,7 @@
         "website": "http://www.volunteeredinburgh.org.uk",
         "twitter": "https://twitter.com/VolunteerEdi",
         "facebook": "https://www.facebook.com/VolunteerEdinburgh",
-        "instagram": "https://www.instagram.com/volunteer.edinburgh/",
+        "instagram": "https://www.instagram.com/volunteer.edinburgh",
         "youtube": "https://www.youtube.com/user/VolunteerEdinburgh"
       }
     }
@@ -205,7 +206,7 @@
         "logo": "fva.png",
         "website": "http://www.fifevoluntaryaction.org.uk",
         "twitter": "https://twitter.com/FifeVolAction",
-        "facebook": "https://www.facebook.com/Fife-Voluntary-Action-101701569964624/"
+        "facebook": "https://www.facebook.com/Fife-Voluntary-Action-101701569964624"
       }
     }
   },
@@ -235,7 +236,7 @@
         "logo": "highland.jpg",
         "website": "http://www.highlandtsi.org.uk",
         "twitter": "https://twitter.com/HighlandTSI",
-        "facebook": "https://www.facebook.com/HighlandTSI/"
+        "facebook": "https://www.facebook.com/HighlandTSI"
       },
       "caithness": {
         "pattern": "^KW(1\\s[456]|1[24]).*$",
@@ -244,7 +245,7 @@
         "email": "volunteering@cvg.org.uk",
         "phone": "01955603453",
         "logo": "cvg.jpg",
-        "website": "http://www.cvg.org.uk/",
+        "website": "http://www.cvg.org.uk",
         "twitter": "https://twitter.com/caithnessvolgrp",
         "facebook": "https://www.facebook.com/caithvolgroup"
       },
@@ -255,7 +256,7 @@
         "email": "contact@vges.org.uk",
         "phone": "01408633001",
         "logo": "vgs.jpg",
-        "website": "http://www.vges.org.uk/",
+        "website": "http://www.vges.org.uk",
         "twitter": "https://twitter.com/VoluntaryGroups",
         "facebook": "https://www.facebook.com/Voluntary.Groups.East.Sutherland"
       },
@@ -278,7 +279,7 @@
         "phone": "01479873445",
         "logo": "vabs.jpg",
         "website": "http://www.vabs.org.uk",
-        "facebook": "https://www.facebook.com/Voluntary-Action-in-Badenoch-and-Strathspey-650057668387502/"
+        "facebook": "https://www.facebook.com/Voluntary-Action-in-Badenoch-and-Strathspey-650057668387502"
       },
       "skye-lochalsh": {
         "pattern": "^IV((2[1236])|(4[0-8])|(5([1-6]|9))).*$",
@@ -288,7 +289,7 @@
         "phone": "01478612921",
         "logo": "slcvs.jpg",
         "website": "http://www.slcvo.org.uk",
-        "facebook": "https://www.facebook.com/SLCVO/"
+        "facebook": "https://www.facebook.com/SLCVO"
       },
       "lochaber": {
         "pattern": "^(PH(3[0-9]|4[012349]|50)|PA(38|80)).*$",
@@ -317,7 +318,7 @@
         "logo": "highland.jpg",
         "website": "http://www.highlandtsi.org.uk",
         "twitter": "https://twitter.com/HighlandTSI",
-        "facebook": "https://www.facebook.com/HighlandTSI/"
+        "facebook": "https://www.facebook.com/HighlandTSI"
       }
     }
   },
@@ -332,7 +333,7 @@
         "logo": "cvsi.jpg",
         "website": "http://www.cvsinverclyde.org.uk",
         "twitter": "https://twitter.com/cvsinverclyde",
-        "facebook": "https://www.facebook.com/CVSInverclyde/"
+        "facebook": "https://www.facebook.com/CVSInverclyde"
       }
     }
   },
@@ -362,7 +363,7 @@
         "logo": "tsim.png",
         "website": "http://www.tsimoray.org.uk",
         "twitter": "https://twitter.com/tsiMORAY",
-        "facebook": "https://www.facebook.com/tsimoray/"
+        "facebook": "https://www.facebook.com/tsimoray"
       }
     }
   },
@@ -376,8 +377,8 @@
         "phone": "01851700366",
         "logo": "vwi.png",
         "website": "http://volunteercentrewi.org",
-        "twitter": "https://twitter.com/VolunteeringWI/",
-        "facebook": "https://www.facebook.com/Volunteer-Centre-Western-Isles-Stornoway-109240205826891/"
+        "twitter": "https://twitter.com/VolunteeringWI",
+        "facebook": "https://www.facebook.com/Volunteer-Centre-Western-Isles-Stornoway-109240205826891"
       },
       "lewis": {
         "pattern": "^HS(1|2).*$",
@@ -388,8 +389,8 @@
         "phone": "01851700366",
         "logo": "vwi.png",
         "website": "http://volunteercentrewi.org/lewis",
-        "twitter": "https://twitter.com/VolunteeringWI/",
-        "facebook": "https://www.facebook.com/Volunteer-Centre-Western-Isles-Stornoway-109240205826891/"
+        "twitter": "https://twitter.com/VolunteeringWI",
+        "facebook": "https://www.facebook.com/Volunteer-Centre-Western-Isles-Stornoway-109240205826891"
       },
       "harris": {
         "pattern": "^HS(3|4|5).*$",
@@ -400,8 +401,8 @@
         "phone": "01851700366",
         "logo": "vwi.png",
         "website": "http://volunteercentrewi.org/harris",
-        "twitter": "https://twitter.com/VolunteeringWI/",
-        "facebook": "https://www.facebook.com/Volunteer-Centre-Western-Isles-Harris-211691128889432/"
+        "twitter": "https://twitter.com/VolunteeringWI",
+        "facebook": "https://www.facebook.com/Volunteer-Centre-Western-Isles-Harris-211691128889432"
       },
       "uist": {
         "pattern": "^HS(6|7|8).*$",
@@ -412,8 +413,8 @@
         "phone": "01851700366",
         "logo": "vwi.png",
         "website": "http://volunteercentrewi.org/uist",
-        "twitter": "https://twitter.com/VolunteeringWI/",
-        "facebook": "https://www.facebook.com/UistVolunteerCentreWesternIsles/"
+        "twitter": "https://twitter.com/VolunteeringWI",
+        "facebook": "https://www.facebook.com/UistVolunteerCentreWesternIsles"
       },
       "barra": {
         "pattern": "^HS9.*$",
@@ -424,7 +425,7 @@
         "phone": "01851700366",
         "logo": "vwi.png",
         "website": "http://volunteercentrewi.org/barra",
-        "twitter": "https://twitter.com/VolunteeringWI/",
+        "twitter": "https://twitter.com/VolunteeringWI",
         "facebook": "https://www.facebook.com/volunteercentre.barra"
       }
     }
@@ -439,7 +440,7 @@
         "phone": "01294443044",
         "logo": "act.png",
         "twitter": "https://twitter.com/TAyrshireCT",
-        "facebook": "https://www.facebook.com/TheAyrshireCommunityTrust/"
+        "facebook": "https://www.facebook.com/TheAyrshireCommunityTrust"
       }
     }
   },
@@ -454,7 +455,7 @@
         "logo": "vanl.png",
         "website": "http://www.voluntaryactionnorthlanarkshire.org",
         "twitter": "https://twitter.com/VANLinfo",
-        "facebook": "https://www.facebook.com/VoluntaryActionNL/"
+        "facebook": "https://www.facebook.com/VoluntaryActionNL"
       }
     }
   },
@@ -471,7 +472,7 @@
         "logo": "vao.jpg",
         "website": "http://www.vaorkney.org.uk",
         "twitter": "https://twitter.com/vaorkney",
-        "facebook": "https://www.facebook.com/VoluntaryActionOrkney/"
+        "facebook": "https://www.facebook.com/VoluntaryActionOrkney"
       }
     }
   },
@@ -484,10 +485,10 @@
         "phone": "01738567076",
         "email": "admin@pkavs.org.uk",
         "logo": "pkavs.jpg",
-        "website": "https://www.pkavs.org.uk/",
+        "website": "https://www.pkavs.org.uk",
         "twitter": "https://twitter.com/PKAVScharity",
         "youtube": "https://www.youtube.com/channel/UCD21ENEfEwACFqHrnKoCpyw",
-        "facebook": "https://www.facebook.com/PKAVS/"
+        "facebook": "https://www.facebook.com/PKAVS"
       }
     }
   },
@@ -502,7 +503,7 @@
         "logo": "engage.png",
         "website": "http://www.engagerenfrewshire.com",
         "twitter": "https://twitter.com/EngageNews1",
-        "facebook": "https://www.facebook.com/engagerenfrewshire/"
+        "facebook": "https://www.facebook.com/engagerenfrewshire"
       }
     }
   },
@@ -515,9 +516,9 @@
         "email": "enquiries@vcborders.org.uk",
         "phone": "01896754312",
         "logo": "vcborders.jpg",
-        "website": "http://www.vcborders.org.uk/",
+        "website": "http://www.vcborders.org.uk",
         "twitter": "https://twitter.com/VCBORDERS",
-        "facebook": "https://www.facebook.com/vcborders/"
+        "facebook": "https://www.facebook.com/vcborders"
       }
     }
   },
@@ -535,7 +536,7 @@
         "website": "http://www.va-shetland.org.uk",
         "twitter": "https://www.twitter.com/vashetland",
         "youtube": "https://www.youtube.com/watch?v=ycj5UPOBAUk",
-        "facebook": "https://www.facebook.com/Voluntary-Action-Shetland-264713513731369/"
+        "facebook": "https://www.facebook.com/Voluntary-Action-Shetland-264713513731369"
       }
     }
   },
@@ -551,7 +552,7 @@
         "website": "http://www.saltireawardssouthayrshire.org",
         "website2": "http://www.voluntaryactionsouthayrshire.org.uk",
         "twitter": "https://twitter.com/VASouthAyrshire",
-        "facebook": "https://www.facebook.com/vasaayr/"
+        "facebook": "https://www.facebook.com/vasaayr"
       }
     }
   },
@@ -566,7 +567,7 @@
         "logo": "vaslan.png",
         "website": "http://www.vaslan.org.uk",
         "twitter": "https://twitter.com/VA_SLAN",
-        "facebook": "https://www.facebook.com/vasouthlanarkshire/"
+        "facebook": "https://www.facebook.com/vasouthlanarkshire"
       }
     }
   },
@@ -581,7 +582,7 @@
         "logo": "sve.png",
         "website": "http://www.sventerprise.org.uk",
         "twitter": "https://twitter.com/StirVolunteer",
-        "facebook": "https://www.facebook.com/Stirlingshire-Voluntary-Enterprise-208612419156913/"
+        "facebook": "https://www.facebook.com/Stirlingshire-Voluntary-Enterprise-208612419156913"
       }
     }
   },
@@ -596,7 +597,7 @@
         "logo": "wdcvs.png",
         "website": "http://www.wdcvs.com",
         "twitter": "https://twitter.com/WDCVS",
-        "facebook": "https://www.facebook.com/WDCVS/"
+        "facebook": "https://www.facebook.com/WDCVS"
       }
     }
   },
