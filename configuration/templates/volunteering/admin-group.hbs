@@ -174,7 +174,7 @@
                                         {{#unless tsi_only ~}}
                                           <option value="{{api_name}}"{{#compare api_name ../award_level}} selected{{/compare}}>
                                             {{#ifAny (compare type "approach") (compare type "ascent") ~}}
-                                              {{type_name}}: {{hours}} hours
+                                              {{hours}} hours
                                             {{else}}
                                               {{type_name}}
                                             {{/ifAny ~}}
@@ -285,21 +285,43 @@
               <input type="hidden" name="organisation_name_1" value="{{organisation_name}}">
 
               <div class="form-group">
-                <div class="col-4">Participant names</div>
-                <div class="col-5">
+                <div class="column col-4">
+                  Participant names
+                  <span class="far fa-info-circle popover popover-bottom">
+                    <div class="popover-container">
+                      <div class="card">
+                        <div class="card-body caption">
+                          Please list participants with each full name on a new line
+                        </div>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+                <div class="column col-5">
                   <textarea rows="6" cols="30" maxlength="700" id="volunteers" pattern=".*\S.*" name="volunteers" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}></textarea>
                 </div>
               </div>
               <div class="form-group">
-                <div class="col-4">Certificate to award</div>
-                <div class="col-2">
+                <div class="column col-4">
+                  Certificate to award
+                  <span class="far fa-info-circle popover popover-bottom">
+                    <div class="popover-container">
+                      <div class="card">
+                        <div class="card-body caption">
+                          This can be altered for each individual
+                        </div>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+                <div class="column col-2">
                   <div class="form-group b-margin">
                     <select class="form-select" required id="award" name="award" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.award}}>
                       {{#each @root.context.metaData.certificates ~}}
                         {{#unless tsi_only ~}}
                           <option value="{{api_name}}"{{#compare api_name ../api_name}} selected{{/compare}}>
                             {{#ifAny (compare type "approach") (compare type "ascent") ~}}
-                              {{type_name}}: {{hours}} hours
+                              {{hours}} hours
                             {{else}}
                               {{type_name}}
                             {{/ifAny ~}}
@@ -317,8 +339,8 @@
                 </div>
               </div>
               <div class="form-group">
-                <div class="col-4"></div>
-                <div class="col-2">
+                <div class="column col-4"></div>
+                <div class="column col-2">
                   <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full" id="group-awards-submit">
                     Submit details
                   </button>
