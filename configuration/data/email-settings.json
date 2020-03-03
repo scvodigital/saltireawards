@@ -117,12 +117,12 @@
     "bodyPartial": "emails_ys_code_reminder",
     "metaData": {}
   },
-  "award-authorize" : {
+  "award-authorise" : {
     "mailgunConnection": "mg_saltireawards",
     "from": "Saltire Awards <no-reply@saltireawards.scot>",
     "replyTo": "Saltire Awards <no-reply@saltireawards.scot>",
     "sendIfEmpty": false,
-    "bodyPartial": "emails_award_authorize_body",
+    "bodyPartial": "emails_award_authorise_body",
     "metaData": {}
   }
 
