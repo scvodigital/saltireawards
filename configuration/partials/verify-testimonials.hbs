@@ -17,10 +17,9 @@
       <div class="column col-6 col-lg-8 col-md-9 col-sm-12 col-mx-auto">
         <div class="form-group">
           <label for="task_role" class="form-label">
-            Write about what {{@root.data.accountInfo.first_name}} has achieved with
-            {{organisation_name}}
+            What has {{@root.data.accountInfo.first_name}} achieved with {{organisation_name}}?
             <br />
-            <span class="caption">Note: This will be shown on their certificate</span>
+            <span class="caption">Note: this will be shown on their certificate so please keep it short</span>
           </label>
           <input required id="testimonial" name="testimonial" class="form-input" placeholder="" value="{{testimonial}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.testimonial}}>
           {{!-- <textarea rows="3" placeholder="" cols="40" width="100%" id="testimonial" name="testimonial" class="inline-form-input inline-edit" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.testimonial}}>{{testimonial}}</textarea> --}}
