@@ -5,7 +5,7 @@
   </strong>
   {{inflect paging.totalResults "opportunity" "opportunities"}}
   for age
-  {{#unless @root.data.auth ~}}
+  {{#unless @root.data.accountInfo.date_of_birth ~}}
   18+
   {{else}}
   {{#if @root.request.params.query.age ~}}

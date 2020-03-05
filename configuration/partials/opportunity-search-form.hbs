@@ -22,7 +22,7 @@
         <div class="column col-2 col-xl-5 col-sm-12 filter-age b-padding">
           <div class="form-group">
             <select class="form-select select-lg" id="age" name="age">
-              {{#unless @root.data.auth ~}}
+              {{#unless @root.data.accountInfo.date_of_birth ~}}
               {{#each (split "12,13,14,15,16,17,18" ",") ~}}
               <option value="{{this}}"{{#compare this '18'}} selected{{/compare}}>For age {{this}}+</option>
               {{/each ~}}
