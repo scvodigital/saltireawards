@@ -2,6 +2,15 @@
 <html lang="en">
 <head prefix="og: http://ogp.me/ns# profile: http://ogp.me/ns/profile#">
   <meta charset="utf-8">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  {{!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-3467930-33"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-3467930-33');
+  </script> --}}
   {{{layoutParts.head}}}
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -74,11 +83,11 @@
   <link type="text/css" rel="stylesheet" href="{{~>asset_url url='main.css'}}" />
 </head>
 <body>
-  {{!-- {{#unless (contains request.url.hostname ".local") ~}}
+  {{#unless (contains request.url.hostname ".local") ~}}
   <div class="text-white bg-warning text-centre v-padding">
-    This website is currently in development, but it will send emails so please only use your own email addresses when testing
+    This website is currently in development, but it will send emails so please only use your own email addresses when testing. Any accounts you create will be deleted by w/c 9th March.
   </div>
-  {{/unless ~}} --}}
+  {{/unless ~}}
   <div class="page">
   {{#ifAny request.params.query.debug (contains request.url.hostname ".local") ~}}
     {{#if errors.[0]}}
@@ -281,16 +290,6 @@
               </a>
             </li>
             {{#if @root.data.auth ~}}
-              {{#each @root.context.metaData.menus.main-signed-in ~}}
-                <li class="menu-item">
-                  <a href="{{stripTrailingSlash path}}" class="l-padding-full{{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
-                    {{#if icon ~}}
-                    <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
-                    {{/if ~}}
-                    {{label}}
-                  </a>
-                </li>
-              {{/each ~}}
               {{#each @root.context.metaData.menus.user-signed-in ~}}
               {{#if (contains user-types @root.data.accountInfo.user_type) ~}}
                 <li class="menu-item">
@@ -310,6 +309,16 @@
                   {{/if ~}} --}}
                 </li>
               {{/if ~}}
+              {{/each ~}}
+              {{#each @root.context.metaData.menus.main-signed-in ~}}
+                <li class="menu-item">
+                  <a href="{{stripTrailingSlash path}}" class="l-padding-full{{#if (regexMatch @root.request.url.pathname route 'gi')}} active{{/if}}">
+                    {{#if icon ~}}
+                    <span class="far fa-fw fa-{{icon}}" aria-hidden="true"></span>
+                    {{/if ~}}
+                    {{label}}
+                  </a>
+                </li>
               {{/each ~}}
               <li class="menu-item">
                 <a href="/sign-out" class="l-padding-full" data-component="TasksTrigger" data-TasksTrigger="sign-out">

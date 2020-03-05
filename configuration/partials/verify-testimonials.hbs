@@ -4,8 +4,7 @@
   </div>
 
   {{#each (filter @root.data.tasksInfo "task_id" "valueIn" (split task_ids ",")) ~}}
-
-    <form action="/update-task-testimonial/{{task_id}}?c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="inline-hours-form"  data-component="TasksTrigger" data-form-element=">" {{#if (compare (length (split ../task_ids ",")) "===" 1)}}
+    <form action="/update-task-testimonial/{{task_id}}?c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" {{#if (compare (length (split ../task_ids ",")) "===" 1)}}
           {{#compare ../type "===" "query"}}
           data-next-task="testimonial-done"
           data-success-message="testimonial updated"
@@ -16,16 +15,16 @@
           {{else}}data-success-hide="true"{{/if}}  data-TasksTrigger="ajax-form-handler">
     <div class="columns">
       <div class="column col-6 col-lg-8 col-md-9 col-sm-12 col-mx-auto">
-        <div class="b-margin">
-          Write about what {{@root.data.accountInfo.first_name}} has achieved with
-          {{organisation_name}}
-          <br />
-          <span class="caption">Note: This may be shown on their certificate</span>
-        </div>
-          <div class="form-group">
-          <textarea rows="3" placeholder="" cols="40" width="100%" id="testimonial" name="testimonial" class="inline-form-input inline-edit" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.testimonial}}>{{testimonial}}</textarea>
-        </div>
         <div class="form-group">
+          <label for="task_role" class="form-label">
+            What has {{@root.data.accountInfo.first_name}} achieved with {{organisation_name}}?
+            <br />
+            <span class="caption">Note: this will be shown on their certificate so please keep it short</span>
+          </label>
+          <input required id="testimonial" name="testimonial" class="form-input" placeholder="" value="{{testimonial}}" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.testimonial}}>
+          {{!-- <textarea rows="3" placeholder="" cols="40" width="100%" id="testimonial" name="testimonial" class="inline-form-input inline-edit" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.testimonial}}>{{testimonial}}</textarea> --}}
+        </div>
+        <div class="form-group b-margin">
           <button type="submit" class="btn btn-success inline-update-button b-margin">Add testimonial</button>
         </div>
       </div>
@@ -43,7 +42,6 @@
       </div>
     </div>
   </div>
-
 </div>
 
 <script type="javascript/blocked" data-task="testimonial-done">

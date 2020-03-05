@@ -30,7 +30,7 @@
 
             <address>
               <strong>{{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}}<br />
-              {{@root.request.body.address_value}}<br />
+              {{{stripTags @root.request.body.address_value}}}<br />
               {{@root.data.accountInfo.postcode}}</strong>
             </address>
 

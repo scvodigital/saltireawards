@@ -6,7 +6,7 @@
   "metaData": {
     "title": "Tasks",
     "emailType": "hours-verify",
-    "TSIEmailType": "award-authorize"
+    "TSIEmailType": "award-authorise"
   },
   "tasks": [
     "context.metaData.commonTasks.authRequired",

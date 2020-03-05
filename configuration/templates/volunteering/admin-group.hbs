@@ -8,18 +8,6 @@
     <span id="form-message"></span>
   </div>
 
-  <!--<div class="modal" id="confirm-modal">-->
-  <!--<a href="#" class="modal-overlay" aria-label="Close"></a>-->
-  <!--<div class="modal-container">-->
-  <!--<div class="modal-body">-->
-  <!--<div class="content">-->
-  <!---->
-  <!--</div>-->
-  <!--</div>-->
-  <!--</div>-->
-  <!--</div>-->
-
-
   {{#if @root.request.params.task_id ~}}
     {{#with @root.data.taskInfo ~}}
       {{#compare task_id @root.request.params.task_id ~}}
@@ -167,21 +155,21 @@
                                   <div class="form-group b-margin">
                                     <input id="{{award_id}}-modal-group_award_last_name"  {{#unless claim_code ~}}disabled{{/unless}} class="form-input inline-edit" name="group_award_last_name" value="{{group_award_last_name}}">
                                   </div>
-                                  <div class="form-group b-margin">
 
+                                  <div class="form-group b-margin">
                                     <select id="{{award_id}}-modal-award_level"  class="form-select hours" {{#unless claim_code~}}disabled{{/unless}} required name="award" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.award}}>
                                       {{#each @root.context.metaData.certificates ~}}
                                         {{#unless tsi_only ~}}
-                                          <option value="{{api_name}}"{{#compare api_name ../award_level}} selected{{/compare}}>
+                                          <option value="{{api_name}}"{{#compare api_name ../award_level}} selected{{/compare}}{{#compare hours "<" ../award_level_numerical_value}} disabled{{/compare}}>
                                             {{#ifAny (compare type "approach") (compare type "ascent") ~}}
-                                              {{type_name}}: {{hours}} hours
+                                              {{hours}} hours
                                             {{else}}
                                               {{type_name}}
                                             {{/ifAny ~}}
                                           </option>
                                         {{else}}
                                           {{#if @root.data.accountInfo.summit_certificate_permission ~}}
-                                            <option value="{{api_name}}">
+                                            <option value="{{api_name}}"{{#compare api_name ../award_level}} selected{{/compare}}>
                                               {{type_name}}
                                             </option>
                                           {{/if ~}}
@@ -206,8 +194,8 @@
                                 {{/if ~}}
                               </div>
                             </form>
-
                           </div>
+
                           <div class="modal-confirm hidden">
                             <form>
                               <div class="modal-container">
@@ -220,8 +208,8 @@
                                 </div>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-success btn-block inline-update-button b-margin" data-component="TasksTrigger" data-TasksTrigger="{click: {tasks: ['confirm-to-form']}}">Cancel</button>
-                                <a href="/admin-delete-award?award_id={{award_id}}&user_id={{@root.data.auth.uid}}" class="btn btn-error btn-block b-margin" data-component="TasksTrigger" data-award-id="{{award_id}}"  data-success-hide="true" data-next-task="close-and-destroy"  data-next-action data-TasksTrigger="ajax-delete-handler">Confirm</a>
+                                <button type="button" class="btn btn-block inline-update-button b-margin" data-component="TasksTrigger" data-TasksTrigger="{click: {tasks: ['confirm-to-form']}}">Cancel</button>
+                                <a href="/admin-delete-award?award_id={{award_id}}&user_id={{@root.data.auth.uid}}" class="btn btn-error btn-block b-margin" data-component="TasksTrigger" data-award-id="{{award_id}}" data-success-hide="true" data-next-task="close-and-destroy"  data-next-action data-TasksTrigger="ajax-delete-handler">Confirm</a>
                               </div>
 
                             </div>
@@ -285,21 +273,43 @@
               <input type="hidden" name="organisation_name_1" value="{{organisation_name}}">
 
               <div class="form-group">
-                <div class="col-4">Participant names</div>
-                <div class="col-5">
+                <div class="column col-4">
+                  Participant names
+                  <span class="far fa-info-circle popover popover-bottom">
+                    <div class="popover-container">
+                      <div class="card">
+                        <div class="card-body caption">
+                          Please list participants with each full name on a new line or separated with commas
+                        </div>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+                <div class="column col-5">
                   <textarea rows="6" cols="30" maxlength="700" id="volunteers" pattern=".*\S.*" name="volunteers" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_description}}></textarea>
                 </div>
               </div>
               <div class="form-group">
-                <div class="col-4">Certificate to award</div>
-                <div class="col-2">
+                <div class="column col-4">
+                  Certificate to award
+                  <span class="far fa-info-circle popover popover-bottom">
+                    <div class="popover-container">
+                      <div class="card">
+                        <div class="card-body caption">
+                          This can be altered for each individual
+                        </div>
+                      </div>
+                    </div>
+                  </span>
+                </div>
+                <div class="column col-2">
                   <div class="form-group b-margin">
                     <select class="form-select" required id="award" name="award" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.award}}>
                       {{#each @root.context.metaData.certificates ~}}
                         {{#unless tsi_only ~}}
                           <option value="{{api_name}}"{{#compare api_name ../api_name}} selected{{/compare}}>
                             {{#ifAny (compare type "approach") (compare type "ascent") ~}}
-                              {{type_name}}: {{hours}} hours
+                              {{hours}} hours
                             {{else}}
                               {{type_name}}
                             {{/ifAny ~}}
@@ -317,8 +327,8 @@
                 </div>
               </div>
               <div class="form-group">
-                <div class="col-4"></div>
-                <div class="col-2">
+                <div class="column col-4"></div>
+                <div class="column col-2">
                   <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full" id="group-awards-submit">
                     Submit details
                   </button>

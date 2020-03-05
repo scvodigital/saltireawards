@@ -197,41 +197,13 @@
                                     <tr>
                                       <td align="left" style="font-size:0px;padding:0px;word-break:break-word;">
                                         <div style="font-family:Montserrat, Helvetica, Arial, sans-serif;font-size:16px;line-height:20px;text-align:left;color:#16204e;">
-                                          <p>
-                                            {{#if (compare @root.request.params.query.action "===" "second_reminder")}}Second {{/if}}Reminder </p>
-                                          <p> Hello, </p>
-                                          <p>
-                                            {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}}
-                                            {{#if @root.data.accountInfo.school_college_name}}from {{@root.data.accountInfo.school_college_name}}{{/if}} applied for a {{@root.context.metaData.certificateName}} for the volunteering tasks listed below. Unfortunately the maximum time has elapsed without {{@root.data.accountInfo.first_name}}'s hours being verified. Please could you check the hours below and confirm or edit them using the links below, or alternatively update the details on Milo. {{#if @root.data.accountInfo.tsi_award_authorization_required}} Please note that you also need to <strong>set the TSI authorisation level to {{@root.context.metaData.certificateName}}</strong> for the award to be granted{{/if}}
+                                          <p> Hello {{@root.data.accountInfo.first_name}}, welcome to the {{@root.context.metaData.title}}! </p>
+                                          <p> As you are now a {{@root.context.metaData.title}} Group Administrator, you’ll be helping young people in your area be celebrated, recognised and rewarded for the volunteering they are doing. </p>
+                                          <p> There are lots of hints and tips on the website to help you in your role as Group Administrator, so all you need to do is <a href="{{@root.context.metaData.url}}/sign-in-admin">sign in and get started</a>! </p>
+                                          <p> Don’t forget your local Third Sector Interface (TSI) are always on hand to help too. </p>
+                                          <p> Thank you<br />
+                                            {{@root.context.metaData.title}}
                                           </p>
-                                          {{#each @root.data.tasksInfoUnverified ~}}
-                                            {{#compare unverified_hours_list.length ">=" 1 ~}}
-                                              <h4>Volunteering for <strong>{{organisation_name}}</strong></h4>
-                                              <ul>
-                                                <li> Manager: <ul>
-                                                    <li>Name: {{volunteer_manager_first_name}} {{volunteer_manager_last_name}}</li>
-                                                    <li>Role: {{volunteer_manager_title}}</li>
-                                                    {{#if volunteer_manager_email}}
-                                                      <li>Email: {{volunteer_manager_email}}</li>
-                                                    {{/if}}
-                                                    {{#if volunteer_manager_phone}}
-                                                      <li>Phone: {{volunteer_manager_phone}}</li>
-                                                    {{/if}}
-                                                  </ul>
-                                                </li>
-                                                <li> Hours: <ul>
-                                                    {{#each this.unverified_hours_list}}
-                                                      <li>{{hours}} - logged on: {{momentFormat (moment createdDate "YYYY-MM-DD") "MMMM Do YYYY"}}</li>
-                                                    {{/each}}
-                                                    {{#ifAll (compare this.hours_verified ">" 0) (compare this.hours_verified "!==" hours) ~}}
-                                                      <li>Already verified: {{this.hours_verified}} of {{this.hours}} hours</li>
-                                                    {{/ifAll ~}}
-                                                  </ul>
-                                                </li>
-                                              </ul>
-                                            {{/compare ~}}
-                                          {{/each ~}}
-                                          <p> You can now <a href="{{@root.context.metaData.url}}/verify-hours/?t={{>account_list_tasks}}&c={{@root.data.accountInfo.hours_verify_code}}&user_id={{@root.data.accountInfo.external_id}}">confirm that these hours are correct</a> or <a href="{{@root.context.metaData.url}}/query-hours/?t={{>account_list_tasks}}&c={{@root.data.accountInfo.hours_verify_code}}&user_id={{@root.data.accountInfo.external_id}}">make corrections</a>. </p>
                                         </div>
                                       </td>
                                     </tr>

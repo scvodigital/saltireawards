@@ -3,7 +3,6 @@
     "saltireawards.local",
     "test.saltireawards.scot",
     "saltireawards.scot",
-    "test.saltireawards.org.uk",
     "saltireawards.org.uk"
   ],
   "routes": [
@@ -17,11 +16,11 @@
     "tagline": "Celebrating youth volunteering in Scotland",
     "certificateName": "Saltire Award",
     "accountName": "My Saltire",
-    "url": "https://test.saltireawards.scot",
+    "url": "https://saltireawards.scot",
     "twitter": "saltireawards",
     "contacts": {
       "admin": "support@saltireawards.scot",
-      "noreply": "noreply@saltireawards.scot",
+      "noreply": "no-reply@saltireawards.scot",
       "technical": "webhelpdesk@scvo.org.uk"
     },
     "youngScotSettings": "{:./data/young-scot-settings.json}",

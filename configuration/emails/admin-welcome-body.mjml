@@ -1,5 +1,4 @@
 <mjml>
-  <mj-raw>{{#with @root.data.accountInfo}}</mj-raw>
   <mj-body background-color="#ebedfa">
     <mj-wrapper background-color="#ffffff" padding="0px" margin="0px" width="100%">
       <mj-section background-color="{{@root.context.metaData.theme.secondary}}" padding="0px" margin="0px" width="100%">
@@ -12,24 +11,24 @@
         <mj-column padding="10px" margin="0px" width="100%">
           <mj-text font-size="16px" padding="0px" line-height="20px" color="#16204e" font-family="Montserrat, Helvetica, Arial, sans-serif">
             <p>
-              {{#if (compare @root.request.params.query.action "===" "reminder")}}Reminder{{/if}}
-              {{#if (compare @root.request.params.query.action "===" "second_reminder")}}Second Reminder{{/if}}
-            </p>
-
-            <p>Hello,</p>
-
-            <p>
-              {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}}
-              {{#if @root.data.accountInfo.school_college_name}}from {{@root.data.accountInfo.school_college_name}}{{/if}}
-              is applying for a {{@root.context.metaData.certificateName}} {{@root.data.verifyInfoBody.hours_verify_award}} Award. This requires TSI Authorization to be awarded.
+              Hello {{@root.data.accountInfo.first_name}}, welcome to the {{@root.context.metaData.title}}!
             </p>
 
             <p>
-              Please check Salesforce Saltire Volunteering Task records for this user, ensuring that Task Role and Description appear to fit criteria,
-              and that organisations volunteered for and their contact emails appear to be genuine (Organisations themselves will validate the volunteers' hours).
+              As you are now a {{@root.context.metaData.title}} Group Administrator, you’ll be helping young people in your area be celebrated, recognised and rewarded for the volunteering they are doing.
             </p>
+
             <p>
-              Set the TSI Award Authorization level to {{@root.data.verifyInfoBody.hours_verify_award}} if you wish this award to be authorized.
+              There are lots of hints and tips on the website to help you in your role as Group Administrator, so all you need to do is <a href="{{@root.context.metaData.url}}/sign-in-admin">sign in and get started</a>!
+            </p>
+
+            <p>
+              Don’t forget your local Third Sector Interface (TSI) are always on hand to help too.
+            </p>
+
+            <p>
+              Thank you<br />
+              {{@root.context.metaData.title}}
             </p>
           </mj-text>
         </mj-column>
@@ -46,5 +45,4 @@
       </mj-section>
     </mj-wrapper>
   </mj-body>
-  <mj-raw>{{/with}}</mj-raw>
 </mjml>

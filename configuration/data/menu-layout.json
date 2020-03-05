@@ -1,19 +1,19 @@
 {
   "main-not-signed-in": [
     {
-      "label": "About",
+      "label": "About us",
       "icon": "info-circle",
       "path": "/about",
       "route": "^/about"
     },
     {
-      "label": "Info for volunteers",
+      "label": "For volunteers",
       "icon": "medal",
       "path": "/info-for-volunteers",
       "route": "^/info-for-volunteers"
     },
     {
-      "label": "Info for groups",
+      "label": "For groups",
       "icon": "info-circle",
       "path": "/info-for-groups",
       "route": "^/info-for-groups"
@@ -41,7 +41,7 @@
   ],
   "main-signed-in": [
     {
-      "label": "About",
+      "label": "About us",
       "icon": "info-circle",
       "path": "/about",
       "route": "^/about"

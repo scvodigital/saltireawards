@@ -50,16 +50,16 @@
       <a href="/certificate/{{award_id}}/saltire-{{lowercase award_level}}-award.pdf" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary">Download</a>
       {{/compare ~}}
       {{#unless printed_certificate_requested ~}}
-      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" class="btn">Print request</a>
+      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" class="btn">Request print copy</a>
       {{else}}
       {{#unless printed_certificate_issued ~}}
-      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" disabled class="btn">Print requested</a>
+      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" disabled class="btn btn-link">Print copy requested</a>
       {{else}}
-      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" disabled class="btn">Printed certificate sent</a>
+      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" disabled class="btn btn-link">Printed certificate sent</a>
       {{/unless ~}}
       {{/unless ~}}
       {{#compare (length @root.data.accountInfo.awards_list) ">" 1 ~}}
-      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-previous-awards" class="btn btn-link">Previous awards</a>
+      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-previous-awards" class="btn btn-link">Previous certificates</a>
       {{/compare ~}}
     </div>
   </div>
@@ -152,15 +152,18 @@
     </div>
     <div class="modal-body">
       <div class="content">
-        <form action="/request-printed-certificate?award={{@root.data.awardsStatus.current}}" class="b-padding-full" method="POST" id="request-certificate" data-component="TasksTrigger"  data-success-destination="awards" data-TasksTrigger="ajax-form-handler">
+        <form action="/request-printed-certificate?award={{@root.data.awardsStatus.current}}" class="b-padding-full" method="POST" id="request-certificate" data-component="TasksTrigger" data-success-destination="awards" data-TasksTrigger="ajax-form-handler">
           <div class="form-group">
-            <textarea class="form-input" action="request-printed-certificate" name="address_value" id="address_value" placeholder="Your address" autocomplete="on" rows="4" required></textarea>
+            <input class="form-input" name="name" id="name" value="{{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}}" disabled="disabled" />
           </div>
-          <div class="form-group col-3 col-md-5 col-sm-6 col-xs-6">
-            <input class="form-input" action="request-printed-certificate" name="postcode" id="postcode" value="{{@root.data.accountInfo.postcode}}" disabled="disabled" />
+          <div class="form-group">
+            <textarea class="form-input" name="address_value" id="address_value" placeholder="Your address" autocomplete="on" rows="4" required></textarea>
+          </div>
+          <div class="form-group col-3 col-md-5 col-sm-6 col-xs-12">
+            <input class="form-input" name="postcode" id="postcode" value="{{@root.data.accountInfo.postcode}}" disabled="disabled" />
           </div>
           <div class="caption">
-            If your postcode has changed, please update this on your <a href="/account">account</a> first.
+            If your name or postcode has changed, please update this on your <a href="/account">account</a> before requesting a printed copy.
           </div>
           <button type="submit" class="btn btn-primary t-margin-full">
             Request certificate
@@ -192,7 +195,7 @@
     <div class="modal-header">
       <a href="#close" class="btn btn-clear float-right" aria-label="Close" data-component="TasksTrigger" data-TasksTrigger="hide-modal"></a>
       <div class="modal-title h5">
-        Previous awards
+        Previously claimed Awards
       </div>
     </div>
     <div class="modal-body">
