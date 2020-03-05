@@ -194,8 +194,8 @@
                                 {{/if ~}}
                               </div>
                             </form>
-
                           </div>
+
                           <div class="modal-confirm hidden">
                             <form>
                               <div class="modal-container">
@@ -208,8 +208,8 @@
                                 </div>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-success btn-block inline-update-button b-margin" data-component="TasksTrigger" data-TasksTrigger="{click: {tasks: ['confirm-to-form']}}">Cancel</button>
-                                <a href="/admin-delete-award?award_id={{award_id}}&user_id={{@root.data.auth.uid}}" class="btn btn-error btn-block b-margin" data-component="TasksTrigger" data-award-id="{{award_id}}"  data-success-hide="true" data-next-task="close-and-destroy"  data-next-action data-TasksTrigger="ajax-delete-handler">Confirm</a>
+                                <button type="button" class="btn btn-block inline-update-button b-margin" data-component="TasksTrigger" data-TasksTrigger="{click: {tasks: ['confirm-to-form']}}">Cancel</button>
+                                <a href="/admin-delete-award?award_id={{award_id}}&user_id={{@root.data.auth.uid}}" class="btn btn-error btn-block b-margin" data-component="TasksTrigger" data-award-id="{{award_id}}" data-success-hide="true" data-next-task="close-and-destroy"  data-next-action data-TasksTrigger="ajax-delete-handler">Confirm</a>
                               </div>
 
                             </div>
