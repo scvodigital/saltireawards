@@ -141,16 +141,20 @@
 
   {{#unless @root.data.accountInfo.external_id ~}}
   <div class="form-group">
-    <label class="form-checkbox">
-      <input type="checkbox" required>
-      <span class="form-icon"></span> I accept the <a target="_blank" href="/terms">terms & conditions</a> for the {{@root.context.metaData.title}}
-    </label>
+    <div class="column col-12">
+      <label class="form-checkbox">
+        <input type="checkbox" required>
+        <span class="form-icon"></span> I accept the <a target="_blank" href="/terms">terms & conditions</a> for the {{@root.context.metaData.title}}
+      </label>
+    </div>
   </div>
   <div class="form-group">
-    <label class="form-checkbox">
-      <input type="checkbox" name="email_consent">
-      <span class="form-icon"></span> I would like to receive additional information about the {{@root.context.metaData.title}} from <span id="tsi_title">my local volunteering organisation</span> by email (optional)
-    </label>
+    <div class="column col-12">
+      <label class="form-checkbox">
+        <input type="checkbox" name="email_consent">
+        <span class="form-icon"></span> I would like to receive additional information about the {{@root.context.metaData.title}} from <span id="tsi_title">my local volunteering organisation</span> by email (optional)
+      </label>
+    </div>
   </div>
   {{/unless ~}}
 </div>
