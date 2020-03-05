@@ -117,7 +117,13 @@
               <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-id-card-alt"></span></span>
                 {{#unless (getProperty (itemAt @root.context.metaData.certificates (indexOf (map @root.context.metaData.certificates (getProp 'hours')) @root.data.awardsStatus.current)) "highest") ~}}
-                <a href="/task-edit/{{task_id}}">{{volunteer_manager_first_name}} {{volunteer_manager_last_name}}</a>
+                <a href="/task-edit/{{task_id}}">
+                  {{#ifAny volunteer_manager_first_name volunteer_manager_last_name}}
+                  {{volunteer_manager_first_name}} {{volunteer_manager_last_name}}
+                  {{else}}
+                    Unknown
+                  {{/ifAny}}
+                </a>
                 {{else}}
                 {{volunteer_manager_first_name}} {{volunteer_manager_last_name}}
                 {{/unless ~}}
@@ -137,6 +143,8 @@
               <input type="hidden" name="task_id" value="{{task_id}}">
               {{#unless (compare task_type "===" 'Copy Task') ~}}
 
+                {{#if volunteer_manager_email}}
+
               <label class="form-label" for="hours-{{task_id}}">
                 <strong>
                   {{#compare hours ">" 0 ~}}
@@ -147,7 +155,6 @@
                   {{/compare ~}}
                 </strong>
               </label>
-
               <div class="input-group b-margin">
                 <textarea class="form-input" id="notes-{{task_id}}" placeholder="Notes (optional)" rows="3"></textarea>
               </div>
@@ -155,7 +162,17 @@
                 <input class="form-input input-lg" id="hours-{{task_id}}" name="hours" type="number" step="0.5" min="0.5" max="1000" value="" placeholder="0" required />
                 <button type="submit" class="btn btn-primary btn-lg input-group-btn">Add hours</button>
               </div>
-              {{/unless ~}}
+              {{else}}
+                  <label class="form-label" for="hours-{{task_id}}">
+                    <strong>
+                      Please <a href="/task-edit/{{task_id}}">
+                      add full details for the Volunteer manager
+                      </a>
+                      in order to claim hours on this task
+                    </strong>
+                  </label>
+              {{/if}}
+                {{/unless ~}}
             </form>
           </div>
           {{else}}
