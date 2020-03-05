@@ -147,7 +147,7 @@
                   {{/compare ~}}
                 </strong>
               </label>
-
+              {{#if volunteer_manager_email}}
               <div class="input-group b-margin">
                 <textarea class="form-input" id="notes-{{task_id}}" placeholder="Notes (optional)" rows="3"></textarea>
               </div>
@@ -155,7 +155,10 @@
                 <input class="form-input input-lg" id="hours-{{task_id}}" name="hours" type="number" step="0.5" min="0.5" max="1000" value="" placeholder="0" required />
                 <button type="submit" class="btn btn-primary btn-lg input-group-btn">Add hours</button>
               </div>
-              {{/unless ~}}
+              {{else}}
+                <p>Please add email details for the volunteer manager, before adding hours to this opportunity</p>
+              {{/if}}
+                {{/unless ~}}
             </form>
           </div>
           {{else}}

@@ -107,7 +107,7 @@
     <div class="column col-2 col-md-3 col-sm-4 col-xs-5">
       <div class="has-icon-right d-inline-block" id="postcode-wrapper">
         <input class="form-input" id="postcode" name="postcode" type="text"
-        value="{{#unless (compare @root.data.accountInfo.postcode '===' 'TR19 7AA')}}{{@root.data.accountInfo.postcode}}{{/unless}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="postcode-lookup" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.postcode}}>
+        value="{{#unless (compare @root.data.accountInfo.postcode '===' 'REQUIRED')}}{{@root.data.accountInfo.postcode}}{{/unless}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="postcode-lookup" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.postcode}}>
 
         <span class="form-icon far {{#if hasPostcode}}fa-check text-success{{else}}fa-times text-error{{/if}}" id="postcode-validation-icon"></span>
       </div>
