@@ -35,6 +35,9 @@
                   {{#each this.unverified_hours_list}}
                   <li>Hours: {{hours}} - logged on: {{momentFormat (moment createdDate "YYYY-MM-DD") "MMMM Do YYYY"}}</li>
                   {{/each}}
+                  {{#ifAll (compare hours_verified ">" 0) (compare hours_verified "!==" hours) ~}}
+                  <li>Already verified: {{hours_verified}} of {{hours}} hours</li>
+                  {{/ifAll ~}}
                 </ul>
               </li>
               {{/compare}}
