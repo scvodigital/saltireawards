@@ -1,7 +1,7 @@
 {{#json}}
   {{#if @root.request.body.volunteers}}
     {{#json key='award_input' type='array'}}
-      {{#eachJoin (regexSplit @root.request.body.volunteers '\r?\n') ","}}
+      {{#eachJoin (regexSplit @root.request.body.volunteers '\s*[,]\s*|\s*\r?\n\s*') ','}}
         {{#if (trim this)}}
         {{#json}}
           {{{json key='task_id' value=@root.request.body.task_id}}},
@@ -9,11 +9,11 @@
           {{{json key='user_sf_id' value=@root.data.accountInfo.user_sf_id}}},
           {{{json key='award_level' value=@root.request.body.award}}},
           {{{json key='award_type' value='Group Award'}}},
-          {{{json key='group_award_first_name' value=(stripTags (firstItem (split this " ")))}}},
-          {{{json key='group_award_last_name' value=(stripTags (substr this (add (length (firstItem (split this " "))) 1)))}}},
-          "group_award_claimed" : false,
-          "printed_certificate_requested" : false,
-          "printed_certificate_issued" : false,
+          {{{json key='group_award_first_name' value=(stripTags (firstItem (split (trim this) " ")))}}},
+          {{{json key='group_award_last_name' value=(stripTags (substr this (add (length (firstItem (split (trim this) " "))) 1)))}}},
+          {{{json key='group_award_claimed' value=false}}},
+          {{{json key='printed_certificate_requested' value=false}}},
+          {{{json key='printed_certificate_issued' value=false}}},
           {{{json key='claim_code' value=(hash (concat " " (random 0 1000000000000)) 'md5')}}},
           {{{json key='un_sustainable_development_goals' value=@root.request.body.un_sustainable_development_goals}}},
           {{{json key='role_1' value=@root.request.body.role_1}}},
