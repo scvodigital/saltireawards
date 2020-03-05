@@ -20,22 +20,28 @@
             </p>
 
             <p>
-              {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}}
-              {{#if @root.data.accountInfo.school_college_name}}from {{@root.data.accountInfo.school_college_name}}{{/if}}
-              applied for a {{@root.context.metaData.certificateName}} for volunteering with you on {{momentFormat (moment hours_verify_sent_date 'YYYY-MM-DDTHH:mm:ssZ') "MMMM Do"}}. The following hours are still unverified.<br />
-              Please confirm whether the following volunteering hours are accurate below.
+              You are receiving this email because {{@root.data.accountInfo.first_name}} {{@root.data.accountInfo.last_name}}
+              {{#if @root.data.accountInfo.school_college_name}}from {{@root.data.accountInfo.school_college_name}}{{/if}} is applying for a {{@root.context.metaData.title}} {{@root.context.metaData.certificateName}} for volunteering with your organisation and has named you as their volunteer manager.
+            </p>
+
+            <p>
+              The following hours are still unverified - please confirm the following volunteering hours are accurate and were completed with your organisation and within the last two years by clicking on the appropriate link below.
             </p>
 
             <ul>
               {{#each @root.data.tasksInfoUnverified}}
               {{#compare unverified_hours_list.length ">=" 1}}
               {{#compare this.volunteer_manager_email "===" ../this}}
-              <li><strong>Volunteering</strong> for <strong>{{organisation_name}}</strong>, Manager: {{volunteer_manager_first_name}} {{volunteer_manager_last_name}} - {{volunteer_manager_title}}
+              <li>
+                Volunteering for <strong>{{organisation_name}}</strong>, Manager: {{volunteer_manager_first_name}} {{volunteer_manager_last_name}} - {{volunteer_manager_title}}
                 <ul>
-                  <li>Role: {{substr task_role 0 140}}{{#compare (length task_role) '>' 140}}...{{/compare}}</li>
+                  <li>Role: {{truncate task_role 140}}</li>
                   {{#each this.unverified_hours_list}}
                   <li>Hours: {{hours}} - logged on: {{momentFormat (moment createdDate "YYYY-MM-DD") "MMMM Do YYYY"}}</li>
                   {{/each}}
+                  {{#ifAll (compare hours_verified ">" 0) (compare hours_verified "!==" hours) ~}}
+                  <li>Already verified: {{hours_verified}} of {{hours}} hours</li>
+                  {{/ifAll ~}}
                 </ul>
               </li>
               {{/compare}}
@@ -44,7 +50,7 @@
             </ul>
 
             <p>
-              Please <a href="{{@root.context.metaData.url}}/verify-hours/?t={{>account_list_tasks email=this}}&c={{@root.data.accountInfo.hours_verify_code}}&user_id={{@root.data.accountInfo.external_id}}">confirm these hours are correct</a> or <a href="{{@root.context.metaData.url}}/query-hours/?t={{>account_list_tasks email=this}}&c={{@root.data.accountInfo.hours_verify_code}}&user_id={{@root.data.accountInfo.external_id}}">make any corrections</a>.
+              Please <a href="{{@root.context.metaData.url}}/verify-hours/?t={{>account_list_tasks email=this}}&c={{@root.data.verifyInfoBody.hours_verify_code}}&user_id={{@root.data.auth.uid}}">confirm these hours are correct</a> or <a href="{{@root.context.metaData.url}}/query-hours/?t={{>account_list_tasks email=this}}&c={{@root.data.verifyInfoBody.hours_verify_code}}&user_id={{@root.data.auth.uid}}">make any amendments</a>.
             </p>
           </mj-text>
         </mj-column>
