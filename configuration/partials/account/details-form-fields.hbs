@@ -118,10 +118,16 @@
     <div class="column col-8 col-sm-12 has-error">
       <div class="form-input-hint" id="postcode-validation-message"></div>
       <div class="caption">
+        {{#unless admin ~}}
         Please note: your personal details and the record of your volunteering will be shared with <span id="tsi_title"><strong>{{> support_name}}</strong></span>.
+        {{else}}
+        Please note: the volunteering data you enter will be shared with <span id="tsi_title"><strong>{{> support_name}}</strong></span>.
+        {{/unless ~}}
       </div>
+      <div class="label label-warning caption hidden" id="tsi_change" style="margin-top:.25rem;">As this postcode is located in a different area, <strong>{{> support_name}}</strong> will no longer have access to your data</div>
     </div>
     {{/if ~}}
+    <input type="hidden" name="old_local_authority" id="old_local_authority" value="{{@root.data.accountInfo.local_authority}}" />
     <input type="hidden" name="local_authority" id="local_authority" value="{{@root.data.accountInfo.local_authority}}" />
     <input type="hidden" name="coordinates" id="coordinates" value="{{@root.data.accountInfo.coordinates}}" />
     <input type="hidden" name="constituency" id="constituency" value="{{@root.data.accountInfo.constituency}}" />
@@ -394,11 +400,44 @@
                                           contents: { __template: "" }
                                         },
                                         "#postcode-wrapper": {
-                                          removeClass: [ "has-error" ],
+                                          removeClass: [ "has-error" ]
                                         },
                                         "#postcode-validation-icon": {
                                           addClass: [ "fa-check", "text-success" ],
                                           removeClass: [ "loading", "fa-times", "text-primary", "text-error" ]
+                                        }
+                                      }
+                                    },
+                                    {
+                                      __doNotCompile: true,
+                                      type: "switch",
+                                      config: {
+                                        which: { __template: "{{#eq data.postcodeLookup.[0].local_authority (jquery '#old_local_authority' 'val')}}changed{{/eq}}" },
+                                        branches: {
+                                          default: {
+                                            tasks: [
+                                              {
+                                                type: "elementManipulator",
+                                                config: {
+                                                  "#tsi_change": {
+                                                    removeClass: [ "hidden" ]
+                                                  }
+                                                }
+                                              }
+                                            ]
+                                          },
+                                          changed: {
+                                            tasks: [
+                                              {
+                                                type: "elementManipulator",
+                                                config: {
+                                                  "#tsi_change": {
+                                                    addClass: [ "hidden" ]
+                                                  }
+                                                }
+                                              }
+                                            ]
+                                          }
                                         }
                                       }
                                     }
