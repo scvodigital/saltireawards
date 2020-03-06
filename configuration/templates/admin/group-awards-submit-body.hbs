@@ -1,7 +1,7 @@
 {{#json}}
   {{#if @root.request.body.volunteers}}
     {{#json key='award_input' type='array'}}
-      {{#eachJoin (regexSplit @root.request.body.volunteers '/([\s\r]*[\n,]+[\s\r]*)+/g') ','}}
+      {{#eachJoin (regexSplit @root.request.body.volunteers '\s*[,]\s*|\s*\r?\n\s*') ','}}
         {{#if (trim this)}}
         {{#json}}
           {{{json key='task_id' value=@root.request.body.task_id}}},
