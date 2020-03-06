@@ -14,23 +14,23 @@
       <h4 class="no-margin">What is volunteering?</h4>
       <ul class="fa-ul">
         <li>
-          <span class="fa-li"><span class="far fa-check-circle text-success"></span></span>
+          <span class="fa-li"><span class="fas fa-check-circle text-success"></span></span>
           <span class="text-grey">Your organisation demonstrates good practice around youth volunteering</span>
         </li>
         <li>
-          <span class="fa-li"><span class="far fa-check-circle text-success"></span></span>
+          <span class="fa-li"><span class="fas fa-check-circle text-success"></span></span>
           <span class="text-grey">Your organisation has a clear understanding of volunteering and the criteria The Saltire Awards recognises</span>
         </li>
         <li>
-          <span class="fa-li"><span class="far fa-check-circle text-success"></span></span>
+          <span class="fa-li"><span class="fas fa-check-circle text-success"></span></span>
           <span class="text-grey">Your organisation can keep its own accurate records of young people's volunteering hours</span>
         </li>
         <li>
-          <span class="fa-li"><span class="far fa-check-circle text-success"></span></span>
+          <span class="fa-li"><span class="fas fa-check-circle text-success"></span></span>
           <span class="text-grey">Your organisation can follow the print standard guidelines to produce Saltire Awards certificates</span>
         </li>
         <li>
-          <span class="fa-li"><span class="far fa-check-circle text-success"></span></span>
+          <span class="fa-li"><span class="fas fa-check-circle text-success"></span></span>
           <span class="text-grey">Your organisation is committed to encouraging and supporting young people to create their own My Saltire account (where possible)</span>
         </li>
       </ul>
@@ -38,23 +38,23 @@
       <h4 class="no-margin">What is volunteering?</h4>
       <ul class="fa-ul">
         <li>
-          <span class="fa-li"><span class="far fa-check-circle text-success"></span></span>
+          <span class="fa-li"><span class="fas fa-check-circle text-success"></span></span>
           <span class="text-grey">Unpaid</span>
         </li>
         <li>
-          <span class="fa-li"><span class="far fa-check-circle text-success"></span></span>
+          <span class="fa-li"><span class="fas fa-check-circle text-success"></span></span>
           <span class="text-grey">Your own choice to take part</span>
         </li>
         <li>
-          <span class="fa-li"><span class="far fa-check-circle text-success"></span></span>
+          <span class="fa-li"><span class="fas fa-check-circle text-success"></span></span>
           <span class="text-grey">Benefits the community or the environment</span>
         </li>
         <li>
-          <span class="fa-li"><span class="far fa-times-circle text-error"></span></span>
+          <span class="fa-li"><span class="fas fa-times-circle text-error"></span></span>
           <span class="text-grey">Work experience</span>
         </li>
         <li>
-          <span class="fa-li"><span class="far fa-times-circle text-error"></span></span>
+          <span class="fa-li"><span class="fas fa-times-circle text-error"></span></span>
           <span class="text-grey">Mandatory college / university placements</span>
         </li>
       </ul>
@@ -247,41 +247,25 @@
             </div>
             <div class="column col-8 col-md-12">
               <div class="dropdown">
-                <a href="#" class="btn dropdown-toggle" tabindex="0">
+                <a href="javascript:void()" class="btn dropdown-toggle" tabindex="0">
                   Select Sustainable Development Goals <span class="far fa-angle-down"></span>
                 </a>
                 <ul class="menu">
                   {{#each @root.context.metaData.globalGoals ~}}
                   <li class="menu-item">
                     <label class="form-checkbox">
-                      <input type="checkbox" name="un_sustainable_development_goals" value="{{title}}" />
+                      <input type="checkbox" name="un_sustainable_development_goals" class="sdg" value="{{title}}" data-component="TasksTrigger" data-TasksTrigger="update-sdgs" />
                       <span class="form-icon"></span> <span class="label label-primary" style="background-color:{{> sdg_color sdg=title}}">{{> sdg_number sdg=title}}</span> {{title}}
                     </label>
                   </li>
                   {{/each ~}}
                 </ul>
               </div>
-              <div class="t-margin" id="selected-un_sustainable_development_goals"></div>
-              <script type="text/javascript">
-              $(document).ready(function() {
-                if (is_touch_device()) {
-                  $(".dropdown-toggle").click(function() {
-                    $(".dropdown").addClass("active");
-                  });
-                }
-              });
-              function is_touch_device() {
-                var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
-                var mq = function (query) {
-                  return window.matchMedia(query).matches;
-                }
-                if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
-                  return true;
-                }
-                var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
-                return mq(query);
-              }
-              </script>
+              <div class="t-margin" id="selected-un_sustainable_development_goals">
+                {{#each @root.context.metaData.globalGoals ~}}
+                <span id="sdg-{{> sdg_number sdg=title}}" class="chip hidden" style="user-select:none;color:white!important;background-color:{{> sdg_color sdg=title}}">{{> sdg_number sdg=title}}: {{title}}</span>
+                {{/each ~}}
+              </div>
             </div>
           </div>
         </div>
@@ -384,6 +368,58 @@
     </div>
   </div>
 </div>
+
+{{{{raw}}}}
+<script data-component-config="update-sdgs" type="javascript/blocked">
+  {
+    change: { tasks: ["update-sdgs"] }
+  }
+</script>
+{{{{/raw}}}}
+<script data-task="update-sdgs" type="javascript/blocked">
+  {
+    type: "multiTask",
+    config: {
+      tasks: [
+        {{#each @root.context.metaData.globalGoals ~}}
+        {
+          __doNotCompile: true,
+          type: "switch",
+          config: {
+            which: { __template: "\{{#each (jquery '.sdg:checked')}}\{{#eq this.value '{{title}}'}}selected\{{/eq}}\{{/each}}" },
+            branches: {
+              default: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      "#sdg-{{> sdg_number sdg=title}}": {
+                        addClass: [ "hidden" ]
+                      }
+                    }
+                  }
+                ]
+              },
+              selected: {
+                tasks: [
+                  {
+                    type: "elementManipulator",
+                    config: {
+                      "#sdg-{{> sdg_number sdg=title}}": {
+                        removeClass: [ "hidden" ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }{{#unless @last}},{{/unless}}
+        {{/each ~}}
+      ]
+    }
+  }
+</script>
 
 {{{{raw}}}}
 <script data-component-config="typeahead-organisation" type="javascript/blocked">

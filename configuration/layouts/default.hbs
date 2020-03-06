@@ -116,7 +116,7 @@
         <a href="/" class="logo"><img src="{{~>asset_url url='images/logos/saltire-awards-white.svg'~}}" alt="{{@root.context.metaData.title}}" /></a>
       </section>
       <div class="mobile-menu-button show-lg">
-        <a href="#" class="btn btn-link" aria-label="Menu" data-component="TasksTrigger"
+        <a href="javascript:void()" class="btn btn-link" aria-label="Menu" data-component="TasksTrigger"
           data-TasksTrigger='{
             click: {
               tasks: [
@@ -554,7 +554,8 @@
 
   $(document).ready(function() {
     if (is_touch_device()) {
-      $(".dropdown-toggle").click(function() {
+      $(".dropdown-toggle").click(function(e) {
+        e.preventDefault();
         $(".dropdown").addClass("active");
       });
     }
