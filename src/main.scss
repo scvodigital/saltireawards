@@ -988,6 +988,10 @@ ul.fa-ul {
   border-color: $error-color !important;
   color: white !important;
 }
+.btn.btn-clear:focus,
+.btn.btn-clear:hover {
+  background-color: $primary-color !important;
+}
 
 .modal-form {
   overflow-y: auto;

@@ -88,16 +88,17 @@
             </div>
 
             {{#each awards_list ~}}
-              {{#ifAny group_award_first_name claim_code ~}}
+              {{#ifAll group_award_first_name claim_code ~}}
                 <div class="columns" id="{{award_id}}-row">
                   <div class="column col-2 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6">
                     <div class="form-group b-margin">
-                      {{group_award_first_name}} {{group_award_last_name}}
+                      <span id="{{award_id}}-group_award_first_name">{{group_award_first_name}}</span>
+                      <span id="{{award_id}}-group_award_last_name">{{group_award_last_name}}</span>
                     </div>
                   </div>
                   <div class="column col-3 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6">
                     <div class="form-group b-margin">
-                      {{role_1}}
+                      <span id="{{award_id}}-award_role">{{role_1}}</span>
                     </div>
                   </div>
                   <div class="column col-2 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-7">
@@ -138,10 +139,9 @@
                               <a href="#close" class="btn btn-clear modal-close float-right" aria-label="Close" data-component="TasksTrigger" data-TasksTrigger="{click: {tasks: ['hide-modal']}}"></a>
                               <div class="modal-title h5">{{group_award_first_name}} {{group_award_last_name}}</div>
                             </div>
-                            <form id="{{award_id}}" method="POST" action="/admin-update-individual-award?user_id={{@root.data.auth.uid}}" style="position:relative" class="inline-hours-form" data-award-id="{{award_id}}"  data-component="TasksTrigger" data-form-element=">"  data-next-task="close-and-complete" data-success-message="Participant details updated" data-TasksTrigger="ajax-form-handler">
+                            <form id="{{award_id}}" method="POST" action="/admin-update-individual-award?user_id={{@root.data.auth.uid}}" style="position:relative" class="inline-hours-form" data-award-id="{{award_id}}"  data-component="TasksTrigger" data-form-element=">" data-next-task="close-and-complete" data-success-message="Participant details updated" data-TasksTrigger="ajax-form-handler">
                               <div class="modal-body">
                                 <div class="content">
-
                                   <input type="hidden" name="task_id" value="{{../task_id}}">
                                   <input type="hidden" name="claim_code" value="{{claim_code}}">
                                   <input type="hidden" name="award_id" value="{{award_id}}">
@@ -150,10 +150,10 @@
                                   <input type="hidden" name="organisation_name_1" value="{{../organisation_name}}">
 
                                   <div class="form-group b-margin">
-                                    <input id="{{award_id}}-modal-group_award_first_name" {{#unless claim_code ~}}disabled{{/unless}} class="form-input inline-edit" name="group_award_first_name" value="{{group_award_first_name}}">
+                                    <input id="{{award_id}}-modal-group_award_first_name" {{#unless claim_code ~}}disabled{{/unless}} class="form-input inline-edit" name="group_award_first_name" value="{{group_award_first_name}}" placeholder="First name" required />
                                   </div>
                                   <div class="form-group b-margin">
-                                    <input id="{{award_id}}-modal-group_award_last_name"  {{#unless claim_code ~}}disabled{{/unless}} class="form-input inline-edit" name="group_award_last_name" value="{{group_award_last_name}}">
+                                    <input id="{{award_id}}-modal-group_award_last_name" {{#unless claim_code ~}}disabled{{/unless}} class="form-input inline-edit" name="group_award_last_name" value="{{group_award_last_name}}" placeholder="Last name" />
                                   </div>
 
                                   <div class="form-group b-margin">
@@ -178,7 +178,7 @@
                                     </select>
                                   </div>
                                   <div class="form-group">
-                                    <textarea {{#unless claim_code~}}disabled{{/unless}} rows="3" placeholder="Role" cols="40" id="task_role" name="role_1" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_role}}>{{default role_1 ../task_role}}</textarea>
+                                    <textarea {{#unless claim_code~}}disabled{{/unless}} rows="3" placeholder="Role" cols="40" id="{{award_id}}-modal-award_role" name="role_1" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_role}}>{{default role_1 ../task_role}}</textarea>
                                   </div>
 
                                   {{!-- <div class="form-group">
@@ -199,25 +199,23 @@
                           <div class="modal-confirm hidden">
                             <form>
                               <div class="modal-container">
-                                <div class="modal-header">
-                                </div>
+                                <div class="modal-header"></div>
                                 <div class="modal-body">
-                                <div class="content">
-                                  <p>Please confirm that you wish to delete this award.</p>
-                                  <p>If the claim code has already been issued, this award will not be claimable.</p>
+                                  <div class="content">
+                                    <p>Please confirm that you wish to delete this award.</p>
+                                    <p>If the claim code has already been issued, this award will not be claimable.</p>
+                                  </div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-block inline-update-button b-margin" data-component="TasksTrigger" data-TasksTrigger="{click: {tasks: ['confirm-to-form']}}">Cancel</button>
+                                  <a href="/admin-delete-award?award_id={{award_id}}&user_id={{@root.data.auth.uid}}" class="btn btn-error btn-block b-margin" data-component="TasksTrigger" data-award-id="{{award_id}}" data-success-hide="true" data-next-task="close-and-destroy"  data-next-action data-TasksTrigger="ajax-delete-handler">Confirm</a>
                                 </div>
                               </div>
-                              <div class="modal-footer">
-                                <button type="button" class="btn btn-block inline-update-button b-margin" data-component="TasksTrigger" data-TasksTrigger="{click: {tasks: ['confirm-to-form']}}">Cancel</button>
-                                <a href="/admin-delete-award?award_id={{award_id}}&user_id={{@root.data.auth.uid}}" class="btn btn-error btn-block b-margin" data-component="TasksTrigger" data-award-id="{{award_id}}" data-success-hide="true" data-next-task="close-and-destroy"  data-next-action data-TasksTrigger="ajax-delete-handler">Confirm</a>
-                              </div>
-
-                            </div>
                             </form>
                           </div>
                         </div>
-                        </form>
-                      </div>
+                      </form>
+                    </div>
                     {{/if ~}}
                   </div>
                   <div class="column col-2 col-xl-2 col-lg-2 col-md-3 col-sm-4">
@@ -227,16 +225,16 @@
                   {{#if claim_code ~}}
                   <a href="/admin-delete-hours?hours_id={{hours_id}}&user_id={{@root.data.auth.uid}}" class="btn btn-error btn-block b-margin" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
                   {{/if ~}}
+                  </div>
+                  <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-4">
+                  {{#if claim_code ~}}
+                  <a href="/admin-delete-hours?hours_id={{hours_id}}&user_id={{@root.data.auth.uid}}" class="btn btn-error btn-block b-margin" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
+                  {{/if ~}}
                   </div> --}}
-                {{!-- <div class="column col-1 col-xl-2 col-lg-2 col-md-3 col-sm-4">
-                {{#if claim_code ~}}
-                <a href="/admin-delete-hours?hours_id={{hours_id}}&user_id={{@root.data.auth.uid}}" class="btn btn-error btn-block b-margin" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler">Remove</a>
-                {{/if ~}}
-                </div> --}}
-              </div>
-            {{!-- </form> --}}
+                </div>
+              {{!-- </form> --}}
 
-              {{/ifAny ~}}
+              {{/ifAll ~}}
             {{/each ~}}
 
             <!--<form action="/do-not-act/{{task_id}}?user_id={{@root.data.auth.uid}}" class="form-horizontal inline-hours-form" data-component="TasksTrigger" data-form-element=">" data-success-message="Skills updated" data-TasksTrigger="ajax-form-handler">-->
@@ -343,9 +341,6 @@
   {{/if ~}}
 </div>
 
-
-
-
 <script data-task="close-and-complete" type="javascript/blocked">
   {
     type: "multiTask",
@@ -353,11 +348,15 @@
       tasks: [
         "populate",
         "confirm-to-form",
-        "hide-modal",
+        "hide-modal"
       ]
     }
   }
 </script>
+{{!-- {
+  type: "run",
+  config: { code: "window.location.replace(window.location.pathname + '?updated=true')" }
+} --}}
 
 <script data-task="close-and-destroy" type="javascript/blocked">
   {
@@ -366,106 +365,100 @@
       tasks: [
         "destroy",
         "confirm-to-form",
-        "hide-modal",
+        "hide-modal"
       ]
     }
   }
 </script>
 
 <script data-task="confirm-to-form" type="javascript/blocked">
-      {
-        type: "elementManipulator",
-        __doNotCompile: true,
-        config: {
-         ".modal-confirm" : { addClass: "hidden" },
-         ".modal-form" : { removeClass: "hidden" },
-         }
-      }
+  {
+    type: "elementManipulator",
+    __doNotCompile: true,
+    config: {
+      ".modal-confirm" : { addClass: "hidden" },
+      ".modal-form" : { removeClass: "hidden" }
+    }
+  }
 </script>
 
 <script data-task="form-to-confirm" type="javascript/blocked">
-      {
-        type: "elementManipulator",
-        __doNotCompile: true,
-        config: {
-         ".modal-confirm" : { removeClass: "hidden" },
-         ".modal-form" : { addClass: "hidden" },
-         }
-      }
+  {
+    type: "elementManipulator",
+    __doNotCompile: true,
+    config: {
+      ".modal-confirm" : { removeClass: "hidden" },
+      ".modal-form" : { addClass: "hidden" }
+    }
+  }
 </script>
 
 
 <script data-task="populate" type="javascript/blocked">
   {
-  type: "multiTask",
-  config: {
-    tasks:[
-      {
-        type: "basic",
-        name: "myid",
-        config: {
-          __template : "\{{{jquery rootElement 'data' (split 'award-id')}}}"
+    type: "multiTask",
+    config: {
+      tasks:[
+        {
+          type: "basic",
+          name: "myid",
+          config: {
+            __template : "\{{{jquery rootElement 'data' (split 'award-id')}}}"
+          }
+        },
+        {
+          type: "elementManipulator",
+          __doNotCompile: true,
+          config: {
+            "#\{{{data.myid}}}-group_award_first_name" : { contents: {__template : "\{{jquery (concat '#' data.myid '-modal-group_award_first_name') 'val'}}"} },
+            "#\{{{data.myid}}}-group_award_last_name" : { contents: {__template : "\{{jquery (concat '#' data.myid '-modal-group_award_last_name') 'val'}}"} },
+            "#\{{{data.myid}}}-award_role" : { contents: {__template : "\{{jquery (concat '#' data.myid '-modal-award_role') 'val'}}"} },
+            "#\{{{data.myid}}}-award_level" : { contents: {__template : "\{{jquery (concat '#' data.myid '-modal-award_level option:selected') 'text'}}"} }
+          }
         }
-      },
-      {
-        type: "elementManipulator",
-        __doNotCompile: true,
-        config: {
-         "#\{{{data.myid}}}-group_award_first_name" : { contents: {__template : "\{{jquery (concat '#' data.myid '-modal-group_award_first_name') 'val'}}"} },
-         "#\{{{data.myid}}}-group_award_last_name" : { contents: {__template : "\{{jquery (concat '#' data.myid '-modal-group_award_last_name') 'val'}}"} },
-         "#\{{{data.myid}}}-award_level" : { contents: {__template : "\{{jquery (concat '#' data.myid '-modal-award_level option:selected') 'text'}}"} },
-
-         }
-      }
-    ]
+      ]
+    }
   }
-}
 </script>
 
 <script data-task="destroy" type="javascript/blocked">
   {
-  type: "multiTask",
-  config: {
-    tasks:[
-      {
-        type: "elementManipulator",
-        __doNotCompile: true,
-        config: {
-         "#\{{{jquery rootElement 'data' (split 'award-id')}}}-row" : { addClass: "hidden" },
-         }
-      }
-    ]
+    type: "multiTask",
+    config: {
+      tasks:[
+        {
+          type: "elementManipulator",
+          __doNotCompile: true,
+          config: {
+            "#\{{{jquery rootElement 'data' (split 'award-id')}}}-row" : { addClass: "hidden" }
+          }
+        }
+      ]
+    }
   }
-}
 </script>
 
 <script data-task="hide-modal" type="javascript/blocked">
-{
-  type: "multiTask",
-  config:
   {
-    tasks:
-    [
-      {
-        type: "elementManipulator",
-        __doNotCompile: true,
-        config: {
-          "<.modal": { removeClass: "active" },
-          "<.modal | >.alert": { addClass: "hidden" }
-        }
-      },
-      "confirm-to-form"
-    ]
+    type: "multiTask",
+    config: {
+      tasks: [
+        {
+          type: "elementManipulator",
+          __doNotCompile: true,
+          config: {
+            "<.modal": { removeClass: "active" },
+            "<.modal | >.alert": { addClass: "hidden" }
+          }
+        },
+        "confirm-to-form"
+      ]
+    }
   }
-}
-
 </script>
-
-
 
 <script>
   document.addEventListener("DOMContentLoaded", function(event) {
-
     $('.edit-button').click(function(){
       var hours_id = $(this).closest('.column').find('.modal').attr('id');
       $('#'+hours_id).addClass('active');
