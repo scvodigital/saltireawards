@@ -234,7 +234,11 @@
                   <div class="popover-container">
                     <div class="card">
                       <div class="card-body caption">
-                        Optional - if you choose any, the SDG logo will appear on your certificates and the SDGs you contribute towards will appear on your profile <a href="/sustainable-development-goals" target="_blank">Read more</a>
+                        {{#if @root.data.isAdmin ~}}
+                        Optional - if you choose any, the UN SDG logo will appear on all certificates for this group <a href="/sustainable-development-goals" target="_blank">Read more</a>
+                        {{else}}
+                        Optional - if you choose any, the UN SDG logo will appear on your future certificates and the SDGs you contribute towards will appear on your profile <a href="/sustainable-development-goals" target="_blank">Read more</a>
+                        {{/if ~}}
                       </div>
                     </div>
                   </div>
@@ -243,7 +247,7 @@
             </div>
             <div class="column col-8 col-md-12">
               <div class="dropdown">
-                <a href="#" class="btn btn-primary dropdown-toggle" tabindex="0">
+                <a href="#" class="btn dropdown-toggle" tabindex="0">
                   Select Sustainable Development Goals <span class="far fa-angle-down"></span>
                 </a>
                 <ul class="menu">
@@ -257,6 +261,7 @@
                   {{/each ~}}
                 </ul>
               </div>
+              <div class="t-margin" id="selected-un_sustainable_development_goals"></div>
               <script type="text/javascript">
               $(document).ready(function() {
                 if (is_touch_device()) {
@@ -367,10 +372,10 @@
         <div class="form-horizontal">
           <div class="form-group">
             <div class="column col-4 hide-sm"></div>
-            <div class="col-8 col-md-12">
+            <div class="column col-8 col-md-12">
               {{!-- This will probably have a captcha in it, hence the separation, and weird submit format --}}
               <button id="detail-submit" type="submit" class="btn btn-primary b-margin-full">
-                Submit details
+                Next
               </button>
             </div>
           </div>

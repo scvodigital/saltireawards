@@ -158,15 +158,19 @@ a.btn:visited,
   color: $primary-color;
   border-color: $primary-color;
 }
-a.btn:active,
-a.btn:focus,
 a.btn:hover,
-.btn:active,
-.btn:focus,
 .btn:hover {
   background-color: $primary-color-dark;
   color: white;
   border-color: $primary-color-dark;
+}
+a.btn:active,
+a.btn:focus,
+.btn:active,
+.btn:focus {
+  background-color: inherit;
+  color: inherit;
+  border-color: inherit;
 }
 a.btn-primary:link,
 a.btn-primary:visited,
