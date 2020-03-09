@@ -67,7 +67,7 @@
                         {{#if verified ~}}
                         <li class="hours-log-entry">
                           <span class="fa-li"><span class="far fa-user-check"></span></span>
-                          <span class="text-gray">{{inflect hours "hour" "hours" true}}, on {{momentFormat (moment createdDate 'YYYY-MM-DDTHH:mm:ssZ') "MMMM Do"}}{{#compare (momentFormat (moment createdDate 'YYYY-MM-DDTHH:mm:ssZ') "YYYY") "!==" (momentFormat (moment) "YYYY")}} {{momentFormat (moment createdDate 'YYYY-MM-DDTHH:mm:ssZ') "YYYY"}}{{/compare}}</span>
+                          <span class="text-gray">{{inflect hours "hour" "hours" true}}, on {{momentFormat (moment (default legacy_created_date createdDate) 'YYYY-MM-DDTHH:mm:ssZ') "MMMM Do"}}{{#compare (momentFormat (moment (default legacy_created_date createdDate) 'YYYY-MM-DDTHH:mm:ssZ') "YYYY") "!==" (momentFormat (moment) "YYYY")}} {{momentFormat (moment (default legacy_created_date createdDate) 'YYYY-MM-DDTHH:mm:ssZ') "YYYY"}}{{/compare}}</span>
                         </li>
                         {{/if ~}}
                         {{/each ~}}
@@ -93,7 +93,7 @@
                         {{#unless verified ~}}
                         <li class="hours-log-entry">
                           <span class="fa-li"><span class="far fa-user-clock"></span></span>
-                          <span class="text-gray">{{inflect hours "hour" "hours" true}}, on {{momentFormat (moment createdDate 'YYYY-MM-DDTHH:mm:ssZ') "MMMM Do"}}{{#compare (momentFormat (moment createdDate 'YYYY-MM-DDTHH:mm:ssZ') "YYYY") "!==" (momentFormat (moment) "YYYY")}} {{momentFormat (moment createdDate 'YYYY-MM-DDTHH:mm:ssZ') "YYYY"}}{{/compare}}</span>
+                          <span class="text-gray">{{inflect hours "hour" "hours" true}}, on {{momentFormat (moment (default legacy_created_date createdDate) 'YYYY-MM-DDTHH:mm:ssZ') "MMMM Do"}}{{#compare (momentFormat (moment (default legacy_created_date createdDate) 'YYYY-MM-DDTHH:mm:ssZ') "YYYY") "!==" (momentFormat (moment) "YYYY")}} {{momentFormat (moment (default legacy_created_date createdDate) 'YYYY-MM-DDTHH:mm:ssZ') "YYYY"}}{{/compare}}</span>
                         </li>
                         {{/unless ~}}
                         {{/each ~}}

@@ -6,13 +6,23 @@
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
     {
+      "name": "uidParam",
+      "taskModule": "render",
+      "renderer": "handlebars",
+      "config": {
+        "output": "data",
+        "template": "\"{{@root.request.params.uid}}\"",
+        "parseJson": true
+      }
+    },
+    {
       "name": "reroute",
       "taskModule": "reroute",
-      "config": {
-        "if": [
-          { "missing": ["data.auth.uid"] },
-          "profile_public",
-          "profile_personal"
+      "config":
+      {
+        "if": [{"==": [{"var": "data.auth.uid"},{"var": "data.uidParam"}]},
+        "profile_personal",
+        "profile_public"
         ]
       }
     }

@@ -1,7 +1,7 @@
 {
   "name": "profile_public",
   "debug": true,
-  "pattern": "/profile-public",
+  "pattern": "/profile-public/:uid",
   "errorRoute": "five_hundred",
   "metaData": {
     "title": "Volunteer Profile"
