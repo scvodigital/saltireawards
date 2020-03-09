@@ -81,8 +81,6 @@
             </button>
           </form>
 
-
-        {{#unless @root.data.isAdmin ~}}
           <form class="column col-6 col-sm-12 b-padding-full form" id="change-email" data-component="TasksTrigger" data-TasksTrigger='{
       change: { tasks: [ "validate-email-form" ] },
       keyup: { tasks: [ "validate-email-form" ] },
@@ -107,7 +105,6 @@
               Change email
             </button>
           </form>
-        {{/unless ~}}
         </div>
 
         <div class="columns">
