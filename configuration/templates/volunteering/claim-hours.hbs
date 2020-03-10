@@ -9,11 +9,11 @@
   <form class="empty-action" id="input-code-form" action="/submit-hours-claim" method="POST" data-component="TasksTrigger" data-success-destination="/hours" data-TasksTrigger="ajax-form-handler">
     <div class="columns b-margin-full">
       <div class="col-4 col-mx-auto">
-        <label for="hours_claim_code" class="form-label">
+        {{!-- <label for="hours_claim_code" class="form-label">
           <strong>Enter your claim code</strong>
-        </label>
+        </label> --}}
         <div class="input-group">
-          <input id="task-code" name="award_claim_code" class="form-input claim-code input-lg" placeholder="" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_code}}>
+          <input id="task-code" name="award_claim_code" class="form-input claim-code input-lg" placeholder="Enter your claim code" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_code}}>
           <button id="detail-submit" type="submit" class="submit-button btn btn-primary btn-lg input-group-btn">
             Claim award
           </button>
