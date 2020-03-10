@@ -21,7 +21,7 @@
   {{~/blockStringify}}
   }
 {{/eachJoin ~}}
-{{#compare (num @root.data.verifyInfoBody.hours_verify_award) ">" (num @root.data.accountInfo.tsi_award_authorization_level)}}
+{{#compare (num @root.data.verifyInfoBody.hours_verify_award) ">" (num @root.data.accountInfo.tsi_award_authorisation_level)}}
   {{#compare (length @root.data.tasksInfoUnverified) ">" 0}},{{/compare}}
 
   {
@@ -35,7 +35,7 @@
   "tag":  "{{{@root.route.metaData.TSIEmailType}}}",
   "id":  "{{{@root.route.metaData.TSIEmailType}}}",
   "connectionName": {{{stringify (getProperty @root.context.metaData.emailSendSettings (concat @root.route.metaData.TSIEmailType '.mailgunConnection'))}}},
-  "subject": "TSI Authorization needed {{#compare @root.route.metaData.emailType '===' 'hours-verify-reminder'}}reminder{{/compare}}",
+  "subject": "TSI authorisation needed {{#compare @root.route.metaData.emailType '===' 'hours-verify-reminder'}}reminder{{/compare}}",
   "html":
   {{~#blockStringify this ~}}
     {{~>

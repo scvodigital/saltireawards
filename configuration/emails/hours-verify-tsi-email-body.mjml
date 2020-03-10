@@ -24,7 +24,7 @@
               {{#if @root.data.accountInfo.school_college_name}}from {{@root.data.accountInfo.school_college_name}}{{/if}}
               applied for a {{@root.context.metaData.certificateName}} for the volunteering tasks listed below. Unfortunately the maximum time has elapsed
               without {{@root.data.accountInfo.first_name}}'s hours being verified. Please could you check the hours below and confirm or edit them
-              using the links below, or alternatively update the details on Milo. {{#if @root.data.accountInfo.tsi_award_authorization_required}}
+              using the links below, or alternatively update the details on Milo. {{#if @root.data.accountInfo.tsi_award_authorisation_required}}
               Please note that you also need to <strong>set the TSI authorisation level to {{@root.context.metaData.certificateName}}</strong> for the award to be granted{{/if}}
             </p>
 

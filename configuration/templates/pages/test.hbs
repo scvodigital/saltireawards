@@ -16,8 +16,8 @@
       <p>{{getProperty  @root.context.metaData.youngScotSettings.points-per-certificate (lowercase @root.request.params.query.award)}}</p>
    <<<
       {{num @root.data.accountInfo.hours_verify_award}}
-      {{num @root.data.accountInfo.tsi_award_authorization_level}}
-      {{#compare (num @root.data.accountInfo.hours_verify_award) ">" (num @root.data.accountInfo.tsi_award_authorization_level)}}
+      {{num @root.data.accountInfo.tsi_award_authorisation_level}}
+      {{#compare (num @root.data.accountInfo.hours_verify_award) ">" (num @root.data.accountInfo.tsi_award_authorisation_level)}}
         Yep!
       {{/compare}}
     </div>
