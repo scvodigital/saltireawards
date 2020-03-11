@@ -1,0 +1,11 @@
+{{~#if @root.request.params.query.postcode ~}}
+{{~#with (getProperty @root.context.metaData.tsiList (slugify @root.data.postcode_data.hits.hits.[0]._source.district)) ~}}
+{{~#each contacts ~}}
+{{~#if (regexMatch @root.request.params.query.postcode pattern "gi") ~}}
+{{email}}
+{{~/if ~}}
+{{~/each ~}}
+{{~/with ~}}
+{{else}}
+{{@root.context.metaData.contacts.admin}}
+{{~/if ~}}
