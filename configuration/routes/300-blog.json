@@ -1,6 +1,6 @@
 {
   "name": "blog",
-  "debug": true,
+  "debug": false,
   "pattern": "/blog",
   "errorRoute": "five_hundred",
   "metaData": {

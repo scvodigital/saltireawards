@@ -1,6 +1,6 @@
 {
   "name": "sign_out",
-  "debug": true,
+  "debug": false,
   "pattern": "/sign-out",
   "errorRoute": "five_hundred",
   "tasks": [

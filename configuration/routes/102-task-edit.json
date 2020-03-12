@@ -1,7 +1,7 @@
 {
   "name": "task-edit",
   "pattern": "/task-edit/:id",
-  "debug": true,
+  "debug": false,
   "errorRoute": "five_hundred",
   "metaData": {
     "title": "My volunteering",

@@ -1,7 +1,7 @@
 {
   "name": "set-temp-admin",
   "pattern": "/set-temp-admin",
-  "debug": true,
+  "debug": false,
   "errorRoute": "five_hundred",
   "acceptedVerbs": "GET",
   "defaultParams": {

@@ -1,7 +1,7 @@
 {
   "name": "update-task-details",
   "pattern": "/update-task-details/:task_id",
-  "debug": true,
+  "debug": false,
   "errorRoute": "five_hundred_json",
   "acceptedVerbs": "POST",
   "defaultParams": {

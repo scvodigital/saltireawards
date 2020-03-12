@@ -1,7 +1,7 @@
 {
   "name": "page_contact",
   "pattern": "/contact",
-  "debug": true,
+  "debug": false,
   "errorRoute": "five_hundred",
   "metaData": {
     "title": "Contact us"

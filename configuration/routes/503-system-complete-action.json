@@ -1,7 +1,7 @@
 {
   "name": "complete-action",
   "pattern": "/complete-action",
-  "debug": true,
+  "debug": false,
   "metaData": {
     "title": "Tasks"
   },

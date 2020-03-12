@@ -1,6 +1,6 @@
 {
   "name": "task",
-  "debug": true,
+  "debug": false,
   "pattern": "/task",
   "errorRoute": "five_hundred",
   "metaData": {

@@ -1,7 +1,7 @@
 {
   "name": "toggle-profile-public",
   "pattern": "/toggle-profile-public",
-  "debug": true,
+  "debug": false,
   "errorRoute": "five_hundred",
   "acceptedVerbs": "POST",
   "defaultParams": {

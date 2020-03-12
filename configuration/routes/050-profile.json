@@ -1,6 +1,6 @@
 {
   "name": "profile",
-  "debug": true,
+  "debug": false,
   "pattern": "/profile/:uid(/:junk)",
   "errorRoute": "five_hundred",
   "tasks": [

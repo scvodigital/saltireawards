@@ -1,7 +1,7 @@
 {
   "name": "verify-hours-email-send",
   "pattern": "/verify-hours-email-send",
-  "debug": true,
+  "debug": false,
   "errorRoute": "five_hundred",
   "metaData": {
     "title": "Tasks",

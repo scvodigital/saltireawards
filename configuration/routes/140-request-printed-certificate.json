@@ -1,6 +1,6 @@
 {
   "name": "request-printed-certificate",
-  "debug": true,
+  "debug": false,
   "pattern": "/request-printed-certificate",
   "acceptedVerbs": "POST, GET",
   "errorRoute": "five_hundred",

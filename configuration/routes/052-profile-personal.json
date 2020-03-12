@@ -1,6 +1,6 @@
 {
   "name": "profile_personal",
-  "debug": true,
+  "debug": false,
   "pattern": "/profile-personal",
   "errorRoute": "five_hundred",
   "metaData": {

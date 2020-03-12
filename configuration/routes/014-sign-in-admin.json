@@ -1,7 +1,7 @@
 {
   "name": "sign_in_admin",
   "pattern": "/sign-in-admin",
-  "debug": true,
+  "debug": false,
   "errorRoute": "five_hundred",
   "metaData": {
     "title": "Group administrator sign in"

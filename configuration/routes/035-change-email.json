@@ -1,6 +1,6 @@
 {
   "name": "change-email",
-  "debug": true,
+  "debug": false,
   "pattern": "/change-email",
   "acceptedVerbs": "POST",
   "errorRoute": "five_hundred",

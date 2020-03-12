@@ -1,7 +1,7 @@
 {
   "name": "admin-submit-group-awards",
   "pattern": "/admin-submit-group-awards",
-  "debug": true,
+  "debug": false,
   "errorRoute": "five_hundred_json",
   "acceptedVerbs": "POST",
   "defaultParams": {

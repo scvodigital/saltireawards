@@ -1,7 +1,7 @@
 {
   "name": "admin-delete-hours",
   "pattern": "/admin-delete-hours",
-  "debug": true,
+  "debug": false,
   "errorRoute": "five_hundred_json",
   "acceptedVerbs": "DELETE, GET",
   "defaultParams": {

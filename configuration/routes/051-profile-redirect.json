@@ -1,6 +1,6 @@
 {
   "name": "profile_redirect",
-  "debug": true,
+  "debug": false,
   "pattern": "/profile",
   "errorRoute": "five_hundred",
   "tasks": [

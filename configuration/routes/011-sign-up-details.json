@@ -1,7 +1,7 @@
 {
   "name": "sign-up-details",
   "pattern": "/sign-up-details",
-  "debug": true,
+  "debug": false,
   "errorRoute": "five_hundred",
   "metaData": {
     "title": "Volunteer sign up",

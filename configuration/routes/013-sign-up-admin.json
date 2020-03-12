@@ -1,7 +1,7 @@
 {
   "name": "sign-up-admin",
   "pattern": "/sign-up-admin",
-  "debug": true,
+  "debug": false,
   "errorRoute": "five_hundred",
   "metaData": {
     "title": "Group administrator sign up"

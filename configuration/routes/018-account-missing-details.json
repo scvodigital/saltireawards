@@ -1,6 +1,6 @@
 {
   "name": "account-missing-details",
-  "debug": true,
+  "debug": false,
   "pattern": "/account-missing-details",
   "errorRoute": "five_hundred",
   "metaData": {

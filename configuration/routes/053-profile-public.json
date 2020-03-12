@@ -1,6 +1,6 @@
 {
   "name": "profile_public",
-  "debug": true,
+  "debug": false,
   "pattern": "/profile-public/:uid",
   "errorRoute": "five_hundred",
   "metaData": {

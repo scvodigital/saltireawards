@@ -1,7 +1,7 @@
 {
   "name": "admin-update-individual-award",
   "pattern": "/admin-update-individual-award",
-  "debug": true,
+  "debug": false,
   "errorRoute": "five_hundred_json",
   "acceptedVerbs": "POST, GET",
   "defaultParams": {
@@ -19,7 +19,7 @@
       "renderer": "handlebars",
       "config": {
 
-        "connection": "scvoMiloProduction",
+        "connection": "scvoAlexSandbox",
         "output": "data",
         "method": "POST",
         "body": ">context.metaData.handlebars.templates.admin_group-award-edit-body",

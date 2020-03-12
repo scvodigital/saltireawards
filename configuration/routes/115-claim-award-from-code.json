@@ -1,7 +1,7 @@
 {
   "name": "claim-award",
   "pattern": "/claim-award",
-  "debug": true,
+  "debug": false,
   "errorRoute": "five_hundred",
   "metaData": {
     "title": "My volunteering",

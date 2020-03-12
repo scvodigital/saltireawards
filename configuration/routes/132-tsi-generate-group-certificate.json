@@ -1,7 +1,7 @@
 {
   "name": "tsi_group_certificate",
   "pattern": "/tsi-group-certificate/:task_id(/:award_id)(/:junk)",
-  "debug": true,
+  "debug": false,
   "errorRoute": "five_hundred",
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",

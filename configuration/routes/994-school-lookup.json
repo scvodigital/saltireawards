@@ -1,7 +1,7 @@
 {
   "name": "school-lookup",
   "pattern": "/school-lookup",
-  "debug": true,
+  "debug": false,
   "doNotZip": true,
   "tasks": [
     {

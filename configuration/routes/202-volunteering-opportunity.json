@@ -4,7 +4,7 @@
     "slug": "/search/opportunity/:id(/:junk)",
     "id": "/opp/:id"
   },
-  "debug": true,
+  "debug": false,
   "errorRoute": "five_hundred",
   "metaData": {
     "title": "Find opportunities"

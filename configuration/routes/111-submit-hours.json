@@ -1,7 +1,7 @@
 {
   "name": "submit-hours",
   "pattern": "/submit-hours",
-  "debug": true,
+  "debug": false,
   "errorRoute": "five_hundred_json",
   "acceptedVerbs": "POST",
   "defaultParams": {

@@ -1,7 +1,7 @@
 {
   "name": "update-task-testimonial",
   "pattern": "/update-task-testimonial/:task_id",
-  "debug": true,
+  "debug": false,
   "errorRoute": "five_hundred_json",
   "acceptedVerbs": "POST",
   "defaultParams": {

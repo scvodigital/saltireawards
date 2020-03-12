@@ -1,7 +1,7 @@
 {
   "name": "query-hours",
   "pattern": "/query-hours",
-  "debug": true,
+  "debug": false,
   "errorRoute": "five_hundred",
   "metaData": {
     "title": "Verify or change hours"

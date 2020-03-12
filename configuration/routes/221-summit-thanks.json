@@ -1,6 +1,6 @@
 {
   "name": "summit_thanks",
-  "debug": true,
+  "debug": false,
   "pattern": "/info-for-organisations/summit-award/nomination/thanks",
   "errorRoute": "five_hundred",
   "metaData": {

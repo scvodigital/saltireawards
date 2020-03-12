@@ -1,6 +1,6 @@
 {
   "name": "account",
-  "debug": true,
+  "debug": false,
   "pattern": "/account",
   "errorRoute": "five_hundred",
   "metaData": {
