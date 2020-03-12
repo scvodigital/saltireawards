@@ -15,7 +15,7 @@
       "taskModule": "salesforceApex",
       "renderer": "handlebars",
       "config": {
-        "connection": "scvoAlexSandbox",
+        "connection": "scvoMiloProduction",
         "output": "data",
         "method": "POST",
         "body": ">context.metaData.handlebars.templates.account_auth_update-public-profile-body",

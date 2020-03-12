@@ -28,7 +28,7 @@
       "taskModule": "salesforceApex",
       "renderer": "handlebars",
       "config": {
-        "connection": "scvoAlexSandbox",
+        "connection": "scvoMiloProduction",
         "output": "data",
         "method": "POST",
         "body": ">data.verifyInfoBody",

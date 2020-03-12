@@ -25,7 +25,7 @@
       "taskModule": "salesforceApex",
       "renderer": "handlebars",
       "config": {
-        "connection": "scvoAlexSandbox",
+        "connection": "scvoMiloProduction",
         "output": "data",
         "method": "POST",
         "body": ">context.metaData.handlebars.templates.volunteering_task-body-submit",

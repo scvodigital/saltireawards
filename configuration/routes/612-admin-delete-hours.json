@@ -27,7 +27,7 @@
       "taskModule": "salesforceApex",
       "renderer": "handlebars",
       "config": {
-        "connection": "scvoAlexSandbox",
+        "connection": "scvoMiloProduction",
         "output": "data",
         "method": "DELETE",
         "apexClassPath": ">data.apexUrl"

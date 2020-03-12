@@ -18,7 +18,7 @@
       "taskModule": "salesforceApex",
       "renderer": "handlebars",
       "config": {
-        "connection": "scvoAlexSandbox",
+        "connection": "scvoMiloProduction",
         "output": "data",
         "method": "POST",
         "body": ">context.metaData.handlebars.templates.admin_group-awards-submit-body",

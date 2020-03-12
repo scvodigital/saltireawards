@@ -18,7 +18,7 @@
       "taskModule": "salesforceApex",
       "renderer": "handlebars",
       "config": {
-        "connection": "scvoAlexSandbox",
+        "connection": "scvoMiloProduction",
         "output": "data",
         "method": "GET",
         "apexClassPath": "/SaltireTask/?task_id={{@root.request.params.task_id}}"
@@ -38,7 +38,7 @@
       "taskModule": "salesforceApex",
       "renderer": "handlebars",
       "config": {
-        "connection": "scvoAlexSandbox",
+        "connection": "scvoMiloProduction",
         "output": "data",
         "method": "POST",
         "body": ">context.metaData.handlebars.templates.volunteering_task-testimonial-update",

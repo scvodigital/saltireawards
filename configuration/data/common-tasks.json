@@ -39,7 +39,7 @@
 			"ttl": 3600
 		},
 		"config": {
-			"connection": "scvoAlexSandbox",
+			"connection": "scvoMiloProduction",
 			"output": "data",
 			"method": "GET",
 			"apexClassPath": "/SaltireUser/?user_id={{@root.data.auth.uid}}"
@@ -55,7 +55,7 @@
 			"ttl": 3600
 		},
 		"config": {
-			"connection": "scvoAlexSandbox",
+			"connection": "scvoMiloProduction",
 			"output": "data",
 			"method": "GET",
 			"apexClassPath": "/SaltireUser/?user_id={{default @root.request.params.query.user_id @root.request.params.uid}}"
@@ -71,7 +71,7 @@
 			"ttl": 3600
 		},
 		"config": {
-			"connection": "scvoAlexSandbox",
+			"connection": "scvoMiloProduction",
 			"output": "data",
 			"method": "GET",
 			"apexClassPath": "/SaltireTask/?user_id={{default @root.data.auth.uid @root.request.params.uid}}"
@@ -87,7 +87,7 @@
 			"ttl": 3600
 		},
 		"config": {
-			"connection": "scvoAlexSandbox",
+			"connection": "scvoMiloProduction",
 			"output": "data",
 			"method": "GET",
 			"apexClassPath": "/SaltireHours/?user_id={{default @root.data.auth.uid @root.request.params.uid}}"
@@ -103,7 +103,7 @@
 			"ttl": 3600
 		},
 		"config": {
-			"connection": "scvoAlexSandbox",
+			"connection": "scvoMiloProduction",
 			"output": "data",
 			"method": "GET",
 			"apexClassPath": "/SaltireTask/?user_id={{@root.data.auth.uid}}&verified=false"
@@ -142,7 +142,7 @@
 		"taskModule": "salesforceApex",
 		"renderer": "handlebars",
 		"config": {
-			"connection": "scvoAlexSandbox",
+			"connection": "scvoMiloProduction",
 			"output": "data",
 			"method": "GET",
 			"apexClassPath": "/SaltireTask/?user_id={{@root.request.params.query.user_id}}&verified=false"
@@ -158,7 +158,7 @@
 			"ttl": 3600
 		},
 		"config": {
-			"connection": "scvoAlexSandbox",
+			"connection": "scvoMiloProduction",
 			"output": "data",
 			"method": "GET",
 			"apexClassPath": "/SaltireTask/?user_id={{@root.request.params.query.user_id}}"
@@ -169,7 +169,7 @@
 		"taskModule": "salesforceApex",
 		"renderer": "handlebars",
 		"config": {
-			"connection": "scvoAlexSandbox",
+			"connection": "scvoMiloProduction",
 			"output": "data",
 			"method": "GET",
 			"apexClassPath": "/SaltireAward/?user_id={{@root.request.params.query.user_id}}&award_id={{@root.request.params.award_id}}"
