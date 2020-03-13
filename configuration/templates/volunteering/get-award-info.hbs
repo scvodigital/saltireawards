@@ -2,8 +2,14 @@
 {}
 {{else}}
 {{#each @root.data.accountInfo.awards_list}}
-  {{#compare (lowercase award_level) (lowercase (default @root.request.params.query.award (stringify @root.data.accountInfo.maximum_award_level)))}}
-    {{{stringify this}}}
+  {{#compare @root.data.accountInfo.maximum_award_level "===" 0}}
+    {{!-- it's this one, it's a challenge or summit! --}}
+      {{{stringify this}}}
+    {{else}}
+    {{#compare (lowercase award_level) (lowercase (default @root.request.params.query.award (stringify @root.data.accountInfo.maximum_award_level)))}}
+      {{{stringify this}}}
+    {{/compare}}
   {{/compare}}
+
 {{/each}}
 {{/unless}}
