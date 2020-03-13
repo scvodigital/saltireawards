@@ -1164,6 +1164,9 @@ footer {
 }
 
 @media screen and (max-width: 790px) {
+  .sidebar-not-present {
+    margin-top: -($unit*1.7);
+  }
   html {
     font-size: 18px;
   }
