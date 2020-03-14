@@ -1,7 +1,7 @@
 {
   "name": "admin-update-individual-award",
   "pattern": "/admin-update-individual-award",
-  ""debug": false,
+  "debug": false,
   "errorRoute": "five_hundred_json",
   "acceptedVerbs": "POST, GET",
   "defaultParams": {
