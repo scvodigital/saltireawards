@@ -1,7 +1,7 @@
 {
   "name": "admin-update-individual-hours",
   "pattern": "/admin-update-individual-hours",
-  ""debug": false,
+  "debug": false,
   "errorRoute": "five_hundred_json",
   "acceptedVerbs": "POST, GET",
   "defaultParams": {
