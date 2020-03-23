@@ -150,7 +150,7 @@
                   What have you done and how many hours have you volunteered since the
                   {{momentFormat (moment (itemAt (map hours_list (getProp "createdDate")) 0) 'YYYY-MM-DDTHH:mm:ssZ') "Do \o\f MMMM"}}{{#compare (momentFormat (moment (itemAt (map hours_list (getProp "createdDate")) 0) 'YYYY-MM-DDTHH:mm:ssZ') "YYYY") "!==" (momentFormat (moment) "YYYY")}} {{momentFormat (moment) "YYYY"}}{{/compare ~}}{{#compare (dateMath 'now-25y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD")}} but before you turned 26{{/compare}}?
                   {{else}}
-                  What have you done and how many hours have you volunteered since you started{{#compare (dateMath 'now-25y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD")}} but before you turned 26{{/compare}}?
+                  What have you done and how many hours have you volunteered in the last two years{{#compare (dateMath 'now-25y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD")}} but before you turned 26{{/compare}}?
                   {{/compare ~}}
                 </strong>
               </label>
