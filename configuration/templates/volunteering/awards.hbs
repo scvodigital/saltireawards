@@ -50,7 +50,7 @@
       <a href="/certificate/{{award_id}}/saltire-{{lowercase award_level}}-award.pdf" data-component="TasksTrigger" data-TasksTrigger="no-multi-click" class="btn btn-primary">Download</a>
       {{/compare ~}}
       {{#unless printed_certificate_requested ~}}
-      <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" class="btn">Request print copy</a>
+      {{!-- <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" class="btn">Request print copy</a> --}}
       {{else}}
       {{#unless printed_certificate_issued ~}}
       <a href="#" data-component="TasksTrigger" data-TasksTrigger="show-certificate-request" disabled class="btn btn-link">Print copy requested</a>
