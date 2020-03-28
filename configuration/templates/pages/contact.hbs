@@ -2,7 +2,7 @@
   <h2>
     Local enquiries
   </h2>
-  {{#if @root.data.accountInfo.postcode ~}}
+  {{#ifAll @root.data.accountInfo.postcode (compare @root.data.accountInfo.user_sf_id "!==" "a1Z1p000009dUltEAE") ~}}
   <div class="columns">
     <div class="column col-9 col-xl-8 col-lg-7 col-md-12">
       {{> local_contact_info}}
@@ -18,8 +18,6 @@
   <p>
     Find the contact details below for the council area you live in.
   </p>
-  {{/if ~}}
-  {{#unless @root.data.accountInfo.postcode ~}}
   <div class="columns">
     {{#each @root.context.metaData.tsiList ~}}
     {{#each contacts ~}}
@@ -65,11 +63,5 @@
     {{/each ~}}
     {{/each ~}}
   </div>
-  {{/unless ~}}
-  {{!-- <h2 class="t-margin">
-    National enquiries
-  </h2>
-  <p>
-    If you represent a national organisation or encounter an error or bug with the website, please contact <a href="mailto:{{@root.context.metaData.contacts.admin}}">{{@root.context.metaData.contacts.admin}}</a>.
-  </p> --}}
+  {{/ifAll ~}}
 </div>
