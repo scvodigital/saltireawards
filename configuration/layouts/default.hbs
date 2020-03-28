@@ -376,7 +376,7 @@
             <div class="column col-3 col-xl-6 col-md-12 info">
               <h4>Help</h4>
               <p class="b-margin">
-                {{#if @root.data.accountInfo.local_authority ~}}
+                {{#ifAll @root.data.accountInfo.postcode (compare @root.data.accountInfo.user_sf_id "!==" "a1Z1p000009dUltEAE") ~}}
                   {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
                     {{#each contacts ~}}
                       {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
@@ -386,7 +386,7 @@
                   {{/with ~}}
                 {{else}}
                   The local Third Sector Interface in your area
-                {{/if ~}}
+                {{/ifAll ~}}
                 manages your personal data in relation to the {{@root.context.metaData.title}}.
               </p>
               <ul class="b-margin">
@@ -402,7 +402,7 @@
               <ul class="fa-ul">
                 <li>
                   <span class="fa-li"><span class="fas fa-envelope"></span></span>
-                  {{#if @root.data.accountInfo.local_authority ~}}
+                  {{#ifAll @root.data.accountInfo.postcode (compare @root.data.accountInfo.user_sf_id "!==" "a1Z1p000009dUltEAE") ~}}
                     {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
                       {{#each contacts ~}}
                         {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
@@ -412,9 +412,9 @@
                     {{/with ~}}
                   {{else}}
                     <a href="mailto:{{@root.context.metaData.contacts.admin}}">{{@root.context.metaData.contacts.admin}}</a>
-                  {{/if ~}}
+                  {{/ifAll ~}}
                 </li>
-                {{#if @root.data.accountInfo.local_authority ~}}
+                {{#ifAll @root.data.accountInfo.postcode (compare @root.data.accountInfo.user_sf_id "!==" "a1Z1p000009dUltEAE") ~}}
                   {{#with (getProperty @root.context.metaData.tsiList (slugify @root.data.accountInfo.local_authority)) ~}}
                     {{#each contacts ~}}
                       {{#if (regexMatch @root.data.accountInfo.postcode pattern "gi") ~}}
@@ -462,7 +462,7 @@
                     <span class="fa-li"><span class="fab fa-twitter"></span></span>
                     <a href="https://twitter.com/{{@root.context.metaData.twitter}}" target="_blank">Twitter</a>
                   </li>
-                {{/if ~}}
+                {{/ifAll ~}}
               </ul>
             </div>
             <div class="column col-6 col-xl-12 about">
