@@ -1,6 +1,7 @@
 {
   "aberdeen": {
     "local_authority": "Aberdeen",
+    "council": "Aberdeen City Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -16,6 +17,7 @@
   },
   "aberdeenshire": {
     "local_authority": "Aberdeenshire",
+    "council": "Aberdeenshire Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -31,6 +33,7 @@
   },
   "angus": {
     "local_authority": "Angus",
+    "council": "Angus Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -46,6 +49,7 @@
   },
   "argyll-bute": {
     "local_authority": "Argyll & Bute",
+    "council": "Argyll & Bute Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -61,6 +65,7 @@
   },
   "clackmannanshire": {
     "local_authority": "Clackmannanshire",
+    "council": "Clackmannanshire Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -76,6 +81,7 @@
   },
   "dumfries-galloway": {
     "local_authority": "Dumfries & Galloway",
+    "council": "Dumfries & Galloway Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -92,6 +98,7 @@
   },
   "dundee": {
     "local_authority": "Dundee",
+    "council": "Dundee City Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -108,6 +115,7 @@
   },
   "east-ayrshire": {
     "local_authority": "East Ayrshire",
+    "council": "East Ayrshire Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -120,6 +128,7 @@
   },
   "east-dunbartonshire": {
     "local_authority": "East Dunbartonshire",
+    "council": "East Dunbartonshire Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -135,6 +144,7 @@
   },
   "east-lothian": {
     "local_authority": "East Lothian",
+    "council": "East Lothian Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -150,6 +160,7 @@
   },
   "east-renfrewshire": {
     "local_authority": "East Renfrewshire",
+    "council": "East Renfrewshire Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -165,6 +176,7 @@
   },
   "edinburgh": {
     "local_authority": "Edinburgh",
+    "council": "City of Edinburgh Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -182,6 +194,7 @@
   },
   "falkirk": {
     "local_authority": "Falkirk",
+    "council": "Falkirk Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -196,6 +209,7 @@
   },
   "fife": {
     "local_authority": "Fife",
+    "council": "Fife Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -211,6 +225,7 @@
   },
   "glasgow": {
     "local_authority": "Glasgow",
+    "council": "Glasgow City Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -226,6 +241,7 @@
   },
   "highland": {
     "local_authority": "Highland",
+    "council": "Highland Council",
     "contacts": {
       "all": {
         "pattern": "^CONTACT_PAGE_ONLY$",
@@ -323,6 +339,7 @@
   },
   "inverclyde": {
     "local_authority": "Inverclyde",
+    "council": "Inverclyde Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -338,6 +355,7 @@
   },
   "midlothian": {
     "local_authority": "Midlothian",
+    "council": "Midlothian Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -353,6 +371,7 @@
   },
   "moray": {
     "local_authority": "Moray",
+    "council": "Moray Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -368,6 +387,7 @@
   },
   "na-h-eileanan-siar": {
     "local_authority": "Na h-Eileanan Siar",
+    "council": "Comhairle nan Eilean Siar",
     "contacts": {
       "all": {
         "pattern": "^CONTACT_PAGE_ONLY$",
@@ -431,6 +451,7 @@
   },
   "north-ayrshire": {
     "local_authority": "North Ayrshire",
+    "council": "North Ayrshire Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -445,6 +466,7 @@
   },
   "north-lanarkshire": {
     "local_authority": "North Lanarkshire",
+    "council": "North Lanarkshire Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -460,6 +482,7 @@
   },
   "orkney": {
     "local_authority": "Orkney",
+    "council": "Orkney Islands Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -477,6 +500,7 @@
   },
   "perth-kinross": {
     "local_authority": "Perth & Kinross",
+    "council": "Perth & Kinross Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -493,6 +517,7 @@
   },
   "renfrewshire": {
     "local_authority": "Renfrewshire",
+    "council": "Renfrewshire Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -508,6 +533,7 @@
   },
   "scottish-borders": {
     "local_authority": "Scottish Borders",
+    "council": "Scottish Borders Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -523,6 +549,7 @@
   },
   "shetland": {
     "local_authority": "Shetland",
+    "council": "Shetland Islands Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -541,6 +568,7 @@
   },
   "south-ayrshire": {
     "local_authority": "South Ayrshire",
+    "council": "South Ayrshire Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -557,6 +585,7 @@
   },
   "south-lanarkshire": {
     "local_authority": "South Lanarkshire",
+    "council": "South Lanarkshire Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -572,6 +601,7 @@
   },
   "stirling": {
     "local_authority": "Stirling",
+    "council": "Stirling Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -587,6 +617,7 @@
   },
   "west-dunbartonshire": {
     "local_authority": "West Dunbartonshire",
+    "council": "West Dunbartonshire Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
@@ -602,6 +633,7 @@
   },
   "west-lothian": {
     "local_authority": "West Lothian",
+    "council": "West Lothian Council",
     "contacts": {
       "all": {
         "pattern": "^.*$",
