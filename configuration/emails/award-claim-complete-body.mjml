@@ -31,7 +31,7 @@
             <p>To redeem your points and access Rewards become a Young Scot Member.</p>
 
             <p>
-              <a href="https://membership.young.scot//home/webHP?requestType=ApplicationRH&actionVal=homePage&screenId=114&redirectPage=V21LVTEwdnRidnZSMW5BNGZoa2hsZzlSRUJVcFJuMHZyZ3RCdEgyRnR6Smhvc1UvTlUvOW1yTklhTEFocEhtd0pwM0FtUzdDUUQrTHR2Mkp1RFdoaGlvVUpRZ1d3TjZISTJkRDh1ZUQ2TzQ9&templateId=138&dynamicURL=TGxxc0tGU1F5ZGZrYjk2eHpkY3BQNGIwL05Zb0J1eTB5ak9tWDVDdDRyUHpxdGRqMjBLakNiZDViK2diaTdzbGJha0ZWSlBVOVNDejlJU0JxTjhqOWc9PQ%3d%3d#MQ==">Log in to the YoungScot site</a> to add your points code: {{@root.data.ysCode}}
+              <a href="https://membership.young.scot//home/webHP?requestType=ApplicationRH&actionVal=homePage&screenId=114&redirectPage=V21LVTEwdnRidnZSMW5BNGZoa2hsZzlSRUJVcFJuMHZyZ3RCdEgyRnR6Smhvc1UvTlUvOW1yTklhTEFocEhtd0pwM0FtUzdDUUQrTHR2Mkp1RFdoaGlvVUpRZ1d3TjZISTJkRDh1ZUQ2TzQ9&templateId=138&dynamicURL=TGxxc0tGU1F5ZGZrYjk2eHpkY3BQNGIwL05Zb0J1eTB5ak9tWDVDdDRyUHpxdGRqMjBLakNiZDViK2diaTdzbGJha0ZWSlBVOVNDejlJU0JxTjhqOWc9PQ%3d%3d#MQ==">Log in to the Young Scot site</a> to add your points code: {{@root.data.ysCode}}
             </p>
 
             <p>

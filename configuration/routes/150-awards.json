@@ -1,7 +1,7 @@
 {
   "name": "awards",
   "pattern": "/awards",
-  "debug": false,
+  "debug": true,
   "errorRoute": "five_hundred",
   "metaData": {
     "title": "My Awards"

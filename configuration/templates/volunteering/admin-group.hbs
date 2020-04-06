@@ -88,7 +88,7 @@
             </div>
 
             {{#each awards_list ~}}
-              {{#ifAll group_award_first_name claim_code ~}}
+              {{#ifAll group_award_first_name ~}}
                 <div class="columns" id="{{award_id}}-row">
                   <div class="column col-2 col-xl-4 col-lg-4 col-md-4 col-sm-6 col-xs-6">
                     <div class="form-group b-margin">
@@ -105,7 +105,6 @@
                     <div class="form-group b-margin">
                     <span id="{{award_id}}-award_level">
                       {{#each @root.context.metaData.certificates ~}}
-                        {{#unless tsi_only ~}}
                           {{#compare api_name ../award_level ~}}
                             {{#ifAny (compare type "approach") (compare type "ascent") ~}}
                               {{hours}} hours
@@ -113,7 +112,6 @@
                               {{type_name}}
                             {{/ifAny ~}}
                           {{/compare ~}}
-                        {{/unless ~}}
                       {{/each ~}}
                     </span>
                     </div>
@@ -129,8 +127,11 @@
                     {{!-- {{#if claim_code ~}}
                     <button type="submit" class="btn btn-success btn-block inline-update-button b-margin" style="display:none;">Save</button>
                     {{/if ~}} --}}
-                    {{#if claim_code ~}}
-                      <button type="button" class="btn btn-block edit-button b-margin">Edit</button>
+                    {{#ifAny claim_code (compare award_level_numerical_value "<" 500)~}}
+                      {{#if claim_code}}<button type="button" class="btn btn-block edit-button b-margin">Edit</button>
+                      {{else}}
+                        <button type="button" id="{{award_id}}-upgrade-button" style="font-size:0.9em" class="btn btn-block edit-button b-margin">Upgrade</button>
+                      {{/if}}
                       <div class="modal modal-sm" id="{{award_id}}">
                         <a href="#close" class="modal-overlay" data-component="TasksTrigger" data-TasksTrigger="{click: {tasks: ['hide-modal']}}" aria-label="Close"></a>
                         <div class="modal-container">
@@ -139,7 +140,7 @@
                               <a href="#close" class="btn btn-clear modal-close float-right" aria-label="Close" data-component="TasksTrigger" data-TasksTrigger="{click: {tasks: ['hide-modal']}}"></a>
                               <div class="modal-title h5">{{group_award_first_name}} {{group_award_last_name}}</div>
                             </div>
-                            <form id="{{award_id}}" method="POST" action="/admin-update-individual-award?user_id={{@root.data.auth.uid}}" style="position:relative" class="inline-hours-form" data-award-id="{{award_id}}"  data-component="TasksTrigger" data-form-element=">" data-next-task="close-and-complete" data-success-message="Participant details updated" data-TasksTrigger="ajax-form-handler">
+                            <form id="{{award_id}}" method="POST" action="/admin-update-individual-award?user_id={{@root.data.auth.uid}}" style="position:relative" class="inline-hours-form" data-award-id="{{award_id}}"  data-component="TasksTrigger" data-form-element=">" data-next-task={{#if claim_code}}"close-and-complete"{{else}}"close-complete-disable"{{/if}} data-success-message="Participant details updated" data-TasksTrigger="ajax-form-handler">
                               <div class="modal-body">
                                 <div class="content">
                                   <input type="hidden" name="task_id" value="{{../task_id}}">
@@ -151,16 +152,23 @@
 
                                   <div class="form-group b-margin">
                                     <input id="{{award_id}}-modal-group_award_first_name" {{#unless claim_code ~}}disabled{{/unless}} class="form-input inline-edit" name="group_award_first_name" value="{{group_award_first_name}}" placeholder="First name" required />
+                                    {{#unless claim_code}}
+                                      <input type="hidden" name="group_award_first_name" value="{{group_award_first_name}}">
+                                    {{/unless}}
                                   </div>
                                   <div class="form-group b-margin">
                                     <input id="{{award_id}}-modal-group_award_last_name" {{#unless claim_code ~}}disabled{{/unless}} class="form-input inline-edit" name="group_award_last_name" value="{{group_award_last_name}}" placeholder="Last name" />
+                                    {{#unless claim_code}}
+                                      <input type="hidden" name="group_award_last_name" value="{{group_award_last_name}}">
+                                    {{/unless}}
+
                                   </div>
 
                                   <div class="form-group b-margin">
-                                    <select id="{{award_id}}-modal-award_level"  class="form-select hours" {{#unless claim_code~}}disabled{{/unless}} required name="award" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.award}}>
+                                    <select id="{{award_id}}-modal-award_level"  class="form-select hours"  required name="award" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.award}}>
                                       {{#each @root.context.metaData.certificates ~}}
                                         {{#unless tsi_only ~}}
-                                          <option value="{{api_name}}"{{#compare api_name ../award_level}} selected{{/compare}}{{#compare hours "<" ../award_level_numerical_value}} disabled{{/compare}}>
+                                          <option value="{{api_name}}"{{#compare api_name ../award_level}} selected{{/compare}}{{#compare hours "<" ../award_level_numerical_value}}{{#unless ../claim_code}}disabled{{/unless}}{{/compare}}>
                                             {{#ifAny (compare type "approach") (compare type "ascent") ~}}
                                               {{hours}} hours
                                             {{else}}
@@ -169,7 +177,7 @@
                                           </option>
                                         {{else}}
                                           {{#if @root.data.accountInfo.summit_certificate_permission ~}}
-                                            <option value="{{api_name}}"{{#compare api_name ../award_level}} selected{{/compare}}>
+                                            <option value="{{api_name}}"{{#compare api_name ../award_level}} selected{{/compare}} {{#unless ../claim_code}}disabled{{/unless}}>
                                               {{type_name}}
                                             </option>
                                           {{/if ~}}
@@ -179,6 +187,10 @@
                                   </div>
                                   <div class="form-group">
                                     <textarea {{#unless claim_code~}}disabled{{/unless}} rows="3" placeholder="Role" cols="40" id="{{award_id}}-modal-award_role" name="role_1" class="form-input" {{>form_validation_attributes @root.context.metaData.taskInfoValidation.task_role}}>{{default role_1 ../task_role}}</textarea>
+                                    {{#unless claim_code}}
+                                      <input type="hidden" name="role_1" value="{{role_1}}">
+                                    {{/unless}}
+
                                   </div>
 
                                   {{!-- <div class="form-group">
@@ -191,6 +203,8 @@
                                 {{#if claim_code~}}
                                   <button type="submit" class="btn btn-success btn-block inline-update-button b-margin">Save</button>
                                   <button type="button" class="btn btn-error btn-block b-margin" data-component="TasksTrigger" data-TasksTrigger="{click: {tasks: ['form-to-confirm']}}">Remove</button>
+                                {{else}}
+                                  <button type="submit" class="btn btn-success btn-block inline-update-button b-margin">Upgrade</button>
                                 {{/if ~}}
                               </div>
                             </form>
@@ -216,7 +230,7 @@
                         </div>
                       </form>
                     </div>
-                    {{/if ~}}
+                    {{/ifAny ~}}
                   </div>
                   <div class="column col-2 col-xl-2 col-lg-2 col-md-3 col-sm-4">
                     <a href="/group-certificate/{{../task_id}}/{{award_id}}/saltire-award-{{#compare hours 0}}challenge-certificate{{else}}{{#compare hours 1}}summit-certificate{{else}}for-{{hours}}-hours{{/compare}}{{/compare}}-{{slugify group_award_first_name}}{{#if group_award_last_name}}-{{slugify group_award_last_name}}{{/if}}.pdf" class="btn btn-block b-margin">Download</a>
@@ -353,6 +367,23 @@
     }
   }
 </script>
+
+<script data-task="close-complete-disable" type="javascript/blocked">
+  {
+    type: "multiTask",
+    config: {
+      tasks: [
+        "populate",
+        "disable-upgrade",
+        "confirm-to-form",
+        "hide-modal"
+
+      ]
+    }
+  }
+</script>
+
+
 {{!-- {
   type: "run",
   config: { code: "window.location.replace(window.location.pathname + '?updated=true')" }
@@ -420,6 +451,31 @@
     }
   }
 </script>
+
+<script data-task="disable-upgrade" type="javascript/blocked">
+  {
+    type: "multiTask",
+    config: {
+      tasks:[
+        {
+          type: "basic",
+          name: "myid",
+          config: {
+            __template : "\{{{jquery rootElement 'data' (split 'award-id')}}}"
+          }
+        },
+        {
+          type: "elementManipulator",
+          __doNotCompile: true,
+          config: {
+            "#\{{{data.myid}}}-upgrade-button" : { "addClass" : "disabled" }
+          }
+        }
+      ]
+    }
+  }
+</script>
+
 
 <script data-task="destroy" type="javascript/blocked">
   {

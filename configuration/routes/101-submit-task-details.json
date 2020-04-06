@@ -1,6 +1,6 @@
 {
   "name": "submit-task-details",
-  "debug": false,
+  "debug": true,
   "pattern": "/submit-task-details",
   "errorRoute": "five_hundred_json",
   "acceptedVerbs": "POST",

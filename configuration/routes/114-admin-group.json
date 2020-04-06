@@ -1,7 +1,7 @@
 {
   "name": "admin-group",
   "pattern": "/admin-group(/:task_id)(/:junk)",
-  "debug": false,
+  "debug": true,
   "errorRoute": "five_hundred",
   "metaData": {
     "title": "My volunteering",
