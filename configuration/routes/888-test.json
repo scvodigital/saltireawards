@@ -2,17 +2,15 @@
   "name": "test-page",
   "pattern": "/test-page",
   "errorRoute": "five_hundred",
-  "debug": false,
+  "debug": true,
   "metaData": {
     "title": "Tasks",
     "emailType": "hours-verify"
   },
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
-    "context.metaData.commonTasks.getAccountInfo",
-    "context.metaData.commonTasks.getTasksInfoUnverified",
     "context.metaData.commonTasks.flushCache",
-    "context.metaData.commonTasks.getAwardInfo",
+    "context.metaData.commonTasks.getAccountInfo",
     {
       "name": "destination",
       "taskModule": "renderLayout",

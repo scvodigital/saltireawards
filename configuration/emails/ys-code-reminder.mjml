@@ -16,7 +16,7 @@
             </p>
 
             <p>
-              YoungScot codes are running out. We now have {{@root.data.codesLeft}} codes remaining. Please order more from YoungScot.
+              Young Scot codes are running out. We now have {{@root.data.codesLeft}} codes remaining. Please order more from Young Scot.
             </p>
 
             <p>

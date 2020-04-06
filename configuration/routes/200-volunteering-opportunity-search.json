@@ -1,7 +1,7 @@
 {
   "name": "volunteering_search",
   "pattern": "/search",
-  "debug": false,
+  "debug": true,
   "errorRoute": "five_hundred",
   "metaData": {
     "title": "Find opportunities"
