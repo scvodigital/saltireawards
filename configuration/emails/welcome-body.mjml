@@ -15,7 +15,11 @@
             </p>
 
             <p>
-              {{@root.context.metaData.fullTitle}} are the Scottish Government's way of celebrating, recognising and rewarding the commitment, contribution and achievements of young volunteers in Scotland.
+              The {{@root.context.metaData.title}} are the Scottish Government's way of celebrating, recognising and rewarding the commitment, contribution and achievements of young volunteers in Scotland.
+            </p>
+
+            <p>
+              You can now sign in to <a href="{{@root.context.metaData.url}}">{{replace @root.context.metaData.url 'https://' 'www.'}}</a> to log your volunteer hours and receive recognition for all the great things you are doing through your volunteering.
             </p>
 
             <p>
