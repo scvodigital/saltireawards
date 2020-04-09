@@ -13,7 +13,7 @@
 
 {{#ifAll (compare (sumArray (pluck @root.data.tasksInfo "hours")) 0) (compare (dateMath 'now-26y') "<" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD")) ~}}
 <p class="empty-subtitle">
-  {{@root.context.metaData.fullTitle}} gives you recognition for the volunteering you do.
+  The {{@root.context.metaData.title}} gives you recognition for the volunteering you do.
 </p>
 {{/ifAll ~}}
 

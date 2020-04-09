@@ -13,8 +13,14 @@
       "route": "^/info-for-volunteers"
     },
     {
+      "label": "For organisations",
+      "icon": "building",
+      "path": "/info-for-organisations",
+      "route": "^/info-for-organisations"
+    },
+    {
       "label": "For groups",
-      "icon": "info-circle",
+      "icon": "users",
       "path": "/info-for-groups",
       "route": "^/info-for-groups"
     },

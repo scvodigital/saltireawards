@@ -16,11 +16,11 @@
             </p>
 
             <p>
-              You are receiving this email from the {{@root.context.metaData.fullTitle}} website because {{first_name}} {{last_name}}, has named you as their parent or guardian.
+              You are receiving this email from the {{@root.context.metaData.title}} website because {{first_name}} {{last_name}}, has named you as their parent or guardian.
             </p>
 
             <p>
-              As {{first_name}} is under 13, we require their parent or guardian to give permission to use the {{@root.context.metaData.fullTitle}} website. You can indicate that you give permission, by following the link below.
+              As {{first_name}} is under 13, we require their parent or guardian to give permission to use the {{@root.context.metaData.title}} website. You can indicate that you give permission, by following the link below.
             </p>
 
             <p>
