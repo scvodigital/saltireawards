@@ -2,7 +2,7 @@
   "name": "test-page",
   "pattern": "/test-page(/:task_id)",
   "errorRoute": "five_hundred",
-  "debug": true,
+  "debug": false,
   "metaData": {
     "title": "Tasks",
     "emailType": "hours-verify"
