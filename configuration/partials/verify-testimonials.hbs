@@ -4,12 +4,12 @@
   </div>
 
   {{#each (filter @root.data.tasksInfo "task_id" "valueIn" (split task_ids ",")) ~}}
-    <form action="/update-task-testimonial/{{task_id}}?c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" {{#if (compare (length (split ../task_ids ",")) "===" 1)}}
+    <form action="/update-task-testimonial/{{task_id}}?c={{>account_hash_ct taskstr=task_id code=@root.data.accountInfo.hours_verify_code}}&user_id={{@root.request.params.query.user_id}}" class="inline-hours-form" data-component="TasksTrigger" data-form-element=">" {{#if (compare (length (split ../task_ids ",")) "===" 1)}}
           {{#compare ../type "===" "query"}}
           data-next-task="testimonial-done"
           data-success-message="testimonial updated"
           {{else}}
-          data-url="/verify-hours-done/?c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" data-next-task="complete-verify"
+          data-url="/verify-hours-done/?c={{@root.request.params.query.c}}&t={{@root.request.params.query.t}}&user_id={{@root.request.params.query.user_id}}" data-next-task="complete-verify"
           data-success-message="testimonial updated"
           {{/compare}}
           {{else}}data-success-hide="true"{{/if}}  data-TasksTrigger="ajax-form-handler">

@@ -1,0 +1,10 @@
+{{#if @root.data.tasksInfoUnverified.length}}
+  {
+  "tsi" : "{{#eachJoin (filter @root.data.tasksInfoUnverified "unverified_hours_list.length" ">=" 1) ","}}{{task_id}}{{/eachJoin}}",
+  {{#eachJoin (distinct (pluck @root.data.tasksInfoUnverified "volunteer_manager_email")) "," ~}}
+    "{{replace this '.' '_'}}" : "{{#eachJoin (filter (filter @root.data.tasksInfoUnverified "unverified_hours_list.length" ">=" 1) "volunteer_manager_email" "===" this) ","}}{{task_id}}{{/eachJoin}}"
+  {{/eachJoin ~}}
+  }
+{{else}}
+  {}
+{{/if}}

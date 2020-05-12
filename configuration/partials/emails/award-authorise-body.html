@@ -207,6 +207,7 @@
                                             {{#if @root.data.accountInfo.school_college_name}}from {{@root.data.accountInfo.school_college_name}}{{/if}} is applying for a {{@root.context.metaData.certificateName}} {{@root.data.verifyInfoBody.hours_verify_award}} award. This requires TSI authorisation to be awarded. </p>
                                           <p> Please check Salesforce Saltire Volunteering Task records for this user, ensuring that the task role fits the criteria, and that organisations volunteered for and their contact emails appear to be genuine (organisations themselves will validate the volunteers' hours). </p>
                                           <p> Set the TSI award authorisation level to {{@root.data.verifyInfoBody.hours_verify_award}} if you wish this award to be authorised. </p>
+                                          <p> If you are logged into Milo, you can access this account <a href="{{@root.context.metaData.miloUrl}}/lightning/r/Saltire_User__c/{{@root.data.accountInfo.user_sf_id}}/view">here</a>. </p>
                                         </div>
                                       </td>
                                     </tr>

@@ -10,7 +10,7 @@
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.getAccountInfoExternal",
-    "context.metaData.commonTasks.hoursCodeVerify",
+    "context.metaData.commonTasks.hoursCodeVerifyAdvanced",
     "context.metaData.commonTasks.isAdmin",
     "context.metaData.commonTasks.adminOrCodeRequired",
     {

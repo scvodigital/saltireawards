@@ -1,7 +1,7 @@
 {
   "name": "verify-hours-email-send",
   "pattern": "/verify-hours-email-send",
-  "debug": false,
+  "debug": true,
   "errorRoute": "five_hundred",
   "metaData": {
     "title": "Tasks",
@@ -13,6 +13,7 @@
     "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.fullSignUpRequired",
     "context.metaData.commonTasks.getTasksInfoUnverified",
+    "context.metaData.commonTasks.tasksByEmail",
     {
       "name": "verifyInfoBody",
       "taskModule": "render",

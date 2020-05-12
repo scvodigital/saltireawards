@@ -11,7 +11,7 @@
     "context.metaData.commonTasks.getAccountInfoExternal",
     "context.metaData.commonTasks.getTasksInfoUnverifiedExternal",
     "context.metaData.commonTasks.getTasksInfoExternal",
-    "context.metaData.commonTasks.hoursCodeVerify",
+    "context.metaData.commonTasks.hoursCodeVerifyAdvanced",
     "context.metaData.commonTasks.handleHoursVerifyFail",
     {
       "name": "destination",

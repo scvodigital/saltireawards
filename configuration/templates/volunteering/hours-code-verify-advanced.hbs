@@ -1,0 +1,5 @@
+{{#ifAll @root.request.params.query.c @root.request.params.query.user_id (default @root.request.params.task_id (default @root.request.body.task_id @root.request.params.query.t))
+         (compare
+           (hash (concat @root.data.accountInfo.hours_verify_code (default @root.request.params.task_id (default @root.request.body.task_id @root.request.params.query.t)) @root.context.metaData.verifySalt)
+           ) '==='
+           @root.request.params.query.c)}}pass{{else}}fail{{/ifAll}}

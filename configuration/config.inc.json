@@ -16,6 +16,7 @@
     "certificateName": "Saltire Award",
     "accountName": "My Saltire",
     "url": "https://saltireawards.scot",
+    "miloUrl": "https://milo.lightning.force.com",
     "twitter": "saltireawards",
     "contacts": {
       "admin": "support@saltireawards.org.uk",
@@ -42,6 +43,7 @@
     "accountInfoValidation": "{:./data/validation-account.json}",
     "globalGoals": "{:./data/info-global-goals.json}",
     "volunteeringTerms": "{:./data/info-volunteering-terms.json}",
+    "verifySalt": "{:../secret.json@verify_salt}",
     "handlebars": {
       "partials": {
         "{$./partials/**/*.*}": "includeRelativePath=false&regexExpression=(-)&regexOptions=gi&regexReplace=_"

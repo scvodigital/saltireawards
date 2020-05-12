@@ -1,6 +1,6 @@
 {
   "name": "test-page",
-  "pattern": "/test-page",
+  "pattern": "/test-page(/:task_id)",
   "errorRoute": "five_hundred",
   "debug": true,
   "metaData": {
@@ -11,6 +11,9 @@
     "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.flushCache",
     "context.metaData.commonTasks.getAccountInfo",
+    "context.metaData.commonTasks.getTasksInfoUnverified",
+    "context.metaData.commonTasks.tasksByEmail",
+    "context.metaData.commonTasks.hoursCodeVerifyAdvanced",
     {
       "name": "destination",
       "taskModule": "renderLayout",

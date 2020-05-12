@@ -184,6 +184,35 @@
 			"template": ">context.metaData.handlebars.templates.volunteering_hours-code-verify"
 		}
 	},
+	"tasksByEmail" :{
+		"name": "tasksByEmail",
+		"taskModule": "render",
+		"renderer": "handlebars",
+		"config": {
+			"output": "data",
+			"template": ">context.metaData.handlebars.templates.account_email_json-tasks-by-email",
+			"parseJson": true
+		}
+	},
+"hoursCodeVerifyAdvanced": {
+		"name": "codeVerified",
+		"taskModule": "render",
+		"renderer": "handlebars",
+		"config": {
+			"output": "data",
+			"template": ">context.metaData.handlebars.templates.volunteering_hours-code-verify-advanced"
+		}
+	},
+	"hoursCodeVerifyComparator": {
+		"name": "codeComparator",
+		"taskModule": "render",
+		"renderer": "handlebars",
+		"config": {
+			"output": "data",
+			"template": ">context.metaData.handlebars.templates.volunteering_hours-code-verify-comparator"
+		}
+	},
+
 	"handleHoursVerifyFail": {
 		"name": "handleVerifyFail",
 		"taskModule": "reroute",

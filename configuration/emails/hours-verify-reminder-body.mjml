@@ -50,7 +50,8 @@
             </ul>
 
             <p>
-              Please <a href="{{@root.context.metaData.url}}/verify-hours/?t={{>account_list_tasks email=this}}&c={{@root.data.verifyInfoBody.hours_verify_code}}&user_id={{@root.data.auth.uid}}">confirm these hours are correct</a> or <a href="{{@root.context.metaData.url}}/query-hours/?t={{>account_list_tasks email=this}}&c={{@root.data.verifyInfoBody.hours_verify_code}}&user_id={{@root.data.auth.uid}}">make any amendments</a>.
+              Please <a href="{{@root.context.metaData.url}}/verify-hours/?t={{getProperty @root.data.tasksByEmail (replace this '.' '_')}}&c={{>account_hash_ct taskstr=(getProperty @root.data.tasksByEmail (replace this '.' '_')) code=@root.data.accountInfo.hours_verify_code}}&user_id={{@root.data.auth.uid}}"> confirm these hours are correct</a>
+              or <a href="{{@root.context.metaData.url}}/query-hours/?t={{getProperty @root.data.tasksByEmail (replace this '.' '_')}}&c={{>account_hash_ct taskstr=(getProperty @root.data.tasksByEmail (replace this '.' '_')) code=@root.data.accountInfo.hours_verify_code}}&user_id={{@root.data.auth.uid}}">make any amendments</a>.
             </p>
           </mj-text>
         </mj-column>

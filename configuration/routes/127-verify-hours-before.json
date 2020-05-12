@@ -8,15 +8,8 @@
     "context.metaData.commonTasks.getAccountInfoExternal",
     "context.metaData.commonTasks.getTasksInfoUnverifiedExternal",
     "context.metaData.commonTasks.getTasksInfoExternal",
-    {
-      "name": "codeVerified",
-      "taskModule": "render",
-      "renderer": "handlebars",
-      "config": {
-        "output": "data",
-        "template": ">context.metaData.handlebars.templates.volunteering_hours-code-verify"
-      }
-    },
+    "context.metaData.commonTasks.hoursCodeVerifyAdvanced",
+    "context.metaData.commonTasks.hoursCodeVerifyComparator",
     {
       "name": "handlePassFail",
       "taskModule": "reroute",
