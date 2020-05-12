@@ -66,7 +66,7 @@
           </div>
           {{#each this.hours_list ~}}
             {{#unless verified ~}}
-              <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="inline-hours-form" data-component="TasksTrigger" data-success-hide="true" data-next-task="empty-collapse" data-TasksTrigger="ajax-form-handler">
+              <form id="{{hours_id}}" method="POST" action="/admin-update-individual-hours?c={{>account_hash_ct taskstr=task_id code=@root.data.accountInfo.hours_verify_code}}&user_id={{@root.request.params.query.user_id}}" class="inline-hours-form" data-component="TasksTrigger" data-success-hide="true" data-next-task="empty-collapse" data-TasksTrigger="ajax-form-handler">
                 <input type="hidden" name="task_id" value="{{task_id}}">
                 <input type="hidden" name="verified" value="true">
                 <input type="hidden" name="claim_code" value="{{claim_code}}">
@@ -91,7 +91,7 @@
                     <button type="submit" class="btn btn-block btn-success inline-update-button">Verify</button>
                   </div>
                   <div class="column col-1 text-left">
-                    <a href="/admin-delete-hours?hours_id={{hours_id}}&c={{@root.request.params.query.c}}&user_id={{@root.request.params.query.user_id}}" class="btn btn-block btn-error inline-delete-button" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler" >Remove</a>
+                    <a href="/admin-delete-hours?hours_id={{hours_id}}&t={{task_id}}&c={{>account_hash_ct taskstr=task_id code=@root.data.accountInfo.hours_verify_code}}&user_id={{@root.request.params.query.user_id}}" class="btn btn-block btn-error inline-delete-button" data-component="TasksTrigger" data-success-hide="true" data-TasksTrigger="ajax-delete-handler" >Remove</a>
                   </div>
                   {{#if claim_code ~}}
                     <div class="column col-2 text-left">

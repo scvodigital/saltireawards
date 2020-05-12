@@ -1,6 +1,6 @@
 {
-  "name": "set-temp-admin",
-  "pattern": "/set-temp-admin",
+  "name": "applying-for-admin",
+  "pattern": "/applying-for-admin",
   "debug": false,
   "errorRoute": "five_hundred",
   "acceptedVerbs": "GET",

@@ -30,6 +30,9 @@
             <p>
               Set the TSI award authorisation level to {{@root.data.verifyInfoBody.hours_verify_award}} if you wish this award to be authorised.
             </p>
+            <p>
+              If you are logged into Milo, you can access this account <a href="{{@root.context.metaData.miloUrl}}/lightning/r/Saltire_User__c/{{@root.data.accountInfo.user_sf_id}}/view">here</a>.
+            </p>
           </mj-text>
         </mj-column>
       </mj-section>

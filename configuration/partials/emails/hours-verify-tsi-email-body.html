@@ -231,7 +231,7 @@
                                               </ul>
                                             {{/compare ~}}
                                           {{/each ~}}
-                                          <p> You can now <a href="{{@root.context.metaData.url}}/verify-hours/?t={{>account_list_tasks}}&c={{@root.data.accountInfo.hours_verify_code}}&user_id={{@root.data.accountInfo.external_id}}">confirm that these hours are correct</a> or <a href="{{@root.context.metaData.url}}/query-hours/?t={{>account_list_tasks}}&c={{@root.data.accountInfo.hours_verify_code}}&user_id={{@root.data.accountInfo.external_id}}">make corrections</a>. </p>
+                                          <p> You can now <a href="{{@root.context.metaData.url}}/verify-hours/?t={{getProperty @root.data.tasksByEmail 'tsi'}}&c={{>account_hash_ct taskstr=(getProperty @root.data.tasksByEmail 'tsi') code=@root.data.accountInfo.hours_verify_code}}&user_id={{@root.data.accountInfo.external_id}}">confirm that these hours are correct</a> or <a href="{{@root.context.metaData.url}}/query-hours/?t={{getProperty @root.data.tasksByEmail 'tsi'}}&c={{>account_hash_ct taskstr=(getProperty @root.data.tasksByEmail 'tsi') code=@root.data.accountInfo.hours_verify_code}}&user_id={{@root.data.accountInfo.external_id}}">make corrections</a>. </p>
                                         </div>
                                       </td>
                                     </tr>

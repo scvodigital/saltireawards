@@ -5,21 +5,31 @@
         Demo for award.
       </h2>
 
-      First get a user with a Challenge 10 and a 25 and a 50 award.
+      {{>account_hash_ct taskstr='aloee' code='13234'}}
 
-      AwardInfo: This will find the award based on the award query parameter, defaulting to the user's largest numerical award.
+      <p>Test advanced check</p>
 
-      This runs off the common task getAwardInfo, which itself listens to the url (?award=) or failing that, the user's maximum_award_level.
 
-      Note - this will result in an error if the award is bad, or the user doesn't have it, we could easily divert to a no award page though, rather than 500.
->>>
-      <p>{{getProperty  @root.context.metaData.youngScotSettings.points-per-certificate (lowercase @root.request.params.query.award)}}</p>
-   <<<
-      {{num @root.data.accountInfo.hours_verify_award}}
-      {{num @root.data.accountInfo.tsi_award_authorisation_level}}
-      {{#compare (num @root.data.accountInfo.hours_verify_award) ">" (num @root.data.accountInfo.tsi_award_authorisation_level)}}
-        Yep!
-      {{/compare}}
+      <p>Did We Pass --- {{@root.data.codeVerified}}</p>
+      <p>Task Id = {{@root.request.params.task_id}}</p>
+
+      <p>Task Id Param "t" = {{@root.request.params.query.t}}</p>
+
+      <p>Resolved t param = >>{{default @root.request.params.task_id (default @root.request.body.task_id @root.request.params.query.t)}}<<</p>
+
+      <p>Old code = "myoldmansadustman123"</p>
+
+      <p>So c = {{>account_hash_ct taskstr='a1T5E000001wHOwUAM' code=@root.data.accountInfo.hours_verify_code}}</p>
+
+      <p>our equation = {{hash (concat @root.data.accountInfo.hours_verify_code (default @root.request.params.task_id @root.request.body.task_id @root.request.params.query.t) @root.context.metaData.verifySalt)}} </p>
+
+
+      <p>Basic email structure - normal emails:</p>
+
+      {{#eachJoin (distinct (pluck @root.data.tasksInfoUnverified "volunteer_manager_email")) "," ~}}
+        <p>{{this}} values={{getProperty @root.data.tasksByEmail (replace this '.' '_')}}
+          codified={{>account_hash_ct taskstr=(getProperty @root.data.tasksByEmail (replace this '.' '_')) code=@root.data.accountInfo.hours_verify_code}}
+      {{/eachJoin ~}}
     </div>
   </div>
 </div>
