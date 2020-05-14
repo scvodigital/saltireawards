@@ -10,7 +10,6 @@
     "description",
     "postcode",
     "geo_coords",
-    "*",
     "slug"
   ],
   "query": {
