@@ -4,7 +4,8 @@
   "debug": false,
   "errorRoute": "five_hundred",
   "metaData": {
-    "title": "Verify or change hours"
+    "title": "Verify or change hours",
+    "external" : true
   },
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",

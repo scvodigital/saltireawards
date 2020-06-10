@@ -387,7 +387,11 @@
                 {{else}}
                   The local Third Sector Interface in your area
                 {{/ifAll ~}}
-                manages your personal data in relation to the {{@root.context.metaData.title}}.
+                {{#unless @root.route.metaData.external}}
+                  manages your personal data in relation to the {{@root.context.metaData.title}}.
+                {{else}}
+                  manages this volunteer's account in relation to the {{@root.context.metaData.title}}.
+                {{/unless}}
               </p>
               <ul class="b-margin">
                 {{#each @root.context.metaData.menus.footer-help ~}}

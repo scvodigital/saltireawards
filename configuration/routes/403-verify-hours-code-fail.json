@@ -3,6 +3,9 @@
   "pattern": "/verify-hours-code-fail",
   "debug": false,
   "errorRoute": "five_hundred",
+  "metaData": {
+    "external" : true
+  },
   "tasks": [
     "context.metaData.commonTasks.authNotRequired",
     {
