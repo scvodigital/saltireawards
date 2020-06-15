@@ -299,10 +299,10 @@
       "skye-lochalsh": {
         "pattern": "^IV((2[1236])|(4[0-8])|(5([1-6]|9))).*$",
         "area": "Skye & Lochalsh",
-        "title": "Skye and Lochalsh CVO",
+        "title": "Skye and Lochalsh Council of Voluntary Organisations",
         "email": "volunteerofficer@slcvo.org.uk",
         "phone": "01478612921",
-        "logo": "slcvs.jpg",
+        "logo": "slcvo.png",
         "website": "http://www.slcvo.org.uk",
         "facebook": "https://www.facebook.com/SLCVO"
       },
