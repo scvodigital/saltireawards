@@ -69,9 +69,9 @@
         {{>queries_opportunity_search_must @root.request.params.query}}
       ]
     }
-  }
-  {{#if @root.request.params.query.sort}},
+  },
   "sort": [
+    {{#if @root.request.params.query.sort}}
     {{#switch @root.request.params.query.sort}}
       {{#case "distance"}}
         {{#ifAll @root.request.params.query.lat @root.request.params.query.lng}}
@@ -102,10 +102,14 @@
     {{/switch}}
     {
       "_score": "desc"
+    }
+    {{else}}
+    {
+      "_score": "desc"
     },
     {
       "date_last_modified": "desc"
     }
+    {{/if}}
   ]
-  {{/if}}
 }
