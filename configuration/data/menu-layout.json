@@ -116,6 +116,17 @@
       ]
     }
   ],
+  "footer-help-signed-in": [
+    {
+      "label": "Group Admin Support",
+      "icon": "question-circle",
+      "path": "/info-for-groups/support",
+      "route": "^/info-for-groups/support$",
+      "user-types": [
+        "Group Admin"
+      ]
+    }
+  ],
   "footer-help": [
     {
       "label": "Accessibility",

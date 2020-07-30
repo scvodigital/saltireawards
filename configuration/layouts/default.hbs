@@ -395,6 +395,13 @@
               </p>
               <ul class="b-margin">
                 {{#each @root.context.metaData.menus.footer-help ~}}
+                  {{#if (contains user-types @root.data.accountInfo.user_type) ~}}
+                    <li>
+                      <a href="{{stripTrailingSlash path}}">{{{label}}}</a>
+                    </li>
+                  {{/if ~}}
+                {{/each ~}}
+                {{#each @root.context.metaData.menus.footer-help ~}}
                   <li>
                     <a href="{{stripTrailingSlash path}}">{{{label}}}</a>
                   </li>
