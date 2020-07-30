@@ -394,13 +394,15 @@
                 {{/unless}}
               </p>
               <ul class="b-margin">
-                {{#each @root.context.metaData.menus.footer-help ~}}
-                  {{#if (contains user-types @root.data.accountInfo.user_type) ~}}
-                    <li>
-                      <a href="{{stripTrailingSlash path}}">{{{label}}}</a>
-                    </li>
-                  {{/if ~}}
-                {{/each ~}}
+                {{#ifAll @root.data.accountInfo.user_type (compare @root.data.accountInfo.approval_needed false) ~}}
+                  {{#each @root.context.metaData.menus.footer-help ~}}
+                    {{#if (contains user-types @root.data.accountInfo.user_type) ~}}
+                      <li>
+                        <a href="{{stripTrailingSlash path}}">{{{label}}}</a>
+                      </li>
+                    {{/if ~}}
+                  {{/each ~}}
+                {{/ifAll ~}}
                 {{#each @root.context.metaData.menus.footer-help ~}}
                   <li>
                     <a href="{{stripTrailingSlash path}}">{{{label}}}</a>
