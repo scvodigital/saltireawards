@@ -255,7 +255,7 @@
 		"taskModule": "reroute",
 		"config": {
 			"if": [{
-					"var": "data.accountInfo.approvalneeded"
+					"var": "data.accountInfo.approval_needed"
 				},
 				"approval-required",
 				null
@@ -272,19 +272,26 @@
 						},
 						"sign-up-details",
 				{
-					"if": [
+					"if": [{
+						"var": "data.accountInfo.approval_needed"
+					},
+						"approval-required",
 						{
-							"or": [
+							"if": [
 								{
-									"missing": "data.accountInfo.postcode"
+									"or": [
+										{
+											"missing": "data.accountInfo.postcode"
+										},
+										{
+											"===": [{"var": "data.accountInfo.postcode"},"TR19 7AA"]
+										}
+									]
 								},
-								{
-									"===": [{"var": "data.accountInfo.postcode"},"TR19 7AA"]
-								}
+								"account-missing-details",
+								null
 							]
-						},
-						"account-missing-details",
-						null
+						}
 					]
 				}
 			]
