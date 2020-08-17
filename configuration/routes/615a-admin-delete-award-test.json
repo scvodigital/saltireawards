@@ -1,6 +1,6 @@
 {
-  "name": "admin-delete-hours-special",
-  "pattern": "/admin-delete-hours-special",
+  "name": "admin-delete-award-test",
+  "pattern": "/admin-delete-award-test",
   "debug": true,
   "errorRoute": "five_hundred_json",
   "acceptedVerbs": "DELETE, GET",
@@ -8,9 +8,8 @@
     "context": "results"
   },
   "tasks": [
-    "context.metaData.commonTasks.authNotRequired",
+    "context.metaData.commonTasks.authRequired",
     "context.metaData.commonTasks.getAccountInfoExternal",
-    "context.metaData.commonTasks.hoursCodeVerifyAdvanced",
     "context.metaData.commonTasks.isAdmin",
     "context.metaData.commonTasks.adminOrCodeRequired",
     {
@@ -19,7 +18,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "data",
-        "template": "/SaltireHours/?hours_id={{@root.request.params.query.hours_id}}&user_id={{@root.request.params.query.user_id}}"
+        "template": "/SaltireAward/?award_id={{@root.request.params.query.award_id}}&user_id={{@root.request.params.query.user_id}}"
       }
     },
     {
