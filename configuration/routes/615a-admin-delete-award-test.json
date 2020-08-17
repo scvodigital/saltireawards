@@ -1,7 +1,7 @@
 {
-  "name": "admin-delete-award-test",
-  "pattern": "/admin-delete-award-test",
-  "debug": true,
+  "name": "admin-delete-award-test-a",
+  "pattern": "/admin-delete-award-test-a",
+  "debug": false,
   "errorRoute": "five_hundred_json",
   "acceptedVerbs": "DELETE, GET",
   "defaultParams": {
@@ -9,7 +9,7 @@
   },
   "tasks": [
     "context.metaData.commonTasks.authRequired",
-    "context.metaData.commonTasks.getAccountInfoExternal",
+    "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.isAdmin",
     "context.metaData.commonTasks.adminOrCodeRequired",
     {
@@ -42,26 +42,12 @@
     },
     {
       "name": "destination",
-      "taskModule": "renderLayout",
+      "taskModule": "render",
       "renderer": "handlebars",
       "config": {
-        "logic": {
-          "if": [
-            "default"
-          ]
-        },
         "output": "body",
-        "layouts": {
-          "default": {
-            "layout": ">context.metaData.handlebars.layouts.default",
-            "parts": {
-              "head": ">context.metaData.handlebars.templates.pages_head-tags",
-              "body": ">context.metaData.handlebars.templates.pages_test",
-              "sidebar": ">context.metaData.handlebars.templates.account_sidebar"
-            },
-            "contentType": "text/html"
-          }
-        }
+        "template": "{\"id\": {{{stringify @root.data.deleteHoursData}}}  }",
+        "parseJson": false
       }
     }
   ]

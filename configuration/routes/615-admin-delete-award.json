@@ -9,7 +9,7 @@
   },
   "tasks": [
     "context.metaData.commonTasks.authRequired",
-    "context.metaData.commonTasks.getAccountInfoExternal",
+    "context.metaData.commonTasks.getAccountInfo",
     "context.metaData.commonTasks.isAdmin",
     "context.metaData.commonTasks.adminOrCodeRequired",
     {
