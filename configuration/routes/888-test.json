@@ -8,12 +8,10 @@
     "emailType": "hours-verify"
   },
   "tasks": [
-    "context.metaData.commonTasks.authNotRequired",
-    "context.metaData.commonTasks.flushCache",
+    "context.metaData.commonTasks.authRequired",
     "context.metaData.commonTasks.getAccountInfo",
-    "context.metaData.commonTasks.getTasksInfoUnverified",
-    "context.metaData.commonTasks.tasksByEmail",
-    "context.metaData.commonTasks.hoursCodeVerifyAdvanced",
+    "context.metaData.commonTasks.isAdmin",
+    "context.metaData.commonTasks.adminOrCodeRequired",
     {
       "name": "destination",
       "taskModule": "renderLayout",

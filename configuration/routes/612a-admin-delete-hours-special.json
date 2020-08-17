@@ -1,6 +1,6 @@
 {
-  "name": "admin-delete-award",
-  "pattern": "/admin-delete-award",
+  "name": "admin-delete-hours-special",
+  "pattern": "/admin-delete-hours-special",
   "debug": true,
   "errorRoute": "five_hundred_json",
   "acceptedVerbs": "DELETE, GET",
@@ -8,8 +8,9 @@
     "context": "results"
   },
   "tasks": [
-    "context.metaData.commonTasks.authRequired",
+    "context.metaData.commonTasks.authNotRequired",
     "context.metaData.commonTasks.getAccountInfoExternal",
+    "context.metaData.commonTasks.hoursCodeVerifyAdvanced",
     "context.metaData.commonTasks.isAdmin",
     "context.metaData.commonTasks.adminOrCodeRequired",
     {
@@ -18,7 +19,7 @@
       "renderer": "handlebars",
       "config": {
         "output": "data",
-        "template": "/SaltireAward/?award_id={{@root.request.params.query.award_id}}&user_id={{@root.request.params.query.user_id}}"
+        "template": "/SaltireHours/?hours_id={{@root.request.params.query.hours_id}}&user_id={{@root.request.params.query.user_id}}"
       }
     },
     {
@@ -42,12 +43,26 @@
     },
     {
       "name": "destination",
-      "taskModule": "render",
+      "taskModule": "renderLayout",
       "renderer": "handlebars",
       "config": {
+        "logic": {
+          "if": [
+            "default"
+          ]
+        },
         "output": "body",
-        "template": "{\"id\": {{{stringify @root.data.deleteHoursData}}}  }",
-        "parseJson": false
+        "layouts": {
+          "default": {
+            "layout": ">context.metaData.handlebars.layouts.default",
+            "parts": {
+              "head": ">context.metaData.handlebars.templates.pages_head-tags",
+              "body": ">context.metaData.handlebars.templates.pages_test",
+              "sidebar": ">context.metaData.handlebars.templates.account_sidebar"
+            },
+            "contentType": "text/html"
+          }
+        }
       }
     }
   ]
