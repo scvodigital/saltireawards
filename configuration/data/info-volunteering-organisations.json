@@ -148,13 +148,13 @@
     "contacts": {
       "all": {
         "pattern": "^.*$",
-        "title": "STRiVE",
-        "email": "info@strive.me.uk",
+        "title": "Volunteer Centre East Lothian",
+        "email": "saltire@volunteereastlothian.org.uk",
         "phone": "01875615423",
-        "logo": "strive.png",
-        "website": "http://www.strive.me.uk",
-        "twitter": "https://twitter.com/striveVolunteer",
-        "facebook": "https://www.facebook.com/StriveVolunteering"
+        "logo": "vcel.png",
+        "website": "https://www.volunteereastlothian.org.uk",
+        "twitter": "https://twitter.com/VolunteerEL",
+        "facebook": "https://www.facebook.com/communitysupportvolunteering"
       }
     }
   },
