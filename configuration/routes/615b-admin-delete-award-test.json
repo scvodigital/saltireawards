@@ -1,6 +1,6 @@
 {
-  "name": "admin-delete-award-test",
-  "pattern": "/admin-delete-award-test",
+  "name": "admin-delete-award-testb",
+  "pattern": "/admin-delete-award-testb",
   "debug": true,
   "errorRoute": "five_hundred_json",
   "acceptedVerbs": "DELETE, GET",
@@ -11,7 +11,7 @@
     "context.metaData.commonTasks.authRequired",
     "context.metaData.commonTasks.getAccountInfoExternal",
     "context.metaData.commonTasks.isAdmin",
-    "context.metaData.commonTasks.adminOrCodeRequired",
+    "context.metaData.commonTasks.adminRequired",
     {
       "name": "apexUrl",
       "taskModule": "render",
