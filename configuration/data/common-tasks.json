@@ -359,7 +359,9 @@
 			"if": [{
 					"and": [
 						{
-							"!=": [{"var": "data.isAdmin"}, "true"]
+							"!=": [{
+								"var": "data.accountInfo.user_type"
+							}, "Group Admin"]
 						},
 						{
 							"!=": [{"var": "data.codeVerified"}, "pass"]
