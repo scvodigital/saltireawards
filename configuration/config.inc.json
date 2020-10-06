@@ -35,7 +35,7 @@
       "footer": "#591669",
       "copyright": "#FEF9F9"
     },
-    "elasticsearchUrl": "{$./data/elasticsearch-url.txt}",
+    "elasticsearchUrl": "{$./data/elasticsearch-legacy-url.txt}",
     "menus": "{:./data/menu-layout.json}",
     "certificates": "{:./data/info-certificates.json}",
     "tsiList": "{:./data/info-volunteering-organisations.json}",
