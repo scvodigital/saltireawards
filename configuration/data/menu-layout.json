@@ -26,7 +26,7 @@
     },
     {
       "label": "Find opportunities",
-      "icon": "hands-helping",
+      "icon": "hand-paper",
       "path": "/search",
       "route": "^/search"
     },
@@ -62,7 +62,7 @@
   "user-signed-in" : [
     {
       "label": "Find opportunities",
-      "icon": "hands-helping",
+      "icon": "hand-paper",
       "path": "/search",
       "route": "^/search",
       "user-types": [
