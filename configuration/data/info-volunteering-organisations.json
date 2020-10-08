@@ -278,13 +278,13 @@
       "ross": {
         "pattern": "^IV(1\\s3|[6-9]|1[01]|1[4-9]|2[03]).*$",
         "area": "Ross-shire",
-        "title": "Ross-shire Voluntary Action",
-        "email": "rva@rossvolact.org.uk",
-        "phone": "01349862431",
-        "logo": "rva.jpg",
-        "website": "http://www.rossvolact.org.uk",
-        "twitter": "https://twitter.com/RossVolAct",
-        "facebook": "https://www.facebook.com/RossVolAct"
+        "title": "Highland Third Sector Interface",
+        "email": "volunteering@highlandtsi.org.uk",
+        "phone": "01349864289",
+        "logo": "highland.jpg",
+        "website": "http://www.highlandtsi.org.uk",
+        "twitter": "https://twitter.com/HighlandTSI",
+        "facebook": "https://www.facebook.com/HighlandTSI"
       },
       "badenoch-strathspey": {
         "pattern": "^PH(19|2[0-6]).*$",
