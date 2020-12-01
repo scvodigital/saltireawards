@@ -120,9 +120,10 @@
       "all": {
         "pattern": "^.*$",
         "title": "Volunteer Centre East Ayrshire",
-        "email": "volunteer@eav.org.uk",
+        "email": "Saltire.Awards@cvoea.co.uk",
         "phone": "07873394005",
-        "logo": "ea.png"
+        "logo": "ea.png",
+        "website": "http://cvoea.co.uk"
       }
     }
   },
