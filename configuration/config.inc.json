@@ -21,7 +21,7 @@
     "contacts": {
       "admin": "support@saltireawards.org.uk",
       "noreply": "no-reply@saltireawards.scot",
-      "technical": "webhelpdesk@scvo.org.uk"
+      "technical": "webhelpdesk@scvo.scot"
     },
     "youngScotSettings": "{:./data/young-scot-settings.json}",
     "emailSendSettings": "{:./data/email-settings.json}",
