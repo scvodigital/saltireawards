@@ -141,27 +141,25 @@
             <form action="/submit-hours" method="POST" data-component="TasksTrigger" {{#if admin}}data-success-destination="/hours?new=true" data-destination-include-id="true"{{else}}data-success-destination="/hours?new=true"{{/if}} data-TasksTrigger="ajax-form-handler">
               <input type="hidden" name="task_id" value="{{task_id}}">
               {{#unless (compare task_type "===" 'Copy Task') ~}}
-
                 {{#if volunteer_manager_email}}
-
-              <label class="form-label" for="hours-{{task_id}}">
-                <strong>
-                  {{#compare hours ">" 0 ~}}
-                  What have you done and how many hours have you volunteered since the
-                  {{momentFormat (moment (itemAt (map hours_list (getProp "createdDate")) 0) 'YYYY-MM-DDTHH:mm:ssZ') "Do \o\f MMMM"}}{{#compare (momentFormat (moment (itemAt (map hours_list (getProp "createdDate")) 0) 'YYYY-MM-DDTHH:mm:ssZ') "YYYY") "!==" (momentFormat (moment) "YYYY")}} {{momentFormat (moment) "YYYY"}}{{/compare ~}}{{#compare (dateMath 'now-25y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD")}} but before you turned 26{{/compare}}?
-                  {{else}}
-                  What have you done and how many hours have you volunteered in the last two years{{#compare (dateMath 'now-25y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD")}} but before you turned 26{{/compare}}?
-                  {{/compare ~}}
-                </strong>
-              </label>
-              <div class="input-group b-margin">
-                <textarea class="form-input" id="notes-{{task_id}}" placeholder="Notes (optional)" rows="3"></textarea>
-              </div>
-              <div class="input-group">
-                <input class="form-input input-lg" id="hours-{{task_id}}" name="hours" type="number" step="0.5" min="0.5" max="1000" value="" placeholder="0" required />
-                <button type="submit" class="btn btn-primary btn-lg input-group-btn">Add hours</button>
-              </div>
-              {{else}}
+                  <label class="form-label" for="hours-{{task_id}}">
+                    <strong>
+                      {{#compare hours ">" 0 ~}}
+                      What have you done and how many hours have you volunteered since the
+                      {{momentFormat (moment (itemAt (map hours_list (getProp "createdDate")) 0) 'YYYY-MM-DDTHH:mm:ssZ') "Do \o\f MMMM"}}{{#compare (momentFormat (moment (itemAt (map hours_list (getProp "createdDate")) 0) 'YYYY-MM-DDTHH:mm:ssZ') "YYYY") "!==" (momentFormat (moment) "YYYY")}} {{momentFormat (moment (itemAt (map hours_list (getProp "createdDate")) 0) 'YYYY-MM-DDTHH:mm:ssZ') "YYYY"}}{{/compare ~}}{{#compare (dateMath 'now-25y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD")}} but before you turned 26{{/compare}}?
+                      {{else}}
+                      What have you done and how many hours have you volunteered in the last two years{{#compare (dateMath 'now-25y') ">" (moment @root.data.accountInfo.date_of_birth "YYYY-MM-DD")}} but before you turned 26{{/compare}}?
+                      {{/compare ~}}
+                    </strong>
+                  </label>
+                  <div class="input-group b-margin">
+                    <textarea class="form-input" id="notes-{{task_id}}" placeholder="Notes (optional)" rows="3"></textarea>
+                  </div>
+                  <div class="input-group">
+                    <input class="form-input input-lg" id="hours-{{task_id}}" name="hours" type="number" step="0.5" min="0.5" max="1000" value="" placeholder="0" required />
+                    <button type="submit" class="btn btn-primary btn-lg input-group-btn">Add hours</button>
+                  </div>
+                {{else}}
                   <label class="form-label" for="hours-{{task_id}}">
                     <strong>
                       Please <a href="/task-edit/{{task_id}}">
@@ -170,8 +168,8 @@
                       in order to claim hours on this task
                     </strong>
                   </label>
-              {{/if}}
-                {{/unless ~}}
+                {{/if}}
+              {{/unless ~}}
             </form>
           </div>
           {{else}}
