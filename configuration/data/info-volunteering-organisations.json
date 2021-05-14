@@ -311,10 +311,10 @@
         "pattern": "^(PH(3[0-9]|4[012349]|50)|PA(38|80)).*$",
         "area": "Lochaber",
         "title": "VA Lochaber",
-        "email": "office@valochaber.org.uk",
+        "email": "volunteering@valochaber.org",
         "phone": "",
         "logo": "val.jpg",
-        "website": "http://www.valochaber.org.uk"
+        "website": "https://valochaber.org"
       },
       "inverness-nairn": {
         "pattern": "^IV(([1-6]\\s|12)(?!(IV(1\\s3|[6-9]|1[01]|1[4-9]|2[03])|(IV2([4578])|(IV((2[1236]))))))).*$",
