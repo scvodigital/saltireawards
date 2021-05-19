@@ -9,35 +9,39 @@
   </div>
   <div class="x-padding">
     <div id="form-section-email">
-      <div class="form-group has-icon-left">
-        <input class="form-input" type="email" id="sign-up-email" placeholder="Email" required />
-        <span class="form-icon far fa-envelope"></span>
+      <div class="label label-warning t-margin x-padding t-padding" style="width:100%;">
+        <div class="form-group has-icon-left">
+          <input class="form-input" type="email" id="sign-up-email" placeholder="Email" required />
+          <span class="form-icon far fa-envelope"></span>
+        </div>
+        <div class="form-group has-icon-left">
+          <input class="form-input" type="email" id="sign-up-email-confirm" placeholder="Confirm email" data-lpignore="true" autocomplete="nope" required />
+          <span class="form-icon far fa-envelope"></span>
+        </div>
+        <div class="form-group has-icon-left">
+          <input class="form-input" type="password" id="sign-up-password" placeholder="Password" data-lpignore="true" autocomplete="nope" required />
+          <span class="form-icon far fa-key"></span>
+        </div>
+        <div class="form-group has-icon-left">
+          <input class="form-input" type="password" id="sign-up-password-confirm" placeholder="Confirm password" data-lpignore="true" autocomplete="nope" required />
+          <span class="form-icon far fa-key"></span>
+        </div>
       </div>
-      <div class="form-group has-icon-left">
-        <input class="form-input" type="email" id="sign-up-email-confirm" placeholder="Confirm email" data-lpignore="true" autocomplete="nope" required />
-        <span class="form-icon far fa-envelope"></span>
-      </div>
-      <div class="form-group has-icon-left">
-        <input class="form-input" type="password" id="sign-up-password" placeholder="Password" data-lpignore="true" autocomplete="nope" required />
-        <span class="form-icon far fa-key"></span>
-      </div>
-      <div class="form-group has-icon-left">
-        <input class="form-input" type="password" id="sign-up-password-confirm" placeholder="Confirm password" data-lpignore="true" autocomplete="nope" required />
-        <span class="form-icon far fa-key"></span>
-      </div>
-    </div>
-    <div id="form-section-sign-up-buttons" class="t-margin">
-      <button class="btn btn-primary" type="submit" id="sign-up-submit">
-        Request approval
-      </button>
-      <p class="v-margin-full">
-        Read our <a href="/privacy" target="_blank">privacy notice</a>
-      </p>
-      <h3>
-        Already have a group administrator account?
-      </h3>
-      <div class="t-margin b-margin-full">
-        <a href="/sign-in-admin" class="btn">Sign in as a group administrator</a>
+      <div id="form-section-sign-up-buttons" class="b-margin-full">
+        <div class="label label-warning x-padding t-padding" style="width:100%;">
+          <button class="btn btn-primary" type="submit" id="sign-up-submit">
+            Request approval
+          </button>
+          <p class="v-margin-full">
+            Read our <a href="/privacy" target="_blank">privacy notice</a>
+          </p>
+          <h3>
+            Already have a group administrator account?
+          </h3>
+          <div class="t-margin">
+            <a href="/sign-in-admin" class="btn">Sign in as a group administrator</a>
+          </div>
+        </div>
       </div>
       <h3>
         Volunteer?

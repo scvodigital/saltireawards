@@ -188,6 +188,33 @@ a.btn-link:hover {
   background-color: transparent;
 }
 
+.label.label-warning {
+  background-color: $theme-ascent;
+  a {
+    color: white;
+  }
+  a.btn:link, a.btn:visited, .btn {
+    border-color: $theme-summit;
+    color: $theme-summit;
+  }
+  .btn.btn-primary {
+    color: white;
+    background-color: $theme-summit;
+    border-color: $theme-summit;
+  }
+  a.btn:hover, a.btn:focus {
+    color: white;
+    background-color: $theme-summit;
+    border-color: $theme-summit;
+  }
+  .btn.btn-primary:hover,
+  .btn.btn-primary:focus {
+    color: white;
+    background-color: darken($theme-summit, 15);
+    border-color: darken($theme-summit, 15);
+  }
+}
+
 #toaster {
   position: fixed;
   z-index: 2;
