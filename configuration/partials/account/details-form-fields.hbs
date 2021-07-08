@@ -52,7 +52,7 @@
         <label class="form-label" for="approval_email">Your parent or guardian's email address</label>
       </div>
       <div class="column col-8 col-sm-12">
-        <input class="form-input" id="approval_email" name="approval_email" type="text" value="{{@root.data.accountInfo.approval_email}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="focus-next" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.approval_email}}>
+        <input class="form-input" id="approval_email" name="approval_email" type="email" value="{{@root.data.accountInfo.approval_email}}" placeholder="" autocomplete="nope" data-lpignore="true" data-component="TasksTrigger" data-TasksTrigger="focus-next" {{>form_validation_attributes @root.context.metaData.accountInfoValidation.approval_email}}>
       </div>
     </div>
     <div class="form-group">
