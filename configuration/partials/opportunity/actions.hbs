@@ -1,6 +1,6 @@
 <div class="card-footer">
   {{#unless (compare action 'organisation') ~}}
-  <a href="/search/opportunity/{{Id}}/{{title_slug}}{{> query_search}}" class="btn btn-sm btn-link">Find out more</a>
+  <a href="/search/opportunity/{{Id}}/{{title_slug}}{{> query_search}}" class="btn btn-sm btn-link" aria-label="Find out more about {{title}}">Find out more</a>
   {{/unless ~}}
   <div class="pull-right">
     <div id="action-chips" class="chip-set">
