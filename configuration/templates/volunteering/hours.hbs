@@ -81,7 +81,7 @@
               <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-user-clock"></span></span>
                 <div class="popover popover-bottom">
-                  <span class="text-gray"><span id="{{task_id}}-hours">{{subtract hours hours_verified}} {{inflect (subtract hours hours_verified) "hour" "hours"}}</span> logged but not yet verified</span>
+                  <span class="text-gray"><span id="{{task_id}}-hours">{{subtract hours hours_verified}} {{inflect (subtract hours hours_verified) "hour" "hours"}}</span> logged{{#if @root.data.awardsStatus.claimable}} but not yet verified{{/if}}</span>
                   <div class="popover-container">
                     <div class="card">
                       <div class="card-header">
