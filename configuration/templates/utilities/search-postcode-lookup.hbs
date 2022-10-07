@@ -4,63 +4,53 @@
     "display": {{{stringify _source.place}}},
     "place": {{{stringify _source.place}}},
     "region_codes": {{{stringify _source.region_codes}}},
-    "tsi_area": "{{~#with (getProperty @root.context.metaData.tsiList (slugify (replace (replace (replace (replace (default _source.district _source.county) " and " " & ") " Islands" "") "City of " "") " City" ""))) ~}}
-    {{~#each contacts ~}}
-    {{~#if (regexMatch ../../_source.place pattern "gi") ~}}
-    {{~#if area~}}{{{area}}}{{else}}{{{../local_authority}}}{{~/if~}}
-    {{~/if ~}}
-    {{~/each ~}}
-    {{~/with ~}}",
-    "tsi_contact_email": "{{~#with (getProperty @root.context.metaData.tsiList (slugify (replace (replace (replace (replace (default _source.district _source.county) " and " " & ") " Islands" "") "City of " "") " City" ""))) ~}}
-    {{~#each contacts ~}}
-    {{~#if (regexMatch ../../_source.place pattern "gi") ~}}
-    {{email}}
-    {{~/if ~}}
-    {{~/each ~}}
-    {{~/with ~}}",
-    "tsi_title": "{{~#with (getProperty @root.context.metaData.tsiList (slugify (replace (replace (replace (replace (default _source.district _source.county) " and " " & ") " Islands" "") "City of " "") " City" ""))) ~}}
-    {{~#each contacts ~}}
-      {{~#if (regexMatch ../../_source.place pattern "gi") ~}}
-        {{title}}
-      {{~/if ~}}
-    {{~/each ~}}
-    {{~/with ~}}",
+
+    {{~#with (getProperty @root.context.metaData.tsiList (slugify (replace (replace (replace (replace (default _source.district _source.county) " and " " & ") " Islands" "") "City of " "") " City" ""))) ~}}
+      {{~#each contacts ~}}
+        {{~#if (regexMatch ../../_source.place pattern "gi") ~}}
+          "tsi_area": "{{{default area ../local_authority}}}",
+          "tsi_contact_email": "{{email}}",
+          "tsi_title": "{{title}}",
+        {{~/if ~}}
+      {{~/each ~}}
+    {{~/with ~}}
+
     {{#if _source.district ~}}
-    "local_authority": {{{stringify (replace (replace (replace (replace _source.district " and " " & ") " Islands" "") "City of " "") " City" "")}}},
+      "local_authority": {{{stringify (replace (replace (replace (replace _source.district " and " " & ") " Islands" "") "City of " "") " City" "")}}},
     {{else}}
-    {{#if _source.county ~}}
-    "local_authority": {{{stringify (replace (replace (replace (replace _source.county " and " " & ") " Islands" "") "City of " "") " City" "")}}},
-    {{/if ~}}
+      {{#if _source.county ~}}
+      "local_authority": {{{stringify (replace (replace (replace (replace _source.county " and " " & ") " Islands" "") "City of " "") " City" "")}}},
+      {{/if ~}}
     {{/if ~}}
     {{#if _source.country ~}}
-    "country": {{{stringify _source.country}}},
+      "country": {{{stringify _source.country}}},
     {{/if ~}}
     {{#if _source.ward ~}}
-    "ward": {{{stringify _source.ward}}},
+      "ward": {{{stringify _source.ward}}},
     {{/if ~}}
     {{#if _source.constituency ~}}
-    "constituency": {{{stringify _source.constituency}}},
+      "constituency": {{{stringify _source.constituency}}},
     {{/if ~}}
     {{#if _source.nuts_3 ~}}
-    "nuts_3": {{{stringify _source.nuts_3}}},
+      "nuts_3": {{{stringify _source.nuts_3}}},
     {{/if ~}}
     {{#if _source.dz ~}}
-    "simd_datazone": {{{stringify _source.dz}}},
+      "simd_datazone": {{{stringify _source.dz}}},
     {{/if ~}}
     {{#if _source.simd_decile ~}}
-    "simd_decile": {{{stringify _source.simd_decile}}},
+      "simd_decile": {{{stringify _source.simd_decile}}},
     {{/if ~}}
     {{#if _source.simd_quintile ~}}
-    "simd_quintile": {{{stringify _source.simd_quintile}}},
+      "simd_quintile": {{{stringify _source.simd_quintile}}},
     {{/if ~}}
     {{#if _source.simd_vigintile ~}}
-    "simd_vigintile": {{{stringify _source.simd_vigintile}}},
+      "simd_vigintile": {{{stringify _source.simd_vigintile}}},
     {{/if ~}}
     {{#if _source.simd_rank ~}}
-    "simd_rank": {{{stringify _source.simd_rank}}},
+      "simd_rank": {{{stringify _source.simd_rank}}},
     {{/if ~}}
     {{#ifAll _source.point.lat _source.point.lon ~}}
-    "coordinates": {{{stringify (concat _source.point.lat "," _source.point.lon)}}},
+      "coordinates": {{{stringify (concat _source.point.lat "," _source.point.lon)}}},
     {{/ifAll ~}}
     "point": {{{stringify _source.point}}}
   }
