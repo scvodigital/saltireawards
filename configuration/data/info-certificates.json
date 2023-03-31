@@ -6,9 +6,9 @@
     "certificate_name": "Team",
     "type": "challenge",
     "type_name": "The Challenge",
-    "signature_image": "signatureShonaRobison",
+    "signature_image": "signatureJohnSwinney",
     "signature_image_position": 600,
-    "signature_name": "Shona Robison",
+    "signature_name": "John Swinney",
     "signature_title": "Deputy First Minister"
   },
   {
@@ -20,9 +20,9 @@
     "in_progress": true,
     "type": "approach",
     "type_name": "The Approach",
-    "signature_image": "signatureShonaRobison",
+    "signature_image": "signatureJohnSwinney",
     "signature_image_position": 600,
-    "signature_name": "Shona Robison",
+    "signature_name": "John Swinney",
     "signature_title": "Deputy First Minister"
   },
   {
@@ -34,9 +34,9 @@
     "in_progress": true,
     "type": "approach",
     "type_name": "The Approach",
-    "signature_image": "signatureShonaRobison",
+    "signature_image": "signatureJohnSwinney",
     "signature_image_position": 600,
-    "signature_name": "Shona Robison",
+    "signature_name": "John Swinney",
     "signature_title": "Deputy First Minister"
   },
   {
@@ -48,9 +48,9 @@
     "in_progress": true,
     "type": "ascent",
     "type_name": "The Ascent",
-    "signature_image": "signatureShonaRobison",
+    "signature_image": "signatureJohnSwinney",
     "signature_image_position": 600,
-    "signature_name": "Shona Robison",
+    "signature_name": "John Swinney",
     "signature_title": "Deputy First Minister"
   },
   {
@@ -62,9 +62,9 @@
     "in_progress": true,
     "type": "ascent",
     "type_name": "The Ascent",
-    "signature_image": "signatureShonaRobison",
+    "signature_image": "signatureJohnSwinney",
     "signature_image_position": 600,
-    "signature_name": "Shona Robison",
+    "signature_name": "John Swinney",
     "signature_title": "Deputy First Minister"
   },
   {
@@ -76,9 +76,9 @@
     "in_progress": true,
     "type": "ascent",
     "type_name": "The Ascent",
-    "signature_image": "signatureHumzaYousaf",
+    "signature_image": "signatureNicolaSturgeon",
     "signature_image_position": 640,
-    "signature_name": "Humza Yousaf",
+    "signature_name": "Nicola Sturgeon",
     "signature_title": "First Minister"
   },
   {
@@ -89,9 +89,9 @@
     "certificate_name": "Five hundred",
     "type": "ascent",
     "type_name": "The Ascent",
-    "signature_image": "signatureHumzaYousaf",
+    "signature_image": "signatureNicolaSturgeon",
     "signature_image_position": 640,
-    "signature_name": "Humza Yousaf",
+    "signature_name": "Nicola Sturgeon",
     "signature_title": "First Minister"
   },
   {
@@ -100,9 +100,9 @@
     "certificate_name": "Outstanding",
     "type": "summit",
     "type_name": "The Summit",
-    "signature_image": "signatureHumzaYousaf",
+    "signature_image": "signatureNicolaSturgeon",
     "signature_image_position": 640,
-    "signature_name": "Humza Yousaf",
+    "signature_name": "Nicola Sturgeon",
     "signature_title": "First Minister",
     "tsi_only": true
   }
