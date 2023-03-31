@@ -62,7 +62,9 @@
   },
   "images": {
     "signatureNicolaSturgeon": "{{> certificate_images_png_signatures_nicola_sturgeon}}",
-    "signatureJohnSwinney": "{{> certificate_images_png_signatures_john_swinney}}"
+    "signatureJohnSwinney": "{{> certificate_images_png_signatures_john_swinney}}",
+    "signatureHumzaYousaf": "{{> certificate_images_png_signatures_humza_yousaf}}",
+    "signatureShonaRobison": "{{> certificate_images_png_signatures_shona_robison}}"
   },
   "background": [
     {
