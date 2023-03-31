@@ -1,6 +1,6 @@
 {
   "name": "@scvo/saltireawards",
-  "version": "0.0.269",
+  "version": "0.0.270",
   "description": "Site configuration and assets for saltireawards.scot",
   "main": "index.js",
   "scripts": {
