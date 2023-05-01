@@ -269,10 +269,10 @@
         "pattern": "^(IV2([4578])|KW(([89]|1[01])|13)|KW14\\s7([RSTY])).*$",
         "area": "Sutherland",
         "title": "Voluntary Groups Sutherland",
-        "email": "contact@vges.org.uk",
+        "email": "contact@vgs.scot",
         "phone": "01408633001",
         "logo": "vgs.jpg",
-        "website": "http://www.vges.org.uk",
+        "website": "http://www.vgs.scot",
         "twitter": "https://twitter.com/VoluntaryGroups",
         "facebook": "https://www.facebook.com/Voluntary.Groups.East.Sutherland"
       },
@@ -364,9 +364,9 @@
         "pattern": "^.*$",
         "title": "Volunteer Midlothian",
         "email": "info@volunteermidlothian.org.uk",
-        "phone": "01316601216",
-        "logo": "vm.jpg",
-        "website": "http://www.volunteermidlothian.org.uk",
+        "phone": "01316639471",
+        "logo": "vm.png",
+        "website": "https://www.thirdsectormidlothian.org.uk/vm",
         "twitter": "https://twitter.com/VolMidlothian",
         "facebook": "https://www.facebook.com/pages/Volunteer-Centre-Midlothian/200665366658460"
       }
@@ -459,7 +459,7 @@
       "all": {
         "pattern": "^.*$",
         "title": "The Ayrshire Community Trust",
-        "email": "info@theayrshirecommunitytrust.co.uk",
+        "email": "info@tact.scot",
         "phone": "01294443044",
         "logo": "act.png",
         "twitter": "https://twitter.com/TAyrshireCT",
@@ -562,9 +562,10 @@
         "email": "vasvolunteering@shetland.org",
         "phone": "01595743900",
         "logo": "vas.jpg",
-        "website": "http://www.va-shetland.org.uk",
+        "website": "https://www.voluntaryactionshetland.com",
         "twitter": "https://www.twitter.com/vashetland",
         "youtube": "https://www.youtube.com/watch?v=ycj5UPOBAUk",
+        "instagram": "https://www.instagram.com/vas_volunteering_shetland/",
         "facebook": "https://www.facebook.com/Voluntary-Action-Shetland-264713513731369"
       }
     }

@@ -86,8 +86,12 @@
           </div>
           {{> badge api_name=hours disabled=true}}
           <div class="text-center description">
-            {{certificate_name}} hour award being verified. If you've been waiting for over a week, you can <a data-component="TasksTrigger" data-TasksTrigger="no-multi-click" href="/verify-hours-email-send/?award={{hours}}">re-send the verification {{inflect (length @root.data.tasksInfo) "message" "messages"}}</a>.
-          </div>
+            {{certificate_name}} hour award being verified. If you've been waiting for over a week, you can 
+            {{#compare (dateMath 'now-1w') '>' (moment @root.data.accountInfo.hours_verify_sent_date 'YYYY-MM-DD')}}
+            <a data-component="TasksTrigger" data-TasksTrigger="no-multi-click" href="/verify-hours-email-send/?award={{hours}}">re-send the verification {{inflect (length @root.data.tasksInfo) "message" "messages"}}</a>.
+            {{else}}
+              re-send the verification {{inflect (length @root.data.tasksInfo) "message" "messages"}}
+            {{/compare}}
         </div>
       </div>
     </div>
