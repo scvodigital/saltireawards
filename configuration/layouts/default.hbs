@@ -9,7 +9,15 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', 'G-YBR3JYL23X');
+    gtag('config', 'G-YBR3JYL23X', {
+      'send_page_view': true,
+      'anonymize_ip': true,
+      'cookieDomain': 'none',
+      'custom_map': {
+        'dimension1': 'hit_type',
+        'dimension2': 'parent_document'
+      }
+    });
   </script>
 
   {{{layoutParts.head}}}
@@ -40,8 +48,6 @@
   <link rel="search" type="application/opensearchdescription+xml" title="{{@root.context.metaData.title}}" href="{{~>asset_url url='opensearch.xml'~}}" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.8.3/polyfill.min.js"></script>
   <script>
-  window.dataLayer = window.dataLayer || [];
-
   {{#ifAny request.params.query.debug (contains request.url.hostname ".local") ~}}
     console.log('#### DEBUG MODE ON ####');
     console.log('Request:', {{{regexReplace (regexReplace (stringify request) "(<\/script)" "gi" '</scr\" + \"ipt') "(\r|\n)" "gi" ""}}});
