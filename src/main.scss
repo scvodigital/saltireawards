@@ -1296,6 +1296,9 @@ footer {
   }
 }
 @media screen and (max-width: 400px) {
+  .table-responsive {
+    zoom: 0.8;
+  }
   footer .footer-copyright .logos img {
     display: block;
     margin: $unit/2 auto $unit !important;

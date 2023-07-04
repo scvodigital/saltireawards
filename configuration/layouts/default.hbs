@@ -45,6 +45,8 @@
   <meta name="msapplication-config" content="{{~>asset_url url='images/icons/browserconfig.xml'~}}">
   <meta name="theme-color" content="#ffffff">
 
+  <link rel="canonical" href="https://saltireawards.scot{{request.params.uri.pathname}}" />
+
   <link rel="search" type="application/opensearchdescription+xml" title="{{@root.context.metaData.title}}" href="{{~>asset_url url='opensearch.xml'~}}" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.8.3/polyfill.min.js"></script>
   <script>

@@ -15,7 +15,7 @@
     <div class="equal-height cards">
       <div class="columns">
         {{#each @root.data.opportunitySupplimentary.related.hits.hits ~}}
-        <div class="column col-6">
+        <div class="column col-6 col-lg-12">
           {{> opportunity_list _source hitContext="related-opportunity" parentDocument=_source.Id viewContext="Related"}}
         </div>
         {{/each ~}}
