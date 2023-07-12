@@ -125,13 +125,13 @@
               </button>
             {{/if ~}}
 
-            {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") ~}}
+            {{!-- {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") ~}}
               <button class="chip bg-primary bg-twitter b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="twitter.com"
                 data-confirm-task="unlink-provider" data-confirm-verb="unlink from Twitter" data-confirm-description="#unlink-provider-description" data-confirm-data='{ "providerId": "twitter.com" }'>
                 <span class="fab fa-fw fa-twitter"></span>
                 Unlink from Twitter
               </button>
-            {{/if ~}}
+            {{/if ~}} --}}
 
             {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com") ~}}
               <button class="chip bg-primary bg-facebook b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="facebook.com"
@@ -157,13 +157,13 @@
               </button>
             {{/unless ~}}
 
-            {{#unless (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") ~}}
+            {{!-- {{#unless (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") ~}}
               <button class="chip bg-primary bg-twitter b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="twitter.com"
                 data-confirm-task="link-provider" data-confirm-verb="link to Twitter" data-confirm-description="#link-provider-description" data-confirm-data='{ "providerId": "twitter.com" }'>
                 <span class="fab fa-fw fa-twitter"></span>
                 Link to Twitter
               </button>
-            {{/unless ~}}
+            {{/unless ~}} --}}
 
             {{#unless (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com") ~}}
               <button class="chip bg-primary bg-facebook b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="facebook.com"

@@ -530,6 +530,20 @@ header {
     background: transparent;
     border-color: transparent;
   }
+  .main-menu {
+    .btn.btn-link:not(.my-account) {
+      margin-left: 0.4rem;
+      margin-right: 0.4rem;
+      padding-left: 0;
+      padding-right: 0;
+      border-radius: 0;
+      border-bottom: 2px solid transparent;
+    }
+    .btn.btn-active:not(.my-account),
+    .btn.btn-link:not(.my-account):hover {
+      border-bottom-color: white;
+    }
+  }
   .dropdown {
     text-align: left;
     .menu {
@@ -555,22 +569,34 @@ header {
     padding-right: $unit/4;
   }
   .btn.btn-link.my-account {
-    color: $secondary-color !important;
+    color: white !important;
   }
   .my-account {
+    margin-top: -2px;
     z-index: 100;
-    background: white !important;
+    color: white !important;
+    background: $secondary-color !important;
+    border: 2px solid white !important;
     border-radius: $unit*2;
     margin-left: $unit/3;
     .dropdown-toggle {
       border-color: transparent !important;
-      color: $secondary-color !important;
+      color: white !important;
+      border-radius: $unit*2 !important;
+      margin: -1px;
     }
     .dropdown-toggle:focus,
     .dropdown-toggle:hover {
+      background-color: white;
       color: $secondary-color-dark !important;
     }
   }
+}
+.btn.btn-link.my-account:hover,
+.btn.btn-link.my-account.btn-active {
+  color: $secondary-color !important;
+  border-color: $secondary-color;
+  background-color: white !important;
 }
 .my-account.dropdown.signed-in {
   min-width: 240px;

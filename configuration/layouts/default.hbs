@@ -45,7 +45,11 @@
   <meta name="msapplication-config" content="{{~>asset_url url='images/icons/browserconfig.xml'~}}">
   <meta name="theme-color" content="#ffffff">
 
-  <link rel="canonical" href="https://saltireawards.scot{{request.params.uri.pathname}}" />
+  {{#if (contains request.params.uri.pathname '/search/opportunity')}}
+    <link rel="canonical" href="https://volunteer.scot{{replace request.params.uri.pathname '/search/opportunity/' '/search/'}}" />
+  {{else}}
+    <link rel="canonical" href="https://saltireawards.scot{{request.params.uri.pathname}}" />
+  {{/if}}
 
   <link rel="search" type="application/opensearchdescription+xml" title="{{@root.context.metaData.title}}" href="{{~>asset_url url='opensearch.xml'~}}" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.8.3/polyfill.min.js"></script>
@@ -452,12 +456,6 @@
                             <a href="{{fixUrl website}}" target="_blank">{{replace (replace (replace website 'https://' '') 'http://' '') 'www.' ''}}</a>
                           </li>
                         {{/if ~}}
-                        {{#if twitter ~}}
-                          <li>
-                            <span class="fa-li"><span class="fab fa-twitter"></span></span>
-                            <a href="{{fixUrl twitter}}" target="_blank">Twitter</a>
-                          </li>
-                        {{/if ~}}
                         {{#if facebook ~}}
                           <li>
                             <span class="fa-li"><span class="fab fa-facebook"></span></span>
@@ -476,6 +474,12 @@
                             <a href="{{fixUrl youtube}}" target="_blank">YouTube</a>
                           </li>
                         {{/if ~}}
+                        {{!-- {{#if twitter ~}}
+                          <li>
+                            <span class="fa-li"><span class="fab fa-twitter"></span></span>
+                            <a href="{{fixUrl twitter}}" target="_blank">Twitter</a>
+                          </li>
+                        {{/if ~}} --}}
                       {{/if ~}}
                     {{/each ~}}
                   {{/with ~}}

@@ -47,7 +47,7 @@
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
     <polygon fill="#ebedfa" points="100,0 100,100 0,0"></polygon>
   </svg>
-  <div class="container">
+  <div class="container text-center">
     {{#compare (length @root.data.accountInfo.awards_list) ">" 0 ~}}
     <h2>Awards</h2>
 
@@ -55,7 +55,7 @@
       {{#each @root.data.accountInfo.awards_list ~}}
       {{#each @root.context.metaData.certificates ~}}
       {{#compare ../award_level api_name ~}}
-      <div class="column col-4 col-md-6 col-sm-12">
+      <div class="column col-4 col-md-6 col-sm-12 col-mx-auto">
         <p class="h5 text-center b-margin">
           {{type_name}}: {{certificate_name}} hours
         </p>
@@ -72,7 +72,7 @@
     <div class="columns cards equal-height">
       {{#each @root.data.tasksInfo ~}}
       {{#compare hours_verified ">" 0 ~}}
-      <div class="column col-6 col-xl-12">
+      <div class="column col-6 col-xl-12 col-mx-auto">
         <div class="card b-margin-full">
           <div class="card-header">
             <div class="card-title h5">{{organisation_name}}</div>
@@ -82,7 +82,7 @@
             {{#if task_description ~}}
             <div class="card-subtitle text-gray">{{task_description}}</div>
             {{/if ~}}
-            <ul class="card-subtitle hours-logged fa-ul">
+            <ul class="card-subtitle hours-logged fa-ul mb-0">
               {{#if location ~}}
               <li class="card-subtitle">
                 <span class="fa-li"><span class="far fa-map-marker-alt"></span></span>
