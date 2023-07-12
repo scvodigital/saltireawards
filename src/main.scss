@@ -769,7 +769,7 @@ form {
     }
   }
   .social .btn {
-    height: $unit*1.8;
+    // height: $unit*1.8;
     border: none;
   }
   .btn {
@@ -835,7 +835,7 @@ form {
 
 .social .btn, .social-button {
   padding: 1px 0.6rem 1px 1px;
-  height: $unit*1.8;
+  height: $unit*2.1;
   border-radius: 2px;
   border: none;
   position: relative;
@@ -845,8 +845,8 @@ form {
   color: white;
   font-weight: 600;
   .fa-fw {
-    height: 1.7rem;
-    width: 1.7rem;
+    height: $unit*2;
+    width: $unit*2;
     background: white;
     display: flex;
     align-items: center;
