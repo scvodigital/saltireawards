@@ -5,13 +5,10 @@
     </div>
   </div>
   <div class="x-padding">
+    <p>
+      Create a new {{!--My Volunteer--}} Account below. If you already have an {{!--My Volunteer--}} Account, please <strong><a href="/sign-in">sign in</a></strong>.
+    </p>
     <div id="form-section-email" class="form">
-      <div class="b-padding">
-        {{> account_sign_in_social messageSelector="#sign-up-message"}}
-      </div>
-
-      <div class="divider text-center v-margin-full" data-content="or"></div>
-
       <div class="t-padding-full">
         <div class="form-group has-icon-left">
           <input class="form-input" type="email" id="sign-up-email" placeholder="Email" required />
@@ -31,19 +28,28 @@
         </div>
       </div>
       <div id="form-section-sign-up-buttons" class="t-margin">
-        <button class="btn btn-primary" type="submit" id="sign-up-submit" >
-          Sign up
-        </button>
-        <p class="v-margin-full">
+        <div class="b-padding-full">
+          <button class="btn btn-primary" type="submit" id="sign-up-submit" >
+            Sign up
+          </button>
+        </div>
+
+        <div class="divider text-center v-margin-full" data-content="or"></div>
+
+        <div class="t-padding-full">
+          {{> account_sign_in_social messageSelector="#sign-up-message"}}
+        </div>
+
+        <p class="v-margin-full v-padding-full">
           Read our <a href="/privacy" target="_blank">privacy notice</a>
         </p>
-        <h3>
+        {{!-- <h3>
           Already have an account?
         </h3>
         <div class="t-margin b-margin-full">
           <a href="/sign-in" class="btn">Sign in</a>
-        </div>
-        <div class="label label-warning t-margin x-padding t-padding t-margin-full" style="width:100%;">
+        </div> --}}
+        <div class="label label-warning x-padding" style="width:100%;">
           <h3>
             Group administrator?
           </h3>

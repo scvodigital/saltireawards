@@ -5,13 +5,10 @@
     </div>
   </div>
   <div class="x-padding">
+    <p>
+      If you already have an {{!--My Volunteer--}} Account, please sign in below. If not, you can <a href="/sign-up">sign up</a> for a free account.
+    </p>
     <div id="form-section-email">
-      <div class="b-padding">
-        {{> account_sign_in_social messageSelector="#sign-in-message"}}
-      </div>
-
-      <div class="divider text-center v-margin-full" data-content="or"></div>
-
       <div class="t-padding-full">
         <div class="form-group has-icon-left">
           <input class="form-input" type="email" id="sign-in-email" placeholder="Email" />
@@ -24,22 +21,32 @@
         </div>
       </div>
       <div id="form-section-sign-in-buttons" class="t-margin">
-        <button class="btn btn-primary" type="submit" id="sign-in-submit" data-component="TasksTrigger" data-TasksTrigger="sign-in" data-provider-id="password">
-          Sign in
-        </button>
-        <p class="v-margin-full">
+        <div class="">
+          <button class="btn btn-primary" type="submit" id="sign-in-submit" data-component="TasksTrigger" data-TasksTrigger="sign-in" data-provider-id="password">
+            Sign in
+          </button>
+        </div>
+
+        <p class="b-padding-full">
           Forgot your password? <a href="/reset-password">Reset password</a>
         </p>
-        <p class="v-margin-full">
+
+        <div class="divider text-center v-margin-full" data-content="or"></div>
+
+        <div class="t-padding-full">
+          {{> account_sign_in_social messageSelector="#sign-in-message"}}
+        </div>
+
+        <p class="v-margin-full v-padding-full">
           Read our <a href="/privacy" target="_blank">privacy notice</a>
         </p>
-        <h3>
+        {{!-- <h3>
           Not registered?
         </h3>
         <div class="t-margin b-margin-full">
           <a href="/sign-up" class="btn">Sign up for a free account</a>
-        </div>
-        <div class="label label-warning x-padding t-padding b-margin-full t-margin-full" style="width:100%;">
+        </div> --}}
+        <div class="label label-warning x-padding b-margin-full" style="width:100%;">
           <h3>
             Group administrator?
           </h3>
