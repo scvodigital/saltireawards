@@ -769,13 +769,13 @@ form {
     }
   }
   .social .btn {
-    height: $unit*2.5;
+    height: $unit*1.8;
     border: none;
   }
   .btn {
     position: relative;
     display: block;
-    margin-bottom: $unit/2;
+    margin-bottom: $unit;
     width: 100%;
     color: white;
     .fa-2x {
@@ -827,34 +827,47 @@ form {
   justify-content: center;
 }
 
+.divider {
+  height: 2px;
+  border: none;
+  background-color: #7bc143;
+}
+
 .social .btn, .social-button {
-  height: $unit*2.5;
+  padding: 1px 0.6rem 1px 1px;
+  height: $unit*1.8;
+  border-radius: 2px;
   border: none;
   position: relative;
   display: block;
   margin-bottom: $unit/2;
   width: 100%;
   color: white;
-  .fa-2x {
+  font-weight: 600;
+  .fa-fw {
+    height: 1.7rem;
+    width: 1.7rem;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1px;
     position: absolute;
-    top: $unit/2;
-    left: $unit/2;
-  }
-  .google-logo {
-    top: .6rem;
-    img {
-      float: left;
-      width: 28px;
-      padding: $unit/4;
-      background: white;
-      border-radius: 3px;
-    }
+    left: 1px;
+    top: 1px;
+    margin-right: 0.6rem;
   }
 }
 
 .chip.bg-google,
 #continue-with-google {
-  background-color: #DB3633 !important;
+  background-color: #4285F4 !important;
+}
+.chip.bg-google:focus,
+.chip.bg-google:hover,
+#continue-with-google:focus,
+#continue-with-google:hover {
+  background-color: #3367d6 !important;
 }
 .chip.bg-twitter,
 #continue-with-twitter {
@@ -862,7 +875,18 @@ form {
 }
 .chip.bg-facebook,
 #continue-with-facebook {
-  background-color: #2C5797 !important;
+  background-color: #17A9FD !important;
+}
+.social .fab.fa-facebook {
+  color: #17A9FD !important;
+  line-height: 1rem;
+  padding: 10px;
+}
+.chip.bg-facebook:focus,
+.chip.bg-facebook:hover,
+#continue-with-facebook:focus,
+#continue-with-facebook:hover {
+  background-color: #0165E1 !important;
 }
 #link-unlink {
   .chip {
