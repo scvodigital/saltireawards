@@ -788,7 +788,7 @@ form {
       img {
         float: left;
         width: 28px;
-        padding: $unit/4;
+        padding: 0.175rem;
         background: white;
         border-radius: 3px;
       }
@@ -880,6 +880,7 @@ form {
 .social .fab.fa-facebook {
   color: #17A9FD !important;
   line-height: 1rem;
+  font-size: 1.05rem;
 }
 .chip.bg-facebook:focus,
 .chip.bg-facebook:hover,
