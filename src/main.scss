@@ -1349,6 +1349,10 @@ footer {
   .table-responsive {
     zoom: 0.8;
   }
+  .form-select.select-lg,
+  .form-input.input-lg {
+    font-size: 0.8rem;
+  }
   footer .footer-copyright .logos img {
     display: block;
     margin: $unit/2 auto $unit !important;
