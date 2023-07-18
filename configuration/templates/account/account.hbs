@@ -110,7 +110,7 @@
         <div class="columns">
           {{#unless @root.data.isAdmin ~}}
           <div class="column col-6 col-sm-12 form b-padding-full" id="link-unlink">
-            {{#ifAny (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com") ~}}
+            {{#ifAny (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com") ~}}
             <h3>Linked accounts</h3>
 
             <div id="unlink-provider-alert" class="alert hidden bg-error s-rounded x-padding v-margin">
@@ -125,14 +125,6 @@
               </button>
             {{/if ~}}
 
-            {{!-- {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") ~}}
-              <button class="chip bg-primary bg-twitter b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="twitter.com"
-                data-confirm-task="unlink-provider" data-confirm-verb="unlink from Twitter" data-confirm-description="#unlink-provider-description" data-confirm-data='{ "providerId": "twitter.com" }'>
-                <span class="fab fa-fw fa-twitter"></span>
-                Unlink from Twitter
-              </button>
-            {{/if ~}} --}}
-
             {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com") ~}}
               <button class="chip bg-primary bg-facebook b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="facebook.com"
                 data-confirm-task="unlink-provider" data-confirm-verb="unlink from Facebook" data-confirm-description="#unlink-provider-description" data-confirm-data='{ "providerId": "facebook.com" }'>
@@ -142,7 +134,7 @@
             {{/if ~}}
             {{/ifAny ~}}
 
-            {{#unless (ifAll (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com")) ~}}
+            {{#unless (ifAll (contains (map @root.data.auth.providerData (getProp "providerId")) "google.com") (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com")) ~}}
             <h3>Available providers</h3>
 
             <div id="link-provider-alert" class="alert hidden bg-error s-rounded x-padding v-margin">
@@ -156,14 +148,6 @@
                 Link to Google
               </button>
             {{/unless ~}}
-
-            {{!-- {{#unless (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com") ~}}
-              <button class="chip bg-primary bg-twitter b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="twitter.com"
-                data-confirm-task="link-provider" data-confirm-verb="link to Twitter" data-confirm-description="#link-provider-description" data-confirm-data='{ "providerId": "twitter.com" }'>
-                <span class="fab fa-fw fa-twitter"></span>
-                Link to Twitter
-              </button>
-            {{/unless ~}} --}}
 
             {{#unless (contains (map @root.data.auth.providerData (getProp "providerId")) "facebook.com") ~}}
               <button class="chip bg-primary bg-facebook b-margin" type="button" data-component="TasksTrigger" data-TasksTrigger="show-confirm-modal" data-provider-id="facebook.com"
@@ -228,13 +212,6 @@
               <button class="btn re-authentication-button" id="continue-with-google" type="button" data-component="TasksTrigger" data-TasksTrigger="re-authenticate" data-provider-id="google.com">
                 <span class="fab fa-2x google-logo"><img src="https://storage.googleapis.com/scvo-assets/test/volunteerscotland-search/images/logos/g-logo.png" /></span>
                 Sign in with Google
-              </button>
-            {{/if}}
-
-            {{#if (contains (map @root.data.auth.providerData (getProp "providerId")) "twitter.com")}}
-              <button class="btn re-authentication-button" id="continue-with-twitter" type="button" data-component="TasksTrigger" data-TasksTrigger="re-authenticate" data-provider-id="twitter.com">
-                <span class="fab fa-twitter-square fa-2x"></span>
-                Sign in with Twitter
               </button>
             {{/if}}
 
