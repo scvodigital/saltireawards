@@ -1,0 +1,15 @@
+    <div class="container">
+      <p>This is just a test paragraph. The widget should be loaded below</p>
+      
+      <p>Site test</p>
+      <p>Site is: {{@root.request.url.host}}</p>
+      <p>This is {{#if (compare @root.request.url.host 'saltireawards.local:8080') }}local{{else}}production{{/if}} site</p>
+
+      <script src="{{#if (compare @root.request.url.host 'saltireawards.local:8080') }}https://volunteerscotland.local:4333/volunteerscotland/widget.js{{else}}https://storage.googleapis.com/scvo-platform-assets/volunteerscotland/widget.js{{/if}} " data-options="{
+        'origin': '{{#if (compare @root.request.url.host 'saltireawards.local:8080') }}https://volunteerscotland.local:4333{{else}}https://volunteer.scot{{/if}}', {{!-- This must be variable --}}
+      }" data-headers="{
+        {{#if @root.data.accountInfo.date_of_birth}}'dob': '{{@root.data.accountInfo.date_of_birth}}'{{/if}} 
+      }"></script>
+
+      <p>I'm some content that appears below the widget. Hope it all gets formatted properly</p>
+      </div>
