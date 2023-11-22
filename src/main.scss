@@ -114,6 +114,18 @@ h5 {
   margin-bottom: 0;
   // letter-spacing: -0.05rem;
 }
+.volunteerscotland-widget {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    text-transform: none !important;
+  }
+  .tab .tab-item a {
+    background: $bg-color;
+  }
+}
 .wForm {
   h1,
   h2,
@@ -163,6 +175,11 @@ a.pure-menu-link:hover {
 .chip:hover {
   color: white !important;
   background-color: $primary-color-dark;
+}
+.volunteerscotland-widget {
+  .chip {
+    color: white !important;
+  }
 }
 
 a.btn:link,
