@@ -1,6 +1,6 @@
 {
   "name": "volunteering_search",
-  "pattern": "/search",
+  "pattern": "/search-old",
   "debug": false,
   "errorRoute": "five_hundred",
   "metaData": {
