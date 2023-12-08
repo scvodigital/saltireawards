@@ -1,7 +1,18 @@
     <div class="container">
+      <script src="https://storage.googleapis.com/scvo-platform-assets/volunteerscotland/widget.js " data-options="{
+        'origin': 'https://volunteer.scot', 
+      }" data-headers="{
+        {{#if @root.data.accountInfo.date_of_birth}}'dob': '{{@root.data.accountInfo.date_of_birth}}'{{/if}} 
+      }"></script>
+      </div>
+
+
+{{!-- old local script, useful for dev work
       <script src="{{#if (compare @root.request.url.host 'saltireawards.local:8080') }}https://volunteerscotland.local:4333/volunteerscotland/widget.js{{else}}https://storage.googleapis.com/scvo-platform-assets/volunteerscotland/widget.js{{/if}} " data-options="{
         'origin': '{{#if (compare @root.request.url.host 'saltireawards.local:8080') }}https://volunteerscotland.local:4333{{else}}https://volunteer.scot{{/if}}', {{!-- This must be variable --}}
       }" data-headers="{
         {{#if @root.data.accountInfo.date_of_birth}}'dob': '{{@root.data.accountInfo.date_of_birth}}'{{/if}} 
       }"></script>
-      </div>
+
+
+--}}

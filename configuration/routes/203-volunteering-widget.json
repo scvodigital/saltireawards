@@ -1,6 +1,6 @@
 {
   "name": "volunteering_search-widget",
-  "pattern": "/search-widget",
+  "pattern": "/search",
   "debug": false,
   "errorRoute": "five_hundred",
   "metaData": {
